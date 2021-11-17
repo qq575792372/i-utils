@@ -1,0 +1,25 @@
+{
+  "name": "lemon-tools",
+  "version": "1.0.0",
+  "description": "lemon-util前端工具类",
+  "main": "./src/index.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/qq1020431880/lemonjs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^5.64.1",
+    "webpack-cli": "^4.9.1"
+  }
+}
