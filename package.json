@@ -1,25 +1,24 @@
 {
   "name": "lemon-tools",
   "version": "1.0.0",
-  "description": "lemon-util前端工具类",
+  "description": "lemon-tools前端js工具库",
+  "author": "Gaoshiwei <gao911222@163.com>",
   "main": "./src/index.js",
-  "directories": {
-    "doc": "doc",
-    "test": "test"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --watch",
     "build": "webpack"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/qq1020431880/lemonjs.git"
-  },
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "webpack": "^5.64.1",
     "webpack-cli": "^4.9.1"
-  }
+  },
+  "devDependencies": {
+    "uglifyjs-webpack-plugin": "^2.2.0"
+  },
+  "keywords": [
+    "lemon-tools",
+    "tools",
+    "utils"
+  ]
 }
