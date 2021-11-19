@@ -1,24 +1,37 @@
 {
-  "name": "lemon-tools",
+  "name": "lemon-utils",
   "version": "1.0.0",
-  "description": "lemon-tools前端js工具库",
+  "description": "lemon-utils 前端js工具类",
   "author": "Gaoshiwei <gao911222@163.com>",
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "build:line": "rollup -c"
   },
   "license": "MIT",
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "webpack": "^5.64.1",
-    "webpack-cli": "^4.9.1"
-  },
-  "devDependencies": {
     "uglifyjs-webpack-plugin": "^2.2.0"
   },
+  "devDependencies": {
+    "rollup": "^2.60.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.4"
+  },
   "keywords": [
-    "lemon-tools",
-    "tools",
-    "utils"
+    "lemon-utils",
+    "LemonUtils",
+    "js utils",
+    "js tools"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
   ]
 }

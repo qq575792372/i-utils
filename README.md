@@ -1,4 +1,4 @@
-# lemon-tools 前端js工具库
+# lemon-utils 前端js工具类
 
 #### 介绍
 {**以下是 Gitee 平台说明，您可以替换此简介**

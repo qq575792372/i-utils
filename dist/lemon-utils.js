@@ -4,58 +4,85 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["LemonTools"] = factory();
+		exports["LemonUtils"] = factory();
 	else
-		root["LemonTools"] = factory();
+		root["LemonUtils"] = factory();
 })(self, function() {
-return /******/ (() => { // webpackBootstrap
+return /******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
+/******/ 		__webpack_require__.r = function(exports) {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "loadSuccess": () => (/* binding */ loadSuccess)
-/* harmony export */ });
-// 测试加载成功方法
-function loadSuccess() {
-  console.log("[lemon-tools] loaded successfully");
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "toNumber": function() { return /* reexport */ toNumber; },
+  "toString": function() { return /* reexport */ string_toString; }
+});
+
+;// CONCATENATED MODULE: ./src/string/index.js
+function string_toString(val) {
+  console.log("toString", val);
+}
+function toNumber(val) {
+  console.log("toNumber", val);
+  string_toString(val);
 }
 
-// export { default as string } from "./string";
-// export { default as array } from "./array";
+// export default {
+//   toString(val) {
+//     console.log("toString", val);
+//   },
+//   toNumber(val) {
+//     console.log("toNumber", val);
+//   },
+// };
+;// CONCATENATED MODULE: ./src/index.js
+// 测试加载成功方法
+const loadedTest = function () {
+  console.log("lemon-utils loaded successfully");
+};
 
+// string
+
+// import string from "./string";
+// // array
+// export { toNumber1, toString1 } from "./array/index.js";
+// import string from "./string/index.js";
+// export default { ...string };
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;
