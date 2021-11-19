@@ -2,7 +2,7 @@ const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: {
     // 压缩文件入口
     "lemon-utils": path.resolve(__dirname, "./src/index.js"),
