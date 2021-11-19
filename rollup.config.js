@@ -1,20 +1,52 @@
+const path = require("path");
+
 import commonjs from "rollup-plugin-commonjs";
 import resolve from "rollup-plugin-node-resolve";
 import { uglify } from "rollup-plugin-uglify";
+import pkg from "./package.json";
+
+// 转换路径
+function pathResolve(dir) {
+  return path.resolve(__dirname, dir);
+}
+
+// 引用模块的名称
+const outputModuleName = "LemonUtils";
+
+// 打包后的注释
+const banner = `/*!
+* ${pkg.name} v${pkg.version}
+*
+* Copyright 2021-${new Date().getFullYear()}, ${pkg.author}
+* Licensed under the ${pkg.license} license
+* http://www.opensource.org/licenses/mit-license
+*
+*/`;
 
 /**
  * rollup 配置
  */
 export default {
   // 入口
-  input: "src/index.js",
+  input: pathResolve("./src/index.js"),
   // 输出
-  output: {
-    file: "dist/lemon-utils.js",
-    format: "umd",
-    name: "LemonUtils",
-    sourcemap: true,
-  },
+  output: [
+    // 生成开发js
+    {
+      file: pathResolve(`./dist/${pkg.name}.js`),
+      format: "umd", // 输出模式
+      name: outputModuleName,
+      banner,
+    },
+    // 生成压缩js
+    {
+      file: pathResolve(`./dist/${pkg.name}.min.js`),
+      format: "umd", // 输出模式
+      name: outputModuleName,
+      banner,
+      plugins: [uglify()],
+    },
+  ],
   // 插件
-  plugins: [resolve(), commonjs(), uglify()],
+  plugins: [resolve(), commonjs()],
 };

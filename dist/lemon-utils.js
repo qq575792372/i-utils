@@ -1,3 +1,11 @@
+/*!
+* lemon-utils v1.0.0
+*
+* Copyright 2021-2021, Gaoshiwei <gao911222@163.com>
+* Licensed under the MIT license
+* http://www.opensource.org/licenses/mit-license
+*
+*/
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -50,4 +58,3 @@
   return index;
 
 }));
-//# sourceMappingURL=lemon-utils.js.map

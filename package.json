@@ -13,9 +13,6 @@
     "rollup": "^2.60.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^9.3.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-uglify": "^6.0.4"
