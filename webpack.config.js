@@ -8,7 +8,7 @@ module.exports = {
     "lemon-utils": path.resolve(__dirname, "./src/index.js"),
     "lemon-utils.min": path.resolve(__dirname, "./src/index.js"),
   },
-  // devtool: "source-map",
+  devtool: "source-map",
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),

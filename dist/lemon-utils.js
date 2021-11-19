@@ -77,12 +77,12 @@ const loadedTest = function () {
 };
 
 // string
-
+// import string from "./string/index.js";
 // import string from "./string";
 // // array
-// export { toNumber1, toString1 } from "./array/index.js";
+
 // import string from "./string/index.js";
-// export default { ...string };
+// export default { loadedTest, ...string };
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;
