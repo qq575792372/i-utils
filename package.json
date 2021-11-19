@@ -6,19 +6,15 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "build1": "rollup -c"
+    "build": "rollup -c"
   },
   "license": "MIT",
   "dependencies": {
-    "webpack": "^5.64.1",
-    "webpack-cli": "^4.9.1",
-    "uglifyjs-webpack-plugin": "^2.2.0"
+    "rollup": "^2.60.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
-    "rollup": "^2.60.0",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^9.3.0",
     "rollup-plugin-node-resolve": "^5.2.0",
@@ -27,8 +23,8 @@
   "keywords": [
     "lemon-utils",
     "LemonUtils",
-    "js utils",
-    "js tools"
+    "utils",
+    "tools"
   ],
   "browserslist": [
     "> 1%",

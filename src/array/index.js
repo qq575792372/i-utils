@@ -3,5 +3,4 @@ export function toString1(val) {
 }
 export function toNumber1(val) {
   console.log("toNumber1", val);
-  toString1(val);
 }

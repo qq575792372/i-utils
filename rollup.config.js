@@ -1,22 +1,20 @@
-import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
 import resolve from "rollup-plugin-node-resolve";
 import { uglify } from "rollup-plugin-uglify";
 
+/**
+ * rollup 配置
+ */
 export default {
+  // 入口
   input: "src/index.js",
+  // 输出
   output: {
-    file: "build/lemon-utils.js",
+    file: "dist/lemon-utils.js",
     format: "umd",
     name: "LemonUtils",
     sourcemap: true,
   },
-  plugins: [
-    resolve(),
-    commonjs(),
-    babel({
-      exclude: "node_modules/**",
-    }),
-    // uglify(),
-  ],
+  // 插件
+  plugins: [resolve(), commonjs(), uglify()],
 };
