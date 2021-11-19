@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "build:line": "rollup -c"
+    "build1": "rollup -c"
   },
   "license": "MIT",
   "dependencies": {
@@ -19,8 +19,8 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "rollup": "^2.60.0",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-commonjs": "^9.3.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-uglify": "^6.0.4"
   },

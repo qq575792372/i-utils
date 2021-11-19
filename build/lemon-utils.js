@@ -10,7 +10,9 @@
   function toNumber(val) {
     console.log("toNumber", val);
     toString(val);
-  } // export default {
+  }
+
+  // export default {
   //   toString(val) {
   //     console.log("toString", val);
   //   },
