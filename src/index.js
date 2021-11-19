@@ -1,22 +1,29 @@
 // 测试加载成功方法
-const loadedTest = function () {
-  console.log("lemon-utils loaded successfully");
+const testLoaded = function () {
+  console.log("lemon-utils loaded successfully!");
 };
 
-// string
-// import string from "./string/index.js";
-// import string from "./string";
+// 验证
+import * as validate from "./validate";
 
-// // array
-// export { toNumber, toString } from "./string/index.js";
-// import string from "./string/index.js";
-// export default { loadedTest, ...string };
-
-import { toNumber1, toString1 } from "./array";
+// 字符串
 import * as string from "./string";
 
+// localStorage 和 sessionStorage
+import * as storage from "./storage";
+
+// cookie
+import * as cookie from "./cookie";
+
+// 小程序
+import * as xcx from "./xcx";
+
+// 导出
 export default {
-  toNumber1,
-  toString1,
+  testLoaded,
+  ...validate,
   ...string,
+  ...storage,
+  ...cookie,
+  ...xcx,
 };
