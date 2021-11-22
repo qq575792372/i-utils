@@ -1,4 +1,4 @@
-### 字符串
+## 浏览器 Cookie
 
 #### \_.trimAll(str)
 
