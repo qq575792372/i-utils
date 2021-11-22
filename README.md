@@ -18,6 +18,6 @@ Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN�
 
 #### API 文档
 
-1.  String[doc/string.md]
+1.  [string](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
 2.  xxxx
 3.  xxxx
