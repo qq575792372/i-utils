@@ -1,10 +1,10 @@
-# lemon-utils 前端 js 工具类
+## lemon-utils 前端模块化 JavaScript 工具库
 
-#### 介绍
+### 介绍
 
-**lemon-utils** 是一款 前端模块化的 JavaScript 工具库，该库包含有 string，array，date，小程序等多个模块方法集合。
+**lemon-utils** 是一款 前端模块化的 JavaScript 工具库，该库包含有 string，array，date，number，常用校验，正则和小程序等等多个模块集合。
 
-#### 安装
+### 安装
 
 1.  使用 npm 安装
 
@@ -18,7 +18,7 @@ npm i lemon-utils --save
 <script src="dist/lemon-utils.min.js"></script>
 ```
 
-#### 使用
+### 使用
 
 1.es6 模块引入
 
@@ -44,7 +44,7 @@ const { loadedTest } = require("lemon-utils");
 loadedTest();
 ```
 
-#### API 文档
+### API 文档
 
 1. [字符串 ](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
 
