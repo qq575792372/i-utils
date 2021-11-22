@@ -1,5 +1,5 @@
 // 测试加载成功方法
-const testLoaded = function () {
+const loadedTest = function () {
   console.log("lemon-utils loaded successfully!");
 };
 
@@ -20,7 +20,7 @@ import * as xcx from "./xcx";
 
 // 导出
 export default {
-  testLoaded,
+  loadedTest,
   ...validate,
   ...string,
   ...storage,
