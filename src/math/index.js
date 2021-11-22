@@ -1,1 +1,201 @@
-export default {};
+/**
+ * 两个数字加法
+ * @param {Number,String} arg1
+ * @param {Number,String} arg2
+ * @returns 返回计算后的数字
+ */
+export function numAdd(arg1, arg2) {
+  let r1, r2, m;
+  try {
+    r1 = arg1.toString().split(".")[1].length;
+  } catch (e) {
+    r1 = 0;
+  }
+  try {
+    r2 = arg2.toString().split(".")[1].length;
+  } catch (e) {
+    r2 = 0;
+  }
+  m = Math.pow(10, Math.max(r1, r2));
+  return (arg1 * m + arg2 * m) / m;
+}
+
+/**
+ * 两个数字减法
+ * @param {Number,String} arg1
+ * @param {Number,String} arg2
+ * @returns 返回计算后的数字
+ */
+export function numSub(arg1, arg2) {
+  let r1, r2, m, n;
+  try {
+    r1 = arg1.toString().split(".")[1].length;
+  } catch (e) {
+    r1 = 0;
+  }
+  try {
+    r2 = arg2.toString().split(".")[1].length;
+  } catch (e) {
+    r2 = 0;
+  }
+  m = Math.pow(10, Math.max(r1, r2));
+  n = r1 >= r2 ? r1 : r2;
+  return ((arg1 * m - arg2 * m) / m).toFixed(n);
+}
+
+/**
+ * 两个数字乘法
+ * @param {Number,String} arg1
+ * @param {Number,String} arg2
+ * @returns 返回计算后的数字
+ */
+export function numMul(arg1, arg2) {
+  let m = 0,
+    s1 = arg1.toString(),
+    s2 = arg2.toString();
+  try {
+    m += s1.split(".")[1].length;
+  } catch (e) {}
+  try {
+    m += s2.split(".")[1].length;
+  } catch (e) {}
+  return (Number(s1.replace(".", "")) * Number(s2.replace(".", ""))) / Math.pow(10, m);
+}
+
+/**
+ * 两个数字除法
+ * @param {Number,String} arg1
+ * @param {Number,String} arg2
+ * @returns 返回计算后的数字
+ */
+export function numDiv(arg1, arg2) {
+  var t1 = 0,
+    t2 = 0,
+    r1,
+    r2;
+  try {
+    t1 = arg1.toString().split(".")[1].length;
+  } catch (e) {}
+  try {
+    t2 = arg2.toString().split(".")[1].length;
+  } catch (e) {}
+  r1 = Number(arg1.toString().replace(".", ""));
+  r2 = Number(arg2.toString().replace(".", ""));
+  return (r1 / r2) * Math.pow(10, t2 - t1);
+}
+
+/**
+ * 四舍五入，强制保留小数位数
+ * 注：默认保留两位小数，解决原生的toFixed()的四舍五入问题
+ * 如结果为2，则输出2.00；
+ * 如结果为2.009，则四舍五入输出2.01；
+ * @param {Number,String} num
+ * @param {Number} decimals 保留小数的位数，默认2位
+ * @returns 返回保留后的数字
+ */
+export function toFixed(num, decimals = 2) {
+  if (this.isNaN(num)) {
+    return "--";
+  }
+  let s = num + "";
+  if (!decimals) decimals = 0;
+  if (s.indexOf(".") == -1) s += ".";
+  s += new Array(decimals + 1).join("0");
+  if (new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(s)) {
+    let s = "0" + RegExp.$2,
+      pm = RegExp.$1,
+      a = RegExp.$3.length,
+      b = true;
+    if (a == decimals + 2) {
+      a = s.match(/\d/g);
+      if (parseInt(a[a.length - 1]) > 4) {
+        for (let i = a.length - 2; i >= 0; i--) {
+          a[i] = parseInt(a[i]) + 1;
+          if (a[i] == 10) {
+            a[i] = 0;
+            b = i != 1;
+          } else break;
+        }
+      }
+      s = a.join("").replace(new RegExp("(\\d+)(\\d{" + decimals + "})\\d$"), "$1.$2");
+    }
+    if (b) s = s.substr(1);
+    return (pm + s).replace(/\.$/, "");
+  }
+  return num + "";
+}
+
+/**
+ * 非四舍五入，强制保留小数位数
+ * 注：默认保留两位小数
+ * 如结果为2，则输出2.00；
+ * 如结果为2.009，则输出2.00；
+ * @param {Number,String} num
+ * @param {Number} decimals 保留小数的位数，默认2位
+ * @returns 返回保留后的数字
+ */
+export function toDecimalFixed(num, decimals = 2) {
+  if (this.isNaN(num)) {
+    return "--";
+  }
+  // 默认为保留的小数点后两位
+  let dec = decimals;
+  let tempNum = Number(num);
+  let pointIndex = String(tempNum).indexOf(".") + 1; // 获取小数点的位置 + 1
+  let pointCount = pointIndex ? String(tempNum).length - pointIndex : 0; // 获取小数点后的个数(需要保证有小数位)
+  // 源数据为整数或者小数点后面小于decimals位的作补零处理
+  if (pointIndex === 0 || pointCount <= dec) {
+    let tempNumA = tempNum;
+    if (pointIndex === 0) {
+      tempNumA = `${tempNumA}.`;
+      for (let index = 0; index < dec - pointCount; index++) {
+        tempNumA = `${tempNumA}0`;
+      }
+    } else {
+      for (let index = 0; index < dec - pointCount; index++) {
+        tempNumA = `${tempNumA}0`;
+      }
+    }
+    return tempNumA;
+  }
+  let realVal = "";
+  // 截取当前数据到小数点后decimals位
+  realVal = `${String(tempNum).split(".")[0]}.${String(tempNum).split(".")[1].substring(0, dec)}`;
+  return realVal;
+}
+
+/**
+ * 四舍五入，尽可能保留小数
+ * 以默认保留2位为例：
+ * 若结果为2.0，则输出2
+ * 若结果为2.001，则输出2
+ * 若结果为2.009，则输出2.01
+ * @param {Number,String} num
+ * @param {Number} decimals 保留小数的位数，默认2位
+ * @returns 返回保留后的数字
+ */
+export function toDecimalRound(num, decimals = 2) {
+  if (this.isNaN(num)) {
+    return "--";
+  }
+  let n = Math.pow(10, decimals);
+  return Math.round(num * n) / n;
+}
+
+/**
+ * 非四舍五入，尽可能保留小数
+ * 以默认保留2位为例：
+ * 若结果为2.0，则输出2
+ * 若结果为2.001，则输出2
+ * 若结果为2.009，则输出2
+ * @param {Number,String} num
+ * @param {Number} decimals 保留小数的位数，默认2位
+ * @returns 返回保留后的数字
+ */
+export function toDecimalFloor(num, decimals = 2) {
+  if (this.isNaN(num)) {
+    return "--";
+  }
+  let n = Math.pow(10, decimals);
+  return Math.floor(num * n) / n;
+}
