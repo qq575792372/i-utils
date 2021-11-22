@@ -146,7 +146,7 @@
     return value == undefined;
   }
 
-  var validate = /*#__PURE__*/Object.freeze({
+  var validateUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     isInteger: isInteger,
     isNaN: isNaN,
@@ -250,7 +250,7 @@
     return value;
   }
 
-  var string = /*#__PURE__*/Object.freeze({
+  var stringUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     trim: trim,
     trimLeft: trimLeft,
@@ -259,6 +259,79 @@
     digit: digit,
     prefixZero: prefixZero,
     suffixZero: suffixZero
+  });
+
+  function toString1(val) {
+    console.log("toString1", val);
+  }
+  function toNumber1(val) {
+    console.log("toNumber1", val);
+  }
+
+  var arrayUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    toString1: toString1,
+    toNumber1: toNumber1
+  });
+
+  var index$9 = {};
+
+  var dateUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': index$9
+  });
+
+  var index$8 = {};
+
+  var numberUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': index$8
+  });
+
+  var index$7 = {};
+
+  var objectUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': index$7
+  });
+
+  var index$6 = {};
+
+  var mathUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': index$6
+  });
+
+  var index$5 = {};
+
+  var functionUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': index$5
+  });
+
+  var index$4 = {};
+
+  var randomUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': index$4
+  });
+
+  var regexUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null
+  });
+
+  var index$3 = {};
+
+  var fileUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': index$3
+  });
+
+  var index$2 = {};
+
+  var urlUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': index$2
   });
 
   /**
@@ -327,7 +400,7 @@
     window.sessionStorage.clear();
   }
 
-  var storage = /*#__PURE__*/Object.freeze({
+  var storageUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     setLocalStorage: setLocalStorage,
     getLocalStorage: getLocalStorage,
@@ -383,12 +456,19 @@
     }
   }
 
-  var cookie = /*#__PURE__*/Object.freeze({
+  var cookieUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     setCookie: setCookie,
     getCookie: getCookie,
     removeCookie: removeCookie,
     clearCookie: clearCookie
+  });
+
+  var index$1 = {};
+
+  var domUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': index$1
   });
 
   /**
@@ -457,7 +537,7 @@
     wx.clearStorageSync();
   }
 
-  var xcx = /*#__PURE__*/Object.freeze({
+  var xcxUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     setStorage: setStorage,
     setStorageSync: setStorageSync,
@@ -470,18 +550,45 @@
   });
 
   // 测试加载成功方法
-  const testLoaded = function () {
+  const loadedTest = function () {
     console.log("lemon-utils loaded successfully!");
   };
 
   // 导出
   var index = {
-    testLoaded,
-    ...validate,
-    ...string,
-    ...storage,
-    ...cookie,
-    ...xcx,
+    loadedTest,
+    // 字符串
+    ...stringUtil,
+    // 数组
+    ...arrayUtil,
+    // 日期
+    ...dateUtil,
+    // 数字
+    ...numberUtil,
+    // 对象
+    ...objectUtil,
+    // 数学
+    ...mathUtil,
+    // 函数
+    ...functionUtil,
+    // 校验
+    ...validateUtil,
+    // 随机数
+    ...randomUtil,
+    // 正则
+    ...regexUtil,
+    // 文件
+    ...fileUtil,
+    // 浏览器 Url
+    ...urlUtil,
+    // 浏览器 Storage
+    ...storageUtil,
+    // 浏览器 Cookie
+    ...cookieUtil,
+    // 浏览器 Dom
+    ...domUtil,
+    // 微信小程序
+    ...xcxUtil,
   };
 
   return index;

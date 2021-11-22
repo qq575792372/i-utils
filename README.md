@@ -1,8 +1,8 @@
-## lemon-utils 前端模块化 JavaScript 工具库
+# lemon-utils 前端模块化 JavaScript 工具库
 
 ### 介绍
 
-**lemon-utils** 是一款 前端模块化的 JavaScript 工具库，该库包含了开发常用的一些方法，有 string，array，date，number，常用校验，正则和小程序等等多个模块。
+**lemon-utils** 是一个 前端模块化的 **JavaScript** 工具库，该库包含了开发中常用的一些方法，如 string，array，date，number，常用校验，正则和小程序等等多个模块。
 
 ### 安装
 
