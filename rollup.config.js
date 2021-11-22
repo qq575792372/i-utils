@@ -11,7 +11,7 @@ function pathResolve(dir) {
 }
 
 // 引用模块的名称
-const outputModuleName = "LemonUtils";
+const outputModuleName = "LimeUtil";
 
 // 打包后的注释
 const banner = `/*!

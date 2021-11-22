@@ -1,6 +1,6 @@
 // 测试加载成功方法
 const loadedTest = function () {
-  console.log("lemon-utils loaded successfully!");
+  console.log("lime-utils loaded successfully!");
 };
 
 // 字符串

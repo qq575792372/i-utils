@@ -1,12 +1,14 @@
 {
-  "name": "lemon-utils",
-  "version": "1.0.0",
-  "description": "lemon-utils 前端js工具类",
+  "name": "@ilime/utils",
+  "version": "0.0.1",
+  "private": false,
+  "description": "lime-utils 前端模块化 JavaScript 工具库",
   "author": "Gaoshiwei <gao911222@163.com>",
-  "main": "./src/index.js",
+  "main": "dist/lime-utils.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "publish": "npm publish --access=public"
   },
   "license": "MIT",
   "dependencies": {
@@ -18,9 +20,9 @@
     "rollup-plugin-uglify": "^6.0.4"
   },
   "keywords": [
-    "lemon-utils",
-    "LemonUtils",
-    "utils",
+    "limes-util",
+    "LimeUtil",
+    "limes",
     "tools"
   ],
   "browserslist": [

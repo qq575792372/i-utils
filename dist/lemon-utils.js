@@ -1,5 +1,5 @@
 /*!
-* lemon-utils v1.0.0
+* lime-utils v1.0.0
 *
 * Copyright 2021-2021, Gaoshiwei <gao911222@163.com>
 * Licensed under the MIT license
@@ -9,7 +9,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LemonUtils = factory());
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeUtil = factory());
 })(this, (function () { 'use strict';
 
   /**
@@ -1291,7 +1291,7 @@
 
   // 测试加载成功方法
   const loadedTest = function () {
-    console.log("lemon-utils loaded successfully!");
+    console.log("lime-utils loaded successfully!");
   };
 
   // 导出
