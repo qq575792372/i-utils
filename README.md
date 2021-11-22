@@ -20,26 +20,26 @@ npm i lemon-utils --save
 
 ### 使用
 
-1.es6 模块引入
+1.es6 方式
 
 ```javascript
-// 直接引入
+// 全部引入
 import LemonUtils from "lemon-utils";
 LemonUtils.loadedTest();
 
-// 按需引入
+// 模块引入
 import { loadedTest } from "lemon-utils";
 loadedTest();
 ```
 
-2.require 方式引入
+2.require 方式
 
 ```javascript
-// 直接引入
+// 全部引入
 const LemonUtils = require("lemon-utils");
 LemonUtils.loadedTest();
 
-// 按需引入
+// 模块引入
 const { loadedTest } = require("lemon-utils");
 loadedTest();
 ```
@@ -50,7 +50,7 @@ loadedTest();
 
 2. [数组](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/array.md)
 
-3. [日期 ](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/date.md)
+3. [日期](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/date.md)
 
 4. [数字](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/number.md)
 
@@ -64,7 +64,7 @@ loadedTest();
 
 9. [随机数](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/random.md)
 
-10. [正则](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/reg.md)
+10. [正则](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/regex.md)
 
 11. [文件](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/file.md)
 
