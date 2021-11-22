@@ -48,32 +48,32 @@ loadedTest();
 
 1. [字符串](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
 
-2. [数组](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+2. [数组](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/array.md)
 
-3. [日期 ](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+3. [日期 ](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/date.md)
 
-4. [数字](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+4. [数字](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/number.md)
 
-5. [对象](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+5. [对象](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/object.md)
 
-6. [函数](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+6. [数学](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/math.md)
 
-7. [数学](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+7. [函数](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/function.md)
 
-8. [校验](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+8. [校验](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/validate.md)
 
-9. [随机数](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+9. [随机数](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/random.md)
 
-10. [正则](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+10. [正则](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/reg.md)
 
-11. [文件](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+11. [文件](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/file.md)
 
-12. [地址栏 Url](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+12. [浏览器 Url](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/browser-url.md)
 
-13. [浏览器 Storage](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+13. [浏览器 Storage](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/browser-storage.md)
 
-14. [浏览器 Cookie](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+14. [浏览器 Cookie](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/browser-cookie.md)
 
-15. [浏览器 Dom](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+15. [浏览器 Dom](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/browser-dom.md)
 
-16. [微信小程序](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/string.md)
+16. [微信小程序](https://gitee.com/qq1020431880/lemon-utils/blob/master/doc/xcx.md)
