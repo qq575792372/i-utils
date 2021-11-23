@@ -271,13 +271,15 @@
   }
 
   /**
-   * 数字前补齐零，保持两位
-   * @param {String|Number} value 可以是数字和字符串
+   * 替换字符串中所有指定的字符为新的字符串
+   * @param {String} value 参数
+   * @param {String} substr 需要替换的字符串
+   * @param {String} newSubstr 替换后的字符串
    * @returns {String} 返回处理后的字符串
    */
-  function digit(value) {
-    value = value.toString();
-    return value[1] ? value : "0" + value;
+  function replaceAll(value, substr, newSubstr = "-") {
+    if (isEmpty(value)) return;
+    return value.replace(new RegExp(substr, "gm"), newSubstr);
   }
 
   /**
@@ -320,7 +322,7 @@
     trimStart: trimStart,
     trimEnd: trimEnd,
     trimAll: trimAll,
-    digit: digit,
+    replaceAll: replaceAll,
     zeroStart: zeroStart,
     zeroEnd: zeroEnd
   });
@@ -394,7 +396,30 @@
     arrayToTree: arrayToTree
   });
 
-  // 日期操作
+  /**
+   * 数字前补齐零，保持两位
+   * @param {String|Number} value 可以是数字和字符串
+   * @returns {String} 返回处理后的字符串
+   */
+  function digit(value) {
+    value = value.toString();
+    return value[1] ? value : "0" + value;
+  }
+
+  /**
+   * 判断是否是今天
+   * @param {String|Date} date 传参日期，可以是yyyy-MM-dd格式，也可以是Date对象
+   * @returns {Boolean} 返回true和false
+   */
+  function isToday(date) {
+    if (isEmpty(date)) return;
+    // 当前日期
+    let curDate = getCurrentDate();
+    // 指定日期
+    let tarData = new Date(date.includes("-") ? date.replace(/-/g, "/") : date);
+    return ["getFullYear", "getMonth", "getDate"].every((i) => curDate[i]() === tarData[i]());
+  }
+
   /**
    * 判断是否是闰年
    * @param {Number} year 年份
@@ -403,6 +428,7 @@
   function isLeapYear(year) {
     return (year % 100 !== 0 && year % 4 === 0) || year % 400 === 0;
   }
+
   /**
    * 获得日期Date，默认为当前日期
    * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
@@ -411,6 +437,7 @@
   function getCurrentDate(date = new Date()) {
     return date;
   }
+
   /**
    * 获得日期Date字符串，默认为当前日期
    * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
@@ -421,8 +448,9 @@
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
-    return [year, month, day].map(this.digit).join(separator);
+    return [year, month, day].map(digit).join(separator);
   }
+
   /**
    * 获得日期DateTime字符串，默认为当前时间
    * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
@@ -436,8 +464,9 @@
     let hour = date.getHours();
     let minute = date.getMinutes();
     let second = date.getSeconds();
-    return [year, month, day].map(this.digit).join(separator) + " " + [hour, minute, second].map(this.digit).join(":");
+    return [year, month, day].map(digit).join(separator) + " " + [hour, minute, second].map(digit).join(":");
   }
+
   /**
    * 获取日期Date的时间戳
    * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
@@ -446,6 +475,7 @@
   function getDefaultTimestamp(date = new Date()) {
     return date.getTime();
   }
+
   /**
    * 获取日期Date的Unix时间戳
    * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
@@ -454,6 +484,7 @@
   function getDefaultUnixTimestamp(date = new Date()) {
     return Math.round(date / 1000);
   }
+
   /**
    * 格式化时间戳为日期Date
    * @param {Number} timestamp 时间戳
@@ -463,6 +494,7 @@
     if (isEmpty(timestamp) || timestamp == 0) return;
     return new Date(timestamp);
   }
+
   /**
    * 格式化Unix时间戳为日期Date
    * @param {Number} timestamp Unix时间戳
@@ -472,6 +504,7 @@
     if (isEmpty(timestamp) || timestamp == 0) return;
     return new Date(timestamp * 1000);
   }
+
   /**
    * 获得当前的日期Date是周几
    * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
@@ -488,6 +521,7 @@
     }
     return day;
   }
+
   /**
    * 获得某年的某月总共有多少天
    * @param {Number} year 年
@@ -499,6 +533,7 @@
     month = this.parseInt(month);
     return new Date(year, month, 0).getDate();
   }
+
   /**
    * 获得某年的某月的所有天数数组
    * @param {Number} year 年
@@ -515,6 +550,7 @@
       (item, index) => index + 1
     );
   }
+
   /**
    * 获得某年的某月的最后一天是几号
    * @param {Number} year 年
@@ -526,6 +562,7 @@
     month = this.parseInt(month);
     return new Date(year, month, 0).getDate();
   }
+
   /**
    * 日期字符串转换为数组
    *
@@ -537,6 +574,7 @@
     dateStr = dateStr.replace(/(\-)|(\:)|(\s)|(\/)/g, ",");
     return dateStr.split(",");
   }
+
   /**
    * 时间字符串转换为数组
    *
@@ -548,6 +586,7 @@
     dateTimeStr = dateTimeStr.replace(/(\-)|(\:)|(\s)|(\/)/g, ",");
     return dateTimeStr.split(",");
   }
+
   /**
    * 获得加减年数后的日期Date
    * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
@@ -558,6 +597,7 @@
     date.setFullYear(date.getFullYear() + num);
     return date;
   }
+
   /**
    * 获得加减月数后的日期
    * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
@@ -568,6 +608,7 @@
     date.setMonth(date.getMonth() + num);
     return date;
   }
+
   /**
    * 获得加减天数后的日期
    * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
@@ -578,6 +619,7 @@
     date.setDate(date.getDate() + num);
     return date;
   }
+
   /**
    * 计算两个日期Date之间相差的天数
    * @param {Date} date1 第一个日期
@@ -588,6 +630,7 @@
     if (isEmpty(date1) || isEmpty(date2)) return 0;
     return (date2.getTime() - date1.getTime()) / (24 * 60 * 60 * 1000);
   }
+
   /**
    * 计算两个日期字符串之间相差的天数
    * @param {Date} dateStr1 第一个日期字符串
@@ -598,6 +641,7 @@
     if (isEmpty(dateStr1) || isEmpty(dateStr2)) return 0;
     return (this.formatStrToDate(dateStr2).getTime() - this.formatStrToDate(dateStr1).getTime()) / (24 * 60 * 60 * 1000);
   }
+
   /**
    * 计算两个日期Data时间戳之间相差的天数
    * @param {Timestamp} timestamp1 第一个日期Date时间戳
@@ -608,6 +652,7 @@
     if (isEmpty(timestamp1) || isEmpty(timestamp2)) return 0;
     return (timestamp2 - timestamp1) / (1000 * 60 * 60 * 24);
   }
+
   /**
    * 计算两个日期Date的Unix时间戳之间相差的天数
    * @param {UnixTimestamp} unixTimestamp1 第一个日期Date的Unix时间戳
@@ -618,6 +663,7 @@
     if (isEmpty(unixTimestamp1) || isEmpty(unixTimestamp2)) return 0;
     return (unixTimestamp2 - unixTimestamp1) / (60 * 60 * 24);
   }
+
   /**
    * 获得两个日期Date之间所有日期数组
    *
@@ -630,13 +676,14 @@
     let diffDateArray = [];
     while (endDate.getTime() - startDate.getTime() >= 0) {
       let year = startDate.getFullYear();
-      let month = this.digit(startDate.getMonth() + 1);
-      let day = this.digit(startDate.getDate());
+      let month = digit(startDate.getMonth() + 1);
+      let day = digit(startDate.getDate());
       diffDateArray.push(year + "-" + month + "-" + day);
       startDate.setDate(startDate.getDate() + 1);
     }
     return diffDateArray;
   }
+
   /**
    * 获得两个日期字符串之间所有日期数组
    *
@@ -651,13 +698,14 @@
     let endDate = this.formatStrToDate(endStr);
     while (endDate.getTime() - startDate.getTime() >= 0) {
       let year = startDate.getFullYear();
-      let month = this.digit(startDate.getMonth() + 1);
-      let day = this.digit(startDate.getDate());
+      let month = digit(startDate.getMonth() + 1);
+      let day = digit(startDate.getDate());
       diffDateArray.push(year + "-" + month + "-" + day);
       startDate.setDate(startDate.getDate() + 1);
     }
     return diffDateArray;
   }
+
   /**
    * 日期Date格式化为日期字符串
    * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
@@ -685,6 +733,7 @@
     }
     return formatStr;
   }
+
   /**
    * 日期字符串格式化为日期Date
    * @param {String} dateStr 日期字符串，支持格式：yyyy-MM-dd HH:mm:ss，yyyy/MM/dd HH:mm:ss
@@ -694,6 +743,7 @@
     if (isEmpty(dateStr)) return;
     return new Date(dateStr.replace(/-/g, "/"));
   }
+
   /**
    * 比较两个日期Date的大小
    * @param {Date} date1 第一个日期
@@ -704,6 +754,7 @@
     if (isEmpty(date1) || isEmpty(date2)) return;
     return date1.getTime() > date2.getTime();
   }
+
   /**
    * 比较两个日期Date时间戳的大小
    * @param {Timestamp} timestamp1 第一个时间戳
@@ -714,6 +765,7 @@
     if (isEmpty(timestamp1) || isEmpty(timestamp2)) return;
     return timestamp1 > timestamp2;
   }
+
   /**
    * 比较两个日期Date的Unix时间戳的大小
    * @param {UnixTimestamp} unixTimestamp1 第一个Unix时间戳
@@ -727,6 +779,7 @@
 
   var dateUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
+    isToday: isToday,
     isLeapYear: isLeapYear,
     getCurrentDate: getCurrentDate,
     getDefaultDate: getDefaultDate,
@@ -757,11 +810,20 @@
     compareUnixTimestamp: compareUnixTimestamp
   });
 
-  var index$4 = {};
+  /**
+   * 值转为数字类型
+   * @description 解决部分浏览器在转换 '08','09'等是0开头时被默认转8进制问题
+   * @param {String} value 转换的值
+   * @param {Number} radix 进制数，默认10进制
+   * @returns {Number} 返回转换后的数字
+   */
+  function parseInt$1(value, radix = 10) {
+    return Number.parseInt(value, radix);
+  }
 
   var numberUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': index$4
+    parseInt: parseInt$1
   });
 
   /**
@@ -1124,42 +1186,53 @@
   });
 
   /**
-   * 部分常用的正则表达式集合
+   * 部分常用的正则表达式集合，可以直接调用
    */
-  const regexp = {
-    // 是中文
-    chinese: /[\u4e00-\u9fa5]/,
+  const REGEXP = {
+    // 中文汉字
+    CH: /^[\u4E00-\u9FA5]+$/,
+    // 英文字母
+    EN: /^[a-zA-Z]$/,
     // 中文姓名，2-16位
-    chineseName: /^(?:[\u4e00-\u9fa5·]{2,16})$/,
+    CH_NAME: /^(?:[\u4e00-\u9fa5·]{2,16})$/,
     // 英文姓名，0-20位
-    englishName: /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/,
+    EN_NAME: /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/,
     // 数字
-    number: /^(\-|\+)?\d+(\.\d+)?$/,
+    NUMBER: /^(\-|\+)?\d+(\.\d+)?$/,
     // 整数，包含：0，正整数和负整数
-    integer: /^(0|[1-9][0-9]*|-[1-9][0-9]*)$/,
-    // 正整数或者两位小数
-    intOrFloat: /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
+    INTEGER: /^(0|[1-9][0-9]*|-[1-9][0-9]*)$/,
+    // 正整数或者保留两位小数
+    INT_OR_FLOAT: /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
     // 手机号码，支持+86
-    mobile: /^(?:(?:\+|00)86)?1[1-9]\d{9}$/,
+    MOBILE: /^(?:(?:\+|00)86)?1[1-9]\d{9}$/,
     // 固定电话号码，比如：0755-1111111
-    phone: /^(?:(?:\d{3}-)?\d{8}|^(?:\d{4}-)?\d{7,8})(?:-\d+)?$/,
+    PHONE: /^(?:(?:\d{3}-)?\d{8}|^(?:\d{4}-)?\d{7,8})(?:-\d+)?$/,
     // 邮箱
-    email:
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    EMAIL: /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/,
     // 一代15位和二代18位身份证
-    idCard:
+    ID_CARD:
       /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
     // 银行卡号
-    bankCard: /^[1-9]\d{9,29}$/,
+    BANK_CARD: /^[1-9]\d{9,29}$/,
     // 邮政编码
-    postCode: /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
-    // 网址
-    url: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
+    POST_CODE: /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
+    // url网址
+    URL: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
+    // ip地址
+    IP: /((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))/,
   };
+
+  /**
+   * 提供了正则校验的方法，也可以直接用上面的表达式
+   */
+  function regexpTest(value, type) {
+    return new RegExp(REGEXP[type]).test(value);
+  }
 
   var regexpUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    regexp: regexp
+    REGEXP: REGEXP,
+    regexpTest: regexpTest
   });
 
   /**
@@ -1293,53 +1366,60 @@
   });
 
   /**
-   * 设置cookie
-   * 注：timestamp参数不填，则默认为session级别，浏览器关闭即cookie过期
-   * @param {String} key 设置的key
-   * @param {String} value 设置的value
-   * @param {DateTime} timestamp 过期的时间戳，如果设置一天则为：24*60*60*1000
-   */
-  function setCookie(key, value, timestamp) {
-    // window.document.cookie = key + "=" + value + ";expires=" + formatTimestampToDate(getDefaultTimestamp() + timestamp);
-  }
-
-  /**
-   * 通过key获得cookie存储的值
+   * 通过key获取cookie
    * @param {String} key
    * @returns 返回获取的值，或者返回空字符串
    */
   function getCookie(key) {
-    let arr = window.document.cookie.split(";");
+    if (typeof document == "undefined" || !key) return;
+    let arr = document.cookie ? document.cookie.split(";") : [];
     for (let i = 0; i < arr[i].length; i++) {
       let arr2 = arr[i].split("=");
       if (arr2[0] == key) {
-        return arr2[1];
+        return decodeURIComponent(arr2[1]);
       }
       return "";
     }
   }
 
   /**
-   * 通过key删除cookie的值
+   * 通过key设置cookie
+   * 注：timestamp参数不填，则默认为session级别，浏览器关闭即cookie过期
+   * @param {String} key 设置的key
+   * @param {String} value 设置的value
+   * @param {DateTime} timestamp 过期的时间戳值，如果设置一天过期则为：24*60*60*1000
+   */
+  function setCookie(key, value, timestamp) {
+    if (typeof document == "undefined") return;
+    document.cookie = key + "=" + value + ";expires=" + new Date(Date.now() + timestamp);
+  }
+
+  /**
+   * 通过key删除cookie
    * @param {String} key
    */
   function removeCookie(key) {
+    setCookie(key, "", -1);
   }
 
   /**
    * 清空当前站点所有的cookie
+   * @param {String} domain 域名地址，默认是当前站点域名，设置为null则会清空所有的cookie
    */
-  function clearCookie() {
-    let keys = window.document.cookie.match(/[^ =;]+(?=\=)/g);
+  function clearCookie(domain = document.domain) {
+    let keys = document.cookie.match(/[^ =;]+(?=\=)/g);
     if (keys) {
-      for (let i = keys.length; i--; ) document.cookie = keys[i] + "=0;expires=" + new Date(0).toUTCString();
+      for (let i = keys.length; i--; ) {
+        document.cookie =
+          keys[i] + "=0;path=/;" + domain ? "domain=" + domain + ";" : "" + "expires=" + new Date(0).toUTCString();
+      }
     }
   }
 
   var cookieUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    setCookie: setCookie,
     getCookie: getCookie,
+    setCookie: setCookie,
     removeCookie: removeCookie,
     clearCookie: clearCookie
   });
