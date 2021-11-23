@@ -1,5 +1,5 @@
 /**
- * 部分常用的正则表达式集合，可以直接调用
+ * 常用的正则表达式集合
  */
 export const REGEXP = {
   // 中文汉字
@@ -36,7 +36,10 @@ export const REGEXP = {
 };
 
 /**
- * 提供了正则校验的方法，也可以直接用上面的表达式
+ * 提供了正则校验的方法，也可以在程序中调用上面的表达式
+ * @param {String|Number} value 校验的值
+ * @param {RegExp} type 使用的正则
+ * @returns {Boolean} 返回校验的结果，true和false
  */
 export function regexpTest(value, type) {
   return new RegExp(REGEXP[type]).test(value);

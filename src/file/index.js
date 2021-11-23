@@ -1,9 +1,9 @@
 import { isEmpty } from "../validate";
 
 /**
- * 格式化文件大小自动转为B，KB，MB，GB
+ * 格式化文件大小自动转为 B，KB，MB，GB
  * @param {Byte} size 文件的大小，单位byte字节
- * @returns 返回格式化后的字符串
+ * @returns {String} 返回格式化后的字符串
  */
 export function formatFileSize(size) {
   if (isEmpty(size)) return "0B";
@@ -21,7 +21,7 @@ export function formatFileSize(size) {
 /**
  * 获得文件名称
  * @param {*} value 文件的全名称，例如：123.jpg
- * @returns 返回文件的名称，包含后缀类型名称
+ * @returns {String} 返回文件的名称，包含后缀类型名称
  */
 export function getFileName(value) {
   if (isEmpty(value) || isEmpty(value)) return;
@@ -29,11 +29,11 @@ export function getFileName(value) {
 }
 
 /**
- * 获得文件后缀
+ * 获得文件类型
  * @param {*} value 文文件的全名称，例如：123.jpg
- * @returns 返回文件后缀类型名称
+ * @returns {String} 返回文件类型
  */
-export function getFileSuffixName(value) {
+export function getFileType(value) {
   if (isEmpty(value)) return;
-  return value.substring(value.lastIndexOf(".") + 1);
+  return value.substring(value.lastIndexOf(".") + 1).toLowerCase();
 }

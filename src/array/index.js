@@ -38,17 +38,6 @@ export function uniqueArray(array) {
  * @param {Array} array 数组
  * @param {Number|String} pid 父级的id
  * @returns {Array} 返回去重后的数组
- * @example
- * let source = [
-      { id: 1, name: "节点1", pid: 0 },
-      { id: 11, name: "节点1-1", pid: 1 },
-      { id: 12, name: "节点1-2", pid: 1 },
-      { id: 2, name: "节点2", pid: 0 },
-      { id: 3, name: "节点3", pid: 0 },
-      { id: 31, name: "节点3-1", pid: 3 },
-      { id: 32, name: "节点3-2", pid: 3 },
-    ];
-    console.log(arrayToTree(source, 0)); // 输出包含children层级关系的树形结构
  */
 export function arrayToTree(array, pid) {
   let res = [];

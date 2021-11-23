@@ -1,10 +1,12 @@
+import { isNaN } from "../validate";
+
 /**
  * 两个数字加法
  * @param {Number,String} arg1
  * @param {Number,String} arg2
- * @returns 返回计算后的数字
+ * @returns {Number} 返回计算后的数字
  */
-export function numAdd(arg1, arg2) {
+export function add(arg1, arg2) {
   let r1, r2, m;
   try {
     r1 = arg1.toString().split(".")[1].length;
@@ -24,9 +26,9 @@ export function numAdd(arg1, arg2) {
  * 两个数字减法
  * @param {Number,String} arg1
  * @param {Number,String} arg2
- * @returns 返回计算后的数字
+ * @returns {Number} 返回计算后的数字
  */
-export function numSub(arg1, arg2) {
+export function subtract(arg1, arg2) {
   let r1, r2, m, n;
   try {
     r1 = arg1.toString().split(".")[1].length;
@@ -49,7 +51,7 @@ export function numSub(arg1, arg2) {
  * @param {Number,String} arg2
  * @returns 返回计算后的数字
  */
-export function numMul(arg1, arg2) {
+export function multiply(arg1, arg2) {
   let m = 0,
     s1 = arg1.toString(),
     s2 = arg2.toString();
@@ -66,9 +68,9 @@ export function numMul(arg1, arg2) {
  * 两个数字除法
  * @param {Number,String} arg1
  * @param {Number,String} arg2
- * @returns 返回计算后的数字
+ * @returns {Number} 返回计算后的数字
  */
-export function numDiv(arg1, arg2) {
+export function divide(arg1, arg2) {
   var t1 = 0,
     t2 = 0,
     r1,
@@ -86,15 +88,17 @@ export function numDiv(arg1, arg2) {
 
 /**
  * 四舍五入，强制保留小数位数
- * 注：默认保留两位小数，解决原生的toFixed()的四舍五入问题
- * 如结果为2，则输出2.00；
- * 如结果为2.009，则四舍五入输出2.01；
- * @param {Number,String} num
+ * @description 默认保留两位小数，解决原生的toFixed()的四舍五入问题
+ * @param {Number|String} num
  * @param {Number} decimals 保留小数的位数，默认2位
- * @returns 返回保留后的数字
+ * @example
+ * toFixed(2) // 输出：2.00
+ * toFixed(2.0) // 输出：2.00
+ * toFixed(2.006) // 四舍五入输出：2.01
+ * @returns {Number} 返回保留后的数字
  */
 export function toFixed(num, decimals = 2) {
-  if (this.isNaN(num)) {
+  if (isNaN(num)) {
     return "--";
   }
   let s = num + "";
@@ -128,14 +132,16 @@ export function toFixed(num, decimals = 2) {
 /**
  * 非四舍五入，强制保留小数位数
  * 注：默认保留两位小数
- * 如结果为2，则输出2.00；
- * 如结果为2.009，则输出2.00；
- * @param {Number,String} num
+ * @param {Number|String} num
  * @param {Number} decimals 保留小数的位数，默认2位
- * @returns 返回保留后的数字
+ * @example
+ * toDecimalFixed(2) // 输出 2.00
+ * toDecimalFixed(2.0) // 输出 2.00
+ * toDecimalFixed(2.009) // 强制截取后输出 2.00
+ * @returns {Number} 返回保留后的数字
  */
 export function toDecimalFixed(num, decimals = 2) {
-  if (this.isNaN(num)) {
+  if (isNaN(num)) {
     return "--";
   }
   // 默认为保留的小数点后两位
@@ -166,15 +172,16 @@ export function toDecimalFixed(num, decimals = 2) {
 
 /**
  * 四舍五入，尽可能保留小数
- * 以默认保留2位为例：
- * 若结果为2.0，则输出2
- * 若结果为2.001，则输出2
- * 若结果为2.009，则输出2.01
  * @param {Number,String} num
  * @param {Number} decimals 保留小数的位数，默认2位
- * @returns 返回保留后的数字
+ * @example
+ * toRound(2) // 不够两位，输出：2
+ * toRound(2.0) // 不够两位，输出：2
+ * toRound(2.001) // 向上五入，输出：2
+ * toRound(2.009) // 向上五入，输出：2.01
+ * @returns {Number} 返回保留后的数字
  */
-export function toDecimalRound(num, decimals = 2) {
+export function toRound(num, decimals = 2) {
   if (this.isNaN(num)) {
     return "--";
   }
@@ -183,16 +190,17 @@ export function toDecimalRound(num, decimals = 2) {
 }
 
 /**
- * 非四舍五入，尽可能保留小数
- * 以默认保留2位为例：
- * 若结果为2.0，则输出2
- * 若结果为2.001，则输出2
- * 若结果为2.009，则输出2
+ * 向下舍入，尽可能保留小数
  * @param {Number,String} num
  * @param {Number} decimals 保留小数的位数，默认2位
- * @returns 返回保留后的数字
+ * @example
+ * toFloor(2) // 不够两位，输出：2
+ * toFloor(2.0) // 不够两位，输出：2
+ * toFloor(2.001) // 向下舍入，输出：2
+ * toFloor(2.006) // 向下舍入，输出：2
+ * @returns {Number} 返回保留后的数字
  */
-export function toDecimalFloor(num, decimals = 2) {
+export function toFloor(num, decimals = 2) {
   if (this.isNaN(num)) {
     return "--";
   }

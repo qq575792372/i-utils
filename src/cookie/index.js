@@ -1,7 +1,7 @@
 /**
  * 通过key获取cookie
  * @param {String} key
- * @returns 返回获取的值，或者返回空字符串
+ * @returns {String} 返回获取的值
  */
 export function getCookie(key) {
   if (typeof document == "undefined" || !key) return;
