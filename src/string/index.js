@@ -12,27 +12,27 @@ export function trim(value) {
 }
 
 /**
- * 去除字符串左边空格
+ * 去除字符串开始位置的空格
  * @param {String} value 参数
  * @returns {String} 返回处理后的字符串
  */
-export function trimLeft(value) {
+export function trimStart(value) {
   if (isEmpty(value)) return;
   return value.replace(/(^\s*)/g, "");
 }
 
 /**
- * 去除字符串右边空格
+ * 去除字符串结束位置的空格
  * @param {String} value 参数
  * @returns {String} 返回处理后的字符串
  */
-export function trimRight(value) {
+export function trimEnd(value) {
   if (isEmpty(value)) return;
   return value.replace(/(\s*$)/g, "");
 }
 
 /**
- * 去除字符串全部空格
+ * 去除字符串中全部的空格
  * @param {String} value 参数
  * @returns {String} 返回处理后的字符串
  */
@@ -41,25 +41,26 @@ export function trimAll(value) {
   return value.replace(/\s+/g, "");
 }
 
-// 数字补齐0
 /**
- * 数字前补齐零，保持两位
- * @param {String | Number} value 可以是数字和字符串
+ * 替换字符串中所有指定的字符为新的字符串
+ * @param {String} value 参数
+ * @param {String} substr 需要替换的字符串
+ * @param {String} newSubstr 替换后的字符串
  * @returns {String} 返回处理后的字符串
  */
-export function digit(value) {
-  value = value.toString();
-  return value[1] ? value : "0" + value;
+export function replaceAll(value, substr, newSubstr = "-") {
+  if (isEmpty(value)) return;
+  return value.replace(new RegExp(substr, "gm"), newSubstr);
 }
 
 /**
  * 数字前补齐0达到指定位数
  * 注：相当于padStart()
- * @param {*} value 可以是数字和字符串
- * @param {*} maxLength 补齐0后的最大长度，默认2位
+ * @param {String|Number} value 可以是数字和字符串
+ * @param {Number} maxLength 补齐0后的最大长度，默认2位
  * @returns {String} 返回补0后的字符串，比如传参(10,4)，返回补齐0的4位字符串“0010”
  */
-export function prefixZero(value, maxLength = 2) {
+export function zeroStart(value, maxLength = 2) {
   if (isEmpty(value)) return;
   let len = value.toString().length;
   while (len < maxLength) {
@@ -72,11 +73,11 @@ export function prefixZero(value, maxLength = 2) {
 /**
  * 数字后补齐0达到指定位数
  * 注：相当于padEnd()
- * @param {String,Number} value 可以是数字和字符串
- * @param {*} maxLength 补齐0后的最大长度，默认2位
+ * @param {String|Number} value 可以是数字和字符串
+ * @param {Number} maxLength 补齐0后的最大长度，默认2位
  * @returns {String} 返回补0后的字符串，比如传参(10,4)，返回补齐0的4位字符串“0010”
  */
-export function suffixZero(value, maxLength = 2) {
+export function zeroEnd(value, maxLength = 2) {
   if (isEmpty(value)) return;
   let len = value.toString().length;
   while (len < maxLength) {

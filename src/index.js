@@ -31,7 +31,7 @@ import * as validateUtil from "./validate";
 import * as randomUtil from "./random";
 
 // 正则
-import * as regexUtil from "./regex";
+import * as regexpUtil from "./regexp";
 
 // 文件
 import * as fileUtil from "./file";
@@ -73,7 +73,7 @@ export default {
   // 随机数
   ...randomUtil,
   // 正则
-  ...regexUtil,
+  ...regexpUtil,
   // 文件
   ...fileUtil,
   // 浏览器 Url

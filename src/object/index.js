@@ -1,3 +1,5 @@
+import { isEmpty } from "../validate";
+
 /**
  * map转object
  * @param {Map} map 参数
@@ -57,6 +59,6 @@ export function jsonToString(json) {
  * @returns 返回Map
  */
 export function stringToJson(string) {
-  if (this.isNull(string)) return;
+  if (isEmpty(string)) return;
   return JSON.parse(string);
 }

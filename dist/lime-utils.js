@@ -12,15 +12,7 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeUtil = factory());
 })(this, (function () { 'use strict';
 
-  /**
-   * 判断是否是整数Integer
-   * @param {*} value 参数
-   * @returns {Boolean} result 返回true和false
-   */
-  function isInteger(value) {
-    return Number.isInteger(value);
-  }
-
+  // 数据类型
   /**
    * 判断是非数字
    * @param {*} value 参数
@@ -31,7 +23,25 @@
   }
 
   /**
-   * 判断是否是数字Number
+   * 判断是整数
+   * @param {*} value 参数
+   * @returns {Boolean} result 返回true和false
+   */
+  function isInteger(value) {
+    return Number.isInteger(value);
+  }
+
+  /**
+   * 判断是小数
+   * @param {*} value 参数
+   * @returns {Boolean} result 返回true和false
+   */
+  function isDecimal(value) {
+    return String(value).indexOf(".") > 0;
+  }
+
+  /**
+   * 判断类型是数字 Number
    * @param {Number} value 参数
    * @returns {Boolean} 返回true和false
    */
@@ -40,34 +50,7 @@
   }
 
   /**
-   * 判断是否是Date
-   * @param {*} value 参数
-   * @returns {Boolean} 返回true和false
-   */
-  function isDate(value) {
-    return Object.prototype.toString.call(value).slice(8, -1) === "Date";
-  }
-
-  /**
-   * 判断是否是Object
-   * @param {*} value 参数
-   * @returns {Boolean} 返回true和false
-   */
-  function isObject(value) {
-    return Object.prototype.toString.call(value).slice(8, -1) === "Object";
-  }
-
-  /**
-   * 判断是否是Array
-   * @param {*} value 参数
-   * @returns {Boolean} 返回true和false
-   */
-  function isArray(value) {
-    return Object.prototype.toString.call(value).slice(8, -1) === "Array";
-  }
-
-  /**
-   * 判断是否是String
+   * 判断类型是字符串 String
    * @param {*} value 参数
    * @returns {Boolean} 返回true和false
    */
@@ -76,7 +59,25 @@
   }
 
   /**
-   * 判断是否是Boolean
+   * 判断类型是数组 Array
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isArray(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "Array";
+  }
+
+  /**
+   * 判断类型是对象 Object
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isObject(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "Object";
+  }
+
+  /**
+   * 判断类型是布尔 Boolean
    * @param {*} value 参数
    * @returns {Boolean} 返回true和false
    */
@@ -85,12 +86,48 @@
   }
 
   /**
-   * 判断是否是Function
+   * 判断类型是日期 Date
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isDate(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "Date";
+  }
+
+  /**
+   * 判断类型是函数 Function
    * @param {*} value 参数
    * @returns {Boolean} 返回true和false
    */
   function isFunction(value) {
     return Object.prototype.toString.call(value).slice(8, -1) === "Function";
+  }
+
+  /**
+   * 判断类型是 Symbol
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isSymbol(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "Symbol";
+  }
+
+  /**
+   * 判断类型是正则 RegExp
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isRegExp(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "RegExp";
+  }
+
+  /**
+   * 判断类型是错误 Error
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isError(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "Error";
   }
 
   /**
@@ -102,19 +139,10 @@
     return /^[\u4E00-\u9FA5]+$/.test(value);
   }
 
+  // 数据值
   /**
-   * 判断两个字符串是否相等
-   * 注：强制比较，包括同一个字符，但是不同类型
-   * @param {String} value1 参数1
-   * @param {String} value2 参数2
-   * @returns 返回true和false
-   */
-  function equals(value1, value2) {
-    return Object.is(value1, value2);
-  }
-
-  /**
-   * 判断值是否是空的，支持空字符串，null，undefined，Object，String，Number，Date
+   * 判断值是否为空
+   * @description 针对的是实际有意义的值，如果值是{},[]空的数据则为空
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
@@ -124,17 +152,27 @@
       value == null ||
       value == "" ||
       (isObject(value) && Object.keys(value).length == 0) ||
-      value.length == 0
+      (isArray(value) && value.length == 0)
     );
   }
 
   /**
-   * 判断值是否是 null
+   * 判断对象是否为空
+   * @description 针对的是对象初始化数据，如果值是{},[]等初始化过的则不为空
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
   function isNull(value) {
-    return value == null;
+    return value == undefined || value == null || value == "";
+  }
+
+  /**
+   * 判断值是否有空白符号
+   * @param {*} value 校验的参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isBlank(value) {
+    return value == null || value == undefined || /^\s*$/.test(value);
   }
 
   /**
@@ -146,22 +184,49 @@
     return value == undefined;
   }
 
+  /**
+   * 判断两个字符串是否相等
+   * @param {String} value1 参数1
+   * @param {String} value2 参数2
+   * @returns 返回true和false
+   */
+  function equals(value1, value2) {
+    return Object.is(value1, value2);
+  }
+
+  /**
+   * 判断两个字符串是否相等
+   * 注：会忽略大小写
+   * @param {String} value1 参数1
+   * @param {String} value2 参数2
+   * @returns 返回true和false
+   */
+  function equalsIgnoreCase(value1, value2) {
+    return Object.is(value1.toLowerCase(), value2.toLowerCase());
+  }
+
   var validateUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    isInteger: isInteger,
     isNaN: isNaN,
+    isInteger: isInteger,
+    isDecimal: isDecimal,
     isNumber: isNumber,
-    isDate: isDate,
-    isObject: isObject,
-    isArray: isArray,
     isString: isString,
+    isArray: isArray,
+    isObject: isObject,
     isBoolean: isBoolean,
+    isDate: isDate,
     isFunction: isFunction,
+    isSymbol: isSymbol,
+    isRegExp: isRegExp,
+    isError: isError,
     isChinese: isChinese,
-    equals: equals,
     isEmpty: isEmpty,
     isNull: isNull,
-    isUndefined: isUndefined
+    isBlank: isBlank,
+    isUndefined: isUndefined,
+    equals: equals,
+    equalsIgnoreCase: equalsIgnoreCase
   });
 
   // 字符串去空格
@@ -176,27 +241,27 @@
   }
 
   /**
-   * 去除字符串左边空格
+   * 去除字符串开始位置的空格
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
    */
-  function trimLeft(value) {
+  function trimStart(value) {
     if (isEmpty(value)) return;
     return value.replace(/(^\s*)/g, "");
   }
 
   /**
-   * 去除字符串右边空格
+   * 去除字符串结束位置的空格
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
    */
-  function trimRight(value) {
+  function trimEnd(value) {
     if (isEmpty(value)) return;
     return value.replace(/(\s*$)/g, "");
   }
 
   /**
-   * 去除字符串全部空格
+   * 去除字符串中全部的空格
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
    */
@@ -205,10 +270,9 @@
     return value.replace(/\s+/g, "");
   }
 
-  // 数字补齐0
   /**
    * 数字前补齐零，保持两位
-   * @param {String | Number} value 可以是数字和字符串
+   * @param {String|Number} value 可以是数字和字符串
    * @returns {String} 返回处理后的字符串
    */
   function digit(value) {
@@ -219,11 +283,11 @@
   /**
    * 数字前补齐0达到指定位数
    * 注：相当于padStart()
-   * @param {*} value 可以是数字和字符串
-   * @param {*} maxLength 补齐0后的最大长度，默认2位
+   * @param {String|Number} value 可以是数字和字符串
+   * @param {Number} maxLength 补齐0后的最大长度，默认2位
    * @returns {String} 返回补0后的字符串，比如传参(10,4)，返回补齐0的4位字符串“0010”
    */
-  function prefixZero(value, maxLength = 2) {
+  function zeroStart(value, maxLength = 2) {
     if (isEmpty(value)) return;
     let len = value.toString().length;
     while (len < maxLength) {
@@ -236,11 +300,11 @@
   /**
    * 数字后补齐0达到指定位数
    * 注：相当于padEnd()
-   * @param {String,Number} value 可以是数字和字符串
-   * @param {*} maxLength 补齐0后的最大长度，默认2位
+   * @param {String|Number} value 可以是数字和字符串
+   * @param {Number} maxLength 补齐0后的最大长度，默认2位
    * @returns {String} 返回补0后的字符串，比如传参(10,4)，返回补齐0的4位字符串“0010”
    */
-  function suffixZero(value, maxLength = 2) {
+  function zeroEnd(value, maxLength = 2) {
     if (isEmpty(value)) return;
     let len = value.toString().length;
     while (len < maxLength) {
@@ -253,40 +317,81 @@
   var stringUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     trim: trim,
-    trimLeft: trimLeft,
-    trimRight: trimRight,
+    trimStart: trimStart,
+    trimEnd: trimEnd,
     trimAll: trimAll,
     digit: digit,
-    prefixZero: prefixZero,
-    suffixZero: suffixZero
+    zeroStart: zeroStart,
+    zeroEnd: zeroEnd
   });
 
   /**
    * 数组中是否包含指定的数据
-   * @param {String | Number} value 指定数据，只支持String和Number
+   * @param {String|Number} value 指定数据，只支持String和Number
    * @param {Array} array 查找的数组
-   * @returns 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isInArray(value, array) {
-    if (this.isNull(value) || this.isNull(array)) return;
+    if (isNull(value)) return;
     return array.includes(value);
   }
 
   /**
    * 获得数据在数组中第一次出现位置索引
-   * @param {String | Number} value 指定数据，只支持String和Number
+   * @param {String|Number} value 指定数据，只支持String和Number
    * @param {Array} array 查找的数组
-   * @returns 返回查找到的位置索引
+   * @returns {Number} 返回查找到的位置下标
    */
   function getIndexInArray(value, array) {
-    if (this.isNull(value) || this.isNull(array)) return;
+    if (isNull(value)) return;
     return array.indexOf(value);
+  }
+
+  /**
+   * 数组简单去重
+   * @param {Array} array 数组
+   * @returns {Array} 返回去重后的数组
+   */
+  function uniqueArray(array) {
+    if (isNull(value)) return;
+    return Array.from(new Set(array));
+  }
+
+  /**
+   * 一维父子级的数组转树形结构
+   * @description 包含id和pid关系的一维数组，转为包含children的树形结构
+   * @param {Array} array 数组
+   * @param {Number|String} pid 父级的id
+   * @returns {Array} 返回去重后的数组
+   * @example
+   * let source = [
+        { id: 1, name: "节点1", pid: 0 },
+        { id: 11, name: "节点1-1", pid: 1 },
+        { id: 12, name: "节点1-2", pid: 1 },
+        { id: 2, name: "节点2", pid: 0 },
+        { id: 3, name: "节点3", pid: 0 },
+        { id: 31, name: "节点3-1", pid: 3 },
+        { id: 32, name: "节点3-2", pid: 3 },
+      ];
+      console.log(arrayToTree(source, 0)); // 输出包含children层级关系的树形结构
+   */
+  function arrayToTree(array, pid) {
+    let res = [];
+    list.forEach((v) => {
+      if (v.pid == pid) {
+        v.children = toTree(list, v.id);
+        res.push(v);
+      }
+    });
+    return res;
   }
 
   var arrayUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     isInArray: isInArray,
-    getIndexInArray: getIndexInArray
+    getIndexInArray: getIndexInArray,
+    uniqueArray: uniqueArray,
+    arrayToTree: arrayToTree
   });
 
   // 日期操作
@@ -355,7 +460,7 @@
    * @returns 返回日期Date
    */
   function formatTimestampToDate(timestamp) {
-    if (this.isNull(timestamp) || timestamp == 0) return;
+    if (isEmpty(timestamp) || timestamp == 0) return;
     return new Date(timestamp);
   }
   /**
@@ -364,7 +469,7 @@
    * @returns 返回日期Date
    */
   function formatUnixTimestampToDate(timestamp) {
-    if (this.isNull(timestamp) || timestamp == 0) return;
+    if (isEmpty(timestamp) || timestamp == 0) return;
     return new Date(timestamp * 1000);
   }
   /**
@@ -374,7 +479,7 @@
    * @returns 返回对应的中文的周几或者数字的周几
    */
   function getWeekDay(date = new Date(), type = "zh") {
-    if (this.isNull(date)) return;
+    if (isEmpty(date)) return;
     let day = "";
     if (type && type == "zh") {
       day = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六")[date.getDay()];
@@ -390,7 +495,7 @@
    * @returns 返回对应年月的总天数
    */
   function getYearMonthAllDay(year, month) {
-    if (this.isNull(year) || this.isNull(month)) return;
+    if (isEmpty(year) || isEmpty(month)) return;
     month = this.parseInt(month);
     return new Date(year, month, 0).getDate();
   }
@@ -401,7 +506,7 @@
    * @returns 返回对应年月的所有天数数组
    */
   function getYearMonthAllDayArray(year, month) {
-    if (this.isNull(year) || this.isNull(month)) return;
+    if (isEmpty(year) || isEmpty(month)) return;
     month = this.parseInt(month);
     return Array.from(
       {
@@ -417,7 +522,7 @@
    * @returns 返回对应年月的最后一天是几号
    */
   function getYearMonthLastDay(year, month) {
-    if (this.isNull(year) || this.isNull(month)) return;
+    if (isEmpty(year) || isEmpty(month)) return;
     month = this.parseInt(month);
     return new Date(year, month, 0).getDate();
   }
@@ -428,7 +533,7 @@
    * @returns 返回字符串数组
    */
   function dateStrToArray(dateStr) {
-    if (this.isNull(dateStr)) return;
+    if (isEmpty(dateStr)) return;
     dateStr = dateStr.replace(/(\-)|(\:)|(\s)|(\/)/g, ",");
     return dateStr.split(",");
   }
@@ -439,7 +544,7 @@
    * @returns 返回字符串数组
    */
   function dateTimeStrToArray(dateTimeStr) {
-    if (this.isNull(dateTimeStr)) return;
+    if (isEmpty(dateTimeStr)) return;
     dateTimeStr = dateTimeStr.replace(/(\-)|(\:)|(\s)|(\/)/g, ",");
     return dateTimeStr.split(",");
   }
@@ -480,7 +585,7 @@
    * @returns 返回两个日期Date相差的天数；参数为空返回0；返回复数代表第一个日期大于第二个日期；返回正数表示第一个日期小于第二个日期
    */
   function getDiffDateNum(date1, date2) {
-    if (this.isNull(date1) || this.isNull(date2)) return 0;
+    if (isEmpty(date1) || isEmpty(date2)) return 0;
     return (date2.getTime() - date1.getTime()) / (24 * 60 * 60 * 1000);
   }
   /**
@@ -490,7 +595,7 @@
    * @returns 返回两个日期字符串相差的天数数字；参数为空返回0；返回复数代表第一个日期大于第二个日期；返回正数表示第一个日期小于第二个日期
    */
   function getDiffDateStrNum(dateStr1, dateStr2) {
-    if (this.isNull(dateStr1) || this.isNull(dateStr2)) return 0;
+    if (isEmpty(dateStr1) || isEmpty(dateStr2)) return 0;
     return (this.formatStrToDate(dateStr2).getTime() - this.formatStrToDate(dateStr1).getTime()) / (24 * 60 * 60 * 1000);
   }
   /**
@@ -500,7 +605,7 @@
    * @returns 返回两个日期Date时间戳相差的天数数字；参数为空返回0；返回复数代表第一个日期大于第二个日期；返回正数表示第一个日期小于第二个日期
    */
   function getDiffTimestampNum(timestamp1, timestamp2) {
-    if (this.isNull(timestamp1) || this.isNull(timestamp2)) return 0;
+    if (isEmpty(timestamp1) || isEmpty(timestamp2)) return 0;
     return (timestamp2 - timestamp1) / (1000 * 60 * 60 * 24);
   }
   /**
@@ -510,7 +615,7 @@
    * @returns 返回两个日期Date的Unix时间戳相差的天数数字；参数为空返回0；返回复数代表第一个日期大于第二个日期；返回正数表示第一个日期小于第二个日期
    */
   function getDiffUnixTimestampNum(unixTimestamp1, unixTimestamp2) {
-    if (this.isNull(unixTimestamp1) || this.isNull(unixTimestamp2)) return 0;
+    if (isEmpty(unixTimestamp1) || isEmpty(unixTimestamp2)) return 0;
     return (unixTimestamp2 - unixTimestamp1) / (60 * 60 * 24);
   }
   /**
@@ -521,7 +626,7 @@
    * @returns 返回两个日期Date之间的所有字符串数组；参数为空返回空[]
    */
   function getDiffDateArray(startDate, endDate) {
-    if (this.isNull(startDate) || this.isNull(endDate)) return [];
+    if (isEmpty(startDate) || isEmpty(endDate)) return [];
     let diffDateArray = [];
     while (endDate.getTime() - startDate.getTime() >= 0) {
       let year = startDate.getFullYear();
@@ -540,7 +645,7 @@
    * @returns 返回两个日期字符串之间的所有字符串数组；参数为空返回空[]
    */
   function getDiffDateStrArray(startStr, endStr) {
-    if (this.isNull(startStr) || this.isNull(endStr)) return [];
+    if (isEmpty(startStr) || isEmpty(endStr)) return [];
     let diffDateArray = [];
     let startDate = this.formatStrToDate(startStr);
     let endDate = this.formatStrToDate(endStr);
@@ -586,7 +691,7 @@
    * @returns 返回日期Date
    */
   function formatStrToDate(dateStr) {
-    if (this.isNull(dateStr)) return;
+    if (isEmpty(dateStr)) return;
     return new Date(dateStr.replace(/-/g, "/"));
   }
   /**
@@ -596,7 +701,7 @@
    * @returns 返回true和false
    */
   function compareDate(date1, date2) {
-    if (this.isNull(date1) || this.isNull(date2)) return;
+    if (isEmpty(date1) || isEmpty(date2)) return;
     return date1.getTime() > date2.getTime();
   }
   /**
@@ -606,7 +711,7 @@
    * @returns 返回true和false
    */
   function compareTimestamp(timestamp1, timestamp2) {
-    if (this.isNull(timestamp1) || this.isNull(timestamp2)) return;
+    if (isEmpty(timestamp1) || isEmpty(timestamp2)) return;
     return timestamp1 > timestamp2;
   }
   /**
@@ -616,7 +721,7 @@
    * @returns 返回true和false
    */
   function compareUnixTimestamp(unixTimestamp1, unixTimestamp2) {
-    if (this.isNull(unixTimestamp1) || this.isNull(unixTimestamp2)) return;
+    if (isEmpty(unixTimestamp1) || isEmpty(unixTimestamp2)) return;
     return unixTimestamp1 > unixTimestamp2;
   }
 
@@ -718,7 +823,7 @@
    * @returns 返回Map
    */
   function stringToJson(string) {
-    if (this.isNull(string)) return;
+    if (isEmpty(string)) return;
     return JSON.parse(string);
   }
 
@@ -1018,8 +1123,43 @@
     getGUID: getGUID
   });
 
-  var regexUtil = /*#__PURE__*/Object.freeze({
-    __proto__: null
+  /**
+   * 部分常用的正则表达式集合
+   */
+  const regexp = {
+    // 是中文
+    chinese: /[\u4e00-\u9fa5]/,
+    // 中文姓名，2-16位
+    chineseName: /^(?:[\u4e00-\u9fa5·]{2,16})$/,
+    // 英文姓名，0-20位
+    englishName: /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/,
+    // 数字
+    number: /^(\-|\+)?\d+(\.\d+)?$/,
+    // 整数，包含：0，正整数和负整数
+    integer: /^(0|[1-9][0-9]*|-[1-9][0-9]*)$/,
+    // 正整数或者两位小数
+    intOrFloat: /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
+    // 手机号码，支持+86
+    mobile: /^(?:(?:\+|00)86)?1[1-9]\d{9}$/,
+    // 固定电话号码，比如：0755-1111111
+    phone: /^(?:(?:\d{3}-)?\d{8}|^(?:\d{4}-)?\d{7,8})(?:-\d+)?$/,
+    // 邮箱
+    email:
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    // 一代15位和二代18位身份证
+    idCard:
+      /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
+    // 银行卡号
+    bankCard: /^[1-9]\d{9,29}$/,
+    // 邮政编码
+    postCode: /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
+    // 网址
+    url: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
+  };
+
+  var regexpUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    regexp: regexp
   });
 
   /**
@@ -1028,7 +1168,7 @@
    * @returns 返回格式化后的字符串
    */
   function formatFileSize(size) {
-    if (this.isNull(size)) return "0B";
+    if (isEmpty(size)) return "0B";
     if (size < 1024) {
       return size + "B";
     } else if (size < 1024 * 1024) {
@@ -1046,7 +1186,7 @@
    * @returns 返回文件的名称，包含后缀类型名称
    */
   function getFileName(value) {
-    if (this.isNull(value) || this.isNull(value)) return;
+    if (isEmpty(value) || isEmpty(value)) return;
     return value.substring(0, value.lastIndexOf("."));
   }
 
@@ -1056,7 +1196,7 @@
    * @returns 返回文件后缀类型名称
    */
   function getFileSuffixName(value) {
-    if (this.isNull(value)) return;
+    if (isEmpty(value)) return;
     return value.substring(value.lastIndexOf(".") + 1);
   }
 
@@ -1316,7 +1456,7 @@
     // 随机数
     ...randomUtil,
     // 正则
-    ...regexUtil,
+    ...regexpUtil,
     // 文件
     ...fileUtil,
     // 浏览器 Url

@@ -1,12 +1,4 @@
-/**
- * 判断是否是整数Integer
- * @param {*} value 参数
- * @returns {Boolean} result 返回true和false
- */
-export function isInteger(value) {
-  return Number.isInteger(value);
-}
-
+// 数据类型
 /**
  * 判断是非数字
  * @param {*} value 参数
@@ -17,7 +9,25 @@ export function isNaN(value) {
 }
 
 /**
- * 判断是否是数字Number
+ * 判断是整数
+ * @param {*} value 参数
+ * @returns {Boolean} result 返回true和false
+ */
+export function isInteger(value) {
+  return Number.isInteger(value);
+}
+
+/**
+ * 判断是小数
+ * @param {*} value 参数
+ * @returns {Boolean} result 返回true和false
+ */
+export function isDecimal(value) {
+  return String(value).indexOf(".") > 0;
+}
+
+/**
+ * 判断类型是数字 Number
  * @param {Number} value 参数
  * @returns {Boolean} 返回true和false
  */
@@ -26,34 +36,7 @@ export function isNumber(value) {
 }
 
 /**
- * 判断是否是Date
- * @param {*} value 参数
- * @returns {Boolean} 返回true和false
- */
-export function isDate(value) {
-  return Object.prototype.toString.call(value).slice(8, -1) === "Date";
-}
-
-/**
- * 判断是否是Object
- * @param {*} value 参数
- * @returns {Boolean} 返回true和false
- */
-export function isObject(value) {
-  return Object.prototype.toString.call(value).slice(8, -1) === "Object";
-}
-
-/**
- * 判断是否是Array
- * @param {*} value 参数
- * @returns {Boolean} 返回true和false
- */
-export function isArray(value) {
-  return Object.prototype.toString.call(value).slice(8, -1) === "Array";
-}
-
-/**
- * 判断是否是String
+ * 判断类型是字符串 String
  * @param {*} value 参数
  * @returns {Boolean} 返回true和false
  */
@@ -62,7 +45,25 @@ export function isString(value) {
 }
 
 /**
- * 判断是否是Boolean
+ * 判断类型是数组 Array
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isArray(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "Array";
+}
+
+/**
+ * 判断类型是对象 Object
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isObject(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "Object";
+}
+
+/**
+ * 判断类型是布尔 Boolean
  * @param {*} value 参数
  * @returns {Boolean} 返回true和false
  */
@@ -71,12 +72,48 @@ export function isBoolean(value) {
 }
 
 /**
- * 判断是否是Function
+ * 判断类型是日期 Date
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isDate(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "Date";
+}
+
+/**
+ * 判断类型是函数 Function
  * @param {*} value 参数
  * @returns {Boolean} 返回true和false
  */
 export function isFunction(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Function";
+}
+
+/**
+ * 判断类型是 Symbol
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isSymbol(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "Symbol";
+}
+
+/**
+ * 判断类型是正则 RegExp
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isRegExp(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "RegExp";
+}
+
+/**
+ * 判断类型是错误 Error
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isError(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "Error";
 }
 
 /**
@@ -88,19 +125,10 @@ export function isChinese(value) {
   return /^[\u4E00-\u9FA5]+$/.test(value);
 }
 
+// 数据值
 /**
- * 判断两个字符串是否相等
- * 注：强制比较，包括同一个字符，但是不同类型
- * @param {String} value1 参数1
- * @param {String} value2 参数2
- * @returns 返回true和false
- */
-export function equals(value1, value2) {
-  return Object.is(value1, value2);
-}
-
-/**
- * 判断值是否是空的，支持空字符串，null，undefined，Object，String，Number，Date
+ * 判断值是否为空
+ * @description 针对的是实际有意义的值，如果值是{},[]空的数据则为空
  * @param {*} value 校验的参数
  * @returns {Boolean} 返回true和false
  */
@@ -110,17 +138,27 @@ export function isEmpty(value) {
     value == null ||
     value == "" ||
     (isObject(value) && Object.keys(value).length == 0) ||
-    value.length == 0
+    (isArray(value) && value.length == 0)
   );
 }
 
 /**
- * 判断值是否是 null
+ * 判断对象是否为空
+ * @description 针对的是对象初始化数据，如果值是{},[]等初始化过的则不为空
  * @param {*} value 校验的参数
  * @returns {Boolean} 返回true和false
  */
 export function isNull(value) {
-  return value == null;
+  return value == undefined || value == null || value == "";
+}
+
+/**
+ * 判断值是否有空白符号
+ * @param {*} value 校验的参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isBlank(value) {
+  return value == null || value == undefined || /^\s*$/.test(value);
 }
 
 /**
@@ -130,4 +168,25 @@ export function isNull(value) {
  */
 export function isUndefined(value) {
   return value == undefined;
+}
+
+/**
+ * 判断两个字符串是否相等
+ * @param {String} value1 参数1
+ * @param {String} value2 参数2
+ * @returns 返回true和false
+ */
+export function equals(value1, value2) {
+  return Object.is(value1, value2);
+}
+
+/**
+ * 判断两个字符串是否相等
+ * 注：会忽略大小写
+ * @param {String} value1 参数1
+ * @param {String} value2 参数2
+ * @returns 返回true和false
+ */
+export function equalsIgnoreCase(value1, value2) {
+  return Object.is(value1.toLowerCase(), value2.toLowerCase());
 }
