@@ -48,6 +48,9 @@ import * as cookieUtil from "./cookie";
 // 浏览器 Dom
 import * as domUtil from "./dom";
 
+// 浏览器 Device
+import * as deviceUtil from "./device";
+
 // 微信小程序
 import * as xcxUtil from "./xcx";
 
@@ -84,6 +87,8 @@ export default {
   ...cookieUtil,
   // 浏览器 Dom
   ...domUtil,
+  // 浏览器 Device
+  ...deviceUtil,
   // 微信小程序
   ...xcxUtil,
 };

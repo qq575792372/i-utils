@@ -37,3 +37,22 @@ export function getFileType(value) {
   if (isEmpty(value)) return;
   return value.substring(value.lastIndexOf(".") + 1).toLowerCase();
 }
+
+/**
+ * base64转成blob格式
+ * @param {*} data base64数据
+ * @returns {Blob} 返回转blob数据
+ */
+export function base64ToBlob(data) {
+  var arr = data.split(","),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new Blob([u8arr], {
+    type: mime,
+  });
+}
