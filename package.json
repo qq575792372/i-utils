@@ -1,17 +1,24 @@
 {
-  "name": "lime-utils",
+  "name": "@ilime/utils",
   "version": "0.0.1",
   "private": false,
   "description": "lime-utils 前端模块化 JavaScript 工具库",
-  "author": "Gaoshiwei <gao911222@163.com>",
   "main": "dist/lime-utils.min.js",
+  "author": "Gaoshiwei <gao911222@163.com>",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    
     "build": "rollup -c",
-    "publish": "npm publish --access=public"
+    "publish": "npm publish --access public"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qq575792372/lime-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qq575792372/lime-utils/issues"
+  },
+  "homepage": "https://github.com/qq575792372/lime-utils#readme",
   "dependencies": {
     "rollup": "^2.60.0"
   },
