@@ -1,15 +1,14 @@
 {
-  "name": "@ilime/utils",
+  "name": "@ilime/lime-utils",
   "version": "0.0.1",
-  "private": false,
   "description": "lime-utils 前端模块化 JavaScript 工具库",
   "main": "dist/lime-utils.min.js",
-  "author": "Gaoshiwei <gao911222@163.com>",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c",
     "publish": "npm publish --access public"
   },
+  "author": "Gaoshiwei <575792372@qq.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -38,5 +37,9 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  }
 }
