@@ -1,45 +1,79 @@
-{
-  "name": "@ilime/lime-utils",
-  "version": "0.0.1",
-  "description": "lime-utils 前端模块化 JavaScript 工具库",
-  "main": "dist/lime-utils.min.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c",
-    "publish": "npm publish --access public"
-  },
-  "author": "Gaoshiwei <575792372@qq.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/qq575792372/lime-utils.git"
-  },
-  "bugs": {
-    "url": "https://github.com/qq575792372/lime-utils/issues"
-  },
-  "homepage": "https://github.com/qq575792372/lime-utils#readme",
-  "dependencies": {
-    "rollup": "^2.60.0"
-  },
-  "devDependencies": {
-    "rollup-plugin-commonjs": "^9.3.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-uglify": "^6.0.4"
-  },
-  "keywords": [
-    "LimeUtil",
-    "lime-util",
-    "lime",
-    "JavaScript Util",
-    "模块化js库"
-  ],
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
-  "directories": {
-    "doc": "doc",
-    "test": "test"
-  }
-}
+# lime-utils 前端模块化 JavaScript 工具库
+
+### 介绍
+
+**lime-utils** 是一个 前端模块化的 **JavaScript** 工具库，该库包含了开发中常用的一些方法，如 string，array，date，number，常用校验，正则和小程序等等多个模块。
+
+### 安装
+
+1.  使用 npm 安装
+
+```bash
+npm i lime-utils --save
+```
+
+2.  或在浏览器中直接使用
+
+```html
+<script src="dist/lime-utils.min.js"></script>
+```
+
+### 使用
+
+1.es6 方式
+
+```javascript
+// 全部引入
+import LimeUtil from "lime-utils";
+LimeUtil.loadedTest();
+
+// 模块引入
+import { loadedTest } from "lime-utils";
+loadedTest();
+```
+
+2.require 方式
+
+```javascript
+// 全部引入
+const LimeUtil = require("lime-utils");
+LimeUtil.loadedTest();
+
+// 模块引入
+const { loadedTest } = require("lime-utils");
+loadedTest();
+```
+
+### API 文档
+
+1. [字符串](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/string.md)
+
+2. [数组](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/array.md)
+
+3. [日期](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/date.md)
+
+4. [数字](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/number.md)
+
+5. [对象](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/object.md)
+
+6. [数学](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/math.md)
+
+7. [函数](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/function.md)
+
+8. [校验](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/validate.md)
+
+9. [随机数](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/random.md)
+
+10. [正则](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/regex.md)
+
+11. [文件](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/file.md)
+
+12. [浏览器 Url](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/browser-url.md)
+
+13. [浏览器 Storage](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/browser-storage.md)
+
+14. [浏览器 Cookie](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/browser-cookie.md)
+
+15. [浏览器 Dom](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/browser-dom.md)
+
+16. [微信小程序](https://gitee.com/qq1020431880/lime-utils/blob/master/doc/xcx.md)
