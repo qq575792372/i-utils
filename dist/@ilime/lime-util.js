@@ -1,7 +1,7 @@
 /*!
-* lime-utils v0.0.1
+* @ilime/lime-util v0.0.1
 *
-* Copyright 2021-2021, Gaoshiwei <gao911222@163.com>
+* Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
 * Licensed under the MIT license
 * http://www.opensource.org/licenses/mit-license
 *
@@ -365,17 +365,6 @@
    * @param {Array} array 数组
    * @param {Number|String} pid 父级的id
    * @returns {Array} 返回去重后的数组
-   * @example
-   * let source = [
-        { id: 1, name: "节点1", pid: 0 },
-        { id: 11, name: "节点1-1", pid: 1 },
-        { id: 12, name: "节点1-2", pid: 1 },
-        { id: 2, name: "节点2", pid: 0 },
-        { id: 3, name: "节点3", pid: 0 },
-        { id: 31, name: "节点3-1", pid: 3 },
-        { id: 32, name: "节点3-2", pid: 3 },
-      ];
-      console.log(arrayToTree(source, 0)); // 输出包含children层级关系的树形结构
    */
   function arrayToTree(array, pid) {
     let res = [];
@@ -829,7 +818,7 @@
   /**
    * map转object
    * @param {Map} map 参数
-   * @returns 返回Object
+   * @returns {Object} 返回Object
    */
   function mapToObject(map) {
     let obj = Object.create(null);
@@ -842,7 +831,7 @@
   /**
    * object转map
    * @param {Object} obj 参数
-   * @returns 返回Map
+   * @returns {Map} 返回Map
    */
   function objectToMap(obj) {
     let map = new Map();
@@ -855,7 +844,7 @@
   /**
    * map转json
    * @param {Map} map 参数
-   * @returns 返回Json
+   * @returns {String} 返回Json字符串
    */
   function mapToJson(map) {
     return JSON.stringify(this.mapToObject(map));
@@ -864,16 +853,16 @@
   /**
    * json转map
    * @param {Json} json 参数
-   * @returns 返回Map
+   * @returns {Map} 返回Map
    */
   function jsonToMap(json) {
-    return this.objectToMap(JSON.parse(json));
+    return objectToMap(JSON.parse(json));
   }
 
   /**
    * json转string
    * @param {Json} json 参数
-   * @returns 返回Map
+   * @returns {String} 返回JSON字符串
    */
   function jsonToString(json) {
     return JSON.stringify(json);
@@ -882,7 +871,7 @@
   /**
    * string转json
    * @param {String} string 参数
-   * @returns 返回Map
+   * @returns {Object} 返回JSON对象
    */
   function stringToJson(string) {
     if (isEmpty(string)) return;
@@ -903,9 +892,9 @@
    * 两个数字加法
    * @param {Number,String} arg1
    * @param {Number,String} arg2
-   * @returns 返回计算后的数字
+   * @returns {Number} 返回计算后的数字
    */
-  function numAdd(arg1, arg2) {
+  function add(arg1, arg2) {
     let r1, r2, m;
     try {
       r1 = arg1.toString().split(".")[1].length;
@@ -925,9 +914,9 @@
    * 两个数字减法
    * @param {Number,String} arg1
    * @param {Number,String} arg2
-   * @returns 返回计算后的数字
+   * @returns {Number} 返回计算后的数字
    */
-  function numSub(arg1, arg2) {
+  function subtract(arg1, arg2) {
     let r1, r2, m, n;
     try {
       r1 = arg1.toString().split(".")[1].length;
@@ -950,7 +939,7 @@
    * @param {Number,String} arg2
    * @returns 返回计算后的数字
    */
-  function numMul(arg1, arg2) {
+  function multiply(arg1, arg2) {
     let m = 0,
       s1 = arg1.toString(),
       s2 = arg2.toString();
@@ -967,9 +956,9 @@
    * 两个数字除法
    * @param {Number,String} arg1
    * @param {Number,String} arg2
-   * @returns 返回计算后的数字
+   * @returns {Number} 返回计算后的数字
    */
-  function numDiv(arg1, arg2) {
+  function divide(arg1, arg2) {
     var t1 = 0,
       t2 = 0,
       r1,
@@ -987,15 +976,17 @@
 
   /**
    * 四舍五入，强制保留小数位数
-   * 注：默认保留两位小数，解决原生的toFixed()的四舍五入问题
-   * 如结果为2，则输出2.00；
-   * 如结果为2.009，则四舍五入输出2.01；
-   * @param {Number,String} num
+   * @description 默认保留两位小数，解决原生的toFixed()的四舍五入问题
+   * @param {Number|String} num
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @returns 返回保留后的数字
+   * @example
+   * toFixed(2) // 输出：2.00
+   * toFixed(2.0) // 输出：2.00
+   * toFixed(2.006) // 四舍五入输出：2.01
+   * @returns {Number} 返回保留后的数字
    */
   function toFixed(num, decimals = 2) {
-    if (this.isNaN(num)) {
+    if (isNaN(num)) {
       return "--";
     }
     let s = num + "";
@@ -1029,14 +1020,16 @@
   /**
    * 非四舍五入，强制保留小数位数
    * 注：默认保留两位小数
-   * 如结果为2，则输出2.00；
-   * 如结果为2.009，则输出2.00；
-   * @param {Number,String} num
+   * @param {Number|String} num
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @returns 返回保留后的数字
+   * @example
+   * toDecimalFixed(2) // 输出 2.00
+   * toDecimalFixed(2.0) // 输出 2.00
+   * toDecimalFixed(2.009) // 强制截取后输出 2.00
+   * @returns {Number} 返回保留后的数字
    */
   function toDecimalFixed(num, decimals = 2) {
-    if (this.isNaN(num)) {
+    if (isNaN(num)) {
       return "--";
     }
     // 默认为保留的小数点后两位
@@ -1067,15 +1060,16 @@
 
   /**
    * 四舍五入，尽可能保留小数
-   * 以默认保留2位为例：
-   * 若结果为2.0，则输出2
-   * 若结果为2.001，则输出2
-   * 若结果为2.009，则输出2.01
    * @param {Number,String} num
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @returns 返回保留后的数字
+   * @example
+   * toRound(2) // 不够两位，输出：2
+   * toRound(2.0) // 不够两位，输出：2
+   * toRound(2.001) // 向上五入，输出：2
+   * toRound(2.009) // 向上五入，输出：2.01
+   * @returns {Number} 返回保留后的数字
    */
-  function toDecimalRound(num, decimals = 2) {
+  function toRound(num, decimals = 2) {
     if (this.isNaN(num)) {
       return "--";
     }
@@ -1084,16 +1078,17 @@
   }
 
   /**
-   * 非四舍五入，尽可能保留小数
-   * 以默认保留2位为例：
-   * 若结果为2.0，则输出2
-   * 若结果为2.001，则输出2
-   * 若结果为2.009，则输出2
+   * 向下舍入，尽可能保留小数
    * @param {Number,String} num
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @returns 返回保留后的数字
+   * @example
+   * toFloor(2) // 不够两位，输出：2
+   * toFloor(2.0) // 不够两位，输出：2
+   * toFloor(2.001) // 向下舍入，输出：2
+   * toFloor(2.006) // 向下舍入，输出：2
+   * @returns {Number} 返回保留后的数字
    */
-  function toDecimalFloor(num, decimals = 2) {
+  function toFloor(num, decimals = 2) {
     if (this.isNaN(num)) {
       return "--";
     }
@@ -1103,28 +1098,84 @@
 
   var mathUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    numAdd: numAdd,
-    numSub: numSub,
-    numMul: numMul,
-    numDiv: numDiv,
+    add: add,
+    subtract: subtract,
+    multiply: multiply,
+    divide: divide,
     toFixed: toFixed,
     toDecimalFixed: toDecimalFixed,
-    toDecimalRound: toDecimalRound,
-    toDecimalFloor: toDecimalFloor
+    toRound: toRound,
+    toFloor: toFloor
   });
 
-  var index$3 = {};
+  /**
+   * 节流函数
+   * @description 高频触发时，按指定间隔执行
+   * @param fn 目标函数
+   * @param interval 时间间隔，单位毫秒
+   * @return {(function(): void)|*}
+   */
+  function throttle(fn, interval) {
+    let timer = 0;
+    return function () {
+      const _args = arguments;
+      // 有定时器则返回
+      if (timer) return;
+      timer = setTimeout(() => {
+        fn.apply(this, _args);
+        timer = 0;
+      }, interval);
+    };
+  }
+
+  /**
+   * 防抖函数：每一次的高频触发只执行一次
+   * @param fn 目标函数
+   * @param delay 延迟时间
+   * @param immediate 是否立即执行
+   * @return {(function(): void)|*}
+   */
+  function debounce(fn, delay, immediate) {
+    let timer = 0;
+    let executed = false;
+    return function () {
+      const _args = arguments;
+      clearTimeout(timer);
+      // 先关闭定时器
+      if (immediate) {
+        // 如果需要立即执行
+        // 判断 executed 是否为 false，为 false 则执行
+        // 开启新定时器防止短时间内再次触发
+        if (!executed) {
+          fn.apply(this, _args);
+          executed = true;
+        }
+        timer = setTimeout(function () {
+          executed = false;
+        }, delay);
+      } else {
+        // 如果不需要立即执行
+        // 每次触发开启新定时器即可
+        timer = setTimeout(function () {
+          fn.apply(this, _args);
+        }, delay);
+      }
+    };
+  }
 
   var functionUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': index$3
+    throttle: throttle,
+    debounce: debounce
   });
 
   /**
    * 生成指定大小的随机数
    * @param {Number} n 生成随机数的开始数字，默认0
    * @param {Number} m 生成随机数的结束数字，默认9
-   * @returns 返回指定位数的随机数，默认是0-9的一位数
+   * @example
+   * getRandom(0,9) // 输出：3，1，0，9
+   * @returns {Number} 返回指定位数的随机数，默认是0-9的一位数
    */
   function getRandom(n = 0, m = 9) {
     return Math.floor(Math.random() * m + n);
@@ -1132,8 +1183,11 @@
 
   /**
    * 生成指定位数的随机数
-   * @param {Number} n 生成数字的位数，默认是1，代表0-9之间的一位数；如果是2，代表10-99之间的两位数；其他位数以此类推
-   * @returns 返回指定位数的随机数
+   * @param {Number} n 生成数字的位数，默认是1位，代表0-9之间的一位数；如果是2，代表10-99之间的两位数；其他位数以此类推
+   * @example
+   * getRandomDigit(2) // 输出两位的随机数，比如：11,10,20
+   * getRandomDigit(3) // 输出三位的随机数，比如：110,120,240
+   * @returns {Number} 返回指定位数的随机数
    */
   function getRandomDigit(n = 1) {
     return Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, n - 1));
@@ -1141,9 +1195,11 @@
 
   /**
    * 生成UUID
-   * @param len 生成的位数，默认32位
+   * @param len 生成的长度，默认32位
    * @param radix 默认16进制
-   * @returns 返回UUID字符串，例如：5e71b6a38364c189ab1229bf5c2d5695
+   * @example
+   * getUUID() // 输出：5e71b6a38364c189ab1229bf5c2d5695
+   * @returns {String} 返回UUID字符串
    */
   function getUUID(len = 32, radix = 16) {
     const CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -1168,7 +1224,9 @@
 
   /**
    * 生成GUID
-   * @returns 返回GUID字符串，例如：e854e2ec-063c-1ee7-942f-57c5733ce0cb
+   * @example
+   * getGUID() // 输出：e854e2ec-063c-1ee7-942f-57c5733ce0cb
+   * @returns {String} 返回GUID字符串
    */
   function getGUID() {
     let s4 = function () {
@@ -1186,7 +1244,7 @@
   });
 
   /**
-   * 部分常用的正则表达式集合，可以直接调用
+   * 常用的正则表达式集合
    */
   const REGEXP = {
     // 中文汉字
@@ -1223,7 +1281,10 @@
   };
 
   /**
-   * 提供了正则校验的方法，也可以直接用上面的表达式
+   * 提供了正则校验的方法，也可以在程序中调用上面的表达式
+   * @param {String|Number} value 校验的值
+   * @param {RegExp} type 使用的正则
+   * @returns {Boolean} 返回校验的结果，true和false
    */
   function regexpTest(value, type) {
     return new RegExp(REGEXP[type]).test(value);
@@ -1236,9 +1297,9 @@
   });
 
   /**
-   * 格式化文件大小自动转为B，KB，MB，GB
+   * 格式化文件大小自动转为 B，KB，MB，GB
    * @param {Byte} size 文件的大小，单位byte字节
-   * @returns 返回格式化后的字符串
+   * @returns {String} 返回格式化后的字符串
    */
   function formatFileSize(size) {
     if (isEmpty(size)) return "0B";
@@ -1256,7 +1317,7 @@
   /**
    * 获得文件名称
    * @param {*} value 文件的全名称，例如：123.jpg
-   * @returns 返回文件的名称，包含后缀类型名称
+   * @returns {String} 返回文件的名称，包含后缀类型名称
    */
   function getFileName(value) {
     if (isEmpty(value) || isEmpty(value)) return;
@@ -1264,27 +1325,94 @@
   }
 
   /**
-   * 获得文件后缀
+   * 获得文件类型
    * @param {*} value 文文件的全名称，例如：123.jpg
-   * @returns 返回文件后缀类型名称
+   * @returns {String} 返回文件类型
    */
-  function getFileSuffixName(value) {
+  function getFileType(value) {
     if (isEmpty(value)) return;
-    return value.substring(value.lastIndexOf(".") + 1);
+    return value.substring(value.lastIndexOf(".") + 1).toLowerCase();
+  }
+
+  /**
+   * base64转成blob格式
+   * @param {*} data base64数据
+   * @returns {Blob} 返回转blob数据
+   */
+  function base64ToBlob(data) {
+    var arr = data.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {
+      type: mime,
+    });
   }
 
   var fileUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     formatFileSize: formatFileSize,
     getFileName: getFileName,
-    getFileSuffixName: getFileSuffixName
+    getFileType: getFileType,
+    base64ToBlob: base64ToBlob
   });
 
-  var index$2 = {};
+  /**
+   * 从url中获取参数值
+   */
+  function getUrlParam(name, url = window.location.search) {
+    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    let r = url.substr(1).match(reg);
+    if (r != null) return decodeURI(r[2]);
+    return null;
+  }
+
+  /**
+   * url参数转为对象
+   */
+  function urlToObject(url = window.location.href) {
+    if (url.indexOf("?") === -1) {
+      return {};
+    }
+    let search = url[0] === "?" ? url.substr(1) : url.substring(url.lastIndexOf("?") + 1);
+    search = search.split("&");
+    let query = {};
+    for (let i = 0; i < search.length; i++) {
+      let pair = search[i].split("=");
+      query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || "");
+    }
+    return query;
+  }
+
+  /**
+   * 对象转url参数
+   *
+   */
+  function objectToUrl(obj) {
+    if (!obj) return null;
+    let pairs = [];
+    for (let key in obj) {
+      let value = obj[key];
+      if (value instanceof Array) {
+        for (let i = 0; i < value.length; ++i) {
+          pairs.push(encodeURIComponent(key + "[" + i + "]") + "=" + encodeURIComponent(value[i]));
+        }
+        continue;
+      }
+      pairs.push(encodeURIComponent(key) + "=" + encodeURIComponent(obj[key]));
+    }
+    return pairs.join("&");
+  }
 
   var urlUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': index$2
+    getUrlParam: getUrlParam,
+    urlToObject: urlToObject,
+    objectToUrl: objectToUrl
   });
 
   /**
@@ -1368,7 +1496,7 @@
   /**
    * 通过key获取cookie
    * @param {String} key
-   * @returns 返回获取的值，或者返回空字符串
+   * @returns {String} 返回获取的值
    */
   function getCookie(key) {
     if (typeof document == "undefined" || !key) return;
@@ -1429,6 +1557,59 @@
   var domUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': index$1
+  });
+
+  /**
+   * 获取浏览器类型和版本
+   * @return {String}
+   */
+  function getBrowserInfo() {
+    var sys = {},
+      ua = navigator.userAgent.toLowerCase(),
+      s;
+    (s = ua.match(/rv:([\d.]+)\) like gecko/))
+      ? (sys.ie = s[1])
+      : (s = ua.match(/msie ([\d\.]+)/))
+      ? (sys.ie = s[1])
+      : (s = ua.match(/edge\/([\d\.]+)/))
+      ? (sys.edge = s[1])
+      : (s = ua.match(/firefox\/([\d\.]+)/))
+      ? (sys.firefox = s[1])
+      : (s = ua.match(/(?:opera|opr).([\d\.]+)/))
+      ? (sys.opera = s[1])
+      : (s = ua.match(/chrome\/([\d\.]+)/))
+      ? (sys.chrome = s[1])
+      : (s = ua.match(/version\/([\d\.]+).*safari/))
+      ? (sys.safari = s[1])
+      : 0;
+    // 根据关系进行判断
+    if (sys.ie) return "IE: " + sys.ie;
+    if (sys.edge) return "EDGE: " + sys.edge;
+    if (sys.firefox) return "Firefox: " + sys.firefox;
+    if (sys.chrome) return "Chrome: " + sys.chrome;
+    if (sys.opera) return "Opera: " + sys.opera;
+    if (sys.safari) return "Safari: " + sys.safari;
+    return "Unkonwn";
+  }
+
+  /**
+   * 获取手机操作系统类型
+   * @return {String} ios android
+   */
+  function getDeviceInfo() {
+    var ua = navigator.userAgent;
+    if (/Android|BlackBerry|IEMobile/i.test(ua)) {
+      return "android";
+    } else if (/iPhone|iPad|iPod/i.test(ua)) {
+      return "ios";
+    }
+    return "Unknown";
+  }
+
+  var deviceUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    getBrowserInfo: getBrowserInfo,
+    getDeviceInfo: getDeviceInfo
   });
 
   /**
@@ -1511,7 +1692,7 @@
 
   // 测试加载成功方法
   const loadedTest = function () {
-    console.log("lime-utils loaded successfully!");
+    console.log("lime-util loaded successfully!");
   };
 
   // 导出
@@ -1547,6 +1728,8 @@
     ...cookieUtil,
     // 浏览器 Dom
     ...domUtil,
+    // 浏览器 Device
+    ...deviceUtil,
     // 微信小程序
     ...xcxUtil,
   };

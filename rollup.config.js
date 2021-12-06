@@ -1,8 +1,11 @@
 const path = require("path");
 
+// 引入打包插件
 import commonjs from "rollup-plugin-commonjs";
 import resolve from "rollup-plugin-node-resolve";
 import { uglify } from "rollup-plugin-uglify";
+
+// 引入package.json
 import pkg from "./package.json";
 
 // 转换路径
@@ -10,7 +13,7 @@ function pathResolve(dir) {
   return path.resolve(__dirname, dir);
 }
 
-// 引用模块的名称
+// 打包名称
 const outputModuleName = "LimeUtil";
 
 // 打包后的注释

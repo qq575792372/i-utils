@@ -1,8 +1,8 @@
 {
-  "name": "@ilime/lime-utils",
+  "name": "@ilime/lime-util",
   "version": "0.0.1",
-  "description": "lime-utils 前端模块化 JavaScript 工具库",
-  "main": "dist/lime-utils.min.js",
+  "description": "lime-util 前端模块化 JavaScript 工具库",
+  "main": "dist/lime-util.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c",
@@ -12,12 +12,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/qq575792372/lime-utils.git"
+    "url": "https://github.com/qq575792372/lime-util.git"
   },
   "bugs": {
-    "url": "https://github.com/qq575792372/lime-utils/issues"
+    "url": "https://github.com/qq575792372/lime-util/issues"
   },
-  "homepage": "https://github.com/qq575792372/lime-utils#readme",
+  "homepage": "https://github.com/qq575792372/lime-util#readme",
   "dependencies": {
     "rollup": "^2.60.0"
   },
@@ -27,11 +27,11 @@
     "rollup-plugin-uglify": "^6.0.4"
   },
   "keywords": [
-    "LimeUtil",
     "lime-util",
-    "lime",
-    "JavaScript Util",
-    "模块化js库"
+    "LimeUtil",
+    "js工具库",
+    "模块化js库",
+    "JavaScript 工具库"
   ],
   "browserslist": [
     "> 1%",

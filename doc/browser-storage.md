@@ -15,7 +15,7 @@ String 返回处理后的字符串
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-utils";
+import LimeUtil from "lime-util";
 let res = LimeUtil.trimAll("a b c ");
 console.log(res); // 输出 abc
 ```
@@ -37,7 +37,7 @@ String 返回处理后的字符串
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-utils";
+import LimeUtil from "lime-util";
 let res = LimeUtil.trimAll("a b c ");
 console.log(res); // 输出 abc
 ```
