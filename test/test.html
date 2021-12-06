@@ -7,10 +7,12 @@
     <style></style>
   </head>
   <body>
-    <script src="./dist/lime-util.js"></script>
+    <script src="../dist/lime-util.js"></script>
     <script>
-      console.log(LimeUtil);
-      LimeUtil.loadedTest();
+      var a = { id: 1, b: b };
+      var b = { id: 2, a: a };
+      let c = { id: 3, a: a, b: b };
+      console.log(LimeUtil.deepClone(c));
     </script>
   </body>
 </html>

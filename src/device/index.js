@@ -1,46 +1,143 @@
+// 浏览器信息
 /**
- * 获取浏览器类型和版本
- * @return {String}
+ * 获取浏览器信息
+ * @description 会获取到浏览器对应的名称以及版本
+ * @return {Object} 返回浏览器信息
  */
 export function getBrowserInfo() {
-  var sys = {},
-    ua = navigator.userAgent.toLowerCase(),
-    s;
-  (s = ua.match(/rv:([\d.]+)\) like gecko/))
-    ? (sys.ie = s[1])
-    : (s = ua.match(/msie ([\d\.]+)/))
-    ? (sys.ie = s[1])
-    : (s = ua.match(/edge\/([\d\.]+)/))
-    ? (sys.edge = s[1])
-    : (s = ua.match(/firefox\/([\d\.]+)/))
-    ? (sys.firefox = s[1])
-    : (s = ua.match(/(?:opera|opr).([\d\.]+)/))
-    ? (sys.opera = s[1])
-    : (s = ua.match(/chrome\/([\d\.]+)/))
-    ? (sys.chrome = s[1])
-    : (s = ua.match(/version\/([\d\.]+).*safari/))
-    ? (sys.safari = s[1])
-    : 0;
-  // 根据关系进行判断
-  if (sys.ie) return "IE: " + sys.ie;
-  if (sys.edge) return "EDGE: " + sys.edge;
-  if (sys.firefox) return "Firefox: " + sys.firefox;
-  if (sys.chrome) return "Chrome: " + sys.chrome;
-  if (sys.opera) return "Opera: " + sys.opera;
-  if (sys.safari) return "Safari: " + sys.safari;
-  return "Unkonwn";
+  let ua = window.navigator.userAgent.toLowerCase();
+
+  // ie
+  let ie = ua.match(/rv:([\d.]+)\) like gecko/) || ua.match(/msie ([\d\.]+)/);
+  // edge
+  let edge = ua.match(/edg\/([\d\.]+)/);
+  // firefox
+  let firefox = ua.match(/firefox\/([\d\.]+)/);
+  // opera
+  let opera = ua.match(/(?:opera|opr).([\d\.]+)/);
+  // chrome
+  let chrome = ua.match(/chrome\/([\d\.]+)/);
+  // safari
+  let safari = ua.match(/version\/([\d\.]+).*safari/);
+
+  // 判断类型
+  if (ie) return { name: "ie", version: ie[1] };
+  if (edge) return { name: "edge", version: edge[1] };
+  if (firefox) return { name: "firefox", version: firefox[1] };
+  if (opera) return { name: "opera", version: opera[1] };
+  if (chrome) return { name: "chrome", version: chrome[1] };
+  if (safari) return { name: "safari", version: safari[1] };
+  return "unknown";
+}
+
+// 设备类型
+/**
+ * 判断是pc端
+ * @return {Boolean} 返回true和false
+ */
+export function isPc() {
+  return !isMobile();
 }
 
 /**
- * 获取手机操作系统类型
- * @return {String} ios android
+ * 判断是手机端
+ * @description 包含 android、iphone、黑莓手机、微软手机 等多种操作系统机型
+ * @return {Boolean} 返回true和false
  */
-export function getDeviceInfo() {
-  var ua = navigator.userAgent;
-  if (/Android|BlackBerry|IEMobile/i.test(ua)) {
-    return "android";
-  } else if (/iPhone|iPad|iPod/i.test(ua)) {
-    return "ios";
-  }
-  return "Unknown";
+export function isMobile() {
+  let ua = window.navigator.userAgent;
+  return /Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|IEMobile/i.test(ua);
+}
+
+// 操作系统类型
+/**
+ * 判断是 android
+ * @return {Boolean} 返回true和false
+ */
+export function isAndroid() {
+  let ua = window.navigator.userAgent;
+  return /Android|BlackBerry/i.test(ua);
+}
+
+/**
+ * 判断是 ios
+ * @return {Boolean} 返回true和false
+ */
+export function isIos() {
+  let ua = window.navigator.userAgent;
+  return /iPhone|iPad|iPod|iOS/i.test(ua);
+}
+
+/**
+ * 判断是 windows phone
+ * @return {Boolean} 返回true和false
+ */
+export function isWindowsPhone() {
+  let ua = window.navigator.userAgent;
+  return /Windows Phone/i.test(ua);
+}
+
+/**
+ * 判断是 windows
+ * @return {Boolean} 返回true和false
+ */
+export function isWindows() {
+  let ua = window.navigator.userAgent;
+  return /win/i.test(ua);
+}
+
+/**
+ * 判断是 linux
+ * @return {Boolean} 返回true和false
+ */
+export function isLinux() {
+  let ua = window.navigator.userAgent;
+  return /linux/i.test(ua);
+}
+
+/**
+ * 判断是 Mac
+ * @return {Boolean} 返回true和false
+ */
+export function isMac() {
+  let ua = window.navigator.userAgent;
+  return /mac/i.test(ua);
+}
+
+// 苹果设备类型
+/**
+ * 判断是iphone
+ *@return {Boolean} 返回true和false
+ */
+export function isIphone() {
+  let ua = window.navigator.userAgent;
+  return /iPhone/i.test(ua);
+}
+
+/**
+ * 判断是ipad
+ *@return {Boolean} 返回true和false
+ */
+export function isIpad() {
+  let ua = window.navigator.userAgent;
+  return /iPod/i.test(ua);
+}
+
+// 手机浏览器类型
+/**
+ * 判断是微信内置浏览器
+ * @return {Boolean} 返回true和false
+ */
+export function isWeixin() {
+  let ua = window.navigator.userAgent;
+  return /MicroMessenger/i.test(ua);
+}
+
+/**
+ * 判断是QQ内置浏览器
+ * @return {Boolean} 返回true和false
+ */
+export function isQQ() {
+  let ua = window.navigator.userAgent;
+  return /QQ/i.test(ua);
 }

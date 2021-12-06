@@ -1,8 +1,8 @@
 import { isNull } from "../validate";
 
 /**
- * 数组中是否包含指定的数据
- * @param {String|Number} value 指定数据，只支持String和Number
+ * 数组中是否包含指定的元素
+ * @param {String|Number} value 元素
  * @param {Array} array 查找的数组
  * @returns {Boolean} 返回true和false
  */
@@ -12,8 +12,8 @@ export function isInArray(value, array) {
 }
 
 /**
- * 获得数据在数组中第一次出现位置索引
- * @param {String|Number} value 指定数据，只支持String和Number
+ * 获得元素在数组中首次出现的位置
+ * @param {String|Number} value 元素
  * @param {Array} array 查找的数组
  * @returns {Number} 返回查找到的位置下标
  */

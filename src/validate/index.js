@@ -117,6 +117,15 @@ export function isError(value) {
 }
 
 /**
+ * 判断类型是Promise
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isPromise(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "Promise";
+}
+
+/**
  * 判断字符串是否全是中文
  * @param {String} value 参数
  * @returns {Boolean} 返回true和false
@@ -125,7 +134,7 @@ export function isChinese(value) {
   return /^[\u4E00-\u9FA5]+$/.test(value);
 }
 
-// 数据值
+// 数据值校验
 /**
  * 判断值是否为空
  * @description 针对的是实际有意义的值，如果值是{},[]空的数据则为空
@@ -170,6 +179,7 @@ export function isUndefined(value) {
   return value == undefined;
 }
 
+// 比较
 /**
  * 判断两个字符串是否相等
  * @param {String} value1 参数1

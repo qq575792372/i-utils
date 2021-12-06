@@ -1,4 +1,4 @@
-## 浏览器 Device
+## 浏览器 Storage
 
 #### \_.trimAll(str)
 

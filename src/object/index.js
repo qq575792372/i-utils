@@ -1,4 +1,4 @@
-import { isEmpty } from "../validate";
+import { isEmpty, isNull } from "../validate";
 
 /**
  * map转object
@@ -61,4 +61,43 @@ export function jsonToString(json) {
 export function stringToJson(string) {
   if (isEmpty(string)) return;
   return JSON.parse(string);
+}
+
+/**
+ * 深拷贝数据
+ * @param {Object|Array|Date} target 需要克隆的数据，只支持 Object，Array，Date三种
+ * @returns {Object|Array|Date} 返回深度克隆后的数据
+ */
+export function deepClone(target) {
+  if (isNull(target)) return null;
+
+  //  Object
+  if (target instanceof Object) {
+    let copy = {};
+    for (let attr in target) {
+      if (target.hasOwnProperty(attr)) copy[attr] = deepClone(target[attr]);
+    }
+    return copy;
+  }
+
+  //  Array
+  else if (target instanceof Array) {
+    let copy = [];
+    for (let i = 0, len = target.length; i < len; i++) {
+      copy[i] = deepClone(target[i]);
+    }
+    return copy;
+  }
+
+  //  Date
+  else if (target instanceof Date) {
+    let copy = new Date();
+    copy.setTime(target.getTime());
+    return copy;
+  }
+
+  // Other
+  else {
+    return target;
+  }
 }

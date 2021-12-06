@@ -2,10 +2,10 @@
  * 节流函数
  * @description 高频触发时，按指定间隔执行
  * @param fn 目标函数
- * @param interval 时间间隔，单位毫秒
+ * @param interval 时间间隔，单位毫秒，默认2秒
  * @return {(function(): void)|*}
  */
-export function throttle(fn, interval) {
+export function throttle(fn, interval = 2000) {
   let timer = 0;
   return function () {
     const _args = arguments;
@@ -22,10 +22,10 @@ export function throttle(fn, interval) {
  * 防抖函数：每一次的高频触发只执行一次
  * @param fn 目标函数
  * @param delay 延迟时间
- * @param immediate 是否立即执行
+ * @param immediate 是否立即执行，true和false，默认true
  * @return {(function(): void)|*}
  */
-export function debounce(fn, delay, immediate) {
+export function debounce(fn, delay, immediate = true) {
   let timer = 0;
   let executed = false;
   return function () {

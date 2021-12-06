@@ -139,7 +139,7 @@
     return /^[\u4E00-\u9FA5]+$/.test(value);
   }
 
-  // 数据值
+  // 数据值校验
   /**
    * 判断值是否为空
    * @description 针对的是实际有意义的值，如果值是{},[]空的数据则为空
@@ -162,7 +162,7 @@
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
-  function isNull(value) {
+  function isNull$1(value) {
     return value == undefined || value == null || value == "";
   }
 
@@ -184,6 +184,7 @@
     return value == undefined;
   }
 
+  // 比较
   /**
    * 判断两个字符串是否相等
    * @param {String} value1 参数1
@@ -222,7 +223,7 @@
     isError: isError,
     isChinese: isChinese,
     isEmpty: isEmpty,
-    isNull: isNull,
+    isNull: isNull$1,
     isBlank: isBlank,
     isUndefined: isUndefined,
     equals: equals,
@@ -283,6 +284,28 @@
   }
 
   /**
+   * 字符串中是否包含指定的元素
+   * @param {String} value 元素
+   * @param {Array} array 查找的字符串
+   * @returns {Boolean} 返回true和false
+   */
+  function isInString(value, str) {
+    if (isNull(value)) return;
+    return str.includes(value);
+  }
+
+  /**
+   * 获得元素在字符串中首次出现的位置
+   * @param {String} value 元素
+   * @param {String} str 查找的字符串
+   * @returns {Number} 返回查找到的位置下标
+   */
+  function getIndexInString(value, str) {
+    if (isEmpty(value)) return;
+    return array.indexOf(value);
+  }
+
+  /**
    * 数字前补齐0达到指定位数
    * 注：相当于padStart()
    * @param {String|Number} value 可以是数字和字符串
@@ -323,29 +346,47 @@
     trimEnd: trimEnd,
     trimAll: trimAll,
     replaceAll: replaceAll,
+    isInString: isInString,
+    getIndexInString: getIndexInString,
     zeroStart: zeroStart,
     zeroEnd: zeroEnd
   });
 
   /**
-   * 数组中是否包含指定的数据
-   * @param {String|Number} value 指定数据，只支持String和Number
+   * 值转为数字类型
+   * @description 解决部分浏览器在转换 '08','09'等是0开头时被默认转8进制问题
+   * @param {String} value 转换的值
+   * @param {Number} radix 进制数，默认10进制
+   * @returns {Number} 返回转换后的数字
+   */
+  function parseInt$1(value, radix = 10) {
+    return Number.parseInt(value, radix);
+  }
+
+  var numberUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    parseInt: parseInt$1
+  });
+
+  /**
+   * 数组中是否包含指定的元素
+   * @param {String|Number} value 元素
    * @param {Array} array 查找的数组
    * @returns {Boolean} 返回true和false
    */
   function isInArray(value, array) {
-    if (isNull(value)) return;
+    if (isNull$1(value)) return;
     return array.includes(value);
   }
 
   /**
-   * 获得数据在数组中第一次出现位置索引
-   * @param {String|Number} value 指定数据，只支持String和Number
+   * 获得元素在数组中首次出现的位置
+   * @param {String|Number} value 元素
    * @param {Array} array 查找的数组
    * @returns {Number} 返回查找到的位置下标
    */
   function getIndexInArray(value, array) {
-    if (isNull(value)) return;
+    if (isNull$1(value)) return;
     return array.indexOf(value);
   }
 
@@ -355,7 +396,7 @@
    * @returns {Array} 返回去重后的数组
    */
   function uniqueArray(array) {
-    if (isNull(value)) return;
+    if (isNull$1(value)) return;
     return Array.from(new Set(array));
   }
 
@@ -383,6 +424,180 @@
     getIndexInArray: getIndexInArray,
     uniqueArray: uniqueArray,
     arrayToTree: arrayToTree
+  });
+
+  /**
+   * map转object
+   * @param {Map} map 参数
+   * @returns {Object} 返回Object
+   */
+  function mapToObject(map) {
+    let obj = Object.create(null);
+    for (let [k, v] of map) {
+      obj[k] = v;
+    }
+    return obj;
+  }
+
+  /**
+   * object转map
+   * @param {Object} obj 参数
+   * @returns {Map} 返回Map
+   */
+  function objectToMap(obj) {
+    let map = new Map();
+    for (let k of Object.keys(obj)) {
+      map.set(k, obj[k]);
+    }
+    return map;
+  }
+
+  /**
+   * map转json
+   * @param {Map} map 参数
+   * @returns {String} 返回Json字符串
+   */
+  function mapToJson(map) {
+    return JSON.stringify(this.mapToObject(map));
+  }
+
+  /**
+   * json转map
+   * @param {Json} json 参数
+   * @returns {Map} 返回Map
+   */
+  function jsonToMap(json) {
+    return objectToMap(JSON.parse(json));
+  }
+
+  /**
+   * json转string
+   * @param {Json} json 参数
+   * @returns {String} 返回JSON字符串
+   */
+  function jsonToString(json) {
+    return JSON.stringify(json);
+  }
+
+  /**
+   * string转json
+   * @param {String} string 参数
+   * @returns {Object} 返回JSON对象
+   */
+  function stringToJson(string) {
+    if (isEmpty(string)) return;
+    return JSON.parse(string);
+  }
+
+  /**
+   * 深拷贝数据
+   * @param {Object|Array|Date} target 需要克隆的数据，只支持 Object，Array，Date三种
+   * @returns {Object|Array|Date} 返回深度克隆后的数据
+   */
+  function deepClone(target) {
+    if (isNull$1(target)) return null;
+
+    //  Object
+    if (target instanceof Object) {
+      let copy = {};
+      for (let attr in target) {
+        if (target.hasOwnProperty(attr)) copy[attr] = deepClone(target[attr]);
+      }
+      return copy;
+    }
+
+    //  Array
+    else if (target instanceof Array) {
+      let copy = [];
+      for (let i = 0, len = target.length; i < len; i++) {
+        copy[i] = deepClone(target[i]);
+      }
+      return copy;
+    }
+
+    //  Date
+    else if (target instanceof Date) {
+      let copy = new Date();
+      copy.setTime(target.getTime());
+      return copy;
+    }
+
+    // Other
+    else {
+      return target;
+    }
+  }
+
+  var objectUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    mapToObject: mapToObject,
+    objectToMap: objectToMap,
+    mapToJson: mapToJson,
+    jsonToMap: jsonToMap,
+    jsonToString: jsonToString,
+    stringToJson: stringToJson,
+    deepClone: deepClone
+  });
+
+  /**
+   * 节流函数
+   * @description 高频触发时，按指定间隔执行
+   * @param fn 目标函数
+   * @param interval 时间间隔，单位毫秒，默认2秒
+   * @return {(function(): void)|*}
+   */
+  function throttle(fn, interval = 2000) {
+    let timer = 0;
+    return function () {
+      const _args = arguments;
+      // 有定时器则返回
+      if (timer) return;
+      timer = setTimeout(() => {
+        fn.apply(this, _args);
+        timer = 0;
+      }, interval);
+    };
+  }
+
+  /**
+   * 防抖函数：每一次的高频触发只执行一次
+   * @param fn 目标函数
+   * @param delay 延迟时间
+   * @param immediate 是否立即执行，true和false，默认true
+   * @return {(function(): void)|*}
+   */
+  function debounce(fn, delay, immediate = true) {
+    let timer = 0;
+    let executed = false;
+    return function () {
+      const _args = arguments;
+      clearTimeout(timer);
+      // 先关闭定时器
+      if (immediate) {
+        // 如果需要立即执行
+        // 判断 executed 是否为 false，为 false 则执行
+        // 开启新定时器防止短时间内再次触发
+        if (!executed) {
+          fn.apply(this, _args);
+          executed = true;
+        }
+        timer = setTimeout(function () {
+          executed = false;
+        }, delay);
+      } else {
+        // 如果不需要立即执行
+        // 每次触发开启新定时器即可
+        timer = setTimeout(function () {
+          fn.apply(this, _args);
+        }, delay);
+      }
+    };
+  }
+
+  var functionUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    throttle: throttle,
+    debounce: debounce
   });
 
   /**
@@ -800,92 +1015,56 @@
   });
 
   /**
-   * 值转为数字类型
-   * @description 解决部分浏览器在转换 '08','09'等是0开头时被默认转8进制问题
-   * @param {String} value 转换的值
-   * @param {Number} radix 进制数，默认10进制
-   * @returns {Number} 返回转换后的数字
+   * 常用的正则表达式集合
    */
-  function parseInt$1(value, radix = 10) {
-    return Number.parseInt(value, radix);
+  const REGEXP = {
+    // 中文汉字
+    CH: /^[\u4E00-\u9FA5]+$/,
+    // 英文字母
+    EN: /^[a-zA-Z]$/,
+    // 中文姓名，2-16位
+    CH_NAME: /^(?:[\u4e00-\u9fa5·]{2,16})$/,
+    // 英文姓名，0-20位
+    EN_NAME: /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/,
+    // 数字
+    NUMBER: /^(\-|\+)?\d+(\.\d+)?$/,
+    // 整数，包含：0，正整数和负整数
+    INTEGER: /^(0|[1-9][0-9]*|-[1-9][0-9]*)$/,
+    // 正整数或者保留两位小数
+    INT_OR_FLOAT: /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
+    // 手机号码，支持+86
+    MOBILE: /^(?:(?:\+|00)86)?1[1-9]\d{9}$/,
+    // 固定电话号码，比如：0755-1111111
+    PHONE: /^(?:(?:\d{3}-)?\d{8}|^(?:\d{4}-)?\d{7,8})(?:-\d+)?$/,
+    // 邮箱
+    EMAIL: /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/,
+    // 一代15位和二代18位身份证
+    ID_CARD:
+      /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
+    // 银行卡号
+    BANK_CARD: /^[1-9]\d{9,29}$/,
+    // 邮政编码
+    POST_CODE: /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
+    // url网址
+    URL: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
+    // ip地址
+    IP: /((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))/,
+  };
+
+  /**
+   * 提供了正则校验的方法，也可以在程序中调用上面的表达式
+   * @param {String|Number} value 校验的值
+   * @param {RegExp} type 使用的正则
+   * @returns {Boolean} 返回校验的结果，true和false
+   */
+  function regexpTest(value, type) {
+    return new RegExp(REGEXP[type]).test(value);
   }
 
-  var numberUtil = /*#__PURE__*/Object.freeze({
+  var regexpUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    parseInt: parseInt$1
-  });
-
-  /**
-   * map转object
-   * @param {Map} map 参数
-   * @returns {Object} 返回Object
-   */
-  function mapToObject(map) {
-    let obj = Object.create(null);
-    for (let [k, v] of map) {
-      obj[k] = v;
-    }
-    return obj;
-  }
-
-  /**
-   * object转map
-   * @param {Object} obj 参数
-   * @returns {Map} 返回Map
-   */
-  function objectToMap(obj) {
-    let map = new Map();
-    for (let k of Object.keys(obj)) {
-      map.set(k, obj[k]);
-    }
-    return map;
-  }
-
-  /**
-   * map转json
-   * @param {Map} map 参数
-   * @returns {String} 返回Json字符串
-   */
-  function mapToJson(map) {
-    return JSON.stringify(this.mapToObject(map));
-  }
-
-  /**
-   * json转map
-   * @param {Json} json 参数
-   * @returns {Map} 返回Map
-   */
-  function jsonToMap(json) {
-    return objectToMap(JSON.parse(json));
-  }
-
-  /**
-   * json转string
-   * @param {Json} json 参数
-   * @returns {String} 返回JSON字符串
-   */
-  function jsonToString(json) {
-    return JSON.stringify(json);
-  }
-
-  /**
-   * string转json
-   * @param {String} string 参数
-   * @returns {Object} 返回JSON对象
-   */
-  function stringToJson(string) {
-    if (isEmpty(string)) return;
-    return JSON.parse(string);
-  }
-
-  var objectUtil = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    mapToObject: mapToObject,
-    objectToMap: objectToMap,
-    mapToJson: mapToJson,
-    jsonToMap: jsonToMap,
-    jsonToString: jsonToString,
-    stringToJson: stringToJson
+    REGEXP: REGEXP,
+    regexpTest: regexpTest
   });
 
   /**
@@ -1109,67 +1288,6 @@
   });
 
   /**
-   * 节流函数
-   * @description 高频触发时，按指定间隔执行
-   * @param fn 目标函数
-   * @param interval 时间间隔，单位毫秒
-   * @return {(function(): void)|*}
-   */
-  function throttle(fn, interval) {
-    let timer = 0;
-    return function () {
-      const _args = arguments;
-      // 有定时器则返回
-      if (timer) return;
-      timer = setTimeout(() => {
-        fn.apply(this, _args);
-        timer = 0;
-      }, interval);
-    };
-  }
-
-  /**
-   * 防抖函数：每一次的高频触发只执行一次
-   * @param fn 目标函数
-   * @param delay 延迟时间
-   * @param immediate 是否立即执行
-   * @return {(function(): void)|*}
-   */
-  function debounce(fn, delay, immediate) {
-    let timer = 0;
-    let executed = false;
-    return function () {
-      const _args = arguments;
-      clearTimeout(timer);
-      // 先关闭定时器
-      if (immediate) {
-        // 如果需要立即执行
-        // 判断 executed 是否为 false，为 false 则执行
-        // 开启新定时器防止短时间内再次触发
-        if (!executed) {
-          fn.apply(this, _args);
-          executed = true;
-        }
-        timer = setTimeout(function () {
-          executed = false;
-        }, delay);
-      } else {
-        // 如果不需要立即执行
-        // 每次触发开启新定时器即可
-        timer = setTimeout(function () {
-          fn.apply(this, _args);
-        }, delay);
-      }
-    };
-  }
-
-  var functionUtil = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    throttle: throttle,
-    debounce: debounce
-  });
-
-  /**
    * 生成指定大小的随机数
    * @param {Number} n 生成随机数的开始数字，默认0
    * @param {Number} m 生成随机数的结束数字，默认9
@@ -1244,59 +1362,6 @@
   });
 
   /**
-   * 常用的正则表达式集合
-   */
-  const REGEXP = {
-    // 中文汉字
-    CH: /^[\u4E00-\u9FA5]+$/,
-    // 英文字母
-    EN: /^[a-zA-Z]$/,
-    // 中文姓名，2-16位
-    CH_NAME: /^(?:[\u4e00-\u9fa5·]{2,16})$/,
-    // 英文姓名，0-20位
-    EN_NAME: /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/,
-    // 数字
-    NUMBER: /^(\-|\+)?\d+(\.\d+)?$/,
-    // 整数，包含：0，正整数和负整数
-    INTEGER: /^(0|[1-9][0-9]*|-[1-9][0-9]*)$/,
-    // 正整数或者保留两位小数
-    INT_OR_FLOAT: /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
-    // 手机号码，支持+86
-    MOBILE: /^(?:(?:\+|00)86)?1[1-9]\d{9}$/,
-    // 固定电话号码，比如：0755-1111111
-    PHONE: /^(?:(?:\d{3}-)?\d{8}|^(?:\d{4}-)?\d{7,8})(?:-\d+)?$/,
-    // 邮箱
-    EMAIL: /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/,
-    // 一代15位和二代18位身份证
-    ID_CARD:
-      /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
-    // 银行卡号
-    BANK_CARD: /^[1-9]\d{9,29}$/,
-    // 邮政编码
-    POST_CODE: /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
-    // url网址
-    URL: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
-    // ip地址
-    IP: /((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))/,
-  };
-
-  /**
-   * 提供了正则校验的方法，也可以在程序中调用上面的表达式
-   * @param {String|Number} value 校验的值
-   * @param {RegExp} type 使用的正则
-   * @returns {Boolean} 返回校验的结果，true和false
-   */
-  function regexpTest(value, type) {
-    return new RegExp(REGEXP[type]).test(value);
-  }
-
-  var regexpUtil = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    REGEXP: REGEXP,
-    regexpTest: regexpTest
-  });
-
-  /**
    * 格式化文件大小自动转为 B，KB，MB，GB
    * @param {Byte} size 文件的大小，单位byte字节
    * @returns {String} 返回格式化后的字符串
@@ -1335,6 +1400,82 @@
   }
 
   /**
+   * file转blob
+   * @param {*} data base64数据
+   * @returns {Blob} 返回转blob数据
+   */
+  function fileToBlob(data) {
+    var arr = data.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {
+      type: mime,
+    });
+  }
+
+  /**
+   * blob转file
+   * @param {*} data base64数据
+   * @returns {Blob} 返回转blob数据
+   */
+  function blobToFile(data) {
+    var arr = data.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {
+      type: mime,
+    });
+  }
+
+  /**
+   * base64转成blob格式
+   * @param {*} data base64数据
+   * @returns {Blob} 返回转blob数据
+   */
+  function base64ToFile(data) {
+    var arr = data.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {
+      type: mime,
+    });
+  }
+
+  /**
+   * base64转成blob格式
+   * @param {*} data base64数据
+   * @returns {Blob} 返回转blob数据
+   */
+  function fileToBase64(data) {
+    var arr = data.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {
+      type: mime,
+    });
+  }
+
+  /**
    * base64转成blob格式
    * @param {*} data base64数据
    * @returns {Blob} 返回转blob数据
@@ -1353,26 +1494,122 @@
     });
   }
 
+  /**
+   * base64转成blob格式
+   * @param {*} data base64数据
+   * @returns {Blob} 返回转blob数据
+   */
+  function blobToBase64(data) {
+    var arr = data.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {
+      type: mime,
+    });
+  }
+
   var fileUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     formatFileSize: formatFileSize,
     getFileName: getFileName,
     getFileType: getFileType,
-    base64ToBlob: base64ToBlob
+    fileToBlob: fileToBlob,
+    blobToFile: blobToFile,
+    base64ToFile: base64ToFile,
+    fileToBase64: fileToBase64,
+    base64ToBlob: base64ToBlob,
+    blobToBase64: blobToBase64
+  });
+
+  /**
+   * rgb 颜色转 hex十六进制
+   * @param {String} color rgb颜色
+   * @returns {String} 返回生成的 rgb 颜色
+   */
+  function colorRgbToHex(color) {
+    let rgb = color.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
+    let r = parseInt(rgb[0].split("(")[1]);
+    let g = parseInt(rgb[1]);
+    let b = parseInt(rgb[2].split(")")[0]);
+
+    let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    return hex;
+  }
+
+  /**
+   * hex十六进制 颜色转 rgb
+   * @param {String} color hex十六进制颜色值
+   * @param {Number} opacity 透明度，0-1之间，默认1
+   * @returns {String} 返回生成的 rgb 颜色
+   */
+  function colorHexToRgba(color, opacity = 1) {
+    return (
+      "rgba(" +
+      parseInt("0x" + color.slice(1, 3)) +
+      "," +
+      parseInt("0x" + color.slice(3, 5)) +
+      "," +
+      parseInt("0x" + color.slice(5, 7)) +
+      "," +
+      opacity +
+      ")"
+    );
+  }
+
+  /**
+   * 获取随机生成的16进制颜色
+   * @returns {String} 返回生成的十六进制颜色
+   */
+  function getRandomHexColor() {
+    return (
+      "#" +
+      (function (h) {
+        return new Array(7 - h.length).join("0") + h;
+      })(((Math.random() * 0x1000000) << 0).toString(16))
+    );
+  }
+
+  /**
+   * 获取随机生成的 rgb 颜色
+   * @returns {String} 返回生成的 rgb 颜色
+   */
+  function getRandomRgbColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return "rgb(" + r + "," + g + "," + b + ")";
+  }
+
+  var colorUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    colorRgbToHex: colorRgbToHex,
+    colorHexToRgba: colorHexToRgba,
+    getRandomHexColor: getRandomHexColor,
+    getRandomRgbColor: getRandomRgbColor
   });
 
   /**
    * 从url中获取参数值
+   * @param {String} name 参数名
+   * @param {String} url url地址，默认当前地址栏url
+   * @returns {String} 返回找到的参数值，没有则返回空字符串
    */
   function getUrlParam(name, url = window.location.search) {
     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     let r = url.substr(1).match(reg);
     if (r != null) return decodeURI(r[2]);
-    return null;
+    return "";
   }
 
   /**
    * url参数转为对象
+   * @param {String} url url地址，默认当前地址栏url
+   * @returns {Object} 返回参数name和value拼接成的对象
    */
   function urlToObject(url = window.location.href) {
     if (url.indexOf("?") === -1) {
@@ -1380,20 +1617,21 @@
     }
     let search = url[0] === "?" ? url.substr(1) : url.substring(url.lastIndexOf("?") + 1);
     search = search.split("&");
-    let query = {};
+    let obj = {};
     for (let i = 0; i < search.length; i++) {
       let pair = search[i].split("=");
-      query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || "");
+      obj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || "");
     }
-    return query;
+    return obj;
   }
 
   /**
    * 对象转url参数
-   *
+   *  @param {Object} obj 包含name和value的对象
+   *  @returns {Object} 返回类似 id=1&name=xx 格式的url参数
    */
   function objectToUrl(obj) {
-    if (!obj) return null;
+    if (!obj) return "";
     let pairs = [];
     for (let key in obj) {
       let value = obj[key];
@@ -1552,64 +1790,182 @@
     clearCookie: clearCookie
   });
 
-  var index$1 = {};
-
-  var domUtil = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': index$1
-  });
-
   /**
-   * 获取浏览器类型和版本
-   * @return {String}
+   * 判断元素是否包含某个类名
+   * @param {Document} elem dom元素
+   * @param {String} className 类名
+   * @return {Boolean} 返回true和false
    */
-  function getBrowserInfo() {
-    var sys = {},
-      ua = navigator.userAgent.toLowerCase(),
-      s;
-    (s = ua.match(/rv:([\d.]+)\) like gecko/))
-      ? (sys.ie = s[1])
-      : (s = ua.match(/msie ([\d\.]+)/))
-      ? (sys.ie = s[1])
-      : (s = ua.match(/edge\/([\d\.]+)/))
-      ? (sys.edge = s[1])
-      : (s = ua.match(/firefox\/([\d\.]+)/))
-      ? (sys.firefox = s[1])
-      : (s = ua.match(/(?:opera|opr).([\d\.]+)/))
-      ? (sys.opera = s[1])
-      : (s = ua.match(/chrome\/([\d\.]+)/))
-      ? (sys.chrome = s[1])
-      : (s = ua.match(/version\/([\d\.]+).*safari/))
-      ? (sys.safari = s[1])
-      : 0;
-    // 根据关系进行判断
-    if (sys.ie) return "IE: " + sys.ie;
-    if (sys.edge) return "EDGE: " + sys.edge;
-    if (sys.firefox) return "Firefox: " + sys.firefox;
-    if (sys.chrome) return "Chrome: " + sys.chrome;
-    if (sys.opera) return "Opera: " + sys.opera;
-    if (sys.safari) return "Safari: " + sys.safari;
-    return "Unkonwn";
+  function hasClass(elem, className) {
+    return elem.className.indexOf(className) > 0;
   }
 
   /**
-   * 获取手机操作系统类型
-   * @return {String} ios android
+   * 元素添加类名
+   * @param {Document} elem dom元素
+   * @param {String} className 类名
    */
-  function getDeviceInfo() {
-    var ua = navigator.userAgent;
-    if (/Android|BlackBerry|IEMobile/i.test(ua)) {
-      return "android";
-    } else if (/iPhone|iPad|iPod/i.test(ua)) {
-      return "ios";
-    }
-    return "Unknown";
+  function addClass(elem, className) {
+    if (!hasClass(elem, className)) elem.className += " " + className;
+  }
+
+  /**
+   * 元素删除类名
+   * @param {Document} elem dom元素
+   * @param {String} className 类名
+   */
+  function removeClass(elem, className) {
+    if (hasClass(elem, className)) elem.className = elem.className.replace(new RegExp(className, "gm"), "");
+  }
+
+  /**
+   * 元素替换类名
+   * @param {Document} elem dom元素
+   * @param {String} newClassName 新的类名
+   * @param {String} oldClassName 被替换掉的类名
+   */
+  function replaceClass(elem, newClassName, oldClassName) {
+    removeClass(elem, oldClassName);
+    addClass(elem, newClassName);
+  }
+
+  var domUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    hasClass: hasClass,
+    addClass: addClass,
+    removeClass: removeClass,
+    replaceClass: replaceClass
+  });
+
+  // 浏览器信息
+  /**
+   * 获取浏览器信息
+   * @description 会获取到浏览器对应的名称以及版本
+   * @return {Object} 返回浏览器信息
+   */
+  function getBrowserInfo() {
+    let ua = window.navigator.userAgent.toLowerCase();
+
+    // ie
+    let ie = ua.match(/rv:([\d.]+)\) like gecko/) || ua.match(/msie ([\d\.]+)/);
+    // edge
+    let edge = ua.match(/edg\/([\d\.]+)/);
+    // firefox
+    let firefox = ua.match(/firefox\/([\d\.]+)/);
+    // opera
+    let opera = ua.match(/(?:opera|opr).([\d\.]+)/);
+    // chrome
+    let chrome = ua.match(/chrome\/([\d\.]+)/);
+    // safari
+    let safari = ua.match(/version\/([\d\.]+).*safari/);
+
+    // 判断类型
+    if (ie) return { name: "ie", version: ie[1] };
+    if (edge) return { name: "edge", version: edge[1] };
+    if (firefox) return { name: "firefox", version: firefox[1] };
+    if (opera) return { name: "opera", version: opera[1] };
+    if (chrome) return { name: "chrome", version: chrome[1] };
+    if (safari) return { name: "safari", version: safari[1] };
+    return "unknown";
+  }
+
+  // 设备类型
+  /**
+   * 判断是pc端
+   * @return {Boolean} 返回true和false
+   */
+  function isPc() {
+    return !isMobile();
+  }
+
+  /**
+   * 判断是手机端
+   * @description 包含 android、iphone、黑莓手机、微软手机 等多种操作系统机型
+   * @return {Boolean} 返回true和false
+   */
+  function isMobile() {
+    let ua = window.navigator.userAgent;
+    return /Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|IEMobile/i.test(ua);
+  }
+
+  // 手机系统
+  /**
+   * 判断是安卓
+   * @return {Boolean} 返回true和false
+   */
+  function isAndroid() {
+    let ua = window.navigator.userAgent;
+    return /Android|BlackBerry/i.test(ua);
+  }
+
+  /**
+   * 判断是ios
+   * @return {Boolean} 返回true和false
+   */
+  function isIos() {
+    let ua = window.navigator.userAgent;
+    return /iPhone|iPad|iPod|iOS/i.test(ua);
+  }
+
+  /**
+   * 判断是windows phone
+   * @return {Boolean} 返回true和false
+   */
+  function isWindowsPhone() {
+    let ua = window.navigator.userAgent;
+    return /Windows Phone/i.test(ua);
+  }
+
+  // 苹果设备类型
+  /**
+   * 判断是iphone
+   *@return {Boolean} 返回true和false
+   */
+  function isIphone() {
+    let ua = window.navigator.userAgent;
+    return /iPhone/i.test(ua);
+  }
+
+  /**
+   * 判断是ipad
+   *@return {Boolean} 返回true和false
+   */
+  function isIpad() {
+    let ua = window.navigator.userAgent;
+    return /iPod/i.test(ua);
+  }
+
+  // 手机浏览器类型
+  /**
+   * 判断是微信内置浏览器
+   * @return {Boolean} 返回true和false
+   */
+  function isWeixin() {
+    let ua = window.navigator.userAgent;
+    return /MicroMessenger/i.test(ua);
+  }
+
+  /**
+   * 判断是QQ内置浏览器
+   * @return {Boolean} 返回true和false
+   */
+  function isQQ() {
+    let ua = window.navigator.userAgent;
+    return /QQ/i.test(ua);
   }
 
   var deviceUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     getBrowserInfo: getBrowserInfo,
-    getDeviceInfo: getDeviceInfo
+    isPc: isPc,
+    isMobile: isMobile,
+    isAndroid: isAndroid,
+    isIos: isIos,
+    isWindowsPhone: isWindowsPhone,
+    isIphone: isIphone,
+    isIpad: isIpad,
+    isWeixin: isWeixin,
+    isQQ: isQQ
   });
 
   /**
@@ -1700,26 +2056,35 @@
     loadedTest,
     // 字符串
     ...stringUtil,
-    // 数组
-    ...arrayUtil,
-    // 日期
-    ...dateUtil,
     // 数字
     ...numberUtil,
+    // 数组
+    ...arrayUtil,
     // 对象
     ...objectUtil,
-    // 数学
-    ...mathUtil,
     // 函数
     ...functionUtil,
-    // 校验
-    ...validateUtil,
-    // 随机数
-    ...randomUtil,
+
+    // 日期
+    ...dateUtil,
     // 正则
     ...regexpUtil,
+
+    // 数学
+    ...mathUtil,
+
+    // 随机数
+    ...randomUtil,
+
     // 文件
     ...fileUtil,
+
+    // 颜色
+    ...colorUtil,
+
+    // 校验
+    ...validateUtil,
+
     // 浏览器 Url
     ...urlUtil,
     // 浏览器 Storage
@@ -1730,6 +2095,7 @@
     ...domUtil,
     // 浏览器 Device
     ...deviceUtil,
+
     // 微信小程序
     ...xcxUtil,
   };

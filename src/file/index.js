@@ -38,21 +38,215 @@ export function getFileType(value) {
   return value.substring(value.lastIndexOf(".") + 1).toLowerCase();
 }
 
+// 文件转换
+/**
+ * file转blob
+ * @param {File} file file文件
+ * @returns {Blob} 返回blob
+ */
+export function fileToBlob(file) {
+  return new Promise((resolve, reject) => {
+    // 读取文件
+    let reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+
+    // 加载成功
+    reader.onload = (e) => {
+      if (typeof e.target.result === "object") {
+        resolve(new Blob([e.target.result]));
+      } else {
+        resolve(e.target.result);
+      }
+    };
+    // 加载失败
+    reader.onerror = function (err) {
+      console.error(err);
+      reject(err);
+    };
+  });
+}
+
+/**
+ * file转base64
+ * @param {File} file file文件
+ * @returns {Base64} 返回base64
+ */
+export function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    // 读取文件
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    // 加载成功
+    reader.onload = function (e) {
+      resolve(e.target.result);
+    };
+    // 加载失败
+    reader.onerror = function (err) {
+      console.error(err);
+      reject(err);
+    };
+  });
+}
+
+/**
+ * file转url
+ * @param {File} file file文件
+ * @returns {URL} 返回url对象
+ */
+export function fileToUrl(file) {
+  return new Promise((resolve, reject) => {
+    try {
+      resolve(URL.createObjectURL(file));
+    } catch (err) {
+      // 捕捉异常
+      console.error(err);
+      reject(err);
+    }
+  });
+}
+
+/**
+ * blob转file
+ * @param {Blob} blob blob数据
+ * @returns {File} 返回file
+ */
+export function blobToFile(blob) {
+  return new Promise((resolve, reject) => {
+    try {
+      const fileType = blob.type;
+      const fileName = `${Date.now()}.${fileType.split("/")[1]}`;
+      const file = new File([blob], fileName, {
+        type: fileType,
+        lastModified: Date.now(),
+      });
+      resolve(file);
+    } catch (err) {
+      // 捕捉异常
+      console.error(err);
+      reject(err);
+    }
+  });
+}
+
+/**
+ * blob转base64
+ * @param {Blob} blob blob数据
+ * @returns {Base64} 返回base64
+ */
+export function blobToBase64(blob) {
+  return new Promise((resolve, reject) => {
+    // 读取文件
+    let reader = new FileReader();
+    reader.readAsDataURL(blob);
+
+    // 加载成功
+    reader.onload = function (e) {
+      resolve(e.target.result);
+    };
+    // 加载失败
+    reader.onerror = function (err) {
+      console.error(err);
+      reject(err);
+    };
+  });
+}
+
+/**
+ * blob转url
+ * @param {Blob} blob blob数据
+ * @returns {URL} 返回url对象
+ */
+export function blobToUrl(blob) {
+  return new Promise((resolve, reject) => {
+    try {
+      resolve(URL.createObjectURL(blob));
+    } catch (err) {
+      // 捕捉异常
+      console.error(err);
+      reject(err);
+    }
+  });
+}
+
+/**
+ * base64转file
+ * @param {Base64} base64 base64数据
+ * @param {String} fileName 文件名称，默认以时间戳命名
+ * @returns {File} 返回file
+ */
+export function base64ToFile(base64, fileName = Date.now()) {
+  return new Promise((resolve, reject) => {
+    try {
+      const arr = base64.split(",");
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const fileType = mime.split("/")[1];
+      const bstr = atob(arr[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      resolve(new File([u8arr], `${fileName}.${fileType}`, { type: mime }));
+    } catch (err) {
+      // 捕捉异常
+      console.error(err);
+      reject(err);
+    }
+  });
+}
+
 /**
  * base64转成blob格式
- * @param {*} data base64数据
- * @returns {Blob} 返回转blob数据
+ * @param {Blob} blob blob数据
+ * @returns {Blob} 返回blob
  */
-export function base64ToBlob(data) {
-  var arr = data.split(","),
-    mime = arr[0].match(/:(.*?);/)[1],
-    bstr = atob(arr[1]),
-    n = bstr.length,
-    u8arr = new Uint8Array(n);
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n);
-  }
-  return new Blob([u8arr], {
-    type: mime,
+export function base64ToBlob(base64) {
+  return new Promise((resolve, reject) => {
+    try {
+      const arr = base64.split(",");
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      resolve(new Blob([u8arr], { type: mime }));
+    } catch (err) {
+      // 捕捉异常
+      console.error(err);
+      reject(err);
+    }
+  });
+}
+
+/**
+ * url转base64
+ * @param {URL} data url数据
+ * @returns {Base64} 返回base64
+ */
+export function urlToBase64(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = url;
+
+    // 加载成功
+    img.onload = function () {
+      // 画图
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      context.drawImage(img, 0, 0, img.width, img.height);
+      // 转为base64
+      const base64 = canvas.toDataURL("image/png");
+      resolve(base64);
+    };
+    // 加载失败
+    img.onerror = function (err) {
+      console.error(err);
+      reject(err);
+    };
   });
 }

@@ -54,6 +54,28 @@ export function replaceAll(value, substr, newSubstr = "-") {
 }
 
 /**
+ * 字符串中是否包含指定的元素
+ * @param {String} value 元素
+ * @param {Array} array 查找的字符串
+ * @returns {Boolean} 返回true和false
+ */
+export function isInString(value, str) {
+  if (isNull(value)) return;
+  return str.includes(value);
+}
+
+/**
+ * 获得元素在字符串中首次出现的位置
+ * @param {String} value 元素
+ * @param {String} str 查找的字符串
+ * @returns {Number} 返回查找到的位置下标
+ */
+export function getIndexInString(value, str) {
+  if (isEmpty(value)) return;
+  return array.indexOf(value);
+}
+
+/**
  * 数字前补齐0达到指定位数
  * 注：相当于padStart()
  * @param {String|Number} value 可以是数字和字符串
