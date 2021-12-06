@@ -9,13 +9,13 @@
 1.  使用 npm 安装
 
 ```bash
-npm i @ilime/lime-util --save
+npm i lime-util --save
 ```
 
 2.  或在浏览器中直接使用
 
 ```html
-<script src="dist/@ilime/lime-util.js"></script>
+<script src="dist/lime-util.js"></script>
 ```
 
 ### 使用
@@ -24,11 +24,11 @@ npm i @ilime/lime-util --save
 
 ```javascript
 // 全部引入
-import LimeUtil from "@ilime/lime-util";
+import LimeUtil from "lime-util";
 LimeUtil.loadedTest();
 
 // 单独引入
-import { loadedTest } from "@ilime/lime-util";
+import { loadedTest } from "lime-util";
 loadedTest();
 ```
 
@@ -36,11 +36,11 @@ loadedTest();
 
 ```javascript
 // 全部引入
-const LimeUtil = require("@ilime/lime-util");
+const LimeUtil = require("lime-util");
 LimeUtil.loadedTest();
 
 // 模块引入
-const { loadedTest } = require("@ilime/lime-util");
+const { loadedTest } = require("lime-util");
 loadedTest();
 ```
 

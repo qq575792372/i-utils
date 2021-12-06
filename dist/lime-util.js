@@ -1,5 +1,5 @@
 /*!
-* @ilime/lime-util v0.0.1
+* lime-util v0.0.1
 *
 * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
 * Licensed under the MIT license
