@@ -9,7 +9,7 @@
 1.  使用 npm 安装
 
 ```bash
-npm i lime-utils --save
+npm i @ilime/lime-utils --save
 ```
 
 2.  或在浏览器中直接使用
