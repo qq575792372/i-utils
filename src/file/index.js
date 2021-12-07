@@ -46,17 +46,14 @@ export function getFileType(value) {
  */
 export function fileToBlob(file) {
   return new Promise((resolve, reject) => {
-    // 读取文件
+    // 读取解析文件
     let reader = new FileReader();
-    reader.readAsArrayBuffer(file);
+    reader.readAsDataURL(file);
 
     // 加载成功
     reader.onload = (e) => {
-      if (typeof e.target.result === "object") {
-        resolve(new Blob([e.target.result]));
-      } else {
-        resolve(e.target.result);
-      }
+      const blob = new Blob([e.target.result], { type: file.type });
+      resolve(blob);
     };
     // 加载失败
     reader.onerror = function (err) {
@@ -73,7 +70,7 @@ export function fileToBlob(file) {
  */
 export function fileToBase64(file) {
   return new Promise((resolve, reject) => {
-    // 读取文件
+    // 读取解析文件
     let reader = new FileReader();
     reader.readAsDataURL(file);
 
@@ -91,8 +88,9 @@ export function fileToBase64(file) {
 
 /**
  * file转url
+ * @description 适用于本地上传图片并预览，需要注意 URL.revokeObjectURL(file) 内存释放
  * @param {File} file file文件
- * @returns {URL} 返回url对象
+ * @returns {URL} 返回url地址
  */
 export function fileToUrl(file) {
   return new Promise((resolve, reject) => {
@@ -101,6 +99,7 @@ export function fileToUrl(file) {
     } catch (err) {
       // 捕捉异常
       console.error(err);
+      URL.revokeObjectURL(file);
       reject(err);
     }
   });
@@ -114,11 +113,12 @@ export function fileToUrl(file) {
 export function blobToFile(blob) {
   return new Promise((resolve, reject) => {
     try {
-      const fileType = blob.type;
-      const fileName = `${Date.now()}.${fileType.split("/")[1]}`;
-      const file = new File([blob], fileName, {
-        type: fileType,
+      const mime = blob.type;
+      const fileSuffix = mime.split("/")[1];
+      const file = new File([blob], `${Date.now()}.${fileSuffix}`, {
+        type: mime,
         lastModified: Date.now(),
+        lastModifiedDate: new Date(),
       });
       resolve(file);
     } catch (err) {
@@ -136,7 +136,7 @@ export function blobToFile(blob) {
  */
 export function blobToBase64(blob) {
   return new Promise((resolve, reject) => {
-    // 读取文件
+    // 读取解析文件
     let reader = new FileReader();
     reader.readAsDataURL(blob);
 
@@ -153,23 +153,6 @@ export function blobToBase64(blob) {
 }
 
 /**
- * blob转url
- * @param {Blob} blob blob数据
- * @returns {URL} 返回url对象
- */
-export function blobToUrl(blob) {
-  return new Promise((resolve, reject) => {
-    try {
-      resolve(URL.createObjectURL(blob));
-    } catch (err) {
-      // 捕捉异常
-      console.error(err);
-      reject(err);
-    }
-  });
-}
-
-/**
  * base64转file
  * @param {Base64} base64 base64数据
  * @param {String} fileName 文件名称，默认以时间戳命名
@@ -180,14 +163,15 @@ export function base64ToFile(base64, fileName = Date.now()) {
     try {
       const arr = base64.split(",");
       const mime = arr[0].match(/:(.*?);/)[1];
-      const fileType = mime.split("/")[1];
-      const bstr = atob(arr[1]);
+      const fileSuffix = mime.split("/")[1];
+      const bstr = window.atob(arr[1]);
       let n = bstr.length;
       const u8arr = new Uint8Array(n);
+
       while (n--) {
         u8arr[n] = bstr.charCodeAt(n);
       }
-      resolve(new File([u8arr], `${fileName}.${fileType}`, { type: mime }));
+      resolve(new File([u8arr], `${fileName}.${fileSuffix}`, { type: mime }));
     } catch (err) {
       // 捕捉异常
       console.error(err);
@@ -197,8 +181,8 @@ export function base64ToFile(base64, fileName = Date.now()) {
 }
 
 /**
- * base64转成blob格式
- * @param {Blob} blob blob数据
+ * base64转成blob
+ * @param {Base64} base64 base64数据
  * @returns {Blob} 返回blob
  */
 export function base64ToBlob(base64) {
@@ -206,9 +190,10 @@ export function base64ToBlob(base64) {
     try {
       const arr = base64.split(",");
       const mime = arr[0].match(/:(.*?);/)[1];
-      const bstr = atob(arr[1]);
+      const bstr = window.atob(arr[1]);
       let n = bstr.length;
       const u8arr = new Uint8Array(n);
+
       while (n--) {
         u8arr[n] = bstr.charCodeAt(n);
       }
@@ -222,14 +207,15 @@ export function base64ToBlob(base64) {
 }
 
 /**
- * url转base64
- * @param {URL} data url数据
+ * 图片url转base64
+ * @param {String} imgUrl 图片url地址
  * @returns {Base64} 返回base64
  */
-export function urlToBase64(url) {
+export function urlToBase64(imgUrl) {
   return new Promise((resolve, reject) => {
+    // 设置图片
     const img = new Image();
-    img.src = url;
+    img.src = imgUrl;
 
     // 加载成功
     img.onload = function () {
@@ -249,4 +235,22 @@ export function urlToBase64(url) {
       reject(err);
     };
   });
+}
+
+/**
+ * 下载blob格式的文件
+ * @param {Blob} blob blob数据
+ * @param {String} fileName 下载的文件名
+ */
+export function downloadBlobFile(blob, fileName) {
+  try {
+    const objUrl = URL.createObjectURL(blob);
+    const link = window.document.createElement("a");
+    link.download = fileName;
+    link.href = objUrl;
+    link.click();
+    URL.revokeObjectURL(objUrl);
+  } catch (error) {
+    console.error(error);
+  }
 }
