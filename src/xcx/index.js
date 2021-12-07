@@ -22,7 +22,7 @@ export function setStorageSync(key, data) {
  * @returns {*} 返回获取的值
  */
 export function getStorage(key) {
-  return wx.getStorage({ key }) || "";
+  return wx.getStorage({ key }) || undefined;
 }
 
 /**
@@ -31,7 +31,7 @@ export function getStorage(key) {
  * @returns {*} 返回获取的值
  */
 export function getStorageSync(key) {
-  return wx.getStorageSync(key) || "";
+  return wx.getStorageSync(key) || undefined;
 }
 
 /**

@@ -5,7 +5,7 @@
  * @returns {Boolean} 返回true和false
  */
 export function isNaN(value) {
-  return isNaN(value) || (!value && value !== 0);
+  return window.isNaN(value) || (!value && value !== 0);
 }
 
 /**

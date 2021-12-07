@@ -55,12 +55,12 @@ export function jsonToString(json) {
 
 /**
  * string转json
- * @param {String} string 参数
+ * @param {String} str 参数
  * @returns {Object} 返回JSON对象
  */
-export function stringToJson(string) {
-  if (isEmpty(string)) return;
-  return JSON.parse(string);
+export function stringToJson(str) {
+  if (isEmpty(str)) return;
+  return JSON.parse(str);
 }
 
 /**

@@ -14,10 +14,10 @@ export function colorRgbToHex(color) {
 }
 
 /**
- * hex十六进制 颜色转 rgb
+ * hex十六进制 颜色转 rgba
  * @param {String} color hex十六进制颜色值
  * @param {Number} opacity 透明度，0-1之间，默认1
- * @returns {String} 返回生成的 rgb 颜色
+ * @returns {String} 返回生成的 rgba 颜色
  */
 export function colorHexToRgba(color, opacity = 1) {
   return (

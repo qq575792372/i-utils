@@ -1,6 +1,16 @@
 import { isNaN } from "../validate";
 
 /**
+ * 暴露精度类型，用于计算四舍五入精度
+ */
+export const MATH = {
+  // 正常四舍五入，如：1.354保留两位是1.35；1.355保留两位是1.36；
+  ROUND: 0,
+  // 向下舍出，如：1.354保留两位是1.35；1.355保留两位是1.35；
+  ROUND_FLOOR: 1,
+};
+
+/**
  * 两个数字加法
  * @param {Number,String} arg1
  * @param {Number,String} arg2
@@ -88,7 +98,7 @@ export function divide(arg1, arg2) {
 
 /**
  * 四舍五入，强制保留小数位数
- * @description 默认保留两位小数，解决原生的toFixed()的四舍五入问题
+ * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
  * @param {Number|String} num
  * @param {Number} decimals 保留小数的位数，默认2位
  * @example
@@ -97,7 +107,29 @@ export function divide(arg1, arg2) {
  * toFixed(2.006) // 四舍五入输出：2.01
  * @returns {Number} 返回保留后的数字
  */
-export function toFixed(num, decimals = 2) {
+export function toFixed(num, decimals = 2, mode = MATH.ROUND) {
+  // 正常四舍五入
+  if (mode == MATH.ROUND) {
+    return toFixedRound(num, decimals);
+  }
+  // 向下舍出
+  if (mode == MATH.ROUND_FLOOR) {
+    return toFixedFloor(num, decimals);
+  }
+}
+
+/**
+ * 四舍五入，强制保留小数位数
+ * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
+ * @param {Number|String} num
+ * @param {Number} decimals 保留小数的位数，默认2位
+ * @example
+ * toFixed(2) // 输出：2.00
+ * toFixed(2.0) // 输出：2.00
+ * toFixed(2.006) // 四舍五入输出：2.01
+ * @returns {Number} 返回保留后的数字
+ */
+export function toFixedRound(num, decimals = 2) {
   if (isNaN(num)) {
     return "--";
   }
@@ -130,7 +162,7 @@ export function toFixed(num, decimals = 2) {
 }
 
 /**
- * 非四舍五入，强制保留小数位数
+ * 向下舍出，强制保留小数位数
  * 注：默认保留两位小数
  * @param {Number|String} num
  * @param {Number} decimals 保留小数的位数，默认2位
@@ -140,7 +172,7 @@ export function toFixed(num, decimals = 2) {
  * toDecimalFixed(2.009) // 强制截取后输出 2.00
  * @returns {Number} 返回保留后的数字
  */
-export function toDecimalFixed(num, decimals = 2) {
+export function toFixedFloor(num, decimals = 2) {
   if (isNaN(num)) {
     return "--";
   }

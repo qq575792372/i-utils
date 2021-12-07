@@ -41,9 +41,9 @@ export function uniqueArray(array) {
  */
 export function arrayToTree(array, pid) {
   let res = [];
-  list.forEach((v) => {
+  array.forEach((v) => {
     if (v.pid == pid) {
-      v.children = toTree(list, v.id);
+      v.children = toTree(array, v.id);
       res.push(v);
     }
   });

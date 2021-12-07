@@ -108,15 +108,19 @@ export function fileToUrl(file) {
 /**
  * blob转file
  * @param {Blob} blob blob数据
+ * @param {String} fileName 文件名称，默认以时间戳命名
  * @returns {File} 返回file
  */
-export function blobToFile(blob) {
+export function blobToFile(blob, fileName = Date.now()) {
   return new Promise((resolve, reject) => {
     try {
       const mime = blob.type;
+      const size = blob.size;
       const fileSuffix = mime.split("/")[1];
       const file = new File([blob], `${Date.now()}.${fileSuffix}`, {
         type: mime,
+        size: size,
+        name: `${fileName}.${fileSuffix}`,
         lastModified: Date.now(),
         lastModifiedDate: new Date(),
       });
@@ -240,7 +244,7 @@ export function urlToBase64(imgUrl) {
 /**
  * 下载blob格式的文件
  * @param {Blob} blob blob数据
- * @param {String} fileName 下载的文件名
+ * @param {String} fileName 下载的文件名，不指定后缀名则默认为原文件类型
  */
 export function downloadBlobFile(blob, fileName) {
   try {

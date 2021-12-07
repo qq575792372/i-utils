@@ -1,10 +1,12 @@
+import { isEmpty } from "../validate";
+
 /**
  * 通过key获取cookie
  * @param {String} key
  * @returns {String} 返回获取的值
  */
 export function getCookie(key) {
-  if (typeof document == "undefined" || !key) return;
+  if (typeof document == "undefined") return;
   let arr = document.cookie ? document.cookie.split(";") : [];
   for (let i = 0; i < arr[i].length; i++) {
     let arr2 = arr[i].split("=");
@@ -32,6 +34,7 @@ export function setCookie(key, value, timestamp) {
  * @param {String} key
  */
 export function removeCookie(key) {
+  if (isEmpty(key)) return;
   setCookie(key, "", -1);
 }
 

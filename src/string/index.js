@@ -7,7 +7,6 @@ import { isEmpty } from "../validate";
  * @returns {String} 返回处理后的字符串
  */
 export function trim(value) {
-  if (isEmpty(value)) return;
   return value.replace(/(^\s*)|(\s*$)/g, "");
 }
 
@@ -17,7 +16,6 @@ export function trim(value) {
  * @returns {String} 返回处理后的字符串
  */
 export function trimStart(value) {
-  if (isEmpty(value)) return;
   return value.replace(/(^\s*)/g, "");
 }
 
@@ -27,7 +25,6 @@ export function trimStart(value) {
  * @returns {String} 返回处理后的字符串
  */
 export function trimEnd(value) {
-  if (isEmpty(value)) return;
   return value.replace(/(\s*$)/g, "");
 }
 
@@ -37,7 +34,6 @@ export function trimEnd(value) {
  * @returns {String} 返回处理后的字符串
  */
 export function trimAll(value) {
-  if (isEmpty(value)) return;
   return value.replace(/\s+/g, "");
 }
 
@@ -49,18 +45,16 @@ export function trimAll(value) {
  * @returns {String} 返回处理后的字符串
  */
 export function replaceAll(value, substr, newSubstr = "-") {
-  if (isEmpty(value)) return;
   return value.replace(new RegExp(substr, "gm"), newSubstr);
 }
 
 /**
  * 字符串中是否包含指定的元素
  * @param {String} value 元素
- * @param {Array} array 查找的字符串
+ * @param {String} str 查找的字符串
  * @returns {Boolean} 返回true和false
  */
 export function isInString(value, str) {
-  if (isNull(value)) return;
   return str.includes(value);
 }
 
@@ -71,8 +65,7 @@ export function isInString(value, str) {
  * @returns {Number} 返回查找到的位置下标
  */
 export function getIndexInString(value, str) {
-  if (isEmpty(value)) return;
-  return array.indexOf(value);
+  return str.indexOf(value);
 }
 
 /**
@@ -83,7 +76,6 @@ export function getIndexInString(value, str) {
  * @returns {String} 返回补0后的字符串，比如传参(10,4)，返回补齐0的4位字符串“0010”
  */
 export function zeroStart(value, maxLength = 2) {
-  if (isEmpty(value)) return;
   let len = value.toString().length;
   while (len < maxLength) {
     value = "0" + value;
@@ -100,7 +92,6 @@ export function zeroStart(value, maxLength = 2) {
  * @returns {String} 返回补0后的字符串，比如传参(10,4)，返回补齐0的4位字符串“0010”
  */
 export function zeroEnd(value, maxLength = 2) {
-  if (isEmpty(value)) return;
   let len = value.toString().length;
   while (len < maxLength) {
     value = value + "0";

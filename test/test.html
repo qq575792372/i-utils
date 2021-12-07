@@ -3,16 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lime-util</title>
+    <title>测试页面</title>
     <style></style>
   </head>
   <body>
-    <script src="../dist/lime-util.js"></script>
-    <script>
-      var a = { id: 1, b: b };
-      var b = { id: 2, a: a };
-      let c = { id: 3, a: a, b: b };
-      console.log(LimeUtil.deepClone(c));
-    </script>
+    <button id="test" onclick="myclick()">点击</button>
   </body>
+  <script src="../dist/lime-util.js"></script>
+  <script>
+    console.log(LimeUtil);
+    console.log(LimeUtil.toFixed(0.045, 2, LimeUtil.MATH.ROUND_FLOOR));
+  </script>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/decimal.js/10.3.1/decimal.js"></script>
+
+  <script>
+    // console.log(Decimal(-1.452).toFixed(2, Decimal.ROUND_FLOOR));
+  </script>
 </html>

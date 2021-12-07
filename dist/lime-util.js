@@ -19,7 +19,7 @@
    * @returns {Boolean} 返回true和false
    */
   function isNaN(value) {
-    return isNaN(value) || (!value && value !== 0);
+    return window.isNaN(value) || (!value && value !== 0);
   }
 
   /**
@@ -171,7 +171,7 @@
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
-  function isNull$1(value) {
+  function isNull(value) {
     return value == undefined || value == null || value == "";
   }
 
@@ -233,7 +233,7 @@
     isPromise: isPromise,
     isChinese: isChinese,
     isEmpty: isEmpty,
-    isNull: isNull$1,
+    isNull: isNull,
     isBlank: isBlank,
     isUndefined: isUndefined,
     equals: equals,
@@ -247,7 +247,6 @@
    * @returns {String} 返回处理后的字符串
    */
   function trim(value) {
-    if (isEmpty(value)) return;
     return value.replace(/(^\s*)|(\s*$)/g, "");
   }
 
@@ -257,7 +256,6 @@
    * @returns {String} 返回处理后的字符串
    */
   function trimStart(value) {
-    if (isEmpty(value)) return;
     return value.replace(/(^\s*)/g, "");
   }
 
@@ -267,7 +265,6 @@
    * @returns {String} 返回处理后的字符串
    */
   function trimEnd(value) {
-    if (isEmpty(value)) return;
     return value.replace(/(\s*$)/g, "");
   }
 
@@ -277,7 +274,6 @@
    * @returns {String} 返回处理后的字符串
    */
   function trimAll(value) {
-    if (isEmpty(value)) return;
     return value.replace(/\s+/g, "");
   }
 
@@ -289,18 +285,16 @@
    * @returns {String} 返回处理后的字符串
    */
   function replaceAll(value, substr, newSubstr = "-") {
-    if (isEmpty(value)) return;
     return value.replace(new RegExp(substr, "gm"), newSubstr);
   }
 
   /**
    * 字符串中是否包含指定的元素
    * @param {String} value 元素
-   * @param {Array} array 查找的字符串
+   * @param {String} str 查找的字符串
    * @returns {Boolean} 返回true和false
    */
   function isInString(value, str) {
-    if (isNull(value)) return;
     return str.includes(value);
   }
 
@@ -311,8 +305,7 @@
    * @returns {Number} 返回查找到的位置下标
    */
   function getIndexInString(value, str) {
-    if (isEmpty(value)) return;
-    return array.indexOf(value);
+    return str.indexOf(value);
   }
 
   /**
@@ -323,7 +316,6 @@
    * @returns {String} 返回补0后的字符串，比如传参(10,4)，返回补齐0的4位字符串“0010”
    */
   function zeroStart(value, maxLength = 2) {
-    if (isEmpty(value)) return;
     let len = value.toString().length;
     while (len < maxLength) {
       value = "0" + value;
@@ -340,7 +332,6 @@
    * @returns {String} 返回补0后的字符串，比如传参(10,4)，返回补齐0的4位字符串“0010”
    */
   function zeroEnd(value, maxLength = 2) {
-    if (isEmpty(value)) return;
     let len = value.toString().length;
     while (len < maxLength) {
       value = value + "0";
@@ -385,7 +376,7 @@
    * @returns {Boolean} 返回true和false
    */
   function isInArray(value, array) {
-    if (isNull$1(value)) return;
+    if (isNull(value)) return;
     return array.includes(value);
   }
 
@@ -396,7 +387,7 @@
    * @returns {Number} 返回查找到的位置下标
    */
   function getIndexInArray(value, array) {
-    if (isNull$1(value)) return;
+    if (isNull(value)) return;
     return array.indexOf(value);
   }
 
@@ -406,7 +397,7 @@
    * @returns {Array} 返回去重后的数组
    */
   function uniqueArray(array) {
-    if (isNull$1(value)) return;
+    if (isNull(value)) return;
     return Array.from(new Set(array));
   }
 
@@ -419,9 +410,9 @@
    */
   function arrayToTree(array, pid) {
     let res = [];
-    list.forEach((v) => {
+    array.forEach((v) => {
       if (v.pid == pid) {
-        v.children = toTree(list, v.id);
+        v.children = toTree(array, v.id);
         res.push(v);
       }
     });
@@ -491,12 +482,12 @@
 
   /**
    * string转json
-   * @param {String} string 参数
+   * @param {String} str 参数
    * @returns {Object} 返回JSON对象
    */
-  function stringToJson(string) {
-    if (isEmpty(string)) return;
-    return JSON.parse(string);
+  function stringToJson(str) {
+    if (isEmpty(str)) return;
+    return JSON.parse(str);
   }
 
   /**
@@ -505,7 +496,7 @@
    * @returns {Object|Array|Date} 返回深度克隆后的数据
    */
   function deepClone(target) {
-    if (isNull$1(target)) return null;
+    if (isNull(target)) return null;
 
     //  Object
     if (target instanceof Object) {
@@ -551,49 +542,47 @@
 
   /**
    * 节流函数
-   * @description 高频触发时，按指定间隔执行
+   * @description 高频触发时，在指定时间间隔内只执行一次
    * @param fn 目标函数
    * @param interval 时间间隔，单位毫秒，默认2秒
-   * @return {(function(): void)|*}
+   * @return {Function} 返回function()
    */
   function throttle(fn, interval = 2000) {
-    let timer = 0;
+    let timer;
     return function () {
       const _args = arguments;
       // 有定时器则返回
       if (timer) return;
       timer = setTimeout(() => {
+        timer = null;
         fn.apply(this, _args);
-        timer = 0;
       }, interval);
     };
   }
 
   /**
-   * 防抖函数：每一次的高频触发只执行一次
+   * 防抖函数
+   * @description 事件执行后，在延迟时间内如果立即再次执行，会清空定时器重新延迟执行
    * @param fn 目标函数
    * @param delay 延迟时间
    * @param immediate 是否立即执行，true和false，默认true
-   * @return {(function(): void)|*}
+   * @return {Function} 返回function()
    */
   function debounce(fn, delay, immediate = true) {
-    let timer = 0;
-    let executed = false;
+    let timer;
     return function () {
       const _args = arguments;
-      clearTimeout(timer);
       // 先关闭定时器
+      if (timer) clearTimeout(timer);
+      // 立即执行判断
       if (immediate) {
         // 如果需要立即执行
-        // 判断 executed 是否为 false，为 false 则执行
         // 开启新定时器防止短时间内再次触发
-        if (!executed) {
-          fn.apply(this, _args);
-          executed = true;
-        }
+        const canExecute = !timer;
         timer = setTimeout(function () {
-          executed = false;
+          timer = null;
         }, delay);
+        if (canExecute) fn.apply(this, _args);
       } else {
         // 如果不需要立即执行
         // 每次触发开启新定时器即可
@@ -611,22 +600,12 @@
   });
 
   /**
-   * 数字前补齐零，保持两位
-   * @param {String|Number} value 可以是数字和字符串
-   * @returns {String} 返回处理后的字符串
-   */
-  function digit(value) {
-    value = value.toString();
-    return value[1] ? value : "0" + value;
-  }
-
-  /**
    * 判断是否是今天
    * @param {String|Date} date 传参日期，可以是yyyy-MM-dd格式，也可以是Date对象
    * @returns {Boolean} 返回true和false
    */
   function isToday(date) {
-    if (isEmpty(date)) return;
+    if (isNull(date)) return;
     // 当前日期
     let curDate = getCurrentDate();
     // 指定日期
@@ -637,124 +616,124 @@
   /**
    * 判断是否是闰年
    * @param {Number} year 年份
-   * @returns 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isLeapYear(year) {
     return (year % 100 !== 0 && year % 4 === 0) || year % 400 === 0;
   }
 
   /**
-   * 获得日期Date，默认为当前日期
-   * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
-   * @returns 返回日期Date
+   * 获得当前日期
+   * @param {Date} date 日期参数，默认当前日期
+   * @returns {Date} 返回日期
    */
   function getCurrentDate(date = new Date()) {
     return date;
   }
 
   /**
-   * 获得日期Date字符串，默认为当前日期
-   * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
-   * @param {String} separator 年月日分隔符，默认“-”分隔
-   * @returns 返回yyyy-MM-dd格式的日期字符串
+   * 获得日期字符串
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {String} separator 分隔符，默认“-”分隔
+   * @returns {String} 返回yyyy-MM-dd格式
    */
-  function getDefaultDate(date = new Date(), separator = "-") {
+  function getDate(date = new Date(), separator = "-") {
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
-    return [year, month, day].map(digit).join(separator);
+    return [year, month, day].map(_digit).join(separator);
   }
 
   /**
-   * 获得日期DateTime字符串，默认为当前时间
-   * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
-   * @param {String} separator 年月日分隔符，默认“-”
-   * @returns 返回yyyy-MM-dd HH:mm:ss格式的时间字符串
+   * 获得时间字符串
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {String} separator 分隔符，默认“-”
+   * @returns {String} 返回yyyy-MM-dd HH:mm:ss格式
    */
-  function getDefaultDateTime(date = new Date(), separator = "-") {
+  function getDateTime(date = new Date(), separator = "-") {
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
     let hour = date.getHours();
     let minute = date.getMinutes();
     let second = date.getSeconds();
-    return [year, month, day].map(digit).join(separator) + " " + [hour, minute, second].map(digit).join(":");
+    return [year, month, day].map(_digit).join(separator) + " " + [hour, minute, second].map(_digit).join(":");
   }
 
   /**
-   * 获取日期Date的时间戳
-   * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
-   * @returns 返回日期Date的时间戳
+   * 获取时间戳
+   * @param {Date} date 日期参数，默认当前日期
+   * @returns {Timestamp} 返回时间戳
    */
-  function getDefaultTimestamp(date = new Date()) {
+  function getTimestamp(date = new Date()) {
     return date.getTime();
   }
 
   /**
-   * 获取日期Date的Unix时间戳
-   * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
-   * @returns 返回日期Date的Unix时间戳
+   * 获取Unix时间戳
+   * @param {Date} date 日期参数，默认当前日期
+   * @returns {UnixTimestamp} 返回Unix时间戳
    */
-  function getDefaultUnixTimestamp(date = new Date()) {
+  function getUnixTimestamp(date = new Date()) {
     return Math.round(date / 1000);
   }
 
   /**
-   * 格式化时间戳为日期Date
-   * @param {Number} timestamp 时间戳
-   * @returns 返回日期Date
+   * 时间戳转日期
+   * @param {Timestamp} timestamp 时间戳
+   * @returns {Date} 返回日期
    */
-  function formatTimestampToDate(timestamp) {
-    if (isEmpty(timestamp) || timestamp == 0) return;
+  function timestampToDate(timestamp) {
+    if (isEmpty(timestamp)) return;
     return new Date(timestamp);
   }
 
   /**
-   * 格式化Unix时间戳为日期Date
-   * @param {Number} timestamp Unix时间戳
-   * @returns 返回日期Date
+   * Unix时间戳转日期
+   * @param {UnixTimestamp} unixTimestamp Unix时间戳
+   * @returns {Date} 返回日期
    */
-  function formatUnixTimestampToDate(timestamp) {
-    if (isEmpty(timestamp) || timestamp == 0) return;
-    return new Date(timestamp * 1000);
+  function unixTimestampToDate(unixTimestamp) {
+    if (isEmpty(unixTimestamp)) return;
+    return new Date(unixTimestamp * 1000);
   }
 
   /**
-   * 获得当前的日期Date是周几
-   * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
-   * @param {String} type 可为空，默认为zh；zh：返回周一，周二的中文； en：返回1,2的数字
-   * @returns 返回对应的中文的周几或者数字的周几
+   * 获得当前日期是周几
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {String} lang 周字符串语言，zh：周一，周二等；en：1,2等
+   * @returns {String|Number} 返回对应的zh或者en语言的周数
    */
-  function getWeekDay(date = new Date(), type = "zh") {
+  function getWeekDay(date = new Date(), lang = "zh") {
     if (isEmpty(date)) return;
     let day = "";
-    if (type && type == "zh") {
+    if (lang == "zh") {
       day = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六")[date.getDay()];
     } else {
-      day = new Array("7", "1", "2", "3", "4", "5", "6")[date.getDay()];
+      day = new Array(7, 1, 2, 3, 4, 5, 6)[date.getDay()];
     }
     return day;
   }
 
   /**
-   * 获得某年的某月总共有多少天
+   * 获得某年某月的天数
    * @param {Number} year 年
    * @param {Number} month 月
-   * @returns 返回对应年月的总天数
+   * @returns {Number} 返回对应年月的天数
    */
-  function getYearMonthAllDay(year, month) {
+  function getYearMonthDayNum(year, month) {
     if (isEmpty(year) || isEmpty(month)) return;
     month = this.parseInt(month);
     return new Date(year, month, 0).getDate();
   }
 
   /**
-   * 获得某年的某月的所有天数数组
+   * 获得某年某月的天数数组
    * @param {Number} year 年
    * @param {Number} month 月
-   * @returns 返回对应年月的所有天数数组
+   * @returns 返回对应年月的天数数组
    */
-  function getYearMonthAllDayArray(year, month) {
+  function getYearMonthDayArray(year, month) {
     if (isEmpty(year) || isEmpty(month)) return;
     month = this.parseInt(month);
     return Array.from(
@@ -778,10 +757,9 @@
   }
 
   /**
-   * 日期字符串转换为数组
-   *
-   * @param {String} dateStr 日期字符串，格式支持yyyy-MM-dd，yyyy-MM-dd HH:mm:ss，yyyy/MM/dd，yyyy/MM/dd HH:mm:ss
-   * @returns 返回字符串数组
+   * 日期字符串转数组
+   * @param {String} dateStr 日期字符串，格式支持：yyyy-MM-dd，yyyy/MM/dd
+   * @returns {Array} 返回字符串数组
    */
   function dateStrToArray(dateStr) {
     if (isEmpty(dateStr)) return;
@@ -790,9 +768,8 @@
   }
 
   /**
-   * 时间字符串转换为数组
-   *
-   * @param {String} dateTimeStr 时间字符串，格式支持yyyy-MM-dd，yyyy-MM-dd HH:mm:ss，yyyy/MM/dd，yyyy/MM/dd HH:mm:ss
+   * 时间字符串转数组
+   * @param {String} dateTimeStr 时间字符串，格式支持：yyyy-MM-dd HH:mm:ss，yyyy/MM/dd HH:mm:ss
    * @returns 返回字符串数组
    */
   function dateTimeStrToArray(dateTimeStr) {
@@ -802,10 +779,10 @@
   }
 
   /**
-   * 获得加减年数后的日期Date
-   * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
-   * @param {Number} num 加减年数的数量，用-1和+1年表示
-   * @returns 返回加减年数后的日期Date
+   * 获得加减年数后的日期
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {Number} num 加减数量，用+1和-1来表示
+   * @returns {Date} 返回加减年数后的日期
    */
   function getDiffYear(date = new Date(), num = +1) {
     date.setFullYear(date.getFullYear() + num);
@@ -814,9 +791,9 @@
 
   /**
    * 获得加减月数后的日期
-   * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
-   * @param {Number} num 加减月数的数量，用-1和+1月表示
-   * @returns 返回加减月数后的日期Date
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {Number} num 加减数量，用+1和-1来表示
+   * @returns {Number} 返回加减月数后的日期
    */
   function getDiffMonth(date = new Date(), num = +1) {
     date.setMonth(date.getMonth() + num);
@@ -825,9 +802,9 @@
 
   /**
    * 获得加减天数后的日期
-   * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
-   * @param {Number} num 加减天数的数量，用-1和+1天表示
-   * @returns 返回加减天数后的日期Date
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {Number} num 加减数量，用+1和-1来表示
+   * @returns {Number} 返回加减天数后的日期
    */
   function getDiffDate(date = new Date(), num = +1) {
     date.setDate(date.getDate() + num);
@@ -835,10 +812,10 @@
   }
 
   /**
-   * 计算两个日期Date之间相差的天数
+   * 计算两个日期之间相差的天数
    * @param {Date} date1 第一个日期
    * @param {Date} date2 第二个日期
-   * @returns 返回两个日期Date相差的天数；参数为空返回0；返回复数代表第一个日期大于第二个日期；返回正数表示第一个日期小于第二个日期
+   * @returns {Number} 返回两个日期相差的天数；注：数字大于0表示第二个大于第一个；数字小于0表示第二个小于第一个；
    */
   function getDiffDateNum(date1, date2) {
     if (isEmpty(date1) || isEmpty(date2)) return 0;
@@ -849,18 +826,18 @@
    * 计算两个日期字符串之间相差的天数
    * @param {Date} dateStr1 第一个日期字符串
    * @param {Date} dateStr2 第二个日期字符串
-   * @returns 返回两个日期字符串相差的天数数字；参数为空返回0；返回复数代表第一个日期大于第二个日期；返回正数表示第一个日期小于第二个日期
+   * @returns {Number} 返回两个日期字符串相差的天数；注：数字大于0表示第二个大于第一个；数字小于0表示第二个小于第一个；
    */
   function getDiffDateStrNum(dateStr1, dateStr2) {
     if (isEmpty(dateStr1) || isEmpty(dateStr2)) return 0;
-    return (this.formatStrToDate(dateStr2).getTime() - this.formatStrToDate(dateStr1).getTime()) / (24 * 60 * 60 * 1000);
+    return (formatStrToDate(dateStr2).getTime() - formatStrToDate(dateStr1).getTime()) / (24 * 60 * 60 * 1000);
   }
 
   /**
-   * 计算两个日期Data时间戳之间相差的天数
-   * @param {Timestamp} timestamp1 第一个日期Date时间戳
-   * @param {Timestamp} timestamp2 第二个日期Date时间戳
-   * @returns 返回两个日期Date时间戳相差的天数数字；参数为空返回0；返回复数代表第一个日期大于第二个日期；返回正数表示第一个日期小于第二个日期
+   * 计算两个时间戳之间相差的天数
+   * @param {Timestamp} timestamp1 第一个时间戳
+   * @param {Timestamp} timestamp2 第二个时间戳
+   * @returns 返回两个时间戳相差的天数；注：数字大于0表示第二个大于第一个；数字小于0表示第二个小于第一个；
    */
   function getDiffTimestampNum(timestamp1, timestamp2) {
     if (isEmpty(timestamp1) || isEmpty(timestamp2)) return 0;
@@ -868,10 +845,10 @@
   }
 
   /**
-   * 计算两个日期Date的Unix时间戳之间相差的天数
-   * @param {UnixTimestamp} unixTimestamp1 第一个日期Date的Unix时间戳
-   * @param {UnixTimestamp} unixTimestamp2 第二个日期Date的Unix时间戳
-   * @returns 返回两个日期Date的Unix时间戳相差的天数数字；参数为空返回0；返回复数代表第一个日期大于第二个日期；返回正数表示第一个日期小于第二个日期
+   * 计算两个Unix时间戳之间相差的天数
+   * @param {UnixTimestamp} unixTimestamp1 第一个Unix时间戳
+   * @param {UnixTimestamp} unixTimestamp2 第二个Unix时间戳
+   * @returns 返回两个Unix时间戳相差的天数；注：数字大于0表示第二个大于第一个；数字小于0表示第二个小于第一个；
    */
   function getDiffUnixTimestampNum(unixTimestamp1, unixTimestamp2) {
     if (isEmpty(unixTimestamp1) || isEmpty(unixTimestamp2)) return 0;
@@ -879,79 +856,106 @@
   }
 
   /**
-   * 获得两个日期Date之间所有日期数组
-   *
-   * @param {Date} startDate 开始日期
-   * @param {Date} endDate 结束日期
-   * @returns 返回两个日期Date之间的所有字符串数组；参数为空返回空[]
+   * 获得两个日期之间的日期字符串数组
+   * @param {Date} date1 第一个日期
+   * @param {Date} date2 第二个日期
+   * @returns {Array} 返回日期字符串数组
    */
-  function getDiffDateArray(startDate, endDate) {
-    if (isEmpty(startDate) || isEmpty(endDate)) return [];
-    let diffDateArray = [];
-    while (endDate.getTime() - startDate.getTime() >= 0) {
-      let year = startDate.getFullYear();
-      let month = digit(startDate.getMonth() + 1);
-      let day = digit(startDate.getDate());
-      diffDateArray.push(year + "-" + month + "-" + day);
-      startDate.setDate(startDate.getDate() + 1);
+  function getDiffDateArray(date1, date2) {
+    if (isEmpty(date1) || isEmpty(date2)) return [];
+    let diffArray = [];
+    while (date2.getTime() - date1.getTime() >= 0) {
+      let year = date1.getFullYear();
+      let month = _digit(date1.getMonth() + 1);
+      let day = _digit(date1.getDate());
+      diffArray.push(year + "-" + month + "-" + day);
+      date1.setDate(date1.getDate() + 1);
     }
-    return diffDateArray;
+    return diffArray;
   }
 
   /**
-   * 获得两个日期字符串之间所有日期数组
-   *
-   * @param {String} startStr 开始时间
-   * @param {String} endStr 结束时间
-   * @returns 返回两个日期字符串之间的所有字符串数组；参数为空返回空[]
+   * 获得两个日期字符串之间的日期字符串数组
+   * @param {String} dateStr1 第一个日期字符串
+   * @param {String} dateStr2 第二个日期字符串
+   * @returns {Array} 返回日期字符串数组
    */
-  function getDiffDateStrArray(startStr, endStr) {
-    if (isEmpty(startStr) || isEmpty(endStr)) return [];
-    let diffDateArray = [];
-    let startDate = this.formatStrToDate(startStr);
-    let endDate = this.formatStrToDate(endStr);
-    while (endDate.getTime() - startDate.getTime() >= 0) {
-      let year = startDate.getFullYear();
-      let month = digit(startDate.getMonth() + 1);
-      let day = digit(startDate.getDate());
-      diffDateArray.push(year + "-" + month + "-" + day);
-      startDate.setDate(startDate.getDate() + 1);
-    }
-    return diffDateArray;
+  function getDiffDateStrArray(dateStr1, dateStr2) {
+    if (isEmpty(dateStr1) || isEmpty(dateStr2)) return [];
+    return getDiffDateArray(formatStrToDate(dateStr1), formatStrToDate(dateStr2));
   }
 
   /**
-   * 日期Date格式化为日期字符串
-   * @param {Date} date 可以为空，默认当前日期；也可以指定任意日期Date
-   * @param {String} formatStr 需要转换的日期字符串格式，支持yyyy/MM/dd HH:mm:ss，dd/MM/yyyy HH:mm:ss等多种常用的格式；默认转为yyyy-MM-dd
-   * @returns 返回指定格式的日期字符串
+   * 日期或日期字符串，格式化为指定的日期字符串格式
+   * @param {Date|String} date 日期或日期字符串
+   * @param {String} format 转化日期字符串格式，支持格式：yyyy-MM-dd HH:mm:ss，yyyy/MM/dd HH:mm:ss等多种格式
+   * @returns {String} 返回格式化后的日期字符串
    */
-  function formatDateToStr(date = new Date(), formatStr = "yyyy-MM-dd") {
-    // 日期字符串格式化
-    let o = {
-      "M+": date.getMonth() + 1, // 月
+  function formatDate(date = new Date(), format = "yyyy-MM-dd") {
+    // 是日期字符串类型则统一转为Date类型
+    if (typeof date == "string") {
+      date = formatStrToDate(date);
+    }
+    // 周配置
+    let week = {
+      0: "日",
+      1: "一",
+      2: "二",
+      3: "三",
+      4: "四",
+      5: "五",
+      6: "六",
+    };
+    // 季度配置
+    let quarter = {
+      1: "一",
+      2: "二",
+      3: "三",
+      4: "四",
+    };
+    // 日期配置
+    let opt = {
+      "M+": date.getMonth() + 1, // 月份
       "d+": date.getDate(), // 日
       "h+": date.getHours() % 12 == 0 ? 12 : date.getHours() % 12, // 12小时制
       "H+": date.getHours(), // 24小时制
       "m+": date.getMinutes(), // 分钟
       "s+": date.getSeconds(), // 秒
-      "q+": Math.floor((date.getMonth() + 3) / 3), //季度
-      S: date.getMilliseconds(), //毫秒
+      "E+": week[date.getDay()], // 周
+      "q+": Math.floor((date.getMonth() + 3) / 3), // 季度
+      S: date.getMilliseconds(), // 毫秒
     };
-    if (/(y+)/.test(formatStr)) {
-      formatStr = formatStr.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+
+    // 年
+    if (/(y+)/.test(format)) {
+      format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
     }
-    for (let k in o) {
-      if (new RegExp("(" + k + ")").test(formatStr))
-        formatStr = formatStr.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+    // 周
+    if (/(E+)/.test(format)) {
+      format = format.replace(
+        RegExp.$1,
+        (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") + week[date.getDay() + ""]
+      );
     }
-    return formatStr;
+    // 季度
+    if (/(q+)/.test(format)) {
+      format = format.replace(
+        RegExp.$1,
+        (RegExp.$1.length > 1 ? "第" : "") + quarter[Math.floor((date.getMonth() + 3) / 3) + ""] + "季度"
+      );
+    }
+    // 日期
+    for (let k in opt) {
+      if (new RegExp("(" + k + ")").test(format))
+        format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? opt[k] : ("00" + opt[k]).substr(("" + opt[k]).length));
+    }
+    return format;
   }
 
   /**
-   * 日期字符串格式化为日期Date
+   * 日期字符串转日期
    * @param {String} dateStr 日期字符串，支持格式：yyyy-MM-dd HH:mm:ss，yyyy/MM/dd HH:mm:ss
-   * @returns 返回日期Date
+   * @returns {Date} 返回日期
    */
   function formatStrToDate(dateStr) {
     if (isEmpty(dateStr)) return;
@@ -959,10 +963,10 @@
   }
 
   /**
-   * 比较两个日期Date的大小
+   * 比较两个日期的大小
    * @param {Date} date1 第一个日期
    * @param {Date} date2 第二个日期
-   * @returns 返回true和false
+   * @returns {Boolean} 返回true和false；返回true表示第一个日期大于第二个日期；返回false表示第一个日期小于第二个日期；
    */
   function compareDate(date1, date2) {
     if (isEmpty(date1) || isEmpty(date2)) return;
@@ -970,10 +974,10 @@
   }
 
   /**
-   * 比较两个日期Date时间戳的大小
+   * 比较两个时间戳的大小
    * @param {Timestamp} timestamp1 第一个时间戳
    * @param {Timestamp} timestamp2 第二个时间戳
-   * @returns 返回true和false
+   * @returns {Boolean} 返回true和false；返回true表示第一个时间戳大于第二个时间戳；返回false表示第一个时间戳小于第二个时间戳；
    */
   function compareTimestamp(timestamp1, timestamp2) {
     if (isEmpty(timestamp1) || isEmpty(timestamp2)) return;
@@ -981,14 +985,25 @@
   }
 
   /**
-   * 比较两个日期Date的Unix时间戳的大小
+   * 比较两个Unix时间戳的大小
    * @param {UnixTimestamp} unixTimestamp1 第一个Unix时间戳
    * @param {UnixTimestamp} unixTimestamp2 第二个Unix时间戳
-   * @returns 返回true和false
+   * @returns {Boolean} 返回true和false；返回true表示第一个Unix时间戳大于第二个Unix时间戳；返回false表示第一个Unix时间戳小于第二个Unix时间戳；
    */
   function compareUnixTimestamp(unixTimestamp1, unixTimestamp2) {
     if (isEmpty(unixTimestamp1) || isEmpty(unixTimestamp2)) return;
     return unixTimestamp1 > unixTimestamp2;
+  }
+
+  // 内部使用的函数
+  /**
+   * 数字前补齐零，保持两位
+   * @param {String|Number} value 可以是数字和字符串
+   * @returns {String} 返回处理后的字符串
+   */
+  function _digit(value) {
+    value = value.toString();
+    return value[1] ? value : "0" + value;
   }
 
   var dateUtil = /*#__PURE__*/Object.freeze({
@@ -996,15 +1011,15 @@
     isToday: isToday,
     isLeapYear: isLeapYear,
     getCurrentDate: getCurrentDate,
-    getDefaultDate: getDefaultDate,
-    getDefaultDateTime: getDefaultDateTime,
-    getDefaultTimestamp: getDefaultTimestamp,
-    getDefaultUnixTimestamp: getDefaultUnixTimestamp,
-    formatTimestampToDate: formatTimestampToDate,
-    formatUnixTimestampToDate: formatUnixTimestampToDate,
+    getDate: getDate,
+    getDateTime: getDateTime,
+    getTimestamp: getTimestamp,
+    getUnixTimestamp: getUnixTimestamp,
+    timestampToDate: timestampToDate,
+    unixTimestampToDate: unixTimestampToDate,
     getWeekDay: getWeekDay,
-    getYearMonthAllDay: getYearMonthAllDay,
-    getYearMonthAllDayArray: getYearMonthAllDayArray,
+    getYearMonthDayNum: getYearMonthDayNum,
+    getYearMonthDayArray: getYearMonthDayArray,
     getYearMonthLastDay: getYearMonthLastDay,
     dateStrToArray: dateStrToArray,
     dateTimeStrToArray: dateTimeStrToArray,
@@ -1017,7 +1032,7 @@
     getDiffUnixTimestampNum: getDiffUnixTimestampNum,
     getDiffDateArray: getDiffDateArray,
     getDiffDateStrArray: getDiffDateStrArray,
-    formatDateToStr: formatDateToStr,
+    formatDate: formatDate,
     formatStrToDate: formatStrToDate,
     compareDate: compareDate,
     compareTimestamp: compareTimestamp,
@@ -1076,6 +1091,16 @@
     REGEXP: REGEXP,
     regexpTest: regexpTest
   });
+
+  /**
+   * 暴露精度类型，用于计算四舍五入精度
+   */
+  const MATH = {
+    // 正常四舍五入，如：1.354保留两位是1.35；1.355保留两位是1.36；
+    ROUND: 0,
+    // 向下舍出，如：1.354保留两位是1.35；1.355保留两位是1.35；
+    ROUND_FLOOR: 1,
+  };
 
   /**
    * 两个数字加法
@@ -1165,7 +1190,7 @@
 
   /**
    * 四舍五入，强制保留小数位数
-   * @description 默认保留两位小数，解决原生的toFixed()的四舍五入问题
+   * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
    * @param {Number|String} num
    * @param {Number} decimals 保留小数的位数，默认2位
    * @example
@@ -1174,7 +1199,29 @@
    * toFixed(2.006) // 四舍五入输出：2.01
    * @returns {Number} 返回保留后的数字
    */
-  function toFixed(num, decimals = 2) {
+  function toFixed(num, decimals = 2, mode = MATH.ROUND) {
+    // 正常四舍五入
+    if (mode == MATH.ROUND) {
+      return toFixedRound(num, decimals);
+    }
+    // 向下舍出
+    if (mode == MATH.ROUND_FLOOR) {
+      return toFixedFloor(num, decimals);
+    }
+  }
+
+  /**
+   * 四舍五入，强制保留小数位数
+   * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
+   * @param {Number|String} num
+   * @param {Number} decimals 保留小数的位数，默认2位
+   * @example
+   * toFixed(2) // 输出：2.00
+   * toFixed(2.0) // 输出：2.00
+   * toFixed(2.006) // 四舍五入输出：2.01
+   * @returns {Number} 返回保留后的数字
+   */
+  function toFixedRound(num, decimals = 2) {
     if (isNaN(num)) {
       return "--";
     }
@@ -1207,7 +1254,7 @@
   }
 
   /**
-   * 非四舍五入，强制保留小数位数
+   * 向下舍出，强制保留小数位数
    * 注：默认保留两位小数
    * @param {Number|String} num
    * @param {Number} decimals 保留小数的位数，默认2位
@@ -1217,7 +1264,7 @@
    * toDecimalFixed(2.009) // 强制截取后输出 2.00
    * @returns {Number} 返回保留后的数字
    */
-  function toDecimalFixed(num, decimals = 2) {
+  function toFixedFloor(num, decimals = 2) {
     if (isNaN(num)) {
       return "--";
     }
@@ -1287,12 +1334,14 @@
 
   var mathUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
+    MATH: MATH,
     add: add,
     subtract: subtract,
     multiply: multiply,
     divide: divide,
     toFixed: toFixed,
-    toDecimalFixed: toDecimalFixed,
+    toFixedRound: toFixedRound,
+    toFixedFloor: toFixedFloor,
     toRound: toRound,
     toFloor: toFloor
   });
@@ -1479,15 +1528,19 @@
   /**
    * blob转file
    * @param {Blob} blob blob数据
+   * @param {String} fileName 文件名称，默认以时间戳命名
    * @returns {File} 返回file
    */
-  function blobToFile(blob) {
+  function blobToFile(blob, fileName = Date.now()) {
     return new Promise((resolve, reject) => {
       try {
         const mime = blob.type;
+        const size = blob.size;
         const fileSuffix = mime.split("/")[1];
         const file = new File([blob], `${Date.now()}.${fileSuffix}`, {
           type: mime,
+          size: size,
+          name: `${fileName}.${fileSuffix}`,
           lastModified: Date.now(),
           lastModifiedDate: new Date(),
         });
@@ -1611,7 +1664,7 @@
   /**
    * 下载blob格式的文件
    * @param {Blob} blob blob数据
-   * @param {String} fileName 下载的文件名
+   * @param {String} fileName 下载的文件名，不指定后缀名则默认为原文件类型
    */
   function downloadBlobFile(blob, fileName) {
     try {
@@ -1658,10 +1711,10 @@
   }
 
   /**
-   * hex十六进制 颜色转 rgb
+   * hex十六进制 颜色转 rgba
    * @param {String} color hex十六进制颜色值
    * @param {Number} opacity 透明度，0-1之间，默认1
-   * @returns {String} 返回生成的 rgb 颜色
+   * @returns {String} 返回生成的 rgba 颜色
    */
   function colorHexToRgba(color, opacity = 1) {
     return (
@@ -1853,7 +1906,7 @@
    * @returns {String} 返回获取的值
    */
   function getCookie(key) {
-    if (typeof document == "undefined" || !key) return;
+    if (typeof document == "undefined") return;
     let arr = document.cookie ? document.cookie.split(";") : [];
     for (let i = 0; i < arr[i].length; i++) {
       let arr2 = arr[i].split("=");
@@ -1881,6 +1934,7 @@
    * @param {String} key
    */
   function removeCookie(key) {
+    if (isEmpty(key)) return;
     setCookie(key, "", -1);
   }
 
@@ -2138,7 +2192,7 @@
    * @returns {*} 返回获取的值
    */
   function getStorage(key) {
-    return wx.getStorage({ key }) || "";
+    return wx.getStorage({ key }) || undefined;
   }
 
   /**
@@ -2147,7 +2201,7 @@
    * @returns {*} 返回获取的值
    */
   function getStorageSync(key) {
-    return wx.getStorageSync(key) || "";
+    return wx.getStorageSync(key) || undefined;
   }
 
   /**
