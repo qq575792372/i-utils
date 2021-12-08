@@ -2,7 +2,7 @@
 
 ### 介绍
 
-**lime-util** 是一个 前端模块化 **JavaScript** 工具库，包含了日常开发中常用的一些方法，如 string，array，date，number，常用校验，正则和小程序等等多个模块。
+**lime-util** 是一个 前端模块化 JavaScript 工具库，包含了日常开发中常用的一些方法集合，如 string，array，date，number，math，校验，正则和小程序等等多个模块。
 
 ### 安装
 
@@ -27,7 +27,7 @@ npm i lime-util --save
 import LimeUtil from "lime-util";
 LimeUtil.loadedTest();
 
-// 单独引入
+// 按需引入
 import { loadedTest } from "lime-util";
 loadedTest();
 ```
@@ -39,7 +39,7 @@ loadedTest();
 const LimeUtil = require("lime-util");
 LimeUtil.loadedTest();
 
-// 单独引入
+// 按需引入
 const { loadedTest } = require("lime-util");
 loadedTest();
 ```
