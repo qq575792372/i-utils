@@ -325,21 +325,20 @@
 
   // 比较
   /**
-   * 判断两个字符串是否相等
-   * @param {String} value1 参数1
-   * @param {String} value2 参数2
-   * @returns 返回true和false
+   * 判断两个值是否相等
+   * @param {String|Number} value1 参数1
+   * @param {String|Number} value2 参数2
+   * @returns {Boolean} 返回true和false
    */
   function equals(value1, value2) {
     return Object.is(value1, value2);
   }
 
   /**
-   * 判断两个字符串是否相等
-   * 注：会忽略大小写
-   * @param {String} value1 参数1
-   * @param {String} value2 参数2
-   * @returns 返回true和false
+   * 判断两个值是否相等（忽略大小写）
+   * @param {String|Number} value1 参数1
+   * @param {String|Number} value2 参数2
+   * @returns {Boolean} 返回true和false
    */
   function equalsIgnoreCase(value1, value2) {
     return Object.is(value1.toLowerCase(), value2.toLowerCase());
