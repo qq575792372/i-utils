@@ -1,43 +1,21 @@
 ## 日期
 
-#### \_.trimAll(str)
+#### \_.isInArray(value, array)
 
-去掉所有的空格
+数组中是否包含指定的元素
 
 - ##### 参数
 
-`str` String|Number 参数
+  `value` {String|Number} 元素
+  `array` {Array} 查找的数组
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  {String} 返回 true 和 false
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
-```
-
----
-
-#### \_.trimAll(str)
-
-去掉所有的空格
-
-- ##### 参数
-
-`str` String|Number 参数
-
-- ##### 返回值
-
-String 返回处理后的字符串
-
-- ##### 示例
-
-```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+let res = LimeUtil.isInArray(1, [1, 2, 3]);
+console.log(res); // 输出 true
 ```

@@ -1,19 +1,21 @@
 import { isNaN } from "../validate";
 
+// 模式枚举
 /**
- * 暴露精度类型，用于计算四舍五入精度
+ * 计算精度模式
  */
-export const MATH = {
+export const MATH_MODE = {
   // 正常四舍五入，如：1.354保留两位是1.35；1.355保留两位是1.36；
   ROUND: 0,
   // 向下舍出，如：1.354保留两位是1.35；1.355保留两位是1.35；
   ROUND_FLOOR: 1,
 };
 
+// 数字精度计算
 /**
- * 两个数字加法
- * @param {Number,String} arg1
- * @param {Number,String} arg2
+ * 两个数字相加
+ * @param {String|Number} arg1 第一个数字
+ * @param {String|Number} arg2 第二个数字
  * @returns {Number} 返回计算后的数字
  */
 export function add(arg1, arg2) {
@@ -33,9 +35,9 @@ export function add(arg1, arg2) {
 }
 
 /**
- * 两个数字减法
- * @param {Number,String} arg1
- * @param {Number,String} arg2
+ * 两个数字相减
+ * @param {String|Number} arg1 第一个数字
+ * @param {String|Number} arg2 第二个数字
  * @returns {Number} 返回计算后的数字
  */
 export function subtract(arg1, arg2) {
@@ -56,9 +58,9 @@ export function subtract(arg1, arg2) {
 }
 
 /**
- * 两个数字乘法
- * @param {Number,String} arg1
- * @param {Number,String} arg2
+ * 两个数字相乘
+ * @param {String|Number} arg1 第一个数字
+ * @param {String|Number} arg2 第二个数字
  * @returns 返回计算后的数字
  */
 export function multiply(arg1, arg2) {
@@ -75,13 +77,13 @@ export function multiply(arg1, arg2) {
 }
 
 /**
- * 两个数字除法
- * @param {Number,String} arg1
- * @param {Number,String} arg2
+ * 两个数字相除
+ * @param {String|Number} arg1 第一个数字
+ * @param {String|Number} arg2 第二个数字
  * @returns {Number} 返回计算后的数字
  */
 export function divide(arg1, arg2) {
-  var t1 = 0,
+  let t1 = 0,
     t2 = 0,
     r1,
     r2;
@@ -97,43 +99,62 @@ export function divide(arg1, arg2) {
 }
 
 /**
- * 四舍五入，强制保留小数位数
- * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
- * @param {Number|String} num
- * @param {Number} decimals 保留小数的位数，默认2位
- * @example
- * toFixed(2) // 输出：2.00
- * toFixed(2.0) // 输出：2.00
- * toFixed(2.006) // 四舍五入输出：2.01
- * @returns {Number} 返回保留后的数字
+ * 两个数字取模
+ * @param {String|Number} arg1 第一个数字
+ * @param {String|Number} arg2 第二个数字
+ * @returns {Number} 返回计算后的数字
  */
-export function toFixed(num, decimals = 2, mode = MATH.ROUND) {
-  // 正常四舍五入
-  if (mode == MATH.ROUND) {
+export function modulo(arg1, arg2) {
+  let t1 = 0,
+    t2 = 0,
+    d = 0;
+  try {
+    t1 = arg1.toString().split(".")[1].length;
+  } catch (e) {}
+  try {
+    t2 = arg2.toString().split(".")[1].length;
+  } catch (e) {}
+  d = Math.pow(10, Math.max(t1, t2));
+  return (Math.round(Number(arg1) * d) % Math.round(Number(arg2) * d)) / d;
+}
+
+// 强制保留小数位数
+/**
+ * 强制保留小数位数
+ * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
+ * @param {String|Number} num 数字
+ * @param {Number} decimals 保留小数的位数，默认2位
+ * @param {Enum} mode 保留小数模式，参考MATH_MODE枚举类型
+ * @returns {String} 返回字符串的数字
+ */
+export function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
+  // 四舍五入
+  if (mode == MATH_MODE.ROUND) {
     return toFixedRound(num, decimals);
   }
   // 向下舍出
-  if (mode == MATH.ROUND_FLOOR) {
+  if (mode == MATH_MODE.ROUND_FLOOR) {
     return toFixedFloor(num, decimals);
   }
 }
 
 /**
  * 四舍五入，强制保留小数位数
- * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
- * @param {Number|String} num
+ * @description 默认保留两位小数，此方法解决原生的toFixed()会五舍六入的问题
+ * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
  * @example
- * toFixed(2) // 输出：2.00
- * toFixed(2.0) // 输出：2.00
- * toFixed(2.006) // 四舍五入输出：2.01
- * @returns {Number} 返回保留后的数字
+ * toFixedRound(1) // 输出：1.00
+ * toFixedRound(1.0) // 输出：1.00
+ * toFixedRound(1.01) // 输出：1.01
+ * toFixedRound(1.015) // 四舍五入输出：1.02
+ * @returns {String} 返回字符串的数字
  */
 export function toFixedRound(num, decimals = 2) {
   if (isNaN(num)) {
     return "--";
   }
-  let s = num + "";
+  let s = String(num);
   if (!decimals) decimals = 0;
   if (s.indexOf(".") == -1) s += ".";
   s += new Array(decimals + 1).join("0");
@@ -158,19 +179,20 @@ export function toFixedRound(num, decimals = 2) {
     if (b) s = s.substr(1);
     return (pm + s).replace(/\.$/, "");
   }
-  return num + "";
+  return String(num);
 }
 
 /**
  * 向下舍出，强制保留小数位数
- * 注：默认保留两位小数
- * @param {Number|String} num
+ * @description 默认保留两位小数，此方法相当于强制截取小数位数
+ * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
  * @example
- * toDecimalFixed(2) // 输出 2.00
- * toDecimalFixed(2.0) // 输出 2.00
- * toDecimalFixed(2.009) // 强制截取后输出 2.00
- * @returns {Number} 返回保留后的数字
+ * toFixedFloor(1) // 输出 1.00
+ * toFixedFloor(1.0) // 输出 1.00
+ * toFixedFloor(1.01) // 输出 1.01
+ * toFixedFloor(1.015) // 四舍后输出：1.01
+ * @returns {Number} 返回字符串的数字
  */
 export function toFixedFloor(num, decimals = 2) {
   if (isNaN(num)) {
@@ -199,22 +221,40 @@ export function toFixedFloor(num, decimals = 2) {
   let realVal = "";
   // 截取当前数据到小数点后decimals位
   realVal = `${String(tempNum).split(".")[0]}.${String(tempNum).split(".")[1].substring(0, dec)}`;
-  return realVal;
+  return String(realVal);
 }
 
+// 尽可能保留小数位数
 /**
- * 四舍五入，尽可能保留小数
- * @param {Number,String} num
+ * 尽可能保留小数位数
+ * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @example
- * toRound(2) // 不够两位，输出：2
- * toRound(2.0) // 不够两位，输出：2
- * toRound(2.001) // 向上五入，输出：2
- * toRound(2.009) // 向上五入，输出：2.01
+ * @param {Enum} mode 保留小数模式，参考MATH_MODE枚举类型
  * @returns {Number} 返回保留后的数字
  */
-export function toRound(num, decimals = 2) {
-  if (this.isNaN(num)) {
+export function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
+  // 四舍五入
+  if (mode == MATH_MODE.ROUND) {
+    return toDecimalRound(num, decimals);
+  }
+  // 向下舍出
+  if (mode == MATH_MODE.ROUND_FLOOR) {
+    return toDecimalFloor(num, decimals);
+  }
+}
+/**
+ * 四舍五入，尽可能保留小数
+ * @param {String|Number} num 数字
+ * @param {Number} decimals 保留小数的位数，默认2位
+ * @example
+ * toDecimalRound(1) // 不够两位，输出：1
+ * toDecimalRound(1.0) // 不够两位，输出：1
+ * toDecimalRound(1.01) // 向上五入，输出：1.01
+ * toDecimalRound(1.015) // 向上五入，输出：1.02
+ * @returns {Number} 返回保留后的数字
+ */
+export function toDecimalRound(num, decimals = 2) {
+  if (isNaN(num)) {
     return "--";
   }
   let n = Math.pow(10, decimals);
@@ -223,17 +263,17 @@ export function toRound(num, decimals = 2) {
 
 /**
  * 向下舍入，尽可能保留小数
- * @param {Number,String} num
+ * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
  * @example
- * toFloor(2) // 不够两位，输出：2
- * toFloor(2.0) // 不够两位，输出：2
- * toFloor(2.001) // 向下舍入，输出：2
- * toFloor(2.006) // 向下舍入，输出：2
+ * toDecimalFloor(1) // 不够两位，输出：1
+ * toDecimalFloor(1.0) // 不够两位，输出：1
+ * toDecimalFloor(1.01) // 向下舍入，输出：1
+ * toDecimalFloor(1.015) // 向下舍入，输出：1
  * @returns {Number} 返回保留后的数字
  */
-export function toFloor(num, decimals = 2) {
-  if (this.isNaN(num)) {
+export function toDecimalFloor(num, decimals = 2) {
+  if (isNaN(num)) {
     return "--";
   }
   let n = Math.pow(10, decimals);

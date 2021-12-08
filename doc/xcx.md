@@ -1,43 +1,164 @@
 ## 微信小程序
 
-#### \_.trimAll(str)
+#### \_.setStorage(key, data)
 
-去掉所有的空格
+设置缓存
 
 - ##### 参数
 
-`str` String|Number 参数
+  `key` {String} key 值
+  `data` {\*} data 数据
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  无
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+LimeUtil.setStorage("id", 1);
 ```
 
 ---
 
-#### \_.trimAll(str)
+#### \_.setStorageSync(key, data)
 
-去掉所有的空格
+设置缓存（同步）
 
 - ##### 参数
 
-`str` String|Number 参数
+  `key` {String} key 值
+  `data` {\*} data 数据
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  无
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+LimeUtil.setStorageSync("id", 1);
+```
+
+---
+
+#### \_.getStorage(key)
+
+通过 key 从缓存中获取数据
+
+- ##### 参数
+
+  `key` {String} key 值
+
+- ##### 返回值
+
+  {\*} 返回获取的值
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getStorage("id");
+console.log(res); // 输出 1
+```
+
+---
+
+#### \_.getStorageSync(key)
+
+设置缓存
+
+- ##### 参数
+
+  `key` {String} key 值
+
+- ##### 返回值
+
+  {\*} 返回获取的值
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getStorageSync("id");
+console.log(res); // 输出 1
+```
+
+---
+
+#### \_.removeStorage(key)
+
+通过 key 从缓存中删除数据
+
+- ##### 参数
+
+  `key` {String} key 值
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.removeStorage("id");
+```
+
+---
+
+#### \_.removeStorageSync(key)
+
+通过 key 从缓存中删除数据（同步）
+
+- ##### 参数
+
+  `key` {String} key 值
+  `data` {\*} data 数据
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.removeStorageSync("id");
+```
+
+---
+
+#### \_.clearStorage()
+
+清空所有缓存数据
+
+- ##### 参数
+
+  无
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.clearStorage();
+```
+
+---
+
+#### \_.clearStorageSync()
+
+清空所有缓存数据（同步）
+
+- ##### 参数
+
+  无
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.clearStorageSync();
 ```

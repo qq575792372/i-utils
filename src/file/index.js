@@ -1,5 +1,6 @@
 import { isEmpty } from "../validate";
 
+// 文件信息处理
 /**
  * 格式化文件大小自动转为 B，KB，MB，GB
  * @param {Byte} size 文件的大小，单位byte字节
@@ -20,20 +21,20 @@ export function formatFileSize(size) {
 
 /**
  * 获得文件名称
- * @param {*} value 文件的全名称，例如：123.jpg
- * @returns {String} 返回文件的名称，包含后缀类型名称
+ * @param {String} fileName 文件的全名称，例如：测试图片.jpg
+ * @returns {String} 返回文件的名称
  */
-export function getFileName(value) {
-  if (isEmpty(value) || isEmpty(value)) return;
-  return value.substring(0, value.lastIndexOf("."));
+export function getFileName(fileName) {
+  if (isEmpty(fileName)) return;
+  return fileName.substring(0, fileName.lastIndexOf("."));
 }
 
 /**
- * 获得文件类型
- * @param {*} value 文文件的全名称，例如：123.jpg
- * @returns {String} 返回文件类型
+ * 获得文件后缀名
+ * @param {String} value 文件地址路径或者文件全名称，例如：http://xxx.com/mytest.jpg，测试图片.jpg
+ * @returns {String} 返回文件后缀名
  */
-export function getFileType(value) {
+export function getFileSuffix(value) {
   if (isEmpty(value)) return;
   return value.substring(value.lastIndexOf(".") + 1).toLowerCase();
 }
@@ -90,7 +91,7 @@ export function fileToBase64(file) {
  * file转url
  * @description 适用于本地上传图片并预览，需要注意 URL.revokeObjectURL(file) 内存释放
  * @param {File} file file文件
- * @returns {URL} 返回url地址
+ * @returns {URL} 返回url
  */
 export function fileToUrl(file) {
   return new Promise((resolve, reject) => {
@@ -244,7 +245,7 @@ export function urlToBase64(imgUrl) {
 /**
  * 下载blob格式的文件
  * @param {Blob} blob blob数据
- * @param {String} fileName 下载的文件名，不指定后缀名则默认为原文件类型
+ * @param {String} fileName 下载的文件名，不写后缀名则默认为原文件类型
  */
 export function downloadBlobFile(blob, fileName) {
   try {

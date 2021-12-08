@@ -1,43 +1,22 @@
 ## 数字
 
-#### \_.trimAll(str)
+#### \_.parseInt(value, radix = 10)
 
-去掉所有的空格
+转为数字类型
+`解决某些旧浏览器在使用 parseInt('08') 等0开头，由于进制数导致转换是0的问题`
 
 - ##### 参数
 
-`str` String|Number 参数
+  `value` {String} 转换的值
+  `radix` {Number} 进制数，默认 10 进制
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  {Number} 返回转换后的数字
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
-```
-
----
-
-#### \_.trimAll(str)
-
-去掉所有的空格
-
-- ##### 参数
-
-`str` String|Number 参数
-
-- ##### 返回值
-
-String 返回处理后的字符串
-
-- ##### 示例
-
-```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+let res = LimeUtil.parseInt("08");
+console.log(res); // 输出 8
 ```

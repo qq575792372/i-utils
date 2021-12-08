@@ -1,43 +1,66 @@
 ## 浏览器 Url
 
-#### \_.trimAll(str)
+#### \_.getUrlParam(name, url = window.location.href)
 
-去掉所有的空格
+从 url 中获取参数值
 
 - ##### 参数
 
-`str` String|Number 参数
+  `name` {String|Number} 参数名
+  `url` {String} url 地址，默认当前地址栏 url
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  {String} 返回查询到的值
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+let url = "http://xxx.com?id=1&name=test";
+let res = LimeUtil.getUrlParam("id", url);
+console.log(res); // 输出 1
 ```
 
 ---
 
-#### \_.trimAll(str)
+#### \_.urlQueryToObject(url = window.location.href)
 
-去掉所有的空格
+url 查询参数转为对象
 
 - ##### 参数
 
-`str` String|Number 参数
+  `url` {String} url 地址，默认当前地址栏 url
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  {Object} 返回参数对象
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+let url = "http://xxx.com?id=1&name=test";
+let res = LimeUtil.urlQueryToObject(url);
+console.log(res); // 输出 {id: 1, name: 'test'}
+```
+
+---
+
+#### \_.objectToUrlQuery(obj)
+
+对象转 url 查询参数
+
+- ##### 参数
+
+  `obj` {Object} 参数对象
+
+- ##### 返回值
+
+  {String} 返回 id=1&name=xx 格式的 url 查询参数
+
+- ##### 示例
+
+```javascript
+let obj = { id: 1, name: "test" };
+let res = LimeUtil.objectToUrlQuery(obj);
+console.log(res); // 输出 id=1&name=test
 ```

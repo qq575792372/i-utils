@@ -23,7 +23,7 @@ export function getIndexInArray(value, array) {
 }
 
 /**
- * 数组简单去重
+ * 数组元素简单去重
  * @param {Array} array 数组
  * @returns {Array} 返回去重后的数组
  */
@@ -34,10 +34,10 @@ export function uniqueArray(array) {
 
 /**
  * 一维父子级的数组转树形结构
- * @description 包含id和pid关系的一维数组，转为包含children的树形结构
+ * @description 包含id和pid属性关系的一维数组，转为children的树形结构
  * @param {Array} array 数组
- * @param {Number|String} pid 父级的id
- * @returns {Array} 返回去重后的数组
+ * @param {String|Number} pid 父级的id
+ * @returns {Array} 返回树形结构数组
  */
 export function arrayToTree(array, pid) {
   let res = [];

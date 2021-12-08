@@ -1,5 +1,5 @@
 /**
- * 判断元素是否包含某个类名
+ * 判断元素包含某个类名
  * @param {Document} elem dom元素
  * @param {String} className 类名
  * @return {Boolean} 返回true和false
@@ -30,7 +30,7 @@ export function removeClass(elem, className) {
  * 元素替换类名
  * @param {Document} elem dom元素
  * @param {String} newClassName 新的类名
- * @param {String} oldClassName 被替换掉的类名
+ * @param {String} oldClassName 被替换掉的旧类名
  */
 export function replaceClass(elem, newClassName, oldClassName) {
   removeClass(elem, oldClassName);

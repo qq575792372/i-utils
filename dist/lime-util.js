@@ -12,6 +12,135 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeUtil = factory());
 })(this, (function () { 'use strict';
 
+  // 字符串去空格
+  /**
+   * 去除字符串两边空格
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function trim(value) {
+    return value.replace(/(^\s*)|(\s*$)/g, "");
+  }
+
+  /**
+   * 去除字符串开始位置的空格
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function trimStart(value) {
+    return value.replace(/(^\s*)/g, "");
+  }
+
+  /**
+   * 去除字符串结束位置的空格
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function trimEnd(value) {
+    return value.replace(/(\s*$)/g, "");
+  }
+
+  /**
+   * 去除字符串中全部的空格
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function trimAll(value) {
+    return value.replace(/\s+/g, "");
+  }
+
+  /**
+   * 替换字符串中所有指定的字符为新的字符串
+   * @param {String} value 参数
+   * @param {String} oldSubstr 需要替换的字符串
+   * @param {String} newSubstr 替换后的字符串
+   * @returns {String} 返回处理后的字符串
+   */
+  function replaceAll(value, oldSubstr, newSubstr) {
+    return value.replace(new RegExp(oldSubstr, "gm"), newSubstr);
+  }
+
+  /**
+   * 字符串中是否包含指定的元素
+   * @param {String} value 包含的元素
+   * @param {String} str 查找的字符串
+   * @returns {Boolean} 返回true和false
+   */
+  function isInString(value, str) {
+    return str.includes(value);
+  }
+
+  /**
+   * 获得元素在字符串中首次出现的位置
+   * @param {String} value 元素
+   * @param {String} str 查找的字符串
+   * @returns {Number} 返回查找到的位置下标
+   */
+  function getIndexInString(value, str) {
+    return str.indexOf(value);
+  }
+
+  /**
+   * 数字前补齐0达到指定位数
+   * @description 相当于原生的 padStart(2,'0')
+   * @param {String|Number} value 补零的数字
+   * @param {Number} maxLength 补齐0后的最大长度，默认2位
+   * @returns {String} 返回补0后指定位数的字符串
+   */
+  function zeroStart(value, maxLength = 2) {
+    let len = value.toString().length;
+    while (len < maxLength) {
+      value = "0" + value;
+      len++;
+    }
+    return value;
+  }
+
+  /**
+   * 数字后补齐0达到指定位数
+   * @description 相当于原生的 padEnd(2,'0')
+   * @param {String|Number} value 补零的数字
+   * @param {Number} maxLength 补齐0后的最大长度，默认2位
+   * @returns {String} 返回补0后指定位数的字符串
+   */
+  function zeroEnd(value, maxLength = 2) {
+    let len = value.toString().length;
+    while (len < maxLength) {
+      value = value + "0";
+      len++;
+    }
+    return value;
+  }
+
+  var stringUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    trim: trim,
+    trimStart: trimStart,
+    trimEnd: trimEnd,
+    trimAll: trimAll,
+    replaceAll: replaceAll,
+    isInString: isInString,
+    getIndexInString: getIndexInString,
+    zeroStart: zeroStart,
+    zeroEnd: zeroEnd
+  });
+
+  /**
+   * 转为数字类型
+   * @description 解决部分浏览器在转换 '08','09'等是0开头时被默认转8进制问题
+   * @param {String} value 转换的值
+   * @param {Number} radix 进制数，默认10进制
+   * @returns {Number} 返回转换后的数字
+   */
+  function parseInt$1(value, radix = 10) {
+    return Number.parseInt(value, radix);
+  }
+
+  var numberUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    parseInt: parseInt$1
+  });
+
   // 数据类型
   /**
    * 判断是非数字
@@ -131,7 +260,7 @@
   }
 
   /**
-   * 判断类型是Promise
+   * 判断类型是 Promise
    * @param {*} value 参数
    * @returns {Boolean} 返回true和false
    */
@@ -176,7 +305,8 @@
   }
 
   /**
-   * 判断值是否有空白符号
+   * 判断是否值空的
+   * @description 除了对null，undefined等校验，还会校验空格
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
@@ -190,7 +320,7 @@
    * @returns {Boolean} 返回true和false
    */
   function isUndefined(value) {
-    return value == undefined;
+    return value === undefined;
   }
 
   // 比较
@@ -240,135 +370,6 @@
     equalsIgnoreCase: equalsIgnoreCase
   });
 
-  // 字符串去空格
-  /**
-   * 去除字符串两边空格
-   * @param {String} value 参数
-   * @returns {String} 返回处理后的字符串
-   */
-  function trim(value) {
-    return value.replace(/(^\s*)|(\s*$)/g, "");
-  }
-
-  /**
-   * 去除字符串开始位置的空格
-   * @param {String} value 参数
-   * @returns {String} 返回处理后的字符串
-   */
-  function trimStart(value) {
-    return value.replace(/(^\s*)/g, "");
-  }
-
-  /**
-   * 去除字符串结束位置的空格
-   * @param {String} value 参数
-   * @returns {String} 返回处理后的字符串
-   */
-  function trimEnd(value) {
-    return value.replace(/(\s*$)/g, "");
-  }
-
-  /**
-   * 去除字符串中全部的空格
-   * @param {String} value 参数
-   * @returns {String} 返回处理后的字符串
-   */
-  function trimAll(value) {
-    return value.replace(/\s+/g, "");
-  }
-
-  /**
-   * 替换字符串中所有指定的字符为新的字符串
-   * @param {String} value 参数
-   * @param {String} substr 需要替换的字符串
-   * @param {String} newSubstr 替换后的字符串
-   * @returns {String} 返回处理后的字符串
-   */
-  function replaceAll(value, substr, newSubstr = "-") {
-    return value.replace(new RegExp(substr, "gm"), newSubstr);
-  }
-
-  /**
-   * 字符串中是否包含指定的元素
-   * @param {String} value 元素
-   * @param {String} str 查找的字符串
-   * @returns {Boolean} 返回true和false
-   */
-  function isInString(value, str) {
-    return str.includes(value);
-  }
-
-  /**
-   * 获得元素在字符串中首次出现的位置
-   * @param {String} value 元素
-   * @param {String} str 查找的字符串
-   * @returns {Number} 返回查找到的位置下标
-   */
-  function getIndexInString(value, str) {
-    return str.indexOf(value);
-  }
-
-  /**
-   * 数字前补齐0达到指定位数
-   * 注：相当于padStart()
-   * @param {String|Number} value 可以是数字和字符串
-   * @param {Number} maxLength 补齐0后的最大长度，默认2位
-   * @returns {String} 返回补0后的字符串，比如传参(10,4)，返回补齐0的4位字符串“0010”
-   */
-  function zeroStart(value, maxLength = 2) {
-    let len = value.toString().length;
-    while (len < maxLength) {
-      value = "0" + value;
-      len++;
-    }
-    return value;
-  }
-
-  /**
-   * 数字后补齐0达到指定位数
-   * 注：相当于padEnd()
-   * @param {String|Number} value 可以是数字和字符串
-   * @param {Number} maxLength 补齐0后的最大长度，默认2位
-   * @returns {String} 返回补0后的字符串，比如传参(10,4)，返回补齐0的4位字符串“0010”
-   */
-  function zeroEnd(value, maxLength = 2) {
-    let len = value.toString().length;
-    while (len < maxLength) {
-      value = value + "0";
-      len++;
-    }
-    return value;
-  }
-
-  var stringUtil = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    trim: trim,
-    trimStart: trimStart,
-    trimEnd: trimEnd,
-    trimAll: trimAll,
-    replaceAll: replaceAll,
-    isInString: isInString,
-    getIndexInString: getIndexInString,
-    zeroStart: zeroStart,
-    zeroEnd: zeroEnd
-  });
-
-  /**
-   * 值转为数字类型
-   * @description 解决部分浏览器在转换 '08','09'等是0开头时被默认转8进制问题
-   * @param {String} value 转换的值
-   * @param {Number} radix 进制数，默认10进制
-   * @returns {Number} 返回转换后的数字
-   */
-  function parseInt$1(value, radix = 10) {
-    return Number.parseInt(value, radix);
-  }
-
-  var numberUtil = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    parseInt: parseInt$1
-  });
-
   /**
    * 数组中是否包含指定的元素
    * @param {String|Number} value 元素
@@ -392,7 +393,7 @@
   }
 
   /**
-   * 数组简单去重
+   * 数组元素简单去重
    * @param {Array} array 数组
    * @returns {Array} 返回去重后的数组
    */
@@ -403,10 +404,10 @@
 
   /**
    * 一维父子级的数组转树形结构
-   * @description 包含id和pid关系的一维数组，转为包含children的树形结构
+   * @description 包含id和pid属性关系的一维数组，转为children的树形结构
    * @param {Array} array 数组
-   * @param {Number|String} pid 父级的id
-   * @returns {Array} 返回去重后的数组
+   * @param {String|Number} pid 父级的id
+   * @returns {Array} 返回树形结构数组
    */
   function arrayToTree(array, pid) {
     let res = [];
@@ -441,6 +442,15 @@
   }
 
   /**
+   * map转json字符串
+   * @param {Map} map 参数
+   * @returns {String} 返回Json字符串
+   */
+  function mapToJson(map) {
+    return JSON.stringify(this.mapToObject(map));
+  }
+
+  /**
    * object转map
    * @param {Object} obj 参数
    * @returns {Map} 返回Map
@@ -454,17 +464,8 @@
   }
 
   /**
-   * map转json
-   * @param {Map} map 参数
-   * @returns {String} 返回Json字符串
-   */
-  function mapToJson(map) {
-    return JSON.stringify(this.mapToObject(map));
-  }
-
-  /**
-   * json转map
-   * @param {Json} json 参数
+   * json字符串转map
+   * @param {String} json json字符串
    * @returns {Map} 返回Map
    */
   function jsonToMap(json) {
@@ -472,27 +473,28 @@
   }
 
   /**
-   * json转string
-   * @param {Json} json 参数
-   * @returns {String} 返回JSON字符串
+   * json对象转json字符串
+   * @param {Object} json json对象
+   * @returns {String} 返回Json字符串
    */
-  function jsonToString(json) {
+  function stringifyJson(json) {
     return JSON.stringify(json);
   }
 
   /**
-   * string转json
-   * @param {String} str 参数
-   * @returns {Object} 返回JSON对象
+   * json字符串转json对象
+   * @param {String} json json字符串
+   * @returns {Object} 返回Json对象
    */
-  function stringToJson(str) {
-    if (isEmpty(str)) return;
-    return JSON.parse(str);
+  function parseJson(json) {
+    if (isEmpty(json)) return;
+    return JSON.parse(json);
   }
 
   /**
    * 深拷贝数据
-   * @param {Object|Array|Date} target 需要克隆的数据，只支持 Object，Array，Date三种
+   * @description 目前只支持 Object，Array，Date三种数据类型
+   * @param {Object|Array|Date} target 需要克隆的数据
    * @returns {Object|Array|Date} 返回深度克隆后的数据
    */
   function deepClone(target) {
@@ -532,20 +534,20 @@
   var objectUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     mapToObject: mapToObject,
-    objectToMap: objectToMap,
     mapToJson: mapToJson,
+    objectToMap: objectToMap,
     jsonToMap: jsonToMap,
-    jsonToString: jsonToString,
-    stringToJson: stringToJson,
+    stringifyJson: stringifyJson,
+    parseJson: parseJson,
     deepClone: deepClone
   });
 
   /**
    * 节流函数
    * @description 高频触发时，在指定时间间隔内只执行一次
-   * @param fn 目标函数
-   * @param interval 时间间隔，单位毫秒，默认2秒
-   * @return {Function} 返回function()
+   * @param {Function} fn 目标函数
+   * @param {Number} interval 时间间隔，单位毫秒，默认2秒
+   * @returns {Function} 返回function()
    */
   function throttle(fn, interval = 2000) {
     let timer;
@@ -562,13 +564,13 @@
 
   /**
    * 防抖函数
-   * @description 事件执行后，在延迟时间内如果立即再次执行，会清空定时器重新延迟执行
-   * @param fn 目标函数
-   * @param delay 延迟时间
-   * @param immediate 是否立即执行，true和false，默认true
-   * @return {Function} 返回function()
+   * @description 事件执行后，在延迟时间内如果再次执行，会清空定时器重新延迟执行
+   * @param {Function} fn 目标函数
+   * @param {Number} delay 延迟时间，单位毫秒，默认2秒
+   * @param {Boolean} immediate 是否立即执行，true和false，默认true
+   * @returns {Function} 返回function()
    */
-  function debounce(fn, delay, immediate = true) {
+  function debounce(fn, delay = 2000, immediate = true) {
     let timer;
     return function () {
       const _args = arguments;
@@ -1077,13 +1079,14 @@
   };
 
   /**
-   * 提供了正则校验的方法，也可以在程序中调用上面的表达式
+   * 正则校验的方法
+   * @description 类型为枚举REGEXP对应的正则
    * @param {String|Number} value 校验的值
-   * @param {RegExp} type 使用的正则
+   * @param {REGEXP} regex 使用的REGEXP中的正则
    * @returns {Boolean} 返回校验的结果，true和false
    */
-  function regexpTest(value, type) {
-    return new RegExp(REGEXP[type]).test(value);
+  function regexpTest(value, regex) {
+    return new RegExp(REGEXP[regex]).test(value);
   }
 
   var regexpUtil = /*#__PURE__*/Object.freeze({
@@ -1092,20 +1095,22 @@
     regexpTest: regexpTest
   });
 
+  // 模式枚举
   /**
-   * 暴露精度类型，用于计算四舍五入精度
+   * 计算精度模式
    */
-  const MATH = {
+  const MATH_MODE = {
     // 正常四舍五入，如：1.354保留两位是1.35；1.355保留两位是1.36；
     ROUND: 0,
     // 向下舍出，如：1.354保留两位是1.35；1.355保留两位是1.35；
     ROUND_FLOOR: 1,
   };
 
+  // 数字精度计算
   /**
-   * 两个数字加法
-   * @param {Number,String} arg1
-   * @param {Number,String} arg2
+   * 两个数字相加
+   * @param {String|Number} arg1 第一个数字
+   * @param {String|Number} arg2 第二个数字
    * @returns {Number} 返回计算后的数字
    */
   function add(arg1, arg2) {
@@ -1125,9 +1130,9 @@
   }
 
   /**
-   * 两个数字减法
-   * @param {Number,String} arg1
-   * @param {Number,String} arg2
+   * 两个数字相减
+   * @param {String|Number} arg1 第一个数字
+   * @param {String|Number} arg2 第二个数字
    * @returns {Number} 返回计算后的数字
    */
   function subtract(arg1, arg2) {
@@ -1148,9 +1153,9 @@
   }
 
   /**
-   * 两个数字乘法
-   * @param {Number,String} arg1
-   * @param {Number,String} arg2
+   * 两个数字相乘
+   * @param {String|Number} arg1 第一个数字
+   * @param {String|Number} arg2 第二个数字
    * @returns 返回计算后的数字
    */
   function multiply(arg1, arg2) {
@@ -1167,13 +1172,13 @@
   }
 
   /**
-   * 两个数字除法
-   * @param {Number,String} arg1
-   * @param {Number,String} arg2
+   * 两个数字相除
+   * @param {String|Number} arg1 第一个数字
+   * @param {String|Number} arg2 第二个数字
    * @returns {Number} 返回计算后的数字
    */
   function divide(arg1, arg2) {
-    var t1 = 0,
+    let t1 = 0,
       t2 = 0,
       r1,
       r2;
@@ -1189,43 +1194,62 @@
   }
 
   /**
-   * 四舍五入，强制保留小数位数
-   * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
-   * @param {Number|String} num
-   * @param {Number} decimals 保留小数的位数，默认2位
-   * @example
-   * toFixed(2) // 输出：2.00
-   * toFixed(2.0) // 输出：2.00
-   * toFixed(2.006) // 四舍五入输出：2.01
-   * @returns {Number} 返回保留后的数字
+   * 两个数字取模
+   * @param {String|Number} arg1 第一个数字
+   * @param {String|Number} arg2 第二个数字
+   * @returns {Number} 返回计算后的数字
    */
-  function toFixed(num, decimals = 2, mode = MATH.ROUND) {
-    // 正常四舍五入
-    if (mode == MATH.ROUND) {
+  function modulo(arg1, arg2) {
+    let t1 = 0,
+      t2 = 0,
+      d = 0;
+    try {
+      t1 = arg1.toString().split(".")[1].length;
+    } catch (e) {}
+    try {
+      t2 = arg2.toString().split(".")[1].length;
+    } catch (e) {}
+    d = Math.pow(10, Math.max(t1, t2));
+    return (Math.round(Number(arg1) * d) % Math.round(Number(arg2) * d)) / d;
+  }
+
+  // 强制保留小数位数
+  /**
+   * 强制保留小数位数
+   * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
+   * @param {String|Number} num 数字
+   * @param {Number} decimals 保留小数的位数，默认2位
+   * @param {Enum} mode 保留小数模式，参考MATH_MODE枚举类型
+   * @returns {String} 返回字符串的数字
+   */
+  function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
+    // 四舍五入
+    if (mode == MATH_MODE.ROUND) {
       return toFixedRound(num, decimals);
     }
     // 向下舍出
-    if (mode == MATH.ROUND_FLOOR) {
+    if (mode == MATH_MODE.ROUND_FLOOR) {
       return toFixedFloor(num, decimals);
     }
   }
 
   /**
    * 四舍五入，强制保留小数位数
-   * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
-   * @param {Number|String} num
+   * @description 默认保留两位小数，此方法解决原生的toFixed()会五舍六入的问题
+   * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
    * @example
-   * toFixed(2) // 输出：2.00
-   * toFixed(2.0) // 输出：2.00
-   * toFixed(2.006) // 四舍五入输出：2.01
-   * @returns {Number} 返回保留后的数字
+   * toFixedRound(1) // 输出：1.00
+   * toFixedRound(1.0) // 输出：1.00
+   * toFixedRound(1.01) // 输出：1.01
+   * toFixedRound(1.015) // 四舍五入输出：1.02
+   * @returns {String} 返回字符串的数字
    */
   function toFixedRound(num, decimals = 2) {
     if (isNaN(num)) {
       return "--";
     }
-    let s = num + "";
+    let s = String(num);
     if (!decimals) decimals = 0;
     if (s.indexOf(".") == -1) s += ".";
     s += new Array(decimals + 1).join("0");
@@ -1250,19 +1274,20 @@
       if (b) s = s.substr(1);
       return (pm + s).replace(/\.$/, "");
     }
-    return num + "";
+    return String(num);
   }
 
   /**
    * 向下舍出，强制保留小数位数
-   * 注：默认保留两位小数
-   * @param {Number|String} num
+   * @description 默认保留两位小数，此方法相当于强制截取小数位数
+   * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
    * @example
-   * toDecimalFixed(2) // 输出 2.00
-   * toDecimalFixed(2.0) // 输出 2.00
-   * toDecimalFixed(2.009) // 强制截取后输出 2.00
-   * @returns {Number} 返回保留后的数字
+   * toFixedFloor(1) // 输出 1.00
+   * toFixedFloor(1.0) // 输出 1.00
+   * toFixedFloor(1.01) // 输出 1.01
+   * toFixedFloor(1.015) // 四舍后输出：1.01
+   * @returns {Number} 返回字符串的数字
    */
   function toFixedFloor(num, decimals = 2) {
     if (isNaN(num)) {
@@ -1291,22 +1316,40 @@
     let realVal = "";
     // 截取当前数据到小数点后decimals位
     realVal = `${String(tempNum).split(".")[0]}.${String(tempNum).split(".")[1].substring(0, dec)}`;
-    return realVal;
+    return String(realVal);
   }
 
+  // 尽可能保留小数位数
   /**
-   * 四舍五入，尽可能保留小数
-   * @param {Number,String} num
+   * 尽可能保留小数位数
+   * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @example
-   * toRound(2) // 不够两位，输出：2
-   * toRound(2.0) // 不够两位，输出：2
-   * toRound(2.001) // 向上五入，输出：2
-   * toRound(2.009) // 向上五入，输出：2.01
+   * @param {Enum} mode 保留小数模式，参考MATH_MODE枚举类型
    * @returns {Number} 返回保留后的数字
    */
-  function toRound(num, decimals = 2) {
-    if (this.isNaN(num)) {
+  function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
+    // 四舍五入
+    if (mode == MATH_MODE.ROUND) {
+      return toDecimalRound(num, decimals);
+    }
+    // 向下舍出
+    if (mode == MATH_MODE.ROUND_FLOOR) {
+      return toDecimalFloor(num, decimals);
+    }
+  }
+  /**
+   * 四舍五入，尽可能保留小数
+   * @param {String|Number} num 数字
+   * @param {Number} decimals 保留小数的位数，默认2位
+   * @example
+   * toDecimalRound(1) // 不够两位，输出：1
+   * toDecimalRound(1.0) // 不够两位，输出：1
+   * toDecimalRound(1.01) // 向上五入，输出：1.01
+   * toDecimalRound(1.015) // 向上五入，输出：1.02
+   * @returns {Number} 返回保留后的数字
+   */
+  function toDecimalRound(num, decimals = 2) {
+    if (isNaN(num)) {
       return "--";
     }
     let n = Math.pow(10, decimals);
@@ -1315,17 +1358,17 @@
 
   /**
    * 向下舍入，尽可能保留小数
-   * @param {Number,String} num
+   * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
    * @example
-   * toFloor(2) // 不够两位，输出：2
-   * toFloor(2.0) // 不够两位，输出：2
-   * toFloor(2.001) // 向下舍入，输出：2
-   * toFloor(2.006) // 向下舍入，输出：2
+   * toDecimalFloor(1) // 不够两位，输出：1
+   * toDecimalFloor(1.0) // 不够两位，输出：1
+   * toDecimalFloor(1.01) // 向下舍入，输出：1
+   * toDecimalFloor(1.015) // 向下舍入，输出：1
    * @returns {Number} 返回保留后的数字
    */
-  function toFloor(num, decimals = 2) {
-    if (this.isNaN(num)) {
+  function toDecimalFloor(num, decimals = 2) {
+    if (isNaN(num)) {
       return "--";
     }
     let n = Math.pow(10, decimals);
@@ -1334,37 +1377,36 @@
 
   var mathUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    MATH: MATH,
+    MATH_MODE: MATH_MODE,
     add: add,
     subtract: subtract,
     multiply: multiply,
     divide: divide,
+    modulo: modulo,
     toFixed: toFixed,
     toFixedRound: toFixedRound,
     toFixedFloor: toFixedFloor,
-    toRound: toRound,
-    toFloor: toFloor
+    toDecimal: toDecimal,
+    toDecimalRound: toDecimalRound,
+    toDecimalFloor: toDecimalFloor
   });
 
   /**
    * 生成指定大小的随机数
-   * @param {Number} n 生成随机数的开始数字，默认0
-   * @param {Number} m 生成随机数的结束数字，默认9
-   * @example
-   * getRandom(0,9) // 输出：3，1，0，9
-   * @returns {Number} 返回指定位数的随机数，默认是0-9的一位数
+   * @description n和m参数表示最小和最大范围值，默认0-9之间范围
+   * @param {Number} n 随机数的最小值，默认 0
+   * @param {Number} m 随机数的最大值，默认 9
+   * @returns {Number} 返回指定大小的随机数
    */
   function getRandom(n = 0, m = 9) {
     return Math.floor(Math.random() * m + n);
   }
 
   /**
-   * 生成指定位数的随机数
-   * @param {Number} n 生成数字的位数，默认是1位，代表0-9之间的一位数；如果是2，代表10-99之间的两位数；其他位数以此类推
-   * @example
-   * getRandomDigit(2) // 输出两位的随机数，比如：11,10,20
-   * getRandomDigit(3) // 输出三位的随机数，比如：110,120,240
-   * @returns {Number} 返回指定位数的随机数
+   * 生成固定位数的随机数
+   * @description 默认是1，代表生成0-9之间一位，如果是2，则生成10-99之间两位，以此类推
+   * @param {Number} n 固定的位数
+   * @returns {Number} 返回固定位数的随机数
    */
   function getRandomDigit(n = 1) {
     return Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, n - 1));
@@ -1373,9 +1415,7 @@
   /**
    * 生成UUID
    * @param len 生成的长度，默认32位
-   * @param radix 默认16进制
-   * @example
-   * getUUID() // 输出：5e71b6a38364c189ab1229bf5c2d5695
+   * @param radix 进制数，默认16进制
    * @returns {String} 返回UUID字符串
    */
   function getUUID(len = 32, radix = 16) {
@@ -1420,6 +1460,7 @@
     getGUID: getGUID
   });
 
+  // 文件信息处理
   /**
    * 格式化文件大小自动转为 B，KB，MB，GB
    * @param {Byte} size 文件的大小，单位byte字节
@@ -1440,20 +1481,20 @@
 
   /**
    * 获得文件名称
-   * @param {*} value 文件的全名称，例如：123.jpg
-   * @returns {String} 返回文件的名称，包含后缀类型名称
+   * @param {String} fileName 文件的全名称，例如：测试图片.jpg
+   * @returns {String} 返回文件的名称
    */
-  function getFileName(value) {
-    if (isEmpty(value) || isEmpty(value)) return;
-    return value.substring(0, value.lastIndexOf("."));
+  function getFileName(fileName) {
+    if (isEmpty(fileName)) return;
+    return fileName.substring(0, fileName.lastIndexOf("."));
   }
 
   /**
-   * 获得文件类型
-   * @param {*} value 文文件的全名称，例如：123.jpg
-   * @returns {String} 返回文件类型
+   * 获得文件后缀名
+   * @param {String} value 文件地址路径或者文件全名称，例如：http://xxx.com/mytest.jpg，测试图片.jpg
+   * @returns {String} 返回文件后缀名
    */
-  function getFileType(value) {
+  function getFileSuffix(value) {
     if (isEmpty(value)) return;
     return value.substring(value.lastIndexOf(".") + 1).toLowerCase();
   }
@@ -1510,7 +1551,7 @@
    * file转url
    * @description 适用于本地上传图片并预览，需要注意 URL.revokeObjectURL(file) 内存释放
    * @param {File} file file文件
-   * @returns {URL} 返回url地址
+   * @returns {URL} 返回url
    */
   function fileToUrl(file) {
     return new Promise((resolve, reject) => {
@@ -1664,7 +1705,7 @@
   /**
    * 下载blob格式的文件
    * @param {Blob} blob blob数据
-   * @param {String} fileName 下载的文件名，不指定后缀名则默认为原文件类型
+   * @param {String} fileName 下载的文件名，不写后缀名则默认为原文件类型
    */
   function downloadBlobFile(blob, fileName) {
     try {
@@ -1683,7 +1724,7 @@
     __proto__: null,
     formatFileSize: formatFileSize,
     getFileName: getFileName,
-    getFileType: getFileType,
+    getFileSuffix: getFileSuffix,
     fileToBlob: fileToBlob,
     fileToBase64: fileToBase64,
     fileToUrl: fileToUrl,
@@ -1696,9 +1737,9 @@
   });
 
   /**
-   * rgb 颜色转 hex十六进制
-   * @param {String} color rgb颜色
-   * @returns {String} 返回生成的 rgb 颜色
+   * rgb颜色转hex十六进制
+   * @param {String} color rgb颜色字符串
+   * @returns {String} 返回生成的hex颜色
    */
   function colorRgbToHex(color) {
     let rgb = color.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
@@ -1766,21 +1807,22 @@
    * 从url中获取参数值
    * @param {String} name 参数名
    * @param {String} url url地址，默认当前地址栏url
-   * @returns {String} 返回找到的参数值，没有则返回空字符串
+   * @returns {String} 返回查询到的值
    */
-  function getUrlParam(name, url = window.location.search) {
+  function getUrlParam(name, url = window.location.href) {
+    url = url.split("?")[1];
     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    let r = url.substr(1).match(reg);
+    let r = url.substr(0).match(reg);
     if (r != null) return decodeURI(r[2]);
     return "";
   }
 
   /**
-   * url参数转为对象
+   * url查询参数转为对象
    * @param {String} url url地址，默认当前地址栏url
-   * @returns {Object} 返回参数name和value拼接成的对象
+   * @returns {Object} 返回参数对象
    */
-  function urlToObject(url = window.location.href) {
+  function urlQueryToObject(url = window.location.href) {
     if (url.indexOf("?") === -1) {
       return {};
     }
@@ -1795,11 +1837,11 @@
   }
 
   /**
-   * 对象转url参数
-   *  @param {Object} obj 包含name和value的对象
-   *  @returns {Object} 返回类似 id=1&name=xx 格式的url参数
+   * 对象转url查询参数
+   *  @param {Object} obj 参数对象
+   *  @returns {String} 返回 id=1&name=xx 格式的url查询参数
    */
-  function objectToUrl(obj) {
+  function objectToUrlQuery(obj) {
     if (!obj) return "";
     let pairs = [];
     for (let key in obj) {
@@ -1818,31 +1860,31 @@
   var urlUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     getUrlParam: getUrlParam,
-    urlToObject: urlToObject,
-    objectToUrl: objectToUrl
+    urlQueryToObject: urlQueryToObject,
+    objectToUrlQuery: objectToUrlQuery
   });
 
   /**
+   * 通过key从localStorage缓存中获取数据
+   * @param {String} key key值
+   * @returns {String} 返回数据
+   */
+  function getLocalStorage(key) {
+    return window.localStorage.getItem(key) || undefined;
+  }
+
+  /**
    * 设置localStorage缓存数据
-   * @param {String} key
-   * @param {String} value
+   * @param {String} key key值
+   * @param {String} value value值
    */
   function setLocalStorage(key, value) {
     window.localStorage.setItem(key, value);
   }
 
   /**
-   * 通过key从localStorage缓存中获取数据
-   * @param {String} key
-   * @returns {String} 返回值
-   */
-  function getLocalStorage(key) {
-    return window.localStorage.getItem(key) || "";
-  }
-
-  /**
    * 通过key从localStorage缓存中删除数据
-   * @param {String} key
+   * @param {String} key key值
    */
   function removeLocalStorage(key) {
     window.localStorage.removeItem(key);
@@ -1856,26 +1898,26 @@
   }
 
   /**
-   * 设置sessionStorage缓存数据
-   * @param {String} key
-   * @param {String} value
-   */
-  function setSessionStorage(key, value) {
-    window.sessionStorage.setItem(key, value);
-  }
-
-  /**
    * 通过key从sessionStorage缓存中获取数据
-   * @param {String} key
-   * @returns {String} 返回值
+   * @param {String} key key值
+   * @returns {String} 返回数据
    */
   function getSessionStorage(key) {
     return window.sessionStorage.getItem(key) || "";
   }
 
   /**
+   * 设置sessionStorage缓存数据
+   * @param {String} key key值
+   * @param {String} value value值
+   */
+  function setSessionStorage(key, value) {
+    window.sessionStorage.setItem(key, value);
+  }
+
+  /**
    * 通过key从sessionStorage缓存中删除数据
-   * @param {String} key
+   * @param {String} key key值
    */
   function removeSessionStorage(key) {
     window.sessionStorage.removeItem(key);
@@ -1890,19 +1932,19 @@
 
   var storageUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    setLocalStorage: setLocalStorage,
     getLocalStorage: getLocalStorage,
+    setLocalStorage: setLocalStorage,
     removeLocalStorage: removeLocalStorage,
     clearLocalStorage: clearLocalStorage,
-    setSessionStorage: setSessionStorage,
     getSessionStorage: getSessionStorage,
+    setSessionStorage: setSessionStorage,
     removeSessionStorage: removeSessionStorage,
     clearSessionStorage: clearSessionStorage
   });
 
   /**
    * 通过key获取cookie
-   * @param {String} key
+   * @param {String} key 参数key
    * @returns {String} 返回获取的值
    */
   function getCookie(key) {
@@ -1920,18 +1962,18 @@
   /**
    * 通过key设置cookie
    * 注：timestamp参数不填，则默认为session级别，浏览器关闭即cookie过期
-   * @param {String} key 设置的key
+   * @param {String} key 参数key
    * @param {String} value 设置的value
-   * @param {DateTime} timestamp 过期的时间戳值，如果设置一天过期则为：24*60*60*1000
+   * @param {Timestamp} timestamp 过期的时间戳值，默认为一天，设置一天过期则为：24*60*60*1000
    */
-  function setCookie(key, value, timestamp) {
+  function setCookie(key, value, timestamp = 24 * 60 * 60 * 1000) {
     if (typeof document == "undefined") return;
     document.cookie = key + "=" + value + ";expires=" + new Date(Date.now() + timestamp);
   }
 
   /**
    * 通过key删除cookie
-   * @param {String} key
+   * @param {String} key 参数key
    */
   function removeCookie(key) {
     if (isEmpty(key)) return;
@@ -1939,8 +1981,8 @@
   }
 
   /**
-   * 清空当前站点所有的cookie
-   * @param {String} domain 域名地址，默认是当前站点域名，设置为null则会清空所有的cookie
+   * 清空当前站点域名的cookie
+   * @param {String} domain 域名地址，默认是当前站点域名
    */
   function clearCookie(domain = document.domain) {
     let keys = document.cookie.match(/[^ =;]+(?=\=)/g);
@@ -1961,7 +2003,7 @@
   });
 
   /**
-   * 判断元素是否包含某个类名
+   * 判断元素包含某个类名
    * @param {Document} elem dom元素
    * @param {String} className 类名
    * @return {Boolean} 返回true和false
@@ -1992,7 +2034,7 @@
    * 元素替换类名
    * @param {Document} elem dom元素
    * @param {String} newClassName 新的类名
-   * @param {String} oldClassName 被替换掉的类名
+   * @param {String} oldClassName 被替换掉的旧类名
    */
   function replaceClass(elem, newClassName, oldClassName) {
     removeClass(elem, oldClassName);
@@ -2011,7 +2053,7 @@
   /**
    * 获取浏览器信息
    * @description 会获取到浏览器对应的名称以及版本
-   * @return {Object} 返回浏览器信息
+   * @returns {Object} 返回浏览器信息
    */
   function getBrowserInfo() {
     let ua = window.navigator.userAgent.toLowerCase();
@@ -2042,7 +2084,7 @@
   // 设备类型
   /**
    * 判断是pc端
-   * @return {Boolean} 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isPc() {
     return !isMobile();
@@ -2051,7 +2093,7 @@
   /**
    * 判断是手机端
    * @description 包含 android、iphone、黑莓手机、微软手机 等多种操作系统机型
-   * @return {Boolean} 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isMobile() {
     let ua = window.navigator.userAgent;
@@ -2061,7 +2103,7 @@
   // 操作系统类型
   /**
    * 判断是 android
-   * @return {Boolean} 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isAndroid() {
     let ua = window.navigator.userAgent;
@@ -2070,7 +2112,7 @@
 
   /**
    * 判断是 ios
-   * @return {Boolean} 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isIos() {
     let ua = window.navigator.userAgent;
@@ -2079,7 +2121,7 @@
 
   /**
    * 判断是 windows phone
-   * @return {Boolean} 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isWindowsPhone() {
     let ua = window.navigator.userAgent;
@@ -2088,7 +2130,7 @@
 
   /**
    * 判断是 windows
-   * @return {Boolean} 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isWindows() {
     let ua = window.navigator.userAgent;
@@ -2097,7 +2139,7 @@
 
   /**
    * 判断是 linux
-   * @return {Boolean} 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isLinux() {
     let ua = window.navigator.userAgent;
@@ -2106,7 +2148,7 @@
 
   /**
    * 判断是 Mac
-   * @return {Boolean} 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isMac() {
     let ua = window.navigator.userAgent;
@@ -2116,7 +2158,7 @@
   // 苹果设备类型
   /**
    * 判断是iphone
-   *@return {Boolean} 返回true和false
+   *@returns {Boolean} 返回true和false
    */
   function isIphone() {
     let ua = window.navigator.userAgent;
@@ -2135,7 +2177,7 @@
   // 手机浏览器类型
   /**
    * 判断是微信内置浏览器
-   * @return {Boolean} 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isWeixin() {
     let ua = window.navigator.userAgent;
@@ -2144,7 +2186,7 @@
 
   /**
    * 判断是QQ内置浏览器
-   * @return {Boolean} 返回true和false
+   * @returns {Boolean} 返回true和false
    */
   function isQQ() {
     let ua = window.navigator.userAgent;
@@ -2169,26 +2211,26 @@
   });
 
   /**
-   * 小程序-设置缓存
-   * @param {String} key
-   * @param {*} data
+   * 设置缓存
+   * @param {String} key key值
+   * @param {*} data data数据
    */
   function setStorage(key, data) {
     wx.setStorage({ key, data });
   }
 
   /**
-   * 小程序-设置缓存（同步）
-   * @param {String} key
-   * @param {*} data
+   * 设置缓存（同步）
+   * @param {String} key key值
+   * @param {*} data data数据
    */
   function setStorageSync(key, data) {
     wx.setStorageSync(key, data);
   }
 
   /**
-   * 小程序-通过key从缓存中获取数据
-   * @param {String} key
+   * 通过key从缓存中获取数据
+   * @param {String} key key值
    * @returns {*} 返回获取的值
    */
   function getStorage(key) {
@@ -2196,8 +2238,8 @@
   }
 
   /**
-   * 小程序-通过key从缓存中获取数据（同步）
-   * @param {String} key
+   * 通过key从缓存中获取数据（同步）
+   * @param {String} key key值
    * @returns {*} 返回获取的值
    */
   function getStorageSync(key) {
@@ -2205,30 +2247,30 @@
   }
 
   /**
-   * 小程序-通过key从缓存中删除数据
-   * @param {String} key
+   * 通过key从缓存中删除数据
+   * @param {String} key key值
    */
   function removeStorage(key) {
     wx.removeStorage({ key });
   }
 
   /**
-   * 小程序-通过key从缓存中删除数据（同步）
-   * @param {String} key
+   * 通过key从缓存中删除数据（同步）
+   * @param {String} key key值
    */
   function removeStorageSync(key) {
     wx.removeStorageSync(key);
   }
 
   /*
-   * 小程序-清空所有缓存数据
+   * 清空所有缓存数据
    */
   function clearStorage() {
     wx.clearStorageSync();
   }
 
   /*
-   * 小程序-清空所有缓存数据（同步）
+   * 清空所有缓存数据（同步）
    */
   function clearStorageSync() {
     wx.clearStorageSync();

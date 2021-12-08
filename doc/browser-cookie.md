@@ -1,43 +1,83 @@
 ## 浏览器 Cookie
 
-#### \_.trimAll(str)
+#### \_.getCookie(key)
 
-去掉所有的空格
+通过 key 获取 cookie
 
 - ##### 参数
 
-`str` String|Number 参数
+  `key` {String} 参数 key
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  {String} 返回获取的值
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+let res = LimeUtil.getCookie("id");
+console.log(res); // 输出 1
 ```
 
 ---
 
-#### \_.trimAll(str)
+#### \_.setCookie(key, value, timestamp = 24 \* 60 \* 60 \* 1000)
 
-去掉所有的空格
+通过 key 获取 cookie
 
 - ##### 参数
 
-`str` String|Number 参数
+  `key` {String} 参数 key
+  `value` {String} 设置的 value
+  `timestamp` {Timestamp} 过期的时间戳值，默认为一天，设置一天过期则为：24\*60\*60\*1000
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  无
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+// 设置一天过期
+LimeUtil.setCookie("id", 1, 24 * 60 * 60 * 1000);
+```
+
+---
+
+#### \_.removeCookie(key)
+
+通过 key 删除 cookie
+
+- ##### 参数
+
+  `key` {String} 参数 key
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.removeCookie("id");
+```
+
+---
+
+#### \_.clearCookie(domain = document.domain)
+
+清空当前站点域名的 cookie
+
+- ##### 参数
+
+  `domain` {String} 域名地址，默认是当前站点域名
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.clearCookie();
 ```

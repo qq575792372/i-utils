@@ -1,43 +1,148 @@
 ## 对象
 
-#### \_.trimAll(str)
+#### \_.mapToObject(map)
 
-去掉所有的空格
+map 转 object
 
 - ##### 参数
 
-`str` String|Number 参数
+  `map` {Map} 参数
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  {Object} 返回 Object
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+let obj = LimeUtil.objectToMap(map);
+console.log(obj); // 输出 obj对象
 ```
 
 ---
 
-#### \_.trimAll(str)
+#### \_.mapToJson(map)
 
-去掉所有的空格
+map 转 json 字符串
 
 - ##### 参数
 
-`str` String|Number 参数
+  `map` {Map} 参数
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  {String} 返回 Json 字符串
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+let json = LimeUtil.mapToJson(map);
+console.log(json); // 输出 json字符串
+```
+
+---
+
+#### \_.objectToMap(obj)
+
+object 转 map
+
+- ##### 参数
+
+  `obj` {Object} 参数
+
+- ##### 返回值
+
+  {Object} 返回 Map
+
+- ##### 示例
+
+```javascript
+let map = LimeUtil.objectToMap(obj);
+console.log(map); // 输出 map对象
+```
+
+---
+
+#### \_.jsonToMap(json)
+
+json 字符串转 map
+
+- ##### 参数
+
+  `json` {String} json 字符串
+
+- ##### 返回值
+
+  {Map} 返回 Map
+
+- ##### 示例
+
+```javascript
+let map = LimeUtil.jsonToMap(json);
+console.log(map); // 输出 map对象
+```
+
+---
+
+#### \_.stringifyJson(json)
+
+json 对象转 json 字符串
+
+- ##### 参数
+
+  `json` {Object} json 对象
+
+- ##### 返回值
+
+  {String} 返回 Json 字符串
+
+- ##### 示例
+
+```javascript
+let str = LimeUtil.stringifyJson(json);
+console.log(obj); // 输出 json字符串
+```
+
+---
+
+#### \_.parseJson(json)
+
+json 字符串转 json 对象
+
+- ##### 参数
+
+  `json` {String} json 字符串
+
+- ##### 返回值
+
+  {Object} 返回 Json 对象
+
+- ##### 示例
+
+```javascript
+let obj = LimeUtil.parseJson(json);
+console.log(obj); // 输出 obj对象
+```
+
+---
+
+#### \_.deepClone(target)
+
+深拷贝数据
+`目前只支持 Object，Array，Date三种数据类型`
+
+- ##### 参数
+
+  `target` {Object|Array|Date} 需要克隆的数据
+
+- ##### 返回值
+
+  {Object|Array|Date} 返回深度克隆后的数据
+
+- ##### 示例
+
+```javascript
+let obj = { id: 1, name: "test" };
+let newObj = LimeUtil.deepClone(obj);
+console.log(newObj); // 输出 深拷贝后的对象
 ```

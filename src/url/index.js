@@ -2,21 +2,22 @@
  * 从url中获取参数值
  * @param {String} name 参数名
  * @param {String} url url地址，默认当前地址栏url
- * @returns {String} 返回找到的参数值，没有则返回空字符串
+ * @returns {String} 返回查询到的值
  */
-export function getUrlParam(name, url = window.location.search) {
+export function getUrlParam(name, url = window.location.href) {
+  url = url.split("?")[1];
   let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-  let r = url.substr(1).match(reg);
+  let r = url.substr(0).match(reg);
   if (r != null) return decodeURI(r[2]);
   return "";
 }
 
 /**
- * url参数转为对象
+ * url查询参数转为对象
  * @param {String} url url地址，默认当前地址栏url
- * @returns {Object} 返回参数name和value拼接成的对象
+ * @returns {Object} 返回参数对象
  */
-export function urlToObject(url = window.location.href) {
+export function urlQueryToObject(url = window.location.href) {
   if (url.indexOf("?") === -1) {
     return {};
   }
@@ -31,11 +32,11 @@ export function urlToObject(url = window.location.href) {
 }
 
 /**
- * 对象转url参数
- *  @param {Object} obj 包含name和value的对象
- *  @returns {Object} 返回类似 id=1&name=xx 格式的url参数
+ * 对象转url查询参数
+ *  @param {Object} obj 参数对象
+ *  @returns {String} 返回 id=1&name=xx 格式的url查询参数
  */
-export function objectToUrl(obj) {
+export function objectToUrlQuery(obj) {
   if (!obj) return "";
   let pairs = [];
   for (let key in obj) {

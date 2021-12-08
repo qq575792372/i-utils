@@ -1,43 +1,74 @@
 ## 正则
 
-#### \_.trimAll(str)
+#### \_.REGEXP
 
-去掉所有的空格
+常用的正则表达式集合
 
 - ##### 参数
 
-`str` String|Number 参数
+  无
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  无
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+const REGEXP = {
+  // 中文汉字
+  CH: /^[\u4E00-\u9FA5]+$/,
+  // 英文字母
+  EN: /^[a-zA-Z]$/,
+  // 中文姓名，2-16位
+  CH_NAME: /^(?:[\u4e00-\u9fa5·]{2,16})$/,
+  // 英文姓名，0-20位
+  EN_NAME: /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/,
+  // 数字
+  NUMBER: /^(\-|\+)?\d+(\.\d+)?$/,
+  // 整数，包含：0，正整数和负整数
+  INTEGER: /^(0|[1-9][0-9]*|-[1-9][0-9]*)$/,
+  // 正整数或者保留两位小数
+  INT_OR_FLOAT: /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
+  // 手机号码，支持+86
+  MOBILE: /^(?:(?:\+|00)86)?1[1-9]\d{9}$/,
+  // 固定电话号码，比如：0755-1111111
+  PHONE: /^(?:(?:\d{3}-)?\d{8}|^(?:\d{4}-)?\d{7,8})(?:-\d+)?$/,
+  // 邮箱
+  EMAIL: /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/,
+  // 一代15位和二代18位身份证
+  ID_CARD:
+    /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
+  // 银行卡号
+  BANK_CARD: /^[1-9]\d{9,29}$/,
+  // 邮政编码
+  POST_CODE: /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
+  // url网址
+  URL: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
+  // ip地址
+  IP: /((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))/,
+};
 ```
 
 ---
 
-#### \_.trimAll(str)
+#### \_.regexpTest(value, regex)
 
-去掉所有的空格
+正则校验的方法
+`类型为枚举REGEXP对应的正则`
 
 - ##### 参数
 
-`str` String|Number 参数
+  `value` {String|Number} 校验的值
+  `regex` {REGEXP} 使用的 REGEXP 中的正则
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  {Boolean} 返回 返回校验的结果，true 和 false
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+let res = LimeUtil.regexpTest("13000000000", LimeUtil.REGEXP.MOBILE);
+console.log(res); // 输出 true
 ```

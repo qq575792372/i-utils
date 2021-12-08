@@ -14,6 +14,15 @@ export function mapToObject(map) {
 }
 
 /**
+ * map转json字符串
+ * @param {Map} map 参数
+ * @returns {String} 返回Json字符串
+ */
+export function mapToJson(map) {
+  return JSON.stringify(this.mapToObject(map));
+}
+
+/**
  * object转map
  * @param {Object} obj 参数
  * @returns {Map} 返回Map
@@ -27,17 +36,8 @@ export function objectToMap(obj) {
 }
 
 /**
- * map转json
- * @param {Map} map 参数
- * @returns {String} 返回Json字符串
- */
-export function mapToJson(map) {
-  return JSON.stringify(this.mapToObject(map));
-}
-
-/**
- * json转map
- * @param {Json} json 参数
+ * json字符串转map
+ * @param {String} json json字符串
  * @returns {Map} 返回Map
  */
 export function jsonToMap(json) {
@@ -45,27 +45,28 @@ export function jsonToMap(json) {
 }
 
 /**
- * json转string
- * @param {Json} json 参数
- * @returns {String} 返回JSON字符串
+ * json对象转json字符串
+ * @param {Object} json json对象
+ * @returns {String} 返回Json字符串
  */
-export function jsonToString(json) {
+export function stringifyJson(json) {
   return JSON.stringify(json);
 }
 
 /**
- * string转json
- * @param {String} str 参数
- * @returns {Object} 返回JSON对象
+ * json字符串转json对象
+ * @param {String} json json字符串
+ * @returns {Object} 返回Json对象
  */
-export function stringToJson(str) {
-  if (isEmpty(str)) return;
-  return JSON.parse(str);
+export function parseJson(json) {
+  if (isEmpty(json)) return;
+  return JSON.parse(json);
 }
 
 /**
  * 深拷贝数据
- * @param {Object|Array|Date} target 需要克隆的数据，只支持 Object，Array，Date三种
+ * @description 目前只支持 Object，Array，Date三种数据类型
+ * @param {Object|Array|Date} target 需要克隆的数据
  * @returns {Object|Array|Date} 返回深度克隆后的数据
  */
 export function deepClone(target) {

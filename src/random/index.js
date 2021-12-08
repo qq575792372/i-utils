@@ -1,22 +1,19 @@
 /**
  * 生成指定大小的随机数
- * @param {Number} n 生成随机数的开始数字，默认0
- * @param {Number} m 生成随机数的结束数字，默认9
- * @example
- * getRandom(0,9) // 输出：3，1，0，9
- * @returns {Number} 返回指定位数的随机数，默认是0-9的一位数
+ * @description n和m参数表示最小和最大范围值，默认0-9之间范围
+ * @param {Number} n 随机数的最小值，默认 0
+ * @param {Number} m 随机数的最大值，默认 9
+ * @returns {Number} 返回指定大小的随机数
  */
 export function getRandom(n = 0, m = 9) {
   return Math.floor(Math.random() * m + n);
 }
 
 /**
- * 生成指定位数的随机数
- * @param {Number} n 生成数字的位数，默认是1位，代表0-9之间的一位数；如果是2，代表10-99之间的两位数；其他位数以此类推
- * @example
- * getRandomDigit(2) // 输出两位的随机数，比如：11,10,20
- * getRandomDigit(3) // 输出三位的随机数，比如：110,120,240
- * @returns {Number} 返回指定位数的随机数
+ * 生成固定位数的随机数
+ * @description 默认是1，代表生成0-9之间一位，如果是2，则生成10-99之间两位，以此类推
+ * @param {Number} n 固定的位数
+ * @returns {Number} 返回固定位数的随机数
  */
 export function getRandomDigit(n = 1) {
   return Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, n - 1));
@@ -25,9 +22,7 @@ export function getRandomDigit(n = 1) {
 /**
  * 生成UUID
  * @param len 生成的长度，默认32位
- * @param radix 默认16进制
- * @example
- * getUUID() // 输出：5e71b6a38364c189ab1229bf5c2d5695
+ * @param radix 进制数，默认16进制
  * @returns {String} 返回UUID字符串
  */
 export function getUUID(len = 32, radix = 16) {

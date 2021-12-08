@@ -1,43 +1,167 @@
 ## 浏览器 Storage
 
-#### \_.trimAll(str)
+<!-- localStorage -->
 
-去掉所有的空格
+#### \_.getLocalStorage(key)
+
+通过 key 从 localStorage 缓存中获取数据
 
 - ##### 参数
 
-`str` String|Number 参数
+  `key` {String} key 值
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  {String} 返回数据
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+let res = LimeUtil.getLocalStorage("id");
+console.log(res); // 输出 1
 ```
 
 ---
 
-#### \_.trimAll(str)
+#### \_.setLocalStorage(key)
 
-去掉所有的空格
+设置 localStorage 缓存数据
 
 - ##### 参数
 
-`str` String|Number 参数
+  `key` {String} key 值
+  `value` {String} value 值
 
 - ##### 返回值
 
-String 返回处理后的字符串
+  无
 
 - ##### 示例
 
 ```javascript
-import LimeUtil from "lime-util";
-let res = LimeUtil.trimAll("a b c ");
-console.log(res); // 输出 abc
+LimeUtil.setLocalStorage("id");
+```
+
+---
+
+#### \_.removeLocalStorage(key)
+
+通过 key 从 localStorage 缓存中删除数据
+
+- ##### 参数
+
+  `key` {String} key 值
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.removeLocalStorage("id");
+```
+
+---
+
+#### \_.clearLocalStorage()
+
+清空 localStorage 缓存中所有数据
+
+- ##### 参数
+
+  无
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.clearLocalStorage();
+```
+
+---
+
+<!-- sessionStorage -->
+
+#### \_.getSessionStorage(key)
+
+通过 key 从 sessionStorage 缓存中获取数据
+
+- ##### 参数
+
+  `key` {String} key 值
+
+- ##### 返回值
+
+  {String} 返回数据
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getSessionStorage("id");
+console.log(res); // 输出 1
+```
+
+---
+
+#### \_.setSessionStorage(key)
+
+设置 sessionStorage 缓存数据
+
+- ##### 参数
+
+  `key` {String} key 值
+  `value` {String} value 值
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.setSessionStorage("id");
+```
+
+---
+
+#### \_.removeSessionStorage(key)
+
+通过 key 从 sessionStorage 缓存中删除数据
+
+- ##### 参数
+
+  `key` {String} key 值
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.removeSessionStorage("id");
+```
+
+---
+
+#### \_.clearSessionStorage()
+
+清空 sessionStorage 缓存中所有数据
+
+- ##### 参数
+
+  无
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+LimeUtil.clearSessionStorage();
 ```

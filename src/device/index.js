@@ -2,7 +2,7 @@
 /**
  * 获取浏览器信息
  * @description 会获取到浏览器对应的名称以及版本
- * @return {Object} 返回浏览器信息
+ * @returns {Object} 返回浏览器信息
  */
 export function getBrowserInfo() {
   let ua = window.navigator.userAgent.toLowerCase();
@@ -33,7 +33,7 @@ export function getBrowserInfo() {
 // 设备类型
 /**
  * 判断是pc端
- * @return {Boolean} 返回true和false
+ * @returns {Boolean} 返回true和false
  */
 export function isPc() {
   return !isMobile();
@@ -42,7 +42,7 @@ export function isPc() {
 /**
  * 判断是手机端
  * @description 包含 android、iphone、黑莓手机、微软手机 等多种操作系统机型
- * @return {Boolean} 返回true和false
+ * @returns {Boolean} 返回true和false
  */
 export function isMobile() {
   let ua = window.navigator.userAgent;
@@ -52,7 +52,7 @@ export function isMobile() {
 // 操作系统类型
 /**
  * 判断是 android
- * @return {Boolean} 返回true和false
+ * @returns {Boolean} 返回true和false
  */
 export function isAndroid() {
   let ua = window.navigator.userAgent;
@@ -61,7 +61,7 @@ export function isAndroid() {
 
 /**
  * 判断是 ios
- * @return {Boolean} 返回true和false
+ * @returns {Boolean} 返回true和false
  */
 export function isIos() {
   let ua = window.navigator.userAgent;
@@ -70,7 +70,7 @@ export function isIos() {
 
 /**
  * 判断是 windows phone
- * @return {Boolean} 返回true和false
+ * @returns {Boolean} 返回true和false
  */
 export function isWindowsPhone() {
   let ua = window.navigator.userAgent;
@@ -79,7 +79,7 @@ export function isWindowsPhone() {
 
 /**
  * 判断是 windows
- * @return {Boolean} 返回true和false
+ * @returns {Boolean} 返回true和false
  */
 export function isWindows() {
   let ua = window.navigator.userAgent;
@@ -88,7 +88,7 @@ export function isWindows() {
 
 /**
  * 判断是 linux
- * @return {Boolean} 返回true和false
+ * @returns {Boolean} 返回true和false
  */
 export function isLinux() {
   let ua = window.navigator.userAgent;
@@ -97,7 +97,7 @@ export function isLinux() {
 
 /**
  * 判断是 Mac
- * @return {Boolean} 返回true和false
+ * @returns {Boolean} 返回true和false
  */
 export function isMac() {
   let ua = window.navigator.userAgent;
@@ -107,7 +107,7 @@ export function isMac() {
 // 苹果设备类型
 /**
  * 判断是iphone
- *@return {Boolean} 返回true和false
+ *@returns {Boolean} 返回true和false
  */
 export function isIphone() {
   let ua = window.navigator.userAgent;
@@ -126,7 +126,7 @@ export function isIpad() {
 // 手机浏览器类型
 /**
  * 判断是微信内置浏览器
- * @return {Boolean} 返回true和false
+ * @returns {Boolean} 返回true和false
  */
 export function isWeixin() {
   let ua = window.navigator.userAgent;
@@ -135,7 +135,7 @@ export function isWeixin() {
 
 /**
  * 判断是QQ内置浏览器
- * @return {Boolean} 返回true和false
+ * @returns {Boolean} 返回true和false
  */
 export function isQQ() {
   let ua = window.navigator.userAgent;

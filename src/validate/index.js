@@ -117,7 +117,7 @@ export function isError(value) {
 }
 
 /**
- * 判断类型是Promise
+ * 判断类型是 Promise
  * @param {*} value 参数
  * @returns {Boolean} 返回true和false
  */
@@ -162,7 +162,8 @@ export function isNull(value) {
 }
 
 /**
- * 判断值是否有空白符号
+ * 判断是否值空的
+ * @description 除了对null，undefined等校验，还会校验空格
  * @param {*} value 校验的参数
  * @returns {Boolean} 返回true和false
  */
@@ -176,26 +177,25 @@ export function isBlank(value) {
  * @returns {Boolean} 返回true和false
  */
 export function isUndefined(value) {
-  return value == undefined;
+  return value === undefined;
 }
 
 // 比较
 /**
- * 判断两个字符串是否相等
- * @param {String} value1 参数1
- * @param {String} value2 参数2
- * @returns 返回true和false
+ * 判断两个值是否相等
+ * @param {String|Number} value1 参数1
+ * @param {String|Number} value2 参数2
+ * @returns {Boolean} 返回true和false
  */
 export function equals(value1, value2) {
   return Object.is(value1, value2);
 }
 
 /**
- * 判断两个字符串是否相等
- * 注：会忽略大小写
- * @param {String} value1 参数1
- * @param {String} value2 参数2
- * @returns 返回true和false
+ * 判断两个值是否相等（忽略大小写）
+ * @param {String|Number} value1 参数1
+ * @param {String|Number} value2 参数2
+ * @returns {Boolean} 返回true和false
  */
 export function equalsIgnoreCase(value1, value2) {
   return Object.is(value1.toLowerCase(), value2.toLowerCase());

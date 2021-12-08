@@ -1,7 +1,7 @@
 /**
- * rgb 颜色转 hex十六进制
- * @param {String} color rgb颜色
- * @returns {String} 返回生成的 rgb 颜色
+ * rgb颜色转hex十六进制
+ * @param {String} color rgb颜色字符串
+ * @returns {String} 返回生成的hex颜色
  */
 export function colorRgbToHex(color) {
   let rgb = color.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
