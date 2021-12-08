@@ -102,3 +102,12 @@ export function deepClone(target) {
     return target;
   }
 }
+
+/**
+ * 合并对象
+ * @param {Object} args json字符串
+ * @returns {Object} 返回合并后的对象
+ */
+export function mergeObj(...args) {
+  // todo
+}

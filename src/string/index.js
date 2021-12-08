@@ -97,3 +97,12 @@ export function zeroEnd(value, maxLength = 2) {
   }
   return value;
 }
+
+/**
+ * 格式化千分位金额
+ * @param {String|Number} value 金额
+ * @returns {String} 返回格式化后的金额
+ */
+export function formatCurrency(value) {
+  // todo
+}

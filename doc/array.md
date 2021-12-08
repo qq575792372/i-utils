@@ -17,7 +17,7 @@
 
 ```javascript
 let res = LimeUtil.isInArray(1, [1, 2, 3]);
-console.log(res); // 输出：true
+console.log(res); // 输出 true
 ```
 
 ---
@@ -39,7 +39,7 @@ console.log(res); // 输出：true
 
 ```javascript
 let res = LimeUtil.getIndexInArray(2, [1, 2, 3]);
-console.log(res); // 输出：1
+console.log(res); // 输出 1
 ```
 
 ---
@@ -60,7 +60,58 @@ console.log(res); // 输出：1
 
 ```javascript
 let res = LimeUtil.uniqueArray([1, 3, 4, 2, 2, 3]);
-console.log(res); // 输出：[1,3,4,2]
+console.log(res); // 输出 [1,3,4,2]
+```
+
+---
+
+#### \_.shuffleArray(array)
+
+数组打乱
+
+`可以适用于一些抽奖人员列表打乱顺序`
+
+- ##### 参数
+
+  `array` {Array} 数组
+
+- ##### 返回值
+
+  {Array} 返回打乱之后新的数组
+
+* ##### 示例
+
+```javascript
+let source = [1, 2, 3, 4];
+let res = LimeUtil.shuffleArray(source);
+console.log(res); // 输出：[3,1,4,2]
+```
+
+---
+
+#### \_.swapIndexArray(array)
+
+数组交换位置
+
+`可以适用于一些抽奖人员列表打乱顺序`
+
+- ##### 参数
+
+  `array` {Array} 数组
+  `sourceIndex` {Number} 原索引
+  `targetIndex` {Number} 目标索引
+
+- ##### 返回值
+
+  {Array} 返回交换索引后的新数组
+
+* ##### 示例
+
+```javascript
+let source = [1, 2, 3, 4];
+// 第0个和第1个交换位置
+let res = LimeUtil.swapIndexArray(source, 0, 1);
+console.log(res); // 输出：[2,1,3,4]
 ```
 
 ---
@@ -95,5 +146,5 @@ let source = [
   { id: 32, name: "节点3-2", pid: 3 },
 ];
 let res = LimeUtil.arrayToTree(source, 0);
-console.log(res); // 输出：包含children层级关系的树形结构
+console.log(res); // 输出children层级关系的树形结构
 ```

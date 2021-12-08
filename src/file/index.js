@@ -259,3 +259,23 @@ export function downloadBlobFile(blob, fileName) {
     console.error(error);
   }
 }
+
+/**
+ * 通过url下载文件
+ * @param {String} fileUrl url文件地址
+ * @param {String} fileName 下载的文件名，不写后缀名则默认为原文件类型
+ */
+export function downloadFileUrl(fileUrl, fileName) {
+  try {
+    const link = window.document.createElement("a");
+    link.download = fileName;
+    link.href = fileUrl;
+    // 生成节点点击
+    window.document.body.appendChild(link);
+    link.click();
+    // 点击后移除节点
+    window.document.body.removeChild(link);
+  } catch (error) {
+    console.error(error);
+  }
+}

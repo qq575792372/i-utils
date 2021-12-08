@@ -112,6 +112,15 @@
     return value;
   }
 
+  /**
+   * 格式化千分位金额
+   * @param {String|Number} value 金额
+   * @returns {String} 返回格式化后的金额
+   */
+  function formatCurrency(value) {
+    // todo
+  }
+
   var stringUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     trim: trim,
@@ -122,7 +131,8 @@
     isInString: isInString,
     getIndexInString: getIndexInString,
     zeroStart: zeroStart,
-    zeroEnd: zeroEnd
+    zeroEnd: zeroEnd,
+    formatCurrency: formatCurrency
   });
 
   /**
@@ -402,6 +412,33 @@
   }
 
   /**
+   * 数组打乱
+   * @description 可以适用于一些抽奖人员列表打乱顺序
+   * @param {Array} array 数组
+   * @returns {Array} 返回打乱之后新的数组
+   */
+  function shuffleArray(array) {
+    for (let i = 1; i < array.length; i++) {
+      const random = Math.floor(Math.random() * (i + 1));
+      [array[random], array[i]] = [array[i], array[random]];
+    }
+    return array;
+  }
+
+  /**
+   * 数组索引交换
+   * @param {Array} array 数组
+   * @param sourceIndex 源索引
+   * @param targetIndex 目标索引
+   * @returns {Array} 返回交换索引后的新数组
+   */
+  function swapIndexArray(array, sourceIndex, targetIndex) {
+    const target = [...array];
+    [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
+    return target;
+  }
+
+  /**
    * 一维父子级的数组转树形结构
    * @description 包含id和pid属性关系的一维数组，转为children的树形结构
    * @param {Array} array 数组
@@ -424,6 +461,8 @@
     isInArray: isInArray,
     getIndexInArray: getIndexInArray,
     uniqueArray: uniqueArray,
+    shuffleArray: shuffleArray,
+    swapIndexArray: swapIndexArray,
     arrayToTree: arrayToTree
   });
 
@@ -530,6 +569,15 @@
     }
   }
 
+  /**
+   * 合并对象
+   * @param {Object} args json字符串
+   * @returns {Object} 返回合并后的对象
+   */
+  function mergeObj(...args) {
+    // todo
+  }
+
   var objectUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     mapToObject: mapToObject,
@@ -538,7 +586,8 @@
     jsonToMap: jsonToMap,
     stringifyJson: stringifyJson,
     parseJson: parseJson,
-    deepClone: deepClone
+    deepClone: deepClone,
+    mergeObj: mergeObj
   });
 
   /**
@@ -1391,24 +1440,24 @@
   });
 
   /**
-   * 生成指定大小的随机数
+   * 生成指定大小的随机整数
    * @description n和m参数表示最小和最大范围值，默认0-9之间范围
-   * @param {Number} n 随机数的最小值，默认 0
-   * @param {Number} m 随机数的最大值，默认 9
-   * @returns {Number} 返回指定大小的随机数
+   * @param {Number} min 随机数的最小值，默认 0
+   * @param {Number} max 随机数的最大值，默认 9
+   * @returns {Number} 返回指定大小的随机整数
    */
-  function getRandom(n = 0, m = 9) {
-    return Math.floor(Math.random() * m + n);
+  function getRandom(min = 0, max = 9) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   /**
-   * 生成固定位数的随机数
+   * 生成固定位数的随机整数
    * @description 默认是1，代表生成0-9之间一位，如果是2，则生成10-99之间两位，以此类推
-   * @param {Number} n 固定的位数
+   * @param {Number} len 固定的位数
    * @returns {Number} 返回固定位数的随机数
    */
-  function getRandomDigit(n = 1) {
-    return Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, n - 1));
+  function getRandomDigit(len = 1) {
+    return Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, len - 1));
   }
 
   /**
