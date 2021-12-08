@@ -18,7 +18,7 @@
 ```javascript
 let btn = document.getElementById("myBtn");
 let res = LimeUtil.hasClass(btn, "btn-primary");
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---

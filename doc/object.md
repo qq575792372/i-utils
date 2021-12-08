@@ -16,7 +16,7 @@ map 转 object
 
 ```javascript
 let obj = LimeUtil.objectToMap(map);
-console.log(obj); // 输出 obj对象
+console.log(obj); // 输出：obj对象
 ```
 
 ---
@@ -37,7 +37,7 @@ map 转 json 字符串
 
 ```javascript
 let json = LimeUtil.mapToJson(map);
-console.log(json); // 输出 json字符串
+console.log(json); // 输出：json字符串
 ```
 
 ---
@@ -58,7 +58,7 @@ object 转 map
 
 ```javascript
 let map = LimeUtil.objectToMap(obj);
-console.log(map); // 输出 map对象
+console.log(map); // 输出：map对象
 ```
 
 ---
@@ -79,7 +79,7 @@ json 字符串转 map
 
 ```javascript
 let map = LimeUtil.jsonToMap(json);
-console.log(map); // 输出 map对象
+console.log(map); // 输出：map对象
 ```
 
 ---
@@ -100,7 +100,7 @@ json 对象转 json 字符串
 
 ```javascript
 let str = LimeUtil.stringifyJson(json);
-console.log(obj); // 输出 json字符串
+console.log(obj); // 输出：json字符串
 ```
 
 ---
@@ -121,7 +121,7 @@ json 字符串转 json 对象
 
 ```javascript
 let obj = LimeUtil.parseJson(json);
-console.log(obj); // 输出 obj对象
+console.log(obj); // 输出：obj对象
 ```
 
 ---
@@ -144,5 +144,5 @@ console.log(obj); // 输出 obj对象
 ```javascript
 let obj = { id: 1, name: "test" };
 let newObj = LimeUtil.deepClone(obj);
-console.log(newObj); // 输出 深拷贝后的对象
+console.log(newObj); // 输出：深拷贝后的对象
 ```

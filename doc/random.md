@@ -18,7 +18,7 @@
 
 ```javascript
 let res = LimeUtil.getRandom(0, 9);
-console.log(res); // 输出 0-9之间随机一位
+console.log(res); // 输出：0-9之间随机一位
 ```
 
 ---
@@ -40,7 +40,7 @@ console.log(res); // 输出 0-9之间随机一位
 
 ```javascript
 let res = LimeUtil.getRandomDigit(2);
-console.log(res); // 输出 10-99之间随机两位
+console.log(res); // 输出：10-99之间随机两位
 ```
 
 ---
@@ -62,7 +62,7 @@ console.log(res); // 输出 10-99之间随机两位
 
 ```javascript
 let res = LimeUtil.getUUID();
-console.log(res); // 输出 5e71b6a38364c189ab1229bf5c2d5695
+console.log(res); // 输出：5e71b6a38364c189ab1229bf5c2d5695
 ```
 
 ---
@@ -83,5 +83,5 @@ console.log(res); // 输出 5e71b6a38364c189ab1229bf5c2d5695
 
 ```javascript
 let res = LimeUtil.getGUID();
-console.log(res); // 输出 e854e2ec-063c-1ee7-942f-57c5733ce0cb
+console.log(res); // 输出：e854e2ec-063c-1ee7-942f-57c5733ce0cb
 ```

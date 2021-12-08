@@ -70,5 +70,5 @@ const REGEXP = {
 
 ```javascript
 let res = LimeUtil.regexpTest("13000000000", LimeUtil.REGEXP.MOBILE);
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```

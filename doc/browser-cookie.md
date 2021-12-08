@@ -16,7 +16,7 @@
 
 ```javascript
 let res = LimeUtil.getCookie("id");
-console.log(res); // 输出 1
+console.log(res); // 输出：1
 ```
 
 ---

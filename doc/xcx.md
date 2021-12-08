@@ -58,7 +58,7 @@ LimeUtil.setStorageSync("id", 1);
 
 ```javascript
 let res = LimeUtil.getStorage("id");
-console.log(res); // 输出 1
+console.log(res); // 输出：1
 ```
 
 ---
@@ -79,7 +79,7 @@ console.log(res); // 输出 1
 
 ```javascript
 let res = LimeUtil.getStorageSync("id");
-console.log(res); // 输出 1
+console.log(res); // 输出：1
 ```
 
 ---

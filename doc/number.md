@@ -18,5 +18,5 @@
 
 ```javascript
 let res = LimeUtil.parseInt("08");
-console.log(res); // 输出 8
+console.log(res); // 输出：8
 ```

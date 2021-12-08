@@ -18,7 +18,7 @@
 ```javascript
 let url = "http://xxx.com?id=1&name=test";
 let res = LimeUtil.getUrlParam("id", url);
-console.log(res); // 输出 1
+console.log(res); // 输出：1
 ```
 
 ---
@@ -40,7 +40,7 @@ url 查询参数转为对象
 ```javascript
 let url = "http://xxx.com?id=1&name=test";
 let res = LimeUtil.urlQueryToObject(url);
-console.log(res); // 输出 {id: 1, name: 'test'}
+console.log(res); // 输出：{id: 1, name: 'test'}
 ```
 
 ---
@@ -62,5 +62,5 @@ console.log(res); // 输出 {id: 1, name: 'test'}
 ```javascript
 let obj = { id: 1, name: "test" };
 let res = LimeUtil.objectToUrlQuery(obj);
-console.log(res); // 输出 id=1&name=test
+console.log(res); // 输出：id=1&name=test
 ```

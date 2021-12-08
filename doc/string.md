@@ -16,7 +16,7 @@
 
 ```javascript
 let res = LimeUtil.trim(" 123 ");
-console.log(res); // 输出 123
+console.log(res); // 输出：123
 ```
 
 ---
@@ -37,7 +37,7 @@ console.log(res); // 输出 123
 
 ```javascript
 let res = LimeUtil.trimStart(" 123 ");
-console.log(res); // 输出 123&nbsp; 后面会有空格
+console.log(res); // 输出：123&nbsp; 后面会有空格
 ```
 
 ---
@@ -58,7 +58,7 @@ console.log(res); // 输出 123&nbsp; 后面会有空格
 
 ```javascript
 let res = LimeUtil.trim(" 123 ");
-console.log(res); // 输出 &nbsp;123 前面会有空格
+console.log(res); // 输出：&nbsp;123 前面会有空格
 ```
 
 ---
@@ -79,7 +79,7 @@ console.log(res); // 输出 &nbsp;123 前面会有空格
 
 ```javascript
 let res = LimeUtil.trimAll(" 1 2 3 ");
-console.log(res); // 输出 123
+console.log(res); // 输出：123
 ```
 
 ---
@@ -102,7 +102,7 @@ console.log(res); // 输出 123
 
 ```javascript
 let res = LimeUtil.replaceAll("say hello hello!", "hello", "hi");
-console.log(res); // 输出 say hi hi!
+console.log(res); // 输出：say hi hi!
 ```
 
 ---
@@ -124,7 +124,7 @@ console.log(res); // 输出 say hi hi!
 
 ```javascript
 let res = LimeUtil.isInString("hello", "say hello");
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -146,7 +146,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.getIndexInString("hello", "say hello");
-console.log(res); // 输出 4（hello的第一个字母在下标是4的位置）
+console.log(res); // 输出：4（hello的第一个字母在下标是4的位置）
 ```
 
 ---
@@ -169,7 +169,7 @@ console.log(res); // 输出 4（hello的第一个字母在下标是4的位置）
 
 ```javascript
 let res = LimeUtil.zeroStart("1", 3);
-console.log(res); // 输出 001
+console.log(res); // 输出：001
 ```
 
 ---
@@ -192,5 +192,5 @@ console.log(res); // 输出 001
 
 ```javascript
 let res = LimeUtil.zeroEnd("1", 3);
-console.log(res); // 输出 100
+console.log(res); // 输出：100
 ```

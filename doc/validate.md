@@ -15,7 +15,7 @@
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isNaN("123")); // 输出 true
+console.log(LimeUtil.isNaN("123")); // 输出：true
 ```
 
 ---
@@ -35,8 +35,8 @@ console.log(LimeUtil.isNaN("123")); // 输出 true
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isInteger("123")); // 输出 true
-console.log(LimeUtil.isInteger(12.01)); // 输出 false
+console.log(LimeUtil.isInteger("123")); // 输出：true
+console.log(LimeUtil.isInteger(12.01)); // 输出：false
 ```
 
 ---
@@ -56,8 +56,8 @@ console.log(LimeUtil.isInteger(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isDecimal("123")); // 输出 false
-console.log(LimeUtil.isDecimal(12.01)); // 输出 true
+console.log(LimeUtil.isDecimal("123")); // 输出：false
+console.log(LimeUtil.isDecimal(12.01)); // 输出：true
 ```
 
 ---
@@ -77,9 +77,9 @@ console.log(LimeUtil.isDecimal(12.01)); // 输出 true
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isNumber(123)); // 输出 true
-console.log(LimeUtil.isNumber("123")); // 输出 false
-console.log(LimeUtil.isNumber("3.1dd32")); // 输出 false
+console.log(LimeUtil.isNumber(123)); // 输出：true
+console.log(LimeUtil.isNumber("123")); // 输出：false
+console.log(LimeUtil.isNumber("3.1dd32")); // 输出：false
 ```
 
 ---
@@ -99,8 +99,8 @@ console.log(LimeUtil.isNumber("3.1dd32")); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isString("123")); // 输出 true
-console.log(LimeUtil.isString(12.01)); // 输出 false
+console.log(LimeUtil.isString("123")); // 输出：true
+console.log(LimeUtil.isString(12.01)); // 输出：false
 ```
 
 ---
@@ -120,8 +120,8 @@ console.log(LimeUtil.isString(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isArray("123")); // 输出 false
-console.log(LimeUtil.isArray([1, 2])); // 输出 true
+console.log(LimeUtil.isArray("123")); // 输出：false
+console.log(LimeUtil.isArray([1, 2])); // 输出：true
 ```
 
 ---
@@ -141,8 +141,8 @@ console.log(LimeUtil.isArray([1, 2])); // 输出 true
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isObject({ id: 1 })); // 输出 true
-console.log(LimeUtil.isObject(12.01)); // 输出 false
+console.log(LimeUtil.isObject({ id: 1 })); // 输出：true
+console.log(LimeUtil.isObject(12.01)); // 输出：false
 ```
 
 ---
@@ -162,8 +162,8 @@ console.log(LimeUtil.isObject(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isBoolean(true)); // 输出 true
-console.log(LimeUtil.isBoolean(12.01)); // 输出 false
+console.log(LimeUtil.isBoolean(true)); // 输出：true
+console.log(LimeUtil.isBoolean(12.01)); // 输出：false
 ```
 
 ---
@@ -183,8 +183,8 @@ console.log(LimeUtil.isBoolean(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isDate(new Date())); // 输出 true
-console.log(LimeUtil.isDate(12.01)); // 输出 false
+console.log(LimeUtil.isDate(new Date())); // 输出：true
+console.log(LimeUtil.isDate(12.01)); // 输出：false
 ```
 
 ---
@@ -204,8 +204,8 @@ console.log(LimeUtil.isDate(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isFunction(function () {})); // 输出 true
-console.log(LimeUtil.isFunction(12.01)); // 输出 false
+console.log(LimeUtil.isFunction(function () {})); // 输出：true
+console.log(LimeUtil.isFunction(12.01)); // 输出：false
 ```
 
 ---
@@ -225,8 +225,8 @@ console.log(LimeUtil.isFunction(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isSymbol(Symbol(1))); // 输出 true
-console.log(LimeUtil.isSymbol(12.01)); // 输出 false
+console.log(LimeUtil.isSymbol(Symbol(1))); // 输出：true
+console.log(LimeUtil.isSymbol(12.01)); // 输出：false
 ```
 
 ---
@@ -246,9 +246,9 @@ console.log(LimeUtil.isSymbol(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isRegExp(/^\d$/)); // 输出 true
-console.log(LimeUtil.isRegExp(new RegExp())); // 输出 true
-console.log(LimeUtil.isRegExp(12.01)); // 输出 false
+console.log(LimeUtil.isRegExp(/^\d$/)); // 输出：true
+console.log(LimeUtil.isRegExp(new RegExp())); // 输出：true
+console.log(LimeUtil.isRegExp(12.01)); // 输出：false
 ```
 
 ---
@@ -268,8 +268,8 @@ console.log(LimeUtil.isRegExp(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isError(new Error("has error"))); // 输出 true
-console.log(LimeUtil.isError(12.01)); // 输出 false
+console.log(LimeUtil.isError(new Error("has error"))); // 输出：true
+console.log(LimeUtil.isError(12.01)); // 输出：false
 ```
 
 ---
@@ -289,8 +289,8 @@ console.log(LimeUtil.isError(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isPromise(Promise.resolve())); // 输出 true
-console.log(LimeUtil.isPromise(12.01)); // 输出 false
+console.log(LimeUtil.isPromise(Promise.resolve())); // 输出：true
+console.log(LimeUtil.isPromise(12.01)); // 输出：false
 ```
 
 ---
@@ -310,8 +310,8 @@ console.log(LimeUtil.isPromise(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isChinese("中文")); // 输出 true
-console.log(LimeUtil.isChinese(12.01)); // 输出 false
+console.log(LimeUtil.isChinese("中文")); // 输出：true
+console.log(LimeUtil.isChinese(12.01)); // 输出：false
 ```
 
 ---
@@ -334,10 +334,10 @@ console.log(LimeUtil.isChinese(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isEmpty(11)); // 输出 false
-console.log(LimeUtil.isEmpty(" ")); // 输出 false
-console.log(LimeUtil.isEmpty(null)); // 输出 true
-console.log(LimeUtil.isEmpty(undefined)); // 输出 true
+console.log(LimeUtil.isEmpty(11)); // 输出：false
+console.log(LimeUtil.isEmpty(" ")); // 输出：false
+console.log(LimeUtil.isEmpty(null)); // 输出：true
+console.log(LimeUtil.isEmpty(undefined)); // 输出：true
 ```
 
 ---
@@ -358,10 +358,10 @@ console.log(LimeUtil.isEmpty(undefined)); // 输出 true
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isNull(null)); // 输出 true
-console.log(LimeUtil.isNull(undefined)); // 输出 true
-console.log(LimeUtil.isNull(" ")); // 输出 false
-console.log(LimeUtil.isNull(12.01)); // 输出 false
+console.log(LimeUtil.isNull(null)); // 输出：true
+console.log(LimeUtil.isNull(undefined)); // 输出：true
+console.log(LimeUtil.isNull(" ")); // 输出：false
+console.log(LimeUtil.isNull(12.01)); // 输出：false
 ```
 
 ---
@@ -382,10 +382,10 @@ console.log(LimeUtil.isNull(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isBlank(" ")); // 输出 true
-console.log(LimeUtil.isBlank(null)); // 输出 true
-console.log(LimeUtil.isBlank(undefined)); // 输出 true
-console.log(LimeUtil.isBlank(12.01)); // 输出 false
+console.log(LimeUtil.isBlank(" ")); // 输出：true
+console.log(LimeUtil.isBlank(null)); // 输出：true
+console.log(LimeUtil.isBlank(undefined)); // 输出：true
+console.log(LimeUtil.isBlank(12.01)); // 输出：false
 ```
 
 ---
@@ -405,10 +405,10 @@ console.log(LimeUtil.isBlank(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isUndefined(undefined)); // 输出 true
-console.log(LimeUtil.isUndefined(null)); // 输出 false
-console.log(LimeUtil.isUndefined("")); // 输出 false
-console.log(LimeUtil.isUndefined(12.01)); // 输出 false
+console.log(LimeUtil.isUndefined(undefined)); // 输出：true
+console.log(LimeUtil.isUndefined(null)); // 输出：false
+console.log(LimeUtil.isUndefined("")); // 输出：false
+console.log(LimeUtil.isUndefined(12.01)); // 输出：false
 ```
 
 ---
@@ -431,10 +431,10 @@ console.log(LimeUtil.isUndefined(12.01)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.equals("1", "1")); // 输出 true
-console.log(LimeUtil.equals("abc", "ABC")); // 输出 false
-console.log(LimeUtil.equals(12, 12)); // 输出 true
-console.log(LimeUtil.equals(121, 12)); // 输出 false
+console.log(LimeUtil.equals("1", "1")); // 输出：true
+console.log(LimeUtil.equals("abc", "ABC")); // 输出：false
+console.log(LimeUtil.equals(12, 12)); // 输出：true
+console.log(LimeUtil.equals(121, 12)); // 输出：false
 ```
 
 ---
@@ -455,8 +455,8 @@ console.log(LimeUtil.equals(121, 12)); // 输出 false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.equalsIgnoreCase("1", "1")); // 输出 true
-console.log(LimeUtil.equalsIgnoreCase("abc", "ABC")); // 输出 false
-console.log(LimeUtil.equalsIgnoreCase(12, 12)); // 输出 true
-console.log(LimeUtil.equalsIgnoreCase(121, 12)); // 输出 false
+console.log(LimeUtil.equalsIgnoreCase("1", "1")); // 输出：true
+console.log(LimeUtil.equalsIgnoreCase("abc", "ABC")); // 输出：false
+console.log(LimeUtil.equalsIgnoreCase(12, 12)); // 输出：true
+console.log(LimeUtil.equalsIgnoreCase(121, 12)); // 输出：false
 ```

@@ -18,7 +18,7 @@
 
 ```javascript
 let res = LimeUtil.formatFileSize(102433);
-console.log(res); // 输出 100.03KB
+console.log(res); // 输出：100.03KB
 ```
 
 ---
@@ -39,7 +39,7 @@ console.log(res); // 输出 100.03KB
 
 ```javascript
 let res = LimeUtil.getFileName("测试图片.jpg");
-console.log(res); // 输出 测试图片
+console.log(res); // 输出：测试图片
 ```
 
 ---
@@ -60,10 +60,10 @@ console.log(res); // 输出 测试图片
 
 ```javascript
 let res = LimeUtil.getFileSuffix("测试图片.jpg");
-console.log(res); // 输出 jpg
+console.log(res); // 输出：jpg
 
 let res1 = LimeUtil.getFileSuffix("http://xxx.com/mytest.jpg");
-console.log(res1); // 输出 mytest
+console.log(res1); // 输出：mytest
 ```
 
 ---
@@ -86,7 +86,7 @@ file 转 blob
 
 ```javascript
 LimeUtil.fileToBlob(file).then((blob) => {
-  console.log(blob); // 输出 blob数据
+  console.log(blob); // 输出：blob数据
 });
 ```
 
@@ -108,7 +108,7 @@ file 转 base64
 
 ```javascript
 LimeUtil.fileToBase64(file).then((base64) => {
-  console.log(base64); // 输出 base64数据
+  console.log(base64); // 输出：base64数据
 });
 ```
 
@@ -131,7 +131,7 @@ file 转 url
 
 ```javascript
 LimeUtil.fileToUrl(file).then((url) => {
-  console.log(url); // 输出 base64数据
+  console.log(url); // 输出：base64数据
 });
 ```
 
@@ -154,7 +154,7 @@ blob 转 file
 
 ```javascript
 LimeUtil.blobToFile(blob).then((file) => {
-  console.log(file); // 输出 file数据
+  console.log(file); // 输出：file数据
 });
 ```
 
@@ -176,7 +176,7 @@ blob 转 base64
 
 ```javascript
 LimeUtil.blobToBase64(blob).then((base64) => {
-  console.log(base64); // 输出 base64数据
+  console.log(base64); // 输出：base64数据
 });
 ```
 
@@ -199,7 +199,7 @@ base64 转 file
 
 ```javascript
 LimeUtil.base64ToFile(base64).then((file) => {
-  console.log(file); // 输出 file数据
+  console.log(file); // 输出：file数据
 });
 ```
 
@@ -221,7 +221,7 @@ base64 转成 blob
 
 ```javascript
 LimeUtil.base64ToBlob(base64).then((blob) => {
-  console.log(blob); // 输出 blob数据
+  console.log(blob); // 输出：blob数据
 });
 ```
 
@@ -243,7 +243,7 @@ LimeUtil.base64ToBlob(base64).then((blob) => {
 
 ```javascript
 LimeUtil.urlToBase64(imgUrl).then((base64) => {
-  console.log(base64); // 输出 base64数据
+  console.log(base64); // 输出：base64数据
 });
 ```
 

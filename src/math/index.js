@@ -188,9 +188,9 @@ export function toFixedRound(num, decimals = 2) {
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
  * @example
- * toFixedFloor(1) // 输出 1.00
- * toFixedFloor(1.0) // 输出 1.00
- * toFixedFloor(1.01) // 输出 1.01
+ * toFixedFloor(1) // 输出：1.00
+ * toFixedFloor(1.0) // 输出：1.00
+ * toFixedFloor(1.01) // 输出：1.01
  * toFixedFloor(1.015) // 四舍后输出：1.01
  * @returns {Number} 返回字符串的数字
  */

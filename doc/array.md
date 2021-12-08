@@ -17,7 +17,7 @@
 
 ```javascript
 let res = LimeUtil.isInArray(1, [1, 2, 3]);
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -39,7 +39,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.getIndexInArray(2, [1, 2, 3]);
-console.log(res); // 输出 1
+console.log(res); // 输出：1
 ```
 
 ---
@@ -60,7 +60,7 @@ console.log(res); // 输出 1
 
 ```javascript
 let res = LimeUtil.uniqueArray([1, 3, 4, 2, 2, 3]);
-console.log(res); // 输出 [1,3,4,2]
+console.log(res); // 输出：[1,3,4,2]
 ```
 
 ---
@@ -95,5 +95,5 @@ let source = [
   { id: 32, name: "节点3-2", pid: 3 },
 ];
 let res = LimeUtil.arrayToTree(source, 0);
-console.log(res); // 输出children层级关系的树形结构
+console.log(res); // 输出：包含children层级关系的树形结构
 ```

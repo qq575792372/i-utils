@@ -17,5 +17,5 @@
 
 ```javascript
 let res = LimeUtil.isInArray(1, [1, 2, 3]);
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```

@@ -17,7 +17,7 @@
 
 ```javascript
 let res = LimeUtil.getBrowserInfo();
-console.log(res); // 输出 {name: "edge", version: "96.0.1054.43"}
+console.log(res); // 输出：{name: "edge", version: "96.0.1054.43"}
 ```
 
 ---
@@ -40,7 +40,7 @@ console.log(res); // 输出 {name: "edge", version: "96.0.1054.43"}
 
 ```javascript
 let res = LimeUtil.isPc();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -62,7 +62,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isMobile();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -85,7 +85,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isAndroid();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -106,7 +106,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isIos();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -127,7 +127,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isWindowsPhone();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -148,7 +148,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isWindows();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -169,7 +169,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isLinux();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -190,7 +190,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isMac();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -213,7 +213,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isIphone();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -234,7 +234,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isIpad();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -257,7 +257,7 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isWeixin();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```
 
 ---
@@ -278,5 +278,5 @@ console.log(res); // 输出 true
 
 ```javascript
 let res = LimeUtil.isQQ();
-console.log(res); // 输出 true
+console.log(res); // 输出：true
 ```

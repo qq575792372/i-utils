@@ -16,7 +16,7 @@ rgb 颜色转 hex 十六进制
 
 ```javascript
 let res = LimeUtil.colorRgbToHex("rgb(255,34,33)");
-console.log(res); // 输出 #002221
+console.log(res); // 输出：#002221
 ```
 
 ---
@@ -38,7 +38,7 @@ hex 十六进制 颜色转 rgba
 
 ```javascript
 let res = LimeUtil.colorHexToRgba("#2d8cf0");
-console.log(res); // 输出 rgba(45,140,240,1)
+console.log(res); // 输出：rgba(45,140,240,1)
 ```
 
 ---
@@ -59,7 +59,7 @@ console.log(res); // 输出 rgba(45,140,240,1)
 
 ```javascript
 let res = LimeUtil.getRandomHexColor();
-console.log(res); // 输出 #2d8cf0
+console.log(res); // 输出：#2d8cf0
 ```
 
 ---
@@ -80,5 +80,5 @@ console.log(res); // 输出 #2d8cf0
 
 ```javascript
 let res = LimeUtil.getRandomRgbColor();
-console.log(res); // 输出 rgba(45,140,240,1)
+console.log(res); // 输出：rgba(45,140,240,1)
 ```

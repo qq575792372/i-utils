@@ -18,7 +18,7 @@
 
 ```javascript
 let res = LimeUtil.getLocalStorage("id");
-console.log(res); // 输出 1
+console.log(res); // 输出：1
 ```
 
 ---
@@ -102,7 +102,7 @@ LimeUtil.clearLocalStorage();
 
 ```javascript
 let res = LimeUtil.getSessionStorage("id");
-console.log(res); // 输出 1
+console.log(res); // 输出：1
 ```
 
 ---

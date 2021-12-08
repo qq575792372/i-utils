@@ -44,7 +44,7 @@ const MATH_MODE = {
 
 ```javascript
 let res = LimeUtil.add(0.1, 0.2);
-console.log(res); // 输出 0.3
+console.log(res); // 输出：0.3
 ```
 
 ---
@@ -66,7 +66,7 @@ console.log(res); // 输出 0.3
 
 ```javascript
 let res = LimeUtil.subtract(0.2, 0.1);
-console.log(res); // 输出 0.1
+console.log(res); // 输出：0.1
 ```
 
 ---
@@ -88,7 +88,7 @@ console.log(res); // 输出 0.1
 
 ```javascript
 let res = LimeUtil.multiply(0.1, 0.2);
-console.log(res); // 输出 0.2
+console.log(res); // 输出：0.2
 ```
 
 ---
@@ -110,7 +110,7 @@ console.log(res); // 输出 0.2
 
 ```javascript
 let res = LimeUtil.divide(1, 2);
-console.log(res); // 输出 0.5
+console.log(res); // 输出：0.5
 ```
 
 ---
@@ -132,7 +132,7 @@ console.log(res); // 输出 0.5
 
 ```javascript
 let res = LimeUtil.modulo(1.1, 1);
-console.log(res); // 输出 0.1
+console.log(res); // 输出：0.1
 ```
 
 ---
@@ -155,11 +155,11 @@ console.log(res); // 输出 0.1
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.toFixed(1, 2)); // 输出 1.00
-console.log(LimeUtil.toFixed(1.0, 2)); // 输出 1.00
-console.log(LimeUtil.toFixed(1.01, 2)); // 输出 1.01
-console.log(LimeUtil.toFixed(1.015, 2)); // 输出 1.02 （默认会四舍五入）
-console.log(LimeUtil.toFixed(1.015, 2, LimeUtil.MATH_MODE.ROUND_FLOOR)); // 输出 1.01（切换舍出的模式，会强制截取小数位数，不会再四舍五入）
+console.log(LimeUtil.toFixed(1, 2)); // 输出：1.00
+console.log(LimeUtil.toFixed(1.0, 2)); // 输出：1.00
+console.log(LimeUtil.toFixed(1.01, 2)); // 输出：1.01
+console.log(LimeUtil.toFixed(1.015, 2)); // 输出：1.02 （默认会四舍五入）
+console.log(LimeUtil.toFixed(1.015, 2, LimeUtil.MATH_MODE.ROUND_FLOOR)); // 输出：1.01（切换舍出的模式，会强制截取小数位数，不会再四舍五入）
 ```
 
 ---
@@ -181,10 +181,10 @@ console.log(LimeUtil.toFixed(1.015, 2, LimeUtil.MATH_MODE.ROUND_FLOOR)); // 输�
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.toDecimal(1, 2)); // 输出 1
-console.log(LimeUtil.toDecimal(1.0, 2)); // 输出 1
-console.log(LimeUtil.toDecimal(1.01, 2)); // 输出 1.01
-console.log(LimeUtil.toDecimal(1.015, 2)); // 输出 1.01 （注：第二位如果小于等于3，则会是五舍六入）
-console.log(LimeUtil.toDecimal(1.045, 2)); // 输出 1.01 （注：第二位如果大于3，则是正常的四舍五入）
-console.log(LimeUtil.toDecimal(1.015, 2, LimeUtil.MATH_MODE.ROUND_FLOOR)); // 输出 1.01（切换舍出的模式，会强制保留小数位数，不会再四舍五入）
+console.log(LimeUtil.toDecimal(1, 2)); // 输出：1
+console.log(LimeUtil.toDecimal(1.0, 2)); // 输出：1
+console.log(LimeUtil.toDecimal(1.01, 2)); // 输出：1.01
+console.log(LimeUtil.toDecimal(1.015, 2)); // 输出：1.01 （注：第二位如果小于等于3，则会是五舍六入）
+console.log(LimeUtil.toDecimal(1.045, 2)); // 输出：1.01 （注：第二位如果大于3，则是正常的四舍五入）
+console.log(LimeUtil.toDecimal(1.015, 2, LimeUtil.MATH_MODE.ROUND_FLOOR)); // 输出：1.01（切换舍出的模式，会强制保留小数位数，不会再四舍五入）
 ```
