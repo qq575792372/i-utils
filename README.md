@@ -2,7 +2,7 @@
 
 ### 介绍
 
-**lime-util** 是一个 前端模块化 JavaScript 工具库，包含了日常开发中常用的一些方法集合，如 string，array，date，number，math，校验，正则和小程序等等多个模块。
+**lime-util** 是一个 前端模块化 **JavaScript** 工具库，包含了日常开发中常用的一些方法集合，如 string，array，date，number，math，校验，正则和小程序等等多个模块。
 
 ### 安装
 
