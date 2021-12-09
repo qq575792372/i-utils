@@ -1,30 +1,5 @@
 ### 数学
 
-#### \_.MATH_MODE
-
-计算精度模式
-
-- ##### 参数
-
-  无
-
-- ##### 返回值
-
-  无
-
-- ##### 示例
-
-```javascript
-const MATH_MODE = {
-  // 正常四舍五入，如：1.354保留两位是1.35；1.355保留两位是1.36；
-  ROUND: 0,
-  // 向下舍出，如：1.354保留两位是1.35；1.355保留两位是1.35；
-  ROUND_FLOOR: 1,
-};
-```
-
----
-
 <!-- 数字精度计算 -->
 
 #### \_.add(arg1, arg2)
@@ -137,7 +112,7 @@ console.log(res); // 输出：0.1
 
 ---
 
-#### \_.toFixed(num, decimals = 2, mode = MATH_MODE.ROUND)
+#### \_.toFixed(num, decimals = 2, mode = LimeUtil.ROUND)
 
 强制保留小数位数
 `默认保留两位小数，解决原生的toFixed()会五舍六入的问题`
@@ -146,7 +121,7 @@ console.log(res); // 输出：0.1
 
   `num` {String|Number} 数字
   `decimals` {Number} 保留小数的位数，默认 2 位
-  `mode` {Enum} 保留小数模式，参考 MATH_MODE 枚举类型
+  `mode` {Constant} 保留小数模式，参考常量集合中 数学计算常量
 
 - ##### 返回值
 
@@ -159,12 +134,12 @@ console.log(LimeUtil.toFixed(1, 2)); // 输出：1.00
 console.log(LimeUtil.toFixed(1.0, 2)); // 输出：1.00
 console.log(LimeUtil.toFixed(1.01, 2)); // 输出：1.01
 console.log(LimeUtil.toFixed(1.015, 2)); // 输出：1.02 （默认会四舍五入）
-console.log(LimeUtil.toFixed(1.015, 2, LimeUtil.MATH_MODE.ROUND_FLOOR)); // 输出：1.01（切换舍出的模式，会强制截取小数位数，不会再四舍五入）
+console.log(LimeUtil.toFixed(1.015, 2, LimeUtil.ROUND_FLOOR)); // 输出：1.01（切换舍出的模式，会强制截取小数位数，不会再四舍五入）
 ```
 
 ---
 
-#### \_.toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND)
+#### \_.toDecimal(num, decimals = 2, mode = LimeUtil.ROUND)
 
 尽可能保留小数位数
 
@@ -172,7 +147,7 @@ console.log(LimeUtil.toFixed(1.015, 2, LimeUtil.MATH_MODE.ROUND_FLOOR)); // 输�
 
   `num` {String|Number} 数字
   `decimals` {Number} 保留小数的位数，默认 2 位
-  `mode` {Enum} 保留小数模式，参考 MATH_MODE 枚举类型
+  `mode` {Constant} 保留小数模式，参考常量集合中 数学计算常量
 
 - ##### 返回值
 
@@ -186,5 +161,5 @@ console.log(LimeUtil.toDecimal(1.0, 2)); // 输出：1
 console.log(LimeUtil.toDecimal(1.01, 2)); // 输出：1.01
 console.log(LimeUtil.toDecimal(1.015, 2)); // 输出：1.01 （注：第二位如果小于等于3，则会是五舍六入）
 console.log(LimeUtil.toDecimal(1.045, 2)); // 输出：1.01 （注：第二位如果大于3，则是正常的四舍五入）
-console.log(LimeUtil.toDecimal(1.015, 2, LimeUtil.MATH_MODE.ROUND_FLOOR)); // 输出：1.01（切换舍出的模式，会强制保留小数位数，不会再四舍五入）
+console.log(LimeUtil.toDecimal(1.015, 2, LimeUtil.ROUND_FLOOR)); // 输出：1.01（切换舍出的模式，会强制保留小数位数，不会再四舍五入）
 ```

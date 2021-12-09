@@ -1,15 +1,5 @@
 import { isNaN } from "../validate";
-
-// 模式枚举
-/**
- * 计算精度模式
- */
-export const MATH_MODE = {
-  // 正常四舍五入，如：1.354保留两位是1.35；1.355保留两位是1.36；
-  ROUND: 0,
-  // 向下舍出，如：1.354保留两位是1.35；1.355保留两位是1.35；
-  ROUND_FLOOR: 1,
-};
+import { MATH_MODE } from "../constant/math";
 
 // 数字精度计算
 /**
@@ -124,7 +114,7 @@ export function modulo(arg1, arg2) {
  * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @param {Enum} mode 保留小数模式，参考MATH_MODE枚举类型
+ * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
  * @returns {String} 返回字符串的数字
  */
 export function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
@@ -229,7 +219,7 @@ export function toFixedFloor(num, decimals = 2) {
  * 尽可能保留小数位数
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @param {Enum} mode 保留小数模式，参考MATH_MODE枚举类型
+ * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
  * @returns {Number} 返回保留后的数字
  */
 export function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {

@@ -36,3 +36,47 @@ export function replaceClass(elem, newClassName, oldClassName) {
   removeClass(elem, oldClassName);
   addClass(elem, newClassName);
 }
+
+/**
+ * html标签转义
+ * @param {String} htmlStr html字符串
+ * @returns {String} 返回转义后的字符串
+ */
+export function htmlEncode(htmlStr) {
+  const temp = {
+    "<": "&lt;",
+    ">": "&gt;",
+    "&": "&amp;",
+    "(": "&#40;",
+    ")": "&#41;",
+    "/": "&#47;",
+    " ": "&nbsp;",
+    '"': "&quot;",
+    "'": "&#39;",
+  };
+  return htmlStr.replace(/[<>&|()\/ '"]/g, function (c) {
+    return temp[c];
+  });
+}
+
+/**
+ * html标签解码
+ * @param {String} htmlStr html字符串
+ * @returns {String} 返回解析后的字符串
+ */
+export function htmlDecode(htmlStr) {
+  const temp = {
+    "&lt;": "<",
+    "&gt;": ">",
+    "&amp;": "&",
+    "&#40;": "(",
+    "&#41;": ")",
+    "&#47;": "/",
+    "&nbsp;": " ",
+    "&quot;": '"',
+    "&#39;": "'",
+  };
+  return htmlStr.replace(/(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi, function (all, t) {
+    return temp[t];
+  });
+}

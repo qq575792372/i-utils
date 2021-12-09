@@ -1,5 +1,5 @@
 /*!
-* lime-util v0.0.1
+* lime-util v0.0.2
 *
 * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
 * Licensed under the MIT license
@@ -11,6 +11,34 @@
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeUtil = factory());
 })(this, (function () { 'use strict';
+
+  /**
+   * 数组排序
+   */
+  const SORT_MODE = {
+    // 降序
+    SORT_DESC: 0,
+    // 升序
+    SORT_ASC: 1,
+    // 随机排序
+    SORT_RANDOM: 2,
+  };
+
+  /**
+   * 数学计算
+   */
+  const MATH_MODE = {
+    // 正常四舍五入，如：1.354保留两位是1.35；1.355保留两位是1.36；
+    ROUND: 0,
+    // 向下舍出，如：1.354保留两位是1.35；1.355保留两位是1.35；
+    ROUND_FLOOR: 1,
+  };
+
+  // 导出
+  var constant = {
+    ...SORT_MODE,
+    ...MATH_MODE,
+  };
 
   // 字符串去空格
   /**
@@ -83,7 +111,7 @@
   /**
    * 数字前补齐0达到指定位数
    * @description 相当于原生的 padStart(2,'0')
-   * @param {String|Number} value 补零的数字
+   * @param {Number|String} value 补零的数字
    * @param {Number} maxLength 补齐0后的最大长度，默认2位
    * @returns {String} 返回补0后指定位数的字符串
    */
@@ -99,7 +127,7 @@
   /**
    * 数字后补齐0达到指定位数
    * @description 相当于原生的 padEnd(2,'0')
-   * @param {String|Number} value 补零的数字
+   * @param {Number|String} value 补零的数字
    * @param {Number} maxLength 补齐0后的最大长度，默认2位
    * @returns {String} 返回补0后指定位数的字符串
    */
@@ -113,12 +141,108 @@
   }
 
   /**
-   * 格式化千分位金额
-   * @param {String|Number} value 金额
-   * @returns {String} 返回格式化后的金额
+   * 格式化千分位数字
+   * @param {Number|String} num 数字
+   * @returns {String} 返回格式化后的千分位数字
    */
-  function formatCurrency(value) {
-    // todo
+  function formatThousand(num) {
+    num = String(num);
+    let regex = num.indexOf(".") > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
+    return num.replace(regex, "$1,");
+  }
+
+  /**
+   * 格式化人民币金额大写
+   * @param {Number|String} money 金额
+   * @returns {String} 返回金额大写
+   */
+  function formatAmountChinese(money) {
+    //汉字的数字
+    let cnNums = new Array("零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖");
+    //基本单位
+    let cnIntRadice = new Array("", "拾", "佰", "仟");
+    //对应整数部分扩展单位
+    let cnIntUnits = new Array("", "万", "亿", "兆");
+    //对应小数部分单位
+    let cnDecUnits = new Array("角", "分", "毫", "厘");
+    //整数金额时后面跟的字符
+    let cnInteger = "整";
+    //整型完以后的单位
+    let cnIntLast = "元";
+    //最大处理的数字
+    let maxNum = 999999999999999.9999;
+    //金额整数部分
+    let integerNum;
+    //金额小数部分
+    let decimalNum;
+    //输出的中文金额字符串
+    let chineseStr = "";
+    //分离金额后用的数组，预定义
+    let parts;
+    if (money === "") {
+      //不能用==
+      return "";
+    }
+    money = parseFloat(money);
+    if (money >= maxNum) {
+      //超出最大处理数字，抛出异常
+      throw new Error("Calculated number overflow!");
+    }
+    if (money == 0) {
+      chineseStr = cnNums[0] + cnIntLast + cnInteger;
+      return chineseStr;
+    }
+    //转换为字符串
+    money = money.toString();
+    if (money.indexOf(".") == -1) {
+      integerNum = money;
+      decimalNum = "";
+    } else {
+      parts = money.split(".");
+      integerNum = parts[0];
+      decimalNum = parts[1].substr(0, 4);
+    }
+    //获取整型部分转换
+    if (parseInt(integerNum, 10) > 0) {
+      let zeroCount = 0;
+      let IntLen = integerNum.length;
+      for (let i = 0; i < IntLen; i++) {
+        let n = integerNum.substr(i, 1);
+        let p = IntLen - i - 1;
+        let q = p / 4;
+        let m = p % 4;
+        if (n == "0") {
+          zeroCount++;
+        } else {
+          if (zeroCount > 0) {
+            chineseStr += cnNums[0];
+          }
+          //归零
+          zeroCount = 0;
+          chineseStr += cnNums[parseInt(n)] + cnIntRadice[m];
+        }
+        if (m == 0 && zeroCount < 4) {
+          chineseStr += cnIntUnits[q];
+        }
+      }
+      chineseStr += cnIntLast;
+    }
+    //小数部分
+    if (decimalNum != "") {
+      let decLen = decimalNum.length;
+      for (let i = 0; i < decLen; i++) {
+        let n = decimalNum.substr(i, 1);
+        if (n != "0") {
+          chineseStr += cnNums[Number(n)] + cnDecUnits[i];
+        }
+      }
+    }
+    if (chineseStr == "") {
+      chineseStr += cnNums[0] + cnIntLast + cnInteger;
+    } else if (decimalNum == "") {
+      chineseStr += cnInteger;
+    }
+    return chineseStr;
   }
 
   var stringUtil = /*#__PURE__*/Object.freeze({
@@ -132,7 +256,8 @@
     getIndexInString: getIndexInString,
     zeroStart: zeroStart,
     zeroEnd: zeroEnd,
-    formatCurrency: formatCurrency
+    formatThousand: formatThousand,
+    formatAmountChinese: formatAmountChinese
   });
 
   /**
@@ -402,22 +527,95 @@
   }
 
   /**
-   * 数组元素简单去重
+   * 数组最小值
+   * @param {Array} array 数组
+   * @returns {Number} 返回数组中最小的值
+   */
+  function arrayMin(array) {
+    return Math.min.apply(null, array);
+  }
+
+  /**
+   * 数组最大值
+   * @param {Array} array 数组
+   * @returns {Number} 返回数组中最大的值
+   */
+  function arrayMax(array) {
+    return Math.max.apply(null, array);
+  }
+
+  /**
+   * 数组求和
+   * @param {Array} array 数组
+   * @returns {Number} 返回数组元素的总和
+   */
+  function arraySum(array) {
+    return array.reduce(function (pre, cur) {
+      return pre + cur;
+    });
+  }
+
+  /**
+   * 数组求平均值
+   * @param {Array} array 数组
+   * @returns {Number} 返回数组平均值
+   */
+  function arrayAvg(array) {
+    return arraySum(array) / array.length;
+  }
+
+  /**
+   * 数组求并集
+   * @param {Array} array1 数组1
+   * @param {Array} array2 数组2
+   * @returns {Number} 返回数组并集
+   */
+  function arrayUnion(array1, array2) {
+    return [...new Set(array1.concat(array2))];
+  }
+
+  /**
+   * 数组求交集
+   * @param {Array} array1 数组1
+   * @param {Array} array2 数组2
+   * @returns {Number} 返回数组交集
+   */
+  function arrayIntersect(array1, array2) {
+    return [...new Set(array1)].filter((item) => array2.includes(item));
+  }
+
+  /**
+   * 比较两个数组是否相等
+   * @param {Array} array1 数组1
+   * @param {Array} array2 数组2
+   * @returns {Boolean} 返回true和false
+   */
+  function arrayEquals(array1, array2) {
+    if (array1 === array2) return true;
+    if (array1.length != array2.length) return false;
+    for (let i = 0; i < array1.length; ++i) {
+      if (array1[i] !== array2[i]) return false;
+    }
+    return true;
+  }
+
+  /**
+   * 数组元素去重
    * @param {Array} array 数组
    * @returns {Array} 返回去重后的数组
    */
-  function uniqueArray(array) {
+  function arrayUnique(array) {
     if (isNull(value)) return;
     return Array.from(new Set(array));
   }
 
   /**
-   * 数组打乱
+   * 数组打乱元素
    * @description 可以适用于一些抽奖人员列表打乱顺序
    * @param {Array} array 数组
    * @returns {Array} 返回打乱之后新的数组
    */
-  function shuffleArray(array) {
+  function arrayShuffle(array) {
     for (let i = 1; i < array.length; i++) {
       const random = Math.floor(Math.random() * (i + 1));
       [array[random], array[i]] = [array[i], array[random]];
@@ -426,13 +624,38 @@
   }
 
   /**
-   * 数组索引交换
+   * 数组排序
    * @param {Array} array 数组
-   * @param sourceIndex 源索引
-   * @param targetIndex 目标索引
+   * @param {Constant} mode 排序模式，参考常量集合中 数组常量，默认是升序
+   * @returns {Array} 返回排序后的新数组
+   */
+  function arraySort(array, mode = SORT_MODE.SORT_ASC) {
+    return array.sort((a, b) => {
+      switch (mode) {
+        // 升序
+        case SORT_MODE.SORT_ASC:
+          return a - b;
+        // 降序
+        case SORT_MODE.SORT_DESC:
+          return b - a;
+        // 随机
+        case SORT_MODE.SORT_RANDOM:
+          return Math.random() - 0.5;
+        // 默认
+        default:
+          return array;
+      }
+    });
+  }
+
+  /**
+   * 数组交换位置
+   * @param {Array} array 数组
+   * @param {Number} sourceIndex 原索引
+   * @param {Number} targetIndex 目标索引
    * @returns {Array} 返回交换索引后的新数组
    */
-  function swapIndexArray(array, sourceIndex, targetIndex) {
+  function arraySwapIndex(array, sourceIndex, targetIndex) {
     const target = [...array];
     [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
     return target;
@@ -460,9 +683,17 @@
     __proto__: null,
     isInArray: isInArray,
     getIndexInArray: getIndexInArray,
-    uniqueArray: uniqueArray,
-    shuffleArray: shuffleArray,
-    swapIndexArray: swapIndexArray,
+    arrayMin: arrayMin,
+    arrayMax: arrayMax,
+    arraySum: arraySum,
+    arrayAvg: arrayAvg,
+    arrayUnion: arrayUnion,
+    arrayIntersect: arrayIntersect,
+    arrayEquals: arrayEquals,
+    arrayUnique: arrayUnique,
+    arrayShuffle: arrayShuffle,
+    arraySort: arraySort,
+    arraySwapIndex: arraySwapIndex,
     arrayToTree: arrayToTree
   });
 
@@ -532,50 +763,51 @@
   /**
    * 深拷贝数据
    * @description 目前只支持 Object，Array，Date三种数据类型
-   * @param {Object|Array|Date} target 需要克隆的数据
+   * @param {Object|Array|Date} source 需要克隆的数据
    * @returns {Object|Array|Date} 返回深度克隆后的数据
    */
-  function deepClone(target) {
-    if (isNull(target)) return null;
+  function deepClone(source) {
+    if (isNull(source)) return null;
 
     //  Object
-    if (target instanceof Object) {
+    if (source instanceof Object) {
       let copy = {};
-      for (let attr in target) {
-        if (target.hasOwnProperty(attr)) copy[attr] = deepClone(target[attr]);
+      for (let attr in source) {
+        if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
       }
       return copy;
     }
 
     //  Array
-    else if (target instanceof Array) {
+    else if (source instanceof Array) {
       let copy = [];
-      for (let i = 0, len = target.length; i < len; i++) {
-        copy[i] = deepClone(target[i]);
+      for (let i = 0, len = source.length; i < len; i++) {
+        copy[i] = deepClone(source[i]);
       }
       return copy;
     }
 
     //  Date
-    else if (target instanceof Date) {
+    else if (source instanceof Date) {
       let copy = new Date();
-      copy.setTime(target.getTime());
+      copy.setTime(source.getTime());
       return copy;
     }
 
     // Other
     else {
-      return target;
+      return source;
     }
   }
 
   /**
    * 合并对象
-   * @param {Object} args json字符串
+   * @param {Object} target 目标对象
+   * @param {Object[]} source 原对象列表
    * @returns {Object} 返回合并后的对象
    */
-  function mergeObj(...args) {
-    // todo
+  function mergeObj(target, ...source) {
+    return Object.assign(target, ...source);
   }
 
   var objectUtil = /*#__PURE__*/Object.freeze({
@@ -1013,6 +1245,66 @@
   }
 
   /**
+   * 格式化已过去时间的字符串
+   * @description 显示例如：刚刚，1分钟前，1小时前等
+   * @param {Date|String} date 日期或日期字符串
+   * @returns {String} 返回已过时间字符串
+   */
+  function getPassTimeStr(date) {
+    if (isNull(date)) return "--";
+    // 是字符串日期则转为日期对象
+    if (typeof date == "string") {
+      date = formatStrToDate(date);
+    }
+    // 计算时间差
+    let startTime = date.getTime();
+    let currentTime = Date.now();
+    let time = currentTime - startTime;
+    let day = parseInt(time / (1000 * 60 * 60 * 24));
+    let hour = parseInt(time / (1000 * 60 * 60));
+    let min = parseInt(time / (1000 * 60));
+    let month = parseInt(day / 30);
+    let year = parseInt(month / 12);
+    // 判断
+    if (year) return year + "年前";
+    if (month) return month + "个月前";
+    if (day) return day + "天前";
+    if (hour) return hour + "小时前";
+    if (min) return min + "分钟前";
+    else return "刚刚";
+  }
+
+  /**
+   * 格式化距离当前剩余时间的字符串
+   * @description 显示例如：1天10小时20分钟30秒
+   * @param {Date|String} date 日期或日期字符串
+   * @returns {String} 返回剩余时间的字符串
+   */
+  function formatOverTimeStr(date) {
+    if (isNull(date)) return "--";
+    // 是字符串日期则转为日期对象
+    if (typeof date == "string") {
+      date = formatStrToDate(date);
+    }
+
+    // todo
+    var startDate = new Date(); //开始时间
+    var endDate = date; //结束时间
+    var t = endDate.getTime() - startDate.getTime(); //时间差
+    var d = 0,
+      h = 0,
+      m = 0,
+      s = 0;
+    if (t >= 0) {
+      d = Math.floor(t / 1000 / 3600 / 24);
+      h = Math.floor((t / 1000 / 60 / 60) % 24);
+      m = Math.floor((t / 1000 / 60) % 60);
+      s = Math.floor((t / 1000) % 60);
+    }
+    return `${d}天 ${h}小时 ${m}分钟 ${s}秒`;
+  }
+
+  /**
    * 比较两个日期的大小
    * @param {Date} date1 第一个日期
    * @param {Date} date2 第二个日期
@@ -1084,6 +1376,8 @@
     getDiffDateStrArray: getDiffDateStrArray,
     formatDate: formatDate,
     formatStrToDate: formatStrToDate,
+    getPassTimeStr: getPassTimeStr,
+    formatOverTimeStr: formatOverTimeStr,
     compareDate: compareDate,
     compareTimestamp: compareTimestamp,
     compareUnixTimestamp: compareUnixTimestamp
@@ -1142,17 +1436,6 @@
     REGEXP: REGEXP,
     regexpTest: regexpTest
   });
-
-  // 模式枚举
-  /**
-   * 计算精度模式
-   */
-  const MATH_MODE = {
-    // 正常四舍五入，如：1.354保留两位是1.35；1.355保留两位是1.36；
-    ROUND: 0,
-    // 向下舍出，如：1.354保留两位是1.35；1.355保留两位是1.35；
-    ROUND_FLOOR: 1,
-  };
 
   // 数字精度计算
   /**
@@ -1267,7 +1550,7 @@
    * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
    * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @param {Enum} mode 保留小数模式，参考MATH_MODE枚举类型
+   * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
    * @returns {String} 返回字符串的数字
    */
   function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
@@ -1372,7 +1655,7 @@
    * 尽可能保留小数位数
    * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @param {Enum} mode 保留小数模式，参考MATH_MODE枚举类型
+   * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
    * @returns {Number} 返回保留后的数字
    */
   function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
@@ -1425,7 +1708,6 @@
 
   var mathUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    MATH_MODE: MATH_MODE,
     add: add,
     subtract: subtract,
     multiply: multiply,
@@ -1768,6 +2050,26 @@
     }
   }
 
+  /**
+   * 通过url下载文件
+   * @param {String} fileUrl url文件地址
+   * @param {String} fileName 下载的文件名，不写后缀名则默认为原文件类型
+   */
+  function downloadFileUrl(fileUrl, fileName) {
+    try {
+      const link = window.document.createElement("a");
+      link.download = fileName;
+      link.href = fileUrl;
+      // 生成节点点击
+      window.document.body.appendChild(link);
+      link.click();
+      // 点击后移除节点
+      window.document.body.removeChild(link);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   var fileUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     formatFileSize: formatFileSize,
@@ -1781,7 +2083,8 @@
     base64ToFile: base64ToFile,
     base64ToBlob: base64ToBlob,
     urlToBase64: urlToBase64,
-    downloadBlobFile: downloadBlobFile
+    downloadBlobFile: downloadBlobFile,
+    downloadFileUrl: downloadFileUrl
   });
 
   /**
@@ -1858,9 +2161,10 @@
    * @returns {String} 返回查询到的值
    */
   function getUrlParam(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, "\\$&");
     url = url.split("?")[1];
     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    let r = url.substr(0).match(reg);
+    let r = url.substring(0).match(reg);
     if (r != null) return decodeURI(r[2]);
     return "";
   }
@@ -2089,12 +2393,58 @@
     addClass(elem, newClassName);
   }
 
+  /**
+   * html标签转义
+   * @param {String} htmlStr html字符串
+   * @returns {String} 返回转义后的字符串
+   */
+  function htmlEncode(htmlStr) {
+    const temp = {
+      "<": "&lt;",
+      ">": "&gt;",
+      "&": "&amp;",
+      "(": "&#40;",
+      ")": "&#41;",
+      "/": "&#47;",
+      " ": "&nbsp;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+    return htmlStr.replace(/[<>&|()\/ '"]/g, function (c) {
+      return temp[c];
+    });
+  }
+
+  /**
+   * html标签解码
+   * @param {String} htmlStr html字符串
+   * @returns {String} 返回解析后的字符串
+   */
+  function htmlDecode(htmlStr) {
+    const temp = {
+      "&lt;": "<",
+      "&gt;": ">",
+      "&amp;": "&",
+      "&#40;": "(",
+      "&#41;": ")",
+      "&#47;": "/",
+      "&nbsp;": " ",
+      "&quot;": '"',
+      "&#39;": "'",
+    };
+    return htmlStr.replace(/(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi, function (all, t) {
+      return temp[t];
+    });
+  }
+
   var domUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     hasClass: hasClass,
     addClass: addClass,
     removeClass: removeClass,
-    replaceClass: replaceClass
+    replaceClass: replaceClass,
+    htmlEncode: htmlEncode,
+    htmlDecode: htmlDecode
   });
 
   // 浏览器信息
@@ -2344,6 +2694,9 @@
   // 导出
   var index = {
     loadedTest,
+    // 常量集合
+    ...constant,
+
     // 字符串
     ...stringUtil,
     // 数字

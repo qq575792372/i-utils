@@ -5,9 +5,10 @@
  * @returns {String} 返回查询到的值
  */
 export function getUrlParam(name, url = window.location.href) {
+  name = name.replace(/[\[\]]/g, "\\$&");
   url = url.split("?")[1];
   let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-  let r = url.substr(0).match(reg);
+  let r = url.substring(0).match(reg);
   if (r != null) return decodeURI(r[2]);
   return "";
 }

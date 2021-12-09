@@ -66,48 +66,49 @@ export function parseJson(json) {
 /**
  * 深拷贝数据
  * @description 目前只支持 Object，Array，Date三种数据类型
- * @param {Object|Array|Date} target 需要克隆的数据
+ * @param {Object|Array|Date} source 需要克隆的数据
  * @returns {Object|Array|Date} 返回深度克隆后的数据
  */
-export function deepClone(target) {
-  if (isNull(target)) return null;
+export function deepClone(source) {
+  if (isNull(source)) return null;
 
   //  Object
-  if (target instanceof Object) {
+  if (source instanceof Object) {
     let copy = {};
-    for (let attr in target) {
-      if (target.hasOwnProperty(attr)) copy[attr] = deepClone(target[attr]);
+    for (let attr in source) {
+      if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
     }
     return copy;
   }
 
   //  Array
-  else if (target instanceof Array) {
+  else if (source instanceof Array) {
     let copy = [];
-    for (let i = 0, len = target.length; i < len; i++) {
-      copy[i] = deepClone(target[i]);
+    for (let i = 0, len = source.length; i < len; i++) {
+      copy[i] = deepClone(source[i]);
     }
     return copy;
   }
 
   //  Date
-  else if (target instanceof Date) {
+  else if (source instanceof Date) {
     let copy = new Date();
-    copy.setTime(target.getTime());
+    copy.setTime(source.getTime());
     return copy;
   }
 
   // Other
   else {
-    return target;
+    return source;
   }
 }
 
 /**
  * 合并对象
- * @param {Object} args json字符串
+ * @param {Object} target 目标对象
+ * @param {Object[]} source 原对象列表
  * @returns {Object} 返回合并后的对象
  */
-export function mergeObj(...args) {
-  // todo
+export function mergeObj(target, ...source) {
+  return Object.assign(target, ...source);
 }

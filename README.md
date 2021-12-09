@@ -25,11 +25,11 @@ npm i lime-util --save
 ```javascript
 // 全部引入
 import LimeUtil from "lime-util";
-LimeUtil.loadedTest();
+LimeUtil.loadedTest(); // 输出：lime-util loaded successfully!
 
 // 按需引入
 import { loadedTest } from "lime-util";
-loadedTest();
+loadedTest(); // 输出：lime-util loaded successfully!
 ```
 
 2.require 方式
@@ -37,38 +37,41 @@ loadedTest();
 ```javascript
 // 全部引入
 const LimeUtil = require("lime-util");
-LimeUtil.loadedTest();
+LimeUtil.loadedTest(); // 输出：lime-util loaded successfully!
 
 // 按需引入
 const { loadedTest } = require("lime-util");
-loadedTest();
+loadedTest(); // 输出：lime-util loaded successfully!
 ```
 
 ### API 文档
 
-1. [字符串](https://github.com/qq575792372/lime-util/blob/master/doc/string.md)
-2. [数字](https://github.com/qq575792372/lime-util/blob/master/doc/number.md)
-3. [数组](https://github.com/qq575792372/lime-util/blob/master/doc/array.md)
-4. [对象](https://github.com/qq575792372/lime-util/blob/master/doc/object.md)
-5. [函数](https://github.com/qq575792372/lime-util/blob/master/doc/function.md)
+1. [常量集合](https://github.com/qq575792372/lime-util/blob/master/doc/constant.md)
 
-6. [日期](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
-7. [正则](https://github.com/qq575792372/lime-util/blob/master/doc/regexp.md)
+2. [字符串](https://github.com/qq575792372/lime-util/blob/master/doc/string.md)
 
-8. [数学](https://github.com/qq575792372/lime-util/blob/master/doc/math.md)
+3. [数字](https://github.com/qq575792372/lime-util/blob/master/doc/number.md)
+4. [数组](https://github.com/qq575792372/lime-util/blob/master/doc/array.md)
+5. [对象](https://github.com/qq575792372/lime-util/blob/master/doc/object.md)
+6. [函数](https://github.com/qq575792372/lime-util/blob/master/doc/function.md)
 
-9. [随机数](https://github.com/qq575792372/lime-util/blob/master/doc/random.md)
+7. [日期](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
+8. [正则](https://github.com/qq575792372/lime-util/blob/master/doc/regexp.md)
 
-10. [文件](https://github.com/qq575792372/lime-util/blob/master/doc/file.md)
+9. [数学](https://github.com/qq575792372/lime-util/blob/master/doc/math.md)
 
-11. [颜色](https://github.com/qq575792372/lime-util/blob/master/doc/color.md)
+10. [随机数](https://github.com/qq575792372/lime-util/blob/master/doc/random.md)
 
-12. [校验](https://github.com/qq575792372/lime-util/blob/master/doc/validate.md)
+11. [文件](https://github.com/qq575792372/lime-util/blob/master/doc/file.md)
 
-13. [浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)
-14. [浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)
-15. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
-16. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
-17. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
+12. [颜色](https://github.com/qq575792372/lime-util/blob/master/doc/color.md)
 
-18. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/xcx.md)
+13. [校验](https://github.com/qq575792372/lime-util/blob/master/doc/validate.md)
+
+14. [浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)
+15. [浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)
+16. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
+17. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
+18. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
+
+19. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/xcx.md)

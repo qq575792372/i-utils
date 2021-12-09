@@ -133,7 +133,7 @@ console.log(obj); // 输出：obj对象
 
 - ##### 参数
 
-  `target` {Object|Array|Date} 需要克隆的数据
+  `source` {Object|Array|Date} 需要克隆的原数据
 
 - ##### 返回值
 
@@ -145,4 +145,34 @@ console.log(obj); // 输出：obj对象
 let obj = { id: 1, name: "test" };
 let newObj = LimeUtil.deepClone(obj);
 console.log(newObj); // 输出：深拷贝后的对象
+```
+
+---
+
+#### \_.mergeObj(target)
+
+合并对象
+
+- ##### 参数
+
+  `target` {Object} 目标对象
+  `source` {Object[]} 原对象列表
+
+- ##### 返回值
+
+  {Object} 返回合并后的对象
+
+- ##### 示例
+
+```javascript
+let obj1 = { a: 1 };
+let obj2 = { b: 2 };
+
+// 1.目标对象如果是obj1，则原obj1对象也会改变
+console.log(LimeUtil.mergeObj(obj1, obj2)); // 输出：{a: 1, b: 2}
+console.log(obj1); // 输出：{a: 1, b: 2}
+
+// 2.目标对象如果是空的，则会都合并到目标空对象上，不会影响原对象
+console.log(LimeUtil.mergeObj({}, obj1, obj2)); // 输出：{a: 1, b: 2}
+console.log(obj1); // 输出：{a: 1} 并未改变原对象
 ```

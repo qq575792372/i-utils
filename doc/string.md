@@ -158,7 +158,7 @@ console.log(res); // 输出：4（hello的第一个字母在下标是4的位置�
 
 - ##### 参数
 
-  `value` {String|Number} 补零的数字
+  `value` {Number|String} 补零的数字
   `maxLength` {Number} 补齐 0 后的最大长度，默认 2 位
 
 - ##### 返回值
@@ -181,7 +181,7 @@ console.log(res); // 输出：001
 
 - ##### 参数
 
-  `value` {String|Number} 补零的数字
+  `value` {Number|String} 补零的数字
   `maxLength` {Number} 补齐 0 后的最大长度，默认 2 位
 
 - ##### 返回值
@@ -193,4 +193,46 @@ console.log(res); // 输出：001
 ```javascript
 let res = LimeUtil.zeroEnd("1", 3);
 console.log(res); // 输出：100
+```
+
+---
+
+#### \_.formatThousand(num)
+
+格式化千分位数字
+
+- ##### 参数
+
+  `num` {Number|String} 补零的数字
+
+- ##### 返回值
+
+  {String} 返回格式化后的千分位数字
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.formatThousand(1234567.12345);
+console.log(res); // 输出：1,234,567.12345
+```
+
+---
+
+#### \_.formatAmountChinese(money)
+
+格式化人民币金额大写
+
+- ##### 参数
+
+  `money` {Number|String} 补零的数字
+
+- ##### 返回值
+
+  {String} 返回金额大写
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.formatAmountChinese(1234567.12345);
+console.log(res); // 输出：壹佰贰拾叁万肆仟伍佰陆拾柒元壹角贰分叁毫肆厘
 ```

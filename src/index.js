@@ -3,6 +3,9 @@ const loadedTest = function () {
   console.log("lime-util loaded successfully!");
 };
 
+// 常量集合
+import constant from "./constant";
+
 // 字符串
 import * as stringUtil from "./string";
 // 数字
@@ -51,6 +54,9 @@ import * as xcxUtil from "./xcx";
 // 导出
 export default {
   loadedTest,
+  // 常量集合
+  ...constant,
+
   // 字符串
   ...stringUtil,
   // 数字

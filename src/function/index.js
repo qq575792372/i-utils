@@ -50,3 +50,48 @@ export function debounce(fn, delay = 2000, immediate = true) {
     }
   };
 }
+
+/**
+ * 根据身份证号获得出生日期
+ * @param {String} psidno
+ * @returns {String}
+ */
+function getCardBirth(psidno) {
+  //  todo
+  var birthdayno, birthdaytemp;
+  if (psidno.length === 18) {
+    birthdayno = psidno.substring(6, 14);
+  } else if (psidno.length === 15) {
+    birthdaytemp = psidno.substring(6, 12);
+    birthdayno = "19" + birthdaytemp;
+  } else {
+    chalkPrint("错误的身份证号码，请核对！");
+    return false;
+  }
+  var birthday = birthdayno.substring(0, 4) + "-" + birthdayno.substring(4, 6) + "-" + birthdayno.substring(6, 8);
+  return birthday;
+}
+
+/**
+ * 根据身份证号获取性别
+ * @param {String} psidno
+ * @returns {Number} 1男2女
+ */
+function getCar(psidno) {
+  var sexno, sex;
+  if (psidno.length === 18) {
+    sexno = psidno.substring(16, 17);
+  } else if (psidno.length === 15) {
+    sexno = psidno.substring(14, 15);
+  } else {
+    chalkPrint("错误的身份证号码，请核对！");
+    return false;
+  }
+  var tempid = sexno % 2;
+  if (tempid === 0) {
+    sex = 2;
+  } else {
+    sex = 1;
+  }
+  return sex;
+}

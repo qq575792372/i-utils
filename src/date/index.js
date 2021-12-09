@@ -364,6 +364,65 @@ export function formatStrToDate(dateStr) {
 }
 
 /**
+ * 格式化已过去时间的字符串
+ * @description 显示例如：刚刚，1分钟前，1小时前等
+ * @param {Date|String} date 日期或日期字符串
+ * @returns {String} 返回已过时间字符串
+ */
+export function getPassTimeStr(date) {
+  if (isNull(date)) return "--";
+  // 是字符串日期则转为日期对象
+  if (typeof date == "string") {
+    date = formatStrToDate(date);
+  }
+  // 计算时间差
+  let startTime = date.getTime();
+  let currentTime = Date.now();
+  let time = currentTime - startTime;
+  let day = parseInt(time / (1000 * 60 * 60 * 24));
+  let hour = parseInt(time / (1000 * 60 * 60));
+  let min = parseInt(time / (1000 * 60));
+  let month = parseInt(day / 30);
+  let year = parseInt(month / 12);
+  // 判断
+  if (year) return year + "年前";
+  if (month) return month + "个月前";
+  if (day) return day + "天前";
+  if (hour) return hour + "小时前";
+  if (min) return min + "分钟前";
+  else return "刚刚";
+}
+
+/**
+ * 格式化距离当前剩余时间的字符串
+ * @description 显示例如：1天10小时20分钟30秒
+ * @param {Date|String} date 日期或日期字符串
+ * @returns {String} 返回剩余时间的字符串
+ */
+export function formatOverTimeStr(date) {
+  if (isNull(date)) return "--";
+  // 是字符串日期则转为日期对象
+  if (typeof date == "string") {
+    date = formatStrToDate(date);
+  }
+  // 计算
+  var startDate = new Date(); //开始时间
+  var endDate = date; //结束时间
+  var t = endDate.getTime() - startDate.getTime(); //时间差
+  var d = 0,
+    h = 0,
+    m = 0,
+    s = 0;
+  if (t >= 0) {
+    d = Math.floor(t / 1000 / 3600 / 24);
+    h = Math.floor((t / 1000 / 60 / 60) % 24);
+    m = Math.floor((t / 1000 / 60) % 60);
+    s = Math.floor((t / 1000) % 60);
+  }
+  return `${d}天 ${h}小时 ${m}分钟 ${s}秒`;
+}
+
+/**
  * 比较两个日期的大小
  * @param {Date} date1 第一个日期
  * @param {Date} date2 第二个日期
