@@ -52,46 +52,106 @@ export function debounce(fn, delay = 2000, immediate = true) {
 }
 
 /**
- * 根据身份证号获得出生日期
- * @param {String} psidno
+ * 根据身份证号码获取信息
+ * @description 能获取到 籍贯，出生日期，年龄，性别 信息
+ * @param {String} idCard 身份证号码，支持一代15位和二代18位
  * @returns {String}
  */
-function getCardBirth(psidno) {
-  //  todo
-  var birthdayno, birthdaytemp;
-  if (psidno.length === 18) {
-    birthdayno = psidno.substring(6, 14);
-  } else if (psidno.length === 15) {
-    birthdaytemp = psidno.substring(6, 12);
-    birthdayno = "19" + birthdaytemp;
-  } else {
-    chalkPrint("错误的身份证号码，请核对！");
-    return false;
+export function getIdCardInfo(idCard) {
+  const info = {};
+  // 省份
+  const area = {
+    11: "北京",
+    12: "天津",
+    13: "河北",
+    14: "山西",
+    15: "内蒙古",
+    21: "辽宁",
+    22: "吉林",
+    23: "黑龙江",
+    31: "上海",
+    32: "江苏",
+    33: "浙江",
+    34: "安徽",
+    35: "福建",
+    36: "江西",
+    37: "山东",
+    41: "河南",
+    42: "湖北",
+    43: "湖南",
+    44: "广东",
+    45: "广西",
+    46: "海南",
+    50: "重庆",
+    51: "四川",
+    52: "贵州",
+    53: "云南",
+    54: "西藏",
+    61: "陕西",
+    62: "甘肃",
+    63: "青海",
+    64: "宁夏",
+    65: "新疆",
+    71: "台湾",
+    81: "香港",
+    82: "澳门",
+    91: "国外",
+  };
+  info.province = area[idCard.substring(0, 2)];
+
+  // 15位身份证
+  if (idCard.length == 15) {
+    // 生日
+    info.birthday = "19" + idCard.substring(6, 8) + "-" + idCard.substring(8, 10) + "-" + idCard.substring(10, 12);
+    // 年龄
+    info.age = _getBirthAge(info.birthday);
+    // 性别
+    info.sex = Number(idCard.substring(14)) % 2 == 0 ? "女" : "男";
   }
-  var birthday = birthdayno.substring(0, 4) + "-" + birthdayno.substring(4, 6) + "-" + birthdayno.substring(6, 8);
-  return birthday;
+  // 18位身份证
+  if (idCard.length == 18) {
+    // 生日
+    info.birthday = idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
+    // 年龄
+    info.age = _getBirthAge(info.birthday);
+    // 性别
+    info.sex = Number(idCard.substring(16, 17)) % 2 == 0 ? "女" : "男";
+  }
+  return info;
 }
 
 /**
- * 根据身份证号获取性别
- * @param {String} psidno
- * @returns {Number} 1男2女
+ * 通过日期字符串计算周岁年龄
+ * @description 内部函数
+ * @param {String} dateStr 日期字符串
+ * @returns
  */
-function getCar(psidno) {
-  var sexno, sex;
-  if (psidno.length === 18) {
-    sexno = psidno.substring(16, 17);
-  } else if (psidno.length === 15) {
-    sexno = psidno.substring(14, 15);
-  } else {
-    chalkPrint("错误的身份证号码，请核对！");
-    return false;
+function _getBirthAge(dateStr) {
+  let age = 0;
+  // 传参日期
+  let dateArray = dateStr.split("-");
+  let birthYear = Number(dateArray[0]),
+    birthMonth = Number(dateArray[1]),
+    birthDay = Number(dateArray[2]);
+  // 当前的日期
+  let nowDate = new Date();
+  let nowYear = nowDate.getFullYear(),
+    nowMonth = nowDate.getMonth() + 1,
+    nowDay = nowDate.getDate();
+
+  // 出生年份需要小于当年，否则是0岁
+  let diffAge = nowYear - birthYear;
+  if (diffAge > 0) {
+    if (nowMonth - birthMonth <= 0) {
+      // 日期差小于0，证明还没满周岁，需要减1
+      if (nowDay - birthDay < 0) {
+        age = diffAge - 1;
+      } else {
+        age = diffAge;
+      }
+    } else {
+      age = diffAge;
+    }
   }
-  var tempid = sexno % 2;
-  if (tempid === 0) {
-    sex = 2;
-  } else {
-    sex = 1;
-  }
-  return sex;
+  return age;
 }
