@@ -146,13 +146,13 @@ export function arraySort(array, mode = SORT_MODE.SORT_ASC) {
 }
 
 /**
- * 数组交换位置
+ * 数组交换元素
  * @param {Array} array 数组
  * @param {Number} sourceIndex 原索引
  * @param {Number} targetIndex 目标索引
- * @returns {Array} 返回交换索引后的新数组
+ * @returns {Array} 返回交换元素后的新数组
  */
-export function arraySwapIndex(array, sourceIndex, targetIndex) {
+export function arraySwap(array, sourceIndex, targetIndex) {
   const target = [...array];
   [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
   return target;

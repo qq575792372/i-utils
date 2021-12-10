@@ -1,6 +1,6 @@
 ## 颜色
 
-#### \_.colorRgbToHex(color)
+#### \_.rgbToHex(color)
 
 rgb 颜色转 hex 十六进制
 
@@ -15,13 +15,13 @@ rgb 颜色转 hex 十六进制
 - ##### 示例
 
 ```javascript
-let res = LimeUtil.colorRgbToHex("rgb(255,34,33)");
+let res = LimeUtil.rgbToHex("rgb(255,34,33)");
 console.log(res); // 输出：#002221
 ```
 
 ---
 
-#### \_.colorHexToRgba(color,opacity)
+#### \_.hexToRgba(color,opacity)
 
 hex 十六进制 颜色转 rgba
 
@@ -37,13 +37,13 @@ hex 十六进制 颜色转 rgba
 - ##### 示例
 
 ```javascript
-let res = LimeUtil.colorHexToRgba("#2d8cf0");
+let res = LimeUtil.hexToRgba("#2d8cf0");
 console.log(res); // 输出：rgba(45,140,240,1)
 ```
 
 ---
 
-#### \_.getRandomHexColor()
+#### \_.getRandomHex()
 
 获取随机生成的 16 进制颜色
 
@@ -58,13 +58,13 @@ console.log(res); // 输出：rgba(45,140,240,1)
 - ##### 示例
 
 ```javascript
-let res = LimeUtil.getRandomHexColor();
+let res = LimeUtil.getRandomHex();
 console.log(res); // 输出：#2d8cf0
 ```
 
 ---
 
-#### \_.getRandomRgbColor()
+#### \_.getRandomRgb()
 
 获取随机生成的 rgb 颜色
 
@@ -79,6 +79,6 @@ console.log(res); // 输出：#2d8cf0
 - ##### 示例
 
 ```javascript
-let res = LimeUtil.getRandomRgbColor();
+let res = LimeUtil.getRandomRgb();
 console.log(res); // 输出：rgba(45,140,240,1)
 ```

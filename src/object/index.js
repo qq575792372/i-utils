@@ -19,7 +19,7 @@ export function mapToObject(map) {
  * @returns {String} 返回Json字符串
  */
 export function mapToJson(map) {
-  return JSON.stringify(this.mapToObject(map));
+  return JSON.stringify(mapToObject(map));
 }
 
 /**
@@ -41,7 +41,7 @@ export function objectToMap(obj) {
  * @returns {Map} 返回Map
  */
 export function jsonToMap(json) {
-  return objectToMap(JSON.parse(json));
+  return objToMap(JSON.parse(json));
 }
 
 /**
@@ -49,7 +49,7 @@ export function jsonToMap(json) {
  * @param {Object} json json对象
  * @returns {String} 返回Json字符串
  */
-export function stringifyJson(json) {
+export function strifyJson(json) {
   return JSON.stringify(json);
 }
 
@@ -109,6 +109,6 @@ export function deepClone(source) {
  * @param {Object[]} source 原对象列表
  * @returns {Object} 返回合并后的对象
  */
-export function mergeObj(target, ...source) {
+export function merge(target, ...source) {
   return Object.assign(target, ...source);
 }

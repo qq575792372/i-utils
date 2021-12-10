@@ -3,7 +3,7 @@
  * @param {String} color rgb颜色字符串
  * @returns {String} 返回生成的hex颜色
  */
-export function colorRgbToHex(color) {
+export function rgbToHex(color) {
   let rgb = color.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
   let r = parseInt(rgb[0].split("(")[1]);
   let g = parseInt(rgb[1]);
@@ -19,7 +19,7 @@ export function colorRgbToHex(color) {
  * @param {Number} opacity 透明度，0-1之间，默认1
  * @returns {String} 返回生成的 rgba 颜色
  */
-export function colorHexToRgba(color, opacity = 1) {
+export function hexToRgba(color, opacity = 1) {
   return (
     "rgba(" +
     parseInt("0x" + color.slice(1, 3)) +
@@ -37,7 +37,7 @@ export function colorHexToRgba(color, opacity = 1) {
  * 获取随机生成的16进制颜色
  * @returns {String} 返回生成的十六进制颜色
  */
-export function getRandomHexColor() {
+export function getRandomHex() {
   return (
     "#" +
     (function (h) {
@@ -50,7 +50,7 @@ export function getRandomHexColor() {
  * 获取随机生成的 rgb 颜色
  * @returns {String} 返回生成的 rgb 颜色
  */
-export function getRandomRgbColor() {
+export function getRandomRgb() {
   let r = Math.floor(Math.random() * 256);
   let g = Math.floor(Math.random() * 256);
   let b = Math.floor(Math.random() * 256);

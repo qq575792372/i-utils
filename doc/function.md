@@ -66,3 +66,28 @@ function hello() {
 }
 document.getElementById("mybtn").onclick = LimeUtil.debounce(hello, 1000);
 ```
+
+---
+
+#### \_.getIdCardInfo(idCard)
+
+根据身份证号码获取信息
+`能获取到 籍贯，出生日期，年龄，性别 信息`
+
+- ##### 参数
+
+  `idCard` {String} 身份证号码，支持一代 15 位和二代 18 位
+
+- ##### 返回值
+
+  {Object} 返回身份证信息
+
+- ##### 示例
+
+```javascript
+// 输出：{province: '河南', birthday: '2010-12-01', age: 11, sex: '女'}
+console.log(LimeUtil.getIdCardInfo("412821201012012221"));
+
+// 输出：{province: '四川', birthday: '1980-02-22', age: 41, sex: '女'}
+console.log(LimeUtil.getIdCardInfo("511702800222130"));
+```

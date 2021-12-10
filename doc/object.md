@@ -15,7 +15,7 @@ map 转 object
 - ##### 示例
 
 ```javascript
-let obj = LimeUtil.objectToMap(map);
+let obj = LimeUtil.mapToObject(map);
 console.log(obj); // 输出：obj对象
 ```
 
@@ -84,7 +84,7 @@ console.log(map); // 输出：map对象
 
 ---
 
-#### \_.stringifyJson(json)
+#### \_.strifyJson(json)
 
 json 对象转 json 字符串
 
@@ -99,7 +99,7 @@ json 对象转 json 字符串
 - ##### 示例
 
 ```javascript
-let str = LimeUtil.stringifyJson(json);
+let str = LimeUtil.strifyJson(json);
 console.log(obj); // 输出：json字符串
 ```
 
@@ -149,7 +149,7 @@ console.log(newObj); // 输出：深拷贝后的对象
 
 ---
 
-#### \_.mergeObj(target)
+#### \_.merge(target)
 
 合并对象
 
@@ -169,10 +169,10 @@ let obj1 = { a: 1 };
 let obj2 = { b: 2 };
 
 // 1.目标对象如果是obj1，则原obj1对象也会改变
-console.log(LimeUtil.mergeObj(obj1, obj2)); // 输出：{a: 1, b: 2}
+console.log(LimeUtil.merge(obj1, obj2)); // 输出：{a: 1, b: 2}
 console.log(obj1); // 输出：{a: 1, b: 2}
 
 // 2.目标对象如果是空的，则会都合并到目标空对象上，不会影响原对象
-console.log(LimeUtil.mergeObj({}, obj1, obj2)); // 输出：{a: 1, b: 2}
+console.log(LimeUtil.merge({}, obj1, obj2)); // 输出：{a: 1, b: 2}
 console.log(obj1); // 输出：{a: 1} 并未改变原对象
 ```

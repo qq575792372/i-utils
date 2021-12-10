@@ -107,6 +107,48 @@ console.log(res); // 输出：say hi hi!
 
 ---
 
+#### \_.toUpper(value)
+
+字符串转大写
+
+- ##### 参数
+
+  `value` {String} 参数
+
+- ##### 返回值
+
+  {String} 返回处理后的字符串
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.toUpper("say hello");
+console.log(res); // 输出：SAY HELLO
+```
+
+---
+
+#### \_.toLower(value)
+
+字符串转小写
+
+- ##### 参数
+
+  `value` {String} 参数
+
+- ##### 返回值
+
+  {String} 返回处理后的字符串
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.toLower("Say Hello");
+console.log(res); // 输出：say hello
+```
+
+---
+
 #### \_.isInString(value, str)
 
 字符串中是否包含指定的元素
@@ -218,7 +260,7 @@ console.log(res); // 输出：1,234,567.12345
 
 ---
 
-#### \_.formatAmountChinese(money)
+#### \_.formatRmbChinese(money)
 
 格式化人民币金额大写
 

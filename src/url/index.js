@@ -1,7 +1,7 @@
 /**
- * 从url中获取参数值
+ * 从url链接中获取参数
  * @param {String} name 参数名
- * @param {String} url url地址，默认当前地址栏url
+ * @param {String} url url链接地址，默认当前地址栏url
  * @returns {String} 返回查询到的值
  */
 export function getUrlParam(name, url = window.location.href) {
@@ -18,7 +18,7 @@ export function getUrlParam(name, url = window.location.href) {
  * @param {String} url url地址，默认当前地址栏url
  * @returns {Object} 返回参数对象
  */
-export function urlQueryToObject(url = window.location.href) {
+export function urlQeuryToObj(url = window.location.href) {
   if (url.indexOf("?") === -1) {
     return {};
   }
@@ -37,7 +37,7 @@ export function urlQueryToObject(url = window.location.href) {
  *  @param {Object} obj 参数对象
  *  @returns {String} 返回 id=1&name=xx 格式的url查询参数
  */
-export function objectToUrlQuery(obj) {
+export function objToUrlQuery(obj) {
   if (!obj) return "";
   let pairs = [];
   for (let key in obj) {

@@ -108,7 +108,6 @@ export function modulo(arg1, arg2) {
   return (Math.round(Number(arg1) * d) % Math.round(Number(arg2) * d)) / d;
 }
 
-// 强制保留小数位数
 /**
  * 强制保留小数位数
  * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
@@ -120,27 +119,42 @@ export function modulo(arg1, arg2) {
 export function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
   // 四舍五入
   if (mode == MATH_MODE.ROUND) {
-    return toFixedRound(num, decimals);
+    return _toFixedRound(num, decimals);
   }
   // 向下舍出
   if (mode == MATH_MODE.ROUND_FLOOR) {
-    return toFixedFloor(num, decimals);
+    return _toFixedFloor(num, decimals);
   }
 }
+
+/**
+ * 尽可能保留小数位数
+ * @param {String|Number} num 数字
+ * @param {Number} decimals 保留小数的位数，默认2位
+ * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
+ * @returns {Number} 返回保留后的数字
+ */
+export function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
+  // 四舍五入
+  if (mode == MATH_MODE.ROUND) {
+    return _toDecimalRound(num, decimals);
+  }
+  // 向下舍出
+  if (mode == MATH_MODE.ROUND_FLOOR) {
+    return _toDecimalFloor(num, decimals);
+  }
+}
+
+// 内部函数
 
 /**
  * 四舍五入，强制保留小数位数
  * @description 默认保留两位小数，此方法解决原生的toFixed()会五舍六入的问题
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @example
- * toFixedRound(1) // 输出：1.00
- * toFixedRound(1.0) // 输出：1.00
- * toFixedRound(1.01) // 输出：1.01
- * toFixedRound(1.015) // 四舍五入输出：1.02
  * @returns {String} 返回字符串的数字
  */
-export function toFixedRound(num, decimals = 2) {
+function _toFixedRound(num, decimals = 2) {
   if (isNaN(num)) {
     return "--";
   }
@@ -177,14 +191,9 @@ export function toFixedRound(num, decimals = 2) {
  * @description 默认保留两位小数，此方法相当于强制截取小数位数
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @example
- * toFixedFloor(1) // 输出：1.00
- * toFixedFloor(1.0) // 输出：1.00
- * toFixedFloor(1.01) // 输出：1.01
- * toFixedFloor(1.015) // 四舍后输出：1.01
  * @returns {Number} 返回字符串的数字
  */
-export function toFixedFloor(num, decimals = 2) {
+function _toFixedFloor(num, decimals = 2) {
   if (isNaN(num)) {
     return "--";
   }
@@ -214,36 +223,13 @@ export function toFixedFloor(num, decimals = 2) {
   return String(realVal);
 }
 
-// 尽可能保留小数位数
-/**
- * 尽可能保留小数位数
- * @param {String|Number} num 数字
- * @param {Number} decimals 保留小数的位数，默认2位
- * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
- * @returns {Number} 返回保留后的数字
- */
-export function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
-  // 四舍五入
-  if (mode == MATH_MODE.ROUND) {
-    return toDecimalRound(num, decimals);
-  }
-  // 向下舍出
-  if (mode == MATH_MODE.ROUND_FLOOR) {
-    return toDecimalFloor(num, decimals);
-  }
-}
 /**
  * 四舍五入，尽可能保留小数
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @example
- * toDecimalRound(1) // 不够两位，输出：1
- * toDecimalRound(1.0) // 不够两位，输出：1
- * toDecimalRound(1.01) // 向上五入，输出：1.01
- * toDecimalRound(1.015) // 向上五入，输出：1.02
  * @returns {Number} 返回保留后的数字
  */
-export function toDecimalRound(num, decimals = 2) {
+export function _toDecimalRound(num, decimals = 2) {
   if (isNaN(num)) {
     return "--";
   }
@@ -255,14 +241,9 @@ export function toDecimalRound(num, decimals = 2) {
  * 向下舍入，尽可能保留小数
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @example
- * toDecimalFloor(1) // 不够两位，输出：1
- * toDecimalFloor(1.0) // 不够两位，输出：1
- * toDecimalFloor(1.01) // 向下舍入，输出：1
- * toDecimalFloor(1.015) // 向下舍入，输出：1
  * @returns {Number} 返回保留后的数字
  */
-export function toDecimalFloor(num, decimals = 2) {
+export function _toDecimalFloor(num, decimals = 2) {
   if (isNaN(num)) {
     return "--";
   }

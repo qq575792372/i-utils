@@ -89,6 +89,24 @@
   }
 
   /**
+   * 字符串转大写
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function toUpper(value) {
+    return String(value).toLocaleUpperCase();
+  }
+
+  /**
+   * 字符串转小写
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function toLower(value) {
+    String(value).toLocaleLowerCase();
+  }
+
+  /**
    * 字符串中是否包含指定的元素
    * @param {String} value 包含的元素
    * @param {String} str 查找的字符串
@@ -156,7 +174,7 @@
    * @param {Number|String} money 金额
    * @returns {String} 返回金额大写
    */
-  function formatAmountChinese(money) {
+  function formatRmbChinese(money) {
     //汉字的数字
     let cnNums = new Array("零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖");
     //基本单位
@@ -252,12 +270,14 @@
     trimEnd: trimEnd,
     trimAll: trimAll,
     replaceAll: replaceAll,
+    toUpper: toUpper,
+    toLower: toLower,
     isInString: isInString,
     getIndexInString: getIndexInString,
     zeroStart: zeroStart,
     zeroEnd: zeroEnd,
     formatThousand: formatThousand,
-    formatAmountChinese: formatAmountChinese
+    formatRmbChinese: formatRmbChinese
   });
 
   /**
@@ -649,13 +669,13 @@
   }
 
   /**
-   * 数组交换位置
+   * 数组交换元素
    * @param {Array} array 数组
    * @param {Number} sourceIndex 原索引
    * @param {Number} targetIndex 目标索引
-   * @returns {Array} 返回交换索引后的新数组
+   * @returns {Array} 返回交换元素后的新数组
    */
-  function arraySwapIndex(array, sourceIndex, targetIndex) {
+  function arraySwap(array, sourceIndex, targetIndex) {
     const target = [...array];
     [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
     return target;
@@ -693,7 +713,7 @@
     arrayUnique: arrayUnique,
     arrayShuffle: arrayShuffle,
     arraySort: arraySort,
-    arraySwapIndex: arraySwapIndex,
+    arraySwap: arraySwap,
     arrayToTree: arrayToTree
   });
 
@@ -716,7 +736,7 @@
    * @returns {String} 返回Json字符串
    */
   function mapToJson(map) {
-    return JSON.stringify(this.mapToObject(map));
+    return JSON.stringify(mapToObject(map));
   }
 
   /**
@@ -738,7 +758,7 @@
    * @returns {Map} 返回Map
    */
   function jsonToMap(json) {
-    return objectToMap(JSON.parse(json));
+    return objToMap(JSON.parse(json));
   }
 
   /**
@@ -746,7 +766,7 @@
    * @param {Object} json json对象
    * @returns {String} 返回Json字符串
    */
-  function stringifyJson(json) {
+  function strifyJson(json) {
     return JSON.stringify(json);
   }
 
@@ -806,7 +826,7 @@
    * @param {Object[]} source 原对象列表
    * @returns {Object} 返回合并后的对象
    */
-  function mergeObj(target, ...source) {
+  function merge(target, ...source) {
     return Object.assign(target, ...source);
   }
 
@@ -816,10 +836,10 @@
     mapToJson: mapToJson,
     objectToMap: objectToMap,
     jsonToMap: jsonToMap,
-    stringifyJson: stringifyJson,
+    strifyJson: strifyJson,
     parseJson: parseJson,
     deepClone: deepClone,
-    mergeObj: mergeObj
+    merge: merge
   });
 
   /**
@@ -879,7 +899,7 @@
    * 根据身份证号码获取信息
    * @description 能获取到 籍贯，出生日期，年龄，性别 信息
    * @param {String} idCard 身份证号码，支持一代15位和二代18位
-   * @returns {String}
+   * @returns {Object} 返回身份证信息
    */
   function getIdCardInfo(idCard) {
     const info = {};
@@ -1109,7 +1129,7 @@
    * @param {Number} month 月
    * @returns {Number} 返回对应年月的天数
    */
-  function getYearMonthDayNum(year, month) {
+  function getYearMonthDays(year, month) {
     if (isEmpty(year) || isEmpty(month)) return;
     month = this.parseInt(month);
     return new Date(year, month, 0).getDate();
@@ -1121,7 +1141,7 @@
    * @param {Number} month 月
    * @returns 返回对应年月的天数数组
    */
-  function getYearMonthDayArray(year, month) {
+  function getYearMonthDaysArray(year, month) {
     if (isEmpty(year) || isEmpty(month)) return;
     month = this.parseInt(month);
     return Array.from(
@@ -1133,7 +1153,7 @@
   }
 
   /**
-   * 获得某年的某月的最后一天是几号
+   * 获得某年某月的最后一天是几号
    * @param {Number} year 年
    * @param {Number} month 月
    * @returns 返回对应年月的最后一天是几号
@@ -1146,7 +1166,8 @@
 
   /**
    * 日期字符串转数组
-   * @param {String} dateStr 日期字符串，格式支持：yyyy-MM-dd，yyyy/MM/dd
+   * @description 格式支持：yyyy-MM-dd，yyyy/MM/dd，yyyy-MM-dd HH:mm:ss，yyyy/MM/dd HH:mm:ss
+   * @param {String} dateStr 日期字符串，
    * @returns {Array} 返回字符串数组
    */
   function dateStrToArray(dateStr) {
@@ -1156,23 +1177,12 @@
   }
 
   /**
-   * 时间字符串转数组
-   * @param {String} dateTimeStr 时间字符串，格式支持：yyyy-MM-dd HH:mm:ss，yyyy/MM/dd HH:mm:ss
-   * @returns 返回字符串数组
-   */
-  function dateTimeStrToArray(dateTimeStr) {
-    if (isEmpty(dateTimeStr)) return;
-    dateTimeStr = dateTimeStr.replace(/(\-)|(\:)|(\s)|(\/)/g, ",");
-    return dateTimeStr.split(",");
-  }
-
-  /**
    * 获得加减年数后的日期
    * @param {Date} date 日期参数，默认当前日期
-   * @param {Number} num 加减数量，用+1和-1来表示
-   * @returns {Date} 返回加减年数后的日期
+   * @param {Number} num 加减数量，用正数和负数表示
+   * @returns {Date} 返回加减后的日期
    */
-  function getDiffYear(date = new Date(), num = +1) {
+  function addYear(date = new Date(), num = +1) {
     date.setFullYear(date.getFullYear() + num);
     return date;
   }
@@ -1180,10 +1190,10 @@
   /**
    * 获得加减月数后的日期
    * @param {Date} date 日期参数，默认当前日期
-   * @param {Number} num 加减数量，用+1和-1来表示
-   * @returns {Number} 返回加减月数后的日期
+   * @param {Number} num 加减数量，用正数和负数表示
+   * @returns {Date} 返回加减后的日期
    */
-  function getDiffMonth(date = new Date(), num = +1) {
+  function addMonth(date = new Date(), num = +1) {
     date.setMonth(date.getMonth() + num);
     return date;
   }
@@ -1191,11 +1201,44 @@
   /**
    * 获得加减天数后的日期
    * @param {Date} date 日期参数，默认当前日期
-   * @param {Number} num 加减数量，用+1和-1来表示
-   * @returns {Number} 返回加减天数后的日期
+   * @param {Number} num 加减数量，用正数和负数表示
+   * @returns {Date} 返回加减后的日期
    */
-  function getDiffDate(date = new Date(), num = +1) {
+  function addDate(date = new Date(), num = +1) {
     date.setDate(date.getDate() + num);
+    return date;
+  }
+
+  /**
+   * 获得加减小时后的日期
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {Number} num 加减数量，用正数和负数表示
+   * @returns {Date} 返回加减后的日期
+   */
+  function addHours(date = new Date(), num = +1) {
+    date.setHours(date.getHours() + num);
+    return date;
+  }
+
+  /**
+   * 获得加减分钟后的日期
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {Number} num 加减数量，用正数和负数表示
+   * @returns {Date} 返回加减后的日期
+   */
+  function addMinutes(date = new Date(), num = +1) {
+    date.setMinutes(date.getMinutes() + num);
+    return date;
+  }
+
+  /**
+   * 获得加减秒数后的日期
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {Number} num 加减数量，用正数和负数表示
+   * @returns {Date} 返回加减后的日期
+   */
+  function addSeconds(date = new Date(), num = +1) {
+    date.setSeconds(date.getSeconds() + num);
     return date;
   }
 
@@ -1465,14 +1508,16 @@
     timestampToDate: timestampToDate,
     unixTimestampToDate: unixTimestampToDate,
     getWeekDay: getWeekDay,
-    getYearMonthDayNum: getYearMonthDayNum,
-    getYearMonthDayArray: getYearMonthDayArray,
+    getYearMonthDays: getYearMonthDays,
+    getYearMonthDaysArray: getYearMonthDaysArray,
     getYearMonthLastDay: getYearMonthLastDay,
     dateStrToArray: dateStrToArray,
-    dateTimeStrToArray: dateTimeStrToArray,
-    getDiffYear: getDiffYear,
-    getDiffMonth: getDiffMonth,
-    getDiffDate: getDiffDate,
+    addYear: addYear,
+    addMonth: addMonth,
+    addDate: addDate,
+    addHours: addHours,
+    addMinutes: addMinutes,
+    addSeconds: addSeconds,
     getDiffDateNum: getDiffDateNum,
     getDiffDateStrNum: getDiffDateStrNum,
     getDiffTimestampNum: getDiffTimestampNum,
@@ -1653,7 +1698,6 @@
     return (Math.round(Number(arg1) * d) % Math.round(Number(arg2) * d)) / d;
   }
 
-  // 强制保留小数位数
   /**
    * 强制保留小数位数
    * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
@@ -1665,27 +1709,42 @@
   function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
     // 四舍五入
     if (mode == MATH_MODE.ROUND) {
-      return toFixedRound(num, decimals);
+      return _toFixedRound(num, decimals);
     }
     // 向下舍出
     if (mode == MATH_MODE.ROUND_FLOOR) {
-      return toFixedFloor(num, decimals);
+      return _toFixedFloor(num, decimals);
     }
   }
+
+  /**
+   * 尽可能保留小数位数
+   * @param {String|Number} num 数字
+   * @param {Number} decimals 保留小数的位数，默认2位
+   * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
+   * @returns {Number} 返回保留后的数字
+   */
+  function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
+    // 四舍五入
+    if (mode == MATH_MODE.ROUND) {
+      return _toDecimalRound(num, decimals);
+    }
+    // 向下舍出
+    if (mode == MATH_MODE.ROUND_FLOOR) {
+      return _toDecimalFloor(num, decimals);
+    }
+  }
+
+  // 内部函数
 
   /**
    * 四舍五入，强制保留小数位数
    * @description 默认保留两位小数，此方法解决原生的toFixed()会五舍六入的问题
    * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @example
-   * toFixedRound(1) // 输出：1.00
-   * toFixedRound(1.0) // 输出：1.00
-   * toFixedRound(1.01) // 输出：1.01
-   * toFixedRound(1.015) // 四舍五入输出：1.02
    * @returns {String} 返回字符串的数字
    */
-  function toFixedRound(num, decimals = 2) {
+  function _toFixedRound(num, decimals = 2) {
     if (isNaN(num)) {
       return "--";
     }
@@ -1722,14 +1781,9 @@
    * @description 默认保留两位小数，此方法相当于强制截取小数位数
    * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @example
-   * toFixedFloor(1) // 输出：1.00
-   * toFixedFloor(1.0) // 输出：1.00
-   * toFixedFloor(1.01) // 输出：1.01
-   * toFixedFloor(1.015) // 四舍后输出：1.01
    * @returns {Number} 返回字符串的数字
    */
-  function toFixedFloor(num, decimals = 2) {
+  function _toFixedFloor(num, decimals = 2) {
     if (isNaN(num)) {
       return "--";
     }
@@ -1759,36 +1813,13 @@
     return String(realVal);
   }
 
-  // 尽可能保留小数位数
-  /**
-   * 尽可能保留小数位数
-   * @param {String|Number} num 数字
-   * @param {Number} decimals 保留小数的位数，默认2位
-   * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
-   * @returns {Number} 返回保留后的数字
-   */
-  function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
-    // 四舍五入
-    if (mode == MATH_MODE.ROUND) {
-      return toDecimalRound(num, decimals);
-    }
-    // 向下舍出
-    if (mode == MATH_MODE.ROUND_FLOOR) {
-      return toDecimalFloor(num, decimals);
-    }
-  }
   /**
    * 四舍五入，尽可能保留小数
    * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @example
-   * toDecimalRound(1) // 不够两位，输出：1
-   * toDecimalRound(1.0) // 不够两位，输出：1
-   * toDecimalRound(1.01) // 向上五入，输出：1.01
-   * toDecimalRound(1.015) // 向上五入，输出：1.02
    * @returns {Number} 返回保留后的数字
    */
-  function toDecimalRound(num, decimals = 2) {
+  function _toDecimalRound(num, decimals = 2) {
     if (isNaN(num)) {
       return "--";
     }
@@ -1800,14 +1831,9 @@
    * 向下舍入，尽可能保留小数
    * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @example
-   * toDecimalFloor(1) // 不够两位，输出：1
-   * toDecimalFloor(1.0) // 不够两位，输出：1
-   * toDecimalFloor(1.01) // 向下舍入，输出：1
-   * toDecimalFloor(1.015) // 向下舍入，输出：1
    * @returns {Number} 返回保留后的数字
    */
-  function toDecimalFloor(num, decimals = 2) {
+  function _toDecimalFloor(num, decimals = 2) {
     if (isNaN(num)) {
       return "--";
     }
@@ -1823,11 +1849,9 @@
     divide: divide,
     modulo: modulo,
     toFixed: toFixed,
-    toFixedRound: toFixedRound,
-    toFixedFloor: toFixedFloor,
     toDecimal: toDecimal,
-    toDecimalRound: toDecimalRound,
-    toDecimalFloor: toDecimalFloor
+    _toDecimalRound: _toDecimalRound,
+    _toDecimalFloor: _toDecimalFloor
   });
 
   /**
@@ -2201,7 +2225,7 @@
    * @param {String} color rgb颜色字符串
    * @returns {String} 返回生成的hex颜色
    */
-  function colorRgbToHex(color) {
+  function rgbToHex(color) {
     let rgb = color.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
     let r = parseInt(rgb[0].split("(")[1]);
     let g = parseInt(rgb[1]);
@@ -2217,7 +2241,7 @@
    * @param {Number} opacity 透明度，0-1之间，默认1
    * @returns {String} 返回生成的 rgba 颜色
    */
-  function colorHexToRgba(color, opacity = 1) {
+  function hexToRgba(color, opacity = 1) {
     return (
       "rgba(" +
       parseInt("0x" + color.slice(1, 3)) +
@@ -2235,7 +2259,7 @@
    * 获取随机生成的16进制颜色
    * @returns {String} 返回生成的十六进制颜色
    */
-  function getRandomHexColor() {
+  function getRandomHex() {
     return (
       "#" +
       (function (h) {
@@ -2248,7 +2272,7 @@
    * 获取随机生成的 rgb 颜色
    * @returns {String} 返回生成的 rgb 颜色
    */
-  function getRandomRgbColor() {
+  function getRandomRgb() {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
@@ -2257,16 +2281,16 @@
 
   var colorUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    colorRgbToHex: colorRgbToHex,
-    colorHexToRgba: colorHexToRgba,
-    getRandomHexColor: getRandomHexColor,
-    getRandomRgbColor: getRandomRgbColor
+    rgbToHex: rgbToHex,
+    hexToRgba: hexToRgba,
+    getRandomHex: getRandomHex,
+    getRandomRgb: getRandomRgb
   });
 
   /**
-   * 从url中获取参数值
+   * 从url链接中获取参数
    * @param {String} name 参数名
-   * @param {String} url url地址，默认当前地址栏url
+   * @param {String} url url链接地址，默认当前地址栏url
    * @returns {String} 返回查询到的值
    */
   function getUrlParam(name, url = window.location.href) {
@@ -2283,7 +2307,7 @@
    * @param {String} url url地址，默认当前地址栏url
    * @returns {Object} 返回参数对象
    */
-  function urlQueryToObject(url = window.location.href) {
+  function urlQeuryToObj(url = window.location.href) {
     if (url.indexOf("?") === -1) {
       return {};
     }
@@ -2302,7 +2326,7 @@
    *  @param {Object} obj 参数对象
    *  @returns {String} 返回 id=1&name=xx 格式的url查询参数
    */
-  function objectToUrlQuery(obj) {
+  function objToUrlQuery(obj) {
     if (!obj) return "";
     let pairs = [];
     for (let key in obj) {
@@ -2321,8 +2345,8 @@
   var urlUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     getUrlParam: getUrlParam,
-    urlQueryToObject: urlQueryToObject,
-    objectToUrlQuery: objectToUrlQuery
+    urlQeuryToObj: urlQeuryToObj,
+    objToUrlQuery: objToUrlQuery
   });
 
   /**

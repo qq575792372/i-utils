@@ -271,9 +271,9 @@ console.log(res); // 输出：[1,3,2]
 
 ---
 
-#### \_.arraySwapIndex(array)
+#### \_.arraySwap(array)
 
-数组交换位置
+数组交换元素
 
 - ##### 参数
 
@@ -283,14 +283,14 @@ console.log(res); // 输出：[1,3,2]
 
 - ##### 返回值
 
-  {Array} 返回交换索引后的新数组
+  {Array} 返回交换元素后的新数组
 
 * ##### 示例
 
 ```javascript
 let source = [1, 2, 3, 4];
 // 第0个和第1个交换位置
-let res = LimeUtil.arraySwapIndex(source, 0, 1);
+let res = LimeUtil.arraySwap(source, 0, 1);
 console.log(res); // 输出：[2,1,3,4]
 ```
 

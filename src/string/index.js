@@ -47,6 +47,24 @@ export function replaceAll(value, oldSubstr, newSubstr) {
 }
 
 /**
+ * 字符串转大写
+ * @param {String} value 参数
+ * @returns {String} 返回处理后的字符串
+ */
+export function toUpper(value) {
+  return String(value).toLocaleUpperCase();
+}
+
+/**
+ * 字符串转小写
+ * @param {String} value 参数
+ * @returns {String} 返回处理后的字符串
+ */
+export function toLower(value) {
+  String(value).toLocaleLowerCase();
+}
+
+/**
  * 字符串中是否包含指定的元素
  * @param {String} value 包含的元素
  * @param {String} str 查找的字符串
@@ -114,7 +132,7 @@ export function formatThousand(num) {
  * @param {Number|String} money 金额
  * @returns {String} 返回金额大写
  */
-export function formatAmountChinese(money) {
+export function formatRmbChinese(money) {
   //汉字的数字
   let cnNums = new Array("零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖");
   //基本单位
