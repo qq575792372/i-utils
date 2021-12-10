@@ -7,7 +7,7 @@
 
 - ##### 参数
 
-  `fn` {Function} 目标函数
+  `fn` {Function} 目标函数  
   `interval` {Number} 时间间隔，单位毫秒，默认 2 秒
 
 - ##### 返回值
