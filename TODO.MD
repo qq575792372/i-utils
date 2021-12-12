@@ -24,6 +24,8 @@
 
 
 12. getPastTimeStr(date) 获得过去时间的字符串显示，替换之前的名称
+
+
 13. isAM(date) 是否是上午
 14. isPM(date) 是否是下午
 15. isWeekend(date) 是否是周末（周六或周日）
