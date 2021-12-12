@@ -2,7 +2,7 @@
 
 1. formatDate(date:String|Date|Timestamp|UnixTimestamp, format='yyyy-MM-dd') => String 用作不同格式的日期格式化为日期格式
 2. parseDate(str:String) => Date 日期字符串转为 Date
-
+<!-- 
 <!-- 当前天是所在 xxx 的第几天 -->
 
 3. getDayOfWeek(date) 获得当前日期是所在周的第几天，1-7 数字
@@ -19,6 +19,9 @@
 
 10. getWeekOfMonth(date) 获得当前日期是所在月份的第几周
 11. getWeekOfYear(date) 获得当前日期是所在年份的第几周
+
+ -->
+
 
 12. getPastTimeStr(date) 获得过去时间的字符串显示，替换之前的名称
 13. isAM(date) 是否是上午
