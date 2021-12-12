@@ -320,7 +320,7 @@ console.log(LimeUtil.isChinese(12.01)); // 输出：false
 
 #### \_.isEmpty(value)
 
-判断值是否为空
+判断值是否为空  
 `针对的是实际有意义的值，如果值是{},[]空的数据则为空`
 
 - ##### 参数
@@ -344,7 +344,7 @@ console.log(LimeUtil.isEmpty(undefined)); // 输出：true
 
 #### \_.isNull(value)
 
-判断对象是否为空
+判断对象是否为空  
 `针对的是对象初始化数据，如果值是{},[]等初始化过的则不为空`
 
 - ##### 参数
@@ -368,7 +368,7 @@ console.log(LimeUtil.isNull(12.01)); // 输出：false
 
 #### \_.isBlank(value)
 
-判断是否值空的
+判断是否值空的  
 `除了对null，undefined等校验，还会校验空格`
 
 - ##### 参数
@@ -421,7 +421,7 @@ console.log(LimeUtil.isUndefined(12.01)); // 输出：false
 
 - ##### 参数
 
-  `value1` {String|Number} 参数 1
+  `value1` {String|Number} 参数 1  
   `value2` {String|Number} 参数 2
 
 - ##### 返回值
@@ -445,7 +445,7 @@ console.log(LimeUtil.equals(121, 12)); // 输出：false
 
 - ##### 参数
 
-  `value1` {String|Number} 参数 1
+  `value1` {String|Number} 参数 1  
   `value2` {String|Number} 参数 2
 
 - ##### 返回值

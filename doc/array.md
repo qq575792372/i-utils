@@ -6,7 +6,7 @@
 
 - ##### 参数
 
-  `value` {String|Number} 元素
+  `value` {String|Number} 元素  
   `array` {Array} 查找的数组
 
 - ##### 返回值
@@ -28,7 +28,7 @@ console.log(res); // 输出：true
 
 - ##### 参数
 
-  `value` {String|Number} 元素
+  `value` {String|Number} 元素  
   `array` {Array} 查找的数组
 
 - ##### 返回值
@@ -134,7 +134,7 @@ console.log(res); // 输出：4
 
 - ##### 参数
 
-  `array1` {Array} 数组 1
+  `array1` {Array} 数组 1  
   `array2` {Array} 数组 2
 
 - ##### 返回值
@@ -157,7 +157,7 @@ console.log(LimeUtil.arrayUnion(array1, array2)); // 输出：[1, 2, 3, 4, 5]
 
 - ##### 参数
 
-  `array1` {Array} 数组 1
+  `array1` {Array} 数组 1  
   `array2` {Array} 数组 2
 
 - ##### 返回值
@@ -180,7 +180,7 @@ console.log(LimeUtil.arrayIntersect(array1, array2)); // 输出：[2, 3]
 
 - ##### 参数
 
-  `array1` {Array} 数组 1
+  `array1` {Array} 数组 1  
   `array2` {Array} 数组 2
 
 - ##### 返回值
@@ -220,8 +220,7 @@ console.log(res); // 输出：[1,3,4,2]
 
 #### \_.arrayShuffle(array)
 
-数组打乱元素
-
+数组打乱元素  
 `可以适用于一些抽奖人员列表打乱顺序`
 
 - ##### 参数
@@ -248,7 +247,7 @@ console.log(res); // 输出：[3,1,4,2]
 
 - ##### 参数
 
-  `array` {Array} 数组
+  `array` {Array} 数组  
   `mode` {Constant} 排序模式，参考常量集合中 数组常量，默认是升序
 
 - ##### 返回值
@@ -277,8 +276,8 @@ console.log(res); // 输出：[1,3,2]
 
 - ##### 参数
 
-  `array` {Array} 数组
-  `sourceIndex` {Number} 原索引
+  `array` {Array} 数组  
+  `sourceIndex` {Number} 原索引  
   `targetIndex` {Number} 目标索引
 
 - ##### 返回值
@@ -298,13 +297,12 @@ console.log(res); // 输出：[2,1,3,4]
 
 #### \_.arrayToTree(value, pid)
 
-一维父子级的数组转树形结构
-
+一维父子级的数组转树形结构  
 `包含 id 和 pid 属性关系的一维数组，转为 children 的树形结构`
 
 - ##### 参数
 
-  `array` {Array} 数组
+  `array` {Array} 数组  
   `pid` {String|Number} 父级的 id
 
 - ##### 返回值

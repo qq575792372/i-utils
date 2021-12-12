@@ -27,7 +27,7 @@ hex 十六进制 颜色转 rgba
 
 - ##### 参数
 
-  `color` {String} rgb 颜色字符串
+  `color` {String} rgb 颜色字符串  
   `opacity` {Number} 透明度，0-1 之间，默认 1
 
 - ##### 返回值
