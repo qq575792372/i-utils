@@ -2,17 +2,17 @@
 
 ### 介绍
 
-**lime-util** 是一个 前端模块化 **JavaScript** 工具库，目前有 **160+** 个 Api 方法，包含了前端同学开发中经常会用到的一些方法集合，如 字符串，数组，浏览器缓存，日期转换，数学计算，文件处理，校验正则和小程序缓存 等等多个模块。
+**lime-util** 是一个 前端模块化 **JavaScript** 工具库，目前有 **180+** 个 Api 方法，包含了开发中经常用到的一些方法集合，如 字符串，数组，浏览器缓存，日期转换，数学计算，文件处理，校验正则和小程序缓存 等等多个模块。
 
 ### 安装
 
-1.  使用 npm 安装
+1. 使用 npm 安装
 
 ```bash
 npm i lime-util --save
 ```
 
-2.  或在浏览器中直接使用
+2. 或在浏览器中直接使用
 
 ```html
 <script src="dist/lime-util.js"></script>
@@ -20,7 +20,7 @@ npm i lime-util --save
 
 ### 使用
 
-1.es6 方式
+1. es6 方式
 
 ```javascript
 // 全部引入
@@ -32,7 +32,7 @@ import { loadedTest } from "lime-util";
 loadedTest(); // 输出：lime-util loaded successfully!
 ```
 
-2.require 方式
+2. require 方式
 
 ```javascript
 // 全部引入
