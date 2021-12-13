@@ -2357,9 +2357,7 @@
     divide: divide,
     modulo: modulo,
     toFixed: toFixed,
-    toDecimal: toDecimal,
-    _toDecimalRound: _toDecimalRound,
-    _toDecimalFloor: _toDecimalFloor
+    toDecimal: toDecimal
   });
 
   /**

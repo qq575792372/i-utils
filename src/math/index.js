@@ -229,7 +229,7 @@ function _toFixedFloor(num, decimals = 2) {
  * @param {Number} decimals 保留小数的位数，默认2位
  * @returns {Number} 返回保留后的数字
  */
-export function _toDecimalRound(num, decimals = 2) {
+function _toDecimalRound(num, decimals = 2) {
   if (isNaN(num)) {
     return "--";
   }
@@ -243,7 +243,7 @@ export function _toDecimalRound(num, decimals = 2) {
  * @param {Number} decimals 保留小数的位数，默认2位
  * @returns {Number} 返回保留后的数字
  */
-export function _toDecimalFloor(num, decimals = 2) {
+function _toDecimalFloor(num, decimals = 2) {
   if (isNaN(num)) {
     return "--";
   }
