@@ -1,3 +1,4 @@
+import { getAge } from "../date";
 /**
  * 节流函数
  * @description 高频触发时，在指定时间间隔内只执行一次
@@ -104,7 +105,7 @@ export function getIdCardInfo(idCard) {
     // 生日
     info.birthday = "19" + idCard.substring(6, 8) + "-" + idCard.substring(8, 10) + "-" + idCard.substring(10, 12);
     // 年龄
-    info.age = _getBirthAge(info.birthday);
+    info.age = getAge(info.birthday);
     // 性别
     info.sex = Number(idCard.substring(14)) % 2 == 0 ? "女" : "男";
   }
@@ -113,45 +114,9 @@ export function getIdCardInfo(idCard) {
     // 生日
     info.birthday = idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
     // 年龄
-    info.age = _getBirthAge(info.birthday);
+    info.age = getAge(info.birthday);
     // 性别
     info.sex = Number(idCard.substring(16, 17)) % 2 == 0 ? "女" : "男";
   }
   return info;
-}
-
-/**
- * 通过日期字符串计算周岁年龄
- * @description 内部函数
- * @param {String} dateStr 日期字符串
- * @returns
- */
-function _getBirthAge(dateStr) {
-  let age = 0;
-  // 传参日期
-  let dateArray = dateStr.split("-");
-  let birthYear = Number(dateArray[0]),
-    birthMonth = Number(dateArray[1]),
-    birthDay = Number(dateArray[2]);
-  // 当前的日期
-  let nowDate = new Date();
-  let nowYear = nowDate.getFullYear(),
-    nowMonth = nowDate.getMonth() + 1,
-    nowDay = nowDate.getDate();
-
-  // 出生年份需要小于当年，否则是0岁
-  let diffAge = nowYear - birthYear;
-  if (diffAge > 0) {
-    if (nowMonth - birthMonth <= 0) {
-      // 日期差小于0，证明还没满周岁，需要减1
-      if (nowDay - birthDay < 0) {
-        age = diffAge - 1;
-      } else {
-        age = diffAge;
-      }
-    } else {
-      age = diffAge;
-    }
-  }
-  return age;
 }

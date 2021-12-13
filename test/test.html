@@ -8,70 +8,8 @@
   </head>
   <body></body>
   <script src="../dist/lime-util.js"></script>
-  <script src="./test.js"></script>
   <script>
-    function _digit(value) {
-      value = value.toString();
-      return value[1] ? value : "0" + value;
-    }
-    function _betweenDays(date1, date2) {
-      let array = [];
-      while (date2 - date1 >= 0) {
-        let year = date1.getFullYear(),
-          month = _digit(date1.getMonth() + 1),
-          day = _digit(date1.getDate());
-
-        // 加入数组
-        array.push(year + "-" + month + "-" + day);
-        // 更新日期
-        date1.setDate(date1.getDate() + 1);
-      }
-      return array;
-    }
-    function _betweenYears(date1, date2) {
-      let array = [];
-      while (date2 - date1 >= 0) {
-        let year = date1.getFullYear();
-
-        // 加入数组
-        array.push(year);
-        // 更新日期
-        date1.setFullYear(date1.getFullYear() + 1);
-      }
-      return array;
-    }
-    function _betweenMonths(date1, date2) {
-      let array = [];
-      //获取时间对象
-      let min = new Date();
-      let max = new Date();
-      //设置起始时间
-      min.setFullYear(date1.getFullYear(), date1.getMonth() + 1);
-      //设置结束时间
-      max.setFullYear(date2.getFullYear(), date2.getMonth() + 1);
-
-      //复制一份起始时间对象
-      let curr = min;
-      //定义字符串
-      let str = "";
-      //起始时间在结束时间之前
-      while (curr <= max) {
-        //获取此时间的月份
-        let month = curr.getMonth();
-        //如果月份为0，也就是代表12月份
-        if (month === 0) {
-          str = curr.getFullYear() - 1 + "-" + 12;
-        } else {
-          //正常月份
-          str = curr.getFullYear() + "-" + _digit(month);
-        }
-        //将此年月加入数组
-        array.push(str);
-        //更新此时间月份
-        curr.setMonth(month + 1);
-      }
-      return array;
-    }
-    console.log(_betweenDays(new Date("2021-11-10"), new Date("2021-11-12")));
+    let res = LimeUtil.getChineseZodiac("2000-10-10");
+    console.log(res); // 输出：2021-12-11
   </script>
 </html>
