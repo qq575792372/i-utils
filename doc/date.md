@@ -1259,7 +1259,7 @@ console.log(res); // 输出： 2021-12-10 17:10:10
 - ##### 参数
 
   `date` {String|Timestamp|UnixTimestamp} 日期参数；  
-  如果是日期字符串类型，仅支持：<font color=#ff9900>`yyyy-MM-dd`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`yyyy-MM-dd HH:mm:ss`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`yyyy/MM/dd`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`yyyy/MM/dd HH:mm:ss`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`MM/dd/yyyy`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`MM/dd/yyyy HH:mm:ss`</font>，这些是 js 中 new Date() 默认支持的格式，否则会报错 <font color=#ed4014>`Invalid Date`</font>。
+  如果是日期字符串类型，仅支持：<span style="color=#ff9900">`yyyy-MM-dd`</span>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`yyyy-MM-dd HH:mm:ss`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`yyyy/MM/dd`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`yyyy/MM/dd HH:mm:ss`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`MM/dd/yyyy`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`MM/dd/yyyy HH:mm:ss`</font>，这些是 js 中 new Date() 默认支持的格式，否则会报错 <font color=#ed4014>`Invalid Date`</font>。
 
 - ##### 返回值
 
