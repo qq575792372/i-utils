@@ -969,7 +969,7 @@ console.log(res); // 输出：日期对象
 #### \_.betweenDays(date1, date2)
 
 获得两个日期之间的年月日数组  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
 
 - ##### 参数
 
@@ -992,7 +992,7 @@ console.log(res); // 输出： ['2021-12-11', '2021-12-12', '2021-12-13']
 #### \_.betweenMonths(date1, date2)
 
 获得两个日期之间的年月数组  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
 
 - ##### 参数
 
@@ -1015,7 +1015,7 @@ console.log(res); // 输出： ['2021-11', '2021-12']
 #### \_.betweenYears(date1, date2)
 
 获得两个日期之间的年数组  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
 
 - ##### 参数
 
@@ -1040,7 +1040,7 @@ console.log(res); // 输出： [2020, 2021]
 #### \_.compareDate(date1, date2)
 
 比较两个日期的大小  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
 
 - ##### 参数
 
@@ -1065,7 +1065,7 @@ console.log(res); // 输出： true
 #### \_.diffDay(date1, date2)
 
 计算两个日期相差的天数，不满一天为 0  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
 
 - ##### 参数
 
@@ -1097,7 +1097,7 @@ console.log(res); // 输出： -1
 #### \_.diffWeek(date1, date2)
 
 计算两个日期相差的周数，不满一周为 0  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
 
 - ##### 参数
 
@@ -1129,7 +1129,7 @@ console.log(res); // 输出： -1
 #### \_.diffMonth(date1, date2)
 
 计算两个日期相差的月数，不满一月为 0  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
 
 - ##### 参数
 
@@ -1161,7 +1161,7 @@ console.log(res); // 输出： -1
 #### \_.diffYear(date1, date2)
 
 计算两个日期相差的年数，不满一年为 0  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
 
 - ##### 参数
 
@@ -1195,7 +1195,7 @@ console.log(res); // 输出： -1
 #### \_.formatDate(date = new Date(), format = "yyyy-MM-dd")
 
 格式化日期字符串  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
 
 - ##### format 格式
 
@@ -1235,7 +1235,7 @@ yyyy-MM-dd hh:mm:ss E q // 输出：2021-12-11 05:33:00 六 四季度
 - ##### 参数
 
   `date1` {String|Date|Timestamp|UnixTimestamp} 日期参数  
-  `format` {String} 转化格式，具体参考上面的 `format 格式`；默认是 <font color=#ff9900>`yyyy-MM-dd`</font>
+  `format` {String} 转化格式，具体参考上面的 <span style="color:#ff9900">_format 格式_</span>，默认是 <span style="color:#ff9900">`yyyy-MM-dd`</span>
 
 - ##### 返回值
 
@@ -1259,7 +1259,7 @@ console.log(res); // 输出： 2021-12-10 17:10:10
 - ##### 参数
 
   `date` {String|Timestamp|UnixTimestamp} 日期参数；  
-  如果是日期字符串类型，仅支持：<span style="color=#ff9900">`yyyy-MM-dd`</span>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`yyyy-MM-dd HH:mm:ss`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`yyyy/MM/dd`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`yyyy/MM/dd HH:mm:ss`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`MM/dd/yyyy`</font>，<font color=#ff9900>`yyyy-MM-dd`</font><font color=#ff9900>`MM/dd/yyyy HH:mm:ss`</font>，这些是 js 中 new Date() 默认支持的格式，否则会报错 <font color=#ed4014>`Invalid Date`</font>。
+  如果是日期字符串类型，仅支持：<span style="color:#ff9900">`yyyy-MM-dd`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`yyyy-MM-dd HH:mm:ss`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span color=#ff9900>`yyyy/MM/dd`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`yyyy/MM/dd HH:mm:ss`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`MM/dd/yyyy`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`MM/dd/yyyy HH:mm:ss`</span>，这些是 js 中 new Date() 默认支持的格式，否则会报错 <span style="color:#ed4014">`Invalid Date`</span>。
 
 - ##### 返回值
 
