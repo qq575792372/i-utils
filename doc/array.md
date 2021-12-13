@@ -221,7 +221,7 @@ console.log(res); // 输出：[1,3,4,2]
 #### \_.arrayShuffle(array)
 
 数组打乱元素  
-`可以适用于一些抽奖人员列表打乱顺序`
+<span style="color:#808695">`可以适用于一些抽奖人员列表打乱顺序`</span>
 
 - ##### 参数
 
@@ -248,7 +248,7 @@ console.log(res); // 输出：[3,1,4,2]
 - ##### 参数
 
   `array` {Array} 数组  
-  `mode` {Constant} 排序模式，参考常量集合中 数组常量，默认是升序
+  `mode` {Constant} 排序模式，参考参考<span style="color:#ff9900">`常量集合`</span> 中 <span style="color:#ff9900">`数组`</span>，默认是升序
 
 - ##### 返回值
 
@@ -298,7 +298,7 @@ console.log(res); // 输出：[2,1,3,4]
 #### \_.arrayToTree(value, pid)
 
 一维父子级的数组转树形结构  
-`包含 id 和 pid 属性关系的一维数组，转为 children 的树形结构`
+<span style="color:#808695">`包含 id 和 pid 属性关系的一维数组，转为 children 的树形结构`</span>
 
 - ##### 参数
 

@@ -129,7 +129,7 @@ console.log(obj); // 输出：obj对象
 #### \_.deepClone(target)
 
 深拷贝数据  
-`目前只支持 Object，Array，Date三种数据类型`
+<span style="color:#808695">`目前只支持 Object，Array，Date三种数据类型`</span>
 
 - ##### 参数
 

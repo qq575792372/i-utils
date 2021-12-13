@@ -73,7 +73,7 @@ console.log(res); // 输出：true
 #### \_.isLeapYear(year)
 
 判断是否是闰年  
-`闰年共366天，平年共365天`
+<span style="color:#808695">`闰年共366天，平年共365天`</span>
 
 - ##### 参数
 
@@ -749,7 +749,7 @@ console.log(res); // 输出：365
 #### \_.getPastTime(date, lang = "zh")
 
 获得过去时间的字符串显示  
-`例如：刚刚，1分钟前，1小时前等`
+<span style="color:#808695">`例如：刚刚，1分钟前，1小时前等`</span>
 
 - ##### 参数
 
@@ -781,7 +781,7 @@ console.log(res); // 输出：1 day ago
 #### \_.getOverTime(date)
 
 获得剩余时间的字符串显示  
-`例如：1天 10小时 20分钟 30秒`
+<span style="color:#808695">`例如：1天 10小时 20分钟 30秒`</span>
 
 - ##### 参数
 
@@ -809,7 +809,7 @@ console.log(res); // 输出：0天 7小时 10分钟 48秒
 - ##### 参数
 
   `date` {Date} 日期参数，默认当前日期  
-  `num` {Number} 加减数量，用正数和负数表示；默认+1
+  `num` {Number} 加减数量，用正数和负数表示；默认 +1
 
 - ##### 返回值
 
@@ -836,7 +836,7 @@ console.log(res); // 输出：日期对象
 - ##### 参数
 
   `date` {Date} 日期参数，默认当前日期  
-  `num` {Number} 加减数量，用正数和负数表示；默认+1
+  `num` {Number} 加减数量，用正数和负数表示；默认 +1
 
 - ##### 返回值
 
@@ -863,7 +863,7 @@ console.log(res); // 输出：日期对象
 - ##### 参数
 
   `date` {Date} 日期参数，默认当前日期  
-  `num` {Number} 加减数量，用正数和负数表示；默认+1
+  `num` {Number} 加减数量，用正数和负数表示；默认 +1
 
 - ##### 返回值
 
@@ -890,7 +890,7 @@ console.log(res); // 输出：日期对象
 - ##### 参数
 
   `date` {Date} 日期参数，默认当前日期  
-  `num` {Number} 加减数量，用正数和负数表示；默认+1
+  `num` {Number} 加减数量，用正数和负数表示；默认 +1
 
 - ##### 返回值
 
@@ -917,7 +917,7 @@ console.log(res); // 输出：日期对象
 - ##### 参数
 
   `date` {Date} 日期参数，默认当前日期  
-  `num` {Number} 加减数量，用正数和负数表示；默认+1
+  `num` {Number} 加减数量，用正数和负数表示；默认 +1
 
 - ##### 返回值
 
@@ -944,7 +944,7 @@ console.log(res); // 输出：日期对象
 - ##### 参数
 
   `date` {Date} 日期参数，默认当前日期  
-  `num` {Number} 加减数量，用正数和负数表示；默认+1
+  `num` {Number} 加减数量，用正数和负数表示；默认 +1
 
 - ##### 返回值
 
@@ -1235,7 +1235,7 @@ yyyy-MM-dd hh:mm:ss E q // 输出：2021-12-11 05:33:00 六 四季度
 - ##### 参数
 
   `date1` {String|Date|Timestamp|UnixTimestamp} 日期参数  
-  `format` {String} 转化格式，具体参考上面的 <span style="color:#ff9900">_format 格式_</span>，默认是 <span style="color:#ff9900">`yyyy-MM-dd`</span>
+  `format` {String} 转化格式，具体参考上面的 <span style="color:#ff9900">`format 格式`</span>，默认是 <span style="color:#ff9900">`yyyy-MM-dd`</span>
 
 - ##### 返回值
 
@@ -1254,12 +1254,12 @@ console.log(res); // 输出： 2021-12-10 17:10:10
 #### \_.parseDate(date)
 
 日期格式转为日期  
-`支持：日期字符串，时间戳，Unix时间戳`
+<span style="color:#808695">`支持：日期字符串，时间戳，Unix时间戳`</span>
 
 - ##### 参数
 
   `date` {String|Timestamp|UnixTimestamp} 日期参数；  
-  如果是日期字符串类型，仅支持：<span style="color:#ff9900">`yyyy-MM-dd`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`yyyy-MM-dd HH:mm:ss`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span color=#ff9900>`yyyy/MM/dd`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`yyyy/MM/dd HH:mm:ss`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`MM/dd/yyyy`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`MM/dd/yyyy HH:mm:ss`</span>，这些是 js 中 new Date() 默认支持的格式，否则会报错 <span style="color:#ed4014">`Invalid Date`</span>。
+  如果是日期字符串类型，支持：<span style="color:#ff9900">`yyyy-MM-dd`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`yyyy-MM-dd HH:mm:ss`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span color=#ff9900>`yyyy/MM/dd`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`yyyy/MM/dd HH:mm:ss`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`MM/dd/yyyy`</span>，<span style="color:#ff9900">`yyyy-MM-dd`</span><span style="color:#ff9900">`MM/dd/yyyy HH:mm:ss`</span>，以上是 js 中 <span style="color:#ff9900">`new Date()`</span>支持的格式，否则会报错 <span style="color:#ed4014">`Invalid Date`</span>。
 
 - ##### 返回值
 

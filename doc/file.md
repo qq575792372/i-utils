@@ -117,7 +117,7 @@ LimeUtil.fileToBase64(file).then((base64) => {
 #### \_.fileToUrl(file)
 
 file 转 url
-`适用于本地上传图片并预览，需要注意 URL.revokeObjectURL(file) 内存释放`
+<span style="color:#808695">`适用于本地上传图片并预览，需要注意 URL.revokeObjectURL(file) 内存释放`</span>
 
 - ##### 参数
 

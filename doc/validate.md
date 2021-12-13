@@ -321,7 +321,7 @@ console.log(LimeUtil.isChinese(12.01)); // 输出：false
 #### \_.isEmpty(value)
 
 判断值是否为空  
-`针对的是实际有意义的值，如果值是{},[]空的数据则为空`
+<span style="color:#808695">`针对的是实际有意义的值，如果值是{},[]空的数据则为空`</span>
 
 - ##### 参数
 
@@ -345,7 +345,7 @@ console.log(LimeUtil.isEmpty(undefined)); // 输出：true
 #### \_.isNull(value)
 
 判断对象是否为空  
-`针对的是对象初始化数据，如果值是{},[]等初始化过的则不为空`
+<span style="color:#808695">`针对的是对象初始化数据，如果值是{},[]等初始化过的则不为空`</span>
 
 - ##### 参数
 
@@ -369,7 +369,7 @@ console.log(LimeUtil.isNull(12.01)); // 输出：false
 #### \_.isBlank(value)
 
 判断是否值空的  
-`除了对null，undefined等校验，还会校验空格`
+<span style="color:#808695">`除了对null，undefined等校验，还会校验空格`</span>
 
 - ##### 参数
 
