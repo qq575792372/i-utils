@@ -27,8 +27,8 @@ console.log(res); // 输出：1
 
 - ##### 参数
 
-  `key` {String} 参数 key
-  `value` {String} 设置的 value
+  `key` {String} 参数 key  
+  `value` {String} 设置的 value  
   `timestamp` {Timestamp} 过期的时间戳值，默认为一天，设置一天过期则为：24\*60\*60\*1000
 
 - ##### 返回值

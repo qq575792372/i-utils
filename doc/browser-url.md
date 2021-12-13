@@ -6,7 +6,7 @@
 
 - ##### 参数
 
-  `name` {String|Number} 参数名
+  `name` {String|Number} 参数名  
   `url` {String} url 地址，默认当前地址栏 url
 
 - ##### 返回值

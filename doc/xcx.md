@@ -6,7 +6,7 @@
 
 - ##### 参数
 
-  `key` {String} key 值
+  `key` {String} key 值  
   `data` {\*} data 数据
 
 - ##### 返回值
@@ -27,7 +27,7 @@ LimeUtil.setStorage("id", 1);
 
 - ##### 参数
 
-  `key` {String} key 值
+  `key` {String} key 值  
   `data` {\*} data 数据
 
 - ##### 返回值
@@ -110,7 +110,7 @@ LimeUtil.removeStorage("id");
 
 - ##### 参数
 
-  `key` {String} key 值
+  `key` {String} key 值  
   `data` {\*} data 数据
 
 - ##### 返回值

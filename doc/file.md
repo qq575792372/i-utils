@@ -143,7 +143,7 @@ blob 转 file
 
 - ##### 参数
 
-  `blob` {Blob} blob 数据
+  `blob` {Blob} blob 数据  
   `fileName` {String} 文件名称，默认以时间戳命名
 
 - ##### 返回值
@@ -188,7 +188,7 @@ base64 转 file
 
 - ##### 参数
 
-  `base64` {Base64} base64 数据
+  `base64` {Base64} base64 数据  
   `fileName` {String} 文件名称，默认以时间戳命名
 
 - ##### 返回值
@@ -255,7 +255,7 @@ LimeUtil.urlToBase64(imgUrl).then((base64) => {
 
 - ##### 参数
 
-  `blob` {Blob} blob 数据
+  `blob` {Blob} blob 数据  
   `fileName` {String} 下载的文件名，不写后缀名则默认为原文件类型
 
 - ##### 返回值

@@ -128,7 +128,7 @@ console.log(obj); // 输出：obj对象
 
 #### \_.deepClone(target)
 
-深拷贝数据
+深拷贝数据  
 `目前只支持 Object，Array，Date三种数据类型`
 
 - ##### 参数
@@ -155,7 +155,7 @@ console.log(newObj); // 输出：深拷贝后的对象
 
 - ##### 参数
 
-  `target` {Object} 目标对象
+  `target` {Object} 目标对象  
   `source` {Object[]} 原对象列表
 
 - ##### 返回值

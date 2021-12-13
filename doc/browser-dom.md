@@ -6,7 +6,7 @@
 
 - ##### 参数
 
-  `elem` {Document} dom 元素
+  `elem` {Document} dom 元素  
   `className` {String} 类名
 
 - ##### 返回值
@@ -29,7 +29,7 @@ console.log(res); // 输出：true
 
 - ##### 参数
 
-  `elem` {Document} dom 元素
+  `elem` {Document} dom 元素  
   `className` {String} 类名
 
 - ##### 返回值
@@ -51,7 +51,7 @@ LimeUtil.addClass(btn, "btn-primary");
 
 - ##### 参数
 
-  `elem` {Document} dom 元素
+  `elem` {Document} dom 元素  
   `className` {String} 类名
 
 - ##### 返回值
@@ -73,8 +73,8 @@ LimeUtil.removeClass(btn, "btn-primary");
 
 - ##### 参数
 
-  `elem` {Document} dom 元素
-  `newClassName` {String} 新的类名
+  `elem` {Document} dom 元素  
+  `newClassName` {String} 新的类名  
   `oldClassName` {String} 被替换掉的旧类名
 
 - ##### 返回值
