@@ -1,5 +1,5 @@
 /*!
-* lime-util v0.0.2
+* lime-util v0.1.0
 *
 * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
 * Licensed under the MIT license
@@ -7,10 +7,10 @@
 *
 */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeUtil = factory());
-})(this, (function () { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path')) :
+  typeof define === 'function' && define.amd ? define(['path'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeUtil = factory(global.path));
+})(this, (function (path) { 'use strict';
 
   /**
    * 数组排序
@@ -158,6 +158,9 @@
     return value;
   }
 
+  function pathJoin(...args) {
+    return path.join(...args);
+  }
   /**
    * 格式化千分位数字
    * @param {Number|String} num 数字
@@ -276,6 +279,7 @@
     getIndexInString: getIndexInString,
     zeroStart: zeroStart,
     zeroEnd: zeroEnd,
+    pathJoin: pathJoin,
     formatThousand: formatThousand,
     formatRmbChinese: formatRmbChinese
   });
