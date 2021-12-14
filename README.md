@@ -1,8 +1,11 @@
 # lime-util 前端模块化 JavaScript 工具库
 
+[![npm version](https://img.shields.io/npm/v/xe-utils.svg?style=flat-square)](https://github.com/qq575792372/lime-util)
+[![npm license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
+
 ### 🚀 介绍
 
-🔥 **lime-util** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前有 **185+** ⚡️ 个 Api 方法，包含了开发中经常用到的一些方法集合，如 ⭐ 字符串，数组，浏览器缓存，日期工具，数学计算，文件处理，正则校验和小程序缓存 ⭐ 等等多个模块 👍。
+🔥 **lime-util** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前有 **185+** ⚡️ 个 Api 方法，包含了开发中经常用到的一些方法集合，如 字符串，数组，浏览器缓存，日期工具，数学计算，文件处理，正则校验和小程序缓存 等等多个模块 。
 
 ### 📦 安装
 
