@@ -3,19 +3,17 @@
 [![npm version](https://img.shields.io/npm/v/xe-utils.svg?style=flat-square)](https://github.com/qq575792372/lime-util)
 [![npm license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-### 🚀 介绍
-
 🔥 **lime-util** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前有 **185+** ⚡️ 个 Api 方法，包含了开发中经常用到的一些方法集合，如 字符串，数组，浏览器缓存，日期工具，数学计算，文件处理，正则校验和小程序缓存 等等多个模块 。
 
 ### 📦 安装
 
-1. 使用 npm 安装
+#### 1. 使用 npm 安装
 
 ```bash
 npm i lime-util --save
 ```
 
-2. 或在浏览器中直接使用
+#### 2. 或在浏览器中直接使用
 
 ```html
 <script src="dist/lime-util.js"></script>
@@ -23,7 +21,7 @@ npm i lime-util --save
 
 ### 🎨 使用
 
-1. es6 方式
+#### 1. es6 方式
 
 ```javascript
 // 全部引入
@@ -35,7 +33,7 @@ import { loadedTest } from "lime-util";
 loadedTest(); // 输出：lime-util loaded successfully!
 ```
 
-2. require 方式
+#### 2. require 方式
 
 ```javascript
 // 全部引入
