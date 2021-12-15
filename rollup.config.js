@@ -17,14 +17,14 @@ function pathResolve(dir) {
 const outputModuleName = "LimeUtil";
 
 // 声明注释
-const banner = `/*!
-  * ${pkg.name} v${pkg.version}
-  *
-  * Copyright 2021-${new Date().getFullYear()}, ${pkg.author}
-  * Licensed under the ${pkg.license} license
-  * http://www.opensource.org/licenses/mit-license
-  *
-  */`;
+const banner = `/*
+ * ${pkg.name} v${pkg.version}
+ *
+ * Copyright 2021-${new Date().getFullYear()}, ${pkg.author}
+ * Licensed under the ${pkg.license} license
+ * http://www.opensource.org/licenses/mit-license
+ *
+ */`;
 
 /**
  * rollup 配置
