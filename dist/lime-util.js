@@ -1,11 +1,11 @@
-/*!
-* lime-util v1.0.0
-*
-* Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
-* Licensed under the MIT license
-* http://www.opensource.org/licenses/mit-license
-*
-*/
+/*
+ * lime-util v1.0.0
+ *
+ * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
+ * Licensed under the MIT license
+ * http://www.opensource.org/licenses/mit-license
+ *
+ */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
