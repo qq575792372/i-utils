@@ -1,8 +1,8 @@
 const path = require("path");
 
 // 引入打包插件
-import commonjs from "rollup-plugin-commonjs";
 import resolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
 import { uglify } from "rollup-plugin-uglify";
 
 // 引入package.json
@@ -16,7 +16,7 @@ function pathResolve(dir) {
 // 打包名称
 const outputModuleName = "LimeUtil";
 
-// 打包后的注释
+// 声明注释
 const banner = `/*!
 * ${pkg.name} v${pkg.version}
 *
