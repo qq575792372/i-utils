@@ -55,7 +55,7 @@ console.log(res); // 输出：{id: 1, name: 'test'}
 
 - ##### 返回值
 
-  {String} 返回 id=1&name=xx 格式的 url 查询参数
+  {String} 返回如 id=1&name=xx 格式的 url 查询参数
 
 - ##### 示例
 

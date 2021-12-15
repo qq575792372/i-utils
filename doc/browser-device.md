@@ -47,7 +47,7 @@ console.log(res); // 输出：true
 
 #### \_.isMobile()
 
-判断是手机端
+判断是手机端  
 <span style="color:#808695">`包含 android、iphone、黑莓手机、微软手机 等多种操作系统机型`</span>
 
 - ##### 参数

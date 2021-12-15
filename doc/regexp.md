@@ -49,12 +49,12 @@ const REGEXP = {
 #### \_.regexpTest(value, regex)
 
 正则校验的方法  
-<span style="color:#808695">`类型为枚举REGEXP对应的正则`</span>
+<span style="color:#808695">`类型为REGEXP中枚举对应的正则`</span>
 
 - ##### 参数
 
   `value` {String|Number} 校验的值  
-  `regex` {REGEXP} 使用的 <span style="color:#ff9900">`REGEXP.xxx`</span> 的正则
+  `regex` {REGEXP} 使用的 <span style="color:#ff9900">`REGEXP.XXX`</span> 的正则
 
 - ##### 返回值
 

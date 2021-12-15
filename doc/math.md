@@ -112,7 +112,7 @@ console.log(res); // 输出：0.1
 
 ---
 
-#### \_.toFixed(num, decimals = 2, mode = LimeUtil.ROUND)
+#### \_.toFixed(num, decimals = 2, mode = ROUND)
 
 强制保留小数位数  
 <span style="color:#808695">`默认保留两位小数，解决原生的toFixed()会五舍六入的问题`</span>
@@ -121,11 +121,11 @@ console.log(res); // 输出：0.1
 
   `num` {String|Number} 数字  
   `decimals` {Number} 保留小数的位数，默认 2 位  
-  `mode` {Constant} 保留小数模式，参考<span style="color:#ff9900">`常量集合`</span> 中 <span style="color:#ff9900">`数学计算`</span>
+  `mode` {Constant} 保留小数模式，参考<span style="color:#ff9900">`常量集合`</span> 中 <span style="color:#ff9900">`数学计算`</span>，默认<span style="color:#ff9900">`ROUND`</span>
 
 - ##### 返回值
 
-  {String} 返回字符串的数字
+  {String} 返回保留后的数字字符串
 
 - ##### 示例
 
@@ -134,12 +134,12 @@ console.log(LimeUtil.toFixed(1, 2)); // 输出：1.00
 console.log(LimeUtil.toFixed(1.0, 2)); // 输出：1.00
 console.log(LimeUtil.toFixed(1.01, 2)); // 输出：1.01
 console.log(LimeUtil.toFixed(1.015, 2)); // 输出：1.02 （默认会四舍五入）
-console.log(LimeUtil.toFixed(1.015, 2, LimeUtil.ROUND_FLOOR)); // 输出：1.01（切换舍出的模式，会强制截取小数位数，不会再四舍五入）
+console.log(LimeUtil.toFixed(1.015, 2, ROUND_FLOOR)); // 输出：1.01（切换舍出的模式，会强制截取小数位数，不会再四舍五入）
 ```
 
 ---
 
-#### \_.toDecimal(num, decimals = 2, mode = LimeUtil.ROUND)
+#### \_.toDecimal(num, decimals = 2, mode = ROUND)
 
 尽可能保留小数位数
 
@@ -147,11 +147,11 @@ console.log(LimeUtil.toFixed(1.015, 2, LimeUtil.ROUND_FLOOR)); // 输出：1.01�
 
   `num` {String|Number} 数字  
   `decimals` {Number} 保留小数的位数，默认 2 位  
-  `mode` {Constant} 保留小数模式，参考<span style="color:#ff9900">`常量集合`</span> 中 <span style="color:#ff9900">`数学计算`</span>
+  `mode` {Constant} 保留小数模式，参考<span style="color:#ff9900">`常量集合`</span> 中 <span style="color:#ff9900">`数学计算`</span>，默认<span style="color:#ff9900">`ROUND`</span>
 
 - ##### 返回值
 
-  {String} 返回字符串的数字
+  {Number} 返回保留后的数字
 
 - ##### 示例
 

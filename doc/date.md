@@ -2,7 +2,7 @@
 
 #### \_.isToday(date)
 
-判断日期是否是今天
+是否是今天
 
 - ##### 参数
 
@@ -72,8 +72,8 @@ console.log(res); // 输出：true
 
 #### \_.isLeapYear(year)
 
-判断是否是闰年  
-<span style="color:#808695">`闰年共366天，平年共365天`</span>
+是否是闰年  
+<span style="color:#808695">`闰年366天，平年365天`</span>
 
 - ##### 参数
 
@@ -94,7 +94,7 @@ console.log(res); // 输出：true
 
 #### \_.isAM()
 
-当前时刻是否是上午
+现在是否是上午
 
 - ##### 参数
 
@@ -115,7 +115,7 @@ console.log(res); // 输出：true
 
 #### \_.isPM()
 
-当前时刻是否是下午
+现在是否是下午
 
 - ##### 参数
 
@@ -153,6 +153,28 @@ console.log(res); // 输出：true
 
 ```javascript
 let res = LimeUtil.isSameDay(new Date("2021-12-13"), new Date("2021-12-13"));
+console.log(res); // 输出：true
+```
+
+---
+
+#### \_.isSameWeek(date1, date2)
+
+比较两个日期是否是同一周
+
+- ##### 参数
+
+  `date1` {Date} 第一个日期  
+  `date2` {Date} 第二个日期
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isSameWeek(new Date("2021-12-13"), new Date("2021-12-14"));
 console.log(res); // 输出：true
 ```
 
@@ -457,7 +479,7 @@ console.log(res); // 输出：2021/11/10 10:10:30
 
 - ##### 返回值
 
-  {String} 返回时间戳
+  {Timestamp} 返回时间戳
 
 - ##### 示例
 
@@ -483,7 +505,7 @@ console.log(res); // 输出：1639094400000
 
 - ##### 返回值
 
-  {String} 返回 Unix 时间戳
+  {UnixTimestamp} 返回 Unix 时间戳
 
 - ##### 示例
 
@@ -616,7 +638,7 @@ console.log(res); // 输出：51
 
 <!-- 获得当前日期所在 周，月 的第一天和最后一天 -->
 
-#### \_.getFirstDayOfWeek()
+#### \_.getFirstDayOfWeek(date = new Date())
 
 获得当前日期所在周的第一天
 
@@ -631,13 +653,13 @@ console.log(res); // 输出：51
 - ##### 示例
 
 ```javascript
-let res = LimeUtil.getFirstDayOfWeek();
+let res = LimeUtil.getFirstDayOfWeek((date = new Date()));
 console.log(res); // 输出：2021-12-13
 ```
 
 ---
 
-#### \_.getLastDayOfWeek()
+#### \_.getLastDayOfWeek(date = new Date())
 
 获得当前日期所在周的最后一天
 
@@ -658,7 +680,7 @@ console.log(res); // 输出：2021-12-19
 
 ---
 
-#### \_.getFirstDayOfMonth()
+#### \_.getFirstDayOfMonth(date = new Date())
 
 获得当前日期所在月的第一天
 
@@ -679,7 +701,7 @@ console.log(res); // 输出：2021-12-01
 
 ---
 
-#### \_.getLastDayOfMonth()
+#### \_.getLastDayOfMonth(date = new Date())
 
 获得当前日期所在月的最后一天
 
@@ -702,7 +724,7 @@ console.log(res); // 输出：2021-12-31
 
 <!-- 指定月，年，总共的天数 -->
 
-#### \_.getFullDayOfMonth()
+#### \_.getFullDayOfMonth(date = new Date())
 
 获得当前日期所在月总共多少天
 
@@ -723,7 +745,7 @@ console.log(res); // 输出：31
 
 ---
 
-#### \_.getFullDayOfYear()
+#### \_.getFullDayOfYear(date = new Date())
 
 获得当前日期所在年总共多少天
 
@@ -754,7 +776,7 @@ console.log(res); // 输出：365
 - ##### 参数
 
   `date` {Date|String} 日期或日期字符串  
-  `lang` {Date|String} 字符串语言，zh 和 en，默认 zh
+  `lang` {String} 字符串语言，zh 和 en，默认 zh
 
 - ##### 返回值
 
@@ -785,11 +807,11 @@ console.log(res); // 输出：1 day ago
 
 - ##### 参数
 
-  `date` {Date} 日期参数，默认当前日期
+  `date` {Date|String} 日期或日期字符串
 
 - ##### 返回值
 
-  {Number} 返回总天数
+  {String} 返回字符串
 
 - ##### 示例
 

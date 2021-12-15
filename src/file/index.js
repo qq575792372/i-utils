@@ -261,7 +261,7 @@ export function downloadBlobFile(blob, fileName) {
 }
 
 /**
- * 通过url下载文件
+ * 通过文件url地址下载
  * @param {String} fileUrl url文件地址
  * @param {String} fileName 下载的文件名，不写后缀名则默认为原文件类型
  */

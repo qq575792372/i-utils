@@ -35,7 +35,7 @@ export function urlQeuryToObj(url = window.location.href) {
 /**
  * 对象转url查询参数
  *  @param {Object} obj 参数对象
- *  @returns {String} 返回 id=1&name=xx 格式的url查询参数
+ *  @returns {String} 返回如 id=1&name=xx 格式的url查询参数
  */
 export function objToUrlQuery(obj) {
   if (!obj) return "";

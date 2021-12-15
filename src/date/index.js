@@ -2,7 +2,7 @@ import { isEmpty, isNull, isInteger, isDate, isString } from "../validate";
 import { parseInt } from "../number";
 
 /**
- * 判断日期是否是今天
+ * 是否是今天
  * @param {String|Date} date 日期参数
  * @returns {Boolean} 返回true和false
  */
@@ -38,8 +38,8 @@ export function isWeekend() {
 
 // 闰年，上午，下午
 /**
- * 判断是否是闰年
- * @description 闰年共366天，平年共365天
+ * 是否是闰年
+ * @description 闰年366天，平年365天
  * @param {Number} year 年份
  * @returns {Boolean} 返回true和false
  */
@@ -48,7 +48,7 @@ export function isLeapYear(year) {
 }
 
 /**
- * 当前时刻是否是上午
+ * 现在是否是上午
  * @returns {Boolean} 返回true和false
  */
 export function isAM() {
@@ -56,14 +56,14 @@ export function isAM() {
 }
 
 /**
- * 当前时刻是否是下午
+ * 现在是否是下午
  * @returns {Boolean} 返回true和false
  */
 export function isPM() {
   return new Date().getHours() >= 12;
 }
 
-// 比较是同一 天，月，年
+// 比较是同一 天，周，月，年
 /**
  * 比较两个日期是否是同一天
  * @param {Date} date1 第一个日期
@@ -72,6 +72,18 @@ export function isPM() {
  */
 export function isSameDay(date1, date2) {
   return ["getFullYear", "getMonth", "getDate"].every((i) => date1[i]() === date2[i]());
+}
+
+/**
+ * 比较两个日期是否是同一周
+ * @param {Date} date1 第一个日期
+ * @param {Date} date2 第二个日期
+ * @returns {Boolean} 返回true和false
+ */
+export function isSameWeek(date1, date2) {
+  let diffDate1 = date1.getTime() / (24 * 60 * 60 * 1000);
+  let diffDate2 = date2.getTime() / (24 * 60 * 60 * 1000);
+  return parseInt((diffDate1 + 4) / 7) == parseInt((diffDate2 + 4) / 7);
 }
 
 /**

@@ -113,8 +113,8 @@ export function modulo(arg1, arg2) {
  * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
- * @returns {String} 返回字符串的数字
+ * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
+ * @returns {String} 返回保留后的数字字符串
  */
 export function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
   // 四舍五入
@@ -131,7 +131,7 @@ export function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
  * 尽可能保留小数位数
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
+ * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
  * @returns {Number} 返回保留后的数字
  */
 export function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {

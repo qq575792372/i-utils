@@ -24,7 +24,7 @@ export function throttle(fn, interval = 2000) {
  * @description 事件执行后，在延迟时间内如果再次执行，会清空定时器重新延迟执行
  * @param {Function} fn 目标函数
  * @param {Number} delay 延迟时间，单位毫秒，默认2秒
- * @param {Boolean} immediate 是否立即执行，true和false，默认true
+ * @param {Boolean} immediate 是否立即执行，默认true
  * @returns {Function} 返回function()
  */
 export function debounce(fn, delay = 2000, immediate = true) {

@@ -1,5 +1,5 @@
 /*!
-* lime-util v0.1.1
+* lime-util v1.0.0
 *
 * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
 * Licensed under the MIT license
@@ -843,7 +843,7 @@
   });
 
   /**
-   * 判断日期是否是今天
+   * 是否是今天
    * @param {String|Date} date 日期参数
    * @returns {Boolean} 返回true和false
    */
@@ -879,8 +879,8 @@
 
   // 闰年，上午，下午
   /**
-   * 判断是否是闰年
-   * @description 闰年共366天，平年共365天
+   * 是否是闰年
+   * @description 闰年366天，平年365天
    * @param {Number} year 年份
    * @returns {Boolean} 返回true和false
    */
@@ -889,7 +889,7 @@
   }
 
   /**
-   * 当前时刻是否是上午
+   * 现在是否是上午
    * @returns {Boolean} 返回true和false
    */
   function isAM() {
@@ -897,14 +897,14 @@
   }
 
   /**
-   * 当前时刻是否是下午
+   * 现在是否是下午
    * @returns {Boolean} 返回true和false
    */
   function isPM() {
     return new Date().getHours() >= 12;
   }
 
-  // 比较是同一 天，月，年
+  // 比较是同一 天，周，月，年
   /**
    * 比较两个日期是否是同一天
    * @param {Date} date1 第一个日期
@@ -913,6 +913,18 @@
    */
   function isSameDay(date1, date2) {
     return ["getFullYear", "getMonth", "getDate"].every((i) => date1[i]() === date2[i]());
+  }
+
+  /**
+   * 比较两个日期是否是同一周
+   * @param {Date} date1 第一个日期
+   * @param {Date} date2 第二个日期
+   * @returns {Boolean} 返回true和false
+   */
+  function isSameWeek(date1, date2) {
+    let diffDate1 = date1.getTime() / (24 * 60 * 60 * 1000);
+    let diffDate2 = date2.getTime() / (24 * 60 * 60 * 1000);
+    return parseInt$1((diffDate1 + 4) / 7) == parseInt$1((diffDate2 + 4) / 7);
   }
 
   /**
@@ -1863,6 +1875,7 @@
     isAM: isAM,
     isPM: isPM,
     isSameDay: isSameDay,
+    isSameWeek: isSameWeek,
     isSameMonth: isSameMonth,
     isSameYear: isSameYear,
     yesterday: yesterday,
@@ -1937,7 +1950,7 @@
    * @description 事件执行后，在延迟时间内如果再次执行，会清空定时器重新延迟执行
    * @param {Function} fn 目标函数
    * @param {Number} delay 延迟时间，单位毫秒，默认2秒
-   * @param {Boolean} immediate 是否立即执行，true和false，默认true
+   * @param {Boolean} immediate 是否立即执行，默认true
    * @returns {Function} 返回function()
    */
   function debounce(fn, delay = 2000, immediate = true) {
@@ -2211,8 +2224,8 @@
    * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
    * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
-   * @returns {String} 返回字符串的数字
+   * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
+   * @returns {String} 返回保留后的数字字符串
    */
   function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
     // 四舍五入
@@ -2229,7 +2242,7 @@
    * 尽可能保留小数位数
    * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量
+   * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
    * @returns {Number} 返回保留后的数字
    */
   function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
@@ -2690,7 +2703,7 @@
   }
 
   /**
-   * 通过url下载文件
+   * 通过文件url地址下载
    * @param {String} fileUrl url文件地址
    * @param {String} fileName 下载的文件名，不写后缀名则默认为原文件类型
    */
@@ -2830,7 +2843,7 @@
   /**
    * 对象转url查询参数
    *  @param {Object} obj 参数对象
-   *  @returns {String} 返回 id=1&name=xx 格式的url查询参数
+   *  @returns {String} 返回如 id=1&name=xx 格式的url查询参数
    */
   function objToUrlQuery(obj) {
     if (!obj) return "";

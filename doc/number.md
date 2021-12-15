@@ -3,7 +3,7 @@
 #### \_.parseInt(value, radix = 10)
 
 转为数字类型  
-<span style="color:#808695">`解决某些旧浏览器在使用 parseInt('08') 等0开头，由于进制数导致转换是0的问题`</span>
+<span style="color:#808695">`解决某些旧浏览器在使用 parseInt('08') 等 0 开头，由于进制数导致转换是 0 的问题`</span>
 
 - ##### 参数
 

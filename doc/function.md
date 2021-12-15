@@ -43,7 +43,7 @@ document.getElementById("mybtn").onclick = LimeUtil.throttle(hello, 1000);
 
   `fn` {Function} 目标函数  
   `delay` {Number} 延迟时间，单位毫秒，默认 2 秒  
-  `immediate` {Boolean} 是否立即执行，true 和 false，默认 true
+  `immediate` {Boolean} 是否立即执行，默认 true
 
 - ##### 返回值
 

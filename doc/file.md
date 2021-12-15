@@ -237,7 +237,7 @@ LimeUtil.base64ToBlob(base64).then((blob) => {
 
 - ##### 返回值
 
-  {Blob} 返回 blob
+  {Base64} 返回 base64
 
 - ##### 示例
 
@@ -260,10 +260,33 @@ LimeUtil.urlToBase64(imgUrl).then((base64) => {
 
 - ##### 返回值
 
-  {Blob} 返回 blob
+  无
 
 - ##### 示例
 
 ```javascript
-LimeUtil.downloadBlobFile(blob, "测试文件.txt"); // 调用该方法会自动弹出下载
+// 调用该方法，浏览器会自动弹出下载文件
+LimeUtil.downloadBlobFile(blob, "test_file");
+```
+
+---
+
+#### \_.downloadFileUrl(fileUrl, fileName)
+
+通过文件 url 地址下载
+
+- ##### 参数
+
+  `fileUrl` {String} url 文件地址  
+  `fileName` {String} 下载的文件名，不写后缀名则默认为原文件类型
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+// 调用该方法，浏览器会自动弹出下载文件
+LimeUtil.downloadFileUrl("http://wwww.123.com/测试文件.txt", "test_file");
 ```
