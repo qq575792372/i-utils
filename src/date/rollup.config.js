@@ -13,9 +13,6 @@ function pathResolve(dir) {
   return path.resolve(__dirname, dir);
 }
 
-// 打包后的引用名称
-const outputModuleName = "LimeDate";
-
 // 声明注释
 const banner = `/*
  * ${pkg.name} v${pkg.version}
@@ -38,14 +35,14 @@ export default {
     {
       file: pathResolve(`./dist/index.js`),
       format: "umd", // 输出模式
-      name: outputModuleName,
+      name: pkg.moduleName,
       banner,
     },
     // 生成压缩js
     {
       file: pathResolve(`./dist/index.min.js`),
       format: "umd", // 输出模式
-      name: outputModuleName,
+      name: pkg.moduleName,
       banner,
       plugins: [uglify()],
     },

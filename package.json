@@ -1,11 +1,13 @@
 {
-  "name": "@ilime/lime-util",
+  "name": "@lime-util/util",
   "version": "2.0.0",
   "description": "lime-util 前端模块化 JavaScript 工具库",
-  "main": "dist/index.min.js",
+  "main": "./dist/index.js",
+  "moduleName": "LimeUtil",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "build:version": "rollup -c && npm version patch"
   },
   "author": "Gaoshiwei <575792372@qq.com>",
   "license": "MIT",
@@ -26,6 +28,7 @@
   ],
   "dependencies": {},
   "devDependencies": {
+    "@lime-util/date": "^2.0.0",
     "rollup": "^2.60.0",
     "rollup-plugin-commonjs": "^9.3.0",
     "rollup-plugin-node-resolve": "^5.2.0",
