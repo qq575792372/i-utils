@@ -10,7 +10,7 @@
 #### 1. 使用 npm 安装
 
 ```bash
-npm i lime-util --save
+npm i @ilime/lime-util --save
 ```
 
 #### 2. 或在浏览器中直接使用
@@ -31,6 +31,9 @@ LimeUtil.loadedTest(); // 输出：lime-util loaded successfully!
 // 按需引入
 import { loadedTest } from "lime-util";
 loadedTest(); // 输出：lime-util loaded successfully!
+
+// 单独使用
+import DateUtil from '@ilime/utils/date";
 ```
 
 #### 2. require 方式
