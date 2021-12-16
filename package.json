@@ -1,12 +1,11 @@
 {
   "name": "lime-util",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "lime-util 前端模块化 JavaScript 工具库",
   "main": "dist/lime-util.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c",
-    "publish": "npm publish --access public"
+    "build": "rollup -c"
   },
   "author": "Gaoshiwei <575792372@qq.com>",
   "license": "MIT",
@@ -18,10 +17,16 @@
     "url": "https://github.com/qq575792372/lime-util/issues"
   },
   "homepage": "https://github.com/qq575792372/lime-util#readme",
-  "dependencies": {
-    "rollup": "^2.60.0"
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {},
   "devDependencies": {
+    "rollup": "^2.60.0",
     "rollup-plugin-commonjs": "^9.3.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-uglify": "^6.0.4"
