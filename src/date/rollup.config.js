@@ -14,7 +14,7 @@ function pathResolve(dir) {
 }
 
 // 打包后的引用名称
-const outputModuleName = "LimeUtil";
+const outputModuleName = "LimeDate";
 
 // 声明注释
 const banner = `/*

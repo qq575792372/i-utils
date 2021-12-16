@@ -1,4 +1,4 @@
-import { getAge } from "../date";
+import { getAge } from "../date/src";
 /**
  * 节流函数
  * @description 高频触发时，在指定时间间隔内只执行一次
