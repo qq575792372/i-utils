@@ -1,5 +1,5 @@
 /*
- * @lime-util/date v2.0.0
+ * @lime-util/date v2.0.1
  *
  * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT license
@@ -7,10 +7,10 @@
  *
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.LimeDate = {}));
-})(this, (function (exports) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeDate = factory());
+})(this, (function () { 'use strict';
 
   // 数据类型
 
@@ -1121,62 +1121,71 @@
     return array;
   }
 
-  exports.addDate = addDate;
-  exports.addHours = addHours;
-  exports.addMinutes = addMinutes;
-  exports.addMonth = addMonth;
-  exports.addSeconds = addSeconds;
-  exports.addYear = addYear;
-  exports.betweenDays = betweenDays;
-  exports.betweenMonths = betweenMonths;
-  exports.betweenYears = betweenYears;
-  exports.compareDate = compareDate;
-  exports.diffDay = diffDay;
-  exports.diffMonth = diffMonth;
-  exports.diffWeek = diffWeek;
-  exports.diffYear = diffYear;
-  exports.formatDate = formatDate;
-  exports.getAge = getAge;
-  exports.getChineseZodiac = getChineseZodiac;
-  exports.getDate = getDate;
-  exports.getDateTime = getDateTime;
-  exports.getDayOfMonth = getDayOfMonth;
-  exports.getDayOfWeek = getDayOfWeek;
-  exports.getDayOfYear = getDayOfYear;
-  exports.getFirstDayOfMonth = getFirstDayOfMonth;
-  exports.getFirstDayOfWeek = getFirstDayOfWeek;
-  exports.getFullDayOfMonth = getFullDayOfMonth;
-  exports.getFullDayOfYear = getFullDayOfYear;
-  exports.getLastDayOfMonth = getLastDayOfMonth;
-  exports.getLastDayOfWeek = getLastDayOfWeek;
-  exports.getNow = getNow;
-  exports.getOverTime = getOverTime;
-  exports.getPastTime = getPastTime;
-  exports.getTimestamp = getTimestamp;
-  exports.getUnixTimestamp = getUnixTimestamp;
-  exports.getWeekOfMonth = getWeekOfMonth;
-  exports.getWeekOfYear = getWeekOfYear;
-  exports.getZodiac = getZodiac;
-  exports.isAM = isAM;
-  exports.isLeapYear = isLeapYear;
-  exports.isPM = isPM;
-  exports.isSameDay = isSameDay;
-  exports.isSameMonth = isSameMonth;
-  exports.isSameWeek = isSameWeek;
-  exports.isSameYear = isSameYear;
-  exports.isToday = isToday;
-  exports.isWeekend = isWeekend;
-  exports.isWorkday = isWorkday;
-  exports.nextMonth = nextMonth;
-  exports.nextWeek = nextWeek;
-  exports.nextYear = nextYear;
-  exports.parseDate = parseDate;
-  exports.prevMonth = prevMonth;
-  exports.prevWeek = prevWeek;
-  exports.prevYear = prevYear;
-  exports.today = today;
-  exports.yesterday = yesterday;
+  var dateUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    isToday: isToday,
+    isWorkday: isWorkday,
+    isWeekend: isWeekend,
+    isLeapYear: isLeapYear,
+    isAM: isAM,
+    isPM: isPM,
+    isSameDay: isSameDay,
+    isSameWeek: isSameWeek,
+    isSameMonth: isSameMonth,
+    isSameYear: isSameYear,
+    yesterday: yesterday,
+    today: today,
+    prevWeek: prevWeek,
+    nextWeek: nextWeek,
+    prevMonth: prevMonth,
+    nextMonth: nextMonth,
+    prevYear: prevYear,
+    nextYear: nextYear,
+    getNow: getNow,
+    getDate: getDate,
+    getDateTime: getDateTime,
+    getTimestamp: getTimestamp,
+    getUnixTimestamp: getUnixTimestamp,
+    getDayOfWeek: getDayOfWeek,
+    getDayOfMonth: getDayOfMonth,
+    getDayOfYear: getDayOfYear,
+    getWeekOfMonth: getWeekOfMonth,
+    getWeekOfYear: getWeekOfYear,
+    getFirstDayOfWeek: getFirstDayOfWeek,
+    getLastDayOfWeek: getLastDayOfWeek,
+    getFirstDayOfMonth: getFirstDayOfMonth,
+    getLastDayOfMonth: getLastDayOfMonth,
+    getFullDayOfMonth: getFullDayOfMonth,
+    getFullDayOfYear: getFullDayOfYear,
+    getPastTime: getPastTime,
+    getOverTime: getOverTime,
+    addYear: addYear,
+    addMonth: addMonth,
+    addDate: addDate,
+    addHours: addHours,
+    addMinutes: addMinutes,
+    addSeconds: addSeconds,
+    betweenDays: betweenDays,
+    betweenMonths: betweenMonths,
+    betweenYears: betweenYears,
+    compareDate: compareDate,
+    diffDay: diffDay,
+    diffWeek: diffWeek,
+    diffMonth: diffMonth,
+    diffYear: diffYear,
+    formatDate: formatDate,
+    parseDate: parseDate,
+    getAge: getAge,
+    getZodiac: getZodiac,
+    getChineseZodiac: getChineseZodiac
+  });
 
-  Object.defineProperty(exports, '__esModule', { value: true });
+  // 日期
+
+  var index = {
+    ...dateUtil,
+  };
+
+  return index;
 
 }));

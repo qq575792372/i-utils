@@ -26,9 +26,8 @@
   "files": [
     "dist"
   ],
-  "dependencies": {},
   "devDependencies": {
-    "@lime-util/date": "^2.0.0",
+    "@lime-util/date": "^2.0.2",
     "rollup": "^2.60.0",
     "rollup-plugin-commonjs": "^9.3.0",
     "rollup-plugin-node-resolve": "^5.2.0",
