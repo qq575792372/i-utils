@@ -1,5 +1,5 @@
 /*
- * lime-util v1.0.0
+ * lime-util v1.0.1
  *
  * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT license
