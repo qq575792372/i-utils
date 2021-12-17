@@ -1,5 +1,5 @@
 /*
- * @lime-util/date v2.0.1
+ * @lime-util/date v2.0.3
  *
  * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT license
@@ -1182,6 +1182,7 @@
 
   // 日期
 
+  // 导出
   var index = {
     ...dateUtil,
   };

@@ -1,6 +1,6 @@
 {
   "name": "@lime-util/date",
-  "version": "2.0.2",
+  "version": "2.0.3-beta.1",
   "description": "lime-util 的 date 日期库",
   "main": "./dist/index.js",
   "moduleName": "LimeDate",

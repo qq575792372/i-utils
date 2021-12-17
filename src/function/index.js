@@ -1,5 +1,5 @@
-// import { getAge } from "../date/index.js";
-import { getAge } from "@lime-util/date";
+import { getAge } from "../date/src/date";
+
 /**
  * 节流函数
  * @description 高频触发时，在指定时间间隔内只执行一次

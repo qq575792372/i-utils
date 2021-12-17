@@ -17,8 +17,9 @@ import * as objectUtil from "./object";
 // 函数
 import * as functionUtil from "./function";
 
-// 日期
-import * as dateUtil from "./date";
+// 日期-独立模块引入
+import { default as dateUtil } from "./date/src/index";
+
 // 正则
 import * as regexpUtil from "./regexp";
 

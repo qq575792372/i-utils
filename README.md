@@ -10,13 +10,13 @@
 #### 1. 使用 npm 安装
 
 ```bash
-npm i lime-util --save
+npm i @lime-util/util --save
 ```
 
 #### 2. 或在浏览器中直接使用
 
 ```html
-<script src="dist/lime-util.js"></script>
+<script src="dist/index.js"></script>
 ```
 
 ### 🎨 使用
@@ -25,57 +25,65 @@ npm i lime-util --save
 
 ```javascript
 // 全部引入
-import LimeUtil from "lime-util";
-LimeUtil.loadedTest(); // 输出：lime-util loaded successfully!
+import LimeUtil from "@lime-util/util";
+LimeUtil.loadedTest(); // 输出加载成功
 
 // 按需引入
-import { loadedTest } from "lime-util";
-loadedTest(); // 输出：lime-util loaded successfully!
+import { loadedTest } from "@lime-util/util";
+loadedTest(); // 输出加载成功
 ```
 
 #### 2. require 方式
 
 ```javascript
 // 全部引入
-const LimeUtil = require("lime-util");
-LimeUtil.loadedTest(); // 输出：lime-util loaded successfully!
+const LimeUtil = require("@lime-util/util");
+LimeUtil.loadedTest(); // 输出加载成功
 
 // 按需引入
-const { loadedTest } = require("lime-util");
-loadedTest(); // 输出：lime-util loaded successfully!
+const { loadedTest } = require("@lime-util/util");
+loadedTest(); // 输出加载成功
+```
+
+#### 3. 支持微信小程序中使用
+
+```javascript
+// 以上 es6方式 和 require方式 均可在小程序中支持
+import LimeUtil from "@lime-util/util";
+const LimeUtil = require("@lime-util/util");
 ```
 
 ### 📝API 文档
 
-1. [常量集合](https://github.com/qq575792372/lime-util/blob/master/doc/constant.md)
+1. [常量集合](https://github.com/qq575792372/lime-util/blob/v2/doc/constant.md)
 
-2. [字符串](https://github.com/qq575792372/lime-util/blob/master/doc/string.md)
+2. [字符串](https://github.com/qq575792372/lime-util/blob/v2/doc/string.md)
 
-3. [数字](https://github.com/qq575792372/lime-util/blob/master/doc/number.md)
-4. [数组](https://github.com/qq575792372/lime-util/blob/master/doc/array.md)
-5. [对象](https://github.com/qq575792372/lime-util/blob/master/doc/object.md)
-6. [函数](https://github.com/qq575792372/lime-util/blob/master/doc/function.md)
+3. [数字](https://github.com/qq575792372/lime-util/blob/v2/doc/number.md)
+4. [数组](https://github.com/qq575792372/lime-util/blob/v2/doc/array.md)
+5. [对象](https://github.com/qq575792372/lime-util/blob/v2/doc/object.md)
+6. [函数](https://github.com/qq575792372/lime-util/blob/v2/doc/function.md)
 
-7. [日期](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
-8. [正则](https://github.com/qq575792372/lime-util/blob/master/doc/regexp.md)
+7. [日期](https://github.com/qq575792372/lime-util/blob/v2/src/date/README.md)
+8. [正则](https://github.com/qq575792372/lime-util/blob/v2/doc/regexp.md)
 
-9. [数学](https://github.com/qq575792372/lime-util/blob/master/doc/math.md)
+9. [数学](https://github.com/qq575792372/lime-util/blob/v2/doc/math.md)
 
-10. [随机数](https://github.com/qq575792372/lime-util/blob/master/doc/random.md)
+10. [随机数](https://github.com/qq575792372/lime-util/blob/v2/doc/random.md)
 
-11. [文件](https://github.com/qq575792372/lime-util/blob/master/doc/file.md)
+11. [文件](https://github.com/qq575792372/lime-util/blob/v2/doc/file.md)
 
-12. [颜色](https://github.com/qq575792372/lime-util/blob/master/doc/color.md)
+12. [颜色](https://github.com/qq575792372/lime-util/blob/v2/doc/color.md)
 
-13. [校验](https://github.com/qq575792372/lime-util/blob/master/doc/validate.md)
+13. [校验](https://github.com/qq575792372/lime-util/blob/v2/doc/validate.md)
 
-14. [浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)
-15. [浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)
-16. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
-17. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
-18. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
+14. [浏览器 Url](https://github.com/qq575792372/lime-util/blob/v2/doc/browser-url.md)
+15. [浏览器 Storage](https://github.com/qq575792372/lime-util/blob/v2/doc/browser-storage.md)
+16. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/v2/doc/browser-cookie.md)
+17. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/v2/doc/browser-dom.md)
+18. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/v2/doc/browser-device.md)
 
-19. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/xcx.md)
+19. [微信小程序](https://github.com/qq575792372/lime-util/blob/v2/doc/xcx.md)
 
 ### 🔖Git 提交规范
 
