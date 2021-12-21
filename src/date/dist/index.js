@@ -1,5 +1,5 @@
 /*
- * @lime-util/date v2.0.3
+ * @lime-util/date v2.0.3-beta.2
  *
  * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT license

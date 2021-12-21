@@ -1,5 +1,5 @@
 /*
- * @lime-util/util v2.0.2
+ * @lime-util/util v2.0.3
  *
  * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT license
@@ -104,6 +104,42 @@
    */
   function toLower(value) {
     String(value).toLocaleLowerCase();
+  }
+
+  /**
+   * 转 snake_case 下划线命名
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function toSnakeCase(value) {
+    // todo
+  }
+
+  /**
+   * 转 camelCase 驼峰命名
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function toCamelCase(value) {
+    // todo
+  }
+
+  /**
+   * 转 PascalCase 帕斯卡命名
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function toPascalCase(value) {
+    // todo
+  }
+
+  /**
+   * 转 kebab-case 短横命名
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function toKebabCase(value) {
+    // todo
   }
 
   /**
@@ -272,6 +308,10 @@
     replaceAll: replaceAll,
     toUpper: toUpper,
     toLower: toLower,
+    toSnakeCase: toSnakeCase,
+    toCamelCase: toCamelCase,
+    toPascalCase: toPascalCase,
+    toKebabCase: toKebabCase,
     isInString: isInString,
     getIndexInString: getIndexInString,
     zeroStart: zeroStart,
