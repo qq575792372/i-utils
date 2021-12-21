@@ -6,7 +6,9 @@
   "moduleName": "LimeUtil",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "clean:all": "",
     "build": "rollup -c",
+    "build:all": "",
     "build:version": "rollup -c && npm version patch"
   },
   "author": "Gaoshiwei <575792372@qq.com>",

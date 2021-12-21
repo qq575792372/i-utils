@@ -65,6 +65,42 @@ export function toLower(value) {
 }
 
 /**
+ * 转 snake_case 下划线命名
+ * @param {String} value 参数
+ * @returns {String} 返回处理后的字符串
+ */
+export function toSnakeCase(value) {
+  // todo
+}
+
+/**
+ * 转 camelCase 驼峰命名
+ * @param {String} value 参数
+ * @returns {String} 返回处理后的字符串
+ */
+export function toCamelCase(value) {
+  // todo
+}
+
+/**
+ * 转 PascalCase 帕斯卡命名
+ * @param {String} value 参数
+ * @returns {String} 返回处理后的字符串
+ */
+export function toPascalCase(value) {
+  // todo
+}
+
+/**
+ * 转 kebab-case 短横命名
+ * @param {String} value 参数
+ * @returns {String} 返回处理后的字符串
+ */
+export function toKebabCase(value) {
+  // todo
+}
+
+/**
  * 字符串中是否包含指定的元素
  * @param {String} value 包含的元素
  * @param {String} str 查找的字符串
