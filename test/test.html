@@ -11,5 +11,19 @@
   <script>
     console.log(LimeUtil);
     LimeUtil.loadedTest();
+
+    // 正则方式互殴文件名称
+    function getFileName(str) {
+      return str.replace(/(.*\/)*([^.]+).*/gi, "$2");
+    }
+
+    // kebab-case转PascalCase命名
+    function toPascalCase(str) {
+      let newStr = str.replace(/-(\w)/g, function ($, $1) {
+        return $1.toUpperCase();
+      });
+      return newStr.charAt(0).toUpperCase() + newStr.slice(1);
+    }
+    console.log(convert("radio-group"));
   </script>
 </html>
