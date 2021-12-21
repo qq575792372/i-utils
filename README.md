@@ -48,9 +48,12 @@ loadedTest(); // 输出加载成功
 #### 3. 支持微信小程序中使用
 
 ```javascript
-// 以上 es6方式 和 require方式 均可在小程序中支持
+// 以上 es6方式 和 require方式，包括按需引入的，都可以在小程序中支持
 import LimeUtil from "@lime-util/util";
+import { loadedTest } from "@lime-util/util";
+
 const LimeUtil = require("@lime-util/util");
+const { loadedTest } = require("@lime-util/util");
 ```
 
 ### 📝API 文档
