@@ -137,5 +137,5 @@ export function isUrl(value) {
  * @returns {Boolean} 返回校验的结果
  */
 export function regexpTest(value, regex) {
-  return new RegExp(REGEXP[regex]).test(value);
+  return new RegExp(regex).test(value);
 }

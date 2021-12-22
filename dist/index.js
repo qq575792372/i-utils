@@ -1,5 +1,5 @@
 /*
- * @lime-util/all v2.0.4
+ * @lime-util/all v2.0.0
  *
  * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT license
@@ -108,38 +108,65 @@
 
   /**
    * 转 snake_case 下划线命名
+   * @description 支持 驼峰命名，短横命名，帕斯卡命名
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
    */
   function toSnakeCase(value) {
-    // todo
+    // 驼峰
+    if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+      return value.replace(/[A-Z]/g, function (item) {
+        return "_" + item.toLowerCase();
+      });
+    }
+    // 短横
+    if (value.indexOf("-") > 0) {
+      return value.replace(/-/g, "_").toLowerCase();
+    }
+
+    // 帕斯卡
+    if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) ;
   }
 
   /**
    * 转 camelCase 驼峰命名
+   * @description 支持 下划线命名、短横命名
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
    */
   function toCamelCase(value) {
     // todo
+    let newStr = value.replace(/[-|_](\w)/g, function ($, $1) {
+      return $1.toUpperCase();
+    });
+    return newStr.charAt(0).toLowerCase() + newStr.slice(1);
   }
 
   /**
    * 转 PascalCase 帕斯卡命名
+   * @description 支持 下划线命名、短横命名
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
    */
   function toPascalCase(value) {
     // todo
+    let newStr = value.replace(/[-|_](\w)/g, function ($, $1) {
+      return $1.toUpperCase();
+    });
+    return newStr.charAt(0).toUpperCase() + newStr.slice(1);
   }
 
   /**
    * 转 kebab-case 短横命名
+   * @description 支持 驼峰命名
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
    */
   function toKebabCase(value) {
     // todo
+    return value.replace(/[A-Z]/g, function (item) {
+      return "-" + item.toLowerCase();
+    });
   }
 
   /**
@@ -2277,7 +2304,7 @@
    * @returns {Boolean} 返回校验的结果
    */
   function regexpTest(value, regex) {
-    return new RegExp(REGEXP[regex]).test(value);
+    return new RegExp(regex).test(value);
   }
 
   var regexpUtil = /*#__PURE__*/Object.freeze({
