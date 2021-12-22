@@ -1,25 +1,5 @@
 ## 校验
 
-#### \_.isNaN(value)
-
-判断是非数字
-
-- ##### 参数
-
-  `value` {\*} 参数
-
-- ##### 返回值
-
-  {Boolean} 回 true 和 false
-
-- ##### 示例
-
-```javascript
-console.log(LimeUtil.isNaN("123")); // 输出：true
-```
-
----
-
 #### \_.isInteger(value)
 
 判断是整数
@@ -295,9 +275,11 @@ console.log(LimeUtil.isPromise(12.01)); // 输出：false
 
 ---
 
-#### \_.isChinese(value)
+<!-- 数据值校验 -->
 
-判断字符串是否全是中文
+#### \_.isNaN(value)
+
+判断非数字
 
 - ##### 参数
 
@@ -310,18 +292,16 @@ console.log(LimeUtil.isPromise(12.01)); // 输出：false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isChinese("中文")); // 输出：true
-console.log(LimeUtil.isChinese(12.01)); // 输出：false
+console.log(LimeUtil.isNaN("abc")); // 输出：true
+console.log(LimeUtil.isNaN("123")); // 输出：false
 ```
 
 ---
 
-<!-- 数据值校验 -->
+#### \_.isNotNaN(value)
 
-#### \_.isEmpty(value)
-
-判断值是否为空  
-<span style="color:#808695">`针对的是实际有意义的值，如果值是{},[]空的数据则为空`</span>
+判断是数字  
+`等同于 isNumber()`
 
 - ##### 参数
 
@@ -334,18 +314,16 @@ console.log(LimeUtil.isChinese(12.01)); // 输出：false
 - ##### 示例
 
 ```javascript
-console.log(LimeUtil.isEmpty(11)); // 输出：false
-console.log(LimeUtil.isEmpty(" ")); // 输出：false
-console.log(LimeUtil.isEmpty(null)); // 输出：true
-console.log(LimeUtil.isEmpty(undefined)); // 输出：true
+console.log(LimeUtil.isNotNaN("abc")); // 输出：false
+console.log(LimeUtil.isNotNaN("123")); // 输出：true
 ```
 
 ---
 
 #### \_.isNull(value)
 
-判断对象是否为空  
-<span style="color:#808695">`针对的是对象初始化数据，如果值是{},[]等初始化过的则不为空`</span>
+判断对象为空  
+<span style="color:#808695">`对象是否初始化过，如果值是{},[]等初始化过的则不为空`</span>
 
 - ##### 参数
 
@@ -366,10 +344,82 @@ console.log(LimeUtil.isNull(12.01)); // 输出：false
 
 ---
 
+#### \_.isNotNull(value)
+
+判断对象不为空  
+<span style="color:#808695">`对象是否初始化过，如果值是{},[]等初始化过的则不为空`</span>
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isNotNull(null)); // 输出：false
+console.log(LimeUtil.isNotNull(undefined)); // 输出：false
+console.log(LimeUtil.isNotNull(" ")); // 输出：true
+console.log(LimeUtil.isNotNull(12.01)); // 输出：true
+```
+
+---
+
+#### \_.isEmpty(value)
+
+判断值为空
+<span style="color:#808695">`是否实际有意义的值，如果值是{},[]空的数据则为空`</span>
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isEmpty(11)); // 输出：false
+console.log(LimeUtil.isEmpty(" ")); // 输出：false
+console.log(LimeUtil.isEmpty(null)); // 输出：true
+console.log(LimeUtil.isEmpty(undefined)); // 输出：true
+```
+
+---
+
+#### \_.isNotEmpty(value)
+
+判断值不为空
+<span style="color:#808695">`是否实际有意义的值，如果值是{},[]空的数据则为空`</span>
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isNotEmpty(11)); // 输出：true
+console.log(LimeUtil.isNotEmpty(" ")); // 输出：true
+console.log(LimeUtil.isNotEmpty(null)); // 输出：false
+console.log(LimeUtil.isNotEmpty(undefined)); // 输出：false
+```
+
+---
+
 #### \_.isBlank(value)
 
-判断是否值空的  
-<span style="color:#808695">`除了对null，undefined等校验，还会校验空格`</span>
+判断值是空白的  
+<span style="color:#808695">`同时会校验空值，空对象，以及空白符号`</span>
 
 - ##### 参数
 
@@ -390,9 +440,33 @@ console.log(LimeUtil.isBlank(12.01)); // 输出：false
 
 ---
 
+#### \_.isNotBlank(value)
+
+判断值不是空白的
+<span style="color:#808695">`同时会校验空值，空对象，以及空白符号`</span>
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isNotBlank(" ")); // 输出：false
+console.log(LimeUtil.isNotBlank(null)); // 输出：false
+console.log(LimeUtil.isNotBlank(undefined)); // 输出：false
+console.log(LimeUtil.isNotBlank(12.01)); // 输出：true
+```
+
+---
+
 #### \_.isUndefined(value)
 
-判断值是否是 undefined
+判断值是 undefined
 
 - ##### 参数
 
@@ -409,6 +483,29 @@ console.log(LimeUtil.isUndefined(undefined)); // 输出：true
 console.log(LimeUtil.isUndefined(null)); // 输出：false
 console.log(LimeUtil.isUndefined("")); // 输出：false
 console.log(LimeUtil.isUndefined(12.01)); // 输出：false
+```
+
+---
+
+#### \_.isNotUndefined(value)
+
+判断值不是 undefined
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isNotUndefined(undefined)); // 输出：false
+console.log(LimeUtil.isNotUndefined(null)); // 输出：true
+console.log(LimeUtil.isNotUndefined("")); // 输出：true
+console.log(LimeUtil.isNotUndefined(12.01)); // 输出：true
 ```
 
 ---

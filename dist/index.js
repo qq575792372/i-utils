@@ -1,5 +1,5 @@
 /*
- * @lime-util/util v2.0.3
+ * @lime-util/all v2.0.4
  *
  * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT license
@@ -338,15 +338,6 @@
 
   // 数据类型
   /**
-   * 判断是非数字
-   * @param {*} value 参数
-   * @returns {Boolean} 返回true和false
-   */
-  function isNaN(value) {
-    return window.isNaN(value) || (!value && value !== 0);
-  }
-
-  /**
    * 判断是整数
    * @param {*} value 参数
    * @returns {Boolean} result 返回true和false
@@ -463,35 +454,29 @@
     return Object.prototype.toString.call(value).slice(8, -1) === "Promise";
   }
 
-  /**
-   * 判断字符串是否全是中文
-   * @param {String} value 参数
-   * @returns {Boolean} 返回true和false
-   */
-  function isChinese(value) {
-    return /^[\u4E00-\u9FA5]+$/.test(value);
-  }
-
   // 数据值校验
   /**
-   * 判断值是否为空
-   * @description 针对的是实际有意义的值，如果值是{},[]空的数据则为空
-   * @param {*} value 校验的参数
+   * 判断非数字
+   * @param {*} value 参数
    * @returns {Boolean} 返回true和false
    */
-  function isEmpty(value) {
-    return (
-      value == undefined ||
-      value == null ||
-      value == "" ||
-      (isObject(value) && Object.keys(value).length == 0) ||
-      (isArray(value) && value.length == 0)
-    );
+  function isNaN(value) {
+    return window.isNaN(value) || (!value && value !== 0);
   }
 
   /**
-   * 判断对象是否为空
-   * @description 针对的是对象初始化数据，如果值是{},[]等初始化过的则不为空
+   * 判断是数字
+   * @description 等同于isNumber()
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isNotNaN(value) {
+    return !isNaN(value);
+  }
+
+  /**
+   * 判断对象为空
+   * @description 对象是否初始化过，如果值是{},[]等初始化过的则不为空
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
@@ -500,22 +485,70 @@
   }
 
   /**
-   * 判断是否值空的
-   * @description 除了对null，undefined等校验，还会校验空格
+   * 判断对象不为空
+   * @description 对象是否初始化过，如果值是{},[]等初始化过的则不为空
+   * @param {*} value 校验的参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isNotNull(value) {
+    return !isNull(value);
+  }
+
+  /**
+   * 判断值为空
+   * @description 是否实际有意义的值，如果值是{},[]空的数据则为空
+   * @param {*} value 校验的参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isEmpty(value) {
+    return isNull(value) || (isObject(value) && Object.keys(value).length == 0) || (isArray(value) && value.length == 0);
+  }
+
+  /**
+   * 判断值不为空
+   * @description 是否实际有意义的值，如果值是{},[]空的数据则为空
+   * @param {*} value 校验的参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isNotEmpty(value) {
+    return !isEmpty(value);
+  }
+
+  /**
+   * 判断值是空白的
+   * @description 同时会校验空值，空对象，以及空白符号
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
   function isBlank(value) {
-    return value == null || value == undefined || /^\s*$/.test(value);
+    return isEmpty(value) || /^\s*$/.test(value);
   }
 
   /**
-   * 判断值是否是 undefined
+   * 判断值不是空白的
+   * @description 同时会校验空值，空对象，以及空白符号
+   * @param {*} value 校验的参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isNotBlank(value) {
+    return !isBlank(value);
+  }
+
+  /**
+   * 判断值是undefined
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
   function isUndefined(value) {
     return value === undefined;
+  }
+  /**
+   * 判断值不是undefined
+   * @param {*} value 校验的参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isNotUndefined(value) {
+    return !isUndefined(value);
   }
 
   // 比较
@@ -541,7 +574,6 @@
 
   var validateUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    isNaN: isNaN,
     isInteger: isInteger,
     isDecimal: isDecimal,
     isNumber: isNumber,
@@ -555,11 +587,16 @@
     isRegExp: isRegExp,
     isError: isError,
     isPromise: isPromise,
-    isChinese: isChinese,
-    isEmpty: isEmpty,
+    isNaN: isNaN,
+    isNotNaN: isNotNaN,
     isNull: isNull,
+    isNotNull: isNotNull,
+    isEmpty: isEmpty,
+    isNotEmpty: isNotEmpty,
     isBlank: isBlank,
+    isNotBlank: isNotBlank,
     isUndefined: isUndefined,
+    isNotUndefined: isNotUndefined,
     equals: equals,
     equalsIgnoreCase: equalsIgnoreCase
   });
@@ -2109,6 +2146,10 @@
     CH: /^[\u4E00-\u9FA5]+$/,
     // 英文字母
     EN: /^[a-zA-Z]$/,
+    // 小写字母
+    LOWER_CASE: /^[a-z]+$/,
+    // 大写字母
+    UPPER_CASE: /^[A-Z]+$/,
     // 中文姓名，2-16位
     CH_NAME: /^(?:[\u4e00-\u9fa5·]{2,16})$/,
     // 英文姓名，0-20位
@@ -2140,14 +2181,100 @@
     URL: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
     // ip地址
     IP: /((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))/,
+    // 是外链，http，https，mail，tel电话
+    EXTERNAL: /^(http?:|https?:|mailto:|tel:)/,
   };
 
+  // 提供常用的校验方法
+
+  /**
+   * 是中文
+   * @param {String} value 校验的参数
+   * @returns {Boolean} 返回校验的结果
+   */
+  function isChinese(value) {
+    return regexpTest(value, REGEXP.CH);
+  }
+
+  /**
+   * 是英文
+   * @param {String} value 校验的参数
+   * @returns {Boolean} 返回校验的结果
+   */
+  function isEnglish(value) {
+    return regexpTest(value, REGEXP.EN);
+  }
+
+  /**
+   * 是外链
+   * @description 支持http，https，mail，tel电话
+   * @param {String} value 校验的参数
+   * @returns {Boolean} 返回校验的结果
+   */
+  function isExternal(value) {
+    return regexpTest(value, REGEXP.EXTERNAL);
+  }
+
+  /**
+   * 是小写字母
+   * @param {String} value 校验的参数
+   * @returns {Boolean} 返回校验的结果
+   */
+  function isLowerCase(value) {
+    return regexpTest(value, REGEXP.LOWER_CASE);
+  }
+
+  /**
+   * 是大写字母
+   * @param {String} value 校验的参数
+   * @returns {Boolean} 返回校验的结果
+   */
+  function isUpperCase(value) {
+    return regexpTest(value, REGEXP.UPPER_CASE);
+  }
+
+  /**
+   * 是11位手机号码
+   * @param {String} value 校验的参数
+   * @returns {Boolean} 返回校验的结果
+   */
+  function isMobile$1(value) {
+    return regexpTest(value, REGEXP.MOBILE);
+  }
+
+  /**
+   * 是邮箱
+   * @param {String} value 校验的参数
+   * @returns {Boolean} 返回校验的结果
+   */
+  function isEmail(value) {
+    return regexpTest(value, REGEXP.EMAIL);
+  }
+
+  /**
+   * 是身份证号码（15-18位）
+   * @param {String} value 校验的参数
+   * @returns {Boolean} 返回校验的结果
+   */
+  function isIdCard(value) {
+    return regexpTest(value, REGEXP.ID_CARD);
+  }
+  /**
+   * 是url链接
+   * @param {String} value 校验的参数
+   * @returns {Boolean} 返回校验的结果
+   */
+  function isUrl(value) {
+    return regexpTest(value, REGEXP.URL);
+  }
+
+  // 通过传入正则校验
   /**
    * 正则校验的方法
-   * @description 类型为枚举REGEXP对应的正则
-   * @param {String|Number} value 校验的值
+   * @description 类型为REGEXP对应的正则
+   * @param {String|Number} value 校验的参数
    * @param {REGEXP} regex 使用的REGEXP中的正则
-   * @returns {Boolean} 返回校验的结果，true和false
+   * @returns {Boolean} 返回校验的结果
    */
   function regexpTest(value, regex) {
     return new RegExp(REGEXP[regex]).test(value);
@@ -2156,6 +2283,15 @@
   var regexpUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     REGEXP: REGEXP,
+    isChinese: isChinese,
+    isEnglish: isEnglish,
+    isExternal: isExternal,
+    isLowerCase: isLowerCase,
+    isUpperCase: isUpperCase,
+    isMobile: isMobile$1,
+    isEmail: isEmail,
+    isIdCard: isIdCard,
+    isUrl: isUrl,
     regexpTest: regexpTest
   });
 

@@ -52,8 +52,8 @@ const LimeDate = require("@lime-util/date");
 
 ### 📝API 文档
 
-1. [常量集合](https://github.com/qq575792372/lime-util/blob/v2/doc/constant.md)
-2. [日期](https://github.com/qq575792372/lime-util/blob/v2/doc/date.md)
+1. [常量集合](https://github.com/qq575792372/lime-util/blob/master/doc/constant.md)
+2. [日期](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
 
 ### 🔖Git 提交规范
 

@@ -1,14 +1,5 @@
 // 数据类型
 /**
- * 判断是非数字
- * @param {*} value 参数
- * @returns {Boolean} 返回true和false
- */
-export function isNaN(value) {
-  return window.isNaN(value) || (!value && value !== 0);
-}
-
-/**
  * 判断是整数
  * @param {*} value 参数
  * @returns {Boolean} result 返回true和false
@@ -125,35 +116,29 @@ export function isPromise(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Promise";
 }
 
-/**
- * 判断字符串是否全是中文
- * @param {String} value 参数
- * @returns {Boolean} 返回true和false
- */
-export function isChinese(value) {
-  return /^[\u4E00-\u9FA5]+$/.test(value);
-}
-
 // 数据值校验
 /**
- * 判断值是否为空
- * @description 针对的是实际有意义的值，如果值是{},[]空的数据则为空
- * @param {*} value 校验的参数
+ * 判断非数字
+ * @param {*} value 参数
  * @returns {Boolean} 返回true和false
  */
-export function isEmpty(value) {
-  return (
-    value == undefined ||
-    value == null ||
-    value == "" ||
-    (isObject(value) && Object.keys(value).length == 0) ||
-    (isArray(value) && value.length == 0)
-  );
+export function isNaN(value) {
+  return window.isNaN(value) || (!value && value !== 0);
 }
 
 /**
- * 判断对象是否为空
- * @description 针对的是对象初始化数据，如果值是{},[]等初始化过的则不为空
+ * 判断是数字
+ * @description 等同于isNumber()
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isNotNaN(value) {
+  return !isNaN(value);
+}
+
+/**
+ * 判断对象为空
+ * @description 对象是否初始化过，如果值是{},[]等初始化过的则不为空
  * @param {*} value 校验的参数
  * @returns {Boolean} 返回true和false
  */
@@ -162,22 +147,70 @@ export function isNull(value) {
 }
 
 /**
- * 判断是否值空的
- * @description 除了对null，undefined等校验，还会校验空格
+ * 判断对象不为空
+ * @description 对象是否初始化过，如果值是{},[]等初始化过的则不为空
+ * @param {*} value 校验的参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isNotNull(value) {
+  return !isNull(value);
+}
+
+/**
+ * 判断值为空
+ * @description 是否实际有意义的值，如果值是{},[]空的数据则为空
+ * @param {*} value 校验的参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isEmpty(value) {
+  return isNull(value) || (isObject(value) && Object.keys(value).length == 0) || (isArray(value) && value.length == 0);
+}
+
+/**
+ * 判断值不为空
+ * @description 是否实际有意义的值，如果值是{},[]空的数据则为空
+ * @param {*} value 校验的参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isNotEmpty(value) {
+  return !isEmpty(value);
+}
+
+/**
+ * 判断值是空白的
+ * @description 同时会校验空值，空对象，以及空白符号
  * @param {*} value 校验的参数
  * @returns {Boolean} 返回true和false
  */
 export function isBlank(value) {
-  return value == null || value == undefined || /^\s*$/.test(value);
+  return isEmpty(value) || /^\s*$/.test(value);
 }
 
 /**
- * 判断值是否是 undefined
+ * 判断值不是空白的
+ * @description 同时会校验空值，空对象，以及空白符号
+ * @param {*} value 校验的参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isNotBlank(value) {
+  return !isBlank(value);
+}
+
+/**
+ * 判断值是undefined
  * @param {*} value 校验的参数
  * @returns {Boolean} 返回true和false
  */
 export function isUndefined(value) {
   return value === undefined;
+}
+/**
+ * 判断值不是undefined
+ * @param {*} value 校验的参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isNotUndefined(value) {
+  return !isUndefined(value);
 }
 
 // 比较

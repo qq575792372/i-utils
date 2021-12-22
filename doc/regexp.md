@@ -1,8 +1,8 @@
 ## 正则
 
-#### \_.REGEXP
+#### \_.REGEXP.XXX
 
-常用的正则表达式集合
+常用正则集合
 
 ```javascript
 const REGEXP = {
@@ -10,6 +10,10 @@ const REGEXP = {
   CH: /^[\u4E00-\u9FA5]+$/,
   // 英文字母
   EN: /^[a-zA-Z]$/,
+  // 小写字母
+  LOWER_CASE: /^[a-z]+$/,
+  // 大写字母
+  UPPER_CASE: /^[A-Z]+$/,
   // 中文姓名，2-16位
   CH_NAME: /^(?:[\u4e00-\u9fa5·]{2,16})$/,
   // 英文姓名，0-20位
@@ -41,7 +45,203 @@ const REGEXP = {
   URL: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
   // ip地址
   IP: /((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))/,
+  // 是外链，http，https，mail，tel电话
+  EXTERNAL: /^(http?:|https?:|mailto:|tel:)/,
 };
+```
+
+---
+
+### 提供常用校验方法
+
+#### \_.isChinese(value)
+
+是中文
+
+- ##### 参数
+
+  `value` {String} 校验的参数
+
+- ##### 返回值
+
+  {Boolean} 返回校验的结果
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isChinese("中国");
+console.log(res); // 输出：true
+```
+
+---
+
+#### \_.isEnglish(value)
+
+是英文
+
+- ##### 参数
+
+  `value` {String} 校验的参数
+
+- ##### 返回值
+
+  {Boolean} 返回校验的结果
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isEnglish("abc");
+console.log(res); // 输出：true
+```
+
+---
+
+#### \_.isExternal(value)
+
+是外链  
+`支持http，https，mail，tel电话`
+
+- ##### 参数
+
+  `value` {String} 校验的参数
+
+- ##### 返回值
+
+  {Boolean} 返回校验的结果
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isExternal("http://test.com/11");
+console.log(res); // 输出：true
+```
+
+---
+
+#### \_.isLowerCase(value)
+
+是小写字母
+
+- ##### 参数
+
+  `value` {String} 校验的参数
+
+- ##### 返回值
+
+  {Boolean} 返回校验的结果
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isLowerCase("abc");
+console.log(res); // 输出：true
+```
+
+---
+
+#### \_.isUpperCase(value)
+
+是大写字母
+
+- ##### 参数
+
+  `value` {String} 校验的参数
+
+- ##### 返回值
+
+  {Boolean} 返回校验的结果
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isUpperCase("ABC");
+console.log(res); // 输出：true
+```
+
+---
+
+#### \_.isMobile(value)
+
+是 11 位手机号码
+
+- ##### 参数
+
+  `value` {String} 校验的参数
+
+- ##### 返回值
+
+  {Boolean} 返回校验的结果
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isMobile("13000000000");
+console.log(res); // 输出：true
+```
+
+---
+
+#### \_.isEmail(value)
+
+是 11 位手机号码
+
+- ##### 参数
+
+  `value` {String} 校验的参数
+
+- ##### 返回值
+
+  {Boolean} 返回校验的结果
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isEmail("321123488@qq.com");
+console.log(res); // 输出：true
+```
+
+---
+
+#### \_.isIdCard(value)
+
+是身份证号码（15-18 位）
+
+- ##### 参数
+
+  `value` {String} 校验的参数
+
+- ##### 返回值
+
+  {Boolean} 返回校验的结果
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isMobile("411828198901112311");
+console.log(res); // 输出：true
+```
+
+---
+
+#### \_.isUrl(value)
+
+是 url 链接
+
+- ##### 参数
+
+  `value` {String} 校验的参数
+
+- ##### 返回值
+
+  {Boolean} 返回校验的结果
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isUrl("http://www.test.com");
+console.log(res); // 输出：true
+let res = LimeUtil.isUrl("ftps://192.168.3.22/ddd");
+console.log(res); // 输出：true
 ```
 
 ---
@@ -49,16 +249,16 @@ const REGEXP = {
 #### \_.regexpTest(value, regex)
 
 正则校验的方法  
-<span style="color:#808695">`类型为REGEXP中枚举对应的正则`</span>
+<span style="color:#808695">`类型为REGEXP对应的正则`</span>
 
 - ##### 参数
 
-  `value` {String|Number} 校验的值  
-  `regex` {REGEXP} 使用的 <span style="color:#ff9900">`REGEXP.XXX`</span> 的正则
+  `value` {String|Number} 校验的参数  
+  `regex` {REGEXP} 使用的 <span style="color:#ff9900">`REGEXP`</span> 中的正则
 
 - ##### 返回值
 
-  {Boolean} 返回 返回校验的结果，true 和 false
+  {Boolean} 返回校验的结果
 
 - ##### 示例
 
