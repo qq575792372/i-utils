@@ -92,17 +92,17 @@ const { loadedTest } = require("@lime-util/all");
 
 #### 😝 主要
 
-`feat`: 增加新功能  
+`feat`: 新功能  
 `fix`: 修复 bug  
-`add`: 增加代码逻辑  
+`add`: 增加内容  
 `del`: 删除功能  
 `update`: 更新功能
 
 #### 😉 次要
 
-`docs`: 文档相关的改动  
-`style`: 不影响代码逻辑的改动，例如修改空格，缩进等  
-`build`: 构造工具或者相关依赖的改动  
+`docs`: 文档更新  
+`style`: 颜色、字体大小等变动（不影响代码运行）  
+`build`: 构造工具或相关依赖变更  
 `refactor`: 代码重构  
 `revert`: 撤销，版本回退
 
@@ -110,4 +110,5 @@ const { loadedTest } = require("@lime-util/all");
 
 `test`: 添加或修改测试  
 `perf`: 提高性能的改动  
-`chore`: 不修改 src 或者 test 的其余修改，例如构建过程或辅助工具的变动
+`chore`: 构建过程或辅助工具的变更  
+`ci`: CI 配置，脚本文件等改动
