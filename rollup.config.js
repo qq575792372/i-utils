@@ -14,12 +14,15 @@ function pathResolve(dir) {
 }
 
 // 声明注释
-const banner = `/*
- * ${pkg.name} v${pkg.version}
+const banner = `/*!
+ * ${pkg.name} 
+ * Version: v${pkg.version}
+ * Date: ${new Date()}
  *
  * Copyright 2021-${new Date().getFullYear()}, ${pkg.author}
- * Licensed under the ${pkg.license} license
+ * Licensed under the ${pkg.license} License.
  * http://www.opensource.org/licenses/mit-license
+ * 
  *
  */`;
 

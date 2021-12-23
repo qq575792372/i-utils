@@ -1,9 +1,12 @@
-/*
- * @lime-util/all v2.0.0
+/*!
+ * @lime-util/all 
+ * Version: v2.0.1
+ * Date: Thu Dec 23 2021 16:28:52 GMT+0800 (中国标准时间)
  *
  * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
- * Licensed under the MIT license
+ * Released under the MIT License.
  * http://www.opensource.org/licenses/mit-license
+ * 
  *
  */
 (function (global, factory) {
@@ -113,6 +116,7 @@
    * @returns {String} 返回处理后的字符串
    */
   function toSnakeCase(value) {
+    // todo
     // 驼峰
     if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
       return value.replace(/[A-Z]/g, function (item) {
