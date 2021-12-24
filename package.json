@@ -1,13 +1,13 @@
 {
-  "name": "@lime-util/all",
-  "version": "2.0.1",
+  "name": "lime-util",
+  "version": "2.0.0",
   "description": "lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
   "moduleName": "LimeUtil",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean:all": "",
-    "build": "rollup -c",
+    "build": "node ./build/build.js",
     "build:all": "",
     "build:version": "rollup -c && npm version patch"
   },
@@ -29,10 +29,13 @@
     "dist"
   ],
   "devDependencies": {
+    "chalk": "^4.1.2",
     "rollup": "^2.60.0",
     "rollup-plugin-commonjs": "^9.3.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-uglify": "^6.0.4"
+    "rollup-plugin-uglify": "^6.0.4",
+    "runjs": "^4.4.2",
+    "tasksfile": "^5.1.1"
   },
   "keywords": [
     "lime-util",
@@ -49,5 +52,8 @@
   "directories": {
     "doc": "doc",
     "test": "test"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }

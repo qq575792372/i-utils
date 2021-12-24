@@ -1,5 +1,5 @@
-import { isEmpty, isNull, isInteger, isDate, isString } from "../../validate";
-import { parseInt } from "../../number";
+import { isEmpty, isNull, isInteger, isDate, isString } from "../../core/src/validate";
+import { parseInt } from "../../core/src/number";
 
 /**
  * 是否是今天

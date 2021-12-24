@@ -1,19 +1,18 @@
 {
-  "name": "@lime-util/date",
-  "version": "2.0.3-beta.3",
-  "description": "lime-util 的 date 日期库",
+  "name": "@lime-util/core",
+  "version": "2.0.1",
+  "description": "lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
-  "moduleName": "LimeDate",
+  "moduleName": "LimeUtil",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c",
-    "build:version": "rollup -c && npm version patch"
+    "build": "rollup -c rollup.config.js"
   },
   "author": "Gaoshiwei <575792372@qq.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/qq575792372/lime-util/tree/master/src/date"
+    "url": "https://github.com/qq575792372/lime-util.git"
   },
   "bugs": {
     "url": "https://github.com/qq575792372/lime-util/issues"
@@ -26,10 +25,13 @@
   "files": [
     "dist"
   ],
+  "dependencies": {},
+  "devDependencies": {},
   "keywords": [
-    "js日期库",
-    "lime-util日期库",
-    "lime-date",
-    "LimeDate"
+    "lime-util",
+    "LimeUtil",
+    "js工具库",
+    "模块化js库",
+    "JavaScript 工具库"
   ]
 }

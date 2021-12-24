@@ -1,9 +1,12 @@
-/*
- * @lime-util/date v2.0.4
+/*!
+ * @lime-util/date 
+ * Version: v2.0.3-beta.3
+ * Date: Fri Dec 24 2021 17:37:43 GMT+0800 (中国标准时间)
  *
  * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
- * Licensed under the MIT license
+ * Licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
+ * 
  *
  */
 (function (global, factory) {

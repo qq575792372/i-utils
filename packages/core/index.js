@@ -4,53 +4,50 @@ const loadedTest = function () {
 };
 
 // 常量集合
-import constant from "./constant";
+import constant from "./src/constant";
 
 // 字符串
-import * as stringUtil from "./string";
+import * as stringUtil from "./src/string";
 // 数字
-import * as numberUtil from "./number";
+import * as numberUtil from "./src/number";
 // 数组
-import * as arrayUtil from "./array";
+import * as arrayUtil from "./src/array";
 // 对象
-import * as objectUtil from "./object";
+import * as objectUtil from "./src/object";
 // 函数
-import * as functionUtil from "./function";
-
-// 日期-独立模块引入
-import { default as dateUtil } from "./date/src/index";
+import * as functionUtil from "./src/function";
 
 // 正则
-import * as regexpUtil from "./regexp";
+import * as regexpUtil from "./src/regexp";
 
 // 数学
-import * as mathUtil from "./math";
+import * as mathUtil from "./src/math";
 
 // 随机数
-import * as randomUtil from "./random";
+import * as randomUtil from "./src/random";
 
 // 文件
-import * as fileUtil from "./file";
+import * as fileUtil from "./src/file";
 
 // 颜色
-import * as colorUtil from "./color";
+import * as colorUtil from "./src/color";
 
 // 校验
-import * as validateUtil from "./validate";
+import * as validateUtil from "./src/validate";
 
 // 浏览器 Url
-import * as urlUtil from "./url";
+import * as urlUtil from "./src/url";
 // 浏览器 Storage
-import * as storageUtil from "./storage";
+import * as storageUtil from "./src/storage";
 // 浏览器 Cookie
-import * as cookieUtil from "./cookie";
+import * as cookieUtil from "./src/cookie";
 // 浏览器 Dom
-import * as domUtil from "./dom";
+import * as domUtil from "./src/dom";
 // 浏览器 Device
-import * as deviceUtil from "./device";
+import * as deviceUtil from "./src/device";
 
 // 微信小程序
-import * as xcxUtil from "./xcx";
+import * as xcxUtil from "./src/xcx";
 
 // 导出
 export default {
@@ -69,8 +66,6 @@ export default {
   // 函数
   ...functionUtil,
 
-  // 日期
-  ...dateUtil,
   // 正则
   ...regexpUtil,
 

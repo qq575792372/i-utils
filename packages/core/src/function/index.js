@@ -1,4 +1,4 @@
-import { getAge } from "../date/src/date";
+import { getAge } from "../../../date/src/date";
 
 /**
  * 节流函数

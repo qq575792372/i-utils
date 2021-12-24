@@ -31,7 +31,7 @@ const banner = `/*!
  */
 export default {
   // 入口
-  input: pathResolve("./src/index.js"),
+  input: pathResolve("./index.js"),
   // 输出
   output: [
     // 生成开发js
