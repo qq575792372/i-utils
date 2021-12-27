@@ -1,12 +1,11 @@
 {
-  "name": "@lime-util/core",
-  "version": "2.0.1",
+  "name": "@ilime/core",
+  "version": "2.0.0",
   "description": "lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
   "moduleName": "LimeUtil",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c rollup.config.js"
+    "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "author": "Gaoshiwei <575792372@qq.com>",
   "license": "MIT",

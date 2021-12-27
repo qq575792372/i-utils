@@ -1,0 +1,16 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "D:\\webWorks\\lime-util"
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_GIT_NOT_UNCLEAN",
+    "hint": "If you want to disable Git checks on publish, set the \"git-checks\" setting to \"false\", or run again with \"--no-git-checks\".",
+    "err": {
+      "name": "pnpm",
+      "message": "Unclean working tree. Commit or stash changes first.",
+      "code": "ERR_PNPM_GIT_NOT_UNCLEAN",
+      "stack": "pnpm: Unclean working tree. Commit or stash changes first.\n    at Object.handler [as publish] (C:\\Users\\Administrator\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.24.2\\node_modules\\pnpm\\dist\\pnpm.cjs:178680:17)\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n    at async C:\\Users\\Administrator\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.24.2\\node_modules\\pnpm\\dist\\pnpm.cjs:183648:21\n    at async run (C:\\Users\\Administrator\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.24.2\\node_modules\\pnpm\\dist\\pnpm.cjs:183622:34)\n    at async runPnpm (C:\\Users\\Administrator\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.24.2\\node_modules\\pnpm\\dist\\pnpm.cjs:183834:5)\n    at async C:\\Users\\Administrator\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\pnpm@6.24.2\\node_modules\\pnpm\\dist\\pnpm.cjs:183826:7"
+    }
+  }
+}
