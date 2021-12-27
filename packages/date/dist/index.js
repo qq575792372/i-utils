@@ -1,7 +1,7 @@
 /*!
- * @lime-util/date 
- * Version: v2.0.3-beta.3
- * Date: Fri Dec 24 2021 17:37:43 GMT+0800 (中国标准时间)
+ * @ilime/date 
+ * Version: v2.0.0
+ * Date: Mon Dec 27 2021 14:34:17 GMT+0800 (中国标准时间)
  *
  * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
