@@ -1,5 +1,5 @@
 // 测试加载成功方法
-const loadedTest = function () {
+const loadedUtil = function () {
   console.log("lime-util loaded successfully!");
 };
 
@@ -46,12 +46,9 @@ import * as domUtil from "./src/dom";
 // 浏览器 Device
 import * as deviceUtil from "./src/device";
 
-// 微信小程序
-import * as xcxUtil from "./src/xcx";
-
 // 导出
 export default {
-  loadedTest,
+  loadedUtil,
   // 常量集合
   ...constant,
 
@@ -94,7 +91,4 @@ export default {
   ...domUtil,
   // 浏览器 Device
   ...deviceUtil,
-
-  // 微信小程序
-  ...xcxUtil,
 };

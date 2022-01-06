@@ -1,9 +1,9 @@
 /*!
  * @ilime/date 
  * Version: v2.0.0
- * Date: Mon Dec 27 2021 14:34:17 GMT+0800 (中国标准时间)
+ * Date: Thu Jan 06 2022 18:33:57 GMT+0800 (中国标准时间)
  *
- * Copyright 2021-2021, Gaoshiwei <575792372@qq.com>
+ * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
  * 
@@ -1175,12 +1175,18 @@
     getChineseZodiac: getChineseZodiac
   });
 
-  // 日期
+  // 测试加载成功方法
+  const loadedDate = function () {
+    console.log("lime-date loaded successfully!");
+  };
 
   // 导出
   var index = {
+    loadedDate,
     ...dateUtil,
   };
+
+  // export * from './src/date'
 
   return index;
 

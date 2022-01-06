@@ -4,7 +4,7 @@ const chalk = require("chalk");
 const { run } = require("runjs");
 
 /**
- * 获得目录下所有文件名称
+ * 获得packages目录下所有文件名称
  * @param {*} dirName
  * @returns
  */
@@ -20,11 +20,14 @@ function getDirList(dirName) {
   return list;
 }
 
-// packages根目录
-const rootPath = path.join(__dirname, `../packages`);
-// packages包列表
-const pkgList = getDirList(rootPath);
-// 遍历packages
+/* 构建整合版本模块 */
+console.log(chalk.blue.bold(`\n> 正在构建所有模块整合版..\n`));
+run("pnpm run build:all");
+
+/* 单独构建packages下模块 */
+const pkgPath = path.join(__dirname, `../packages`);
+const pkgList = getDirList(pkgPath);
+// 遍历目录
 pkgList.forEach((v) => {
   const filePath = path.join(`${v[0]}`);
   if (fs.existsSync(filePath)) {
@@ -34,5 +37,5 @@ pkgList.forEach((v) => {
   }
 });
 
-// 完成
+/* 所有模块构建完成 */
 console.log(chalk.green.bold(`\n✔ 所有模块构建完成.\n`));

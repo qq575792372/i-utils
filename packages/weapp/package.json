@@ -1,9 +1,9 @@
 {
-  "name": "@ilime/core",
-  "version": "2.0.0",
-  "description": "core核心工具库 | lime-util 前端模块化 JavaScript 工具库",
+  "name": "@ilime/weapp",
+  "version": "3.0.0",
+  "description": "weapp小程序工具库 | lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
-  "moduleName": "LimeCore",
+  "moduleName": "LimeWeapp",
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js"
   },
@@ -27,7 +27,7 @@
   "dependencies": {},
   "devDependencies": {},
   "keywords": [
-    "LimeUtil",
-    "core核心工具库"
+    "LimeWeapp",
+    "weapp小程序工具库"
   ]
 }
