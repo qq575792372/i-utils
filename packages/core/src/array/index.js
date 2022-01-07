@@ -7,20 +7,9 @@ import { SORT_MODE } from "../constant/sort";
  * @param {Array} array 查找的数组
  * @returns {Boolean} 返回true和false
  */
-export function isInArray(value, array) {
+export function inArray(value, array) {
   if (isNull(value)) return;
   return array.includes(value);
-}
-
-/**
- * 获得元素在数组中首次出现的位置
- * @param {String|Number} value 元素
- * @param {Array} array 查找的数组
- * @returns {Number} 返回查找到的位置下标
- */
-export function getIndexInArray(value, array) {
-  if (isNull(value)) return;
-  return array.indexOf(value);
 }
 
 /**

@@ -1,6 +1,6 @@
 ## 数组
 
-#### \_.isInArray(value, array)
+#### \_.inArray(value, array)
 
 数组中是否包含指定的元素
 
@@ -16,30 +16,8 @@
 - ##### 示例
 
 ```javascript
-let res = LimeUtil.isInArray(1, [1, 2, 3]);
+let res = LimeUtil.inArray(1, [1, 2, 3]);
 console.log(res); // 输出：true
-```
-
----
-
-#### \_.getIndexInArray(value, array)
-
-获得元素在数组中首次出现的位置
-
-- ##### 参数
-
-  `value` {String|Number} 元素  
-  `array` {Array} 查找的数组
-
-- ##### 返回值
-
-  {Number} 返回查找到的位置下标
-
-- ##### 示例
-
-```javascript
-let res = LimeUtil.getIndexInArray(2, [1, 2, 3]);
-console.log(res); // 输出：1
 ```
 
 ---

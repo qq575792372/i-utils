@@ -1,7 +1,7 @@
 /*!
  * @lime-util/date 
- * Version: v3.0.2
- * Date: 2022/1/7 下午2:47:34
+ * Version: v3.0.3
+ * Date: 2022/1/7 下午5:34:21
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
@@ -448,7 +448,6 @@
     if (typeof date == "string") {
       date = parseDate(date);
     }
-    // todo 字符串语言
     let types = {
       zh: {
         year: "年前",

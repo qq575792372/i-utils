@@ -1,7 +1,7 @@
 /*!
  * @lime-util/util 
- * Version: v3.0.2
- * Date: 2022/1/7 下午2:47:28
+ * Version: v3.0.3
+ * Date: 2022/1/7 下午5:34:17
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
@@ -44,7 +44,7 @@
 
   // 字符串去空格
   /**
-   * 去除字符串两边空格
+   * 去除字符串前后位置空格
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
    */
@@ -80,7 +80,7 @@
   }
 
   /**
-   * 替换字符串中所有指定的字符为新的字符串
+   * 替换所有指定字符串为新的字符串
    * @param {String} value 参数
    * @param {String} oldSubstr 需要替换的字符串
    * @param {String} newSubstr 替换后的字符串
@@ -115,61 +115,93 @@
    * @returns {String} 返回处理后的字符串
    */
   function toSnakeCase(value) {
-    // todo
     // 驼峰
     if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
-      return value.replace(/[A-Z]/g, function (item) {
-        return "_" + item.toLowerCase();
-      });
+      return value.replace(/([A-Z])/g, "_$1").toLowerCase();
     }
     // 短横
     if (value.indexOf("-") > 0) {
       return value.replace(/-/g, "_").toLowerCase();
     }
-
     // 帕斯卡
-    if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) ;
-  }
-
-  /**
-   * 转 camelCase 驼峰命名
-   * @description 支持 下划线命名、短横命名
-   * @param {String} value 参数
-   * @returns {String} 返回处理后的字符串
-   */
-  function toCamelCase(value) {
-    // todo
-    let newStr = value.replace(/[-|_](\w)/g, function ($, $1) {
-      return $1.toUpperCase();
-    });
-    return newStr.charAt(0).toLowerCase() + newStr.slice(1);
-  }
-
-  /**
-   * 转 PascalCase 帕斯卡命名
-   * @description 支持 下划线命名、短横命名
-   * @param {String} value 参数
-   * @returns {String} 返回处理后的字符串
-   */
-  function toPascalCase(value) {
-    // todo
-    let newStr = value.replace(/[-|_](\w)/g, function ($, $1) {
-      return $1.toUpperCase();
-    });
-    return newStr.charAt(0).toUpperCase() + newStr.slice(1);
+    if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+      value = value.charAt(0).toLowerCase() + value.slice(1);
+      return value.replace(/([A-Z])/g, "_$1").toLowerCase();
+    }
   }
 
   /**
    * 转 kebab-case 短横命名
-   * @description 支持 驼峰命名
+   * @description 支持 下划线，驼峰命名，帕斯卡命名
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
    */
   function toKebabCase(value) {
-    // todo
-    return value.replace(/[A-Z]/g, function (item) {
-      return "-" + item.toLowerCase();
-    });
+    // 下划线
+    if (value.indexOf("_") > 0) {
+      return value.replace(/_/g, "-").toLowerCase();
+    }
+    // 驼峰
+    if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+      return value.replace(/([A-Z])/g, "-$1").toLowerCase();
+    }
+    // 帕斯卡
+    if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+      let newStr = value.charAt(0).toLowerCase() + value.slice(1);
+      return newStr.replace(/([A-Z])/g, "-$1").toLowerCase();
+    }
+  }
+
+  /**
+   * 转 camelCase 驼峰命名
+   * @description 支持 下划线命名，短横命名，帕斯卡命名
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function toCamelCase(value) {
+    // 下划线
+    if (value.indexOf("_") > 0) {
+      return value.replace(/\_(\w)/g, function (all, letter) {
+        return letter.toUpperCase();
+      });
+    }
+    // 短横
+    if (value.indexOf("-") > 0) {
+      return value.replace(/\-(\w)/g, function (all, letter) {
+        return letter.toUpperCase();
+      });
+    }
+    // 帕斯卡
+    if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+      return value.charAt(0).toLowerCase() + value.slice(1);
+    }
+  }
+
+  /**
+   * 转 PascalCase 帕斯卡命名
+   * @description 支持 下划线命名，短横命名，驼峰命名
+   * @param {String} value 参数
+   * @returns {String} 返回处理后的字符串
+   */
+  function toPascalCase(value) {
+    // 下划线
+    if (value.indexOf("_") > 0) {
+      let newStr = value.replace(/\_(\w)/g, function (all, letter) {
+        return letter.toUpperCase();
+      });
+      return newStr.charAt(0).toUpperCase() + newStr.slice(1);
+    }
+    // 短横
+    if (value.indexOf("-") > 0) {
+      let newStr = value.replace(/\-(\w)/g, function (all, letter) {
+        return letter.toUpperCase();
+      });
+      return newStr.charAt(0).toUpperCase() + newStr.slice(1);
+    }
+    // 驼峰
+    if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
   }
 
   /**
@@ -178,18 +210,8 @@
    * @param {String} str 查找的字符串
    * @returns {Boolean} 返回true和false
    */
-  function isInString(value, str) {
+  function inString(value, str) {
     return str.includes(value);
-  }
-
-  /**
-   * 获得元素在字符串中首次出现的位置
-   * @param {String} value 元素
-   * @param {String} str 查找的字符串
-   * @returns {Number} 返回查找到的位置下标
-   */
-  function getIndexInString(value, str) {
-    return str.indexOf(value);
   }
 
   /**
@@ -329,6 +351,74 @@
     return chineseStr;
   }
 
+  /**
+   * 姓名中间转为星号
+   * @param {String} value 姓名
+   * @returns {String} 返回转化后字符串
+   */
+  function formatStartOfName(value) {
+    if (value.length == 2) {
+      return _formatStartOf(value, 1, 1);
+    } else if (value.length > 2) {
+      return _formatStartOf(value, 1, value.length - 2);
+    } else {
+      return value;
+    }
+  }
+
+  /**
+   * 手机号码固定位数转为星号
+   * @param {String} value 手机号码
+   * @param {Number} start 前缀长度，默认3位
+   * @param {Number} len 显示星号的长度，默认4位
+   * @returns {String} 返回转化后字符串
+   */
+  function formatStartOfMobile(value, start = 3, len = 4) {
+    return _formatStartOf(value, start, len);
+  }
+
+  /**
+   * 身份证号码固定位数转为星号
+   * @param {String} value 身份证号码
+   * @param {Number} start 前缀长度，默认4位
+   * @param {Number} len 显示星号的长度，默认8位
+   * @returns {String} 返回转化后字符串
+   */
+  function formatStartOfIdCard(value, start = 4, len = 8) {
+    return _formatStartOf(value, start, len);
+  }
+
+  /**
+   * 银行卡号固定位数转为星号
+   * @param {String} value 银行卡号
+   * @param {Number} start 前缀长度，默认4位
+   * @param {Number} len 显示星号的长度，默认10位
+   * @returns {String} 返回转化后字符串
+   */
+  function formatStartOfBankCard(value, start = 4, len = 11) {
+    return _formatStartOf(value, start, len);
+  }
+
+  /**
+   * 字符串固定位数转为星号
+   * @param {String|Number} value 参数
+   * @param {Number} start 前缀长度
+   * @param {Number} len 显示星号的长度
+   * @returns {String} 返回转化后字符串
+   */
+  function _formatStartOf(value, start, len) {
+    value = String(value);
+    if (start > value.length) return value;
+    // len小于0和len大于剩余长度
+    let startStr = "";
+    if (len < 0) len = 0;
+    if (len > value.length - start) {
+      len = value.length - start;
+    }
+    startStr = String().padEnd(len, "*");
+    return value.substring(0, start) + startStr + value.substring(start + len);
+  }
+
   var stringUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     trim: trim,
@@ -339,15 +429,18 @@
     toUpper: toUpper,
     toLower: toLower,
     toSnakeCase: toSnakeCase,
+    toKebabCase: toKebabCase,
     toCamelCase: toCamelCase,
     toPascalCase: toPascalCase,
-    toKebabCase: toKebabCase,
-    isInString: isInString,
-    getIndexInString: getIndexInString,
+    inString: inString,
     zeroStart: zeroStart,
     zeroEnd: zeroEnd,
     formatThousand: formatThousand,
-    formatRmbChinese: formatRmbChinese
+    formatRmbChinese: formatRmbChinese,
+    formatStartOfName: formatStartOfName,
+    formatStartOfMobile: formatStartOfMobile,
+    formatStartOfIdCard: formatStartOfIdCard,
+    formatStartOfBankCard: formatStartOfBankCard
   });
 
   /**
@@ -637,20 +730,9 @@
    * @param {Array} array 查找的数组
    * @returns {Boolean} 返回true和false
    */
-  function isInArray(value, array) {
+  function inArray(value, array) {
     if (isNull(value)) return;
     return array.includes(value);
-  }
-
-  /**
-   * 获得元素在数组中首次出现的位置
-   * @param {String|Number} value 元素
-   * @param {Array} array 查找的数组
-   * @returns {Number} 返回查找到的位置下标
-   */
-  function getIndexInArray(value, array) {
-    if (isNull(value)) return;
-    return array.indexOf(value);
   }
 
   /**
@@ -808,8 +890,7 @@
 
   var arrayUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    isInArray: isInArray,
-    getIndexInArray: getIndexInArray,
+    inArray: inArray,
     arrayMin: arrayMin,
     arrayMax: arrayMax,
     arraySum: arraySum,
@@ -1306,7 +1387,6 @@
     if (typeof date == "string") {
       date = parseDate(date);
     }
-    // todo 字符串语言
     let types = {
       zh: {
         year: "年前",

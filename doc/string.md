@@ -2,7 +2,7 @@
 
 #### \_.trim(value)
 
-去除字符串两边空格
+去除字符串前后位置空格
 
 - ##### 参数
 
@@ -86,7 +86,7 @@ console.log(res); // 输出：123
 
 #### \_.replaceAll(value, oldSubstr, newSubstr)
 
-替换字符串中所有指定的字符为新的字符串
+替换所有指定字符串为新的字符串
 
 - ##### 参数
 
@@ -149,7 +149,111 @@ console.log(res); // 输出：say hello
 
 ---
 
-#### \_.isInString(value, str)
+#### \_.toSnakeCase(value)
+
+转 snake_case 下划线命名  
+`支持 驼峰命名，短横命名，帕斯卡命名`
+
+- ##### 参数
+
+  `value` {String} 参数
+
+- ##### 返回值
+
+  {String} 返回处理后的字符串
+
+- ##### 示例
+
+```javascript
+// 驼峰转下划线
+console.log(LimeCore.toSnakeCase("userName")); // 输出：user_name
+// 短横转下划线
+console.log(LimeCore.toSnakeCase("user-name")); // 输出：user_name
+// 帕斯卡转下划线
+console.log(LimeCore.toSnakeCase("UserName")); // 输出：user_name
+```
+
+---
+
+#### \_.toKebabCase(value)
+
+转 kebab-case 短横命名  
+`支持 下划线，驼峰命名，帕斯卡命名`
+
+- ##### 参数
+
+  `value` {String} 参数
+
+- ##### 返回值
+
+  {String} 返回处理后的字符串
+
+- ##### 示例
+
+```javascript
+// 下划线转短横
+console.log(LimeCore.toKebabCase("user_name")); // 输出：user-name
+// 驼峰转短横
+console.log(LimeCore.toKebabCase("userName")); // 输出：user-name
+// 帕斯卡转短横
+console.log(LimeCore.toKebabCase("UserName")); // 输出：user-name
+```
+
+---
+
+#### \_.toCamelCase(value)
+
+转 camelCase 驼峰命名  
+`支持 下划线命名，短横命名，帕斯卡命名`
+
+- ##### 参数
+
+  `value` {String} 参数
+
+- ##### 返回值
+
+  {String} 返回处理后的字符串
+
+- ##### 示例
+
+```javascript
+// 下划线转驼峰
+console.log(LimeCore.toCamelCase("user_name")); // 输出：userName
+// 短横转驼峰
+console.log(LimeCore.toCamelCase("user-name")); // 输出：userName
+// 帕斯卡转驼峰
+console.log(LimeCore.toCamelCase("UserName")); // 输出：userName
+```
+
+---
+
+#### \_.toPascalCase(value)
+
+转 PascalCase 帕斯卡命名  
+`支持 下划线命名，短横命名，驼峰命名`
+
+- ##### 参数
+
+  `value` {String} 参数
+
+- ##### 返回值
+
+  {String} 返回处理后的字符串
+
+- ##### 示例
+
+```javascript
+// 下划线转帕斯卡
+console.log(LimeCore.toPascalCase("user_name")); // 输出：UserName
+// 短横转帕斯卡
+console.log(LimeCore.toPascalCase("user-name")); // 输出：UserName
+// 驼峰转帕斯卡
+console.log(LimeCore.toPascalCase("userName")); // 输出：UserName
+```
+
+---
+
+#### \_.inString(value, str)
 
 字符串中是否包含指定的元素
 
@@ -165,30 +269,8 @@ console.log(res); // 输出：say hello
 - ##### 示例
 
 ```javascript
-let res = LimeUtil.isInString("hello", "say hello");
+let res = LimeUtil.inString("hello", "say hello");
 console.log(res); // 输出：true
-```
-
----
-
-#### \_.getIndexInString(value, str)
-
-获得元素在字符串中首次出现的位置
-
-- ##### 参数
-
-  `value` {String} 包含的元素  
-  `str` {String} 查找的字符串
-
-- ##### 返回值
-
-  {Number} 返回查找到的位置下标
-
-- ##### 示例
-
-```javascript
-let res = LimeUtil.getIndexInString("hello", "say hello");
-console.log(res); // 输出：4（hello的第一个字母在下标是4的位置）
 ```
 
 ---
@@ -277,4 +359,93 @@ console.log(res); // 输出：1,234,567.12345
 ```javascript
 let res = LimeUtil.formatAmountChinese(1234567.12345);
 console.log(res); // 输出：壹佰贰拾叁万肆仟伍佰陆拾柒元壹角贰分叁毫肆厘
+```
+
+---
+
+#### \_.formatStartOfName(value)
+
+姓名中间转为星号
+
+- ##### 参数
+
+  `value` {String} 姓名
+
+- ##### 返回值
+
+  {String} 返回转化后字符串
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.formatStartOfName("张三")); // 输出：张*
+console.log(LimeUtil.formatStartOfName("张三封")); // 输出：张*封
+console.log(LimeUtil.formatStartOfName("张三封封")); // 输出：张**封
+```
+
+---
+
+#### \_.formatStartOfMobile(value, start = 3, len = 4)
+
+手机号码固定位数转为星号
+
+- ##### 参数
+
+  `value` {String} 手机号码
+  `start` {Number} 前缀长度，默认 3 位
+  `len` {Number} 显示星号的长度，默认 4 位
+
+- ##### 返回值
+
+  {String} 返回转化后字符串
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.formatStartOfMobile("13000000000")); // 输出：130****0000
+console.log(LimeUtil.formatStartOfMobile("13000000000", 3, 5)); // 输出：130*****000
+```
+
+---
+
+#### \_.formatStartOfIdCard(value, start = 4, len = 8)
+
+手机号码固定位数转为星号
+
+- ##### 参数
+
+  `value` {String} 身份证号码
+  `start` {Number} 前缀长度，默认 4 位
+  `len` {Number} 显示星号的长度，默认 8 位
+
+- ##### 返回值
+
+  {String} 返回转化后字符串
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.formatStartOfIdCard("412929199312223012")); // 输出：4129********223012
+```
+
+---
+
+#### \_.formatStartOfBankCard(value, start = 4, len = 11)
+
+手机号码固定位数转为星号
+
+- ##### 参数
+
+  `value` {String} 身份证号码
+  `start` {Number} 前缀长度，默认 4 位
+  `len` {Number} 显示星号的长度，默认 11 位
+
+- ##### 返回值
+
+  {String} 返回转化后字符串
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.formatStartOfIdCard("6222021208888993029")); // 输出：6222***********3029
 ```

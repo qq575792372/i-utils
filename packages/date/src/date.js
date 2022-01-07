@@ -358,7 +358,6 @@ export function getPastTime(date, lang = "zh") {
   if (typeof date == "string") {
     date = parseDate(date);
   }
-  // todo 字符串语言
   let types = {
     zh: {
       year: "年前",
