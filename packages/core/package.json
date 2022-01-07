@@ -1,5 +1,5 @@
 {
-  "name": "@ilime/core",
+  "name": "@lime-util/core",
   "version": "3.0.0",
   "description": "core核心工具库 | lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
