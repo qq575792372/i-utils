@@ -1,7 +1,7 @@
 /*!
  * @lime-util/util 
- * Version: v3.0.0
- * Date: Fri Jan 07 2022 10:43:10 GMT+0800 (中国标准时间)
+ * Version: v3.0.1
+ * Date: Fri Jan 07 2022 14:19:51 GMT+0800 (中国标准时间)
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
@@ -3468,13 +3468,13 @@
   });
 
   // 测试加载成功方法
-  const loadedUtil = function () {
-    console.log("lime-util loaded successfully!");
+  const loadedTest$3 = function () {
+    console.log("lime-core loaded successfully!");
   };
 
   // 导出
   var core = {
-    loadedUtil,
+    loadedTest: loadedTest$3,
     // 常量集合
     ...constant,
 
@@ -3520,13 +3520,13 @@
   };
 
   // 测试加载成功方法
-  const loadedDate = function () {
+  const loadedTest$2 = function () {
     console.log("lime-date loaded successfully!");
   };
 
   // 导出
   var date = {
-    loadedDate,
+    loadedTest: loadedTest$2,
     ...dateUtil,
   };
 
@@ -3611,13 +3611,13 @@
   });
 
   // 测试加载成功方法
-  const loadedWeapp = function () {
+  const loadedTest$1 = function () {
     console.log("lime-weapp loaded successfully!");
   };
 
   // 导出
   var weapp = {
-    loadedWeapp,
+    loadedTest: loadedTest$1,
     ...weappUtil,
   };
 
@@ -3625,8 +3625,14 @@
    * all in one 工具整合包
    */
 
+  // 测试加载成功方法
+  const loadedTest = function () {
+    console.log("lime-util loaded successfully!");
+  };
+
   // 导出
   var index = {
+    loadedTest,
     ...core,
     ...date,
     ...weapp,

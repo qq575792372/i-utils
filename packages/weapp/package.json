@@ -1,7 +1,7 @@
 {
   "name": "@lime-util/weapp",
   "version": "3.0.0",
-  "description": "weapp小程序工具库 | lime-util 前端模块化 JavaScript 工具库",
+  "description": "lime-weapp 微信小程序工具库 | lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
   "moduleName": "LimeWeapp",
   "scripts": {
@@ -28,6 +28,6 @@
   "devDependencies": {},
   "keywords": [
     "LimeWeapp",
-    "weapp小程序工具库"
+    "weapp微信小程序工具库"
   ]
 }

@@ -1,7 +1,7 @@
 /*!
  * @lime-util/core 
  * Version: v3.0.0
- * Date: Fri Jan 07 2022 10:43:13 GMT+0800 (中国标准时间)
+ * Date: Fri Jan 07 2022 14:19:53 GMT+0800 (中国标准时间)
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
@@ -2423,13 +2423,13 @@
   });
 
   // 测试加载成功方法
-  const loadedUtil = function () {
-    console.log("lime-util loaded successfully!");
+  const loadedTest = function () {
+    console.log("lime-core loaded successfully!");
   };
 
   // 导出
   var index = {
-    loadedUtil,
+    loadedTest,
     // 常量集合
     ...constant,
 

@@ -1,6 +1,6 @@
 // 测试加载成功方法
-const loadedUtil = function () {
-  console.log("lime-util loaded successfully!");
+const loadedTest = function () {
+  console.log("lime-core loaded successfully!");
 };
 
 // 常量集合
@@ -48,7 +48,7 @@ import * as deviceUtil from "./src/device";
 
 // 导出
 export default {
-  loadedUtil,
+  loadedTest,
   // 常量集合
   ...constant,
 

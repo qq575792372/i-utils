@@ -3,20 +3,30 @@
 [![npm version](https://img.shields.io/npm/v/xe-utils.svg?style=flat-square)](https://github.com/qq575792372/lime-util)
 [![npm license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-🔥 **lime-util** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前有 **190+** ⚡️ 个 Api 方法，包含了开发中经常用到的一些方法集合，如 字符串，数组，浏览器缓存，日期工具，数学计算，文件处理，正则校验和小程序缓存 等等多个模块集合。
+🔥 **lime-util** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **200+** ⚡️ 个 Api 方法，包含了开发中经常用到的一些模块方法集合，如`字符串`，`数组`，`浏览器缓存`，`日期工具库`，`数学计算`，`文件处理`，`正则校验`和`微信小程序工具库`等等。
 
 ### 📦 安装
 
 #### 1. 使用 npm 安装
 
 ```bash
-npm i @lime-util/all --save
+npm i @lime-util/util --save
 ```
 
 #### 2. 或在浏览器中直接使用
 
 ```html
+<!-- 将工具包下面 dist/index.js 文件拷贝出来用 -->
 <script src="dist/index.js"></script>
+```
+
+### 🔨 构建
+
+工具库架构使用 `pnpm` 做为包管理工具，通过 `packages` 分包为多个工程模块来构建。如果需要 fork 二次开发，需要本地安装 `pnpm`，并且在 `packages` 根目录下面加入新的模块目录。
+
+```bash
+# 构建 整合模块 以及 各个子模块 的dist包
+pnpm build
 ```
 
 ### 🎨 使用
@@ -25,36 +35,33 @@ npm i @lime-util/all --save
 
 ```javascript
 // 全部引入
-import LimeUtil from "@lime-util/all";
-LimeUtil.loadedTest(); // 输出加载成功
+import LimeUtil from "@lime-util/util";
+LimeUtil.loadedTest(); // 输出：lime-util loaded successfully!
 
 // 按需引入
-import { loadedTest } from "@lime-util/all";
-loadedTest(); // 输出加载成功
+import { loadedTest } from "@lime-util/util";
+loadedTest(); // 输出：lime-util loaded successfully!
 ```
 
 #### 2. require 方式
 
 ```javascript
 // 全部引入
-const LimeUtil = require("@lime-util/all");
-LimeUtil.loadedTest(); // 输出加载成功
+const LimeUtil = require("@lime-util/util");
+LimeUtil.loadedTest(); // 输出：lime-util loaded successfully!
 
 // 按需引入
-const { loadedTest } = require("@lime-util/all");
-loadedTest(); // 输出加载成功
+const { loadedTest } = require("@lime-util/util");
+loadedTest(); // 输出：lime-util loaded successfully!
 ```
 
-#### 3. 支持微信小程序中使用
+### 📚 独立模块
 
-```javascript
-// 以上 es6方式 和 require方式，包括按需引入的，都可以在小程序中支持
-import LimeUtil from "@lime-util/all";
-import { loadedTest } from "@lime-util/all";
+`lime-util` 是包含所有 API 功能的整合版，如果你只想用`日期工具`或者`微信小程序工具`，可以单独安装使用。目前独立的包分为：`lime-core`，`lime-date`，`lime-weapp`。
 
-const LimeUtil = require("@lime-util/all");
-const { loadedTest } = require("@lime-util/all");
-```
+1. [lime-core 核心工具库（传送门）](https://github.com/qq575792372/lime-util/tree/master/packages/core)
+2. [lime-date 日期工具库（传送门）](https://github.com/qq575792372/lime-util/tree/master/packages/date)
+3. [lime-weapp 微信小程序工具库（传送门）](https://github.com/qq575792372/lime-util/tree/master/packages/weapp)
 
 ### 📝API 文档
 
@@ -67,7 +74,7 @@ const { loadedTest } = require("@lime-util/all");
 5. [对象](https://github.com/qq575792372/lime-util/blob/master/doc/object.md)
 6. [函数](https://github.com/qq575792372/lime-util/blob/master/doc/function.md)
 
-7. [日期（已独立模块）](https://github.com/qq575792372/lime-util/blob/master/src/date/README.md)
+7. [日期](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
 8. [正则](https://github.com/qq575792372/lime-util/blob/master/doc/regexp.md)
 
 9. [数学](https://github.com/qq575792372/lime-util/blob/master/doc/math.md)
@@ -86,7 +93,7 @@ const { loadedTest } = require("@lime-util/all");
 17. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
 18. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
 
-19. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/xcx.md)
+19. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)
 
 ### 🔖Git 提交规范
 
@@ -94,7 +101,7 @@ const { loadedTest } = require("@lime-util/all");
 
 `feat`: 新功能  
 `fix`: 修复 bug  
-`add`: 增加内容  
+`add`: 增加功能  
 `del`: 删除功能  
 `update`: 更新功能
 
@@ -112,3 +119,13 @@ const { loadedTest } = require("@lime-util/all");
 `perf`: 提高性能的改动  
 `chore`: 构建过程或辅助工具的变更  
 `ci`: CI 配置，脚本文件等改动
+
+```bash
+# <type>后面英文冒号，并且后跟一个空格
+git commit -m <type>(<scope>): <description>
+
+# 举个栗子
+git commit -m 'fix: 修复了xxx问题'
+git commit -m 'fix(string): 修复了字符串模块的xxx问题'
+git commit -m 'docs: 更新了字符串模块文档'
+```

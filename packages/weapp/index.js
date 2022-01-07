@@ -1,5 +1,5 @@
 // 测试加载成功方法
-const loadedWeapp = function () {
+const loadedTest = function () {
   console.log("lime-weapp loaded successfully!");
 };
 
@@ -8,6 +8,6 @@ import * as weappUtil from "./src/weapp";
 
 // 导出
 export default {
-  loadedWeapp,
+  loadedTest,
   ...weappUtil,
 };

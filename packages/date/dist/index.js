@@ -1,7 +1,7 @@
 /*!
  * @lime-util/date 
- * Version: v3.0.0
- * Date: Fri Jan 07 2022 10:43:15 GMT+0800 (中国标准时间)
+ * Version: v3.0.1
+ * Date: Fri Jan 07 2022 14:19:54 GMT+0800 (中国标准时间)
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
@@ -1176,13 +1176,13 @@
   });
 
   // 测试加载成功方法
-  const loadedDate = function () {
+  const loadedTest = function () {
     console.log("lime-date loaded successfully!");
   };
 
   // 导出
   var index = {
-    loadedDate,
+    loadedTest,
     ...dateUtil,
   };
 

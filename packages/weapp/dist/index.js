@@ -1,7 +1,7 @@
 /*!
  * @lime-util/weapp 
  * Version: v3.0.0
- * Date: Fri Jan 07 2022 10:43:17 GMT+0800 (中国标准时间)
+ * Date: Fri Jan 07 2022 14:19:59 GMT+0800 (中国标准时间)
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
@@ -94,13 +94,13 @@
   });
 
   // 测试加载成功方法
-  const loadedWeapp = function () {
+  const loadedTest = function () {
     console.log("lime-weapp loaded successfully!");
   };
 
   // 导出
   var index = {
-    loadedWeapp,
+    loadedTest,
     ...weappUtil,
   };
 

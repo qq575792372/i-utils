@@ -1,5 +1,5 @@
 // 测试加载成功方法
-const loadedDate = function () {
+const loadedTest = function () {
   console.log("lime-date loaded successfully!");
 };
 
@@ -8,7 +8,7 @@ import * as dateUtil from "./src/date";
 
 // 导出
 export default {
-  loadedDate,
+  loadedTest,
   ...dateUtil,
 };
 

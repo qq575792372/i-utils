@@ -22,7 +22,8 @@ function getDirList(dirName) {
 
 /* 构建整合版本模块 */
 console.log(chalk.blue.bold(`\n> 正在构建所有模块整合版..\n`));
-run("pnpm run build:all");
+// 打包根目录所有的
+run("rimraf dist && rollup -c");
 
 /* 单独构建packages下模块 */
 const pkgPath = path.join(__dirname, `../packages`);
@@ -31,7 +32,7 @@ const pkgList = getDirList(pkgPath);
 pkgList.forEach((v) => {
   const filePath = path.join(`${v[0]}`);
   if (fs.existsSync(filePath)) {
-    // 开始打包
+    // 打包子模块的
     console.log(chalk.blue.bold(`\n> 正在构建 ${v[1]} 模块..\n`));
     run(`cd ${filePath} && pnpm run build`);
   }

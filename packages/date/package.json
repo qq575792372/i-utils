@@ -1,7 +1,7 @@
 {
   "name": "@lime-util/date",
-  "version": "3.0.0",
-  "description": "date日期库 | lime-util 前端模块化 JavaScript 工具库",
+  "version": "3.0.1",
+  "description": "lime-date 日期工具库 | lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
   "moduleName": "LimeDate",
   "scripts": {
