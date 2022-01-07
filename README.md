@@ -99,7 +99,6 @@ loadedTest(); // 输出：lime-util loaded successfully!
 
 #### 😝 主要
 
-`feat`: 新功能  
 `fix`: 修复 bug  
 `add`: 增加功能  
 `del`: 删除功能  
