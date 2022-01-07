@@ -1,13 +1,12 @@
 /*!
  * @lime-util/util 
- * Version: v3.0.1
- * Date: Fri Jan 07 2022 14:19:51 GMT+0800 (中国标准时间)
+ * Version: v3.0.2
+ * Date: 2022/1/7 下午2:47:28
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
  * 
- *
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :

@@ -18,6 +18,10 @@ npm i @lime-util/util --save
 ```html
 <!-- 将工具包下面 dist/index.js 文件拷贝出来用 -->
 <script src="dist/index.js"></script>
+<!-- 使用 -->
+<script>
+  console.log(LimeUtil.loadedTest()); // 输出：lime-util loaded successfully!
+</script>
 ```
 
 ### 🔨 构建
@@ -55,9 +59,9 @@ const { loadedTest } = require("@lime-util/util");
 loadedTest(); // 输出：lime-util loaded successfully!
 ```
 
-### 📚 独立模块
+### 📚 模块分包
 
-`lime-util` 是包含所有 API 功能的整合版，如果你只想用`日期工具`或者`微信小程序工具`，可以单独安装使用。目前独立的包分为：`lime-core`，`lime-date`，`lime-weapp`。
+`lime-util` 是包含所有 API 功能的整合版，如果你只想用`日期工具`或者`微信小程序工具`，可以单独安装对应的包使用。目前独立的包分为：`lime-core`，`lime-date`，`lime-weapp`。
 
 1. [lime-core 核心工具库（传送门）](https://github.com/qq575792372/lime-util/tree/master/packages/core)
 2. [lime-date 日期工具库（传送门）](https://github.com/qq575792372/lime-util/tree/master/packages/date)

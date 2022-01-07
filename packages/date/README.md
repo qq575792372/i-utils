@@ -15,6 +15,10 @@ npm i @lime-util/date --save
 ```html
 <!-- 将工具包下面 dist/index.js 文件拷贝出来用 -->
 <script src="dist/index.js"></script>
+<!-- 使用 -->
+<script>
+  console.log(LimeDate.loadedTest()); // 输出：lime-date loaded successfully!
+</script>
 ```
 
 ### 🎨 使用
@@ -45,4 +49,4 @@ loadedTest(); // 输出：lime-date loaded successfully!
 
 ### 📝API 文档
 
-1. [日期](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
+[日期工具库 API](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)

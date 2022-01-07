@@ -1,6 +1,6 @@
 # lime-core 工具核心库
 
-🔥 **lime-core** 🔥 是从`lime-util`独立出来的核心模块，其中包括：`常量集合`，`字符串`，`数字`，`数组`，`对象`，`函数`，`正则`，`数学`，`随机数`，`文件`，`颜色`，`校验`，`浏览器 Url`，`浏览器 Storage`，`浏览器 Cookie`，`浏览器 Dom`，`浏览器 Device`。
+🔥 **lime-core** 🔥 是从`lime-util`独立出来的核心模块，包括：`常量集合`，`字符串`，`数字`，`数组`，`对象`，`函数`，`正则`，`数学`，`随机数`，`文件`，`颜色`，`校验`，`浏览器 Url`，`浏览器 Storage`，`浏览器 Cookie`，`浏览器 Dom`，`浏览器 Device`。
 
 ### 📦 安装
 
@@ -15,6 +15,10 @@ npm i @lime-util/core --save
 ```html
 <!-- 将工具包下面 dist/index.js 文件拷贝出来用 -->
 <script src="dist/index.js"></script>
+<!-- 使用 -->
+<script>
+  console.log(LimeCore.loadedTest()); // 输出：lime-core loaded successfully!
+</script>
 ```
 
 ### 🎨 使用
