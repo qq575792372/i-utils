@@ -1,7 +1,7 @@
 /*!
  * @ilime/util 
- * Version: v2.0.0
- * Date: Thu Jan 06 2022 20:58:09 GMT+0800 (中国标准时间)
+ * Version: v3.0.0
+ * Date: Fri Jan 07 2022 10:02:37 GMT+0800 (中国标准时间)
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
@@ -3625,6 +3625,7 @@
    * 提供所有工具包的整合版本
    */
 
+  // 导出
   var index = {
     ...core,
     ...date,
