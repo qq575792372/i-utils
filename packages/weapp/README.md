@@ -38,4 +38,4 @@ loadedTest(); // 输出：lime-weapp loaded successfully!
 
 ### 📝API 文档
 
-1. [微信小程序](https://github.com/qq575792372/lime-util/tree/master/packages/weapp)
+1. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)
