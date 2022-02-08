@@ -1,7 +1,7 @@
 /*!
  * @lime-util/util 
  * Version: v3.0.3
- * Date: 2022/1/7 下午5:34:17
+ * Date: 2022/2/8 上午11:15:03
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
@@ -1256,6 +1256,18 @@
     return Math.round(date / 1000);
   }
 
+  /**
+   * 获得当前年月
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {String} separator 年月分隔符，默认“-”分隔
+   * @returns {String} 返回年月
+   */
+  function getYearMonth(date = new Date(), separator = "-") {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    return [year, month].map(_digit).join(separator);
+  }
+
   // 当前日期是所在 周，月，年 的第几天
   /**
    * 获得当前日期是所在周的第几天
@@ -2078,6 +2090,7 @@
     getDateTime: getDateTime,
     getTimestamp: getTimestamp,
     getUnixTimestamp: getUnixTimestamp,
+    getYearMonth: getYearMonth,
     getDayOfWeek: getDayOfWeek,
     getDayOfMonth: getDayOfMonth,
     getDayOfYear: getDayOfYear,

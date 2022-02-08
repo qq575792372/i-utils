@@ -134,7 +134,7 @@ console.log(res); // 输出：true
 
 ---
 
-<!-- // 比较是同一 天，月，年 -->
+<!-- 比较是同一 天，月，年 -->
 
 #### \_.isSameDay(date1, date2)
 
@@ -517,6 +517,28 @@ console.log(res); // 输出：1639384195
 // 指定日期
 let res = LimeUtil.getUnixTimestamp(new Date("2021-12-10"));
 console.log(res); // 输出：1639094400
+```
+
+---
+
+#### \_.getYearMonth(date = new Date(), separator = "-")
+
+获得当前年月
+
+- ##### 参数
+
+  `date` {Date} 日期参数，默认当前日期  
+  `separator` {String} 年月分隔符，默认“-”分隔
+
+- ##### 返回值
+
+  {String} 返回年月
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getYearMonth();
+console.log(res); // 输出：2022-02
 ```
 
 ---
