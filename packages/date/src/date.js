@@ -227,6 +227,18 @@ export function getUnixTimestamp(date = new Date()) {
   return Math.round(date / 1000);
 }
 
+/**
+ * 获得当前年月
+ * @param {Date} date 日期参数，默认当前日期
+ * @param {String} separator 年月分隔符，默认“-”分隔
+ * @returns {String} 返回年月
+ */
+export function getYearMonth(date = new Date(), separator = "-") {
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  return [year, month].map(_digit).join(separator);
+}
+
 // 当前日期是所在 周，月，年 的第几天
 /**
  * 获得当前日期是所在周的第几天
