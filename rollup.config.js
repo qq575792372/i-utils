@@ -16,7 +16,6 @@ function pathResolve(dir) {
 const banner = `/*!
  * ${pkg.name} 
  * Version: v${pkg.version}
- * Date: ${new Date().toLocaleString()}
  *
  * Copyright 2021-${new Date().getFullYear()}, ${pkg.author}
  * Licensed under the ${pkg.license} License.

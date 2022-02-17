@@ -7,14 +7,16 @@ import { isEmpty } from "../validate";
  */
 export function getCookie(key) {
   if (typeof document == "undefined") return;
-  let arr = document.cookie ? document.cookie.split(";") : [];
-  for (let i = 0; i < arr[i].length; i++) {
+  // 多个cookie获取到每个分号后面是有个空格的，需要以下来分割
+  let arr = document.cookie ? document.cookie.split("; ") : [];
+  console.log("arr", arr);
+  for (let i in arr) {
     let arr2 = arr[i].split("=");
     if (arr2[0] == key) {
       return decodeURIComponent(arr2[1]);
     }
-    return "";
   }
+  return "";
 }
 
 /**
@@ -26,7 +28,8 @@ export function getCookie(key) {
  */
 export function setCookie(key, value, timestamp = 24 * 60 * 60 * 1000) {
   if (typeof document == "undefined") return;
-  document.cookie = key + "=" + value + ";expires=" + new Date(Date.now() + timestamp);
+  document.cookie =
+    key + "=" + value + ";expires=" + new Date(Date.now() + timestamp);
 }
 
 /**
@@ -47,7 +50,9 @@ export function clearCookie(domain = document.domain) {
   if (keys) {
     for (let i = keys.length; i--; ) {
       document.cookie =
-        keys[i] + "=0;path=/;" + domain ? "domain=" + domain + ";" : "" + "expires=" + new Date(0).toUTCString();
+        keys[i] + "=0;path=/;" + domain
+          ? "domain=" + domain + ";"
+          : "" + "expires=" + new Date(0).toUTCString();
     }
   }
 }

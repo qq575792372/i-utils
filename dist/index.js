@@ -1,7 +1,6 @@
 /*!
  * @lime-util/util 
- * Version: v3.0.3
- * Date: 2022/2/8 上午11:15:03
+ * Version: v3.0.6
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
@@ -3252,14 +3251,16 @@
    */
   function getCookie(key) {
     if (typeof document == "undefined") return;
-    let arr = document.cookie ? document.cookie.split(";") : [];
-    for (let i = 0; i < arr[i].length; i++) {
+    // 多个cookie获取到每个分号后面是有个空格的，需要以下来分割
+    let arr = document.cookie ? document.cookie.split("; ") : [];
+    console.log("arr", arr);
+    for (let i in arr) {
       let arr2 = arr[i].split("=");
       if (arr2[0] == key) {
         return decodeURIComponent(arr2[1]);
       }
-      return "";
     }
+    return "";
   }
 
   /**
@@ -3271,7 +3272,8 @@
    */
   function setCookie(key, value, timestamp = 24 * 60 * 60 * 1000) {
     if (typeof document == "undefined") return;
-    document.cookie = key + "=" + value + ";expires=" + new Date(Date.now() + timestamp);
+    document.cookie =
+      key + "=" + value + ";expires=" + new Date(Date.now() + timestamp);
   }
 
   /**
@@ -3292,7 +3294,9 @@
     if (keys) {
       for (let i = keys.length; i--; ) {
         document.cookie =
-          keys[i] + "=0;path=/;" + domain ? "domain=" + domain + ";" : "" + "expires=" + new Date(0).toUTCString();
+          keys[i] + "=0;path=/;" + domain
+            ? "domain=" + domain + ";"
+            : "" + "expires=" + new Date(0).toUTCString();
       }
     }
   }

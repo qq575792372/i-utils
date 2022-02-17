@@ -1,7 +1,6 @@
 /*!
  * @lime-util/date 
- * Version: v3.0.3
- * Date: 2022/2/8 上午11:15:08
+ * Version: v3.0.4
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
