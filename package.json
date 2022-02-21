@@ -1,6 +1,6 @@
 {
   "name": "@lime-util/util",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "description": "lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
   "moduleName": "LimeUtil",

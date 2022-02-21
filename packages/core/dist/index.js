@@ -1,6 +1,6 @@
 /*!
  * @lime-util/core 
- * Version: v3.0.8
+ * Version: v3.0.9
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
