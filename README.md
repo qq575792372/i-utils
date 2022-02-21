@@ -79,7 +79,7 @@ loadedTest(); // 输出：lime-util loaded successfully!
 5. [对象](https://github.com/qq575792372/lime-util/blob/master/doc/object.md)
 6. [函数](https://github.com/qq575792372/lime-util/blob/master/doc/function.md)
 
-7. [日期](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
+7. [日期-独立模块](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
 8. [正则](https://github.com/qq575792372/lime-util/blob/master/doc/regexp.md)
 
 9. [数学](https://github.com/qq575792372/lime-util/blob/master/doc/math.md)
