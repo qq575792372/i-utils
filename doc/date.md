@@ -521,6 +521,69 @@ console.log(res); // 输出：1639094400
 
 ---
 
+#### \_.getDay(date = new Date())
+
+获得当前日
+
+- ##### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- ##### 返回值
+
+  {Number} 返回日
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getDay();
+console.log(res); // 输出：20
+```
+
+---
+
+#### \_.getMonth(date = new Date())
+
+获得当前月
+
+- ##### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- ##### 返回值
+
+  {Number} 返回月
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getMonth();
+console.log(res); // 输出：2
+```
+
+---
+
+#### \_.getYear(date = new Date())
+
+获得当前年
+
+- ##### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- ##### 返回值
+
+  {Number} 返回年
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getYear();
+console.log(res); // 输出：2022
+```
+
+---
+
 #### \_.getYearMonth(date = new Date(), separator = "-")
 
 获得当前年月
@@ -543,20 +606,63 @@ console.log(res); // 输出：2022-02
 
 ---
 
+#### \_.getWeek(date = new Date(), format = "EE")
+
+获得当前日期是周几
+
+- ##### 参数
+
+  `date` {Date} 日期参数，默认当前日期  
+  `format` {String} 周格式化结果：“E”:日, “EE”:周日, “EEE”:星期日；默认“EE”
+
+- ##### 返回值
+
+  {String} 返回周几
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getWeek();
+console.log(res); // 输出：周一
+```
+
+---
+
+#### \_.getQuarter(date = new Date(), format = "q")
+
+获得当前日期是第几季度
+
+- ##### 参数
+
+  `date` {Date} 日期参数，默认当前日期  
+  `format` {String} 季度格式化结果：“q”:一季度, "qq":第一季度；默认：“q”
+
+- ##### 返回值
+
+  {String} 返回第几季度
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getQuarter();
+console.log(res); // 输出：一季度
+```
+
+---
+
 <!-- 当前日期是所在 周，月，年 的第几天 -->
 
-#### \_.getDayOfWeek(date = new Date(), lang = "en")
+#### \_.getDayOfWeek(date = new Date())
 
 获得当前日期是所在周的第几天
 
 - ##### 参数
 
-  `date` {Date} 日期参数，默认当前日期  
-  `lang` {String} 周数对应的语言，en：返回的是数字 1-7；zh：返回的是周的字符串周 x；默认 en
+  `date` {Date} 日期参数，默认当前日期
 
 - ##### 返回值
 
-  {Number|String} 返回天数
+  {Number} 返回天数
 
 - ##### 示例
 
@@ -564,10 +670,6 @@ console.log(res); // 输出：2022-02
 // 默认
 let res = LimeUtil.getDayOfWeek();
 console.log(res); // 输出：1
-
-// 指定日期，以及语言
-let res = LimeUtil.getDayOfWeek(new Date(), "zh");
-console.log(res); // 输出：周一
 ```
 
 ---

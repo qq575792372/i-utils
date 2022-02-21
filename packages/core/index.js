@@ -46,6 +46,9 @@ import * as domUtil from "./src/dom";
 // 浏览器 Device
 import * as deviceUtil from "./src/device";
 
+// 微信小程序
+import * as weappUtil from "./src/weapp";
+
 // 导出
 export default {
   loadedTest,
@@ -91,4 +94,7 @@ export default {
   ...domUtil,
   // 浏览器 Device
   ...deviceUtil,
+
+  // 微信小程序
+  ...weappUtil,
 };

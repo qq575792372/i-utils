@@ -1,6 +1,6 @@
 # lime-core 工具核心库
 
-🔥 **lime-core** 🔥 是从`lime-util`独立出来的核心模块，包括：`常量集合`，`字符串`，`数字`，`数组`，`对象`，`函数`，`正则`，`数学`，`随机数`，`文件`，`颜色`，`校验`，`浏览器 Url`，`浏览器 Storage`，`浏览器 Cookie`，`浏览器 Dom`，`浏览器 Device`。
+🔥 **lime-core** 🔥 是从`lime-util`独立出来的核心模块，包括：`常量集合`，`字符串`，`数字`，`数组`，`对象`，`函数`，`正则`，`数学`，`随机数`，`文件`，`颜色`，`校验`，`浏览器 Url`，`浏览器 Storage`，`浏览器 Cookie`，`浏览器 Dom`，`浏览器 Device`，`微信小程序 Weapp`。
 
 ### 📦 安装
 
@@ -75,3 +75,5 @@ loadedTest(); // 输出：lime-core loaded successfully!
 15. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
 16. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
 17. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
+
+18. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)

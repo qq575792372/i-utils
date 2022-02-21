@@ -9,7 +9,6 @@ export function getCookie(key) {
   if (typeof document == "undefined") return;
   // 多个cookie获取到每个分号后面是有个空格的，需要以下来分割
   let arr = document.cookie ? document.cookie.split("; ") : [];
-  console.log("arr", arr);
   for (let i in arr) {
     let arr2 = arr[i].split("=");
     if (arr2[0] == key) {
