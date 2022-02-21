@@ -1,6 +1,6 @@
 /*!
  * @lime-util/date 
- * Version: v3.0.4
+ * Version: v3.0.8
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
@@ -104,7 +104,9 @@
     // 当前日期
     let nowDate = getNow();
     // 指定日期
-    return ["getFullYear", "getMonth", "getDate"].every((i) => nowDate[i]() === date[i]());
+    return ["getFullYear", "getMonth", "getDate"].every(
+      (i) => nowDate[i]() === date[i]()
+    );
   }
 
   /**
@@ -125,7 +127,7 @@
     return dayOfWeek == 6 || dayOfWeek == 7;
   }
 
-  // 闰年，上午，下午
+  /* 闰年，上午，下午 */
   /**
    * 是否是闰年
    * @description 闰年366天，平年365天
@@ -160,7 +162,9 @@
    * @returns {Boolean} 返回true和false
    */
   function isSameDay(date1, date2) {
-    return ["getFullYear", "getMonth", "getDate"].every((i) => date1[i]() === date2[i]());
+    return ["getFullYear", "getMonth", "getDate"].every(
+      (i) => date1[i]() === date2[i]()
+    );
   }
 
   /**
@@ -295,7 +299,11 @@
     let hour = date.getHours();
     let minute = date.getMinutes();
     let second = date.getSeconds();
-    return [year, month, day].map(_digit).join(separator) + " " + [hour, minute, second].map(_digit).join(":");
+    return (
+      [year, month, day].map(_digit).join(separator) +
+      " " +
+      [hour, minute, second].map(_digit).join(":")
+    );
   }
 
   /**
@@ -317,6 +325,34 @@
   }
 
   /**
+   * 获得当前日
+   * @param {Date} date 日期参数，默认当前日期
+   * @returns {Number} 返回日
+   */
+  function getDay(date = new Date()) {
+    return date.getDate();
+  }
+
+  /**
+   * 获得当前月
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {String} separator 年月分隔符，默认“-”分隔
+   * @returns {Number} 返回月
+   */
+  function getMonth(date = new Date()) {
+    return date.getMonth() + 1;
+  }
+
+  /**
+   * 获得当前年
+   * @param {Date} date 日期参数，默认当前日期
+   * @returns {Number} 返回年
+   */
+  function getYear(date = new Date()) {
+    return date.getFullYear();
+  }
+
+  /**
    * 获得当前年月
    * @param {Date} date 日期参数，默认当前日期
    * @param {String} separator 年月分隔符，默认“-”分隔
@@ -328,21 +364,62 @@
     return [year, month].map(_digit).join(separator);
   }
 
+  /**
+   * 获得当前日期是周几
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {String} format 周格式化结果：“E”:日, “EE”:周日, “EEE”:星期日；默认“EE”
+   * @returns {String} 返回周几
+   */
+  function getWeek(date = new Date(), format = "EE") {
+    let week = {
+      0: "日",
+      1: "一",
+      2: "二",
+      3: "三",
+      4: "四",
+      5: "五",
+      6: "六",
+    };
+    if (format == "E") {
+      return week[date.getDay()];
+    } else if (format == "EE") {
+      return "周" + week[date.getDay()];
+    } else if (format == "EEE") {
+      return "星期" + week[date.getDay()];
+    } else {
+      throw new Error("Invalid week format!");
+    }
+  }
+  /**
+   * 获得当前日期是第几季度
+   * @param {Date} date 日期参数，默认当前日期
+   * @param {String} format 季度格式化结果：“q”:一季度, "qq":第一季度；默认：“q”
+   * @returns {String} 返回第几季度
+   */
+  function getQuarter(date = new Date(), format = "q") {
+    let quarter = {
+      1: "一",
+      2: "二",
+      3: "三",
+      4: "四",
+    };
+    if (format == "q") {
+      return quarter[Math.floor((date.getMonth() + 3) / 3)] + "季度";
+    } else if (format == "qq") {
+      return "第" + quarter[Math.floor((date.getMonth() + 3) / 3)] + "季度";
+    } else {
+      throw new Error("Invalid quarter format!");
+    }
+  }
+
   // 当前日期是所在 周，月，年 的第几天
   /**
    * 获得当前日期是所在周的第几天
    * @param {Date} date 日期参数，默认当前日期
-   * @param {String} lang 周数对应的语言，en：返回的是数字1-7；zh：返回的是周的字符串周x；默认en
    * @returns {Number|String} 返回天数
    */
-  function getDayOfWeek(date = new Date(), lang = "en") {
-    if (lang == "en") {
-      return new Array(7, 1, 2, 3, 4, 5, 6)[date.getDay()];
-    } else if (lang == "zh") {
-      return new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六")[date.getDay()];
-    } else {
-      throw new Error("Invalid lang!");
-    }
+  function getDayOfWeek(date = new Date()) {
+    return new Array(7, 1, 2, 3, 4, 5, 6)[date.getDay()];
   }
 
   /**
@@ -360,7 +437,11 @@
    * @returns {Number} 返回天数
    */
   function getDayOfYear(date = new Date()) {
-    return Math.ceil((date - new Date(date.getFullYear().toString())) / (24 * 60 * 60 * 1000)) + 1;
+    return (
+      Math.ceil(
+        (date - new Date(date.getFullYear().toString())) / (24 * 60 * 60 * 1000)
+      ) + 1
+    );
   }
 
   // 当前日期是所在 月，年的第几周
@@ -909,26 +990,37 @@
 
     // 年
     if (/(y+)/.test(format)) {
-      format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+      format = format.replace(
+        RegExp.$1,
+        (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+      );
     }
     // 周
     if (/(E+)/.test(format)) {
       format = format.replace(
         RegExp.$1,
-        (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") + week[date.getDay() + ""]
+        (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") +
+          week[date.getDay()]
       );
     }
     // 季度
     if (/(q+)/.test(format)) {
       format = format.replace(
         RegExp.$1,
-        (RegExp.$1.length > 1 ? "第" : "") + quarter[Math.floor((date.getMonth() + 3) / 3) + ""] + "季度"
+        (RegExp.$1.length > 1 ? "第" : "") +
+          quarter[Math.floor((date.getMonth() + 3) / 3)] +
+          "季度"
       );
     }
     // 日期
     for (let k in opt) {
       if (new RegExp("(" + k + ")").test(format))
-        format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? opt[k] : ("00" + opt[k]).substr(("" + opt[k]).length));
+        format = format.replace(
+          RegExp.$1,
+          RegExp.$1.length == 1
+            ? opt[k]
+            : ("00" + opt[k]).substr(("" + opt[k]).length)
+        );
     }
     return format;
   }
@@ -1029,7 +1121,20 @@
   function getChineseZodiac(dateStr) {
     if (isEmpty(dateStr)) return;
     // 计算
-    let arr = ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"];
+    let arr = [
+      "鼠",
+      "牛",
+      "虎",
+      "兔",
+      "龙",
+      "蛇",
+      "马",
+      "羊",
+      "猴",
+      "鸡",
+      "狗",
+      "猪",
+    ];
     let date = parseDate(dateStr);
     let year = date.getFullYear();
     if (year < 1900) {
@@ -1150,7 +1255,12 @@
     getDateTime: getDateTime,
     getTimestamp: getTimestamp,
     getUnixTimestamp: getUnixTimestamp,
+    getDay: getDay,
+    getMonth: getMonth,
+    getYear: getYear,
     getYearMonth: getYearMonth,
+    getWeek: getWeek,
+    getQuarter: getQuarter,
     getDayOfWeek: getDayOfWeek,
     getDayOfMonth: getDayOfMonth,
     getDayOfYear: getDayOfYear,
