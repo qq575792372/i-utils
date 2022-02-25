@@ -1,6 +1,6 @@
 import { isEmpty } from "../validate";
 
-// 文件信息处理
+/* 文件信息处理 */
 /**
  * 格式化文件大小自动转为 B，KB，MB，GB
  * @param {Byte} size 文件的大小，单位byte字节
@@ -39,7 +39,7 @@ export function getFileSuffix(value) {
   return value.substring(value.lastIndexOf(".") + 1).toLowerCase();
 }
 
-// 文件转换
+/* 文件转换 */
 /**
  * file转blob
  * @param {File} file file文件
@@ -249,7 +249,7 @@ export function urlToBase64(imgUrl) {
  */
 export function downloadBlobFile(blob, fileName) {
   try {
-    const objUrl = URL.createObjectURL(blob);
+    const objUrl = window.URL.createObjectURL(blob);
     const link = window.document.createElement("a");
     link.download = fileName;
     link.href = objUrl;

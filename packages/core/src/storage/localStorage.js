@@ -1,3 +1,4 @@
+/* localStorage存储 */
 /**
  * 通过key从localStorage缓存中获取数据
  * @param {String} key key值

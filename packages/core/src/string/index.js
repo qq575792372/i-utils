@@ -1,4 +1,4 @@
-// 字符串去空格
+/* 字符串去空格 */
 /**
  * 去除字符串前后位置空格
  * @param {String} value 参数
@@ -46,6 +46,7 @@ export function replaceAll(value, oldSubstr, newSubstr) {
   return value.replace(new RegExp(oldSubstr, "gm"), newSubstr);
 }
 
+/* 字符命名转换 */
 /**
  * 字符串转大写
  * @param {String} value 参数
@@ -65,14 +66,17 @@ export function toLower(value) {
 }
 
 /**
- * 转 snake_case 下划线命名
+ * 转为 snake_case 下划线命名
  * @description 支持 驼峰命名，短横命名，帕斯卡命名
  * @param {String} value 参数
  * @returns {String} 返回处理后的字符串
  */
 export function toSnakeCase(value) {
   // 驼峰
-  if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+  if (
+    /^[a-z]$/.test(value.charAt(0)) &&
+    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+  ) {
     return value.replace(/([A-Z])/g, "_$1").toLowerCase();
   }
   // 短横
@@ -80,14 +84,17 @@ export function toSnakeCase(value) {
     return value.replace(/-/g, "_").toLowerCase();
   }
   // 帕斯卡
-  if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+  if (
+    /^[A-Z]$/.test(value.charAt(0)) &&
+    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+  ) {
     value = value.charAt(0).toLowerCase() + value.slice(1);
     return value.replace(/([A-Z])/g, "_$1").toLowerCase();
   }
 }
 
 /**
- * 转 kebab-case 短横命名
+ * 转为 kebab-case 短横命名
  * @description 支持 下划线，驼峰命名，帕斯卡命名
  * @param {String} value 参数
  * @returns {String} 返回处理后的字符串
@@ -98,18 +105,24 @@ export function toKebabCase(value) {
     return value.replace(/_/g, "-").toLowerCase();
   }
   // 驼峰
-  if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+  if (
+    /^[a-z]$/.test(value.charAt(0)) &&
+    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+  ) {
     return value.replace(/([A-Z])/g, "-$1").toLowerCase();
   }
   // 帕斯卡
-  if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+  if (
+    /^[A-Z]$/.test(value.charAt(0)) &&
+    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+  ) {
     let newStr = value.charAt(0).toLowerCase() + value.slice(1);
     return newStr.replace(/([A-Z])/g, "-$1").toLowerCase();
   }
 }
 
 /**
- * 转 camelCase 驼峰命名
+ * 转为 camelCase 驼峰命名
  * @description 支持 下划线命名，短横命名，帕斯卡命名
  * @param {String} value 参数
  * @returns {String} 返回处理后的字符串
@@ -128,13 +141,16 @@ export function toCamelCase(value) {
     });
   }
   // 帕斯卡
-  if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+  if (
+    /^[A-Z]$/.test(value.charAt(0)) &&
+    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+  ) {
     return value.charAt(0).toLowerCase() + value.slice(1);
   }
 }
 
 /**
- * 转 PascalCase 帕斯卡命名
+ * 转为 PascalCase 帕斯卡命名
  * @description 支持 下划线命名，短横命名，驼峰命名
  * @param {String} value 参数
  * @returns {String} 返回处理后的字符串
@@ -155,11 +171,15 @@ export function toPascalCase(value) {
     return newStr.charAt(0).toUpperCase() + newStr.slice(1);
   }
   // 驼峰
-  if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+  if (
+    /^[a-z]$/.test(value.charAt(0)) &&
+    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+  ) {
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
 }
 
+/* 字符串格式化 */
 /**
  * 字符串中是否包含指定的元素
  * @param {String} value 包含的元素
@@ -209,7 +229,8 @@ export function zeroEnd(value, maxLength = 2) {
  */
 export function formatThousand(num) {
   num = String(num);
-  let regex = num.indexOf(".") > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
+  let regex =
+    num.indexOf(".") > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
   return num.replace(regex, "$1,");
 }
 
@@ -220,7 +241,18 @@ export function formatThousand(num) {
  */
 export function formatRmbChinese(money) {
   //汉字的数字
-  let cnNums = new Array("零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖");
+  let cnNums = new Array(
+    "零",
+    "壹",
+    "贰",
+    "叁",
+    "肆",
+    "伍",
+    "陆",
+    "柒",
+    "捌",
+    "玖"
+  );
   //基本单位
   let cnIntRadice = new Array("", "拾", "佰", "仟");
   //对应整数部分扩展单位

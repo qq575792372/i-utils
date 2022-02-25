@@ -1,7 +1,7 @@
 import { isNaN } from "../validate";
 import { MATH_MODE } from "../constant/math";
 
-// 数字精度计算
+/* 数字精度计算 */
 /**
  * 两个数字相加
  * @param {String|Number} arg1 第一个数字
@@ -63,7 +63,10 @@ export function multiply(arg1, arg2) {
   try {
     m += s2.split(".")[1].length;
   } catch (e) {}
-  return (Number(s1.replace(".", "")) * Number(s2.replace(".", ""))) / Math.pow(10, m);
+  return (
+    (Number(s1.replace(".", "")) * Number(s2.replace(".", ""))) /
+    Math.pow(10, m)
+  );
 }
 
 /**
@@ -145,8 +148,7 @@ export function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
   }
 }
 
-// 内部函数
-
+/* 内部函数 */
 /**
  * 四舍五入，强制保留小数位数
  * @description 默认保留两位小数，此方法解决原生的toFixed()会五舍六入的问题
@@ -162,7 +164,11 @@ function _toFixedRound(num, decimals = 2) {
   if (!decimals) decimals = 0;
   if (s.indexOf(".") == -1) s += ".";
   s += new Array(decimals + 1).join("0");
-  if (new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(s)) {
+  if (
+    new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(
+      s
+    )
+  ) {
     let s = "0" + RegExp.$2,
       pm = RegExp.$1,
       a = RegExp.$3.length,
@@ -178,7 +184,9 @@ function _toFixedRound(num, decimals = 2) {
           } else break;
         }
       }
-      s = a.join("").replace(new RegExp("(\\d+)(\\d{" + decimals + "})\\d$"), "$1.$2");
+      s = a
+        .join("")
+        .replace(new RegExp("(\\d+)(\\d{" + decimals + "})\\d$"), "$1.$2");
     }
     if (b) s = s.substr(1);
     return (pm + s).replace(/\.$/, "");
@@ -219,7 +227,9 @@ function _toFixedFloor(num, decimals = 2) {
   }
   let realVal = "";
   // 截取当前数据到小数点后decimals位
-  realVal = `${String(tempNum).split(".")[0]}.${String(tempNum).split(".")[1].substring(0, dec)}`;
+  realVal = `${String(tempNum).split(".")[0]}.${String(tempNum)
+    .split(".")[1]
+    .substring(0, dec)}`;
   return String(realVal);
 }
 

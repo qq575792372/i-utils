@@ -1,12 +1,12 @@
 ## 浏览器 Cookie
 
-#### \_.getCookie(key)
+#### \_.getCookie(name)
 
-通过 key 获取 cookie
+通过 name 获取 cookie
 
 - ##### 参数
 
-  `key` {String} 参数 key
+  `name` {String} 参数 name
 
 - ##### 返回值
 
@@ -21,13 +21,13 @@ console.log(res); // 输出：1
 
 ---
 
-#### \_.setCookie(key, value, timestamp = 24 \* 60 \* 60 \* 1000)
+#### \_.setCookie(name, value, timestamp = 24 \* 60 \* 60 \* 1000)
 
-通过 key 获取 cookie
+通过 name 获取 cookie
 
 - ##### 参数
 
-  `key` {String} 参数 key  
+  `name` {String} 参数 name  
   `value` {String} 设置的 value  
   `timestamp` {Timestamp} 过期的时间戳值，默认为一天，设置一天过期则为：<span style="color:#ff9900">`24 * 60 * 60 * 1000`</span>
 
@@ -44,13 +44,13 @@ LimeUtil.setCookie("id", 1, 24 * 60 * 60 * 1000);
 
 ---
 
-#### \_.removeCookie(key)
+#### \_.removeCookie(name)
 
-通过 key 删除 cookie
+通过 name 删除 cookie
 
 - ##### 参数
 
-  `key` {String} 参数 key
+  `name` {String} 参数 name
 
 - ##### 返回值
 

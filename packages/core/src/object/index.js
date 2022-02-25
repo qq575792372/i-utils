@@ -69,14 +69,14 @@ export function parseJson(json) {
  * @param {Object|Array|Date} source 需要克隆的数据
  * @returns {Object|Array|Date} 返回深度克隆后的数据
  */
-export function deepClone(source) {
-  if (isNull(source)) return null;
+export function cloneDeep(source) {
+  if (isNull(source)) return undefined;
 
   //  Object
   if (source instanceof Object) {
     let copy = {};
     for (let attr in source) {
-      if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
+      if (source.hasOwnProperty(attr)) copy[attr] = cloneDeep(source[attr]);
     }
     return copy;
   }
@@ -85,7 +85,7 @@ export function deepClone(source) {
   else if (source instanceof Array) {
     let copy = [];
     for (let i = 0, len = source.length; i < len; i++) {
-      copy[i] = deepClone(source[i]);
+      copy[i] = cloneDeep(source[i]);
     }
     return copy;
   }
@@ -98,6 +98,7 @@ export function deepClone(source) {
   }
 
   // Other
+  // 原路返回源数据
   else {
     return source;
   }

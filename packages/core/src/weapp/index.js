@@ -50,14 +50,14 @@ export function removeStorageSync(key) {
   wx.removeStorageSync(key);
 }
 
-/*
+/**
  * 清空所有缓存数据
  */
 export function clearStorage() {
   wx.clearStorageSync();
 }
 
-/*
+/**
  * 清空所有缓存数据（同步）
  */
 export function clearStorageSync() {

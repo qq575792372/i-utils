@@ -1,3 +1,4 @@
+/* sessionStorage存储 */
 /**
  * 通过key从sessionStorage缓存中获取数据
  * @param {String} key key值

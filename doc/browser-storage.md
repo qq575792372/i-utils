@@ -1,6 +1,8 @@
 ## 浏览器 Storage
 
-<!-- localStorage -->
+<!-- localStorage存储 -->
+
+### localStorage 存储
 
 #### \_.getLocalStorage(key)
 
@@ -84,7 +86,9 @@ LimeUtil.clearLocalStorage();
 
 ---
 
-<!-- sessionStorage -->
+<!-- sessionStorage存储 -->
+
+### sessionStorage 存储
 
 #### \_.getSessionStorage(key)
 

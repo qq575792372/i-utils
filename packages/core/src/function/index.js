@@ -4,10 +4,10 @@ import { getAge } from "../../../date/src/date";
  * 节流函数
  * @description 高频触发时，在指定时间间隔内只执行一次
  * @param {Function} fn 目标函数
- * @param {Number} interval 时间间隔，单位毫秒，默认2秒
+ * @param {Number} interval 时间间隔，单位毫秒，默认1*1000毫秒
  * @returns {Function} 返回function()
  */
-export function throttle(fn, interval = 2000) {
+export function throttle(fn, interval = 1000) {
   let timer;
   return function () {
     const _args = arguments;
@@ -24,11 +24,11 @@ export function throttle(fn, interval = 2000) {
  * 防抖函数
  * @description 事件执行后，在延迟时间内如果再次执行，会清空定时器重新延迟执行
  * @param {Function} fn 目标函数
- * @param {Number} delay 延迟时间，单位毫秒，默认2秒
+ * @param {Number} delay 延迟时间，单位毫秒，默认1*1000毫秒
  * @param {Boolean} immediate 是否立即执行，默认true
  * @returns {Function} 返回function()
  */
-export function debounce(fn, delay = 2000, immediate = true) {
+export function debounce(fn, delay = 1000, immediate = true) {
   let timer;
   return function () {
     const _args = arguments;
@@ -104,7 +104,13 @@ export function getIdCardInfo(idCard) {
   // 15位身份证
   if (idCard.length == 15) {
     // 生日
-    info.birthday = "19" + idCard.substring(6, 8) + "-" + idCard.substring(8, 10) + "-" + idCard.substring(10, 12);
+    info.birthday =
+      "19" +
+      idCard.substring(6, 8) +
+      "-" +
+      idCard.substring(8, 10) +
+      "-" +
+      idCard.substring(10, 12);
     // 年龄
     info.age = getAge(info.birthday);
     // 性别
@@ -113,7 +119,12 @@ export function getIdCardInfo(idCard) {
   // 18位身份证
   if (idCard.length == 18) {
     // 生日
-    info.birthday = idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
+    info.birthday =
+      idCard.substring(6, 10) +
+      "-" +
+      idCard.substring(10, 12) +
+      "-" +
+      idCard.substring(12, 14);
     // 年龄
     info.age = getAge(info.birthday);
     // 性别

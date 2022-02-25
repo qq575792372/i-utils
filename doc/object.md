@@ -126,7 +126,7 @@ console.log(obj); // 输出：obj对象
 
 ---
 
-#### \_.deepClone(target)
+#### \_.cloneDeep(target)
 
 深拷贝数据  
 <span style="color:#808695">`目前只支持 Object，Array，Date三种数据类型`</span>
@@ -143,7 +143,7 @@ console.log(obj); // 输出：obj对象
 
 ```javascript
 let obj = { id: 1, name: "test" };
-let newObj = LimeUtil.deepClone(obj);
+let newObj = LimeUtil.cloneDeep(obj);
 console.log(newObj); // 输出：深拷贝后的对象
 ```
 

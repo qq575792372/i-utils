@@ -6,18 +6,18 @@ importers:
     specifiers:
       chalk: ^4.1.2
       rimraf: ^3.0.2
-      rollup: ^2.60.0
-      rollup-plugin-commonjs: ^9.3.0
+      rollup: ^2.68.0
+      rollup-plugin-commonjs: ^10.1.0
       rollup-plugin-node-resolve: ^5.2.0
       rollup-plugin-uglify: ^6.0.4
-      runjs: ^4.4.2
+      runjs: 4.4.2
     devDependencies:
       chalk: 4.1.2
       rimraf: registry.npmmirror.com/rimraf/3.0.2
-      rollup: 2.61.1
-      rollup-plugin-commonjs: 9.3.4_rollup@2.61.1
-      rollup-plugin-node-resolve: 5.2.0_rollup@2.61.1
-      rollup-plugin-uglify: 6.0.4_rollup@2.61.1
+      rollup: 2.68.0
+      rollup-plugin-commonjs: 10.1.0_rollup@2.68.0
+      rollup-plugin-node-resolve: 5.2.0_rollup@2.68.0
+      rollup-plugin-uglify: 6.0.4_rollup@2.68.0
       runjs: 4.4.2
 
   packages/core:
@@ -47,6 +47,10 @@ packages:
       '@babel/helper-validator-identifier': 7.15.7
       chalk: 2.4.2
       js-tokens: 4.0.0
+    dev: true
+
+  /@types/estree/0.0.51:
+    resolution: {integrity: sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==}
     dev: true
 
   /@types/node/17.0.3:
@@ -134,6 +138,14 @@ packages:
     resolution: {integrity: sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==}
     dev: true
 
+  /fsevents/2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
     dev: true
@@ -168,6 +180,12 @@ packages:
 
   /is-module/1.0.0:
     resolution: {integrity: sha1-Mlj7afeMFNW4FdZkM2tM/7ZEFZE=}
+    dev: true
+
+  /is-reference/1.2.1:
+    resolution: {integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==}
+    dependencies:
+      '@types/estree': 0.0.51
     dev: true
 
   /jest-worker/24.9.0:
@@ -231,20 +249,21 @@ packages:
       path-parse: 1.0.7
     dev: true
 
-  /rollup-plugin-commonjs/9.3.4_rollup@2.61.1:
-    resolution: {integrity: sha512-DTZOvRoiVIHHLFBCL4pFxOaJt8pagxsVldEXBOn6wl3/V21wVaj17HFfyzTsQUuou3sZL3lEJZVWKPFblJfI6w==}
+  /rollup-plugin-commonjs/10.1.0_rollup@2.68.0:
+    resolution: {integrity: sha512-jlXbjZSQg8EIeAAvepNwhJj++qJWNJw1Cl0YnOqKtP5Djx+fFGkp3WRh+W0ASCaFG5w1jhmzDxgu3SJuVxPF4Q==}
     deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-commonjs.
     peerDependencies:
-      rollup: '>=0.56.0'
+      rollup: '>=1.12.0'
     dependencies:
       estree-walker: 0.6.1
+      is-reference: 1.2.1
       magic-string: 0.25.7
       resolve: 1.20.0
-      rollup: 2.61.1
+      rollup: 2.68.0
       rollup-pluginutils: 2.8.2
     dev: true
 
-  /rollup-plugin-node-resolve/5.2.0_rollup@2.61.1:
+  /rollup-plugin-node-resolve/5.2.0_rollup@2.68.0:
     resolution: {integrity: sha512-jUlyaDXts7TW2CqQ4GaO5VJ4PwwaV8VUGA7+km3n6k6xtOEacf61u0VXwN80phY/evMcaS+9eIeJ9MOyDxt5Zw==}
     deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-node-resolve.
     peerDependencies:
@@ -254,18 +273,18 @@ packages:
       builtin-modules: 3.2.0
       is-module: 1.0.0
       resolve: 1.20.0
-      rollup: 2.61.1
+      rollup: 2.68.0
       rollup-pluginutils: 2.8.2
     dev: true
 
-  /rollup-plugin-uglify/6.0.4_rollup@2.61.1:
+  /rollup-plugin-uglify/6.0.4_rollup@2.68.0:
     resolution: {integrity: sha512-ddgqkH02klveu34TF0JqygPwZnsbhHVI6t8+hGTcYHngPkQb5MIHI0XiztXIN/d6V9j+efwHAqEL7LspSxQXGw==}
     peerDependencies:
       rollup: '>=0.66.0 <2'
     dependencies:
       '@babel/code-frame': 7.16.0
       jest-worker: 24.9.0
-      rollup: 2.61.1
+      rollup: 2.68.0
       serialize-javascript: 2.1.2
       uglify-js: 3.14.5
     dev: true
@@ -276,12 +295,12 @@ packages:
       estree-walker: 0.6.1
     dev: true
 
-  /rollup/2.61.1:
-    resolution: {integrity: sha512-BbTXlEvB8d+XFbK/7E5doIcRtxWPRiqr0eb5vQ0+2paMM04Ye4PZY5nHOQef2ix24l/L0SpLd5hwcH15QHPdvA==}
+  /rollup/2.68.0:
+    resolution: {integrity: sha512-XrMKOYK7oQcTio4wyTz466mucnd8LzkiZLozZ4Rz0zQD+HeX4nUK4B8GrTX/2EvN2/vBF/i2WnaXboPxo0JylA==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
-      fsevents: registry.npmmirror.com/fsevents/2.3.2
+      fsevents: 2.3.2
     dev: true
 
   /runjs/4.4.2:
@@ -408,16 +427,6 @@ packages:
     name: wrappy
     version: 1.0.2
     dev: true
-
-  registry.npmmirror.com/fsevents/2.3.2:
-    resolution: {integrity: sha1-ilJveLj99GI7cJ4Ll1xSwkwC/Ro=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/fsevents/download/fsevents-2.3.2.tgz}
-    name: fsevents
-    version: 2.3.2
-    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
 
   registry.npmmirror.com/glob/7.2.0:
     resolution: {integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/glob/download/glob-7.2.0.tgz}

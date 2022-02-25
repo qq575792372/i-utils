@@ -1,4 +1,4 @@
-// 浏览器信息
+/* 浏览器信息 */
 /**
  * 获取浏览器信息
  * @description 会获取到浏览器对应的名称以及版本
@@ -30,7 +30,7 @@ export function getBrowserInfo() {
   return "unknown";
 }
 
-// 设备类型
+/* 设备类型 */
 /**
  * 判断是pc端
  * @returns {Boolean} 返回true和false
@@ -46,10 +46,12 @@ export function isPc() {
  */
 export function isMobile() {
   let ua = window.navigator.userAgent;
-  return /Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|IEMobile/i.test(ua);
+  return /Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|IEMobile/i.test(
+    ua
+  );
 }
 
-// 操作系统类型
+/* 操作系统类型 */
 /**
  * 判断是 android
  * @returns {Boolean} 返回true和false
@@ -104,7 +106,7 @@ export function isMac() {
   return /mac/i.test(ua);
 }
 
-// 苹果设备类型
+/* 苹果设备类型 */
 /**
  * 判断是iphone
  *@returns {Boolean} 返回true和false
@@ -123,7 +125,7 @@ export function isIpad() {
   return /iPod/i.test(ua);
 }
 
-// 手机浏览器类型
+/* 手机浏览器类型 */
 /**
  * 判断是微信内置浏览器
  * @returns {Boolean} 返回true和false

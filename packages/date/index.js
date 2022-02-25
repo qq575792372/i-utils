@@ -11,5 +11,3 @@ export default {
   loadedTest,
   ...dateUtil,
 };
-
-// export * from './src/date'

@@ -1,5 +1,5 @@
 /**
- * 数组排序
+ * 数组排序常量
  */
 export const SORT_MODE = {
   // 降序

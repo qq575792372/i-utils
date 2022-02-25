@@ -16,17 +16,22 @@ export function getRandom(min = 0, max = 9) {
  * @returns {Number} 返回固定位数的随机数
  */
 export function getRandomDigit(len = 1) {
-  return Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, len - 1));
+  return Math.floor(
+    (Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, len - 1)
+  );
 }
 
 /**
  * 生成UUID
  * @param len 生成的长度，默认32位
  * @param radix 进制数，默认16进制
+ * @example
+ * getUUID() // 输出：0a559343dbbf0e7e6c1de90163e7aa0a
  * @returns {String} 返回UUID字符串
  */
 export function getUUID(len = 32, radix = 16) {
-  const CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const CHARS =
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   let uuid = [],
     i;
   radix = radix || CHARS.length;
@@ -49,12 +54,25 @@ export function getUUID(len = 32, radix = 16) {
 /**
  * 生成GUID
  * @example
- * getGUID() // 输出：e854e2ec-063c-1ee7-942f-57c5733ce0cb
+ * getGUID() // 输出：275ec770-0853-6767-4875-7b270220ce9c
  * @returns {String} 返回GUID字符串
  */
 export function getGUID() {
   let s4 = function () {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
   };
-  return s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4();
+  return (
+    s4() +
+    s4() +
+    "-" +
+    s4() +
+    "-" +
+    s4() +
+    "-" +
+    s4() +
+    "-" +
+    s4() +
+    s4() +
+    s4()
+  );
 }

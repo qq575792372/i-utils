@@ -1,20 +1,25 @@
 /*!
- * @lime-util/core 
+ * @lime-util/core
  * Version: v3.0.9
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
- * 
+ *
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeCore = factory());
-})(this, (function () { 'use strict';
+  typeof exports === "object" && typeof module !== "undefined"
+    ? (module.exports = factory())
+    : typeof define === "function" && define.amd
+    ? define(factory)
+    : ((global =
+        typeof globalThis !== "undefined" ? globalThis : global || self),
+      (global.LimeCore = factory()));
+})(this, function () {
+  "use strict";
 
   /**
-   * 数组排序
+   * 数组排序常量
    */
   const SORT_MODE = {
     // 降序
@@ -26,7 +31,7 @@
   };
 
   /**
-   * 数学计算
+   * 数学计算常量
    */
   const MATH_MODE = {
     // 正常四舍五入，如：1.354保留两位是1.35；1.355保留两位是1.36；
@@ -41,7 +46,7 @@
     ...MATH_MODE,
   };
 
-  // 字符串去空格
+  /* 字符串去空格 */
   /**
    * 去除字符串前后位置空格
    * @param {String} value 参数
@@ -89,6 +94,7 @@
     return value.replace(new RegExp(oldSubstr, "gm"), newSubstr);
   }
 
+  /* 字符命名转换 */
   /**
    * 字符串转大写
    * @param {String} value 参数
@@ -108,14 +114,17 @@
   }
 
   /**
-   * 转 snake_case 下划线命名
+   * 转为 snake_case 下划线命名
    * @description 支持 驼峰命名，短横命名，帕斯卡命名
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
    */
   function toSnakeCase(value) {
     // 驼峰
-    if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+    if (
+      /^[a-z]$/.test(value.charAt(0)) &&
+      !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+    ) {
       return value.replace(/([A-Z])/g, "_$1").toLowerCase();
     }
     // 短横
@@ -123,14 +132,17 @@
       return value.replace(/-/g, "_").toLowerCase();
     }
     // 帕斯卡
-    if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+    if (
+      /^[A-Z]$/.test(value.charAt(0)) &&
+      !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+    ) {
       value = value.charAt(0).toLowerCase() + value.slice(1);
       return value.replace(/([A-Z])/g, "_$1").toLowerCase();
     }
   }
 
   /**
-   * 转 kebab-case 短横命名
+   * 转为 kebab-case 短横命名
    * @description 支持 下划线，驼峰命名，帕斯卡命名
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
@@ -141,18 +153,24 @@
       return value.replace(/_/g, "-").toLowerCase();
     }
     // 驼峰
-    if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+    if (
+      /^[a-z]$/.test(value.charAt(0)) &&
+      !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+    ) {
       return value.replace(/([A-Z])/g, "-$1").toLowerCase();
     }
     // 帕斯卡
-    if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+    if (
+      /^[A-Z]$/.test(value.charAt(0)) &&
+      !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+    ) {
       let newStr = value.charAt(0).toLowerCase() + value.slice(1);
       return newStr.replace(/([A-Z])/g, "-$1").toLowerCase();
     }
   }
 
   /**
-   * 转 camelCase 驼峰命名
+   * 转为 camelCase 驼峰命名
    * @description 支持 下划线命名，短横命名，帕斯卡命名
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
@@ -171,13 +189,16 @@
       });
     }
     // 帕斯卡
-    if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+    if (
+      /^[A-Z]$/.test(value.charAt(0)) &&
+      !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+    ) {
       return value.charAt(0).toLowerCase() + value.slice(1);
     }
   }
 
   /**
-   * 转 PascalCase 帕斯卡命名
+   * 转为 PascalCase 帕斯卡命名
    * @description 支持 下划线命名，短横命名，驼峰命名
    * @param {String} value 参数
    * @returns {String} 返回处理后的字符串
@@ -198,11 +219,15 @@
       return newStr.charAt(0).toUpperCase() + newStr.slice(1);
     }
     // 驼峰
-    if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+    if (
+      /^[a-z]$/.test(value.charAt(0)) &&
+      !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
+    ) {
       return value.charAt(0).toUpperCase() + value.slice(1);
     }
   }
 
+  /* 字符串格式化 */
   /**
    * 字符串中是否包含指定的元素
    * @param {String} value 包含的元素
@@ -252,7 +277,8 @@
    */
   function formatThousand(num) {
     num = String(num);
-    let regex = num.indexOf(".") > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
+    let regex =
+      num.indexOf(".") > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
     return num.replace(regex, "$1,");
   }
 
@@ -263,7 +289,18 @@
    */
   function formatRmbChinese(money) {
     //汉字的数字
-    let cnNums = new Array("零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖");
+    let cnNums = new Array(
+      "零",
+      "壹",
+      "贰",
+      "叁",
+      "肆",
+      "伍",
+      "陆",
+      "柒",
+      "捌",
+      "玖"
+    );
     //基本单位
     let cnIntRadice = new Array("", "拾", "佰", "仟");
     //对应整数部分扩展单位
@@ -418,7 +455,7 @@
     return value.substring(0, start) + startStr + value.substring(start + len);
   }
 
-  var stringUtil = /*#__PURE__*/Object.freeze({
+  var stringUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     trim: trim,
     trimStart: trimStart,
@@ -439,7 +476,7 @@
     formatStartOfName: formatStartOfName,
     formatStartOfMobile: formatStartOfMobile,
     formatStartOfIdCard: formatStartOfIdCard,
-    formatStartOfBankCard: formatStartOfBankCard
+    formatStartOfBankCard: formatStartOfBankCard,
   });
 
   /**
@@ -453,12 +490,12 @@
     return Number.parseInt(value, radix);
   }
 
-  var numberUtil = /*#__PURE__*/Object.freeze({
+  var numberUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    parseInt: parseInt$1
+    parseInt: parseInt$1,
   });
 
-  // 数据类型
+  /* 数据类型 */
   /**
    * 判断是整数
    * @param {*} value 参数
@@ -576,7 +613,7 @@
     return Object.prototype.toString.call(value).slice(8, -1) === "Promise";
   }
 
-  // 数据值校验
+  /* 数据值校验 */
   /**
    * 判断非数字
    * @param {*} value 参数
@@ -623,7 +660,11 @@
    * @returns {Boolean} 返回true和false
    */
   function isEmpty(value) {
-    return isNull(value) || (isObject(value) && Object.keys(value).length == 0) || (isArray(value) && value.length == 0);
+    return (
+      isNull(value) ||
+      (isObject(value) && Object.keys(value).length == 0) ||
+      (isArray(value) && value.length == 0)
+    );
   }
 
   /**
@@ -673,7 +714,7 @@
     return !isUndefined(value);
   }
 
-  // 比较
+  /* 比较 */
   /**
    * 判断两个值是否相等
    * @param {String|Number} value1 参数1
@@ -694,7 +735,7 @@
     return Object.is(value1.toLowerCase(), value2.toLowerCase());
   }
 
-  var validateUtil = /*#__PURE__*/Object.freeze({
+  var validateUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     isInteger: isInteger,
     isDecimal: isDecimal,
@@ -720,7 +761,7 @@
     isUndefined: isUndefined,
     isNotUndefined: isNotUndefined,
     equals: equals,
-    equalsIgnoreCase: equalsIgnoreCase
+    equalsIgnoreCase: equalsIgnoreCase,
   });
 
   /**
@@ -865,7 +906,10 @@
    */
   function arraySwap(array, sourceIndex, targetIndex) {
     const target = [...array];
-    [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
+    [target[targetIndex], target[sourceIndex]] = [
+      array[sourceIndex],
+      array[targetIndex],
+    ];
     return target;
   }
 
@@ -887,7 +931,7 @@
     return res;
   }
 
-  var arrayUtil = /*#__PURE__*/Object.freeze({
+  var arrayUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     inArray: inArray,
     arrayMin: arrayMin,
@@ -901,7 +945,7 @@
     arrayShuffle: arrayShuffle,
     arraySort: arraySort,
     arraySwap: arraySwap,
-    arrayToTree: arrayToTree
+    arrayToTree: arrayToTree,
   });
 
   /**
@@ -973,14 +1017,14 @@
    * @param {Object|Array|Date} source 需要克隆的数据
    * @returns {Object|Array|Date} 返回深度克隆后的数据
    */
-  function deepClone(source) {
+  function cloneDeep(source) {
     if (isNull(source)) return null;
 
     //  Object
     if (source instanceof Object) {
       let copy = {};
       for (let attr in source) {
-        if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
+        if (source.hasOwnProperty(attr)) copy[attr] = cloneDeep(source[attr]);
       }
       return copy;
     }
@@ -989,7 +1033,7 @@
     else if (source instanceof Array) {
       let copy = [];
       for (let i = 0, len = source.length; i < len; i++) {
-        copy[i] = deepClone(source[i]);
+        copy[i] = cloneDeep(source[i]);
       }
       return copy;
     }
@@ -1002,6 +1046,7 @@
     }
 
     // Other
+    // 原路返回源数据
     else {
       return source;
     }
@@ -1017,7 +1062,7 @@
     return Object.assign(target, ...source);
   }
 
-  var objectUtil = /*#__PURE__*/Object.freeze({
+  var objectUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     mapToObject: mapToObject,
     mapToJson: mapToJson,
@@ -1025,11 +1070,11 @@
     jsonToMap: jsonToMap,
     strifyJson: strifyJson,
     parseJson: parseJson,
-    deepClone: deepClone,
-    merge: merge
+    cloneDeep: cloneDeep,
+    merge: merge,
   });
 
-  // 年龄，生肖，星座
+  /* 年龄，生肖，星座 */
   /**
    * 通过日期计算周岁年龄
    * @param {String} dateStr 日期字符串
@@ -1171,7 +1216,13 @@
     // 15位身份证
     if (idCard.length == 15) {
       // 生日
-      info.birthday = "19" + idCard.substring(6, 8) + "-" + idCard.substring(8, 10) + "-" + idCard.substring(10, 12);
+      info.birthday =
+        "19" +
+        idCard.substring(6, 8) +
+        "-" +
+        idCard.substring(8, 10) +
+        "-" +
+        idCard.substring(10, 12);
       // 年龄
       info.age = getAge(info.birthday);
       // 性别
@@ -1180,7 +1231,12 @@
     // 18位身份证
     if (idCard.length == 18) {
       // 生日
-      info.birthday = idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
+      info.birthday =
+        idCard.substring(6, 10) +
+        "-" +
+        idCard.substring(10, 12) +
+        "-" +
+        idCard.substring(12, 14);
       // 年龄
       info.age = getAge(info.birthday);
       // 性别
@@ -1189,11 +1245,11 @@
     return info;
   }
 
-  var functionUtil = /*#__PURE__*/Object.freeze({
+  var functionUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     throttle: throttle,
     debounce: debounce,
-    getIdCardInfo: getIdCardInfo
+    getIdCardInfo: getIdCardInfo,
   });
 
   /**
@@ -1217,7 +1273,8 @@
     // 整数，包含：0，正整数和负整数
     INTEGER: /^(0|[1-9][0-9]*|-[1-9][0-9]*)$/,
     // 正整数或者保留两位小数
-    INT_OR_FLOAT: /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
+    INT_OR_FLOAT:
+      /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
     // 手机号码，支持+86
     MOBILE: /^(?:(?:\+|00)86)?1[1-9]\d{9}$/,
     // 固定电话号码，比如：0755-1111111
@@ -1230,11 +1287,13 @@
     // 仅校验一代15位身份证
     ID_CARD15: /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)/,
     // 仅校验二代18位身份证
-    ID_CARD18: /(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
+    ID_CARD18:
+      /(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
     // 银行卡号
     BANK_CARD: /^[1-9]\d{9,29}$/,
     // 邮政编码
-    POST_CODE: /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
+    POST_CODE:
+      /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
     // url网址
     URL: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
     // ip地址
@@ -1243,8 +1302,7 @@
     EXTERNAL: /^(http?:|https?:|mailto:|tel:)/,
   };
 
-  // 提供常用的校验方法
-
+  /* 提供常用的校验方法 */
   /**
    * 是中文
    * @param {String} value 校验的参数
@@ -1326,7 +1384,7 @@
     return regexpTest(value, REGEXP.URL);
   }
 
-  // 通过传入正则校验
+  /* 通过传入正则校验 */
   /**
    * 正则校验的方法
    * @description 类型为REGEXP对应的正则
@@ -1338,7 +1396,7 @@
     return new RegExp(regex).test(value);
   }
 
-  var regexpUtil = /*#__PURE__*/Object.freeze({
+  var regexpUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     REGEXP: REGEXP,
     isChinese: isChinese,
@@ -1350,10 +1408,10 @@
     isEmail: isEmail,
     isIdCard: isIdCard,
     isUrl: isUrl,
-    regexpTest: regexpTest
+    regexpTest: regexpTest,
   });
 
-  // 数字精度计算
+  /* 数字精度计算 */
   /**
    * 两个数字相加
    * @param {String|Number} arg1 第一个数字
@@ -1415,7 +1473,10 @@
     try {
       m += s2.split(".")[1].length;
     } catch (e) {}
-    return (Number(s1.replace(".", "")) * Number(s2.replace(".", ""))) / Math.pow(10, m);
+    return (
+      (Number(s1.replace(".", "")) * Number(s2.replace(".", ""))) /
+      Math.pow(10, m)
+    );
   }
 
   /**
@@ -1497,8 +1558,7 @@
     }
   }
 
-  // 内部函数
-
+  /* 内部函数 */
   /**
    * 四舍五入，强制保留小数位数
    * @description 默认保留两位小数，此方法解决原生的toFixed()会五舍六入的问题
@@ -1514,7 +1574,11 @@
     if (!decimals) decimals = 0;
     if (s.indexOf(".") == -1) s += ".";
     s += new Array(decimals + 1).join("0");
-    if (new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(s)) {
+    if (
+      new RegExp(
+        "^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$"
+      ).test(s)
+    ) {
       let s = "0" + RegExp.$2,
         pm = RegExp.$1,
         a = RegExp.$3.length,
@@ -1530,7 +1594,9 @@
             } else break;
           }
         }
-        s = a.join("").replace(new RegExp("(\\d+)(\\d{" + decimals + "})\\d$"), "$1.$2");
+        s = a
+          .join("")
+          .replace(new RegExp("(\\d+)(\\d{" + decimals + "})\\d$"), "$1.$2");
       }
       if (b) s = s.substr(1);
       return (pm + s).replace(/\.$/, "");
@@ -1571,7 +1637,9 @@
     }
     let realVal = "";
     // 截取当前数据到小数点后decimals位
-    realVal = `${String(tempNum).split(".")[0]}.${String(tempNum).split(".")[1].substring(0, dec)}`;
+    realVal = `${String(tempNum).split(".")[0]}.${String(tempNum)
+      .split(".")[1]
+      .substring(0, dec)}`;
     return String(realVal);
   }
 
@@ -1603,7 +1671,7 @@
     return Math.floor(num * n) / n;
   }
 
-  var mathUtil = /*#__PURE__*/Object.freeze({
+  var mathUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     add: add,
     subtract: subtract,
@@ -1611,7 +1679,7 @@
     divide: divide,
     modulo: modulo,
     toFixed: toFixed,
-    toDecimal: toDecimal
+    toDecimal: toDecimal,
   });
 
   /**
@@ -1632,17 +1700,25 @@
    * @returns {Number} 返回固定位数的随机数
    */
   function getRandomDigit(len = 1) {
-    return Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, len - 1));
+    return Math.floor(
+      (Math.random() + Math.floor(Math.random() * 9 + 1)) *
+        Math.pow(10, len - 1)
+    );
   }
 
   /**
    * 生成UUID
    * @param len 生成的长度，默认32位
    * @param radix 进制数，默认16进制
+   * @example
+   * getUUID() // 输出：e854e2ec063c1ee7942f57c5733ce0cb
    * @returns {String} 返回UUID字符串
    */
   function getUUID(len = 32, radix = 16) {
-    const CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    const CHARS =
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(
+        ""
+      );
     let uuid = [],
       i;
     radix = radix || CHARS.length;
@@ -1672,18 +1748,31 @@
     let s4 = function () {
       return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     };
-    return s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4();
+    return (
+      s4() +
+      s4() +
+      "-" +
+      s4() +
+      "-" +
+      s4() +
+      "-" +
+      s4() +
+      "-" +
+      s4() +
+      s4() +
+      s4()
+    );
   }
 
-  var randomUtil = /*#__PURE__*/Object.freeze({
+  var randomUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     getRandom: getRandom,
     getRandomDigit: getRandomDigit,
     getUUID: getUUID,
-    getGUID: getGUID
+    getGUID: getGUID,
   });
 
-  // 文件信息处理
+  /* 文件信息处理 */
   /**
    * 格式化文件大小自动转为 B，KB，MB，GB
    * @param {Byte} size 文件的大小，单位byte字节
@@ -1722,7 +1811,7 @@
     return value.substring(value.lastIndexOf(".") + 1).toLowerCase();
   }
 
-  // 文件转换
+  /* 文件转换 */
   /**
    * file转blob
    * @param {File} file file文件
@@ -1932,7 +2021,7 @@
    */
   function downloadBlobFile(blob, fileName) {
     try {
-      const objUrl = URL.createObjectURL(blob);
+      const objUrl = window.URL.createObjectURL(blob);
       const link = window.document.createElement("a");
       link.download = fileName;
       link.href = objUrl;
@@ -1963,7 +2052,7 @@
     }
   }
 
-  var fileUtil = /*#__PURE__*/Object.freeze({
+  var fileUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     formatFileSize: formatFileSize,
     getFileName: getFileName,
@@ -1977,7 +2066,7 @@
     base64ToBlob: base64ToBlob,
     urlToBase64: urlToBase64,
     downloadBlobFile: downloadBlobFile,
-    downloadFileUrl: downloadFileUrl
+    downloadFileUrl: downloadFileUrl,
   });
 
   /**
@@ -1991,7 +2080,8 @@
     let g = parseInt(rgb[1]);
     let b = parseInt(rgb[2].split(")")[0]);
 
-    let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    let hex =
+      "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
     return hex;
   }
 
@@ -2039,18 +2129,18 @@
     return "rgb(" + r + "," + g + "," + b + ")";
   }
 
-  var colorUtil = /*#__PURE__*/Object.freeze({
+  var colorUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     rgbToHex: rgbToHex,
     hexToRgba: hexToRgba,
     getRandomHex: getRandomHex,
-    getRandomRgb: getRandomRgb
+    getRandomRgb: getRandomRgb,
   });
 
   /**
-   * 从url链接中获取参数
+   * 从url地址中获取参数
    * @param {String} name 参数名
-   * @param {String} url url链接地址，默认当前地址栏url
+   * @param {String} url url地址，默认当前url地址
    * @returns {String} 返回查询到的值
    */
   function getUrlParam(name, url = window.location.href) {
@@ -2064,14 +2154,15 @@
 
   /**
    * url查询参数转为对象
-   * @param {String} url url地址，默认当前地址栏url
+   * @param {String} url url地址，默认当前url地址
    * @returns {Object} 返回参数对象
    */
-  function urlQeuryToObj(url = window.location.href) {
+  function queryStringToObj(url = window.location.href) {
     if (url.indexOf("?") === -1) {
       return {};
     }
-    let search = url[0] === "?" ? url.substr(1) : url.substring(url.lastIndexOf("?") + 1);
+    let search =
+      url[0] === "?" ? url.substr(1) : url.substring(url.lastIndexOf("?") + 1);
     search = search.split("&");
     let obj = {};
     for (let i = 0; i < search.length; i++) {
@@ -2086,14 +2177,18 @@
    *  @param {Object} obj 参数对象
    *  @returns {String} 返回如 id=1&name=xx 格式的url查询参数
    */
-  function objToUrlQuery(obj) {
+  function objToQueryString(obj) {
     if (!obj) return "";
     let pairs = [];
     for (let key in obj) {
       let value = obj[key];
       if (value instanceof Array) {
         for (let i = 0; i < value.length; ++i) {
-          pairs.push(encodeURIComponent(key + "[" + i + "]") + "=" + encodeURIComponent(value[i]));
+          pairs.push(
+            encodeURIComponent(key + "[" + i + "]") +
+              "=" +
+              encodeURIComponent(value[i])
+          );
         }
         continue;
       }
@@ -2102,91 +2197,14 @@
     return pairs.join("&");
   }
 
-  var urlUtil = /*#__PURE__*/Object.freeze({
+  var urlUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     getUrlParam: getUrlParam,
-    urlQeuryToObj: urlQeuryToObj,
-    objToUrlQuery: objToUrlQuery
+    queryStringToObj: queryStringToObj,
+    objToQueryString: objToQueryString,
   });
 
-  /**
-   * 通过key从localStorage缓存中获取数据
-   * @param {String} key key值
-   * @returns {String} 返回数据
-   */
-  function getLocalStorage(key) {
-    return window.localStorage.getItem(key) || undefined;
-  }
-
-  /**
-   * 设置localStorage缓存数据
-   * @param {String} key key值
-   * @param {String} value value值
-   */
-  function setLocalStorage(key, value) {
-    window.localStorage.setItem(key, value);
-  }
-
-  /**
-   * 通过key从localStorage缓存中删除数据
-   * @param {String} key key值
-   */
-  function removeLocalStorage(key) {
-    window.localStorage.removeItem(key);
-  }
-
-  /**
-   * 清空localStorage缓存中所有数据
-   */
-  function clearLocalStorage() {
-    window.localStorage.clear();
-  }
-
-  /**
-   * 通过key从sessionStorage缓存中获取数据
-   * @param {String} key key值
-   * @returns {String} 返回数据
-   */
-  function getSessionStorage(key) {
-    return window.sessionStorage.getItem(key) || "";
-  }
-
-  /**
-   * 设置sessionStorage缓存数据
-   * @param {String} key key值
-   * @param {String} value value值
-   */
-  function setSessionStorage(key, value) {
-    window.sessionStorage.setItem(key, value);
-  }
-
-  /**
-   * 通过key从sessionStorage缓存中删除数据
-   * @param {String} key key值
-   */
-  function removeSessionStorage(key) {
-    window.sessionStorage.removeItem(key);
-  }
-
-  /**
-   * 清空sessionStorage缓存中所有数据
-   */
-  function clearSessionStorage() {
-    window.sessionStorage.clear();
-  }
-
-  var storageUtil = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    getLocalStorage: getLocalStorage,
-    setLocalStorage: setLocalStorage,
-    removeLocalStorage: removeLocalStorage,
-    clearLocalStorage: clearLocalStorage,
-    getSessionStorage: getSessionStorage,
-    setSessionStorage: setSessionStorage,
-    removeSessionStorage: removeSessionStorage,
-    clearSessionStorage: clearSessionStorage
-  });
-
+  /* cookie存储 */
   /**
    * 通过key获取cookie
    * @param {String} key 参数key
@@ -2243,12 +2261,92 @@
     }
   }
 
-  var cookieUtil = /*#__PURE__*/Object.freeze({
+  /* localStorage存储 */
+  /**
+   * 通过key从localStorage缓存中获取数据
+   * @param {String} key key值
+   * @returns {String} 返回数据
+   */
+  function getLocalStorage(key) {
+    return window.localStorage.getItem(key) || undefined;
+  }
+
+  /**
+   * 设置localStorage缓存数据
+   * @param {String} key key值
+   * @param {String} value value值
+   */
+  function setLocalStorage(key, value) {
+    window.localStorage.setItem(key, value);
+  }
+
+  /**
+   * 通过key从localStorage缓存中删除数据
+   * @param {String} key key值
+   */
+  function removeLocalStorage(key) {
+    window.localStorage.removeItem(key);
+  }
+
+  /**
+   * 清空localStorage缓存中所有数据
+   */
+  function clearLocalStorage() {
+    window.localStorage.clear();
+  }
+
+  /* sessionStorage存储 */
+  /**
+   * 通过key从sessionStorage缓存中获取数据
+   * @param {String} key key值
+   * @returns {String} 返回数据
+   */
+  function getSessionStorage(key) {
+    return window.sessionStorage.getItem(key) || "";
+  }
+
+  /**
+   * 设置sessionStorage缓存数据
+   * @param {String} key key值
+   * @param {String} value value值
+   */
+  function setSessionStorage(key, value) {
+    window.sessionStorage.setItem(key, value);
+  }
+
+  /**
+   * 通过key从sessionStorage缓存中删除数据
+   * @param {String} key key值
+   */
+  function removeSessionStorage(key) {
+    window.sessionStorage.removeItem(key);
+  }
+
+  /**
+   * 清空sessionStorage缓存中所有数据
+   */
+  function clearSessionStorage() {
+    window.sessionStorage.clear();
+  }
+
+  /**
+   * 导入cookie，localStorage，sessionStorage
+   */
+
+  var storageUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     getCookie: getCookie,
     setCookie: setCookie,
     removeCookie: removeCookie,
-    clearCookie: clearCookie
+    clearCookie: clearCookie,
+    getLocalStorage: getLocalStorage,
+    setLocalStorage: setLocalStorage,
+    removeLocalStorage: removeLocalStorage,
+    clearLocalStorage: clearLocalStorage,
+    getSessionStorage: getSessionStorage,
+    setSessionStorage: setSessionStorage,
+    removeSessionStorage: removeSessionStorage,
+    clearSessionStorage: clearSessionStorage,
   });
 
   /**
@@ -2276,7 +2374,8 @@
    * @param {String} className 类名
    */
   function removeClass(elem, className) {
-    if (hasClass(elem, className)) elem.className = elem.className.replace(new RegExp(className, "gm"), "");
+    if (hasClass(elem, className))
+      elem.className = elem.className.replace(new RegExp(className, "gm"), "");
   }
 
   /**
@@ -2329,22 +2428,25 @@
       "&quot;": '"',
       "&#39;": "'",
     };
-    return htmlStr.replace(/(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi, function (all, t) {
-      return temp[t];
-    });
+    return htmlStr.replace(
+      /(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi,
+      function (all, t) {
+        return temp[t];
+      }
+    );
   }
 
-  var domUtil = /*#__PURE__*/Object.freeze({
+  var domUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     hasClass: hasClass,
     addClass: addClass,
     removeClass: removeClass,
     replaceClass: replaceClass,
     htmlEncode: htmlEncode,
-    htmlDecode: htmlDecode
+    htmlDecode: htmlDecode,
   });
 
-  // 浏览器信息
+  /* 浏览器信息 */
   /**
    * 获取浏览器信息
    * @description 会获取到浏览器对应的名称以及版本
@@ -2376,7 +2478,7 @@
     return "unknown";
   }
 
-  // 设备类型
+  /* 设备类型 */
   /**
    * 判断是pc端
    * @returns {Boolean} 返回true和false
@@ -2392,10 +2494,12 @@
    */
   function isMobile() {
     let ua = window.navigator.userAgent;
-    return /Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|IEMobile/i.test(ua);
+    return /Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|IEMobile/i.test(
+      ua
+    );
   }
 
-  // 操作系统类型
+  /* 操作系统类型 */
   /**
    * 判断是 android
    * @returns {Boolean} 返回true和false
@@ -2450,7 +2554,7 @@
     return /mac/i.test(ua);
   }
 
-  // 苹果设备类型
+  /* 苹果设备类型 */
   /**
    * 判断是iphone
    *@returns {Boolean} 返回true和false
@@ -2469,7 +2573,7 @@
     return /iPod/i.test(ua);
   }
 
-  // 手机浏览器类型
+  /* 手机浏览器类型 */
   /**
    * 判断是微信内置浏览器
    * @returns {Boolean} 返回true和false
@@ -2488,7 +2592,7 @@
     return /QQ/i.test(ua);
   }
 
-  var deviceUtil = /*#__PURE__*/Object.freeze({
+  var deviceUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     getBrowserInfo: getBrowserInfo,
     isPc: isPc,
@@ -2502,7 +2606,7 @@
     isIphone: isIphone,
     isIpad: isIpad,
     isWeixin: isWeixin,
-    isQQ: isQQ
+    isQQ: isQQ,
   });
 
   /**
@@ -2557,21 +2661,21 @@
     wx.removeStorageSync(key);
   }
 
-  /*
+  /**
    * 清空所有缓存数据
    */
   function clearStorage() {
     wx.clearStorageSync();
   }
 
-  /*
+  /**
    * 清空所有缓存数据（同步）
    */
   function clearStorageSync() {
     wx.clearStorageSync();
   }
 
-  var weappUtil = /*#__PURE__*/Object.freeze({
+  var weappUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     setStorage: setStorage,
     setStorageSync: setStorageSync,
@@ -2580,7 +2684,7 @@
     removeStorage: removeStorage,
     removeStorageSync: removeStorageSync,
     clearStorage: clearStorage,
-    clearStorageSync: clearStorageSync
+    clearStorageSync: clearStorageSync,
   });
 
   // 测试加载成功方法
@@ -2627,8 +2731,6 @@
     ...urlUtil,
     // 浏览器 Storage
     ...storageUtil,
-    // 浏览器 Cookie
-    ...cookieUtil,
     // 浏览器 Dom
     ...domUtil,
     // 浏览器 Device
@@ -2639,5 +2741,4 @@
   };
 
   return index;
-
-}));
+});

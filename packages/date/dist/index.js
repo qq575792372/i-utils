@@ -13,7 +13,7 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeDate = factory());
 })(this, (function () { 'use strict';
 
-  // 数据类型
+  /* 数据类型 */
   /**
    * 判断是整数
    * @param {*} value 参数
@@ -76,7 +76,11 @@
    * @returns {Boolean} 返回true和false
    */
   function isEmpty(value) {
-    return isNull(value) || (isObject(value) && Object.keys(value).length == 0) || (isArray(value) && value.length == 0);
+    return (
+      isNull(value) ||
+      (isObject(value) && Object.keys(value).length == 0) ||
+      (isArray(value) && value.length == 0)
+    );
   }
 
   /**
@@ -154,7 +158,7 @@
     return new Date().getHours() >= 12;
   }
 
-  // 比较是同一 天，周，月，年
+  /* 比较是同一 天，周，月，年 */
   /**
    * 比较两个日期是否是同一天
    * @param {Date} date1 第一个日期
@@ -199,7 +203,7 @@
     return ["getFullYear"].every((i) => date1[i]() === date2[i]());
   }
 
-  // 简化名称获取时间
+  /* 简化名称获取时间 */
   /**
    * 昨天
    * @returns {String} 返回日期字符串
@@ -264,7 +268,7 @@
     return formatDate(addDate(new Date(), +365));
   }
 
-  // 获取日期，时间字符串，时间戳等等
+  /* 获取日期，时间字符串，时间戳等等 */
   /**
    * 获得现在的日期
    * @returns {Date} 返回现在的日期
@@ -412,7 +416,7 @@
     }
   }
 
-  // 当前日期是所在 周，月，年 的第几天
+  /* 当前日期是所在 周，月，年 的第几天 */
   /**
    * 获得当前日期是所在周的第几天
    * @param {Date} date 日期参数，默认当前日期
@@ -444,7 +448,7 @@
     );
   }
 
-  // 当前日期是所在 月，年的第几周
+  /* 当前日期是所在 月，年的第几周 */
   /**
    * 获得当前日期是所在月的第几周
    * @param {Date} date 日期参数，默认当前日期
@@ -465,7 +469,7 @@
     return Math.ceil((diff + startDay) / 7);
   }
 
-  // 获得当前日期所在 周，月 的第一天和最后一天
+  /* 获得当前日期所在 周，月 的第一天和最后一天 */
   /**
    * 获得当前日期所在周的第一天
    * @param {Date} date 日期参数，默认当前日期
@@ -507,7 +511,7 @@
     return formatDate(new Date(date.getFullYear(), date.getMonth() + 1, 0));
   }
 
-  // 指定月，年，总共的天数
+  /* 指定月，年，总共的天数 */
   /**
    * 获得当前日期所在月总共多少天
    * @param {Date} date 日期参数，默认当前日期
@@ -526,7 +530,7 @@
     return isLeapYear(date.getFullYear()) ? 366 : 365;
   }
 
-  // 过去时间和剩余时间字符串
+  /* 过去时间和剩余时间字符串 */
   /**
    * 获得过去时间的字符串显示
    * @description 例如：刚刚，1分钟前，1小时前等
@@ -607,7 +611,7 @@
     return `${d}天 ${h}小时 ${m}分钟 ${s}秒`;
   }
 
-  // 计算加减日期的 年，月，日，时，分，秒
+  /* 计算加减日期的 年，月，日，时，分，秒 */
   /**
    * 日期加减年
    * @param {Date} date 日期参数，默认当前日期
@@ -674,7 +678,7 @@
     return date;
   }
 
-  // 获得两个日期相差的所有数组
+  /* 获得两个日期相差的所有数组 */
   /**
    * 获得两个日期之间的年月日数组
    * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
@@ -770,7 +774,7 @@
     return _betweenYears(date1, date2);
   }
 
-  // 比较日期
+  /* 比较日期 */
   /**
    * 比较两个日期的大小
    * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
@@ -794,7 +798,7 @@
     return date1 > date2;
   }
 
-  // 计算两个日期相差
+  /* 计算两个日期相差 */
   /**
    * 计算两个日期相差的天数，不满一天为0
    * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
@@ -935,7 +939,7 @@
     return diff >= 0 ? Math.abs(diff) : diff;
   }
 
-  // 格式化字符串和转化日期
+  /* 格式化字符串和转化日期 */
   /**
    * 格式化日期字符串
    * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
@@ -1047,7 +1051,7 @@
     }
   }
 
-  // 年龄，生肖，星座
+  /* 年龄，生肖，星座 */
   /**
    * 通过日期计算周岁年龄
    * @param {String} dateStr 日期字符串
@@ -1143,7 +1147,7 @@
     return arr[(year - 1900) % arr.length];
   }
 
-  // 内部使用的函数
+  /* 内部使用的函数 */
   /**
    * 数字前补齐零，保持两位
    * @param {String|Number} value 可以是数字和字符串
@@ -1305,8 +1309,6 @@
     loadedTest,
     ...dateUtil,
   };
-
-  // export * from './src/date'
 
   return index;
 

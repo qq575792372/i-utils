@@ -107,6 +107,8 @@ console.log(res); // 输出：say hi hi!
 
 ---
 
+<!-- 字符处理 -->
+
 #### \_.toUpper(value)
 
 字符串转大写
@@ -151,7 +153,7 @@ console.log(res); // 输出：say hello
 
 #### \_.toSnakeCase(value)
 
-转 snake_case 下划线命名  
+转为　 snake_case 下划线命名  
 `支持 驼峰命名，短横命名，帕斯卡命名`
 
 - ##### 参数
@@ -177,7 +179,7 @@ console.log(LimeCore.toSnakeCase("UserName")); // 输出：user_name
 
 #### \_.toKebabCase(value)
 
-转 kebab-case 短横命名  
+转为　 kebab-case 短横命名  
 `支持 下划线，驼峰命名，帕斯卡命名`
 
 - ##### 参数
@@ -203,7 +205,7 @@ console.log(LimeCore.toKebabCase("UserName")); // 输出：user-name
 
 #### \_.toCamelCase(value)
 
-转 camelCase 驼峰命名  
+转为　 camelCase 驼峰命名  
 `支持 下划线命名，短横命名，帕斯卡命名`
 
 - ##### 参数
@@ -229,7 +231,7 @@ console.log(LimeCore.toCamelCase("UserName")); // 输出：userName
 
 #### \_.toPascalCase(value)
 
-转 PascalCase 帕斯卡命名  
+转为　 PascalCase 帕斯卡命名  
 `支持 下划线命名，短横命名，驼峰命名`
 
 - ##### 参数
@@ -252,6 +254,8 @@ console.log(LimeCore.toPascalCase("userName")); // 输出：UserName
 ```
 
 ---
+
+<!-- 字符串格式化 -->
 
 #### \_.inString(value, str)
 

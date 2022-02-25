@@ -1,2 +1,5 @@
-export { getLocalStorage, setLocalStorage, removeLocalStorage, clearLocalStorage } from "./localStorage";
-export { getSessionStorage, setSessionStorage, removeSessionStorage, clearSessionStorage } from "./sessionStorage";
+/**
+ * 导出localStorage，sessionStorage
+ */
+export * from "./localStorage";
+export * from "./sessionStorage";

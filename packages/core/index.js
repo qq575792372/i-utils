@@ -37,16 +37,19 @@ import * as validateUtil from "./src/validate";
 
 // 浏览器 Url
 import * as urlUtil from "./src/url";
-// 浏览器 Storage
-import * as storageUtil from "./src/storage";
 // 浏览器 Cookie
 import * as cookieUtil from "./src/cookie";
+// 浏览器 Storage
+import * as storageUtil from "./src/storage";
 // 浏览器 Dom
 import * as domUtil from "./src/dom";
 // 浏览器 Device
 import * as deviceUtil from "./src/device";
 
-// 微信小程序
+// 键值 Keycode
+import keycodeUtil from "./src/keycode";
+
+// 微信小程序工具类
 import * as weappUtil from "./src/weapp";
 
 // 导出
@@ -86,15 +89,17 @@ export default {
 
   // 浏览器 Url
   ...urlUtil,
-  // 浏览器 Storage
-  ...storageUtil,
   // 浏览器 Cookie
   ...cookieUtil,
+  // 浏览器 Storage
+  ...storageUtil,
   // 浏览器 Dom
   ...domUtil,
   // 浏览器 Device
   ...deviceUtil,
 
+  // 键值
+  ...keycodeUtil,
   // 微信小程序
   ...weappUtil,
 };

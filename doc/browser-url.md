@@ -23,7 +23,7 @@ console.log(res); // 输出：1
 
 ---
 
-#### \_.urlQueryToObject(url = window.location.href)
+#### \_.queryStringToObject(url = window.location.href)
 
 url 查询参数转为对象
 
@@ -39,7 +39,7 @@ url 查询参数转为对象
 
 ```javascript
 let url = "http://xxx.com?id=1&name=test";
-let res = LimeUtil.urlQueryToObject(url);
+let res = LimeUtil.queryStringToObject(url);
 console.log(res); // 输出：{id: 1, name: 'test'}
 ```
 

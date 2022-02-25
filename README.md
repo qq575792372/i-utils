@@ -98,7 +98,9 @@ loadedTest(); // 输出：lime-util loaded successfully!
 17. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
 18. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
 
-19. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)
+19. [键值 Keycode](https://github.com/qq575792372/lime-util/blob/master/doc/keycode.md)
+
+20. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)
 
 ### 🔖Git 提交规范
 

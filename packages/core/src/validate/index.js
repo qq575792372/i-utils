@@ -1,4 +1,4 @@
-// 数据类型
+/* 数据类型 */
 /**
  * 判断是整数
  * @param {*} value 参数
@@ -116,7 +116,7 @@ export function isPromise(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Promise";
 }
 
-// 数据值校验
+/* 数据值校验 */
 /**
  * 判断非数字
  * @param {*} value 参数
@@ -163,7 +163,11 @@ export function isNotNull(value) {
  * @returns {Boolean} 返回true和false
  */
 export function isEmpty(value) {
-  return isNull(value) || (isObject(value) && Object.keys(value).length == 0) || (isArray(value) && value.length == 0);
+  return (
+    isNull(value) ||
+    (isObject(value) && Object.keys(value).length == 0) ||
+    (isArray(value) && value.length == 0)
+  );
 }
 
 /**
@@ -213,7 +217,7 @@ export function isNotUndefined(value) {
   return !isUndefined(value);
 }
 
-// 比较
+/* 比较 */
 /**
  * 判断两个值是否相等
  * @param {String|Number} value1 参数1

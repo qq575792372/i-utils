@@ -1,6 +1,6 @@
 ## 函数
 
-#### \_.throttle(fn, interval = 2000)
+#### \_.throttle(fn, interval = 1000)
 
 节流函数  
 <span style="color:#808695">`高频触发时，在指定时间间隔内只执行一次`</span>
@@ -8,7 +8,7 @@
 - ##### 参数
 
   `fn` {Function} 目标函数  
-  `interval` {Number} 时间间隔，单位毫秒，默认 2 秒
+  `interval` {Number} 时间间隔，单位毫秒，默认 1\*1000 毫秒
 
 - ##### 返回值
 
@@ -34,7 +34,7 @@ document.getElementById("mybtn").onclick = LimeUtil.throttle(hello, 1000);
 
 ---
 
-#### \_.debounce(fn, delay = 2000, immediate = true)
+#### \_.debounce(fn, delay = 1000, immediate = true)
 
 防抖函数  
 <span style="color:#808695">`事件执行后，在延迟时间内如果再次执行，会清空定时器重新延迟执行`</span>
@@ -42,7 +42,7 @@ document.getElementById("mybtn").onclick = LimeUtil.throttle(hello, 1000);
 - ##### 参数
 
   `fn` {Function} 目标函数  
-  `delay` {Number} 延迟时间，单位毫秒，默认 2 秒  
+  `delay` {Number} 延迟时间，单位毫秒，默认 1\*1000 毫秒
   `immediate` {Boolean} 是否立即执行，默认 true
 
 - ##### 返回值
