@@ -118,7 +118,7 @@ export function getKeyName(keycode) {
   if (keyCodeMap[keycode]) {
     return keyCodeMap[keycode];
   } else {
-    console.log("Unknow Key Code:" + keycode);
+    console.log("Unknow Key Code: " + keycode);
     return "";
   }
 }

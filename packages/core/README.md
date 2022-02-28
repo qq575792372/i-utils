@@ -1,6 +1,6 @@
 # lime-core 工具核心库
 
-🔥 **lime-core** 🔥 是从`lime-util`独立出来的核心模块，包括：`常量集合`，`字符串`，`数字`，`数组`，`对象`，`函数`，`正则`，`数学`，`随机数`，`文件`，`颜色`，`校验`，`浏览器 Url`，`浏览器 Storage`，`浏览器 Cookie`，`浏览器 Dom`，`浏览器 Device`，`微信小程序 Weapp`。
+🔥 **lime-core** 🔥 是从`lime-util`独立出来的核心模块，包括：`常量集合`，`字符串`，`数字`，`数组`，`对象`，`函数`，`正则`，`数学`，`随机数`，`文件`，`颜色`，`校验`，`键盘 Keycode`，`浏览器 Url`，`浏览器 Storage`，`浏览器 Cookie`，`浏览器 Dom`，`浏览器 Device`，`微信小程序 Weapp`。
 
 ### 📦 安装
 
@@ -13,7 +13,7 @@ npm i @lime-util/core --save
 #### 2. 或在浏览器中直接使用
 
 ```html
-<!-- 将工具包下面 dist/index.js 文件拷贝出来用 -->
+<!-- 将工具包下面 dist/index.js 文件拷贝出来引入路径 -->
 <script src="dist/index.js"></script>
 <!-- 使用 -->
 <script>
@@ -70,10 +70,12 @@ loadedTest(); // 输出：lime-core loaded successfully!
 
 12. [校验](https://github.com/qq575792372/lime-util/blob/master/doc/validate.md)
 
-13. [浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)
-14. [浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)
-15. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
-16. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
-17. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
+13. [键盘 Keycode](https://github.com/qq575792372/lime-util/blob/master/doc/keycode.md)
 
-18. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)
+14. [浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)
+15. [浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)
+16. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
+17. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
+18. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
+
+19. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)

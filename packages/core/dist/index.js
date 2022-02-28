@@ -1,22 +1,17 @@
 /*!
- * @lime-util/core
- * Version: v3.0.9
+ * @lime-util/core 
+ * Version: v3.0.10
  *
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
- *
+ * 
  */
 (function (global, factory) {
-  typeof exports === "object" && typeof module !== "undefined"
-    ? (module.exports = factory())
-    : typeof define === "function" && define.amd
-    ? define(factory)
-    : ((global =
-        typeof globalThis !== "undefined" ? globalThis : global || self),
-      (global.LimeCore = factory()));
-})(this, function () {
-  "use strict";
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeCore = factory());
+})(this, (function () { 'use strict';
 
   /**
    * 数组排序常量
@@ -455,7 +450,7 @@
     return value.substring(0, start) + startStr + value.substring(start + len);
   }
 
-  var stringUtil = /*#__PURE__*/ Object.freeze({
+  var stringUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     trim: trim,
     trimStart: trimStart,
@@ -476,7 +471,7 @@
     formatStartOfName: formatStartOfName,
     formatStartOfMobile: formatStartOfMobile,
     formatStartOfIdCard: formatStartOfIdCard,
-    formatStartOfBankCard: formatStartOfBankCard,
+    formatStartOfBankCard: formatStartOfBankCard
   });
 
   /**
@@ -490,9 +485,9 @@
     return Number.parseInt(value, radix);
   }
 
-  var numberUtil = /*#__PURE__*/ Object.freeze({
+  var numberUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    parseInt: parseInt$1,
+    parseInt: parseInt$1
   });
 
   /* 数据类型 */
@@ -735,7 +730,7 @@
     return Object.is(value1.toLowerCase(), value2.toLowerCase());
   }
 
-  var validateUtil = /*#__PURE__*/ Object.freeze({
+  var validateUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     isInteger: isInteger,
     isDecimal: isDecimal,
@@ -761,7 +756,7 @@
     isUndefined: isUndefined,
     isNotUndefined: isNotUndefined,
     equals: equals,
-    equalsIgnoreCase: equalsIgnoreCase,
+    equalsIgnoreCase: equalsIgnoreCase
   });
 
   /**
@@ -906,10 +901,7 @@
    */
   function arraySwap(array, sourceIndex, targetIndex) {
     const target = [...array];
-    [target[targetIndex], target[sourceIndex]] = [
-      array[sourceIndex],
-      array[targetIndex],
-    ];
+    [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
     return target;
   }
 
@@ -931,7 +923,7 @@
     return res;
   }
 
-  var arrayUtil = /*#__PURE__*/ Object.freeze({
+  var arrayUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     inArray: inArray,
     arrayMin: arrayMin,
@@ -945,7 +937,7 @@
     arrayShuffle: arrayShuffle,
     arraySort: arraySort,
     arraySwap: arraySwap,
-    arrayToTree: arrayToTree,
+    arrayToTree: arrayToTree
   });
 
   /**
@@ -1018,7 +1010,7 @@
    * @returns {Object|Array|Date} 返回深度克隆后的数据
    */
   function cloneDeep(source) {
-    if (isNull(source)) return null;
+    if (isNull(source)) return undefined;
 
     //  Object
     if (source instanceof Object) {
@@ -1062,7 +1054,7 @@
     return Object.assign(target, ...source);
   }
 
-  var objectUtil = /*#__PURE__*/ Object.freeze({
+  var objectUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     mapToObject: mapToObject,
     mapToJson: mapToJson,
@@ -1071,7 +1063,7 @@
     strifyJson: strifyJson,
     parseJson: parseJson,
     cloneDeep: cloneDeep,
-    merge: merge,
+    merge: merge
   });
 
   /* 年龄，生肖，星座 */
@@ -1116,10 +1108,10 @@
    * 节流函数
    * @description 高频触发时，在指定时间间隔内只执行一次
    * @param {Function} fn 目标函数
-   * @param {Number} interval 时间间隔，单位毫秒，默认2秒
+   * @param {Number} interval 时间间隔，单位毫秒，默认1*1000毫秒
    * @returns {Function} 返回function()
    */
-  function throttle(fn, interval = 2000) {
+  function throttle(fn, interval = 1000) {
     let timer;
     return function () {
       const _args = arguments;
@@ -1136,11 +1128,11 @@
    * 防抖函数
    * @description 事件执行后，在延迟时间内如果再次执行，会清空定时器重新延迟执行
    * @param {Function} fn 目标函数
-   * @param {Number} delay 延迟时间，单位毫秒，默认2秒
+   * @param {Number} delay 延迟时间，单位毫秒，默认1*1000毫秒
    * @param {Boolean} immediate 是否立即执行，默认true
    * @returns {Function} 返回function()
    */
-  function debounce(fn, delay = 2000, immediate = true) {
+  function debounce(fn, delay = 1000, immediate = true) {
     let timer;
     return function () {
       const _args = arguments;
@@ -1245,11 +1237,11 @@
     return info;
   }
 
-  var functionUtil = /*#__PURE__*/ Object.freeze({
+  var functionUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     throttle: throttle,
     debounce: debounce,
-    getIdCardInfo: getIdCardInfo,
+    getIdCardInfo: getIdCardInfo
   });
 
   /**
@@ -1396,7 +1388,7 @@
     return new RegExp(regex).test(value);
   }
 
-  var regexpUtil = /*#__PURE__*/ Object.freeze({
+  var regexpUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     REGEXP: REGEXP,
     isChinese: isChinese,
@@ -1408,7 +1400,7 @@
     isEmail: isEmail,
     isIdCard: isIdCard,
     isUrl: isUrl,
-    regexpTest: regexpTest,
+    regexpTest: regexpTest
   });
 
   /* 数字精度计算 */
@@ -1575,9 +1567,9 @@
     if (s.indexOf(".") == -1) s += ".";
     s += new Array(decimals + 1).join("0");
     if (
-      new RegExp(
-        "^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$"
-      ).test(s)
+      new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(
+        s
+      )
     ) {
       let s = "0" + RegExp.$2,
         pm = RegExp.$1,
@@ -1638,8 +1630,8 @@
     let realVal = "";
     // 截取当前数据到小数点后decimals位
     realVal = `${String(tempNum).split(".")[0]}.${String(tempNum)
-      .split(".")[1]
-      .substring(0, dec)}`;
+    .split(".")[1]
+    .substring(0, dec)}`;
     return String(realVal);
   }
 
@@ -1671,7 +1663,7 @@
     return Math.floor(num * n) / n;
   }
 
-  var mathUtil = /*#__PURE__*/ Object.freeze({
+  var mathUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     add: add,
     subtract: subtract,
@@ -1679,7 +1671,7 @@
     divide: divide,
     modulo: modulo,
     toFixed: toFixed,
-    toDecimal: toDecimal,
+    toDecimal: toDecimal
   });
 
   /**
@@ -1701,8 +1693,7 @@
    */
   function getRandomDigit(len = 1) {
     return Math.floor(
-      (Math.random() + Math.floor(Math.random() * 9 + 1)) *
-        Math.pow(10, len - 1)
+      (Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, len - 1)
     );
   }
 
@@ -1711,14 +1702,12 @@
    * @param len 生成的长度，默认32位
    * @param radix 进制数，默认16进制
    * @example
-   * getUUID() // 输出：e854e2ec063c1ee7942f57c5733ce0cb
+   * getUUID() // 输出：0a559343dbbf0e7e6c1de90163e7aa0a
    * @returns {String} 返回UUID字符串
    */
   function getUUID(len = 32, radix = 16) {
     const CHARS =
-      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(
-        ""
-      );
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     let uuid = [],
       i;
     radix = radix || CHARS.length;
@@ -1741,7 +1730,7 @@
   /**
    * 生成GUID
    * @example
-   * getGUID() // 输出：e854e2ec-063c-1ee7-942f-57c5733ce0cb
+   * getGUID() // 输出：275ec770-0853-6767-4875-7b270220ce9c
    * @returns {String} 返回GUID字符串
    */
   function getGUID() {
@@ -1764,12 +1753,12 @@
     );
   }
 
-  var randomUtil = /*#__PURE__*/ Object.freeze({
+  var randomUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     getRandom: getRandom,
     getRandomDigit: getRandomDigit,
     getUUID: getUUID,
-    getGUID: getGUID,
+    getGUID: getGUID
   });
 
   /* 文件信息处理 */
@@ -2052,7 +2041,7 @@
     }
   }
 
-  var fileUtil = /*#__PURE__*/ Object.freeze({
+  var fileUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     formatFileSize: formatFileSize,
     getFileName: getFileName,
@@ -2066,7 +2055,7 @@
     base64ToBlob: base64ToBlob,
     urlToBase64: urlToBase64,
     downloadBlobFile: downloadBlobFile,
-    downloadFileUrl: downloadFileUrl,
+    downloadFileUrl: downloadFileUrl
   });
 
   /**
@@ -2080,8 +2069,7 @@
     let g = parseInt(rgb[1]);
     let b = parseInt(rgb[2].split(")")[0]);
 
-    let hex =
-      "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
     return hex;
   }
 
@@ -2129,12 +2117,156 @@
     return "rgb(" + r + "," + g + "," + b + ")";
   }
 
-  var colorUtil = /*#__PURE__*/ Object.freeze({
+  var colorUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     rgbToHex: rgbToHex,
     hexToRgba: hexToRgba,
     getRandomHex: getRandomHex,
-    getRandomRgb: getRandomRgb,
+    getRandomRgb: getRandomRgb
+  });
+
+  var keyCodeMap = {
+    // 字符键
+    8: "Backspace",
+    9: "Tab",
+    13: "Enter",
+    16: "Shift",
+    17: "Ctrl",
+    18: "Alt",
+    19: "Pause",
+    20: "Caps Lock",
+    27: "Escape",
+    32: "Space",
+    33: "Page Up",
+    34: "Page Down",
+    35: "End",
+    36: "Home",
+    37: "Left",
+    38: "Up",
+    39: "Right",
+    40: "Down",
+    42: "Print Screen",
+    45: "Insert",
+    46: "Delete",
+    // 数字键
+    48: "0",
+    49: "1",
+    50: "2",
+    51: "3",
+    52: "4",
+    53: "5",
+    54: "6",
+    55: "7",
+    56: "8",
+    57: "9",
+    // 字母键
+    65: "A",
+    66: "B",
+    67: "C",
+    68: "D",
+    69: "E",
+    70: "F",
+    71: "G",
+    72: "H",
+    73: "I",
+    74: "J",
+    75: "K",
+    76: "L",
+    77: "M",
+    78: "N",
+    79: "O",
+    80: "P",
+    81: "Q",
+    82: "R",
+    83: "S",
+    84: "T",
+    85: "U",
+    86: "V",
+    87: "W",
+    88: "X",
+    89: "Y",
+    90: "Z",
+    // window
+    91: "Windows",
+    93: "Right Click",
+    // Numpad
+    96: "Numpad 0",
+    97: "Numpad 1",
+    98: "Numpad 2",
+    99: "Numpad 3",
+    100: "Numpad 4",
+    101: "Numpad 5",
+    102: "Numpad 6",
+    103: "Numpad 7",
+    104: "Numpad 8",
+    105: "Numpad 9",
+    106: "Numpad *",
+    107: "Numpad +",
+    109: "Numpad -",
+    110: "Numpad .",
+    111: "Numpad /",
+    // F功能键
+    112: "F1",
+    113: "F2",
+    114: "F3",
+    115: "F4",
+    116: "F5",
+    117: "F6",
+    118: "F7",
+    119: "F8",
+    120: "F9",
+    121: "F10",
+    122: "F11",
+    123: "F12",
+    // 特殊符号
+    144: "Num Lock",
+    145: "Scroll Lock",
+    182: "My Computer",
+    183: "My Calculator",
+    186: ";",
+    187: "=",
+    188: ",",
+    189: "-",
+    190: ".",
+    191: "/",
+    192: "`",
+    219: "[",
+    220: "\\",
+    221: "]",
+    222: "'",
+  };
+
+  /**
+   * 根据keycode获得键名
+   * @param  {Number} keycode 键值
+   * @returns {String} 返回键名
+   */
+  function getKeyName(keycode) {
+    if (keyCodeMap[keycode]) {
+      return keyCodeMap[keycode];
+    } else {
+      console.log("Unknow Key Code: " + keycode);
+      return "";
+    }
+  }
+
+  /**
+   * 根据keyname获得键值
+   * @param  {Number} keyname
+   * @returns {Number} 返回键值
+   */
+  function getKeyCode(keyname) {
+    for (let key in keyCodeMap) {
+      if (keyCodeMap[key] == keyname) {
+        return key;
+      }
+    }
+  }
+
+  var keyCodeUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    getKeyName: getKeyName,
+    getKeyCode: getKeyCode
   });
 
   /**
@@ -2197,52 +2329,54 @@
     return pairs.join("&");
   }
 
-  var urlUtil = /*#__PURE__*/ Object.freeze({
+  var urlUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     getUrlParam: getUrlParam,
     queryStringToObj: queryStringToObj,
-    objToQueryString: objToQueryString,
+    objToQueryString: objToQueryString
   });
 
   /* cookie存储 */
   /**
-   * 通过key获取cookie
-   * @param {String} key 参数key
+   * 通过name获取cookie
+   * @param {String} name 参数name
    * @returns {String} 返回获取的值
    */
-  function getCookie(key) {
+  function getCookie(name) {
     if (typeof document == "undefined") return;
-    // 多个cookie获取到每个分号后面是有个空格的，需要以下来分割
-    let arr = document.cookie ? document.cookie.split("; ") : [];
+    // cookie中每个分号后面是有个空格的，需要替换掉
+    let arr = document.cookie
+      ? document.cookie.replace(/\s/g, "").split(";")
+      : [];
     for (let i in arr) {
-      let arr2 = arr[i].split("=");
-      if (arr2[0] == key) {
-        return decodeURIComponent(arr2[1]);
+      let tempArr = arr[i].split("=");
+      if (tempArr[0] == name) {
+        return decodeURIComponent(tempArr[1]);
       }
     }
     return "";
   }
 
   /**
-   * 通过key设置cookie
+   * 通过name设置cookie
    * 注：timestamp参数不填，则默认为session级别，浏览器关闭即cookie过期
-   * @param {String} key 参数key
+   * @param {String} name 参数name
    * @param {String} value 设置的value
    * @param {Timestamp} timestamp 过期的时间戳值，默认为一天，设置一天过期则为：24*60*60*1000
    */
-  function setCookie(key, value, timestamp = 24 * 60 * 60 * 1000) {
+  function setCookie(name, value, timestamp = 24 * 60 * 60 * 1000) {
     if (typeof document == "undefined") return;
     document.cookie =
-      key + "=" + value + ";expires=" + new Date(Date.now() + timestamp);
+      name + "=" + value + ";expires=" + new Date(Date.now() + timestamp);
   }
 
   /**
-   * 通过key删除cookie
-   * @param {String} key 参数key
+   * 通过name删除cookie
+   * @param {String} name 参数name
    */
-  function removeCookie(key) {
-    if (isEmpty(key)) return;
-    setCookie(key, "", -1);
+  function removeCookie(name) {
+    if (isEmpty(name)) return;
+    setCookie(name, "", -1);
   }
 
   /**
@@ -2250,16 +2384,24 @@
    * @param {String} domain 域名地址，默认是当前站点域名
    */
   function clearCookie(domain = document.domain) {
-    let keys = document.cookie.match(/[^ =;]+(?=\=)/g);
-    if (keys) {
-      for (let i = keys.length; i--; ) {
+    let names = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if (names) {
+      for (let i = names.length; i--; ) {
         document.cookie =
-          keys[i] + "=0;path=/;" + domain
+          names[i] + "=0;path=/;" + domain
             ? "domain=" + domain + ";"
             : "" + "expires=" + new Date(0).toUTCString();
       }
     }
   }
+
+  var cookieUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    getCookie: getCookie,
+    setCookie: setCookie,
+    removeCookie: removeCookie,
+    clearCookie: clearCookie
+  });
 
   /* localStorage存储 */
   /**
@@ -2330,15 +2472,11 @@
   }
 
   /**
-   * 导入cookie，localStorage，sessionStorage
+   * 导出localStorage，sessionStorage
    */
 
-  var storageUtil = /*#__PURE__*/ Object.freeze({
+  var storageUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    getCookie: getCookie,
-    setCookie: setCookie,
-    removeCookie: removeCookie,
-    clearCookie: clearCookie,
     getLocalStorage: getLocalStorage,
     setLocalStorage: setLocalStorage,
     removeLocalStorage: removeLocalStorage,
@@ -2346,7 +2484,7 @@
     getSessionStorage: getSessionStorage,
     setSessionStorage: setSessionStorage,
     removeSessionStorage: removeSessionStorage,
-    clearSessionStorage: clearSessionStorage,
+    clearSessionStorage: clearSessionStorage
   });
 
   /**
@@ -2374,8 +2512,7 @@
    * @param {String} className 类名
    */
   function removeClass(elem, className) {
-    if (hasClass(elem, className))
-      elem.className = elem.className.replace(new RegExp(className, "gm"), "");
+    if (hasClass(elem, className)) elem.className = elem.className.replace(new RegExp(className, "gm"), "");
   }
 
   /**
@@ -2428,22 +2565,19 @@
       "&quot;": '"',
       "&#39;": "'",
     };
-    return htmlStr.replace(
-      /(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi,
-      function (all, t) {
-        return temp[t];
-      }
-    );
+    return htmlStr.replace(/(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi, function (all, t) {
+      return temp[t];
+    });
   }
 
-  var domUtil = /*#__PURE__*/ Object.freeze({
+  var domUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     hasClass: hasClass,
     addClass: addClass,
     removeClass: removeClass,
     replaceClass: replaceClass,
     htmlEncode: htmlEncode,
-    htmlDecode: htmlDecode,
+    htmlDecode: htmlDecode
   });
 
   /* 浏览器信息 */
@@ -2592,7 +2726,7 @@
     return /QQ/i.test(ua);
   }
 
-  var deviceUtil = /*#__PURE__*/ Object.freeze({
+  var deviceUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     getBrowserInfo: getBrowserInfo,
     isPc: isPc,
@@ -2606,7 +2740,7 @@
     isIphone: isIphone,
     isIpad: isIpad,
     isWeixin: isWeixin,
-    isQQ: isQQ,
+    isQQ: isQQ
   });
 
   /**
@@ -2675,7 +2809,7 @@
     wx.clearStorageSync();
   }
 
-  var weappUtil = /*#__PURE__*/ Object.freeze({
+  var weappUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     setStorage: setStorage,
     setStorageSync: setStorageSync,
@@ -2684,7 +2818,7 @@
     removeStorage: removeStorage,
     removeStorageSync: removeStorageSync,
     clearStorage: clearStorage,
-    clearStorageSync: clearStorageSync,
+    clearStorageSync: clearStorageSync
   });
 
   // 测试加载成功方法
@@ -2727,8 +2861,13 @@
     // 校验
     ...validateUtil,
 
+    // 键盘 Keycode
+    ...keyCodeUtil,
+
     // 浏览器 Url
     ...urlUtil,
+    // 浏览器 Cookie
+    ...cookieUtil,
     // 浏览器 Storage
     ...storageUtil,
     // 浏览器 Dom
@@ -2741,4 +2880,5 @@
   };
 
   return index;
-});
+
+}));

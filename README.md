@@ -16,7 +16,7 @@ npm i @lime-util/util --save
 #### 2. 或在浏览器中直接使用
 
 ```html
-<!-- 将工具包下面 dist/index.js 文件拷贝出来用 -->
+<!-- 将工具包下面 dist/index.js 文件拷贝出来引入路径 -->
 <script src="dist/index.js"></script>
 <!-- 使用 -->
 <script>
@@ -92,13 +92,13 @@ loadedTest(); // 输出：lime-util loaded successfully!
 
 13. [校验](https://github.com/qq575792372/lime-util/blob/master/doc/validate.md)
 
-14. [浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)
-15. [浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)
-16. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
-17. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
-18. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
+14. [键盘 Keycode](https://github.com/qq575792372/lime-util/blob/master/doc/keycode.md)
 
-19. [键值 Keycode](https://github.com/qq575792372/lime-util/blob/master/doc/keycode.md)
+15. [浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)
+16. [浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)
+17. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
+18. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
+19. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
 
 20. [微信小程序](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)
 

@@ -1,4 +1,4 @@
-## 键值 Keycode
+## 键盘 Keycode
 
 #### \_.getKeyName(keycode)
 

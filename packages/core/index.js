@@ -35,6 +35,9 @@ import * as colorUtil from "./src/color";
 // 校验
 import * as validateUtil from "./src/validate";
 
+// 键盘 Keycode
+import * as keyCodeUtil from "./src/keycode";
+
 // 浏览器 Url
 import * as urlUtil from "./src/url";
 // 浏览器 Cookie
@@ -45,9 +48,6 @@ import * as storageUtil from "./src/storage";
 import * as domUtil from "./src/dom";
 // 浏览器 Device
 import * as deviceUtil from "./src/device";
-
-// 键值 Keycode
-import keycodeUtil from "./src/keycode";
 
 // 微信小程序工具类
 import * as weappUtil from "./src/weapp";
@@ -87,6 +87,9 @@ export default {
   // 校验
   ...validateUtil,
 
+  // 键盘 Keycode
+  ...keyCodeUtil,
+
   // 浏览器 Url
   ...urlUtil,
   // 浏览器 Cookie
@@ -98,8 +101,6 @@ export default {
   // 浏览器 Device
   ...deviceUtil,
 
-  // 键值
-  ...keycodeUtil,
   // 微信小程序
   ...weappUtil,
 };
