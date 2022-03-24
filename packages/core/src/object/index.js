@@ -64,6 +64,47 @@ export function parseJson(json) {
 }
 
 /**
+ * 浅拷贝数据
+ * @description 目前只支持 Object，Array，Date三种数据类型
+ * @param {Object|Array|Date} source 需要克隆的数据
+ * @returns {Object|Array|Date} 返回深度克隆后的数据
+ * TODO
+ */
+function clone(source) {
+  if (isNull(source)) return undefined;
+  //  Object
+  if (source instanceof Object) {
+    let copy = {};
+    for (let attr in source) {
+      if (source.hasOwnProperty(attr)) copy[attr] = source[attr];
+    }
+    return copy;
+  }
+
+  //  Array
+  else if (source instanceof Array) {
+    let copy = [];
+    for (let i = 0, len = source.length; i < len; i++) {
+      copy[i] = source[i];
+    }
+    return copy;
+  }
+
+  //  Date
+  else if (source instanceof Date) {
+    let copy = new Date();
+    copy.setTime(source.getTime());
+    return copy;
+  }
+
+  // Other
+  // 原路返回源数据
+  else {
+    return source;
+  }
+}
+
+/**
  * 深拷贝数据
  * @description 目前只支持 Object，Array，Date三种数据类型
  * @param {Object|Array|Date} source 需要克隆的数据

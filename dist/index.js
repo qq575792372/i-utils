@@ -1,11 +1,7 @@
 /*!
- * @lime-util/util 
- * Version: v3.0.10
- *
- * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
- * Licensed under the MIT License.
- * http://www.opensource.org/licenses/mit-license
- * 
+ * @lime-util/util v3.0.10
+ * Copyright 2021-2022 Gaoshiwei <575792372@qq.com>
+ * Released under the MIT License.
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :

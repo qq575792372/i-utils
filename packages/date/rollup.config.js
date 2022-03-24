@@ -14,13 +14,9 @@ function pathResolve(dir) {
 
 // 声明注释
 const banner = `/*!
- * ${pkg.name} 
- * Version: v${pkg.version}
- *
+ * ${pkg.name} v${pkg.version}
  * Copyright 2021-${new Date().getFullYear()}, ${pkg.author}
- * Licensed under the ${pkg.license} License.
- * http://www.opensource.org/licenses/mit-license
- * 
+ * Released under the ${pkg.license} License.
  */`;
 
 /**
