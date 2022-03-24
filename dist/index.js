@@ -1,6 +1,6 @@
 /*!
  * @lime-util/util v3.0.10
- * Copyright 2021-2022 Gaoshiwei <575792372@qq.com>
+ * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
 (function (global, factory) {
