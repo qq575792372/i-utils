@@ -117,6 +117,15 @@ export function isSameYear(date1, date2) {
 }
 
 /* 简化名称获取时间 */
+
+/**
+ * 今天
+ *@returns {String} 返回日期字符串
+ */
+export function today() {
+  return getDate();
+}
+
 /**
  * 昨天
  * @returns {String} 返回日期字符串
@@ -126,11 +135,11 @@ export function yesterday() {
 }
 
 /**
- * 今天
+ * 明天
  *@returns {String} 返回日期字符串
  */
-export function today() {
-  return getDate();
+export function tomorrow() {
+  return formatDate(addDate(new Date(), +1));
 }
 
 /**
