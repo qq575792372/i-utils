@@ -36,7 +36,7 @@ export function isWorkday() {
 }
 
 /**
- * 今天是否是周末（周六或周日）
+ * 今天是否是周末（周六和周日）
  * @returns {Boolean} 返回true和false
  */
 export function isWeekend() {
