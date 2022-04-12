@@ -1087,7 +1087,7 @@
   }
 
   /**
-   * 今天是否是周末（周六或周日）
+   * 今天是否是周末（周六和周日）
    * @returns {Boolean} 返回true和false
    */
   function isWeekend() {
@@ -1168,6 +1168,15 @@
   }
 
   /* 简化名称获取时间 */
+
+  /**
+   * 今天
+   *@returns {String} 返回日期字符串
+   */
+  function today() {
+    return getDate();
+  }
+
   /**
    * 昨天
    * @returns {String} 返回日期字符串
@@ -1177,11 +1186,11 @@
   }
 
   /**
-   * 今天
+   * 明天
    *@returns {String} 返回日期字符串
    */
-  function today() {
-    return getDate();
+  function tomorrow() {
+    return formatDate(addDate(new Date(), +1));
   }
 
   /**
@@ -2210,8 +2219,9 @@
     isSameWeek: isSameWeek,
     isSameMonth: isSameMonth,
     isSameYear: isSameYear,
-    yesterday: yesterday,
     today: today,
+    yesterday: yesterday,
+    tomorrow: tomorrow,
     prevWeek: prevWeek,
     nextWeek: nextWeek,
     prevMonth: prevMonth,
