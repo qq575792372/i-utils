@@ -49,7 +49,7 @@ console.log(res); // 输出：true
 
 #### \_.isWeekend()
 
-今天是否是周末（周六或周日）
+今天是否是周末（周六和周日）
 
 - ##### 参数
 
@@ -226,6 +226,25 @@ console.log(res); // 输出：true
 
 <!-- 简化名称获取时间 -->
 
+#### \_.today()
+
+今天
+
+- ##### 参数
+
+  无
+
+- ##### 返回值
+
+  {String} 返回日期字符串
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.today();
+console.log(res); // 输出：2021-12-13
+```
+
 #### \_.yesterday()
 
 昨天
@@ -247,9 +266,9 @@ console.log(res); // 输出：2021-12-11
 
 ---
 
-#### \_.today()
+#### \_.tomorrow()
 
-今天
+明天
 
 - ##### 参数
 
@@ -262,8 +281,8 @@ console.log(res); // 输出：2021-12-11
 - ##### 示例
 
 ```javascript
-let res = LimeUtil.today();
-console.log(res); // 输出：2021-12-13
+let res = LimeUtil.tomorrow();
+console.log(res); // 输出：2021-12-12
 ```
 
 ---
