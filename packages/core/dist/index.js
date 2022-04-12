@@ -1,5 +1,5 @@
 /*!
- * @lime-util/core v3.0.10
+ * @lime-util/core v3.0.12
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -626,7 +626,7 @@
 
   /**
    * 判断对象为空
-   * @description 对象是否初始化过，如果值是{},[]等初始化过的则不为空
+   * @description 判断值是否为空，如果对象初始化了值则不为空
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
@@ -636,7 +636,7 @@
 
   /**
    * 判断对象不为空
-   * @description 对象是否初始化过，如果值是{},[]等初始化过的则不为空
+   * @description 判断值是否为空，如果对象初始化了值则不为空
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
@@ -646,21 +646,17 @@
 
   /**
    * 判断值为空
-   * @description 是否实际有意义的值，如果值是{},[]空的数据则为空
+   * @description 判断是否是有意义不为空的值，如果值是{},[]空的数据则为空
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
   function isEmpty(value) {
-    return (
-      isNull(value) ||
-      (isObject(value) && Object.keys(value).length == 0) ||
-      (isArray(value) && value.length == 0)
-    );
+    return isNull(value) || !(Object.keys(val) || val).length;
   }
 
   /**
    * 判断值不为空
-   * @description 是否实际有意义的值，如果值是{},[]空的数据则为空
+   * @description 判断是否是有意义不为空的值，如果值是{},[]空的数据则为空
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
@@ -1107,7 +1103,7 @@
    * @param {Number} interval 时间间隔，单位毫秒，默认1*1000毫秒
    * @returns {Function} 返回function()
    */
-  function throttle(fn, interval = 1000) {
+  function throttle(fn, interval = 1 * 1000) {
     let timer;
     return function () {
       const _args = arguments;
@@ -1124,11 +1120,11 @@
    * 防抖函数
    * @description 事件执行后，在延迟时间内如果再次执行，会清空定时器重新延迟执行
    * @param {Function} fn 目标函数
-   * @param {Number} delay 延迟时间，单位毫秒，默认1*1000毫秒
+   * @param {Number} delay 延迟时间，单位毫秒，默认 1*1000 毫秒
    * @param {Boolean} immediate 是否立即执行，默认true
    * @returns {Function} 返回function()
    */
-  function debounce(fn, delay = 1000, immediate = true) {
+  function debounce(fn, delay = 1 * 1000, immediate = true) {
     let timer;
     return function () {
       const _args = arguments;
@@ -1151,6 +1147,15 @@
         }, delay);
       }
     };
+  }
+
+  /**
+   * 睡眠延迟执行
+   * @description 需要配合 async/await 来达到延迟效果
+   * @param {Number} delay 延迟时间，单位毫秒，默认1*1000毫秒
+   */
+  function sleep(delay = 1 * 1000) {
+    return new Promise((resolve) => setTimeout(resolve, delay));
   }
 
   /**
@@ -1237,6 +1242,7 @@
     __proto__: null,
     throttle: throttle,
     debounce: debounce,
+    sleep: sleep,
     getIdCardInfo: getIdCardInfo
   });
 

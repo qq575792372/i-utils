@@ -323,7 +323,7 @@ console.log(LimeUtil.isNotNaN("123")); // 输出：true
 #### \_.isNull(value)
 
 判断对象为空  
-<span style="color:#808695">`对象是否初始化过，如果值是{},[]等初始化过的则不为空`</span>
+<span style="color:#808695">`判断值是否为空，如果对象初始化了值则不为空`</span>
 
 - ##### 参数
 
@@ -347,7 +347,7 @@ console.log(LimeUtil.isNull(12.01)); // 输出：false
 #### \_.isNotNull(value)
 
 判断对象不为空  
-<span style="color:#808695">`对象是否初始化过，如果值是{},[]等初始化过的则不为空`</span>
+<span style="color:#808695">`判断值是否为空，如果对象初始化了值则不为空`</span>
 
 - ##### 参数
 
@@ -371,7 +371,7 @@ console.log(LimeUtil.isNotNull(12.01)); // 输出：true
 #### \_.isEmpty(value)
 
 判断值为空
-<span style="color:#808695">`是否实际有意义的值，如果值是{},[]空的数据则为空`</span>
+<span style="color:#808695">`判断是否是有意义不为空的值，如果值是{},[]空的数据则为空`</span>
 
 - ##### 参数
 
@@ -395,7 +395,7 @@ console.log(LimeUtil.isEmpty(undefined)); // 输出：true
 #### \_.isNotEmpty(value)
 
 判断值不为空
-<span style="color:#808695">`是否实际有意义的值，如果值是{},[]空的数据则为空`</span>
+<span style="color:#808695">`判断是否是有意义不为空的值，如果值是{},[]空的数据则为空`</span>
 
 - ##### 参数
 

@@ -1,5 +1,5 @@
 /*!
- * @lime-util/date v3.0.10
+ * @lime-util/date v3.0.12
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -29,24 +29,6 @@
   }
 
   /**
-   * 判断类型是数组 Array
-   * @param {*} value 参数
-   * @returns {Boolean} 返回true和false
-   */
-  function isArray(value) {
-    return Object.prototype.toString.call(value).slice(8, -1) === "Array";
-  }
-
-  /**
-   * 判断类型是对象 Object
-   * @param {*} value 参数
-   * @returns {Boolean} 返回true和false
-   */
-  function isObject(value) {
-    return Object.prototype.toString.call(value).slice(8, -1) === "Object";
-  }
-
-  /**
    * 判断类型是日期 Date
    * @param {*} value 参数
    * @returns {Boolean} 返回true和false
@@ -57,7 +39,7 @@
 
   /**
    * 判断对象为空
-   * @description 对象是否初始化过，如果值是{},[]等初始化过的则不为空
+   * @description 判断值是否为空，如果对象初始化了值则不为空
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
@@ -67,16 +49,12 @@
 
   /**
    * 判断值为空
-   * @description 是否实际有意义的值，如果值是{},[]空的数据则为空
+   * @description 判断是否是有意义不为空的值，如果值是{},[]空的数据则为空
    * @param {*} value 校验的参数
    * @returns {Boolean} 返回true和false
    */
   function isEmpty(value) {
-    return (
-      isNull(value) ||
-      (isObject(value) && Object.keys(value).length == 0) ||
-      (isArray(value) && value.length == 0)
-    );
+    return isNull(value) || !(Object.keys(val) || val).length;
   }
 
   /**
