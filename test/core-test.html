@@ -9,20 +9,6 @@
   <body></body>
   <script src="../packages/core/dist/index.js"></script>
   <script>
-    function clone(obj) {
-      var copy = obj || {};
-      for (var i in obj) {
-        copy[i] = obj[i];
-      }
-      return copy;
-    }
-    let a = {
-      id: 1,
-      name: "1",
-    };
-    let b = clone(a);
-    b.age = 10;
-    console.log(b);
-    console.log(a);
+    console.log(LimeCore);
   </script>
 </html>
