@@ -73,7 +73,7 @@ console.log(res); // 输出：true
 #### \_.isLeapYear(year)
 
 是否是闰年  
-<span style="color:#808695">`闰年366天，平年365天`</span>
+`闰年366天，平年365天`
 
 - ##### 参数
 
@@ -914,7 +914,7 @@ console.log(res); // 输出：365
 #### \_.getPastTime(date, lang = "zh")
 
 获得过去时间的字符串显示  
-<span style="color:#808695">`例如：刚刚，1分钟前，1小时前等`</span>
+`例如：刚刚，1分钟前，1小时前等`
 
 - ##### 参数
 
@@ -946,7 +946,7 @@ console.log(res); // 输出：1 day ago
 #### \_.getOverTime(date)
 
 获得剩余时间的字符串显示  
-<span style="color:#808695">`例如：1天 10小时 20分钟 30秒`</span>
+`例如：1天 10小时 20分钟 30秒`
 
 - ##### 参数
 
@@ -1134,7 +1134,7 @@ console.log(res); // 输出：日期对象
 #### \_.betweenDays(date1, date2)
 
 获得两个日期之间的年月日数组  
-<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
+`支持：日期字符串，日期对象，时间戳，Unix时间戳`
 
 - ##### 参数
 
@@ -1157,7 +1157,7 @@ console.log(res); // 输出： ['2021-12-11', '2021-12-12', '2021-12-13']
 #### \_.betweenMonths(date1, date2)
 
 获得两个日期之间的年月数组  
-<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
+`支持：日期字符串，日期对象，时间戳，Unix时间戳`
 
 - ##### 参数
 
@@ -1180,7 +1180,7 @@ console.log(res); // 输出： ['2021-11', '2021-12']
 #### \_.betweenYears(date1, date2)
 
 获得两个日期之间的年数组  
-<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
+`支持：日期字符串，日期对象，时间戳，Unix时间戳`
 
 - ##### 参数
 
@@ -1205,7 +1205,7 @@ console.log(res); // 输出： [2020, 2021]
 #### \_.compareDate(date1, date2)
 
 比较两个日期的大小  
-<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
+`支持：日期字符串，日期对象，时间戳，Unix时间戳`
 
 - ##### 参数
 
@@ -1230,7 +1230,7 @@ console.log(res); // 输出： true
 #### \_.diffDay(date1, date2)
 
 计算两个日期相差的天数，不满一天为 0  
-<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
+`支持：日期字符串，日期对象，时间戳，Unix时间戳`
 
 - ##### 参数
 
@@ -1262,7 +1262,7 @@ console.log(res); // 输出： -1
 #### \_.diffWeek(date1, date2)
 
 计算两个日期相差的周数，不满一周为 0  
-<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
+`支持：日期字符串，日期对象，时间戳，Unix时间戳`
 
 - ##### 参数
 
@@ -1294,7 +1294,7 @@ console.log(res); // 输出： -1
 #### \_.diffMonth(date1, date2)
 
 计算两个日期相差的月数，不满一月为 0  
-<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
+`支持：日期字符串，日期对象，时间戳，Unix时间戳`
 
 - ##### 参数
 
@@ -1326,7 +1326,7 @@ console.log(res); // 输出： -1
 #### \_.diffYear(date1, date2)
 
 计算两个日期相差的年数，不满一年为 0  
-<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
+`支持：日期字符串，日期对象，时间戳，Unix时间戳`
 
 - ##### 参数
 
@@ -1360,7 +1360,7 @@ console.log(res); // 输出： -1
 #### \_.formatDate(date = new Date(), format = "yyyy-MM-dd")
 
 格式化日期字符串  
-<span style="color:#808695">`支持：日期字符串，日期对象，时间戳，Unix时间戳`</span>
+`支持：日期字符串，日期对象，时间戳，Unix时间戳`
 
 - ##### format 格式
 
@@ -1419,7 +1419,7 @@ console.log(res); // 输出： 2021-12-10 17:10:10
 #### \_.parseDate(date)
 
 日期格式转为日期  
-<span style="color:#808695">`支持：日期字符串，时间戳，Unix时间戳`</span>
+`支持：日期字符串，时间戳，Unix时间戳`
 
 - ##### 参数
 

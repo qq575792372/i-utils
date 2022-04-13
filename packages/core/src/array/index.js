@@ -79,10 +79,7 @@ export function arrayIntersect(array1, array2) {
 export function arrayEquals(array1, array2) {
   if (array1 === array2) return true;
   if (array1.length != array2.length) return false;
-  for (let i = 0; i < array1.length; ++i) {
-    if (array1[i] !== array2[i]) return false;
-  }
-  return true;
+  return array1.every((v, i) => v === array2[i]);
 }
 
 /**
@@ -143,7 +140,10 @@ export function arraySort(array, mode = SORT_MODE.SORT_ASC) {
  */
 export function arraySwap(array, sourceIndex, targetIndex) {
   const target = [...array];
-  [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
+  [target[targetIndex], target[sourceIndex]] = [
+    array[sourceIndex],
+    array[targetIndex],
+  ];
   return target;
 }
 

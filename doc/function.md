@@ -3,7 +3,7 @@
 #### \_.throttle(fn, interval = 1 \* 1000)
 
 节流函数  
-<span style="color:#808695">`高频触发时，在指定时间间隔内只执行一次`</span>
+`高频触发时，在指定时间间隔内只执行一次`
 
 - ##### 参数
 
@@ -37,7 +37,7 @@ document.getElementById("mybtn").onclick = LimeUtil.throttle(hello, 1 * 1000);
 #### \_.debounce(fn, delay = 1 \* 1000, immediate = true)
 
 防抖函数  
-<span style="color:#808695">`事件执行后，在延迟时间内如果再次执行，会清空定时器重新延迟执行`</span>
+`事件执行后，在延迟时间内如果再次执行，会清空定时器重新延迟执行`
 
 - ##### 参数
 
@@ -70,7 +70,7 @@ document.getElementById("mybtn").onclick = LimeUtil.debounce(hello, 1 * 1000);
 #### \_.sleep(delay = 1 \* 1000)
 
 睡眠延迟执行  
-<span style="color:#808695">`需要配合 async/await 来达到延迟效果`</span>
+`需要配合 async/await 来达到延迟效果`
 
 - ##### 参数
 
@@ -97,7 +97,7 @@ sleepWork();
 #### \_.getIdCardInfo(idCard)
 
 根据身份证号码获取信息  
-<span style="color:#808695">`能获取到 籍贯，出生日期，年龄，性别 信息`</span>
+`能获取到 籍贯，出生日期，年龄，性别 信息`
 
 - ##### 参数
 

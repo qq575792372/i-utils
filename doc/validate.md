@@ -10,7 +10,7 @@
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -31,7 +31,7 @@ console.log(LimeUtil.isInteger(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -52,7 +52,7 @@ console.log(LimeUtil.isDecimal(12.01)); // 输出：true
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -74,7 +74,7 @@ console.log(LimeUtil.isNumber("3.1dd32")); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -95,7 +95,7 @@ console.log(LimeUtil.isString(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -116,7 +116,7 @@ console.log(LimeUtil.isArray([1, 2])); // 输出：true
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -137,7 +137,7 @@ console.log(LimeUtil.isObject(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -158,7 +158,7 @@ console.log(LimeUtil.isBoolean(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -179,7 +179,7 @@ console.log(LimeUtil.isDate(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -200,7 +200,7 @@ console.log(LimeUtil.isFunction(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -221,7 +221,7 @@ console.log(LimeUtil.isSymbol(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -243,7 +243,7 @@ console.log(LimeUtil.isRegExp(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -264,7 +264,7 @@ console.log(LimeUtil.isError(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -287,7 +287,7 @@ console.log(LimeUtil.isPromise(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -309,7 +309,7 @@ console.log(LimeUtil.isNaN("123")); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -323,7 +323,7 @@ console.log(LimeUtil.isNotNaN("123")); // 输出：true
 #### \_.isNull(value)
 
 判断对象为空  
-<span style="color:#808695">`判断值是否为空，如果对象初始化了值则不为空`</span>
+`判断值是否为空，如果对象初始化了值则不为空`
 
 - ##### 参数
 
@@ -331,7 +331,7 @@ console.log(LimeUtil.isNotNaN("123")); // 输出：true
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -347,7 +347,7 @@ console.log(LimeUtil.isNull(12.01)); // 输出：false
 #### \_.isNotNull(value)
 
 判断对象不为空  
-<span style="color:#808695">`判断值是否为空，如果对象初始化了值则不为空`</span>
+`判断值是否为空，如果对象初始化了值则不为空`
 
 - ##### 参数
 
@@ -355,7 +355,7 @@ console.log(LimeUtil.isNull(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -371,7 +371,7 @@ console.log(LimeUtil.isNotNull(12.01)); // 输出：true
 #### \_.isEmpty(value)
 
 判断值为空
-<span style="color:#808695">`判断是否是有意义不为空的值，如果值是{},[]空的数据则为空`</span>
+`判断是否是有意义不为空的值，如果值是{},[]空的数据则为空`
 
 - ##### 参数
 
@@ -379,7 +379,7 @@ console.log(LimeUtil.isNotNull(12.01)); // 输出：true
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -395,7 +395,7 @@ console.log(LimeUtil.isEmpty(undefined)); // 输出：true
 #### \_.isNotEmpty(value)
 
 判断值不为空
-<span style="color:#808695">`判断是否是有意义不为空的值，如果值是{},[]空的数据则为空`</span>
+`判断是否是有意义不为空的值，如果值是{},[]空的数据则为空`
 
 - ##### 参数
 
@@ -403,7 +403,7 @@ console.log(LimeUtil.isEmpty(undefined)); // 输出：true
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -419,7 +419,7 @@ console.log(LimeUtil.isNotEmpty(undefined)); // 输出：false
 #### \_.isBlank(value)
 
 判断值是空白的  
-<span style="color:#808695">`同时会校验空值，空对象，以及空白符号`</span>
+`同时会校验空值，空对象，以及空白符号`
 
 - ##### 参数
 
@@ -427,7 +427,7 @@ console.log(LimeUtil.isNotEmpty(undefined)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -443,7 +443,7 @@ console.log(LimeUtil.isBlank(12.01)); // 输出：false
 #### \_.isNotBlank(value)
 
 判断值不是空白的
-<span style="color:#808695">`同时会校验空值，空对象，以及空白符号`</span>
+`同时会校验空值，空对象，以及空白符号`
 
 - ##### 参数
 
@@ -451,7 +451,7 @@ console.log(LimeUtil.isBlank(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -474,7 +474,7 @@ console.log(LimeUtil.isNotBlank(12.01)); // 输出：true
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -497,7 +497,7 @@ console.log(LimeUtil.isUndefined(12.01)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -523,7 +523,7 @@ console.log(LimeUtil.isNotUndefined(12.01)); // 输出：true
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -547,7 +547,7 @@ console.log(LimeUtil.equals(121, 12)); // 输出：false
 
 - ##### 返回值
 
-  {Boolean} 回 true 和 false
+  {Boolean} 返回 true 和 false
 
 - ##### 示例
 
@@ -556,4 +556,47 @@ console.log(LimeUtil.equalsIgnoreCase("1", "1")); // 输出：true
 console.log(LimeUtil.equalsIgnoreCase("abc", "ABC")); // 输出：false
 console.log(LimeUtil.equalsIgnoreCase(12, 12)); // 输出：true
 console.log(LimeUtil.equalsIgnoreCase(121, 12)); // 输出：false
+```
+
+---
+
+#### \_.deepCompare(value)
+
+深度对比数据
+`可以对比任意数据，对象，数组，日期等也可深度对比，对象不区分先后顺序`
+
+- ##### 参数
+
+  `x` {_} 数据 1  
+  `y` {_} 数据 2
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+// 基础场景
+console.log(LimeUtil.deepCompare(1, 1)); // 输出：true
+console.log(LimeUtil.deepCompare(0, -0)); // 输出：true
+console.log(LimeUtil.deepCompare(1, "-1")); // 输出：false
+
+// 复杂场景1
+// 对象属性不区分顺序
+let obj1 = { id: 1, name: "test" };
+let obj2 = { name: "test", id: 1 };
+console.log(LimeUtil.deepCompare(obj1, obj2)); // 输出：true
+
+// 复杂场景2
+// 对象可以判断函数属性
+let obj1 = { id: 1, name: "test", say: function () {} };
+let obj2 = { name: "test", id: 1, say: function () {} };
+console.log(LimeUtil.deepCompare(obj1, obj2)); // 输出：true
+
+// 复杂场景3
+// 数组对象也可以深层次的判断
+let arr1 = [{ id: 1, name: "test", info: { age: 10 }, say: function () {} }];
+let arr2 = [{ id: 1, name: "test", info: { age: 10 }, say: function () {} }];
+console.log(LimeUtil.deepCompare(arr1, arr2)); // 输出：true
 ```

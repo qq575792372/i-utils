@@ -1,5 +1,5 @@
 /*!
- * @lime-util/core v3.0.12
+ * @lime-util/core v3.0.13
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -722,6 +722,131 @@
     return Object.is(value1.toLowerCase(), value2.toLowerCase());
   }
 
+  /**
+   * 深度对比数据
+   * @description 可以对比任意数据，对象，数组，日期等也可深度对比，对象不区分先后顺序
+   * @param {*} x 数据1
+   * @param {*} y 数据2
+   * @returns {Boolean} 返回true和false
+   */
+  function deepCompare(x, y) {
+    let i, l, leftChain, rightChain;
+
+    function compare2Objects(x, y) {
+      let p;
+
+      // remember that NaN === NaN returns false
+      // and isNaN(undefined) returns true
+      if (
+        isNaN(x) &&
+        isNaN(y) &&
+        typeof x === "number" &&
+        typeof y === "number"
+      ) {
+        return true;
+      }
+
+      // Compare primitives and functions.
+      // Check if both arguments link to the same object.
+      // Especially useful on the step where we compare prototypes
+      if (x === y) {
+        return true;
+      }
+
+      // Works in case when functions are created in constructor.
+      // Comparing dates is a common scenario. Another built-ins?
+      // We can even handle functions passed across iframes
+      if (
+        (typeof x === "function" && typeof y === "function") ||
+        (x instanceof Date && y instanceof Date) ||
+        (x instanceof RegExp && y instanceof RegExp) ||
+        (x instanceof String && y instanceof String) ||
+        (x instanceof Number && y instanceof Number)
+      ) {
+        return x.toString() === y.toString();
+      }
+
+      // At last checking prototypes as good as we can
+      if (!(x instanceof Object && y instanceof Object)) {
+        return false;
+      }
+
+      if (x.isPrototypeOf(y) || y.isPrototypeOf(x)) {
+        return false;
+      }
+
+      if (x.constructor !== y.constructor) {
+        return false;
+      }
+
+      if (x.prototype !== y.prototype) {
+        return false;
+      }
+
+      // Check for infinitive linking loops
+      if (leftChain.indexOf(x) > -1 || rightChain.indexOf(y) > -1) {
+        return false;
+      }
+
+      // Quick checking of one object being a subset of another.
+      // todo: cache the structure of arguments[0] for performance
+      for (p in y) {
+        if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
+          return false;
+        } else if (typeof y[p] !== typeof x[p]) {
+          return false;
+        }
+      }
+
+      for (p in x) {
+        if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
+          return false;
+        } else if (typeof y[p] !== typeof x[p]) {
+          return false;
+        }
+
+        switch (typeof x[p]) {
+          case "object":
+          case "function":
+            leftChain.push(x);
+            rightChain.push(y);
+
+            if (!compare2Objects(x[p], y[p])) {
+              return false;
+            }
+
+            leftChain.pop();
+            rightChain.pop();
+            break;
+
+          default:
+            if (x[p] !== y[p]) {
+              return false;
+            }
+            break;
+        }
+      }
+
+      return true;
+    }
+
+    if (arguments.length < 1) {
+      return true; //Die silently? Don't know how to handle such case, please help...
+      // throw "Need two or more arguments to compare";
+    }
+
+    for (i = 1, l = arguments.length; i < l; i++) {
+      leftChain = []; //Todo: this can be cached
+      rightChain = [];
+
+      if (!compare2Objects(arguments[0], arguments[i])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   var validateUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     isInteger: isInteger,
@@ -748,7 +873,8 @@
     isUndefined: isUndefined,
     isNotUndefined: isNotUndefined,
     equals: equals,
-    equalsIgnoreCase: equalsIgnoreCase
+    equalsIgnoreCase: equalsIgnoreCase,
+    deepCompare: deepCompare
   });
 
   /**
@@ -829,10 +955,7 @@
   function arrayEquals(array1, array2) {
     if (array1 === array2) return true;
     if (array1.length != array2.length) return false;
-    for (let i = 0; i < array1.length; ++i) {
-      if (array1[i] !== array2[i]) return false;
-    }
-    return true;
+    return array1.every((v, i) => v === array2[i]);
   }
 
   /**
@@ -893,7 +1016,10 @@
    */
   function arraySwap(array, sourceIndex, targetIndex) {
     const target = [...array];
-    [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
+    [target[targetIndex], target[sourceIndex]] = [
+      array[sourceIndex],
+      array[targetIndex],
+    ];
     return target;
   }
 
@@ -996,19 +1122,28 @@
   }
 
   /**
-   * 深拷贝数据
-   * @description 目前只支持 Object，Array，Date三种数据类型
-   * @param {Object|Array|Date} source 需要克隆的数据
-   * @returns {Object|Array|Date} 返回深度克隆后的数据
+   * 浅拷贝数据
+   * @param {*} source 需要克隆的数据
+   * @returns {*} 返回深度克隆后的数据
    */
-  function cloneDeep(source) {
+  function clone(source) {
+    if (isNull(source)) return undefined;
+    return Object.assign(source);
+  }
+
+  /**
+   * 深拷贝数据
+   * @param {*} source 需要克隆的数据
+   * @returns {*} 返回深度克隆后的数据
+   */
+  function deepClone(source) {
     if (isNull(source)) return undefined;
 
     //  Object
     if (source instanceof Object) {
       let copy = {};
       for (let attr in source) {
-        if (source.hasOwnProperty(attr)) copy[attr] = cloneDeep(source[attr]);
+        if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
       }
       return copy;
     }
@@ -1017,7 +1152,7 @@
     else if (source instanceof Array) {
       let copy = [];
       for (let i = 0, len = source.length; i < len; i++) {
-        copy[i] = cloneDeep(source[i]);
+        copy[i] = deepClone(source[i]);
       }
       return copy;
     }
@@ -1033,6 +1168,43 @@
     // 原路返回源数据
     else {
       return source;
+    }
+  }
+
+  /**
+   * 比较两个对象是否相等
+   * @description 方法只能对比简单的对象，不能包含function，另外对象的属性顺序不一致也是相等的
+   * @param {Object} obj1 对象1
+   * @param {Object} obj2 对象2
+   * @returns {Boolean} 返回true和false
+   */
+  function objectEquals(obj1, obj2) {
+    // 比较值相等
+    if (obj1 === obj2) {
+      return true;
+    }
+    // 比较Date
+    if (obj1 instanceof Date && b instanceof Date) {
+      return a.getTime() === b.getTime();
+    }
+    // 对象比较引用
+    if (
+      !obj1 ||
+      !obj2 ||
+      (typeof obj1 !== "object" && typeof obj2 !== "object")
+    ) {
+      return obj1 === obj2;
+    }
+    // 比较原型
+    if (obj1.prototype !== b.prototype) {
+      return false;
+    }
+    // 比较对象的值
+    const keys = Object.keys(obj1);
+    if (keys.length !== Object.keys(obj2).length) {
+      return false;
+    } else {
+      return keys.every((k) => objectEquals(obj1[k], obj2[k]));
     }
   }
 
@@ -1054,7 +1226,9 @@
     jsonToMap: jsonToMap,
     strifyJson: strifyJson,
     parseJson: parseJson,
-    cloneDeep: cloneDeep,
+    clone: clone,
+    deepClone: deepClone,
+    objectEquals: objectEquals,
     merge: merge
   });
 

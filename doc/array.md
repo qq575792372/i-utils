@@ -168,9 +168,16 @@ console.log(LimeUtil.arrayIntersect(array1, array2)); // 输出：[2, 3]
 - ##### 示例
 
 ```javascript
+// 场景1
 let array1 = [1, 2, 3];
 let array2 = [1, 2, 3];
 console.log(LimeUtil.arrayEquals(array1, array2)); // 输出：true
+
+// 场景2
+// 值虽然相等，但是顺序不同也是不相同的
+let array1 = [1, 2, 3];
+let array2 = [1, 3, 2];
+console.log(LimeUtil.arrayEquals(array1, array2)); // 输出：false
 ```
 
 ---
@@ -199,7 +206,7 @@ console.log(res); // 输出：[1,3,4,2]
 #### \_.arrayShuffle(array)
 
 数组打乱元素  
-<span style="color:#808695">`可以适用于一些抽奖人员列表打乱顺序`</span>
+`可以适用于一些抽奖人员列表打乱顺序`
 
 - ##### 参数
 
@@ -276,7 +283,7 @@ console.log(res); // 输出：[2,1,3,4]
 #### \_.arrayToTree(value, pid)
 
 一维父子级的数组转树形结构  
-<span style="color:#808695">`包含 id 和 pid 属性关系的一维数组，转为 children 的树形结构`</span>
+`包含 id 和 pid 属性关系的一维数组，转为 children 的树形结构`
 
 - ##### 参数
 

@@ -126,25 +126,86 @@ console.log(obj); // 输出：obj对象
 
 ---
 
-#### \_.cloneDeep(target)
+#### \_.clone(source)
 
-深拷贝数据  
-<span style="color:#808695">`目前只支持 Object，Array，Date三种数据类型`</span>
+浅拷贝数据
 
 - ##### 参数
 
-  `source` {Object|Array|Date} 需要克隆的原数据
+  `source` {\*} 需要克隆的数据
 
 - ##### 返回值
 
-  {Object|Array|Date} 返回深度克隆后的数据
+  {\*} 返回深度克隆后的数据
 
 - ##### 示例
 
 ```javascript
 let obj = { id: 1, name: "test" };
-let newObj = LimeUtil.cloneDeep(obj);
-console.log(newObj); // 输出：深拷贝后的对象
+let newObj = LimeUtil.clone(obj);
+console.log(newObj); // 输出：浅拷贝后的数据
+```
+
+---
+
+#### \_.deepClone(source)
+
+深拷贝数据
+
+- ##### 参数
+
+  `source` {\*} 需要克隆的数据
+
+- ##### 返回值
+
+  {\*} 返回深度克隆后的数据
+
+- ##### 示例
+
+```javascript
+let obj = { id: 1, name: "test" };
+let newObj = LimeUtil.deepClone(obj);
+console.log(newObj); // 输出：深拷贝后的数据
+```
+
+---
+
+#### \_.objectEquals(obj1, obj2)
+
+比较两个对象是否相等  
+`方法只能对比简单的对象，不能包含function，另外对象的属性顺序不一致也是相等的`
+
+- ##### 参数
+
+  `obj1` {Object} 对象 1
+  `obj2` {\Object} 对象 2
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+// 场景1
+let obj1 = { id: 1, name: "test" };
+let obj2 = { id: 1, name: "test" };
+let flag = LimeUtil.objectEquals(obj1, obj2);
+console.log(flag); // 输出：true
+
+// 场景2
+// 属性顺序不同也是会当做相等的
+let obj1 = { id: 1, name: "test" };
+let obj2 = { name: "test", id: 1 };
+let flag = LimeUtil.objectEquals(obj1, obj2);
+console.log(flag); // 输出：true
+
+// 场景3
+// 属性里面包含function则无法判断，需要用 deepCompare()方法
+let obj1 = { id: 1, name: "test", say: function () {} };
+let obj2 = { name: "test", id: 1, say: function () {} };
+let flag = LimeUtil.objectEquals(obj1, obj2);
+console.log(flag); // 输出：false
 ```
 
 ---

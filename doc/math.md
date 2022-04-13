@@ -115,7 +115,7 @@ console.log(res); // 输出：0.1
 #### \_.toFixed(num, decimals = 2, mode = ROUND)
 
 强制保留小数位数  
-<span style="color:#808695">`默认保留两位小数，解决原生的toFixed()会五舍六入的问题`</span>
+`默认保留两位小数，解决原生的toFixed()会五舍六入的问题`
 
 - ##### 参数
 

@@ -3,7 +3,7 @@
 #### \_.getBrowserInfo()
 
 获取浏览器信息  
-<span style="color:#808695">`会获取到浏览器对应的名称以及版本`</span>
+`会获取到浏览器对应的名称以及版本`
 
 - ##### 参数
 
@@ -48,7 +48,7 @@ console.log(res); // 输出：true
 #### \_.isMobile()
 
 判断是手机端  
-<span style="color:#808695">`包含 android、iphone、黑莓手机、微软手机 等多种操作系统机型`</span>
+`包含 android、iphone、黑莓手机、微软手机 等多种操作系统机型`
 
 - ##### 参数
 

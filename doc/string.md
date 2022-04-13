@@ -282,7 +282,7 @@ console.log(res); // 输出：true
 #### \_.zeroStart(value, maxLength = 2)
 
 数字前补齐 0 达到指定位数  
-<span style="color:#808695">`相当于原生的 padStart(2,'0')`</span>
+`相当于原生的 padStart(2,'0')`
 
 - ##### 参数
 
@@ -305,7 +305,7 @@ console.log(res); // 输出：001
 #### \_.zeroEnd(value, maxLength = 2)
 
 数字后补齐 0 达到指定位数  
-<span style="color:#808695">`相当于原生的 padEnd(2,'0')`</span>
+`相当于原生的 padEnd(2,'0')`
 
 - ##### 参数
 

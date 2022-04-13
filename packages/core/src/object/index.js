@@ -65,18 +65,27 @@ export function parseJson(json) {
 
 /**
  * 浅拷贝数据
- * @description 目前只支持 Object，Array，Date三种数据类型
- * @param {Object|Array|Date} source 需要克隆的数据
- * @returns {Object|Array|Date} 返回深度克隆后的数据
- * TODO
+ * @param {*} source 需要克隆的数据
+ * @returns {*} 返回深度克隆后的数据
  */
-function clone(source) {
+export function clone(source) {
   if (isNull(source)) return undefined;
+  return Object.assign(source);
+}
+
+/**
+ * 深拷贝数据
+ * @param {*} source 需要克隆的数据
+ * @returns {*} 返回深度克隆后的数据
+ */
+export function deepClone(source) {
+  if (isNull(source)) return undefined;
+
   //  Object
   if (source instanceof Object) {
     let copy = {};
     for (let attr in source) {
-      if (source.hasOwnProperty(attr)) copy[attr] = source[attr];
+      if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
     }
     return copy;
   }
@@ -85,7 +94,7 @@ function clone(source) {
   else if (source instanceof Array) {
     let copy = [];
     for (let i = 0, len = source.length; i < len; i++) {
-      copy[i] = source[i];
+      copy[i] = deepClone(source[i]);
     }
     return copy;
   }
@@ -105,43 +114,39 @@ function clone(source) {
 }
 
 /**
- * 深拷贝数据
- * @description 目前只支持 Object，Array，Date三种数据类型
- * @param {Object|Array|Date} source 需要克隆的数据
- * @returns {Object|Array|Date} 返回深度克隆后的数据
+ * 比较两个对象是否相等
+ * @description 方法只能对比简单的对象，不能包含function，另外对象的属性顺序不一致也是相等的
+ * @param {Object} obj1 对象1
+ * @param {Object} obj2 对象2
+ * @returns {Boolean} 返回true和false
  */
-export function cloneDeep(source) {
-  if (isNull(source)) return undefined;
-
-  //  Object
-  if (source instanceof Object) {
-    let copy = {};
-    for (let attr in source) {
-      if (source.hasOwnProperty(attr)) copy[attr] = cloneDeep(source[attr]);
-    }
-    return copy;
+export function objectEquals(obj1, obj2) {
+  // 比较值相等
+  if (obj1 === obj2) {
+    return true;
   }
-
-  //  Array
-  else if (source instanceof Array) {
-    let copy = [];
-    for (let i = 0, len = source.length; i < len; i++) {
-      copy[i] = cloneDeep(source[i]);
-    }
-    return copy;
+  // 比较Date
+  if (obj1 instanceof Date && b instanceof Date) {
+    return a.getTime() === b.getTime();
   }
-
-  //  Date
-  else if (source instanceof Date) {
-    let copy = new Date();
-    copy.setTime(source.getTime());
-    return copy;
+  // 对象比较引用
+  if (
+    !obj1 ||
+    !obj2 ||
+    (typeof obj1 !== "object" && typeof obj2 !== "object")
+  ) {
+    return obj1 === obj2;
   }
-
-  // Other
-  // 原路返回源数据
-  else {
-    return source;
+  // 比较原型
+  if (obj1.prototype !== b.prototype) {
+    return false;
+  }
+  // 比较对象的值
+  const keys = Object.keys(obj1);
+  if (keys.length !== Object.keys(obj2).length) {
+    return false;
+  } else {
+    return keys.every((k) => objectEquals(obj1[k], obj2[k]));
   }
 }
 
