@@ -23,7 +23,8 @@ export function addClass(elem, className) {
  * @param {String} className 类名
  */
 export function removeClass(elem, className) {
-  if (hasClass(elem, className)) elem.className = elem.className.replace(new RegExp(className, "gm"), "");
+  if (hasClass(elem, className))
+    elem.className = elem.className.replace(new RegExp(className, "gm"), "");
 }
 
 /**
@@ -36,6 +37,18 @@ export function replaceClass(elem, newClassName, oldClassName) {
   removeClass(elem, oldClassName);
   addClass(elem, newClassName);
 }
+
+/**
+ * TODO
+ * 添加style样式
+ */
+export function addStyle(elem, style = {}) {}
+
+/**
+ * TODO
+ * 获取style样式
+ */
+export function removeStyle(elem, name) {}
 
 /**
  * html标签转义
@@ -76,7 +89,16 @@ export function htmlDecode(htmlStr) {
     "&quot;": '"',
     "&#39;": "'",
   };
-  return htmlStr.replace(/(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi, function (all, t) {
-    return temp[t];
-  });
+  return htmlStr.replace(
+    /(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi,
+    function (all, t) {
+      return temp[t];
+    }
+  );
 }
+
+/**
+ * TODO
+ * 复制文本到剪贴板
+ */
+export function copy() {}

@@ -106,6 +106,15 @@ export function isMac() {
   return /mac/i.test(ua);
 }
 
+/**
+ * TODO
+ * 判断是 小程序
+ * @returns {Boolean} 返回true和false
+ */
+export function isMiniProgram() {
+  return window.__wxjs_environment === "miniprogram";
+}
+
 /* 苹果设备类型 */
 /**
  * 判断是iphone
