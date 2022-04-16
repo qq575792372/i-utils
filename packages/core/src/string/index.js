@@ -224,10 +224,12 @@ export function zeroEnd(value, maxLength = 2) {
 
 /**
  * 格式化千分位数字
+ * @description 支持任意数据传参，如果非数字则不会格式化，并返回原数据
  * @param {Number|String} num 数字
  * @returns {String} 返回格式化后的千分位数字
  */
 export function formatThousand(num) {
+  if (!parseFloat(num)) return num;
   num = String(num);
   let regex =
     num.indexOf(".") > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;

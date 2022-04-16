@@ -123,7 +123,8 @@ export function isPromise(value) {
  * @returns {Boolean} 返回true和false
  */
 export function isNaN(value) {
-  return window.isNaN(value) || (!value && value !== 0);
+  // window的isNaN函数是有缺陷的，空数组/数组有一个元素，null，空字符串 都会被认为是数字
+  return window.isNaN(value) || isArray(value) || value == null || value == "";
 }
 
 /**

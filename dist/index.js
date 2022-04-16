@@ -611,7 +611,8 @@
    * @returns {Boolean} 返回true和false
    */
   function isNaN(value) {
-    return window.isNaN(value) || (!value && value !== 0);
+    // 同时也判断是数组，空数组或者数组中只有一个元素，也会当做数字
+    return window.isNaN(value) || isArray(value) || value == null || value == "";
   }
 
   /**
@@ -3825,11 +3826,15 @@
   }
 
   /**
-   * 导出localStorage，sessionStorage
+   * TODO
+   * 浏览器是否支持 Storage
+   * @returns {Boolean} 返回true和false
    */
+  function isSupportStorage() {}
 
   var storageUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
+    isSupportStorage: isSupportStorage,
     getLocalStorage: getLocalStorage,
     setLocalStorage: setLocalStorage,
     removeLocalStorage: removeLocalStorage,
@@ -3865,7 +3870,8 @@
    * @param {String} className 类名
    */
   function removeClass(elem, className) {
-    if (hasClass(elem, className)) elem.className = elem.className.replace(new RegExp(className, "gm"), "");
+    if (hasClass(elem, className))
+      elem.className = elem.className.replace(new RegExp(className, "gm"), "");
   }
 
   /**
@@ -3878,6 +3884,18 @@
     removeClass(elem, oldClassName);
     addClass(elem, newClassName);
   }
+
+  /**
+   * TODO
+   * 添加style样式
+   */
+  function addStyle(elem, style = {}) {}
+
+  /**
+   * TODO
+   * 获取style样式
+   */
+  function removeStyle(elem, name) {}
 
   /**
    * html标签转义
@@ -3918,10 +3936,19 @@
       "&quot;": '"',
       "&#39;": "'",
     };
-    return htmlStr.replace(/(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi, function (all, t) {
-      return temp[t];
-    });
+    return htmlStr.replace(
+      /(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi,
+      function (all, t) {
+        return temp[t];
+      }
+    );
   }
+
+  /**
+   * TODO
+   * 复制文本到剪贴板
+   */
+  function copy() {}
 
   var domUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
@@ -3929,8 +3956,11 @@
     addClass: addClass,
     removeClass: removeClass,
     replaceClass: replaceClass,
+    addStyle: addStyle,
+    removeStyle: removeStyle,
     htmlEncode: htmlEncode,
-    htmlDecode: htmlDecode
+    htmlDecode: htmlDecode,
+    copy: copy
   });
 
   /* 浏览器信息 */
@@ -4041,6 +4071,15 @@
     return /mac/i.test(ua);
   }
 
+  /**
+   * TODO
+   * 判断是 小程序
+   * @returns {Boolean} 返回true和false
+   */
+  function isMiniProgram() {
+    return window.__wxjs_environment === "miniprogram";
+  }
+
   /* 苹果设备类型 */
   /**
    * 判断是iphone
@@ -4090,6 +4129,7 @@
     isWindows: isWindows,
     isLinux: isLinux,
     isMac: isMac,
+    isMiniProgram: isMiniProgram,
     isIphone: isIphone,
     isIpad: isIpad,
     isWeixin: isWeixin,
