@@ -1,5 +1,5 @@
 /*!
- * @lime-util/util v3.0.15
+ * @lime-util/util v3.1.0
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -4449,7 +4449,8 @@
   };
 
   /**
-   * all in one 工具整合包
+   * 整合工具库
+   * @description all in one 大集合
    */
 
   // 测试加载成功方法
