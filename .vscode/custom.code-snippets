@@ -1,0 +1,29 @@
+/**
+ * 项目中使用的代码片段
+ */
+{
+  // console log
+  "Print console log": {
+    "prefix": "conlog",
+    "body": ["console.log($1);"],
+    "description": "Print console log"
+  },
+  // console info
+  "Print console info": {
+    "prefix": "coninfo",
+    "body": ["console.info($1);"],
+    "description": "Print console info"
+  },
+  // console warn
+  "Print console warn": {
+    "prefix": "conwarn",
+    "body": ["console.warn($1);"],
+    "description": "Print console warn"
+  },
+  // console error
+  "Print console error": {
+    "prefix": "conerror",
+    "body": ["console.error($1);"],
+    "description": "Print console error"
+  }
+}

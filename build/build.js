@@ -21,7 +21,7 @@ function getDirList(dirName) {
 }
 
 /* 构建整合版本模块 */
-console.log(chalk.blue.bold(`\n> 正在构建所有模块整合版..\n`));
+console.log(chalk.blue.bold(`\n> 正在构建整合工具模块..\n`));
 // 打包根目录所有的
 run("rimraf dist && rollup -c");
 
@@ -39,4 +39,4 @@ pkgList.forEach((v) => {
 });
 
 /* 所有模块构建完成 */
-console.log(chalk.green.bold(`\n✔ 所有模块构建完成.\n`));
+console.log(chalk.green.bold(`\n✔ Nice，所有模块构建完成！\n`));
