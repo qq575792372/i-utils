@@ -1,6 +1,6 @@
 ## 浏览器 Url
 
-#### \_.getUrlParam(name, url = window.location.href)
+#### \_.getQueryString(name, url = window.location.href)
 
 从 url 中获取参数值
 
@@ -17,7 +17,7 @@
 
 ```javascript
 let url = "http://xxx.com?id=1&name=test";
-let res = LimeUtil.getUrlParam("id", url);
+let res = LimeUtil.getQueryString("id", url);
 console.log(res); // 输出：1
 ```
 

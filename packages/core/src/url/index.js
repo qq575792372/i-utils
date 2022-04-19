@@ -1,10 +1,10 @@
 /**
- * 从url地址中获取参数
+ * 从url地址中获取查询参数
  * @param {String} name 参数名
  * @param {String} url url地址，默认当前url地址
  * @returns {String} 返回查询到的值
  */
-export function getUrlParam(name, url = window.location.href) {
+export function getQueryString(name, url = window.location.href) {
   name = name.replace(/[\[\]]/g, "\\$&");
   url = url.split("?")[1];
   let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");

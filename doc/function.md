@@ -94,6 +94,8 @@ sleepWork();
 
 ---
 
+<!-- 身份证信息，年龄，生肖，星座 -->
+
 #### \_.getIdCardInfo(idCard)
 
 根据身份证号码获取信息  
@@ -115,4 +117,65 @@ console.log(LimeUtil.getIdCardInfo("412821201012012221"));
 
 // 输出：{province: '四川', birthday: '1980-02-22', age: 41, sex: '女'}
 console.log(LimeUtil.getIdCardInfo("511702800222130"));
+```
+
+#### \_.getAge(dateStr)
+
+通过日期计算周岁年龄
+
+- ##### 参数
+
+  `dateStr` {String} 日期字符串
+
+- ##### 返回值
+
+  {Number} 返回周岁年龄
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getAge("2000-10-10");
+console.log(res); // 输出：21
+```
+
+---
+
+#### \_.getZodiac(dateStr)
+
+通过日期计算星座
+
+- ##### 参数
+
+  `dateStr` {String} 日期字符串
+
+- ##### 返回值
+
+  {String} 返回星座
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getZodiac("2000-10-10");
+console.log(res); // 输出：天秤座
+```
+
+---
+
+#### \_.getChineseZodiac(dateStr)
+
+通过日期计算生肖
+
+- ##### 参数
+
+  `dateStr` {String} 日期字符串
+
+- ##### 返回值
+
+  {String} 返回生肖
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.getChineseZodiac("2000-10-10");
+console.log(res); // 输出：龙
 ```

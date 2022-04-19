@@ -14,7 +14,7 @@ export function isInteger(value) {
  * @returns {Boolean} result 返回true和false
  */
 export function isDecimal(value) {
-  return String(value).indexOf(".") > 0;
+  return /^\d+\.\d+$/.test(value);
 }
 
 /**
@@ -116,7 +116,77 @@ export function isPromise(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Promise";
 }
 
+/**
+ *判断类型是 Map
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isMap(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "Map";
+}
+
+/**
+ * 判断类型是 WeakMap
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isWeakMap(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "WeakMap";
+}
+
+/**
+ * 判断类型是 Set
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isSet(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "Set";
+}
+
+/**
+ * 判断类型是 WeakSet
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isWeakSet(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "WeakSet";
+}
+/**
+ * 判断类型是 BigInt
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isBigInt(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "BigInt";
+}
+
 /* 数据值校验 */
+/**
+ * 判断值为真
+ * @param {*} value 校验的参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isTrue(value) {
+  return !isFalse(value);
+}
+
+/**
+ * 判断值为假
+ * @param {*} value 校验的参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isFalse(value) {
+  return (
+    value == undefined ||
+    value == null ||
+    value == "undefined" ||
+    value == "null" ||
+    value == 0 ||
+    value == false ||
+    value == NaN
+  );
+}
+
 /**
  * 判断非数字
  * @param {*} value 参数
@@ -164,7 +234,7 @@ export function isNotNull(value) {
  * @returns {Boolean} 返回true和false
  */
 export function isEmpty(value) {
-  return isNull(value) || !(Object.keys(val) || val).length;
+  return isNull(value) || !(Object.keys(value) || value).length;
 }
 
 /**
@@ -302,7 +372,6 @@ export function deepCompare(x, y) {
     }
 
     // Quick checking of one object being a subset of another.
-    // todo: cache the structure of arguments[0] for performance
     for (p in y) {
       if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
         return false;
@@ -349,7 +418,7 @@ export function deepCompare(x, y) {
   }
 
   for (i = 1, l = arguments.length; i < l; i++) {
-    leftChain = []; //Todo: this can be cached
+    leftChain = [];
     rightChain = [];
 
     if (!compare2Objects(arguments[0], arguments[i])) {

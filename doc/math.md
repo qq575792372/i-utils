@@ -90,28 +90,6 @@ console.log(res); // 输出：0.5
 
 ---
 
-#### \_.modulo(arg1, arg2)
-
-两个数字取模
-
-- ##### 参数
-
-  `arg1` {String|Number} 第一个数字  
-  `arg2` {String|Number} 第二个数字
-
-- ##### 返回值
-
-  {Number} 返回计算后的数字
-
-- ##### 示例
-
-```javascript
-let res = LimeUtil.modulo(1.1, 1);
-console.log(res); // 输出：0.1
-```
-
----
-
 #### \_.toFixed(num, decimals = 2, mode = ROUND)
 
 强制保留小数位数  
@@ -162,4 +140,70 @@ console.log(LimeUtil.toDecimal(1.01, 2)); // 输出：1.01
 console.log(LimeUtil.toDecimal(1.015, 2)); // 输出：1.01 （注：第二位如果小于等于3，则会是五舍六入）
 console.log(LimeUtil.toDecimal(1.045, 2)); // 输出：1.01 （注：第二位如果大于3，则是正常的四舍五入）
 console.log(LimeUtil.toDecimal(1.015, 2, LimeUtil.ROUND_FLOOR)); // 输出：1.01（切换舍出的模式，会强制保留小数位数，不会再四舍五入）
+```
+
+<!-- 数学其他运算 -->
+
+#### \_.modulo(arg1, arg2)
+
+两个数字取模
+
+- ##### 参数
+
+  `arg1` {String|Number} 第一个数字  
+  `arg2` {String|Number} 第二个数字
+
+- ##### 返回值
+
+  {Number} 返回计算后的数字
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.modulo(1.1, 1);
+console.log(res); // 输出：0.1
+```
+
+---
+
+#### \_.gcd(arg1, arg2)
+
+最大公约数
+
+- ##### 参数
+
+  `arg1` {String|Number} 第一个数字  
+  `arg2` {String|Number} 第二个数字
+
+- ##### 返回值
+
+  {Number} 返回计算后的数字
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.gcd(2, 10);
+console.log(res); // 输出：2
+```
+
+---
+
+#### \_.scm(arg1, arg2)
+
+最小公倍数
+
+- ##### 参数
+
+  `arg1` {String|Number} 第一个数字  
+  `arg2` {String|Number} 第二个数字
+
+- ##### 返回值
+
+  {Number} 返回计算后的数字
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.gcd(4, 10);
+console.log(res); // 输出：20
 ```

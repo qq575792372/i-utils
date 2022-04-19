@@ -1,5 +1,5 @@
 /*!
- * @lime-util/core v3.0.13
+ * @lime-util/core v3.0.15
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -263,10 +263,12 @@
 
   /**
    * 格式化千分位数字
+   * @description 支持任意数据传参，如果非数字则不会格式化，并返回原数据
    * @param {Number|String} num 数字
    * @returns {String} 返回格式化后的千分位数字
    */
   function formatThousand(num) {
+    if (!parseFloat(num)) return num;
     num = String(num);
     let regex =
       num.indexOf(".") > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
@@ -502,7 +504,7 @@
    * @returns {Boolean} result 返回true和false
    */
   function isDecimal(value) {
-    return String(value).indexOf(".") > 0;
+    return /^\d+\.\d+$/.test(value);
   }
 
   /**
@@ -604,14 +606,84 @@
     return Object.prototype.toString.call(value).slice(8, -1) === "Promise";
   }
 
+  /**
+   *判断类型是 Map
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isMap(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "Map";
+  }
+
+  /**
+   * 判断类型是 WeakMap
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isWeakMap(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "WeakMap";
+  }
+
+  /**
+   * 判断类型是 Set
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isSet(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "Set";
+  }
+
+  /**
+   * 判断类型是 WeakSet
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isWeakSet(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "WeakSet";
+  }
+  /**
+   * 判断类型是 BigInt
+   * @param {*} value 参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isBigInt(value) {
+    return Object.prototype.toString.call(value).slice(8, -1) === "BigInt";
+  }
+
   /* 数据值校验 */
+  /**
+   * 判断值为真
+   * @param {*} value 校验的参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isTrue(value) {
+    return !isFalse(value);
+  }
+
+  /**
+   * 判断值为假
+   * @param {*} value 校验的参数
+   * @returns {Boolean} 返回true和false
+   */
+  function isFalse(value) {
+    return (
+      value == undefined ||
+      value == null ||
+      value == "undefined" ||
+      value == "null" ||
+      value == 0 ||
+      value == false ||
+      value == NaN
+    );
+  }
+
   /**
    * 判断非数字
    * @param {*} value 参数
    * @returns {Boolean} 返回true和false
    */
   function isNaN(value) {
-    // 同时也判断是数组，空数组或者数组中只有一个元素，也会当做数字
+    // window的isNaN函数是有缺陷的，空数组/数组有一个元素，null，空字符串 都会被认为是数字
     return window.isNaN(value) || isArray(value) || value == null || value == "";
   }
 
@@ -652,7 +724,7 @@
    * @returns {Boolean} 返回true和false
    */
   function isEmpty(value) {
-    return isNull(value) || !(Object.keys(val) || val).length;
+    return isNull(value) || !(Object.keys(value) || value).length;
   }
 
   /**
@@ -790,7 +862,6 @@
       }
 
       // Quick checking of one object being a subset of another.
-      // todo: cache the structure of arguments[0] for performance
       for (p in y) {
         if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
           return false;
@@ -837,7 +908,7 @@
     }
 
     for (i = 1, l = arguments.length; i < l; i++) {
-      leftChain = []; //Todo: this can be cached
+      leftChain = [];
       rightChain = [];
 
       if (!compare2Objects(arguments[0], arguments[i])) {
@@ -863,6 +934,13 @@
     isRegExp: isRegExp,
     isError: isError,
     isPromise: isPromise,
+    isMap: isMap,
+    isWeakMap: isWeakMap,
+    isSet: isSet,
+    isWeakSet: isWeakSet,
+    isBigInt: isBigInt,
+    isTrue: isTrue,
+    isFalse: isFalse,
     isNaN: isNaN,
     isNotNaN: isNotNaN,
     isNull: isNull,
@@ -1233,44 +1311,29 @@
     merge: merge
   });
 
-  /* 年龄，生肖，星座 */
   /**
-   * 通过日期计算周岁年龄
-   * @param {String} dateStr 日期字符串
-   * @returns {Number} 返回周岁年龄
+   * 日期格式转为日期
+   * @description 支持：日期字符串，时间戳，Unix时间戳
+   * @param {String|Timestamp|UnixTimestamp} date 日期，如果是字符串，仅支持：yyyy-MM-dd，yyyy/MM-dd，MM/dd/yyyy，自行转换支持的格式
+   * @returns {Date} 返回转换后的日期
    */
-  function getAge(dateStr) {
-    if (isEmpty(dateStr)) return 0;
-    // age
-    let age = 0;
-    // 传参日期
-    let dateArray = dateStr.split("-");
-    let birthYear = Number(dateArray[0]),
-      birthMonth = Number(dateArray[1]),
-      birthDay = Number(dateArray[2]);
-    // 当前的日期
-    let nowDate = new Date();
-    let nowYear = nowDate.getFullYear(),
-      nowMonth = nowDate.getMonth() + 1,
-      nowDay = nowDate.getDate();
-
-    // 出生年份需要小于当年，否则是0岁
-    let diffAge = nowYear - birthYear;
-    if (diffAge > 0) {
-      if (nowMonth - birthMonth <= 0) {
-        // 日期差小于0，证明还没满周岁，需要减1
-        if (nowDay - birthDay < 0) {
-          age = diffAge - 1;
-        } else {
-          age = diffAge;
-        }
-      } else {
-        age = diffAge;
-      }
+  function parseDate(date) {
+    if (isNull(date)) return;
+    // 日期字符串
+    if (isString(date)) {
+      return new Date(date.replace(/-/g, "/"));
     }
-    return age;
+    // 时间戳
+    if (isInteger(date) && String(date).length == 13) {
+      return new Date(date);
+    }
+    // unix时间戳
+    if (isInteger(date) && String(date).length == 10) {
+      return new Date(date * 1000);
+    }
   }
 
+  /* 函数处理 */
   /**
    * 节流函数
    * @description 高频触发时，在指定时间间隔内只执行一次
@@ -1333,6 +1396,7 @@
     return new Promise((resolve) => setTimeout(resolve, delay));
   }
 
+  /* 身份证信息，年龄，生肖，星座 */
   /**
    * 根据身份证号码获取信息
    * @description 能获取到 籍贯，出生日期，年龄，性别 信息
@@ -1340,6 +1404,7 @@
    * @returns {Object} 返回身份证信息
    */
   function getIdCardInfo(idCard) {
+    if (isEmpty(idCard)) return;
     const info = {};
     // 省份
     const area = {
@@ -1413,12 +1478,110 @@
     return info;
   }
 
+  /**
+   * 通过日期计算周岁年龄
+   * @param {String} dateStr 日期字符串
+   * @returns {Number} 返回周岁年龄
+   */
+  function getAge(dateStr) {
+    if (isEmpty(dateStr)) return 0;
+    // age
+    let age = 0;
+    // 传参日期
+    let dateArray = dateStr.split("-");
+    let birthYear = Number(dateArray[0]),
+      birthMonth = Number(dateArray[1]),
+      birthDay = Number(dateArray[2]);
+    // 当前的日期
+    let nowDate = new Date();
+    let nowYear = nowDate.getFullYear(),
+      nowMonth = nowDate.getMonth() + 1,
+      nowDay = nowDate.getDate();
+
+    // 出生年份需要小于当年，否则是0岁
+    let diffAge = nowYear - birthYear;
+    if (diffAge > 0) {
+      if (nowMonth - birthMonth <= 0) {
+        // 日期差小于0，证明还没满周岁，需要减1
+        if (nowDay - birthDay < 0) {
+          age = diffAge - 1;
+        } else {
+          age = diffAge;
+        }
+      } else {
+        age = diffAge;
+      }
+    }
+    return age;
+  }
+  /**
+   * 通过日期计算星座
+   * @param {String} dateStr 日期字符串
+   * @returns {String} 返回星座
+   */
+  function getZodiac(dateStr) {
+    if (isEmpty(dateStr)) return;
+    // 计算
+    let days = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22];
+    let arr = [
+      "摩羯座",
+      "水瓶座",
+      "双鱼座",
+      "白羊座",
+      "金牛座",
+      "双子座",
+      "巨蟹座",
+      "狮子座",
+      "处女座",
+      "天秤座",
+      "天蝎座",
+      "射手座",
+      "摩羯座",
+    ];
+    let date = parseDate(dateStr);
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    return day < days[month - 1] ? arr[month - 1] : arr[month];
+  }
+  /**
+   * 通过日期计算生肖
+   * @param {String} dateStr 日期字符串
+   * @returns {String} 返回生肖
+   */
+  function getChineseZodiac(dateStr) {
+    if (isEmpty(dateStr)) return;
+    // 计算
+    let arr = [
+      "鼠",
+      "牛",
+      "虎",
+      "兔",
+      "龙",
+      "蛇",
+      "马",
+      "羊",
+      "猴",
+      "鸡",
+      "狗",
+      "猪",
+    ];
+    let date = parseDate(dateStr);
+    let year = date.getFullYear();
+    if (year < 1900) {
+      return "未知";
+    }
+    return arr[(year - 1900) % arr.length];
+  }
+
   var functionUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     throttle: throttle,
     debounce: debounce,
     sleep: sleep,
-    getIdCardInfo: getIdCardInfo
+    getIdCardInfo: getIdCardInfo,
+    getAge: getAge,
+    getZodiac: getZodiac,
+    getChineseZodiac: getChineseZodiac
   });
 
   /**
@@ -1437,10 +1600,12 @@
     CH_NAME: /^(?:[\u4e00-\u9fa5·]{2,16})$/,
     // 英文姓名，0-20位
     EN_NAME: /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/,
-    // 数字
+    // 数字，包含正数和负数
     NUMBER: /^(\-|\+)?\d+(\.\d+)?$/,
     // 整数，包含：0，正整数和负整数
     INTEGER: /^(0|[1-9][0-9]*|-[1-9][0-9]*)$/,
+    // 小数，包含正小数和负小数
+    DECIMAL: /^\d+\.\d+$/,
     // 正整数或者保留两位小数
     INT_OR_FLOAT:
       /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
@@ -1671,26 +1836,6 @@
   }
 
   /**
-   * 两个数字取模
-   * @param {String|Number} arg1 第一个数字
-   * @param {String|Number} arg2 第二个数字
-   * @returns {Number} 返回计算后的数字
-   */
-  function modulo(arg1, arg2) {
-    let t1 = 0,
-      t2 = 0,
-      d = 0;
-    try {
-      t1 = arg1.toString().split(".")[1].length;
-    } catch (e) {}
-    try {
-      t2 = arg2.toString().split(".")[1].length;
-    } catch (e) {}
-    d = Math.pow(10, Math.max(t1, t2));
-    return (Math.round(Number(arg1) * d) % Math.round(Number(arg2) * d)) / d;
-  }
-
-  /**
    * 强制保留小数位数
    * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
    * @param {String|Number} num 数字
@@ -1725,6 +1870,47 @@
     if (mode == MATH_MODE.ROUND_FLOOR) {
       return _toDecimalFloor(num, decimals);
     }
+  }
+
+  /* 数学其他运算 */
+  /**
+   * 两个数字取模
+   * @param {String|Number} arg1 第一个数字
+   * @param {String|Number} arg2 第二个数字
+   * @returns {Number} 返回计算后的数字
+   */
+  function modulo(arg1, arg2) {
+    let t1 = 0,
+      t2 = 0,
+      d = 0;
+    try {
+      t1 = arg1.toString().split(".")[1].length;
+    } catch (e) {}
+    try {
+      t2 = arg2.toString().split(".")[1].length;
+    } catch (e) {}
+    d = Math.pow(10, Math.max(t1, t2));
+    return (Math.round(Number(arg1) * d) % Math.round(Number(arg2) * d)) / d;
+  }
+
+  /**
+   * 最大公约数
+   * @param {String|Number} arg1 第一个数字
+   * @param {String|Number} arg2 第二个数字
+   * @returns {Number} 返回计算后的数字
+   */
+  function gcd(arg1, arg2) {
+    return !arg2 ? arg1 : gcd(arg2, arg1 % arg2);
+  }
+
+  /**
+   * 最小公倍数
+   * @param {String|Number} arg1 第一个数字
+   * @param {String|Number} arg2 第二个数字
+   * @returns {Number} 返回计算后的数字
+   */
+  function scm(arg1, arg2) {
+    return (arg1 * arg2) / gcd(arg1, arg2);
   }
 
   /* 内部函数 */
@@ -1846,9 +2032,11 @@
     subtract: subtract,
     multiply: multiply,
     divide: divide,
-    modulo: modulo,
     toFixed: toFixed,
-    toDecimal: toDecimal
+    toDecimal: toDecimal,
+    modulo: modulo,
+    gcd: gcd,
+    scm: scm
   });
 
   /**
@@ -1981,7 +2169,7 @@
   /**
    * file转blob
    * @param {File} file file文件
-   * @returns {Blob} 返回blob
+   * @returns {Promise} 返回Promise的blob
    */
   function fileToBlob(file) {
     return new Promise((resolve, reject) => {
@@ -2005,7 +2193,7 @@
   /**
    * file转base64
    * @param {File} file file文件
-   * @returns {Base64} 返回base64
+   * @returns {Promise} 返回Promise的base64
    */
   function fileToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -2029,7 +2217,7 @@
    * file转url
    * @description 适用于本地上传图片并预览，需要注意 URL.revokeObjectURL(file) 内存释放
    * @param {File} file file文件
-   * @returns {URL} 返回url
+   * @returns {Promise} 返回Promise的url
    */
   function fileToUrl(file) {
     return new Promise((resolve, reject) => {
@@ -2048,7 +2236,7 @@
    * blob转file
    * @param {Blob} blob blob数据
    * @param {String} fileName 文件名称，默认以时间戳命名
-   * @returns {File} 返回file
+   * @returns {Promise} 返回Promise的file
    */
   function blobToFile(blob, fileName = Date.now()) {
     return new Promise((resolve, reject) => {
@@ -2075,7 +2263,7 @@
   /**
    * blob转base64
    * @param {Blob} blob blob数据
-   * @returns {Base64} 返回base64
+   * @returns {Promise} 返回Promise的base64
    */
   function blobToBase64(blob) {
     return new Promise((resolve, reject) => {
@@ -2099,7 +2287,7 @@
    * base64转file
    * @param {Base64} base64 base64数据
    * @param {String} fileName 文件名称，默认以时间戳命名
-   * @returns {File} 返回file
+   * @returns {Promise} 返回Promise的file
    */
   function base64ToFile(base64, fileName = Date.now()) {
     return new Promise((resolve, reject) => {
@@ -2126,7 +2314,7 @@
   /**
    * base64转成blob
    * @param {Base64} base64 base64数据
-   * @returns {Blob} 返回blob
+   * @returns {Promise} 返回Promise的blob
    */
   function base64ToBlob(base64) {
     return new Promise((resolve, reject) => {
@@ -2152,7 +2340,7 @@
   /**
    * 图片url转base64
    * @param {String} imgUrl 图片url地址
-   * @returns {Base64} 返回base64
+   * @returns {Promise} 返回Promise的base64
    */
   function urlToBase64(imgUrl) {
     return new Promise((resolve, reject) => {
@@ -2447,12 +2635,12 @@
   });
 
   /**
-   * 从url地址中获取参数
+   * 从url地址中获取查询参数
    * @param {String} name 参数名
    * @param {String} url url地址，默认当前url地址
    * @returns {String} 返回查询到的值
    */
-  function getUrlParam(name, url = window.location.href) {
+  function getQueryString(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, "\\$&");
     url = url.split("?")[1];
     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -2508,10 +2696,18 @@
 
   var urlUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    getUrlParam: getUrlParam,
+    getQueryString: getQueryString,
     queryStringToObj: queryStringToObj,
     objToQueryString: objToQueryString
   });
+
+  /**
+   * 浏览器是否支持 Cookie
+   * @returns {Boolean} 返回true和false
+   */
+  function isSupportCookie() {
+    return window.navigator.cookieEnabled;
+  }
 
   /* cookie存储 */
   /**
@@ -2574,6 +2770,7 @@
 
   var cookieUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
+    isSupportCookie: isSupportCookie,
     getCookie: getCookie,
     setCookie: setCookie,
     removeCookie: removeCookie,
@@ -2649,11 +2846,16 @@
   }
 
   /**
-   * TODO
    * 浏览器是否支持 Storage
    * @returns {Boolean} 返回true和false
    */
-  function isSupportStorage() {}
+  function isSupportStorage() {
+    if (window.localStorage && window.sessionStorage) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   var storageUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
@@ -2670,7 +2872,7 @@
 
   /**
    * 判断元素包含某个类名
-   * @param {Document} elem dom元素
+   * @param {Element} elem 元素
    * @param {String} className 类名
    * @return {Boolean} 返回true和false
    */
@@ -2680,7 +2882,7 @@
 
   /**
    * 元素添加类名
-   * @param {Document} elem dom元素
+   * @param {Element} elem 元素
    * @param {String} className 类名
    */
   function addClass(elem, className) {
@@ -2689,7 +2891,7 @@
 
   /**
    * 元素删除类名
-   * @param {Document} elem dom元素
+   * @param {Element} elem 元素
    * @param {String} className 类名
    */
   function removeClass(elem, className) {
@@ -2699,7 +2901,7 @@
 
   /**
    * 元素替换类名
-   * @param {Document} elem dom元素
+   * @param {Element} elem 元素
    * @param {String} newClassName 新的类名
    * @param {String} oldClassName 被替换掉的旧类名
    */
@@ -2709,16 +2911,37 @@
   }
 
   /**
-   * TODO
-   * 添加style样式
+   * 添加元素的style样式
+   * @param {Element} elem 元素
+   * @param {Object} styles 样式属性集合
    */
-  function addStyle(elem, style = {}) {}
+  function addStyle(elem, styles = {}) {
+    if (!elem) return;
+    for (let key in styles) {
+      elem.style[key] = styles[key];
+    }
+  }
 
   /**
-   * TODO
-   * 获取style样式
+   * 获取元素的style样式
+   * @param {Element} elem 元素
+   * @param {String} name 属性
+   * @returns {String} 返回样式的值
    */
-  function removeStyle(elem, name) {}
+  function getStyle(elem, name) {
+    if (!elem) return;
+    return elem.style[name];
+  }
+
+  /**
+   * 删除元素的style样式
+   * @param {Element} elem 元素
+   * @param {String} name 属性
+   */
+  function removeStyle(elem, name) {
+    if (!elem) return;
+    elem.style.removeProperty(name);
+  }
 
   /**
    * html标签转义
@@ -2768,10 +2991,43 @@
   }
 
   /**
-   * TODO
    * 复制文本到剪贴板
+   * @param {String} text 文本
+   * @description 仅支持谷歌等新浏览器
+   * @returns {Promise} 返回Promise的复制成功和失败
    */
-  function copy() {}
+  function copyText(text) {
+    // 谷歌等新版本浏览器
+    return new Promise((resolve, reject) => {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          resolve(text);
+        })
+        .catch((error) => {
+          console.error("copy error!");
+          reject(error);
+        });
+    });
+  }
+
+  /**
+   * 从剪贴板获取文本
+   * @description 仅支持谷歌等新浏览器
+   * @returns {Promise} 返回Promise的剪切板内容
+   */
+  function getCopyText() {
+    return new Promise((resolve, reject) => {
+      navigator.clipboard
+        .readText()
+        .then((text) => {
+          resolve(text);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
 
   var domUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
@@ -2780,10 +3036,12 @@
     removeClass: removeClass,
     replaceClass: replaceClass,
     addStyle: addStyle,
+    getStyle: getStyle,
     removeStyle: removeStyle,
     htmlEncode: htmlEncode,
     htmlDecode: htmlDecode,
-    copy: copy
+    copyText: copyText,
+    getCopyText: getCopyText
   });
 
   /* 浏览器信息 */
@@ -2894,15 +3152,6 @@
     return /mac/i.test(ua);
   }
 
-  /**
-   * TODO
-   * 判断是 小程序
-   * @returns {Boolean} 返回true和false
-   */
-  function isMiniProgram() {
-    return window.__wxjs_environment === "miniprogram";
-  }
-
   /* 苹果设备类型 */
   /**
    * 判断是iphone
@@ -2952,7 +3201,6 @@
     isWindows: isWindows,
     isLinux: isLinux,
     isMac: isMac,
-    isMiniProgram: isMiniProgram,
     isIphone: isIphone,
     isIpad: isIpad,
     isWeixin: isWeixin,

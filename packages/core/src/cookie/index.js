@@ -1,5 +1,13 @@
 import { isEmpty } from "../validate";
 
+/**
+ * 浏览器是否支持 Cookie
+ * @returns {Boolean} 返回true和false
+ */
+export function isSupportCookie() {
+  return window.navigator.cookieEnabled;
+}
+
 /* cookie存储 */
 /**
  * 通过name获取cookie

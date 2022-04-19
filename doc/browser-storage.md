@@ -1,5 +1,26 @@
 ## 浏览器 Storage
 
+#### \_.isSupportStorage()
+
+浏览器是否支持 Storage
+
+- ##### 参数
+
+  无
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isSupportStorage();
+console.log(res); // 输出：true
+```
+
+---
+
 <!-- localStorage存储 -->
 
 ### localStorage 存储

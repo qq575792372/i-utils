@@ -1,6 +1,6 @@
 /**
  * 判断元素包含某个类名
- * @param {Document} elem dom元素
+ * @param {Element} elem 元素
  * @param {String} className 类名
  * @return {Boolean} 返回true和false
  */
@@ -10,7 +10,7 @@ export function hasClass(elem, className) {
 
 /**
  * 元素添加类名
- * @param {Document} elem dom元素
+ * @param {Element} elem 元素
  * @param {String} className 类名
  */
 export function addClass(elem, className) {
@@ -19,7 +19,7 @@ export function addClass(elem, className) {
 
 /**
  * 元素删除类名
- * @param {Document} elem dom元素
+ * @param {Element} elem 元素
  * @param {String} className 类名
  */
 export function removeClass(elem, className) {
@@ -29,7 +29,7 @@ export function removeClass(elem, className) {
 
 /**
  * 元素替换类名
- * @param {Document} elem dom元素
+ * @param {Element} elem 元素
  * @param {String} newClassName 新的类名
  * @param {String} oldClassName 被替换掉的旧类名
  */
@@ -39,16 +39,37 @@ export function replaceClass(elem, newClassName, oldClassName) {
 }
 
 /**
- * TODO
- * 添加style样式
+ * 添加元素的style样式
+ * @param {Element} elem 元素
+ * @param {Object} styles 样式属性集合
  */
-export function addStyle(elem, style = {}) {}
+export function addStyle(elem, styles = {}) {
+  if (!elem) return;
+  for (let key in styles) {
+    elem.style[key] = styles[key];
+  }
+}
 
 /**
- * TODO
- * 获取style样式
+ * 获取元素的style样式
+ * @param {Element} elem 元素
+ * @param {String} name 属性
+ * @returns {String} 返回样式的值
  */
-export function removeStyle(elem, name) {}
+export function getStyle(elem, name) {
+  if (!elem) return;
+  return elem.style[name];
+}
+
+/**
+ * 删除元素的style样式
+ * @param {Element} elem 元素
+ * @param {String} name 属性
+ */
+export function removeStyle(elem, name) {
+  if (!elem) return;
+  elem.style.removeProperty(name);
+}
 
 /**
  * html标签转义
@@ -98,7 +119,46 @@ export function htmlDecode(htmlStr) {
 }
 
 /**
- * TODO
  * 复制文本到剪贴板
+ * @param {String} text 文本
+ * @description 仅支持谷歌等新浏览器
+ * @returns {Promise} 返回Promise的复制成功和失败
  */
-export function copy() {}
+export function copyText(text) {
+  if (!navigator.clipboard) {
+    new Error("Can not support navigator.clipboard API!");
+  }
+  // 谷歌等新版本浏览器
+  return new Promise((resolve, reject) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        resolve(text);
+      })
+      .catch((error) => {
+        console.error("copy error!");
+        reject(error);
+      });
+  });
+}
+
+/**
+ * 从剪贴板获取文本
+ * @description 仅支持谷歌等新浏览器
+ * @returns {Promise} 返回Promise的剪切板内容
+ */
+export function getCopyText() {
+  if (!navigator.clipboard) {
+    new Error("Can not support navigator.clipboard API!");
+  }
+  return new Promise((resolve, reject) => {
+    navigator.clipboard
+      .readText()
+      .then((text) => {
+        resolve(text);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}

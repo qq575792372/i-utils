@@ -80,7 +80,7 @@ file 转 blob
 
 - ##### 返回值
 
-  {Blob} 返回 blob
+  {Promise} 返回 Promise 的 blob
 
 - ##### 示例
 
@@ -102,7 +102,7 @@ file 转 base64
 
 - ##### 返回值
 
-  {Base64} 返回 base64
+  {Promise} 返回 Promise 的 base64
 
 - ##### 示例
 
@@ -125,7 +125,7 @@ file 转 url
 
 - ##### 返回值
 
-  {URL} 返回 url
+  {Promise} 返回 Promise 的 url
 
 - ##### 示例
 
@@ -148,7 +148,7 @@ blob 转 file
 
 - ##### 返回值
 
-  {File} 返回 file
+  {Promise} 返回 Promise 的 file
 
 - ##### 示例
 
@@ -170,7 +170,7 @@ blob 转 base64
 
 - ##### 返回值
 
-  {Base64} 返回 base64
+  {Promise} 返回 Promise 的 base64
 
 - ##### 示例
 
@@ -193,7 +193,7 @@ base64 转 file
 
 - ##### 返回值
 
-  {File} 返回 file
+  {Promise} 返回 Promise 的 file
 
 - ##### 示例
 
@@ -215,7 +215,7 @@ base64 转成 blob
 
 - ##### 返回值
 
-  {Blob} 返回 blob
+  {Promise} 返回 Promise 的 blob
 
 - ##### 示例
 
@@ -237,7 +237,7 @@ LimeUtil.base64ToBlob(base64).then((blob) => {
 
 - ##### 返回值
 
-  {Base64} 返回 base64
+  {Promise} 返回 Promise 的 base64
 
 - ##### 示例
 

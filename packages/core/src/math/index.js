@@ -92,26 +92,6 @@ export function divide(arg1, arg2) {
 }
 
 /**
- * 两个数字取模
- * @param {String|Number} arg1 第一个数字
- * @param {String|Number} arg2 第二个数字
- * @returns {Number} 返回计算后的数字
- */
-export function modulo(arg1, arg2) {
-  let t1 = 0,
-    t2 = 0,
-    d = 0;
-  try {
-    t1 = arg1.toString().split(".")[1].length;
-  } catch (e) {}
-  try {
-    t2 = arg2.toString().split(".")[1].length;
-  } catch (e) {}
-  d = Math.pow(10, Math.max(t1, t2));
-  return (Math.round(Number(arg1) * d) % Math.round(Number(arg2) * d)) / d;
-}
-
-/**
  * 强制保留小数位数
  * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
  * @param {String|Number} num 数字
@@ -146,6 +126,47 @@ export function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
   if (mode == MATH_MODE.ROUND_FLOOR) {
     return _toDecimalFloor(num, decimals);
   }
+}
+
+/* 数学其他运算 */
+/**
+ * 两个数字取模
+ * @param {String|Number} arg1 第一个数字
+ * @param {String|Number} arg2 第二个数字
+ * @returns {Number} 返回计算后的数字
+ */
+export function modulo(arg1, arg2) {
+  let t1 = 0,
+    t2 = 0,
+    d = 0;
+  try {
+    t1 = arg1.toString().split(".")[1].length;
+  } catch (e) {}
+  try {
+    t2 = arg2.toString().split(".")[1].length;
+  } catch (e) {}
+  d = Math.pow(10, Math.max(t1, t2));
+  return (Math.round(Number(arg1) * d) % Math.round(Number(arg2) * d)) / d;
+}
+
+/**
+ * 最大公约数
+ * @param {String|Number} arg1 第一个数字
+ * @param {String|Number} arg2 第二个数字
+ * @returns {Number} 返回计算后的数字
+ */
+export function gcd(arg1, arg2) {
+  return !arg2 ? arg1 : gcd(arg2, arg1 % arg2);
+}
+
+/**
+ * 最小公倍数
+ * @param {String|Number} arg1 第一个数字
+ * @param {String|Number} arg2 第二个数字
+ * @returns {Number} 返回计算后的数字
+ */
+export function scm(arg1, arg2) {
+  return (arg1 * arg2) / gcd(arg1, arg2);
 }
 
 /* 内部函数 */

@@ -43,7 +43,7 @@ export function getFileSuffix(value) {
 /**
  * file转blob
  * @param {File} file file文件
- * @returns {Blob} 返回blob
+ * @returns {Promise} 返回Promise的blob
  */
 export function fileToBlob(file) {
   return new Promise((resolve, reject) => {
@@ -67,7 +67,7 @@ export function fileToBlob(file) {
 /**
  * file转base64
  * @param {File} file file文件
- * @returns {Base64} 返回base64
+ * @returns {Promise} 返回Promise的base64
  */
 export function fileToBase64(file) {
   return new Promise((resolve, reject) => {
@@ -91,7 +91,7 @@ export function fileToBase64(file) {
  * file转url
  * @description 适用于本地上传图片并预览，需要注意 URL.revokeObjectURL(file) 内存释放
  * @param {File} file file文件
- * @returns {URL} 返回url
+ * @returns {Promise} 返回Promise的url
  */
 export function fileToUrl(file) {
   return new Promise((resolve, reject) => {
@@ -110,7 +110,7 @@ export function fileToUrl(file) {
  * blob转file
  * @param {Blob} blob blob数据
  * @param {String} fileName 文件名称，默认以时间戳命名
- * @returns {File} 返回file
+ * @returns {Promise} 返回Promise的file
  */
 export function blobToFile(blob, fileName = Date.now()) {
   return new Promise((resolve, reject) => {
@@ -137,7 +137,7 @@ export function blobToFile(blob, fileName = Date.now()) {
 /**
  * blob转base64
  * @param {Blob} blob blob数据
- * @returns {Base64} 返回base64
+ * @returns {Promise} 返回Promise的base64
  */
 export function blobToBase64(blob) {
   return new Promise((resolve, reject) => {
@@ -161,7 +161,7 @@ export function blobToBase64(blob) {
  * base64转file
  * @param {Base64} base64 base64数据
  * @param {String} fileName 文件名称，默认以时间戳命名
- * @returns {File} 返回file
+ * @returns {Promise} 返回Promise的file
  */
 export function base64ToFile(base64, fileName = Date.now()) {
   return new Promise((resolve, reject) => {
@@ -188,7 +188,7 @@ export function base64ToFile(base64, fileName = Date.now()) {
 /**
  * base64转成blob
  * @param {Base64} base64 base64数据
- * @returns {Blob} 返回blob
+ * @returns {Promise} 返回Promise的blob
  */
 export function base64ToBlob(base64) {
   return new Promise((resolve, reject) => {
@@ -214,7 +214,7 @@ export function base64ToBlob(base64) {
 /**
  * 图片url转base64
  * @param {String} imgUrl 图片url地址
- * @returns {Base64} 返回base64
+ * @returns {Promise} 返回Promise的base64
  */
 export function urlToBase64(imgUrl) {
   return new Promise((resolve, reject) => {

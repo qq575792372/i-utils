@@ -1,5 +1,7 @@
 ## 校验
 
+<!-- 数据类型 -->
+
 #### \_.isInteger(value)
 
 判断是整数
@@ -275,7 +277,159 @@ console.log(LimeUtil.isPromise(12.01)); // 输出：false
 
 ---
 
+#### \_.isMap(value)
+
+判断类型是 Map
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isMap(new Map())); // 输出：true
+```
+
+---
+
+#### \_.isWeakMap(value)
+
+判断类型是 WeakMap
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isWeakMap(new WeakMap())); // 输出：true
+```
+
+---
+
+#### \_.isSet(value)
+
+判断类型是 Set
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isSet(new Set())); // 输出：true
+```
+
+---
+
+#### \_.isWeakSet(value)
+
+判断类型是 WeakSet
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isWeakSet(new WeakSet())); // 输出：true
+```
+
+---
+
+#### \_.isBigInt(value)
+
+判断类型是 BigInt
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isBigInt(new BigInt())); // 输出：true
+```
+
+---
+
 <!-- 数据值校验 -->
+
+#### \_.isTrue(value)
+
+判断值为真
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isTrue(1)); // 输出：true
+console.log(LimeUtil.isTrue(0)); // 输出：false
+console.log(LimeUtil.isTrue(null)); // 输出：false
+console.log(LimeUtil.isTrue("")); // 输出：false
+console.log(LimeUtil.isTrue(undefined)); // 输出：false
+console.log(LimeUtil.isTrue("undefined")); // 输出：false
+console.log(LimeUtil.isTrue("null")); // 输出：false
+```
+
+---
+
+#### \_.isFalse(value)
+
+判断值为假
+
+- ##### 参数
+
+  `value` {\*} 参数
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+console.log(LimeUtil.isFalse(1)); // 输出：false
+console.log(LimeUtil.isFalse(0)); // 输出：true
+console.log(LimeUtil.isFalse(null)); // 输出：true
+console.log(LimeUtil.isFalse("")); // 输出：true
+console.log(LimeUtil.isFalse(undefined)); // 输出：true
+console.log(LimeUtil.isFalse("undefined")); // 输出：true
+console.log(LimeUtil.isFalse("null")); // 输出：true
+```
+
+---
 
 #### \_.isNaN(value)
 

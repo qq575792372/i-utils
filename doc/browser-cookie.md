@@ -1,5 +1,24 @@
 ## 浏览器 Cookie
 
+#### \_.isSupportCookie()
+
+浏览器是否支持 Cookie
+
+- ##### 参数
+
+  无
+
+- ##### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.isSupportCookie();
+console.log(res); // 输出：true
+```
+
 #### \_.getCookie(name)
 
 通过 name 获取 cookie

@@ -6,7 +6,7 @@
 
 - ##### 参数
 
-  `elem` {Document} dom 元素  
+  `elem` {Element} 元素  
   `className` {String} 类名
 
 - ##### 返回值
@@ -29,7 +29,7 @@ console.log(res); // 输出：true
 
 - ##### 参数
 
-  `elem` {Document} dom 元素  
+  `elem` {Element} 元素  
   `className` {String} 类名
 
 - ##### 返回值
@@ -51,7 +51,7 @@ LimeUtil.addClass(btn, "btn-primary");
 
 - ##### 参数
 
-  `elem` {Document} dom 元素  
+  `elem` {Element} 元素  
   `className` {String} 类名
 
 - ##### 返回值
@@ -73,7 +73,7 @@ LimeUtil.removeClass(btn, "btn-primary");
 
 - ##### 参数
 
-  `elem` {Document} dom 元素  
+  `elem` {Element} 元素  
   `newClassName` {String} 新的类名  
   `oldClassName` {String} 被替换掉的旧类名
 
@@ -86,6 +86,72 @@ LimeUtil.removeClass(btn, "btn-primary");
 ```javascript
 let btn = document.getElementById("myBtn");
 LimeUtil.removeClass(btn, "btn-primary", "btn-success");
+```
+
+---
+
+#### \_.addStyle(elem, styles = {})
+
+添加元素的 style 样式
+
+- ##### 参数
+
+  `elem` {Element} 元素  
+  `styles` {Object} 样式属性集合
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+let btn = document.getElementById("myBtn");
+LimeUtil.addStyle(btn, { height: "30px", "background-color": "blue" });
+```
+
+---
+
+#### \_.getStyle(elem, name)
+
+获取元素的 style 样式
+
+- ##### 参数
+
+  `elem` {Element} 元素  
+  `name` {String} 属性
+
+- ##### 返回值
+
+  {String} 返回样式的值
+
+- ##### 示例
+
+```javascript
+let btn = document.getElementById("myBtn");
+LimeUtil.getStyle(btn, "height"); // 输出： 30px
+```
+
+---
+
+#### \_.removeStyle(elem, name)
+
+删除元素的 style 样式
+
+- ##### 参数
+
+  `elem` {Element} 元素  
+  `name` {String} 属性
+
+- ##### 返回值
+
+  无
+
+- ##### 示例
+
+```javascript
+let btn = document.getElementById("myBtn");
+LimeUtil.removeStyle(btn, "height");
 ```
 
 ---
@@ -126,6 +192,63 @@ html 标签解码
 - ##### 示例
 
 ```javascript
-let encode = LimeUtil.htmlDecode("&lt;div&nbsp;id=&#39;1&#39;&gt;测试&lt;&#47;div&gt;");
+let encode = LimeUtil.htmlDecode(
+  "&lt;div&nbsp;id=&#39;1&#39;&gt;测试&lt;&#47;div&gt;"
+);
 console.log(encode); // 输出：<div id='1'>测试</div>
+```
+
+---
+
+#### \_.copyText(text)
+
+复制文本到剪贴板  
+`仅支持谷歌等新浏览器`
+
+- ##### 参数
+
+  `text` {String} 文本
+
+- ##### 返回值
+
+  {Promise} 返回 Promise 的复制成功和失败
+
+- ##### 示例
+
+```javascript
+LimeUtil.copyText("我是复制的文本")
+  .then((text) => {
+    console.log("复制成功，内容是：", text);
+  })
+  .catch((error) => {
+    console.log("复制失败");
+  });
+```
+
+---
+
+#### \_.getCopyText()
+
+从剪贴板获取文本  
+`仅支持谷歌等新浏览器`
+
+- ##### 参数
+
+  `text` {String} 文本
+
+- ##### 返回值
+
+  {Promise} 返回 Promise 的剪切板内容
+
+- ##### 示例
+
+```javascript
+// 使用此API复制时会弹出来授权
+LimeUtil.getCopyText()
+  .then((text) => {
+    console.log("获取成功，内容是：", text);
+  })
+  .catch((error) => {
+    console.log("获取失败");
+  });
 ```

@@ -1,5 +1,5 @@
 /*!
- * @lime-util/date v3.0.13
+ * @lime-util/date v3.0.15
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -54,7 +54,7 @@
    * @returns {Boolean} 返回true和false
    */
   function isEmpty(value) {
-    return isNull(value) || !(Object.keys(val) || val).length;
+    return isNull(value) || !(Object.keys(value) || value).length;
   }
 
   /**
@@ -1034,102 +1034,6 @@
     }
   }
 
-  /* 年龄，生肖，星座 */
-  /**
-   * 通过日期计算周岁年龄
-   * @param {String} dateStr 日期字符串
-   * @returns {Number} 返回周岁年龄
-   */
-  function getAge(dateStr) {
-    if (isEmpty(dateStr)) return 0;
-    // age
-    let age = 0;
-    // 传参日期
-    let dateArray = dateStr.split("-");
-    let birthYear = Number(dateArray[0]),
-      birthMonth = Number(dateArray[1]),
-      birthDay = Number(dateArray[2]);
-    // 当前的日期
-    let nowDate = new Date();
-    let nowYear = nowDate.getFullYear(),
-      nowMonth = nowDate.getMonth() + 1,
-      nowDay = nowDate.getDate();
-
-    // 出生年份需要小于当年，否则是0岁
-    let diffAge = nowYear - birthYear;
-    if (diffAge > 0) {
-      if (nowMonth - birthMonth <= 0) {
-        // 日期差小于0，证明还没满周岁，需要减1
-        if (nowDay - birthDay < 0) {
-          age = diffAge - 1;
-        } else {
-          age = diffAge;
-        }
-      } else {
-        age = diffAge;
-      }
-    }
-    return age;
-  }
-  /**
-   * 通过日期计算星座
-   * @param {String} dateStr 日期字符串
-   * @returns {String} 返回星座
-   */
-  function getZodiac(dateStr) {
-    if (isEmpty(dateStr)) return;
-    // 计算
-    let days = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22];
-    let arr = [
-      "摩羯座",
-      "水瓶座",
-      "双鱼座",
-      "白羊座",
-      "金牛座",
-      "双子座",
-      "巨蟹座",
-      "狮子座",
-      "处女座",
-      "天秤座",
-      "天蝎座",
-      "射手座",
-      "摩羯座",
-    ];
-    let date = parseDate(dateStr);
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    return day < days[month - 1] ? arr[month - 1] : arr[month];
-  }
-  /**
-   * 通过日期计算生肖
-   * @param {String} dateStr 日期字符串
-   * @returns {String} 返回生肖
-   */
-  function getChineseZodiac(dateStr) {
-    if (isEmpty(dateStr)) return;
-    // 计算
-    let arr = [
-      "鼠",
-      "牛",
-      "虎",
-      "兔",
-      "龙",
-      "蛇",
-      "马",
-      "羊",
-      "猴",
-      "鸡",
-      "狗",
-      "猪",
-    ];
-    let date = parseDate(dateStr);
-    let year = date.getFullYear();
-    if (year < 1900) {
-      return "未知";
-    }
-    return arr[(year - 1900) % arr.length];
-  }
-
   /* 内部使用的函数 */
   /**
    * 数字前补齐零，保持两位
@@ -1277,10 +1181,7 @@
     diffMonth: diffMonth,
     diffYear: diffYear,
     formatDate: formatDate,
-    parseDate: parseDate,
-    getAge: getAge,
-    getZodiac: getZodiac,
-    getChineseZodiac: getChineseZodiac
+    parseDate: parseDate
   });
 
   // 测试加载成功方法
