@@ -1,6 +1,6 @@
 # lime-date 日期工具库
 
-🔥 **lime-date** 🔥 是从`lime-util`独立出来的日期模块，如果你只想使用日期工具，可以单独安装使用。
+🔥 **lime-date** 🔥 是从`lime-util`独立出来的日期模块，如果你只想使用日期处理，可以单独安装使用。
 
 ### 📦 安装
 
@@ -17,7 +17,7 @@ npm i @lime-util/date --save
 <script src="dist/index.js"></script>
 <!-- 使用 -->
 <script>
-  console.log(LimeDate.loadedTest()); // 输出：lime-date loaded successfully!
+  LimeDate.loadedTest();
 </script>
 ```
 
@@ -28,11 +28,11 @@ npm i @lime-util/date --save
 ```javascript
 // 全部引入
 import LimeDate from "@lime-util/date";
-LimeDate.loadedTest(); // 输出：lime-date loaded successfully!
+LimeDate.loadedTest();
 
 // 按需引入
 import { loadedTest } from "@lime-util/date";
-loadedTest(); // 输出：lime-date loaded successfully!
+loadedTest();
 ```
 
 #### 2. require 方式
@@ -40,13 +40,9 @@ loadedTest(); // 输出：lime-date loaded successfully!
 ```javascript
 // 全部引入
 const LimeDate = require("@lime-util/date");
-LimeDate.loadedTest(); // 输出：lime-date loaded successfully!
+LimeDate.loadedTest();
 
 // 按需引入
 const { loadedTest } = require("@lime-util/date");
-loadedTest(); // 输出：lime-date loaded successfully!
+loadedTest();
 ```
-
-### 📝API 文档
-
-[日期工具库 API](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
