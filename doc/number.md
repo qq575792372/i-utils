@@ -1,4 +1,4 @@
-## 数字
+## 数字 Number
 
 #### \_.parseInt(value, radix = 10)
 

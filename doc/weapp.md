@@ -1,4 +1,4 @@
-## 微信小程序工具类
+## 微信小程序工具库 Weapp
 
 #### \_.setStorage(key, data)
 

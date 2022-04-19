@@ -1,4 +1,4 @@
-## 字符串
+## 字符串 String
 
 #### \_.trim(value)
 

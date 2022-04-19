@@ -1,4 +1,4 @@
-## 随机数
+## 随机数 Random
 
 #### \_.getRandom(min = 0, max = 9)
 

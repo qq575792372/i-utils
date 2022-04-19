@@ -1,4 +1,4 @@
-## 函数
+## 函数 Function
 
 #### \_.throttle(fn, interval = 1 \* 1000)
 

@@ -1,4 +1,4 @@
-## 数组
+## 数组 Array
 
 #### \_.inArray(value, array)
 

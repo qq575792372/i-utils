@@ -1,4 +1,4 @@
-## 颜色
+## 颜色 Color
 
 #### \_.rgbToHex(color)
 

@@ -1,4 +1,4 @@
-## 日期
+## 日期 Date
 
 #### \_.isToday(date)
 

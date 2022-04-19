@@ -1,4 +1,4 @@
-## 对象
+## 对象 Object
 
 #### \_.mapToObject(map)
 
