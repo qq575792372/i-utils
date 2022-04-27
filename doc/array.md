@@ -106,9 +106,31 @@ console.log(res); // 输出：4
 
 ---
 
-#### \_.arrayUnion(array)
+#### \_.arrayCreate(length = 0)
 
-数组求并集
+生成指定长度的数组
+
+- ##### 参数
+
+  `length` {Number} 长度，默认 0
+
+- ##### 返回值
+
+  {Array} 返回生成的数组
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.arrayCreate(3);
+console.log(res); // 输出：[0,1,2]
+```
+
+---
+
+#### \_.arrayUnion(array1, array2)
+
+数组求并集  
+`数组1 和 数组2 合并一起的元素集合`
 
 - ##### 参数
 
@@ -122,16 +144,23 @@ console.log(res); // 输出：4
 - ##### 示例
 
 ```javascript
-let array1 = [1, 2, 3];
-let array2 = [2, 3, 4, 5];
-console.log(LimeUtil.arrayUnion(array1, array2)); // 输出：[1, 2, 3, 4, 5]
+// 无重复元素
+let array1 = [1, 2];
+let array2 = [2, 3];
+console.log(LimeUtil.arrayUnion(array1, array2)); // 输出：[1, 2, 3]
+
+// 有重复元素
+let array1 = [1, 2, 2];
+let array2 = [2, 3, 3];
+console.log(LimeUtil.arrayUnion(array1, array2)); // 输出：[1, 2, 3]
 ```
 
 ---
 
-#### \_.arrayIntersect(array)
+#### \_.arrayIntersect(array1, array2)
 
-数组求交集
+数组求交集  
+`数组1 和 数组2 相同的元素集合`
 
 - ##### 参数
 
@@ -145,14 +174,80 @@ console.log(LimeUtil.arrayUnion(array1, array2)); // 输出：[1, 2, 3, 4, 5]
 - ##### 示例
 
 ```javascript
+// 无重复元素
 let array1 = [1, 2, 3];
-let array2 = [2, 3, 4, 5];
+let array2 = [2, 3, 4];
+console.log(LimeUtil.arrayIntersect(array1, array2)); // 输出：[2, 3]
+
+// 有重复元素
+let array1 = [1, 2, 3];
+let array2 = [2, 2, 3, 3, 4];
 console.log(LimeUtil.arrayIntersect(array1, array2)); // 输出：[2, 3]
 ```
 
 ---
 
-#### \_.arrayEquals(array)
+#### \_.arrayDifference(array1, array2)
+
+数组求差集  
+`数组1 中不包含 数组2 的元素集合`
+
+- ##### 参数
+
+  `array1` {Array} 数组 1  
+  `array2` {Array} 数组 2
+
+- ##### 返回值
+
+  {Number} 返回数组差集
+
+- ##### 示例
+
+```javascript
+// 无重复元素
+let array1 = [1, 2, 3];
+let array2 = [3, 4, 5];
+console.log(LimeUtil.arrayDifference(array1, array2)); // 输出：[1, 2]
+
+// 有重复元素
+let array1 = [1, 2, 3];
+let array2 = [2, 2, 3, 3, 4];
+console.log(LimeUtil.arrayDifference(array1, array2)); // 输出：[1, 2]
+```
+
+---
+
+#### \_.arrayComplement(array1, array2)
+
+数组求补集  
+`数组1 和 数组2 不相同的元素集合`
+
+- ##### 参数
+
+  `array1` {Array} 数组 1  
+  `array2` {Array} 数组 2
+
+- ##### 返回值
+
+  {Number} 返回数组补集
+
+- ##### 示例
+
+```javascript
+// 无重复元素
+let array1 = [1, 2, 3];
+let array2 = [3, 4, 5];
+console.log(LimeUtil.arrayComplement(array1, array2)); // 输出：[1, 2, 4, 5]
+
+// 有重复元素
+let array1 = [1, 2, 3];
+let array2 = [3, 3, 4, 5];
+console.log(LimeUtil.arrayComplement(array1, array2)); // 输出：[1, 2, 4, 5]
+```
+
+---
+
+#### \_.arrayEquals(array1, array2)
 
 比较两个数组是否相等
 
@@ -255,7 +350,7 @@ console.log(res); // 输出：[1,3,2]
 
 ---
 
-#### \_.arraySwap(array)
+#### \_.arraySwap(array, sourceIndex, targetIndex)
 
 数组交换元素
 

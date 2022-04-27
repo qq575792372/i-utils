@@ -1,4 +1,4 @@
-/* 字符串去空格 */
+/* 字符串处理 */
 /**
  * 去除字符串前后位置空格
  * @param {String} value 参数
@@ -46,7 +46,7 @@ export function replaceAll(value, oldSubstr, newSubstr) {
   return value.replace(new RegExp(oldSubstr, "gm"), newSubstr);
 }
 
-/* 字符命名转换 */
+/* 字符串转换 */
 /**
  * 字符串转大写
  * @param {String} value 参数
@@ -177,6 +177,25 @@ export function toPascalCase(value) {
   ) {
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
+}
+
+/* 字符串加密 */
+/**
+ * base64 加密
+ * @param {String} str 字符串
+ * @returns {String} 返回加密后的字符串
+ */
+export function encode(str) {
+  return window.btoa(str);
+}
+
+/**
+ * base64 解密
+ * @param {String} str 字符串
+ * @returns {Boolean} 返回解密后的字符串
+ */
+export function decode(str) {
+  return window.atob(str);
 }
 
 /* 字符串格式化 */

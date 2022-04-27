@@ -1,5 +1,5 @@
 /*!
- * @lime-util/util v3.1.2
+ * @lime-util/util v3.1.5
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -216,6 +216,25 @@
     ) {
       return value.charAt(0).toUpperCase() + value.slice(1);
     }
+  }
+
+  /* 字符串加密 */
+  /**
+   * base64 加密
+   * @param {String} str 字符串
+   * @returns {String} 返回加密后的字符串
+   */
+  function encode(str) {
+    return window.btoa(str);
+  }
+
+  /**
+   * base64 解密
+   * @param {String} str 字符串
+   * @returns {Boolean} 返回解密后的字符串
+   */
+  function decode(str) {
+    return window.atob(str);
   }
 
   /* 字符串格式化 */
@@ -461,6 +480,8 @@
     toKebabCase: toKebabCase,
     toCamelCase: toCamelCase,
     toPascalCase: toPascalCase,
+    encode: encode,
+    decode: decode,
     inString: inString,
     zeroStart: zeroStart,
     zeroEnd: zeroEnd,
@@ -1006,7 +1027,17 @@
   }
 
   /**
+   * 生成指定长度的数组
+   * @param {Number} length 长度，默认 0
+   * @returns {Array} 返回生成的数组
+   */
+  function arrayCreate(length = 0) {
+    return [...Array(length).keys()];
+  }
+
+  /**
    * 数组求并集
+   * @description 数组1 和 数组2 合并一起的元素集合
    * @param {Array} array1 数组1
    * @param {Array} array2 数组2
    * @returns {Number} 返回数组并集
@@ -1017,12 +1048,38 @@
 
   /**
    * 数组求交集
+   * @description 数组1 和 数组2 相同的元素集合
    * @param {Array} array1 数组1
    * @param {Array} array2 数组2
    * @returns {Number} 返回数组交集
    */
   function arrayIntersect(array1, array2) {
     return [...new Set(array1)].filter((item) => array2.includes(item));
+  }
+
+  /**
+   * 数组求差集
+   * @description 数组1 中不包含 数组2 的元素集合
+   * @param {Array} array1 数组1
+   * @param {Array} array2 数组2
+   * @returns {Number} 返回数组差集
+   */
+  function arrayDifference(array1, array2) {
+    return [...new Set(array1)].filter((item) => !array2.includes(item));
+  }
+
+  /**
+   * 数组求补集
+   * @description 数组1 和 数组2 不相同的元素集合
+   * @param {Array} array1 数组1
+   * @param {Array} array2 数组2
+   * @returns {Number} 返回数组补集
+   */
+  function arrayComplement(array1, array2) {
+    return [
+      ...[...new Set(array1)].filter((item) => !array2.includes(item)),
+      ...[...new Set(array2)].filter((item) => !array1.includes(item)),
+    ];
   }
 
   /**
@@ -1127,8 +1184,11 @@
     arrayMax: arrayMax,
     arraySum: arraySum,
     arrayAvg: arrayAvg,
+    arrayCreate: arrayCreate,
     arrayUnion: arrayUnion,
     arrayIntersect: arrayIntersect,
+    arrayDifference: arrayDifference,
+    arrayComplement: arrayComplement,
     arrayEquals: arrayEquals,
     arrayUnique: arrayUnique,
     arrayShuffle: arrayShuffle,

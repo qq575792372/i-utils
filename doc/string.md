@@ -1,5 +1,7 @@
 ## 字符串 String
 
+### 字符串处理
+
 #### \_.trim(value)
 
 去除字符串前后位置空格
@@ -107,7 +109,9 @@ console.log(res); // 输出：say hi hi!
 
 ---
 
-<!-- 字符处理 -->
+<!-- 字符串转换 -->
+
+### 字符串转换
 
 #### \_.toUpper(value)
 
@@ -255,7 +259,57 @@ console.log(LimeCore.toPascalCase("userName")); // 输出：UserName
 
 ---
 
+<!-- 字符串加密 -->
+
+### 字符串加密
+
+工具库只提供了 `base64` 方式加密和解密，你也可以用功能更强大的[crypto-js](https://github.com/brix/crypto-js)，包含了`md5`，`aes`，`sha1`，`sha256` 更多加密方式。
+
+#### \_.encode(str)
+
+base64 加密
+
+- ##### 参数
+
+  `str` {String} 字符串
+
+- ##### 返回值
+
+  {String} 返回加密后的字符串
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.encode("dGVzdDEyMw==");
+console.log(res); // 输出：dGVzdDEyMw==
+```
+
+---
+
+#### \_.decode(str)
+
+base64 加密
+
+- ##### 参数
+
+  `str` {String} 字符串
+
+- ##### 返回值
+
+  {String} 返回解密后的字符串
+
+- ##### 示例
+
+```javascript
+let res = LimeUtil.decode("dGVzdDEyMw==");
+console.log(res); // 输出：test123
+```
+
+---
+
 <!-- 字符串格式化 -->
+
+### 字符串格式化
 
 #### \_.inString(value, str)
 
