@@ -1,20 +1,20 @@
-## 校验 Validate
+# 校验 Validate
 
 <!-- 数据类型 -->
 
-#### \_.isInteger(value)
+### \_.isInteger(value)
 
 判断是整数
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isInteger("123")); // 输出：true
@@ -23,19 +23,19 @@ console.log(LimeUtil.isInteger(12.01)); // 输出：false
 
 ---
 
-#### \_.isDecimal(value)
+### \_.isDecimal(value)
 
 判断是小数
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isDecimal("123")); // 输出：false
@@ -44,19 +44,19 @@ console.log(LimeUtil.isDecimal(12.01)); // 输出：true
 
 ---
 
-#### \_.isNumber(value)
+### \_.isNumber(value)
 
 判断类型是数字 Number
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isNumber(123)); // 输出：true
@@ -66,19 +66,19 @@ console.log(LimeUtil.isNumber("3.1dd32")); // 输出：false
 
 ---
 
-#### \_.isString(value)
+### \_.isString(value)
 
 判断类型是字符串 String
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isString("123")); // 输出：true
@@ -87,19 +87,19 @@ console.log(LimeUtil.isString(12.01)); // 输出：false
 
 ---
 
-#### \_.isArray(value)
+### \_.isArray(value)
 
 判断类型是数组 Array
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isArray("123")); // 输出：false
@@ -108,19 +108,19 @@ console.log(LimeUtil.isArray([1, 2])); // 输出：true
 
 ---
 
-#### \_.isObject(value)
+### \_.isObject(value)
 
 判断类型是对象 Object
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isObject({ id: 1 })); // 输出：true
@@ -129,19 +129,19 @@ console.log(LimeUtil.isObject(12.01)); // 输出：false
 
 ---
 
-#### \_.isBoolean(value)
+### \_.isBoolean(value)
 
 判断类型是布尔 Boolean
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isBoolean(true)); // 输出：true
@@ -150,19 +150,19 @@ console.log(LimeUtil.isBoolean(12.01)); // 输出：false
 
 ---
 
-#### \_.isDate(value)
+### \_.isDate(value)
 
 判断类型是日期 Date
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isDate(new Date())); // 输出：true
@@ -171,19 +171,19 @@ console.log(LimeUtil.isDate(12.01)); // 输出：false
 
 ---
 
-#### \_.isFunction(value)
+### \_.isFunction(value)
 
 判断类型是函数 Function
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isFunction(function () {})); // 输出：true
@@ -192,19 +192,19 @@ console.log(LimeUtil.isFunction(12.01)); // 输出：false
 
 ---
 
-#### \_.isSymbol(value)
+### \_.isSymbol(value)
 
 判断类型是 Symbol
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isSymbol(Symbol(1))); // 输出：true
@@ -213,19 +213,19 @@ console.log(LimeUtil.isSymbol(12.01)); // 输出：false
 
 ---
 
-#### \_.isRegExp(value)
+### \_.isRegExp(value)
 
 判断类型是正则 RegExp
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isRegExp(/^\d$/)); // 输出：true
@@ -235,19 +235,19 @@ console.log(LimeUtil.isRegExp(12.01)); // 输出：false
 
 ---
 
-#### \_.isError(value)
+### \_.isError(value)
 
 判断类型是错误 Error
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isError(new Error("has error"))); // 输出：true
@@ -256,19 +256,19 @@ console.log(LimeUtil.isError(12.01)); // 输出：false
 
 ---
 
-#### \_.isPromise(value)
+### \_.isPromise(value)
 
 判断类型是 Promise
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isPromise(Promise.resolve())); // 输出：true
@@ -277,19 +277,19 @@ console.log(LimeUtil.isPromise(12.01)); // 输出：false
 
 ---
 
-#### \_.isMap(value)
+### \_.isMap(value)
 
 判断类型是 Map
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isMap(new Map())); // 输出：true
@@ -297,19 +297,19 @@ console.log(LimeUtil.isMap(new Map())); // 输出：true
 
 ---
 
-#### \_.isWeakMap(value)
+### \_.isWeakMap(value)
 
 判断类型是 WeakMap
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isWeakMap(new WeakMap())); // 输出：true
@@ -317,19 +317,19 @@ console.log(LimeUtil.isWeakMap(new WeakMap())); // 输出：true
 
 ---
 
-#### \_.isSet(value)
+### \_.isSet(value)
 
 判断类型是 Set
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isSet(new Set())); // 输出：true
@@ -337,19 +337,19 @@ console.log(LimeUtil.isSet(new Set())); // 输出：true
 
 ---
 
-#### \_.isWeakSet(value)
+### \_.isWeakSet(value)
 
 判断类型是 WeakSet
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isWeakSet(new WeakSet())); // 输出：true
@@ -357,19 +357,19 @@ console.log(LimeUtil.isWeakSet(new WeakSet())); // 输出：true
 
 ---
 
-#### \_.isBigInt(value)
+### \_.isBigInt(value)
 
 判断类型是 BigInt
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isBigInt(new BigInt())); // 输出：true
@@ -379,19 +379,19 @@ console.log(LimeUtil.isBigInt(new BigInt())); // 输出：true
 
 <!-- 数据值校验 -->
 
-#### \_.isTrue(value)
+### \_.isTrue(value)
 
 判断值为真
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isTrue(1)); // 输出：true
@@ -405,19 +405,19 @@ console.log(LimeUtil.isTrue("null")); // 输出：false
 
 ---
 
-#### \_.isFalse(value)
+### \_.isFalse(value)
 
 判断值为假
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isFalse(1)); // 输出：false
@@ -431,19 +431,19 @@ console.log(LimeUtil.isFalse("null")); // 输出：true
 
 ---
 
-#### \_.isNaN(value)
+### \_.isNaN(value)
 
 判断非数字
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isNaN("abc")); // 输出：true
@@ -452,20 +452,20 @@ console.log(LimeUtil.isNaN("123")); // 输出：false
 
 ---
 
-#### \_.isNotNaN(value)
+### \_.isNotNaN(value)
 
 判断是数字  
 `等同于 isNumber()`
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isNotNaN("abc")); // 输出：false
@@ -474,20 +474,20 @@ console.log(LimeUtil.isNotNaN("123")); // 输出：true
 
 ---
 
-#### \_.isNull(value)
+### \_.isNull(value)
 
 判断对象为空  
 `判断值是否为空，如果对象初始化了值则不为空`
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isNull(null)); // 输出：true
@@ -498,20 +498,20 @@ console.log(LimeUtil.isNull(12.01)); // 输出：false
 
 ---
 
-#### \_.isNotNull(value)
+### \_.isNotNull(value)
 
 判断对象不为空  
 `判断值是否为空，如果对象初始化了值则不为空`
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isNotNull(null)); // 输出：false
@@ -522,20 +522,20 @@ console.log(LimeUtil.isNotNull(12.01)); // 输出：true
 
 ---
 
-#### \_.isEmpty(value)
+### \_.isEmpty(value)
 
 判断值为空
 `判断是否是有意义不为空的值，如果值是{},[]空的数据则为空`
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isEmpty(11)); // 输出：false
@@ -546,20 +546,20 @@ console.log(LimeUtil.isEmpty(undefined)); // 输出：true
 
 ---
 
-#### \_.isNotEmpty(value)
+### \_.isNotEmpty(value)
 
 判断值不为空
 `判断是否是有意义不为空的值，如果值是{},[]空的数据则为空`
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isNotEmpty(11)); // 输出：true
@@ -570,20 +570,20 @@ console.log(LimeUtil.isNotEmpty(undefined)); // 输出：false
 
 ---
 
-#### \_.isBlank(value)
+### \_.isBlank(value)
 
 判断值是空白的  
 `同时会校验空值，空对象，以及空白符号`
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isBlank(" ")); // 输出：true
@@ -594,20 +594,20 @@ console.log(LimeUtil.isBlank(12.01)); // 输出：false
 
 ---
 
-#### \_.isNotBlank(value)
+### \_.isNotBlank(value)
 
 判断值不是空白的
 `同时会校验空值，空对象，以及空白符号`
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isNotBlank(" ")); // 输出：false
@@ -618,19 +618,19 @@ console.log(LimeUtil.isNotBlank(12.01)); // 输出：true
 
 ---
 
-#### \_.isUndefined(value)
+### \_.isUndefined(value)
 
 判断值是 undefined
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isUndefined(undefined)); // 输出：true
@@ -641,19 +641,19 @@ console.log(LimeUtil.isUndefined(12.01)); // 输出：false
 
 ---
 
-#### \_.isNotUndefined(value)
+### \_.isNotUndefined(value)
 
 判断值不是 undefined
 
-- ##### 参数
+- #### 参数
 
   `value` {\*} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.isNotUndefined(undefined)); // 输出：false
@@ -666,20 +666,20 @@ console.log(LimeUtil.isNotUndefined(12.01)); // 输出：true
 
 <!-- 比较 -->
 
-#### \_.equals(value)
+### \_.equals(value)
 
 判断两个值是否相等
 
-- ##### 参数
+- #### 参数
 
   `value1` {String|Number} 参数 1  
   `value2` {String|Number} 参数 2
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.equals("1", "1")); // 输出：true
@@ -690,20 +690,20 @@ console.log(LimeUtil.equals(121, 12)); // 输出：false
 
 ---
 
-#### \_.equalsIgnoreCase(value)
+### \_.equalsIgnoreCase(value)
 
 判断两个值是否相等（忽略大小写）
 
-- ##### 参数
+- #### 参数
 
   `value1` {String|Number} 参数 1  
   `value2` {String|Number} 参数 2
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 console.log(LimeUtil.equalsIgnoreCase("1", "1")); // 输出：true
@@ -714,21 +714,21 @@ console.log(LimeUtil.equalsIgnoreCase(121, 12)); // 输出：false
 
 ---
 
-#### \_.deepCompare(value)
+### \_.deepCompare(value)
 
 深度对比数据
 `可以对比任意数据，对象，数组，日期等也可深度对比，对象不区分先后顺序`
 
-- ##### 参数
+- #### 参数
 
   `x` {_} 数据 1  
   `y` {_} 数据 2
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 // 基础场景

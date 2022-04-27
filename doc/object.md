@@ -1,18 +1,18 @@
-## 对象 Object
+# 对象 Object
 
-#### \_.mapToObject(map)
+### \_.mapToObject(map)
 
 map 转 object
 
-- ##### 参数
+- #### 参数
 
   `map` {Map} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Object} 返回 Object
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 let obj = LimeUtil.mapToObject(map);
@@ -21,19 +21,19 @@ console.log(obj); // 输出：obj对象
 
 ---
 
-#### \_.mapToJson(map)
+### \_.mapToJson(map)
 
 map 转 json 字符串
 
-- ##### 参数
+- #### 参数
 
   `map` {Map} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {String} 返回 Json 字符串
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 let json = LimeUtil.mapToJson(map);
@@ -42,19 +42,19 @@ console.log(json); // 输出：json字符串
 
 ---
 
-#### \_.objectToMap(obj)
+### \_.objectToMap(obj)
 
 object 转 map
 
-- ##### 参数
+- #### 参数
 
   `obj` {Object} 参数
 
-- ##### 返回值
+- #### 返回值
 
   {Object} 返回 Map
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 let map = LimeUtil.objectToMap(obj);
@@ -63,19 +63,19 @@ console.log(map); // 输出：map对象
 
 ---
 
-#### \_.jsonToMap(json)
+### \_.jsonToMap(json)
 
 json 字符串转 map
 
-- ##### 参数
+- #### 参数
 
   `json` {String} json 字符串
 
-- ##### 返回值
+- #### 返回值
 
   {Map} 返回 Map
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 let map = LimeUtil.jsonToMap(json);
@@ -84,19 +84,19 @@ console.log(map); // 输出：map对象
 
 ---
 
-#### \_.strifyJson(json)
+### \_.strifyJson(json)
 
 json 对象转 json 字符串
 
-- ##### 参数
+- #### 参数
 
   `json` {Object} json 对象
 
-- ##### 返回值
+- #### 返回值
 
   {String} 返回 Json 字符串
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 let str = LimeUtil.strifyJson(json);
@@ -105,19 +105,19 @@ console.log(obj); // 输出：json字符串
 
 ---
 
-#### \_.parseJson(json)
+### \_.parseJson(json)
 
 json 字符串转 json 对象
 
-- ##### 参数
+- #### 参数
 
   `json` {String} json 字符串
 
-- ##### 返回值
+- #### 返回值
 
   {Object} 返回 Json 对象
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 let obj = LimeUtil.parseJson(json);
@@ -126,19 +126,19 @@ console.log(obj); // 输出：obj对象
 
 ---
 
-#### \_.clone(source)
+### \_.clone(source)
 
 浅拷贝数据
 
-- ##### 参数
+- #### 参数
 
   `source` {\*} 需要克隆的数据
 
-- ##### 返回值
+- #### 返回值
 
   {\*} 返回深度克隆后的数据
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 let obj = { id: 1, name: "test" };
@@ -148,19 +148,19 @@ console.log(newObj); // 输出：浅拷贝后的数据
 
 ---
 
-#### \_.deepClone(source)
+### \_.deepClone(source)
 
 深拷贝数据
 
-- ##### 参数
+- #### 参数
 
   `source` {\*} 需要克隆的数据
 
-- ##### 返回值
+- #### 返回值
 
   {\*} 返回深度克隆后的数据
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 let obj = { id: 1, name: "test" };
@@ -170,21 +170,21 @@ console.log(newObj); // 输出：深拷贝后的数据
 
 ---
 
-#### \_.objectEquals(obj1, obj2)
+### \_.objectEquals(obj1, obj2)
 
 比较两个对象是否相等  
 `方法只能对比简单的对象，不能包含function，另外对象的属性顺序不一致也是相等的`
 
-- ##### 参数
+- #### 参数
 
   `obj1` {Object} 对象 1
   `obj2` {\Object} 对象 2
 
-- ##### 返回值
+- #### 返回值
 
   {Boolean} 返回 true 和 false
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 // 场景1
@@ -210,20 +210,20 @@ console.log(flag); // 输出：false
 
 ---
 
-#### \_.merge(target)
+### \_.merge(target)
 
 合并对象
 
-- ##### 参数
+- #### 参数
 
   `target` {Object} 目标对象  
   `source` {Object[]} 原对象列表
 
-- ##### 返回值
+- #### 返回值
 
   {Object} 返回合并后的对象
 
-- ##### 示例
+- #### 示例
 
 ```javascript
 let obj1 = { a: 1 };
