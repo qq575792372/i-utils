@@ -1,8 +1,8 @@
 # 正则 Regexp
 
-### \_.REGEXP.XXX
+## 常用正则集合
 
-常用正则集合
+### \_.REGEXP.XXX
 
 ```javascript
 const REGEXP = {
@@ -57,7 +57,36 @@ const REGEXP = {
 
 ---
 
-## 提供常用校验方法
+<!-- 正则校验方法 -->
+
+## 正则校验方法
+
+### \_.regexpTest(value, regex)
+
+正则校验方法  
+`类型为REGEXP对应的正则`
+
+- #### 参数
+
+  `value` {String|Number} 校验的参数  
+  `regex` {REGEXP} 使用的 <span style="color:#ff9900">`REGEXP`</span> 中的正则
+
+- #### 返回值
+
+  {Boolean} 返回校验的结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.regexpTest("13000000000", LimeUtil.REGEXP.MOBILE);
+console.log(res); // 输出：true
+```
+
+---
+
+<!-- 常用校验 -->
+
+## 常用校验
 
 ### \_.isChinese(value)
 
@@ -246,28 +275,5 @@ console.log(res); // 输出：true
 let res = LimeUtil.isUrl("http://www.test.com");
 console.log(res); // 输出：true
 let res = LimeUtil.isUrl("ftps://192.168.3.22/ddd");
-console.log(res); // 输出：true
-```
-
----
-
-### \_.regexpTest(value, regex)
-
-正则校验的方法  
-`类型为REGEXP对应的正则`
-
-- #### 参数
-
-  `value` {String|Number} 校验的参数  
-  `regex` {REGEXP} 使用的 <span style="color:#ff9900">`REGEXP`</span> 中的正则
-
-- #### 返回值
-
-  {Boolean} 返回校验的结果
-
-- #### 示例
-
-```javascript
-let res = LimeUtil.regexpTest("13000000000", LimeUtil.REGEXP.MOBILE);
 console.log(res); // 输出：true
 ```

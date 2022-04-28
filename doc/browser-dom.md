@@ -1,5 +1,9 @@
 # 浏览器 Dom
 
+<!-- Class操作 -->
+
+## Class 操作
+
 ### \_.hasClass(elem, className)
 
 判断元素包含某个类名
@@ -90,6 +94,10 @@ LimeUtil.removeClass(btn, "btn-primary", "btn-success");
 
 ---
 
+<!-- Style操作 -->
+
+## Style 操作
+
 ### \_.addStyle(elem, styles = {})
 
 添加元素的 style 样式
@@ -156,6 +164,10 @@ LimeUtil.removeStyle(btn, "height");
 
 ---
 
+<!-- Html转码 -->
+
+## Html 转码
+
 ### \_.htmlEncode(htmlStr)
 
 html 标签转义
@@ -199,6 +211,8 @@ console.log(encode); // 输出：<div id='1'>测试</div>
 ```
 
 ---
+
+<!-- 复制剪切板 -->
 
 ### \_.copyText(text)
 

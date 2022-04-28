@@ -284,7 +284,7 @@ export function isNotUndefined(value) {
   return !isUndefined(value);
 }
 
-/* 比较 */
+/* 数据比较 */
 /**
  * 判断两个值是否相等
  * @param {String|Number} value1 参数1

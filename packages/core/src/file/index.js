@@ -242,6 +242,7 @@ export function urlToBase64(imgUrl) {
   });
 }
 
+/* 下载文件 */
 /**
  * 下载blob格式的文件
  * @param {Blob} blob blob数据

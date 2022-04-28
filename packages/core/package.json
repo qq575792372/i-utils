@@ -1,6 +1,6 @@
 {
   "name": "@lime-util/core",
-  "version": "3.1.5",
+  "version": "3.2.0",
   "description": "lime-core 核心工具库 | lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
   "moduleName": "LimeCore",

@@ -1,5 +1,9 @@
 # 对象 Object
 
+<!-- 对象转换 -->
+
+## 对象转换
+
 ### \_.mapToObject(map)
 
 map 转 object
@@ -84,7 +88,7 @@ console.log(map); // 输出：map对象
 
 ---
 
-### \_.strifyJson(json)
+### \_.stringifyJson(json)
 
 json 对象转 json 字符串
 
@@ -99,7 +103,7 @@ json 对象转 json 字符串
 - #### 示例
 
 ```javascript
-let str = LimeUtil.strifyJson(json);
+let str = LimeUtil.stringifyJson(json);
 console.log(obj); // 输出：json字符串
 ```
 
@@ -125,6 +129,10 @@ console.log(obj); // 输出：obj对象
 ```
 
 ---
+
+<!-- 对象拷贝，对比，合并等操作 -->
+
+## 对象拷贝，对比，合并等操作
 
 ### \_.clone(source)
 

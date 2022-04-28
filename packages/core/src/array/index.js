@@ -1,17 +1,7 @@
 import { isNull } from "../validate";
 import { SORT_MODE } from "../constant/sort";
 
-/**
- * 数组中是否包含指定的元素
- * @param {String|Number} value 元素
- * @param {Array} array 查找的数组
- * @returns {Boolean} 返回true和false
- */
-export function inArray(value, array) {
-  if (isNull(value)) return;
-  return array.includes(value);
-}
-
+/* 数组计算 */
 /**
  * 数组最小值
  * @param {Array} array 数组
@@ -50,60 +40,16 @@ export function arrayAvg(array) {
   return arraySum(array) / array.length;
 }
 
+/* 数组比较 */
 /**
- * 生成指定长度的数组
- * @param {Number} length 长度，默认 0
- * @returns {Array} 返回生成的数组
+ * 数组中是否包含指定的元素
+ * @param {String|Number} value 元素
+ * @param {Array} array 查找的数组
+ * @returns {Boolean} 返回true和false
  */
-export function arrayCreate(length = 0) {
-  return [...Array(length).keys()];
-}
-
-/**
- * 数组求并集
- * @description 数组1 和 数组2 合并一起的元素集合
- * @param {Array} array1 数组1
- * @param {Array} array2 数组2
- * @returns {Number} 返回数组并集
- */
-export function arrayUnion(array1, array2) {
-  return [...new Set(array1.concat(array2))];
-}
-
-/**
- * 数组求交集
- * @description 数组1 和 数组2 相同的元素集合
- * @param {Array} array1 数组1
- * @param {Array} array2 数组2
- * @returns {Number} 返回数组交集
- */
-export function arrayIntersect(array1, array2) {
-  return [...new Set(array1)].filter((item) => array2.includes(item));
-}
-
-/**
- * 数组求差集
- * @description 数组1 中不包含 数组2 的元素集合
- * @param {Array} array1 数组1
- * @param {Array} array2 数组2
- * @returns {Number} 返回数组差集
- */
-export function arrayDifference(array1, array2) {
-  return [...new Set(array1)].filter((item) => !array2.includes(item));
-}
-
-/**
- * 数组求补集
- * @description 数组1 和 数组2 不相同的元素集合
- * @param {Array} array1 数组1
- * @param {Array} array2 数组2
- * @returns {Number} 返回数组补集
- */
-export function arrayComplement(array1, array2) {
-  return [
-    ...[...new Set(array1)].filter((item) => !array2.includes(item)),
-    ...[...new Set(array2)].filter((item) => !array1.includes(item)),
-  ];
+export function inArray(value, array) {
+  if (isNull(value)) return;
+  return array.includes(value);
 }
 
 /**
@@ -116,6 +62,16 @@ export function arrayEquals(array1, array2) {
   if (array1 === array2) return true;
   if (array1.length != array2.length) return false;
   return array1.every((v, i) => v === array2[i]);
+}
+
+/* 数组操作 */
+/**
+ * 生成指定长度的数组
+ * @param {Number} length 长度，默认 0
+ * @returns {Array} 返回生成的数组
+ */
+export function arrayCreate(length = 0) {
+  return [...Array(length).keys()];
 }
 
 /**
@@ -199,4 +155,53 @@ export function arrayToTree(array, pid) {
     }
   });
   return res;
+}
+
+/* 数组并集，交集，差集等 */
+
+/**
+ * 数组求并集
+ * @description 数组1 和 数组2 合并一起的元素集合
+ * @param {Array} array1 数组1
+ * @param {Array} array2 数组2
+ * @returns {Number} 返回数组并集
+ */
+export function arrayUnion(array1, array2) {
+  return [...new Set(array1.concat(array2))];
+}
+
+/**
+ * 数组求交集
+ * @description 数组1 和 数组2 相同的元素集合
+ * @param {Array} array1 数组1
+ * @param {Array} array2 数组2
+ * @returns {Number} 返回数组交集
+ */
+export function arrayIntersect(array1, array2) {
+  return [...new Set(array1)].filter((item) => array2.includes(item));
+}
+
+/**
+ * 数组求差集
+ * @description 数组1 中不包含 数组2 的元素集合
+ * @param {Array} array1 数组1
+ * @param {Array} array2 数组2
+ * @returns {Number} 返回数组差集
+ */
+export function arrayDifference(array1, array2) {
+  return [...new Set(array1)].filter((item) => !array2.includes(item));
+}
+
+/**
+ * 数组求补集
+ * @description 数组1 和 数组2 不相同的元素集合
+ * @param {Array} array1 数组1
+ * @param {Array} array2 数组2
+ * @returns {Number} 返回数组补集
+ */
+export function arrayComplement(array1, array2) {
+  return [
+    ...[...new Set(array1)].filter((item) => !array2.includes(item)),
+    ...[...new Set(array2)].filter((item) => !array1.includes(item)),
+  ];
 }

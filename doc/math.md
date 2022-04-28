@@ -1,6 +1,8 @@
 ## 数学 Math
 
-<!-- 算数计算 -->
+<!-- 数字计算 -->
+
+## 数字计算
 
 ### \_.add(arg1, arg2)
 
@@ -159,6 +161,8 @@ console.log(res); // 输出：20
 ---
 
 <!-- 数字精度 -->
+
+## 数字精度
 
 ### \_.toFixed(num, decimals = 2, mode = ROUND)
 

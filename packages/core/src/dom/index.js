@@ -1,3 +1,4 @@
+/* Class操作 */
 /**
  * 判断元素包含某个类名
  * @param {Element} elem 元素
@@ -38,6 +39,7 @@ export function replaceClass(elem, newClassName, oldClassName) {
   addClass(elem, newClassName);
 }
 
+/* Style操作 */
 /**
  * 添加元素的style样式
  * @param {Element} elem 元素
@@ -71,6 +73,7 @@ export function removeStyle(elem, name) {
   elem.style.removeProperty(name);
 }
 
+/* Html转码 */
 /**
  * html标签转义
  * @param {String} htmlStr html字符串
@@ -118,6 +121,7 @@ export function htmlDecode(htmlStr) {
   );
 }
 
+/* 复制剪切板 */
 /**
  * 复制文本到剪贴板
  * @param {String} text 文本

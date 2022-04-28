@@ -1,5 +1,9 @@
 # 函数 Function
 
+<!-- 函数处理 -->
+
+## 函数处理
+
 ### \_.throttle(fn, interval = 1 \* 1000)
 
 节流函数  
@@ -95,6 +99,8 @@ sleepWork();
 ---
 
 <!-- 身份证信息，年龄，生肖，星座 -->
+
+## 身份证信息，年龄，生肖，星座
 
 ### \_.getIdCardInfo(idCard)
 

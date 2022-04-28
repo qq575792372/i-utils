@@ -1,5 +1,6 @@
 import { isEmpty, isNull } from "../validate";
 
+/* 对象转换 */
 /**
  * map转object
  * @param {Map} map 参数
@@ -49,7 +50,7 @@ export function jsonToMap(json) {
  * @param {Object} json json对象
  * @returns {String} 返回Json字符串
  */
-export function strifyJson(json) {
+export function stringifyJson(json) {
   return JSON.stringify(json);
 }
 
@@ -63,6 +64,7 @@ export function parseJson(json) {
   return JSON.parse(json);
 }
 
+/* 对象拷贝，对比，合并等操作 */
 /**
  * 浅拷贝数据
  * @param {*} source 需要克隆的数据

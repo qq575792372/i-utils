@@ -1,7 +1,7 @@
 import { isNaN } from "../validate";
 import { MATH_MODE } from "../constant/math";
 
-/* 算数计算 */
+/* 数字计算 */
 /**
  * 两个数字相加
  * @param {String|Number} arg1 第一个数字

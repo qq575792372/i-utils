@@ -1,3 +1,4 @@
+/* 常用正则集合 */
 /**
  * 常用的正则表达式集合
  */
@@ -50,7 +51,19 @@ export const REGEXP = {
   EXTERNAL: /^(http?:|https?:|mailto:|tel:)/,
 };
 
-/* 提供常用的校验方法 */
+/* 正则校验方法 */
+/**
+ * 正则校验的方法
+ * @description 类型为REGEXP对应的正则
+ * @param {String|Number} value 校验的参数
+ * @param {REGEXP} regex 使用的REGEXP中的正则
+ * @returns {Boolean} 返回校验的结果
+ */
+export function regexpTest(value, regex) {
+  return new RegExp(regex).test(value);
+}
+
+/* 常用校验 */
 /**
  * 是中文
  * @param {String} value 校验的参数
@@ -130,16 +143,4 @@ export function isIdCard(value) {
  */
 export function isUrl(value) {
   return regexpTest(value, REGEXP.URL);
-}
-
-/* 通过传入正则校验 */
-/**
- * 正则校验的方法
- * @description 类型为REGEXP对应的正则
- * @param {String|Number} value 校验的参数
- * @param {REGEXP} regex 使用的REGEXP中的正则
- * @returns {Boolean} 返回校验的结果
- */
-export function regexpTest(value, regex) {
-  return new RegExp(regex).test(value);
 }

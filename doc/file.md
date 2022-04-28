@@ -2,6 +2,8 @@
 
 <!-- 文件信息处理 -->
 
+## 文件信息处理
+
 ### \_.formatFileSize(size)
 
 格式化文件大小自动转为 B，KB，MB，GB
@@ -69,6 +71,8 @@ console.log(res1); // 输出：mytest
 ---
 
 <!-- 文件转换 -->
+
+## 文件转换
 
 ### \_.fileToBlob(file)
 
@@ -248,6 +252,10 @@ LimeUtil.urlToBase64(imgUrl).then((base64) => {
 ```
 
 ---
+
+<!-- 下载文件 -->
+
+## 下载文件
 
 ### \_.downloadBlobFile(blob, fileName)
 

@@ -1,5 +1,5 @@
 /*!
- * @lime-util/util v3.1.5
+ * @lime-util/util v3.2.0
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -37,7 +37,7 @@
     ...MATH_MODE,
   };
 
-  /* 字符串去空格 */
+  /* 字符串处理 */
   /**
    * 去除字符串前后位置空格
    * @param {String} value 参数
@@ -85,7 +85,7 @@
     return value.replace(new RegExp(oldSubstr, "gm"), newSubstr);
   }
 
-  /* 字符命名转换 */
+  /* 字符串转换 */
   /**
    * 字符串转大写
    * @param {String} value 参数
@@ -795,7 +795,7 @@
     return !isUndefined(value);
   }
 
-  /* 比较 */
+  /* 数据比较 */
   /**
    * 判断两个值是否相等
    * @param {String|Number} value1 参数1
@@ -977,17 +977,7 @@
     deepCompare: deepCompare
   });
 
-  /**
-   * 数组中是否包含指定的元素
-   * @param {String|Number} value 元素
-   * @param {Array} array 查找的数组
-   * @returns {Boolean} 返回true和false
-   */
-  function inArray(value, array) {
-    if (isNull(value)) return;
-    return array.includes(value);
-  }
-
+  /* 数组计算 */
   /**
    * 数组最小值
    * @param {Array} array 数组
@@ -1026,60 +1016,16 @@
     return arraySum(array) / array.length;
   }
 
+  /* 数组比较 */
   /**
-   * 生成指定长度的数组
-   * @param {Number} length 长度，默认 0
-   * @returns {Array} 返回生成的数组
+   * 数组中是否包含指定的元素
+   * @param {String|Number} value 元素
+   * @param {Array} array 查找的数组
+   * @returns {Boolean} 返回true和false
    */
-  function arrayCreate(length = 0) {
-    return [...Array(length).keys()];
-  }
-
-  /**
-   * 数组求并集
-   * @description 数组1 和 数组2 合并一起的元素集合
-   * @param {Array} array1 数组1
-   * @param {Array} array2 数组2
-   * @returns {Number} 返回数组并集
-   */
-  function arrayUnion(array1, array2) {
-    return [...new Set(array1.concat(array2))];
-  }
-
-  /**
-   * 数组求交集
-   * @description 数组1 和 数组2 相同的元素集合
-   * @param {Array} array1 数组1
-   * @param {Array} array2 数组2
-   * @returns {Number} 返回数组交集
-   */
-  function arrayIntersect(array1, array2) {
-    return [...new Set(array1)].filter((item) => array2.includes(item));
-  }
-
-  /**
-   * 数组求差集
-   * @description 数组1 中不包含 数组2 的元素集合
-   * @param {Array} array1 数组1
-   * @param {Array} array2 数组2
-   * @returns {Number} 返回数组差集
-   */
-  function arrayDifference(array1, array2) {
-    return [...new Set(array1)].filter((item) => !array2.includes(item));
-  }
-
-  /**
-   * 数组求补集
-   * @description 数组1 和 数组2 不相同的元素集合
-   * @param {Array} array1 数组1
-   * @param {Array} array2 数组2
-   * @returns {Number} 返回数组补集
-   */
-  function arrayComplement(array1, array2) {
-    return [
-      ...[...new Set(array1)].filter((item) => !array2.includes(item)),
-      ...[...new Set(array2)].filter((item) => !array1.includes(item)),
-    ];
+  function inArray(value, array) {
+    if (isNull(value)) return;
+    return array.includes(value);
   }
 
   /**
@@ -1092,6 +1038,16 @@
     if (array1 === array2) return true;
     if (array1.length != array2.length) return false;
     return array1.every((v, i) => v === array2[i]);
+  }
+
+  /* 数组操作 */
+  /**
+   * 生成指定长度的数组
+   * @param {Number} length 长度，默认 0
+   * @returns {Array} 返回生成的数组
+   */
+  function arrayCreate(length = 0) {
+    return [...Array(length).keys()];
   }
 
   /**
@@ -1177,26 +1133,76 @@
     return res;
   }
 
+  /* 数组并集，交集，差集等 */
+
+  /**
+   * 数组求并集
+   * @description 数组1 和 数组2 合并一起的元素集合
+   * @param {Array} array1 数组1
+   * @param {Array} array2 数组2
+   * @returns {Number} 返回数组并集
+   */
+  function arrayUnion(array1, array2) {
+    return [...new Set(array1.concat(array2))];
+  }
+
+  /**
+   * 数组求交集
+   * @description 数组1 和 数组2 相同的元素集合
+   * @param {Array} array1 数组1
+   * @param {Array} array2 数组2
+   * @returns {Number} 返回数组交集
+   */
+  function arrayIntersect(array1, array2) {
+    return [...new Set(array1)].filter((item) => array2.includes(item));
+  }
+
+  /**
+   * 数组求差集
+   * @description 数组1 中不包含 数组2 的元素集合
+   * @param {Array} array1 数组1
+   * @param {Array} array2 数组2
+   * @returns {Number} 返回数组差集
+   */
+  function arrayDifference(array1, array2) {
+    return [...new Set(array1)].filter((item) => !array2.includes(item));
+  }
+
+  /**
+   * 数组求补集
+   * @description 数组1 和 数组2 不相同的元素集合
+   * @param {Array} array1 数组1
+   * @param {Array} array2 数组2
+   * @returns {Number} 返回数组补集
+   */
+  function arrayComplement(array1, array2) {
+    return [
+      ...[...new Set(array1)].filter((item) => !array2.includes(item)),
+      ...[...new Set(array2)].filter((item) => !array1.includes(item)),
+    ];
+  }
+
   var arrayUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    inArray: inArray,
     arrayMin: arrayMin,
     arrayMax: arrayMax,
     arraySum: arraySum,
     arrayAvg: arrayAvg,
-    arrayCreate: arrayCreate,
-    arrayUnion: arrayUnion,
-    arrayIntersect: arrayIntersect,
-    arrayDifference: arrayDifference,
-    arrayComplement: arrayComplement,
+    inArray: inArray,
     arrayEquals: arrayEquals,
+    arrayCreate: arrayCreate,
     arrayUnique: arrayUnique,
     arrayShuffle: arrayShuffle,
     arraySort: arraySort,
     arraySwap: arraySwap,
-    arrayToTree: arrayToTree
+    arrayToTree: arrayToTree,
+    arrayUnion: arrayUnion,
+    arrayIntersect: arrayIntersect,
+    arrayDifference: arrayDifference,
+    arrayComplement: arrayComplement
   });
 
+  /* 对象转换 */
   /**
    * map转object
    * @param {Map} map 参数
@@ -1246,7 +1252,7 @@
    * @param {Object} json json对象
    * @returns {String} 返回Json字符串
    */
-  function strifyJson(json) {
+  function stringifyJson(json) {
     return JSON.stringify(json);
   }
 
@@ -1260,6 +1266,7 @@
     return JSON.parse(json);
   }
 
+  /* 对象拷贝，对比，合并等操作 */
   /**
    * 浅拷贝数据
    * @param {*} source 需要克隆的数据
@@ -1363,7 +1370,7 @@
     mapToJson: mapToJson,
     objectToMap: objectToMap,
     jsonToMap: jsonToMap,
-    strifyJson: strifyJson,
+    stringifyJson: stringifyJson,
     parseJson: parseJson,
     clone: clone,
     deepClone: deepClone,
@@ -2738,6 +2745,7 @@
     getChineseZodiac: getChineseZodiac
   });
 
+  /* 常用正则集合 */
   /**
    * 常用的正则表达式集合
    */
@@ -2790,7 +2798,19 @@
     EXTERNAL: /^(http?:|https?:|mailto:|tel:)/,
   };
 
-  /* 提供常用的校验方法 */
+  /* 正则校验方法 */
+  /**
+   * 正则校验的方法
+   * @description 类型为REGEXP对应的正则
+   * @param {String|Number} value 校验的参数
+   * @param {REGEXP} regex 使用的REGEXP中的正则
+   * @returns {Boolean} 返回校验的结果
+   */
+  function regexpTest(value, regex) {
+    return new RegExp(regex).test(value);
+  }
+
+  /* 常用校验 */
   /**
    * 是中文
    * @param {String} value 校验的参数
@@ -2872,21 +2892,10 @@
     return regexpTest(value, REGEXP.URL);
   }
 
-  /* 通过传入正则校验 */
-  /**
-   * 正则校验的方法
-   * @description 类型为REGEXP对应的正则
-   * @param {String|Number} value 校验的参数
-   * @param {REGEXP} regex 使用的REGEXP中的正则
-   * @returns {Boolean} 返回校验的结果
-   */
-  function regexpTest(value, regex) {
-    return new RegExp(regex).test(value);
-  }
-
   var regexpUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     REGEXP: REGEXP,
+    regexpTest: regexpTest,
     isChinese: isChinese,
     isEnglish: isEnglish,
     isExternal: isExternal,
@@ -2895,11 +2904,10 @@
     isMobile: isMobile$1,
     isEmail: isEmail,
     isIdCard: isIdCard,
-    isUrl: isUrl,
-    regexpTest: regexpTest
+    isUrl: isUrl
   });
 
-  /* 算数计算 */
+  /* 数字计算 */
   /**
    * 两个数字相加
    * @param {String|Number} arg1 第一个数字
@@ -3522,6 +3530,7 @@
     });
   }
 
+  /* 下载文件 */
   /**
    * 下载blob格式的文件
    * @param {Blob} blob blob数据
@@ -4024,6 +4033,7 @@
     clearSessionStorage: clearSessionStorage
   });
 
+  /* Class操作 */
   /**
    * 判断元素包含某个类名
    * @param {Element} elem 元素
@@ -4064,6 +4074,7 @@
     addClass(elem, newClassName);
   }
 
+  /* Style操作 */
   /**
    * 添加元素的style样式
    * @param {Element} elem 元素
@@ -4097,6 +4108,7 @@
     elem.style.removeProperty(name);
   }
 
+  /* Html转码 */
   /**
    * html标签转义
    * @param {String} htmlStr html字符串
@@ -4144,6 +4156,7 @@
     );
   }
 
+  /* 复制剪切板 */
   /**
    * 复制文本到剪贴板
    * @param {String} text 文本
@@ -4361,17 +4374,9 @@
     isQQ: isQQ
   });
 
+  /* 缓存处理（同步） */
   /**
    * 设置缓存
-   * @param {String} key key值
-   * @param {*} data data数据
-   */
-  function setStorage(key, data) {
-    wx.setStorage({ key, data });
-  }
-
-  /**
-   * 设置缓存（同步）
    * @param {String} key key值
    * @param {*} data data数据
    */
@@ -4380,33 +4385,24 @@
   }
 
   /**
-   * 通过key从缓存中获取数据
-   * @param {String} key key值
-   * @returns {*} 返回获取的值
-   */
-  function getStorage(key) {
-    return wx.getStorage({ key }) || undefined;
-  }
-
-  /**
-   * 通过key从缓存中获取数据（同步）
+   * 获得缓存数据
    * @param {String} key key值
    * @returns {*} 返回获取的值
    */
   function getStorageSync(key) {
-    return wx.getStorageSync(key) || undefined;
+    return wx.getStorageSync(key);
   }
 
   /**
-   * 通过key从缓存中删除数据
-   * @param {String} key key值
+   * 获得缓存信息
+   * @returns {Object} 返回缓存信息
    */
-  function removeStorage(key) {
-    wx.removeStorage({ key });
+  function getStorageInfoSync() {
+    return wx.getStorageInfoSync();
   }
 
   /**
-   * 通过key从缓存中删除数据（同步）
+   * 删除缓存数据
    * @param {String} key key值
    */
   function removeStorageSync(key) {
@@ -4416,27 +4412,120 @@
   /**
    * 清空所有缓存数据
    */
-  function clearStorage() {
-    wx.clearStorageSync();
-  }
-
-  /**
-   * 清空所有缓存数据（同步）
-   */
   function clearStorageSync() {
     wx.clearStorageSync();
   }
 
+  /* 缓存处理（异步） */
+  /**
+   * 设置缓存
+   * @param {String} key key值
+   * @param {*} data data数据
+   * @param {Boolean} encrypt 是否开启加密存储
+   * @returns {Promise} 返回Promise
+   */
+  function setStorage({ key, data, encrypt = false }) {
+    return new Promise((resolve, reject) => {
+      wx.setStorage({
+        key,
+        data,
+        encrypt,
+        success(res) {
+          resolve(res);
+        },
+        fail(err) {
+          reject(err);
+        },
+      });
+    });
+  }
+
+  /**
+   * 获得缓存数据
+   * @param {String} key key值
+   * @param {Boolean} encrypt 是否开启加密存储
+   * @returns {Promise} 返回Promise
+   */
+  function getStorage({ key, encrypt = false }) {
+    return new Promise((resolve, reject) => {
+      wx.getStorage({
+        key,
+        encrypt,
+        success(res) {
+          resolve(res);
+        },
+        fail(err) {
+          reject(err);
+        },
+      });
+    });
+  }
+
+  /**
+   * 获得缓存信息
+   * @returns {Object} 返回Promise
+   */
+  function getStorageInfo() {
+    return new Promise((resolve, reject) => {
+      wx.getStorageInfo({
+        success(res) {
+          resolve(res);
+        },
+        fail(err) {
+          reject(err);
+        },
+      });
+    });
+  }
+
+  /**
+   * 删除缓存数据
+   * @param {String} key key值
+   * @returns {Promise} 返回Promise
+   */
+  function removeStorage({ key }) {
+    return new Promise((resolve, reject) => {
+      wx.removeStorage({
+        key,
+        success(res) {
+          resolve(res);
+        },
+        fail(err) {
+          reject(err);
+        },
+      });
+    });
+  }
+
+  /**
+   * 清空所有缓存数据
+   * @returns {Promise} 返回Promise
+   */
+  function clearStorage() {
+    return new Promise((resolve, reject) => {
+      wx.clearStorage({
+        success(res) {
+          resolve(res);
+        },
+        fail(err) {
+          reject(err);
+        },
+      });
+    });
+  }
+
   var weappUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    setStorage: setStorage,
     setStorageSync: setStorageSync,
-    getStorage: getStorage,
     getStorageSync: getStorageSync,
-    removeStorage: removeStorage,
+    getStorageInfoSync: getStorageInfoSync,
     removeStorageSync: removeStorageSync,
-    clearStorage: clearStorage,
-    clearStorageSync: clearStorageSync
+    clearStorageSync: clearStorageSync,
+    setStorage: setStorage,
+    getStorage: getStorage,
+    getStorageInfo: getStorageInfo,
+    removeStorage: removeStorage,
+    clearStorage: clearStorage
   });
 
   // 测试加载成功方法

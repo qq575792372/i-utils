@@ -2,6 +2,8 @@
 
 <!-- 数据类型 -->
 
+## 数据类型
+
 ### \_.isInteger(value)
 
 判断是整数
@@ -379,6 +381,8 @@ console.log(LimeUtil.isBigInt(new BigInt())); // 输出：true
 
 <!-- 数据值校验 -->
 
+## 数据值校验
+
 ### \_.isTrue(value)
 
 判断值为真
@@ -664,7 +668,9 @@ console.log(LimeUtil.isNotUndefined(12.01)); // 输出：true
 
 ---
 
-<!-- 比较 -->
+<!-- 数据比较 -->
+
+## 数据比较
 
 ### \_.equals(value)
 
@@ -721,8 +727,8 @@ console.log(LimeUtil.equalsIgnoreCase(121, 12)); // 输出：false
 
 - #### 参数
 
-  `x` {_} 数据 1  
-  `y` {_} 数据 2
+  `x` {\*} 数据 1  
+  `y` {\*} 数据 2
 
 - #### 返回值
 
