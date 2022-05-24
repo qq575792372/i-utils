@@ -1,4 +1,4 @@
-import { isEmpty, isNull } from "../validate";
+import { isEmpty, isNull, isObject, isArray, isDate } from "../validate";
 
 /* 对象转换 */
 /**
@@ -84,7 +84,7 @@ export function deepClone(source) {
   if (isNull(source)) return undefined;
 
   //  Object
-  if (source instanceof Object) {
+  if (isObject(source)) {
     let copy = {};
     for (let attr in source) {
       if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
@@ -93,7 +93,7 @@ export function deepClone(source) {
   }
 
   //  Array
-  else if (source instanceof Array) {
+  else if (isArray(source)) {
     let copy = [];
     for (let i = 0, len = source.length; i < len; i++) {
       copy[i] = deepClone(source[i]);
@@ -102,14 +102,13 @@ export function deepClone(source) {
   }
 
   //  Date
-  else if (source instanceof Date) {
+  else if (isDate(source)) {
     let copy = new Date();
     copy.setTime(source.getTime());
     return copy;
   }
 
-  // Other
-  // 原路返回源数据
+  // Other 原路返回源数据
   else {
     return source;
   }

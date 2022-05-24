@@ -1,5 +1,5 @@
 /*!
- * @lime-util/core v3.2.3
+ * @lime-util/core v3.2.5
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -1286,7 +1286,7 @@
     if (isNull(source)) return undefined;
 
     //  Object
-    if (source instanceof Object) {
+    if (isObject(source)) {
       let copy = {};
       for (let attr in source) {
         if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
@@ -1295,7 +1295,7 @@
     }
 
     //  Array
-    else if (source instanceof Array) {
+    else if (isArray(source)) {
       let copy = [];
       for (let i = 0, len = source.length; i < len; i++) {
         copy[i] = deepClone(source[i]);
@@ -1304,14 +1304,13 @@
     }
 
     //  Date
-    else if (source instanceof Date) {
+    else if (isDate(source)) {
       let copy = new Date();
       copy.setTime(source.getTime());
       return copy;
     }
 
-    // Other
-    // 原路返回源数据
+    // Other 原路返回源数据
     else {
       return source;
     }
