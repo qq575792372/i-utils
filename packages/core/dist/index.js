@@ -1,5 +1,5 @@
 /*!
- * @lime-util/core v3.2.1
+ * @lime-util/core v3.2.3
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -1379,24 +1379,24 @@
   });
 
   /**
-   * 日期格式转为日期
+   * 解析为日期对象
    * @description 支持：日期字符串，时间戳，Unix时间戳
-   * @param {String|Timestamp|UnixTimestamp} date 日期，如果是字符串，仅支持：yyyy-MM-dd，yyyy/MM-dd，MM/dd/yyyy，自行转换支持的格式
+   * @param {String|Timestamp|UnixTimestamp} value 日期参数，如果是字符串格式，仅支持 yyyy-MM-dd，yyyy-MM-dd HH:mm:ss，yyyy/MM/dd，yyyy/MM/dd HH:mm:ss，MM/dd/yyyy，MM/dd/yyyy HH:mm:ss 格式
    * @returns {Date} 返回转换后的日期
    */
-  function parseDate(date) {
-    if (isNull(date)) return;
+  function parseDate(value) {
+    if (isNull(value)) return;
     // 日期字符串
-    if (isString(date)) {
-      return new Date(date.replace(/-/g, "/"));
+    if (isString(value)) {
+      return new Date(value.replace(/-/g, "/"));
     }
     // 时间戳
-    if (isInteger(date) && String(date).length == 13) {
-      return new Date(date);
+    if (isInteger(value) && String(value).length == 13) {
+      return new Date(value);
     }
     // unix时间戳
-    if (isInteger(date) && String(date).length == 10) {
-      return new Date(date * 1000);
+    if (isInteger(value) && String(value).length == 10) {
+      return new Date(value * 1000);
     }
   }
 

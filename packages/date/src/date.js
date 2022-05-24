@@ -7,116 +7,7 @@ import {
 } from "../../core/src/validate";
 import { parseInt } from "../../core/src/number";
 
-/**
- * 是否是今天
- * @param {String|Date} date 日期参数
- * @returns {Boolean} 返回true和false
- */
-export function isToday(date) {
-  if (isNull(date)) return;
-  // 日期
-  if (isString(date)) {
-    date = parseDate(date);
-  }
-  // 当前日期
-  let nowDate = getNow();
-  // 指定日期
-  return ["getFullYear", "getMonth", "getDate"].every(
-    (i) => nowDate[i]() === date[i]()
-  );
-}
-
-/**
- * 今天是否是工作日
- * @returns {Boolean} 返回true和false
- */
-export function isWorkday() {
-  let dayOfWeek = getDayOfWeek();
-  return dayOfWeek != 6 && dayOfWeek != 7;
-}
-
-/**
- * 今天是否是周末（周六和周日）
- * @returns {Boolean} 返回true和false
- */
-export function isWeekend() {
-  let dayOfWeek = getDayOfWeek();
-  return dayOfWeek == 6 || dayOfWeek == 7;
-}
-
-/* 闰年，上午，下午 */
-/**
- * 是否是闰年
- * @description 闰年366天，平年365天
- * @param {Number} year 年份
- * @returns {Boolean} 返回true和false
- */
-export function isLeapYear(year) {
-  return (year % 100 !== 0 && year % 4 === 0) || year % 400 === 0;
-}
-
-/**
- * 现在是否是上午
- * @returns {Boolean} 返回true和false
- */
-export function isAM() {
-  return new Date().getHours() < 12;
-}
-
-/**
- * 现在是否是下午
- * @returns {Boolean} 返回true和false
- */
-export function isPM() {
-  return new Date().getHours() >= 12;
-}
-
-/* 比较是同一 天，周，月，年 */
-/**
- * 比较两个日期是否是同一天
- * @param {Date} date1 第一个日期
- * @param {Date} date2 第二个日期
- * @returns {Boolean} 返回true和false
- */
-export function isSameDay(date1, date2) {
-  return ["getFullYear", "getMonth", "getDate"].every(
-    (i) => date1[i]() === date2[i]()
-  );
-}
-
-/**
- * 比较两个日期是否是同一周
- * @param {Date} date1 第一个日期
- * @param {Date} date2 第二个日期
- * @returns {Boolean} 返回true和false
- */
-export function isSameWeek(date1, date2) {
-  let diffDate1 = date1.getTime() / (24 * 60 * 60 * 1000);
-  let diffDate2 = date2.getTime() / (24 * 60 * 60 * 1000);
-  return parseInt((diffDate1 + 4) / 7) == parseInt((diffDate2 + 4) / 7);
-}
-
-/**
- * 比较两个日期是否是同一个月
- * @param {Date} date1 第一个日期
- * @param {Date} date2 第二个日期
- * @returns {Boolean} 返回true和false
- */
-export function isSameMonth(date1, date2) {
-  return ["getFullYear", "getMonth"].every((i) => date1[i]() === date2[i]());
-}
-
-/**
- * 比较两个日期是否是同一年
- * @param {Date} date1 第一个日期
- * @param {Date} date2 第二个日期
- * @returns {Boolean} 返回true和false
- */
-export function isSameYear(date1, date2) {
-  return ["getFullYear"].every((i) => date1[i]() === date2[i]());
-}
-
-/* 简化名称获取时间 */
+/* 快捷日期 */
 
 /**
  * 今天
@@ -143,7 +34,7 @@ export function tomorrow() {
 }
 
 /**
- * 上周（7 天前）
+ * 上周（7天前日期）
  * @returns {String} 返回日期字符串
  */
 export function prevWeek() {
@@ -151,7 +42,7 @@ export function prevWeek() {
 }
 
 /**
- * 下周（7 天后）
+ * 下周（7天后日期）
  * @returns {String} 返回日期字符串
  */
 export function nextWeek() {
@@ -159,7 +50,7 @@ export function nextWeek() {
 }
 
 /**
- * 上个月（30 天前）
+ * 上个月（30天前日期）
  * @returns {String} 返回日期字符串
  */
 export function prevMonth() {
@@ -167,7 +58,7 @@ export function prevMonth() {
 }
 
 /**
- * 下个月（30 天后）
+ * 下个月（30天后日期）
  * @returns {String} 返回日期字符串
  */
 export function nextMonth() {
@@ -175,7 +66,7 @@ export function nextMonth() {
 }
 
 /**
- * 去年（365 天前）
+ * 去年（365天前日期）
  * @returns {String} 返回日期字符串
  */
 export function prevYear() {
@@ -183,17 +74,145 @@ export function prevYear() {
 }
 
 /**
- * 明年（365 天后）
+ * 明年（365天后日期）
  *@returns {String} 返回日期字符串
  */
 export function nextYear() {
   return formatDate(addDate(new Date(), +365));
 }
 
-/* 获取日期，时间字符串，时间戳等等 */
+/* 判断某刻日期 */
 /**
- * 获得现在的日期
- * @returns {Date} 返回现在的日期
+ * 现在是否为上午
+ * @returns {Boolean} 返回true和false
+ */
+export function isAM() {
+  return new Date().getHours() < 12;
+}
+
+/**
+ * 现在是否为下午
+ * @returns {Boolean} 返回true和false
+ */
+export function isPM() {
+  return new Date().getHours() >= 12;
+}
+
+/**
+ * 是否为今天
+ * @param {String|Date} date 日期参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isToday(date) {
+  if (isNull(date)) return;
+  // 字符串日期
+  if (isString(date)) {
+    date = parseDate(date);
+  }
+
+  // 当前日期
+  let nowDate = new Date();
+
+  // 判断日期
+  return ["getFullYear", "getMonth", "getDate"].every(
+    (i) => nowDate[i]() === date[i]()
+  );
+}
+
+/**
+ * 今天是否为工作日
+ * @returns {Boolean} 返回true和false
+ */
+export function isWorkday() {
+  let dayOfWeek = getDayOfWeek();
+  return dayOfWeek != 6 && dayOfWeek != 7;
+}
+
+/**
+ * 今天是否为周末（周六和周日）
+ * @returns {Boolean} 返回true和false
+ */
+export function isWeekend() {
+  let dayOfWeek = getDayOfWeek();
+  return dayOfWeek == 6 || dayOfWeek == 7;
+}
+
+/**
+ * 是否为闰年
+ * @description 闰年366天，平年365天
+ * @param {Number} year 年份
+ * @returns {Boolean} 返回true和false
+ */
+export function isLeapYear(year) {
+  return (year % 100 !== 0 && year % 4 === 0) || year % 400 === 0;
+}
+
+/* 比较同一 天，周，月，年 */
+/**
+ * 比较两个日期是否为同一天
+ * @param {Date} date1 第一个日期
+ * @param {Date} date2 第二个日期
+ * @returns {Boolean} 返回true和false
+ */
+export function isSameDay(date1, date2) {
+  return ["getFullYear", "getMonth", "getDate"].every(
+    (i) => date1[i]() === date2[i]()
+  );
+}
+
+/**
+ * 比较两个日期是否为同一周
+ * @param {Date} date1 第一个日期
+ * @param {Date} date2 第二个日期
+ * @returns {Boolean} 返回true和false
+ */
+export function isSameWeek(date1, date2) {
+  let diffDate1 = date1.getTime() / (24 * 60 * 60 * 1000);
+  let diffDate2 = date2.getTime() / (24 * 60 * 60 * 1000);
+  return parseInt((diffDate1 + 4) / 7) == parseInt((diffDate2 + 4) / 7);
+}
+
+/**
+ * 比较两个日期是否为同一个月
+ * @param {Date} date1 第一个日期
+ * @param {Date} date2 第二个日期
+ * @returns {Boolean} 返回true和false
+ */
+export function isSameMonth(date1, date2) {
+  return ["getFullYear", "getMonth"].every((i) => date1[i]() === date2[i]());
+}
+
+/**
+ * 比较两个日期是否为同一年
+ * @param {Date} date1 第一个日期
+ * @param {Date} date2 第二个日期
+ * @returns {Boolean} 返回true和false
+ */
+export function isSameYear(date1, date2) {
+  return ["getFullYear"].every((i) => date1[i]() === date2[i]());
+}
+
+/* 今天是否为 月初、月末 */
+/**
+ * 今天是否为本月第一天
+ * @returns {Boolean} 返回true和false
+ */
+export function isFirstDayOfMonth() {
+  return getDay() == 1;
+}
+
+/**
+ * 今天是否为本月最后一天
+ * @returns {Boolean} 返回true和false
+ */
+export function isLastDayOfMonth() {
+  return getDay() == getFullDayOfMonth();
+}
+
+/* 获取日期，时间戳等 */
+/**
+ * 获得此刻的日期
+ * @returns {Date} 返回日期
  */
 export function getNow() {
   return new Date();
@@ -391,7 +410,7 @@ export function getWeekOfYear(date = new Date()) {
   return Math.ceil((diff + startDay) / 7);
 }
 
-/* 获得当前日期所在 周，月 的第一天和最后一天 */
+/* 当前日期所在 周，月 的第一天和最后一天 */
 /**
  * 获得当前日期所在周的第一天
  * @param {Date} date 日期参数，默认当前日期
@@ -433,7 +452,7 @@ export function getLastDayOfMonth(date = new Date()) {
   return formatDate(new Date(date.getFullYear(), date.getMonth() + 1, 0));
 }
 
-/* 指定月，年，总共的天数 */
+/* 获得当前 月，年 的总天数 */
 /**
  * 获得当前日期所在月总共多少天
  * @param {Date} date 日期参数，默认当前日期
@@ -452,7 +471,7 @@ export function getFullDayOfYear(date = new Date()) {
   return isLeapYear(date.getFullYear()) ? 366 : 365;
 }
 
-/* 过去时间和剩余时间字符串 */
+/* 过去时间和剩余时间的显示 */
 /**
  * 获得过去时间的字符串显示
  * @description 例如：刚刚，1分钟前，1小时前等
@@ -533,7 +552,7 @@ export function getOverTime(date) {
   return `${d}天 ${h}小时 ${m}分钟 ${s}秒`;
 }
 
-/* 计算加减日期的 年，月，日，时，分，秒 */
+/* 计算日期加减 年，月，日，时，分，秒 */
 /**
  * 日期加减年
  * @param {Date} date 日期参数，默认当前日期
@@ -598,126 +617,6 @@ export function addMinutes(date = new Date(), num = +1) {
 export function addSeconds(date = new Date(), num = +1) {
   date.setSeconds(date.getSeconds() + num);
   return date;
-}
-
-/* 获得两个日期相差的所有数组 */
-/**
- * 获得两个日期之间的年月日数组
- * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
- * @param {String|Date|Timestamp|UnixTimestamp} date1 第一个日期
- * @param {String|Date|Timestamp|UnixTimestamp} date2 第二个日期
- * @returns {Array} 返回年月日数组
- */
-export function betweenDays(date1, date2) {
-  if (isEmpty(date1) || isEmpty(date2)) return;
-  // 是日期字符串
-  if (isString(date1) && isString(date2)) {
-    date1 = parseDate(date1);
-    date2 = parseDate(date2);
-  }
-  // 是时间戳
-  if (isInteger(date1) && isInteger(date2)) {
-    // 时间戳
-    if (String(date1).length == 13 && String(date2).length == 13) {
-      date1 = new Date(date1);
-      date2 = new Date(date2);
-    }
-    // unix时间戳
-    if (String(date1).length == 10 && String(date2).length == 10) {
-      date1 = new Date(date1 * 1000);
-      date2 = new Date(date2 * 1000);
-    }
-  }
-
-  // 计算
-  return _betweenDays(date1, date2);
-}
-
-/**
- * 获得两个日期之间的年月数组
- * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
- * @param {String|Date|Timestamp|UnixTimestamp} date1 第一个日期
- * @param {String|Date|Timestamp|UnixTimestamp} date2 第二个日期
- * @returns {Array} 返回年月数组
- */
-export function betweenMonths(date1, date2) {
-  if (isEmpty(date1) || isEmpty(date2)) return;
-  // 是日期字符串
-  if (isString(date1) && isString(date2)) {
-    date1 = parseDate(date1);
-    date2 = parseDate(date2);
-  }
-  // 是时间戳
-  if (isInteger(date1) && isInteger(date2)) {
-    // 时间戳
-    if (String(date1).length == 13 && String(date2).length == 13) {
-      date1 = new Date(date1);
-      date2 = new Date(date2);
-    }
-    // unix时间戳
-    if (String(date1).length == 10 && String(date2).length == 10) {
-      date1 = new Date(date1 * 1000);
-      date2 = new Date(date2 * 1000);
-    }
-  }
-
-  // 计算
-  return _betweenMonths(date1, date2);
-}
-
-/**
- * 获得两个日期之间的年数组
- * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
- * @param {String|Date|Timestamp|UnixTimestamp} date1 第一个日期
- * @param {String|Date|Timestamp|UnixTimestamp} date2 第二个日期
- * @returns {Array} 返回年数组
- */
-export function betweenYears(date1, date2) {
-  if (isEmpty(date1) || isEmpty(date2)) return;
-  // 是日期字符串
-  if (isString(date1) && isString(date2)) {
-    date1 = parseDate(date1);
-    date2 = parseDate(date2);
-  }
-  // 是时间戳
-  if (isInteger(date1) && isInteger(date2)) {
-    // 时间戳
-    if (String(date1).length == 13 && String(date2).length == 13) {
-      date1 = new Date(date1);
-      date2 = new Date(date2);
-    }
-    // unix时间戳
-    if (String(date1).length == 10 && String(date2).length == 10) {
-      date1 = new Date(date1 * 1000);
-      date2 = new Date(date2 * 1000);
-    }
-  }
-  // 计算
-  return _betweenYears(date1, date2);
-}
-
-/* 比较日期 */
-/**
- * 比较两个日期的大小
- * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
- * @param {String|Date|Timestamp|UnixTimestamp} date1 第一个日期
- * @param {String|Date|Timestamp|UnixTimestamp} date2 第二个日期
- * @returns {Boolean} 返回 true：第一个日期大于第二个日期；false：第一个日期小于第二个日期；
- */
-export function compareDate(date1, date2) {
-  if (isEmpty(date1) || isEmpty(date2)) return;
-  // 是日期字符串
-  if (isString(date1) && isString(date2)) {
-    date1 = parseDate(date1);
-    date2 = parseDate(date2);
-  }
-  // 是时间戳或unix时间戳
-  if (isInteger(date1) && isInteger(date2)) {
-    return date1 > date2;
-  }
-
-  // 计算
-  return date1 > date2;
 }
 
 /* 计算两个日期相差 */
@@ -861,7 +760,127 @@ export function diffYear(date1, date2) {
   return diff >= 0 ? Math.abs(diff) : diff;
 }
 
-/* 格式化字符串和转化日期 */
+/* 获得两个日期之间数组 */
+/**
+ * 获得两个日期之间的年月日数组
+ * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
+ * @param {String|Date|Timestamp|UnixTimestamp} date1 第一个日期
+ * @param {String|Date|Timestamp|UnixTimestamp} date2 第二个日期
+ * @returns {Array} 返回年月日数组
+ */
+export function betweenDays(date1, date2) {
+  if (isEmpty(date1) || isEmpty(date2)) return;
+  // 是日期字符串
+  if (isString(date1) && isString(date2)) {
+    date1 = parseDate(date1);
+    date2 = parseDate(date2);
+  }
+  // 是时间戳
+  if (isInteger(date1) && isInteger(date2)) {
+    // 时间戳
+    if (String(date1).length == 13 && String(date2).length == 13) {
+      date1 = new Date(date1);
+      date2 = new Date(date2);
+    }
+    // unix时间戳
+    if (String(date1).length == 10 && String(date2).length == 10) {
+      date1 = new Date(date1 * 1000);
+      date2 = new Date(date2 * 1000);
+    }
+  }
+
+  // 计算
+  return _betweenDays(date1, date2);
+}
+
+/**
+ * 获得两个日期之间的年月数组
+ * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
+ * @param {String|Date|Timestamp|UnixTimestamp} date1 第一个日期
+ * @param {String|Date|Timestamp|UnixTimestamp} date2 第二个日期
+ * @returns {Array} 返回年月数组
+ */
+export function betweenMonths(date1, date2) {
+  if (isEmpty(date1) || isEmpty(date2)) return;
+  // 是日期字符串
+  if (isString(date1) && isString(date2)) {
+    date1 = parseDate(date1);
+    date2 = parseDate(date2);
+  }
+  // 是时间戳
+  if (isInteger(date1) && isInteger(date2)) {
+    // 时间戳
+    if (String(date1).length == 13 && String(date2).length == 13) {
+      date1 = new Date(date1);
+      date2 = new Date(date2);
+    }
+    // unix时间戳
+    if (String(date1).length == 10 && String(date2).length == 10) {
+      date1 = new Date(date1 * 1000);
+      date2 = new Date(date2 * 1000);
+    }
+  }
+
+  // 计算
+  return _betweenMonths(date1, date2);
+}
+
+/**
+ * 获得两个日期之间的年数组
+ * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
+ * @param {String|Date|Timestamp|UnixTimestamp} date1 第一个日期
+ * @param {String|Date|Timestamp|UnixTimestamp} date2 第二个日期
+ * @returns {Array} 返回年数组
+ */
+export function betweenYears(date1, date2) {
+  if (isEmpty(date1) || isEmpty(date2)) return;
+  // 是日期字符串
+  if (isString(date1) && isString(date2)) {
+    date1 = parseDate(date1);
+    date2 = parseDate(date2);
+  }
+  // 是时间戳
+  if (isInteger(date1) && isInteger(date2)) {
+    // 时间戳
+    if (String(date1).length == 13 && String(date2).length == 13) {
+      date1 = new Date(date1);
+      date2 = new Date(date2);
+    }
+    // unix时间戳
+    if (String(date1).length == 10 && String(date2).length == 10) {
+      date1 = new Date(date1 * 1000);
+      date2 = new Date(date2 * 1000);
+    }
+  }
+  // 计算
+  return _betweenYears(date1, date2);
+}
+
+/* 比较日期大小 */
+/**
+ * 比较两个日期的大小
+ * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
+ * @param {String|Date|Timestamp|UnixTimestamp} date1 第一个日期
+ * @param {String|Date|Timestamp|UnixTimestamp} date2 第二个日期
+ * @returns {Boolean} 返回 true：第一个日期大于第二个日期；false：第一个日期小于第二个日期；
+ */
+export function compareDate(date1, date2) {
+  if (isEmpty(date1) || isEmpty(date2)) return;
+  // 是日期字符串
+  if (isString(date1) && isString(date2)) {
+    date1 = parseDate(date1);
+    date2 = parseDate(date2);
+  }
+  // 是时间戳或unix时间戳
+  if (isInteger(date1) && isInteger(date2)) {
+    return date1 > date2;
+  }
+
+  // 计算
+  return date1 > date2;
+}
+
+/* 格式化和解析日期 */
 /**
  * 格式化日期字符串
  * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
@@ -952,24 +971,24 @@ export function formatDate(date, format = "yyyy-MM-dd") {
 }
 
 /**
- * 日期格式转为日期
+ * 解析为日期对象
  * @description 支持：日期字符串，时间戳，Unix时间戳
- * @param {String|Timestamp|UnixTimestamp} date 日期，如果是字符串，仅支持：yyyy-MM-dd，yyyy/MM-dd，MM/dd/yyyy，自行转换支持的格式
+ * @param {String|Timestamp|UnixTimestamp} value 日期参数，如果是字符串格式，仅支持 yyyy-MM-dd，yyyy-MM-dd HH:mm:ss，yyyy/MM/dd，yyyy/MM/dd HH:mm:ss，MM/dd/yyyy，MM/dd/yyyy HH:mm:ss 格式
  * @returns {Date} 返回转换后的日期
  */
-export function parseDate(date) {
-  if (isNull(date)) return;
+export function parseDate(value) {
+  if (isNull(value)) return;
   // 日期字符串
-  if (isString(date)) {
-    return new Date(date.replace(/-/g, "/"));
+  if (isString(value)) {
+    return new Date(value.replace(/-/g, "/"));
   }
   // 时间戳
-  if (isInteger(date) && String(date).length == 13) {
-    return new Date(date);
+  if (isInteger(value) && String(value).length == 13) {
+    return new Date(value);
   }
   // unix时间戳
-  if (isInteger(date) && String(date).length == 10) {
-    return new Date(date * 1000);
+  if (isInteger(value) && String(value).length == 10) {
+    return new Date(value * 1000);
   }
 }
 
