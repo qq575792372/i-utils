@@ -1,4 +1,4 @@
-import { isEmpty, isNull, isObject, isArray, isDate } from "../validate";
+import { isEmpty, isObject, isArray, isDate } from "../validate";
 
 /* 对象转换 */
 /**
@@ -64,30 +64,27 @@ export function parseJson(json) {
   return JSON.parse(json);
 }
 
-/* 对象拷贝，对比，合并等操作 */
+/* 数据拷贝，对比，合并等操作 */
 /**
  * 浅拷贝数据
- * @param {*} source 需要克隆的数据
- * @returns {*} 返回深度克隆后的数据
+ * @param {*} source 拷贝的数据
+ * @returns {*} 返回浅拷贝的数据
  */
 export function clone(source) {
-  if (isNull(source)) return undefined;
   return Object.assign(source);
 }
 
 /**
  * 深拷贝数据
- * @param {*} source 需要克隆的数据
- * @returns {*} 返回深度克隆后的数据
+ * @param {*} source 拷贝的数据
+ * @returns {*} 返回深拷贝的数据
  */
-export function deepClone(source) {
-  if (isNull(source)) return undefined;
-
+export function cloneDeep(source) {
   //  Object
   if (isObject(source)) {
     let copy = {};
     for (let attr in source) {
-      if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
+      if (source.hasOwnProperty(attr)) copy[attr] = cloneDeep(source[attr]);
     }
     return copy;
   }
@@ -96,7 +93,7 @@ export function deepClone(source) {
   else if (isArray(source)) {
     let copy = [];
     for (let i = 0, len = source.length; i < len; i++) {
-      copy[i] = deepClone(source[i]);
+      copy[i] = cloneDeep(source[i]);
     }
     return copy;
   }

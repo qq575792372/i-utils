@@ -1,5 +1,5 @@
 /*!
- * @lime-util/core v3.2.5
+ * @lime-util/core v3.2.6
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -1266,30 +1266,27 @@
     return JSON.parse(json);
   }
 
-  /* 对象拷贝，对比，合并等操作 */
+  /* 数据拷贝，对比，合并等操作 */
   /**
    * 浅拷贝数据
-   * @param {*} source 需要克隆的数据
-   * @returns {*} 返回深度克隆后的数据
+   * @param {*} source 拷贝的数据
+   * @returns {*} 返回浅拷贝的数据
    */
   function clone(source) {
-    if (isNull(source)) return undefined;
     return Object.assign(source);
   }
 
   /**
    * 深拷贝数据
-   * @param {*} source 需要克隆的数据
-   * @returns {*} 返回深度克隆后的数据
+   * @param {*} source 拷贝的数据
+   * @returns {*} 返回深拷贝的数据
    */
-  function deepClone(source) {
-    if (isNull(source)) return undefined;
-
+  function cloneDeep(source) {
     //  Object
     if (isObject(source)) {
       let copy = {};
       for (let attr in source) {
-        if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
+        if (source.hasOwnProperty(attr)) copy[attr] = cloneDeep(source[attr]);
       }
       return copy;
     }
@@ -1298,7 +1295,7 @@
     else if (isArray(source)) {
       let copy = [];
       for (let i = 0, len = source.length; i < len; i++) {
-        copy[i] = deepClone(source[i]);
+        copy[i] = cloneDeep(source[i]);
       }
       return copy;
     }
@@ -1372,7 +1369,7 @@
     stringifyJson: stringifyJson,
     parseJson: parseJson,
     clone: clone,
-    deepClone: deepClone,
+    cloneDeep: cloneDeep,
     objectEquals: objectEquals,
     merge: merge
   });

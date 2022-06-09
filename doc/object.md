@@ -130,9 +130,9 @@ console.log(obj); // 输出：obj对象
 
 ---
 
-<!-- 对象拷贝，对比，合并等操作 -->
+<!-- 数据拷贝，对比，合并等操作 -->
 
-## 对象拷贝，对比，合并等操作
+## 数据拷贝，对比，合并等操作
 
 ### \_.clone(source)
 
@@ -140,40 +140,46 @@ console.log(obj); // 输出：obj对象
 
 - #### 参数
 
-  `source` {\*} 需要克隆的数据
+  `source` {\*} 拷贝的数据
 
 - #### 返回值
 
-  {\*} 返回深度克隆后的数据
+  {\*} 返回浅拷贝的数据
 
 - #### 示例
 
 ```javascript
 let obj = { id: 1, name: "test" };
 let newObj = LimeUtil.clone(obj);
-console.log(newObj); // 输出：浅拷贝后的数据
+console.log(newObj); // 输出：浅拷贝后的对象
 ```
 
 ---
 
-### \_.deepClone(source)
+### \_.cloneDeep(source)
 
 深拷贝数据
 
 - #### 参数
 
-  `source` {\*} 需要克隆的数据
+  `source` {\*} 拷贝的数据
 
 - #### 返回值
 
-  {\*} 返回深度克隆后的数据
+  {\*} 返回深拷贝的数据
 
 - #### 示例
 
 ```javascript
+// 对象
 let obj = { id: 1, name: "test" };
-let newObj = LimeUtil.deepClone(obj);
-console.log(newObj); // 输出：深拷贝后的数据
+let newObj = LimeUtil.cloneDeep(obj);
+console.log(newObj); // 输出：深拷贝后的对象
+
+// 数组对象
+let list = [{ id: 1, name: "test" }];
+let newList = LimeUtil.cloneDeep(list);
+console.log(newList); // 输出：深拷贝后的数组对象
 ```
 
 ---
