@@ -13,7 +13,7 @@ npm i @lime-util/core --save
 #### 2. 或在浏览器中直接使用
 
 ```html
-<!-- 将工具包下面 dist/index.js 文件拷贝出来引入路径 -->
+<!-- 将工具包下面 dist/index.js 文件拷贝出来引入 -->
 <script src="dist/index.js"></script>
 <!-- 使用 -->
 <script>
