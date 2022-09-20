@@ -1,5 +1,5 @@
 /*!
- * @lime-util/util v3.2.6
+ * @lime-util/util v3.2.7
  * Copyright 2021-2022, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
@@ -1051,6 +1051,29 @@
   }
 
   /**
+   * 数组指定下标位置添加元素
+   * @param {Array} source 源数组
+   * @param {Number} index 下标位置，默认0
+   * @param {*} value 添加的元素
+   * @returns {Array} 返回新的数组
+   */
+  function arrayInsert(source = [], index = 0, value = undefined) {
+    source.splice(index, 0, value);
+    return source;
+  }
+
+  /**
+   * 数组指定下标位置删除元素
+   * @param {Array} source 源数组
+   * @param {Number} index 下标位置，默认0
+   * @returns {Array} 返回新的数组
+   */
+  function arrayRemove(source = [], index = 0) {
+    source.splice(index, 1);
+    return source;
+  }
+
+  /**
    * 数组元素去重
    * @param {Array} array 数组
    * @returns {Array} 返回去重后的数组
@@ -1108,10 +1131,7 @@
    */
   function arraySwap(array, sourceIndex, targetIndex) {
     const target = [...array];
-    [target[targetIndex], target[sourceIndex]] = [
-      array[sourceIndex],
-      array[targetIndex],
-    ];
+    [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
     return target;
   }
 
@@ -1191,6 +1211,8 @@
     inArray: inArray,
     arrayEquals: arrayEquals,
     arrayCreate: arrayCreate,
+    arrayInsert: arrayInsert,
+    arrayRemove: arrayRemove,
     arrayUnique: arrayUnique,
     arrayShuffle: arrayShuffle,
     arraySort: arraySort,

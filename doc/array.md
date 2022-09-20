@@ -165,6 +165,51 @@ console.log(res); // 输出：[0,1,2]
 
 ---
 
+### \_.arrayInsert(source = [], index = 0, value = undefined)
+
+数组指定下标位置添加元素
+
+- #### 参数
+
+  `source` {Array} 源数组
+  `index` {Number} 下标位置，默认 0
+  `value` {\*} 添加的元素
+
+- #### 返回值
+
+  {Array} 返回新的数组
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.arrayInsert([1, 2], 1, "MM");
+console.log(res); // 输出： [1, 'MM', 2]
+```
+
+---
+
+### \_.arrayRemove(source = [], index = 0)
+
+数组指定下标位置删除元素
+
+- #### 参数
+
+  `source` {Array} 源数组
+  `index` {Number} 下标位置，默认 0
+
+- #### 返回值
+
+  {Array} 返回新的数组
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.arrayRemove([1, 2], 1);
+console.log(res); // 输出：[1]
+```
+
+---
+
 ### \_.arrayUnique(array)
 
 数组元素去重

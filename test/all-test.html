@@ -9,6 +9,13 @@
   <body></body>
   <script src="../dist/index.js"></script>
   <script>
-    console.log(LimeUtil);
+    // 统计api的个数
+    let num = 0;
+    Object.keys(LimeUtil).forEach((key) => {
+      if (typeof LimeUtil[key] === "function" && key !== "loadedTest") {
+        num++;
+      }
+    });
+    console.log(`LimeUtil一共 ${num} 个api`);
   </script>
 </html>

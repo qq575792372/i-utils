@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/xe-utils.svg?style=flat-square)](https://github.com/qq575792372/lime-util)
 [![npm license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-🔥 **lime-util** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **245+** ⚡️ 个 Api 方法，包含了开发中经常用到的一些模块方法集合，如`字符串`，`数组`，`浏览器缓存`，`浏览器Cookie`，`Dom处理`，`日期工具`，`数学计算`，`文件处理`，`正则校验`，`微信小程序工具库`等等。
+🔥 **lime-util** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **248+** ⚡️ 个 Api 方法，包含了开发中经常用到的一些模块方法集合，如`字符串`，`数组`，`浏览器缓存`，`浏览器Cookie`，`Dom处理`，`日期工具`，`数学计算`，`文件处理`，`正则校验`，`微信小程序工具库`等等。
 
 ### 📦 安装
 
