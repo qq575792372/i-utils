@@ -1,6 +1,6 @@
 {
   "name": "@lime-util/util",
-  "version": "3.2.7",
+  "version": "3.2.8",
   "description": "lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
   "moduleName": "LimeUtil",
@@ -30,7 +30,7 @@
   "devDependencies": {
     "chalk": "^4.1.2",
     "rimraf": "^3.0.2",
-    "rollup": "^2.68.0",
+    "rollup": "^2.79.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-uglify": "^6.0.4",

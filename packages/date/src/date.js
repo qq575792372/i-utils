@@ -1,10 +1,4 @@
-import {
-  isEmpty,
-  isNull,
-  isInteger,
-  isDate,
-  isString,
-} from "../../core/src/validate";
+import { isEmpty, isNull, isInteger, isDate, isString } from "../../core/src/validate";
 import { parseInt } from "../../core/src/number";
 
 /* 快捷日期 */
@@ -114,9 +108,35 @@ export function isToday(date) {
   let nowDate = new Date();
 
   // 判断日期
-  return ["getFullYear", "getMonth", "getDate"].every(
-    (i) => nowDate[i]() === date[i]()
-  );
+  return ["getFullYear", "getMonth", "getDate"].every((i) => nowDate[i]() === date[i]());
+}
+
+/**
+ * 是否为昨天
+ * @param {String|Date} date 日期参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isYesterday(date) {
+  // 计算时间差
+  let startTime = date.getTime();
+  let currentTime = Date.now();
+  let time = currentTime - startTime;
+  let day = parseInt(time / (1000 * 60 * 60 * 24));
+  return day === 1;
+}
+
+/**
+ * 是否为前天
+ * @param {String|Date} date 日期参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isBeforeYesterday(date) {
+  // 计算时间差
+  let startTime = date.getTime();
+  let currentTime = Date.now();
+  let time = currentTime - startTime;
+  let day = parseInt(time / (1000 * 60 * 60 * 24));
+  return day === 2;
 }
 
 /**
@@ -155,9 +175,7 @@ export function isLeapYear(year) {
  * @returns {Boolean} 返回true和false
  */
 export function isSameDay(date1, date2) {
-  return ["getFullYear", "getMonth", "getDate"].every(
-    (i) => date1[i]() === date2[i]()
-  );
+  return ["getFullYear", "getMonth", "getDate"].every((i) => date1[i]() === date2[i]());
 }
 
 /**
@@ -244,11 +262,7 @@ export function getDateTime(date = new Date(), separator = "-") {
   let hour = date.getHours();
   let minute = date.getMinutes();
   let second = date.getSeconds();
-  return (
-    [year, month, day].map(_digit).join(separator) +
-    " " +
-    [hour, minute, second].map(_digit).join(":")
-  );
+  return [year, month, day].map(_digit).join(separator) + " " + [hour, minute, second].map(_digit).join(":");
 }
 
 /**
@@ -382,11 +396,7 @@ export function getDayOfMonth(date = new Date()) {
  * @returns {Number} 返回天数
  */
 export function getDayOfYear(date = new Date()) {
-  return (
-    Math.ceil(
-      (date - new Date(date.getFullYear().toString())) / (24 * 60 * 60 * 1000)
-    ) + 1
-  );
+  return Math.ceil((date - new Date(date.getFullYear().toString())) / (24 * 60 * 60 * 1000)) + 1;
 }
 
 /* 当前日期是所在 月，年的第几周 */
@@ -490,6 +500,9 @@ export function getPastTime(date, lang = "zh") {
       year: "年前",
       month: "个月前",
       day: "天前",
+      beforeYestoday: "前天",
+      yestoday: "昨天",
+      today: "今天",
       hour: "小时前",
       minute: "分钟前",
       just: "刚刚",
@@ -498,6 +511,9 @@ export function getPastTime(date, lang = "zh") {
       year: " year ago",
       month: " month ago",
       day: " day ago",
+      beforeYestoday: "before yestoday",
+      yestoday: " yestoday",
+      today: " today",
       hour: " hour ago",
       minute: " minute ago",
       just: " just",
@@ -515,12 +531,29 @@ export function getPastTime(date, lang = "zh") {
   let min = parseInt(time / (1000 * 60));
 
   // 返回结果
-  if (year) return year + types[lang].year;
-  if (month) return month + types[lang].month;
-  if (day) return day + types[lang].day;
-  if (hour) return hour + types[lang].hour;
-  if (min) return min + types[lang].minute;
-  else return types[lang].just;
+  if (year) {
+    return year + types[lang].year;
+  } else if (month) {
+    return month + types[lang].month;
+  } else if (day) {
+    if (day === 1) {
+      return types[lang].yestoday;
+    } else if (day === 2) {
+      return types[lang].beforeYestoday;
+    } else {
+      return day + types[lang].day;
+    }
+  } else if (hour) {
+    if (hour > 12) {
+      return types[lang].today;
+    } else {
+      return hour + types[lang].hour;
+    }
+  } else if (min) {
+    return min + types[lang].minute;
+  } else {
+    return types[lang].just;
+  }
 }
 
 /**
@@ -935,37 +968,26 @@ export function formatDate(date, format = "yyyy-MM-dd") {
 
   // 年
   if (/(y+)/.test(format)) {
-    format = format.replace(
-      RegExp.$1,
-      (date.getFullYear() + "").substr(4 - RegExp.$1.length)
-    );
+    format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
   }
   // 周
   if (/(E+)/.test(format)) {
     format = format.replace(
       RegExp.$1,
-      (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") +
-        week[date.getDay()]
+      (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") + week[date.getDay()]
     );
   }
   // 季度
   if (/(q+)/.test(format)) {
     format = format.replace(
       RegExp.$1,
-      (RegExp.$1.length > 1 ? "第" : "") +
-        quarter[Math.floor((date.getMonth() + 3) / 3)] +
-        "季度"
+      (RegExp.$1.length > 1 ? "第" : "") + quarter[Math.floor((date.getMonth() + 3) / 3)] + "季度"
     );
   }
   // 日期
   for (let k in opt) {
     if (new RegExp("(" + k + ")").test(format))
-      format = format.replace(
-        RegExp.$1,
-        RegExp.$1.length == 1
-          ? opt[k]
-          : ("00" + opt[k]).substr(("" + opt[k]).length)
-      );
+      format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? opt[k] : ("00" + opt[k]).substr(("" + opt[k]).length));
   }
   return format;
 }
