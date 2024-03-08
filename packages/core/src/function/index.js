@@ -240,3 +240,51 @@ export function getChineseZodiac(dateStr) {
   }
   return arr[(year - 1900) % arr.length];
 }
+
+/**
+ * 根据字符串属性路径获取目标对象
+ * @example
+ * let res = {code:200, data:{rows:[], pages:{current:1,pageSize:20}}}
+ * this._getTargetByPath(res, 'data.pages.pageSize'); // 这里会输出20
+ * @param {Object} source 源对象
+ * @param {String} path 字符串属性路径
+ * @returns {Object} 返回目标对象，可以是任意类型数据
+ */
+export function getTargetByPath(source, path) {
+  const paths = (path || "data").split(".");
+  let data = source;
+  // 属性总个数
+  let lastIndex = paths.length - 1;
+  for (const index in paths) {
+    // 如果路径中没有该属性，则创建一个
+    if (!data[paths[index]]) {
+      data[paths[index]] = Number(index) !== lastIndex ? {} : undefined;
+    }
+    data = data[paths[index]];
+  }
+  return data;
+}
+/**
+ * 根据字符串属性路径设置目标对象的值
+ * @example
+ * let res = {code:200, data:{rows:[], pages:{current:1,pageSize:20}}}
+ * this._setTargetByPath(res, 'data.pages.pageSize', 30); // 打印res对象会发现pageSize的值改为了30
+ * @param {Object} source 源对象
+ * @param {String} path 字符串属性路径
+ * @param {Any} value 属性设置的值
+ * @returns {Object} 返回目标对象，可以是任意类型数据
+ */
+export function setTargetByPath(source, path, value) {
+  const paths = (path || "data").split(".");
+  // 变量表达式拼接
+  let fxStr = "";
+  for (const name of paths) {
+    fxStr += `['${name}']`;
+  }
+  const fn = new Function(
+    "source",
+    `source${fxStr}=${value}
+        `
+  );
+  fn(source);
+}

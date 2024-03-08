@@ -1,4 +1,10 @@
-import { isEmpty, isNull, isInteger, isDate, isString } from "../../core/src/validate";
+import {
+  isEmpty,
+  isNull,
+  isInteger,
+  isDate,
+  isString,
+} from "../../core/src/validate";
 import { parseInt } from "../../core/src/number";
 
 /* 快捷日期 */
@@ -108,7 +114,9 @@ export function isToday(date) {
   let nowDate = new Date();
 
   // 判断日期
-  return ["getFullYear", "getMonth", "getDate"].every((i) => nowDate[i]() === date[i]());
+  return ["getFullYear", "getMonth", "getDate"].every(
+    (i) => nowDate[i]() === date[i]()
+  );
 }
 
 /**
@@ -175,7 +183,9 @@ export function isLeapYear(year) {
  * @returns {Boolean} 返回true和false
  */
 export function isSameDay(date1, date2) {
-  return ["getFullYear", "getMonth", "getDate"].every((i) => date1[i]() === date2[i]());
+  return ["getFullYear", "getMonth", "getDate"].every(
+    (i) => date1[i]() === date2[i]()
+  );
 }
 
 /**
@@ -262,7 +272,11 @@ export function getDateTime(date = new Date(), separator = "-") {
   let hour = date.getHours();
   let minute = date.getMinutes();
   let second = date.getSeconds();
-  return [year, month, day].map(_digit).join(separator) + " " + [hour, minute, second].map(_digit).join(":");
+  return (
+    [year, month, day].map(_digit).join(separator) +
+    " " +
+    [hour, minute, second].map(_digit).join(":")
+  );
 }
 
 /**
@@ -350,6 +364,12 @@ export function getWeek(date = new Date(), format = "EE") {
   }
 }
 /**
+ * 获取当前天所在一周的日期
+ */
+export function getWeekList() {
+  // TODO
+}
+/**
  * 获得当前日期是第几季度
  * @param {Date} date 日期参数，默认当前日期
  * @param {String} format 季度格式化结果：“q”:一季度, "qq":第一季度；默认：“q”
@@ -396,7 +416,11 @@ export function getDayOfMonth(date = new Date()) {
  * @returns {Number} 返回天数
  */
 export function getDayOfYear(date = new Date()) {
-  return Math.ceil((date - new Date(date.getFullYear().toString())) / (24 * 60 * 60 * 1000)) + 1;
+  return (
+    Math.ceil(
+      (date - new Date(date.getFullYear().toString())) / (24 * 60 * 60 * 1000)
+    ) + 1
+  );
 }
 
 /* 当前日期是所在 月，年的第几周 */
@@ -968,26 +992,37 @@ export function formatDate(date, format = "yyyy-MM-dd") {
 
   // 年
   if (/(y+)/.test(format)) {
-    format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+    format = format.replace(
+      RegExp.$1,
+      (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+    );
   }
   // 周
   if (/(E+)/.test(format)) {
     format = format.replace(
       RegExp.$1,
-      (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") + week[date.getDay()]
+      (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") +
+        week[date.getDay()]
     );
   }
   // 季度
   if (/(q+)/.test(format)) {
     format = format.replace(
       RegExp.$1,
-      (RegExp.$1.length > 1 ? "第" : "") + quarter[Math.floor((date.getMonth() + 3) / 3)] + "季度"
+      (RegExp.$1.length > 1 ? "第" : "") +
+        quarter[Math.floor((date.getMonth() + 3) / 3)] +
+        "季度"
     );
   }
   // 日期
   for (let k in opt) {
     if (new RegExp("(" + k + ")").test(format))
-      format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? opt[k] : ("00" + opt[k]).substr(("" + opt[k]).length));
+      format = format.replace(
+        RegExp.$1,
+        RegExp.$1.length == 1
+          ? opt[k]
+          : ("00" + opt[k]).substr(("" + opt[k]).length)
+      );
   }
   return format;
 }

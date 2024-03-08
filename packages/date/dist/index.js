@@ -4,10 +4,15 @@
  * Released under the MIT License.
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeDate = factory());
-})(this, (function () { 'use strict';
+  typeof exports === "object" && typeof module !== "undefined"
+    ? (module.exports = factory())
+    : typeof define === "function" && define.amd
+    ? define(factory)
+    : ((global =
+        typeof globalThis !== "undefined" ? globalThis : global || self),
+      (global.LimeDate = factory()));
+})(this, function () {
+  "use strict";
 
   /* 数据类型 */
   /**
@@ -175,7 +180,9 @@
     let nowDate = new Date();
 
     // 判断日期
-    return ["getFullYear", "getMonth", "getDate"].every((i) => nowDate[i]() === date[i]());
+    return ["getFullYear", "getMonth", "getDate"].every(
+      (i) => nowDate[i]() === date[i]()
+    );
   }
 
   /**
@@ -242,7 +249,9 @@
    * @returns {Boolean} 返回true和false
    */
   function isSameDay(date1, date2) {
-    return ["getFullYear", "getMonth", "getDate"].every((i) => date1[i]() === date2[i]());
+    return ["getFullYear", "getMonth", "getDate"].every(
+      (i) => date1[i]() === date2[i]()
+    );
   }
 
   /**
@@ -329,7 +338,11 @@
     let hour = date.getHours();
     let minute = date.getMinutes();
     let second = date.getSeconds();
-    return [year, month, day].map(_digit).join(separator) + " " + [hour, minute, second].map(_digit).join(":");
+    return (
+      [year, month, day].map(_digit).join(separator) +
+      " " +
+      [hour, minute, second].map(_digit).join(":")
+    );
   }
 
   /**
@@ -397,6 +410,7 @@
    * @returns {String} 返回周几
    */
   function getWeek(date = new Date(), format = "EE") {
+    // TODO
     let week = {
       0: "日",
       1: "一",
@@ -415,6 +429,12 @@
     } else {
       throw new Error("Invalid week format!");
     }
+  }
+  /**
+   * 获取当前天所在一周的日期
+   */
+  function getWeekList() {
+    // TODO
   }
   /**
    * 获得当前日期是第几季度
@@ -463,7 +483,11 @@
    * @returns {Number} 返回天数
    */
   function getDayOfYear(date = new Date()) {
-    return Math.ceil((date - new Date(date.getFullYear().toString())) / (24 * 60 * 60 * 1000)) + 1;
+    return (
+      Math.ceil(
+        (date - new Date(date.getFullYear().toString())) / (24 * 60 * 60 * 1000)
+      ) + 1
+    );
   }
 
   /* 当前日期是所在 月，年的第几周 */
@@ -1035,26 +1059,37 @@
 
     // 年
     if (/(y+)/.test(format)) {
-      format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+      format = format.replace(
+        RegExp.$1,
+        (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+      );
     }
     // 周
     if (/(E+)/.test(format)) {
       format = format.replace(
         RegExp.$1,
-        (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") + week[date.getDay()]
+        (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") +
+          week[date.getDay()]
       );
     }
     // 季度
     if (/(q+)/.test(format)) {
       format = format.replace(
         RegExp.$1,
-        (RegExp.$1.length > 1 ? "第" : "") + quarter[Math.floor((date.getMonth() + 3) / 3)] + "季度"
+        (RegExp.$1.length > 1 ? "第" : "") +
+          quarter[Math.floor((date.getMonth() + 3) / 3)] +
+          "季度"
       );
     }
     // 日期
     for (let k in opt) {
       if (new RegExp("(" + k + ")").test(format))
-        format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? opt[k] : ("00" + opt[k]).substr(("" + opt[k]).length));
+        format = format.replace(
+          RegExp.$1,
+          RegExp.$1.length == 1
+            ? opt[k]
+            : ("00" + opt[k]).substr(("" + opt[k]).length)
+        );
     }
     return format;
   }
@@ -1168,7 +1203,7 @@
     return array;
   }
 
-  var dateUtil = /*#__PURE__*/Object.freeze({
+  var dateUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     today: today,
     yesterday: yesterday,
@@ -1203,6 +1238,7 @@
     getYear: getYear,
     getYearMonth: getYearMonth,
     getWeek: getWeek,
+    getWeekList: getWeekList,
     getQuarter: getQuarter,
     getDayOfWeek: getDayOfWeek,
     getDayOfMonth: getDayOfMonth,
@@ -1232,7 +1268,7 @@
     betweenYears: betweenYears,
     compareDate: compareDate,
     formatDate: formatDate,
-    parseDate: parseDate
+    parseDate: parseDate,
   });
 
   // 测试加载成功方法
@@ -1247,5 +1283,4 @@
   };
 
   return index;
-
-}));
+});

@@ -4,10 +4,15 @@
  * Released under the MIT License.
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeCore = factory());
-})(this, (function () { 'use strict';
+  typeof exports === "object" && typeof module !== "undefined"
+    ? (module.exports = factory())
+    : typeof define === "function" && define.amd
+    ? define(factory)
+    : ((global =
+        typeof globalThis !== "undefined" ? globalThis : global || self),
+      (global.LimeCore = factory()));
+})(this, function () {
+  "use strict";
 
   /**
    * 数组排序常量
@@ -467,7 +472,7 @@
     return value.substring(0, start) + startStr + value.substring(start + len);
   }
 
-  var stringUtil = /*#__PURE__*/Object.freeze({
+  var stringUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     trim: trim,
     trimStart: trimStart,
@@ -490,7 +495,7 @@
     formatStartOfName: formatStartOfName,
     formatStartOfMobile: formatStartOfMobile,
     formatStartOfIdCard: formatStartOfIdCard,
-    formatStartOfBankCard: formatStartOfBankCard
+    formatStartOfBankCard: formatStartOfBankCard,
   });
 
   /**
@@ -504,9 +509,9 @@
     return Number.parseInt(value, radix);
   }
 
-  var numberUtil = /*#__PURE__*/Object.freeze({
+  var numberUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    parseInt: parseInt$1
+    parseInt: parseInt$1,
   });
 
   /* 数据类型 */
@@ -705,7 +710,9 @@
    */
   function isNaN(value) {
     // window的isNaN函数是有缺陷的，空数组/数组有一个元素，null，空字符串 都会被认为是数字
-    return window.isNaN(value) || isArray(value) || value == null || value == "";
+    return (
+      window.isNaN(value) || isArray(value) || value == null || value == ""
+    );
   }
 
   /**
@@ -940,7 +947,7 @@
     return true;
   }
 
-  var validateUtil = /*#__PURE__*/Object.freeze({
+  var validateUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     isInteger: isInteger,
     isDecimal: isDecimal,
@@ -974,7 +981,7 @@
     isNotUndefined: isNotUndefined,
     equals: equals,
     equalsIgnoreCase: equalsIgnoreCase,
-    deepCompare: deepCompare
+    deepCompare: deepCompare,
   });
 
   /* 数组计算 */
@@ -1131,7 +1138,10 @@
    */
   function arraySwap(array, sourceIndex, targetIndex) {
     const target = [...array];
-    [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
+    [target[targetIndex], target[sourceIndex]] = [
+      array[sourceIndex],
+      array[targetIndex],
+    ];
     return target;
   }
 
@@ -1202,7 +1212,7 @@
     ];
   }
 
-  var arrayUtil = /*#__PURE__*/Object.freeze({
+  var arrayUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     arrayMin: arrayMin,
     arrayMax: arrayMax,
@@ -1221,7 +1231,7 @@
     arrayUnion: arrayUnion,
     arrayIntersect: arrayIntersect,
     arrayDifference: arrayDifference,
-    arrayComplement: arrayComplement
+    arrayComplement: arrayComplement,
   });
 
   /* 对象转换 */
@@ -1382,7 +1392,7 @@
     return Object.assign(target, ...source);
   }
 
-  var objectUtil = /*#__PURE__*/Object.freeze({
+  var objectUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     mapToObject: mapToObject,
     mapToJson: mapToJson,
@@ -1393,7 +1403,7 @@
     clone: clone,
     cloneDeep: cloneDeep,
     objectEquals: objectEquals,
-    merge: merge
+    merge: merge,
   });
 
   /**
@@ -1658,7 +1668,23 @@
     return arr[(year - 1900) % arr.length];
   }
 
-  var functionUtil = /*#__PURE__*/Object.freeze({
+  /**
+   * TODO
+   * 根据字符串属性路径获取目标对象
+   * @param {Object} source 源对象
+   * @param {String} path 字符串属性路径
+   * @returns {Any} 返回目标对象，可以是任意类型数据
+   */
+  function getTargetByPath(source, path) {
+    const paths = (path || "data").split(".");
+    let data = source;
+    for (const name of paths) {
+      data = data[name];
+    }
+    return data;
+  }
+
+  var functionUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     throttle: throttle,
     debounce: debounce,
@@ -1666,7 +1692,8 @@
     getIdCardInfo: getIdCardInfo,
     getAge: getAge,
     getZodiac: getZodiac,
-    getChineseZodiac: getChineseZodiac
+    getChineseZodiac: getChineseZodiac,
+    getTargetByPath: getTargetByPath,
   });
 
   /* 常用正则集合 */
@@ -1816,7 +1843,7 @@
     return regexpTest(value, REGEXP.URL);
   }
 
-  var regexpUtil = /*#__PURE__*/Object.freeze({
+  var regexpUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     REGEXP: REGEXP,
     regexpTest: regexpTest,
@@ -1828,7 +1855,7 @@
     isMobile: isMobile$1,
     isEmail: isEmail,
     isIdCard: isIdCard,
-    isUrl: isUrl
+    isUrl: isUrl,
   });
 
   /* 数字计算 */
@@ -2016,9 +2043,9 @@
     if (s.indexOf(".") == -1) s += ".";
     s += new Array(decimals + 1).join("0");
     if (
-      new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(
-        s
-      )
+      new RegExp(
+        "^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$"
+      ).test(s)
     ) {
       let s = "0" + RegExp.$2,
         pm = RegExp.$1,
@@ -2079,8 +2106,8 @@
     let realVal = "";
     // 截取当前数据到小数点后decimals位
     realVal = `${String(tempNum).split(".")[0]}.${String(tempNum)
-    .split(".")[1]
-    .substring(0, dec)}`;
+      .split(".")[1]
+      .substring(0, dec)}`;
     return String(realVal);
   }
 
@@ -2112,7 +2139,7 @@
     return Math.floor(num * n) / n;
   }
 
-  var mathUtil = /*#__PURE__*/Object.freeze({
+  var mathUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     add: add,
     subtract: subtract,
@@ -2122,7 +2149,7 @@
     gcd: gcd,
     scm: scm,
     toFixed: toFixed,
-    toDecimal: toDecimal
+    toDecimal: toDecimal,
   });
 
   /**
@@ -2144,7 +2171,8 @@
    */
   function getRandomDigit(len = 1) {
     return Math.floor(
-      (Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, len - 1)
+      (Math.random() + Math.floor(Math.random() * 9 + 1)) *
+        Math.pow(10, len - 1)
     );
   }
 
@@ -2158,7 +2186,9 @@
    */
   function getUUID(len = 32, radix = 16) {
     const CHARS =
-      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(
+        ""
+      );
     let uuid = [],
       i;
     radix = radix || CHARS.length;
@@ -2204,12 +2234,12 @@
     );
   }
 
-  var randomUtil = /*#__PURE__*/Object.freeze({
+  var randomUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     getRandom: getRandom,
     getRandomDigit: getRandomDigit,
     getUUID: getUUID,
-    getGUID: getGUID
+    getGUID: getGUID,
   });
 
   /* 文件信息处理 */
@@ -2493,7 +2523,7 @@
     }
   }
 
-  var fileUtil = /*#__PURE__*/Object.freeze({
+  var fileUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     formatFileSize: formatFileSize,
     getFileName: getFileName,
@@ -2507,7 +2537,7 @@
     base64ToBlob: base64ToBlob,
     urlToBase64: urlToBase64,
     downloadBlobFile: downloadBlobFile,
-    downloadFileUrl: downloadFileUrl
+    downloadFileUrl: downloadFileUrl,
   });
 
   /**
@@ -2574,12 +2604,12 @@
     }
     if (a) {
       return `hsla(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(
-      l * 100
-    )}%,${a})`;
+        l * 100
+      )}%,${a})`;
     }
-    return `hsl(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(
-    l * 100
-  )}%)`;
+    return `hsl(${Math.round(
+      h * 360
+    )},${Math.round(s * 100)}%,${Math.round(l * 100)}%)`;
   }
 
   /**
@@ -2660,9 +2690,9 @@
       }
       h /= 6;
     }
-    return `hsl(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(
-    l * 100
-  )}%)`;
+    return `hsl(${Math.round(
+      h * 360
+    )},${Math.round(s * 100)}%,${Math.round(l * 100)}%)`;
   }
 
   /**
@@ -2715,7 +2745,7 @@
     return ("0" + str).slice(-2);
   }
 
-  var colorUtil = /*#__PURE__*/Object.freeze({
+  var colorUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     rgbToHex: rgbToHex,
     rgbaToHex: rgbaToHex,
@@ -2725,7 +2755,7 @@
     hexToHsl: hexToHsl,
     getRandomHex: getRandomHex,
     getRandomRgb: getRandomRgb,
-    getRandomRgba: getRandomRgba
+    getRandomRgba: getRandomRgba,
   });
 
   var keyCodeMap = {
@@ -2866,10 +2896,10 @@
     }
   }
 
-  var keyCodeUtil = /*#__PURE__*/Object.freeze({
+  var keyCodeUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     getKeyName: getKeyName,
-    getKeyCode: getKeyCode
+    getKeyCode: getKeyCode,
   });
 
   /**
@@ -2932,11 +2962,11 @@
     return pairs.join("&");
   }
 
-  var urlUtil = /*#__PURE__*/Object.freeze({
+  var urlUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     getQueryString: getQueryString,
     queryStringToObj: queryStringToObj,
-    objToQueryString: objToQueryString
+    objToQueryString: objToQueryString,
   });
 
   /**
@@ -3006,13 +3036,13 @@
     }
   }
 
-  var cookieUtil = /*#__PURE__*/Object.freeze({
+  var cookieUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     isSupportCookie: isSupportCookie,
     getCookie: getCookie,
     setCookie: setCookie,
     removeCookie: removeCookie,
-    clearCookie: clearCookie
+    clearCookie: clearCookie,
   });
 
   /* localStorage存储 */
@@ -3095,7 +3125,7 @@
     }
   }
 
-  var storageUtil = /*#__PURE__*/Object.freeze({
+  var storageUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     isSupportStorage: isSupportStorage,
     getLocalStorage: getLocalStorage,
@@ -3105,7 +3135,7 @@
     getSessionStorage: getSessionStorage,
     setSessionStorage: setSessionStorage,
     removeSessionStorage: removeSessionStorage,
-    clearSessionStorage: clearSessionStorage
+    clearSessionStorage: clearSessionStorage,
   });
 
   /* Class操作 */
@@ -3271,7 +3301,7 @@
     });
   }
 
-  var domUtil = /*#__PURE__*/Object.freeze({
+  var domUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     hasClass: hasClass,
     addClass: addClass,
@@ -3283,7 +3313,7 @@
     htmlEncode: htmlEncode,
     htmlDecode: htmlDecode,
     copyText: copyText,
-    getCopyText: getCopyText
+    getCopyText: getCopyText,
   });
 
   /* 浏览器信息 */
@@ -3432,7 +3462,7 @@
     return /QQ/i.test(ua);
   }
 
-  var deviceUtil = /*#__PURE__*/Object.freeze({
+  var deviceUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     getBrowserInfo: getBrowserInfo,
     isPc: isPc,
@@ -3446,7 +3476,7 @@
     isIphone: isIphone,
     isIpad: isIpad,
     isWeixin: isWeixin,
-    isQQ: isQQ
+    isQQ: isQQ,
   });
 
   /* 缓存处理（同步） */
@@ -3589,7 +3619,7 @@
     });
   }
 
-  var weappUtil = /*#__PURE__*/Object.freeze({
+  var weappUtil = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     setStorageSync: setStorageSync,
     getStorageSync: getStorageSync,
@@ -3600,7 +3630,7 @@
     getStorage: getStorage,
     getStorageInfo: getStorageInfo,
     removeStorage: removeStorage,
-    clearStorage: clearStorage
+    clearStorage: clearStorage,
   });
 
   // 测试加载成功方法
@@ -3662,5 +3692,4 @@
   };
 
   return index;
-
-}));
+});

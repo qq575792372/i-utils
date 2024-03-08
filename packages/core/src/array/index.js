@@ -75,9 +75,9 @@ export function arrayCreate(length = 0) {
 }
 
 /**
- * 数组指定下标位置添加元素
+ * 数组指定位置添加元素
  * @param {Array} source 源数组
- * @param {Number} index 下标位置，默认0
+ * @param {Number} index 下标索引，默认0
  * @param {*} value 添加的元素
  * @returns {Array} 返回新的数组
  */
@@ -87,9 +87,61 @@ export function arrayInsert(source = [], index = 0, value = undefined) {
 }
 
 /**
- * 数组指定下标位置删除元素
+ * 数组指定位置前面添加元素
  * @param {Array} source 源数组
- * @param {Number} index 下标位置，默认0
+ * @param {Number} index 下标索引，默认0
+ * @param {*} value 添加的元素
+ * @returns {Array} 返回新的数组
+ */
+export function arrayInsertBefore(source = [], index = 0, value = undefined) {
+  // TODO
+  source.splice(index, 0, value);
+  return source;
+}
+
+/**
+ * 数组指定位置后面添加元素
+ * @param {Array} source 源数组
+ * @param {Number} index 下标索引，默认0
+ * @param {*} value 添加的元素
+ * @returns {Array} 返回新的数组
+ */
+export function arrayInsertAfter(source = [], index = 0, value = undefined) {
+  // TODO
+  source.splice(index, 0, value);
+  return source;
+}
+
+/**
+ * 数组向上移动
+ * @param {Array} source 源数组
+ * @param {Number} index 下标索引，默认0
+ * @param {*} value 添加的元素
+ * @returns {Array} 返回新的数组
+ */
+export function arrayUp(source = [], index = 0, value = undefined) {
+  // TODO
+  source.splice(index, 0, value);
+  return source;
+}
+
+/**
+ * 数组向下移动
+ * @param {Array} source 源数组
+ * @param {Number} index 下标索引，默认0
+ * @param {*} value 添加的元素
+ * @returns {Array} 返回新的数组
+ */
+export function arrayDown(source = [], index = 0, value = undefined) {
+  // TODO
+  source.splice(index, 0, value);
+  return source;
+}
+
+/**
+ * 数组指定位置删除元素
+ * @param {Array} source 源数组
+ * @param {Number} index 下标索引，默认0
  * @returns {Array} 返回新的数组
  */
 export function arrayRemove(source = [], index = 0) {
@@ -155,18 +207,22 @@ export function arraySort(array, mode = SORT_MODE.SORT_ASC) {
  */
 export function arraySwap(array, sourceIndex, targetIndex) {
   const target = [...array];
-  [target[targetIndex], target[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
+  [target[targetIndex], target[sourceIndex]] = [
+    array[sourceIndex],
+    array[targetIndex],
+  ];
   return target;
 }
 
 /**
- * 一维父子级的数组转树形结构
+ * 一维数组转树形结构
  * @description 包含id和pid属性关系的一维数组，转为children的树形结构
  * @param {Array} array 数组
  * @param {String|Number} pid 父级的id
  * @returns {Array} 返回树形结构数组
  */
 export function arrayToTree(array, pid) {
+  // TODO
   let res = [];
   array.forEach((v) => {
     if (v.pid == pid) {
@@ -175,6 +231,14 @@ export function arrayToTree(array, pid) {
     }
   });
   return res;
+}
+/**
+ * 树形结构转一维数组
+ * @param {*} treeData
+ * @param {*} childrenKey
+ */
+export function treeToArray(treeData, childrenKey = "children") {
+  // TODO
 }
 
 /* 数组并集，交集，差集等 */

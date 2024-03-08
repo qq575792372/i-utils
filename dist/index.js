@@ -1503,7 +1503,9 @@
     let nowDate = new Date();
 
     // 判断日期
-    return ["getFullYear", "getMonth", "getDate"].every((i) => nowDate[i]() === date[i]());
+    return ["getFullYear", "getMonth", "getDate"].every(
+      (i) => nowDate[i]() === date[i]()
+    );
   }
 
   /**
@@ -1570,7 +1572,9 @@
    * @returns {Boolean} 返回true和false
    */
   function isSameDay(date1, date2) {
-    return ["getFullYear", "getMonth", "getDate"].every((i) => date1[i]() === date2[i]());
+    return ["getFullYear", "getMonth", "getDate"].every(
+      (i) => date1[i]() === date2[i]()
+    );
   }
 
   /**
@@ -1657,7 +1661,11 @@
     let hour = date.getHours();
     let minute = date.getMinutes();
     let second = date.getSeconds();
-    return [year, month, day].map(_digit).join(separator) + " " + [hour, minute, second].map(_digit).join(":");
+    return (
+      [year, month, day].map(_digit).join(separator) +
+      " " +
+      [hour, minute, second].map(_digit).join(":")
+    );
   }
 
   /**
@@ -1719,7 +1727,7 @@
   }
 
   /**
-   * 获得当前日期是周几
+   * 获得当前日期是周几 todo 更改
    * @param {Date} date 日期参数，默认当前日期
    * @param {String} format 周格式化结果：“E”:日, “EE”:周日, “EEE”:星期日；默认“EE”
    * @returns {String} 返回周几
@@ -1744,6 +1752,10 @@
       throw new Error("Invalid week format!");
     }
   }
+  /**
+   * todo 获取当前天所在一周的日期
+   */
+  function getWeekList() {}
   /**
    * 获得当前日期是第几季度
    * @param {Date} date 日期参数，默认当前日期
@@ -1791,7 +1803,11 @@
    * @returns {Number} 返回天数
    */
   function getDayOfYear(date = new Date()) {
-    return Math.ceil((date - new Date(date.getFullYear().toString())) / (24 * 60 * 60 * 1000)) + 1;
+    return (
+      Math.ceil(
+        (date - new Date(date.getFullYear().toString())) / (24 * 60 * 60 * 1000)
+      ) + 1
+    );
   }
 
   /* 当前日期是所在 月，年的第几周 */
@@ -2363,26 +2379,37 @@
 
     // 年
     if (/(y+)/.test(format)) {
-      format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+      format = format.replace(
+        RegExp.$1,
+        (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+      );
     }
     // 周
     if (/(E+)/.test(format)) {
       format = format.replace(
         RegExp.$1,
-        (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") + week[date.getDay()]
+        (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? "星期" : "周") : "") +
+          week[date.getDay()]
       );
     }
     // 季度
     if (/(q+)/.test(format)) {
       format = format.replace(
         RegExp.$1,
-        (RegExp.$1.length > 1 ? "第" : "") + quarter[Math.floor((date.getMonth() + 3) / 3)] + "季度"
+        (RegExp.$1.length > 1 ? "第" : "") +
+          quarter[Math.floor((date.getMonth() + 3) / 3)] +
+          "季度"
       );
     }
     // 日期
     for (let k in opt) {
       if (new RegExp("(" + k + ")").test(format))
-        format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? opt[k] : ("00" + opt[k]).substr(("" + opt[k]).length));
+        format = format.replace(
+          RegExp.$1,
+          RegExp.$1.length == 1
+            ? opt[k]
+            : ("00" + opt[k]).substr(("" + opt[k]).length)
+        );
     }
     return format;
   }
@@ -2531,6 +2558,7 @@
     getYear: getYear,
     getYearMonth: getYearMonth,
     getWeek: getWeek,
+    getWeekList: getWeekList,
     getQuarter: getQuarter,
     getDayOfWeek: getDayOfWeek,
     getDayOfMonth: getDayOfMonth,
@@ -2803,6 +2831,22 @@
     return arr[(year - 1900) % arr.length];
   }
 
+  /**
+   * todo
+   * 根据字符串属性路径获取目标对象
+   * @param {Object} source 源对象
+   * @param {String} path 字符串属性路径
+   * @returns {Any} 返回目标对象，可以是任意类型数据
+   */
+  function getTargetByPath(source, path) {
+    const paths = (path || "data").split(".");
+    let data = source;
+    for (const name of paths) {
+      data = data[name];
+    }
+    return data;
+  }
+
   var functionUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     throttle: throttle,
@@ -2811,7 +2855,8 @@
     getIdCardInfo: getIdCardInfo,
     getAge: getAge,
     getZodiac: getZodiac,
-    getChineseZodiac: getChineseZodiac
+    getChineseZodiac: getChineseZodiac,
+    getTargetByPath: getTargetByPath
   });
 
   /* 常用正则集合 */
