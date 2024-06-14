@@ -1,18 +1,13 @@
 /*!
  * @lime-util/core v3.2.8
- * Copyright 2021-2023, Gaoshiwei <575792372@qq.com>
+ * Copyright 2021-2024, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
 (function (global, factory) {
-  typeof exports === "object" && typeof module !== "undefined"
-    ? (module.exports = factory())
-    : typeof define === "function" && define.amd
-    ? define(factory)
-    : ((global =
-        typeof globalThis !== "undefined" ? globalThis : global || self),
-      (global.LimeCore = factory()));
-})(this, function () {
-  "use strict";
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeCore = factory());
+})(this, (function () { 'use strict';
 
   /**
    * 数组排序常量
@@ -179,17 +174,21 @@
       });
     }
     // 短横
-    if (value.indexOf("-") > 0) {
+    else if (value.indexOf("-") > 0) {
       return value.replace(/\-(\w)/g, function (all, letter) {
         return letter.toUpperCase();
       });
     }
     // 帕斯卡
-    if (
+    else if (
       /^[A-Z]$/.test(value.charAt(0)) &&
       !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
     ) {
       return value.charAt(0).toLowerCase() + value.slice(1);
+    }
+    // 返回自身
+    else {
+      return value;
     }
   }
 
@@ -208,18 +207,22 @@
       return newStr.charAt(0).toUpperCase() + newStr.slice(1);
     }
     // 短横
-    if (value.indexOf("-") > 0) {
+    else if (value.indexOf("-") > 0) {
       let newStr = value.replace(/\-(\w)/g, function (all, letter) {
         return letter.toUpperCase();
       });
       return newStr.charAt(0).toUpperCase() + newStr.slice(1);
     }
     // 驼峰
-    if (
+    else if (
       /^[a-z]$/.test(value.charAt(0)) &&
       !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
     ) {
       return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+    // 返回自身
+    else {
+      return value;
     }
   }
 
@@ -472,7 +475,7 @@
     return value.substring(0, start) + startStr + value.substring(start + len);
   }
 
-  var stringUtil = /*#__PURE__*/ Object.freeze({
+  var stringUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     trim: trim,
     trimStart: trimStart,
@@ -495,7 +498,7 @@
     formatStartOfName: formatStartOfName,
     formatStartOfMobile: formatStartOfMobile,
     formatStartOfIdCard: formatStartOfIdCard,
-    formatStartOfBankCard: formatStartOfBankCard,
+    formatStartOfBankCard: formatStartOfBankCard
   });
 
   /**
@@ -509,9 +512,9 @@
     return Number.parseInt(value, radix);
   }
 
-  var numberUtil = /*#__PURE__*/ Object.freeze({
+  var numberUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    parseInt: parseInt$1,
+    parseInt: parseInt$1
   });
 
   /* 数据类型 */
@@ -710,9 +713,7 @@
    */
   function isNaN(value) {
     // window的isNaN函数是有缺陷的，空数组/数组有一个元素，null，空字符串 都会被认为是数字
-    return (
-      window.isNaN(value) || isArray(value) || value == null || value == ""
-    );
+    return window.isNaN(value) || isArray(value) || value == null || value == "";
   }
 
   /**
@@ -947,7 +948,7 @@
     return true;
   }
 
-  var validateUtil = /*#__PURE__*/ Object.freeze({
+  var validateUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     isInteger: isInteger,
     isDecimal: isDecimal,
@@ -981,7 +982,7 @@
     isNotUndefined: isNotUndefined,
     equals: equals,
     equalsIgnoreCase: equalsIgnoreCase,
-    deepCompare: deepCompare,
+    deepCompare: deepCompare
   });
 
   /* 数组计算 */
@@ -1058,9 +1059,9 @@
   }
 
   /**
-   * 数组指定下标位置添加元素
+   * 数组指定位置添加元素
    * @param {Array} source 源数组
-   * @param {Number} index 下标位置，默认0
+   * @param {Number} index 下标索引，默认0
    * @param {*} value 添加的元素
    * @returns {Array} 返回新的数组
    */
@@ -1070,9 +1071,61 @@
   }
 
   /**
-   * 数组指定下标位置删除元素
+   * 数组指定位置前面添加元素
    * @param {Array} source 源数组
-   * @param {Number} index 下标位置，默认0
+   * @param {Number} index 下标索引，默认0
+   * @param {*} value 添加的元素
+   * @returns {Array} 返回新的数组
+   */
+  function arrayInsertBefore(source = [], index = 0, value = undefined) {
+    // TODO
+    source.splice(index, 0, value);
+    return source;
+  }
+
+  /**
+   * 数组指定位置后面添加元素
+   * @param {Array} source 源数组
+   * @param {Number} index 下标索引，默认0
+   * @param {*} value 添加的元素
+   * @returns {Array} 返回新的数组
+   */
+  function arrayInsertAfter(source = [], index = 0, value = undefined) {
+    // TODO
+    source.splice(index, 0, value);
+    return source;
+  }
+
+  /**
+   * 数组向上移动
+   * @param {Array} source 源数组
+   * @param {Number} index 下标索引，默认0
+   * @param {*} value 添加的元素
+   * @returns {Array} 返回新的数组
+   */
+  function arrayUp(source = [], index = 0, value = undefined) {
+    // TODO
+    source.splice(index, 0, value);
+    return source;
+  }
+
+  /**
+   * 数组向下移动
+   * @param {Array} source 源数组
+   * @param {Number} index 下标索引，默认0
+   * @param {*} value 添加的元素
+   * @returns {Array} 返回新的数组
+   */
+  function arrayDown(source = [], index = 0, value = undefined) {
+    // TODO
+    source.splice(index, 0, value);
+    return source;
+  }
+
+  /**
+   * 数组指定位置删除元素
+   * @param {Array} source 源数组
+   * @param {Number} index 下标索引，默认0
    * @returns {Array} 返回新的数组
    */
   function arrayRemove(source = [], index = 0) {
@@ -1146,13 +1199,14 @@
   }
 
   /**
-   * 一维父子级的数组转树形结构
+   * 一维数组转树形结构
    * @description 包含id和pid属性关系的一维数组，转为children的树形结构
    * @param {Array} array 数组
    * @param {String|Number} pid 父级的id
    * @returns {Array} 返回树形结构数组
    */
   function arrayToTree(array, pid) {
+    // TODO
     let res = [];
     array.forEach((v) => {
       if (v.pid == pid) {
@@ -1161,6 +1215,14 @@
       }
     });
     return res;
+  }
+  /**
+   * 树形结构转一维数组
+   * @param {*} treeData
+   * @param {*} childrenKey
+   */
+  function treeToArray(treeData, childrenKey = "children") {
+    // TODO
   }
 
   /* 数组并集，交集，差集等 */
@@ -1212,7 +1274,7 @@
     ];
   }
 
-  var arrayUtil = /*#__PURE__*/ Object.freeze({
+  var arrayUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     arrayMin: arrayMin,
     arrayMax: arrayMax,
@@ -1222,16 +1284,21 @@
     arrayEquals: arrayEquals,
     arrayCreate: arrayCreate,
     arrayInsert: arrayInsert,
+    arrayInsertBefore: arrayInsertBefore,
+    arrayInsertAfter: arrayInsertAfter,
+    arrayUp: arrayUp,
+    arrayDown: arrayDown,
     arrayRemove: arrayRemove,
     arrayUnique: arrayUnique,
     arrayShuffle: arrayShuffle,
     arraySort: arraySort,
     arraySwap: arraySwap,
     arrayToTree: arrayToTree,
+    treeToArray: treeToArray,
     arrayUnion: arrayUnion,
     arrayIntersect: arrayIntersect,
     arrayDifference: arrayDifference,
-    arrayComplement: arrayComplement,
+    arrayComplement: arrayComplement
   });
 
   /* 对象转换 */
@@ -1392,7 +1459,7 @@
     return Object.assign(target, ...source);
   }
 
-  var objectUtil = /*#__PURE__*/ Object.freeze({
+  var objectUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     mapToObject: mapToObject,
     mapToJson: mapToJson,
@@ -1403,7 +1470,7 @@
     clone: clone,
     cloneDeep: cloneDeep,
     objectEquals: objectEquals,
-    merge: merge,
+    merge: merge
   });
 
   /**
@@ -1669,22 +1736,54 @@
   }
 
   /**
-   * TODO
    * 根据字符串属性路径获取目标对象
+   * @example
+   * let res = {code:200, data:{rows:[], pages:{current:1,pageSize:20}}}
+   * this._getTargetByPath(res, 'data.pages.pageSize'); // 这里会输出20
    * @param {Object} source 源对象
    * @param {String} path 字符串属性路径
-   * @returns {Any} 返回目标对象，可以是任意类型数据
+   * @returns {Object} 返回目标对象，可以是任意类型数据
    */
   function getTargetByPath(source, path) {
     const paths = (path || "data").split(".");
     let data = source;
-    for (const name of paths) {
-      data = data[name];
+    // 属性总个数
+    let lastIndex = paths.length - 1;
+    for (const index in paths) {
+      // 如果路径中没有该属性，则创建一个
+      if (!data[paths[index]]) {
+        data[paths[index]] = Number(index) !== lastIndex ? {} : undefined;
+      }
+      data = data[paths[index]];
     }
     return data;
   }
+  /**
+   * 根据字符串属性路径设置目标对象的值
+   * @example
+   * let res = {code:200, data:{rows:[], pages:{current:1,pageSize:20}}}
+   * this._setTargetByPath(res, 'data.pages.pageSize', 30); // 打印res对象会发现pageSize的值改为了30
+   * @param {Object} source 源对象
+   * @param {String} path 字符串属性路径
+   * @param {Any} value 属性设置的值
+   * @returns {Object} 返回目标对象，可以是任意类型数据
+   */
+  function setTargetByPath(source, path, value) {
+    const paths = (path || "data").split(".");
+    // 变量表达式拼接
+    let fxStr = "";
+    for (const name of paths) {
+      fxStr += `['${name}']`;
+    }
+    const fn = new Function(
+      "source",
+      `source${fxStr}=${value}
+        `
+    );
+    fn(source);
+  }
 
-  var functionUtil = /*#__PURE__*/ Object.freeze({
+  var functionUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     throttle: throttle,
     debounce: debounce,
@@ -1694,6 +1793,7 @@
     getZodiac: getZodiac,
     getChineseZodiac: getChineseZodiac,
     getTargetByPath: getTargetByPath,
+    setTargetByPath: setTargetByPath
   });
 
   /* 常用正则集合 */
@@ -1843,7 +1943,7 @@
     return regexpTest(value, REGEXP.URL);
   }
 
-  var regexpUtil = /*#__PURE__*/ Object.freeze({
+  var regexpUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     REGEXP: REGEXP,
     regexpTest: regexpTest,
@@ -1855,7 +1955,7 @@
     isMobile: isMobile$1,
     isEmail: isEmail,
     isIdCard: isIdCard,
-    isUrl: isUrl,
+    isUrl: isUrl
   });
 
   /* 数字计算 */
@@ -2043,9 +2143,9 @@
     if (s.indexOf(".") == -1) s += ".";
     s += new Array(decimals + 1).join("0");
     if (
-      new RegExp(
-        "^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$"
-      ).test(s)
+      new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(
+        s
+      )
     ) {
       let s = "0" + RegExp.$2,
         pm = RegExp.$1,
@@ -2106,8 +2206,8 @@
     let realVal = "";
     // 截取当前数据到小数点后decimals位
     realVal = `${String(tempNum).split(".")[0]}.${String(tempNum)
-      .split(".")[1]
-      .substring(0, dec)}`;
+    .split(".")[1]
+    .substring(0, dec)}`;
     return String(realVal);
   }
 
@@ -2139,7 +2239,7 @@
     return Math.floor(num * n) / n;
   }
 
-  var mathUtil = /*#__PURE__*/ Object.freeze({
+  var mathUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     add: add,
     subtract: subtract,
@@ -2149,7 +2249,7 @@
     gcd: gcd,
     scm: scm,
     toFixed: toFixed,
-    toDecimal: toDecimal,
+    toDecimal: toDecimal
   });
 
   /**
@@ -2171,8 +2271,7 @@
    */
   function getRandomDigit(len = 1) {
     return Math.floor(
-      (Math.random() + Math.floor(Math.random() * 9 + 1)) *
-        Math.pow(10, len - 1)
+      (Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, len - 1)
     );
   }
 
@@ -2186,9 +2285,7 @@
    */
   function getUUID(len = 32, radix = 16) {
     const CHARS =
-      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split(
-        ""
-      );
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     let uuid = [],
       i;
     radix = radix || CHARS.length;
@@ -2234,12 +2331,12 @@
     );
   }
 
-  var randomUtil = /*#__PURE__*/ Object.freeze({
+  var randomUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     getRandom: getRandom,
     getRandomDigit: getRandomDigit,
     getUUID: getUUID,
-    getGUID: getGUID,
+    getGUID: getGUID
   });
 
   /* 文件信息处理 */
@@ -2523,7 +2620,7 @@
     }
   }
 
-  var fileUtil = /*#__PURE__*/ Object.freeze({
+  var fileUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     formatFileSize: formatFileSize,
     getFileName: getFileName,
@@ -2537,7 +2634,7 @@
     base64ToBlob: base64ToBlob,
     urlToBase64: urlToBase64,
     downloadBlobFile: downloadBlobFile,
-    downloadFileUrl: downloadFileUrl,
+    downloadFileUrl: downloadFileUrl
   });
 
   /**
@@ -2604,12 +2701,12 @@
     }
     if (a) {
       return `hsla(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(
-        l * 100
-      )}%,${a})`;
+      l * 100
+    )}%,${a})`;
     }
-    return `hsl(${Math.round(
-      h * 360
-    )},${Math.round(s * 100)}%,${Math.round(l * 100)}%)`;
+    return `hsl(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(
+    l * 100
+  )}%)`;
   }
 
   /**
@@ -2690,9 +2787,9 @@
       }
       h /= 6;
     }
-    return `hsl(${Math.round(
-      h * 360
-    )},${Math.round(s * 100)}%,${Math.round(l * 100)}%)`;
+    return `hsl(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(
+    l * 100
+  )}%)`;
   }
 
   /**
@@ -2745,7 +2842,7 @@
     return ("0" + str).slice(-2);
   }
 
-  var colorUtil = /*#__PURE__*/ Object.freeze({
+  var colorUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     rgbToHex: rgbToHex,
     rgbaToHex: rgbaToHex,
@@ -2755,7 +2852,7 @@
     hexToHsl: hexToHsl,
     getRandomHex: getRandomHex,
     getRandomRgb: getRandomRgb,
-    getRandomRgba: getRandomRgba,
+    getRandomRgba: getRandomRgba
   });
 
   var keyCodeMap = {
@@ -2896,10 +2993,10 @@
     }
   }
 
-  var keyCodeUtil = /*#__PURE__*/ Object.freeze({
+  var keyCodeUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     getKeyName: getKeyName,
-    getKeyCode: getKeyCode,
+    getKeyCode: getKeyCode
   });
 
   /**
@@ -2962,11 +3059,11 @@
     return pairs.join("&");
   }
 
-  var urlUtil = /*#__PURE__*/ Object.freeze({
+  var urlUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     getQueryString: getQueryString,
     queryStringToObj: queryStringToObj,
-    objToQueryString: objToQueryString,
+    objToQueryString: objToQueryString
   });
 
   /**
@@ -3036,13 +3133,13 @@
     }
   }
 
-  var cookieUtil = /*#__PURE__*/ Object.freeze({
+  var cookieUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     isSupportCookie: isSupportCookie,
     getCookie: getCookie,
     setCookie: setCookie,
     removeCookie: removeCookie,
-    clearCookie: clearCookie,
+    clearCookie: clearCookie
   });
 
   /* localStorage存储 */
@@ -3125,7 +3222,7 @@
     }
   }
 
-  var storageUtil = /*#__PURE__*/ Object.freeze({
+  var storageUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     isSupportStorage: isSupportStorage,
     getLocalStorage: getLocalStorage,
@@ -3135,7 +3232,7 @@
     getSessionStorage: getSessionStorage,
     setSessionStorage: setSessionStorage,
     removeSessionStorage: removeSessionStorage,
-    clearSessionStorage: clearSessionStorage,
+    clearSessionStorage: clearSessionStorage
   });
 
   /* Class操作 */
@@ -3301,7 +3398,7 @@
     });
   }
 
-  var domUtil = /*#__PURE__*/ Object.freeze({
+  var domUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     hasClass: hasClass,
     addClass: addClass,
@@ -3313,7 +3410,7 @@
     htmlEncode: htmlEncode,
     htmlDecode: htmlDecode,
     copyText: copyText,
-    getCopyText: getCopyText,
+    getCopyText: getCopyText
   });
 
   /* 浏览器信息 */
@@ -3462,7 +3559,7 @@
     return /QQ/i.test(ua);
   }
 
-  var deviceUtil = /*#__PURE__*/ Object.freeze({
+  var deviceUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     getBrowserInfo: getBrowserInfo,
     isPc: isPc,
@@ -3476,7 +3573,7 @@
     isIphone: isIphone,
     isIpad: isIpad,
     isWeixin: isWeixin,
-    isQQ: isQQ,
+    isQQ: isQQ
   });
 
   /* 缓存处理（同步） */
@@ -3619,7 +3716,7 @@
     });
   }
 
-  var weappUtil = /*#__PURE__*/ Object.freeze({
+  var weappUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     setStorageSync: setStorageSync,
     getStorageSync: getStorageSync,
@@ -3630,7 +3727,7 @@
     getStorage: getStorage,
     getStorageInfo: getStorageInfo,
     removeStorage: removeStorage,
-    clearStorage: clearStorage,
+    clearStorage: clearStorage
   });
 
   // 测试加载成功方法
@@ -3692,4 +3789,5 @@
   };
 
   return index;
-});
+
+}));

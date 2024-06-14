@@ -93,8 +93,9 @@ export function arrayInsert(source = [], index = 0, value = undefined) {
  * @param {*} value 添加的元素
  * @returns {Array} 返回新的数组
  */
-export function arrayInsertBefore(source = [], index = 0, value = undefined) {
+export function arrayInsertBefore(source = [], index = 0, value = null) {
   // TODO
+  if (index < 0 || index > source.length - 1) return source;
   source.splice(index, 0, value);
   return source;
 }
@@ -106,35 +107,10 @@ export function arrayInsertBefore(source = [], index = 0, value = undefined) {
  * @param {*} value 添加的元素
  * @returns {Array} 返回新的数组
  */
-export function arrayInsertAfter(source = [], index = 0, value = undefined) {
+export function arrayInsertAfter(source = [], index = 0, value = null) {
   // TODO
-  source.splice(index, 0, value);
-  return source;
-}
-
-/**
- * 数组向上移动
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
- * @param {*} value 添加的元素
- * @returns {Array} 返回新的数组
- */
-export function arrayUp(source = [], index = 0, value = undefined) {
-  // TODO
-  source.splice(index, 0, value);
-  return source;
-}
-
-/**
- * 数组向下移动
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
- * @param {*} value 添加的元素
- * @returns {Array} 返回新的数组
- */
-export function arrayDown(source = [], index = 0, value = undefined) {
-  // TODO
-  source.splice(index, 0, value);
+  if (index < 0 || index > source.length - 1) return source;
+  source.splice(index, 0, source.splice(index, 1, value)[0]);
   return source;
 }
 
@@ -145,8 +121,121 @@ export function arrayDown(source = [], index = 0, value = undefined) {
  * @returns {Array} 返回新的数组
  */
 export function arrayRemove(source = [], index = 0) {
+  if (index < 0 || index > source.length - 1) return source;
   source.splice(index, 1);
   return source;
+}
+
+/**
+ * 数组指定位置前面删除元素
+ * @param {Array} source 源数组
+ * @param {Number} index 下标索引，默认0
+ * @returns {Array} 返回新的数组
+ */
+export function arrayRemoveBefore(source = [], index = 0) {
+  // TODO
+  if (index < 0 || index > source.length - 1) return source;
+  source.splice(index - 1, 1);
+  return source;
+}
+/**
+ * 数组指定位置后面删除元素
+ * @param {Array} source 源数组
+ * @param {Number} index 下标索引，默认0
+ * @returns {Array} 返回新的数组
+ */
+export function arrayRemoveAfter(source = [], index = 0) {
+  // TODO
+  if (index < 0 || index > source.length - 1) return source;
+  source.splice(index + 1, 1);
+  return source;
+}
+
+/**
+ * 数组置顶
+ * @param {Array} source 源数组
+ * @param {Number} index 下标索引，默认0
+ * @param {*} value 添加的元素
+ * @returns {Array} 返回新的数组
+ */
+export function arrayTop(source = [], index = 0) {
+  // TODO
+  if (index < 0 || index > source.length - 1) return source;
+  source.unshift(source.splice(index, 1)[0]);
+  return source;
+}
+/**
+ * 数组置尾
+ * @param {Array} source 源数组
+ * @param {Number} index 下标索引，默认0
+ * @param {*} value 添加的元素
+ * @returns {Array} 返回新的数组
+ */
+export function arrayBottom(source = [], index = 0) {
+  // TODO
+  if (index < 0 || index > source.length - 1) return source;
+  source.push(source.splice(index, 1)[0]);
+  return source;
+}
+
+/**
+ * 数组向上移动
+ * @param {Array} source 源数组
+ * @param {Number} index 下标索引，默认0
+ * @param {*} value 添加的元素
+ * @returns {Array} 返回新的数组
+ */
+export function arrayUp(source = [], index = 0) {
+  // TODO
+  if (index < 0 || index > source.length - 1) return source;
+  if (index > 0) {
+    source.splice(index - 1, 0, source.splice(index, 1)[0]);
+  } else {
+    source.push(source.splice(index, 1)[0]);
+  }
+  return source;
+}
+
+/**
+ * 数组向下移动
+ * @param {Array} source 源数组
+ * @param {Number} index 下标索引，默认0
+ * @param {*} value 添加的元素
+ * @returns {Array} 返回新的数组
+ */
+export function arrayDown(source = [], index = 0) {
+  // TODO
+  if (index < 0 || index > source.length - 1) return source;
+  if (index < source.length - 1) {
+    source.splice(index + 1, 0, source.splice(index, 1)[0]);
+  } else {
+    source.unshift(source.splice(index, 1)[0]);
+  }
+
+  return source;
+}
+
+/**
+ * 数组交换元素
+ * @param {Array} array 数组
+ * @param {Number} sourceIndex 原索引
+ * @param {Number} targetIndex 目标索引
+ * @returns {Array} 返回交换元素后的新数组
+ */
+export function arraySwap(array, sourceIndex, targetIndex) {
+  // TODO
+  if (
+    sourceIndex < 0 ||
+    targetIndex < 0 ||
+    sourceIndex > array.length - 1 ||
+    targetIndex > array.length - 1
+  )
+    return array;
+  [array[targetIndex], array[sourceIndex]] = [
+    array[sourceIndex],
+    array[targetIndex],
+  ];
+  return array;
 }
 
 /**
@@ -196,22 +285,6 @@ export function arraySort(array, mode = SORT_MODE.SORT_ASC) {
         return array;
     }
   });
-}
-
-/**
- * 数组交换元素
- * @param {Array} array 数组
- * @param {Number} sourceIndex 原索引
- * @param {Number} targetIndex 目标索引
- * @returns {Array} 返回交换元素后的新数组
- */
-export function arraySwap(array, sourceIndex, targetIndex) {
-  const target = [...array];
-  [target[targetIndex], target[sourceIndex]] = [
-    array[sourceIndex],
-    array[targetIndex],
-  ];
-  return target;
 }
 
 /**

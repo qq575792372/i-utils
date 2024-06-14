@@ -135,17 +135,21 @@ export function toCamelCase(value) {
     });
   }
   // 短横
-  if (value.indexOf("-") > 0) {
+  else if (value.indexOf("-") > 0) {
     return value.replace(/\-(\w)/g, function (all, letter) {
       return letter.toUpperCase();
     });
   }
   // 帕斯卡
-  if (
+  else if (
     /^[A-Z]$/.test(value.charAt(0)) &&
     !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
   ) {
     return value.charAt(0).toLowerCase() + value.slice(1);
+  }
+  // 返回自身
+  else {
+    return value;
   }
 }
 
@@ -164,18 +168,22 @@ export function toPascalCase(value) {
     return newStr.charAt(0).toUpperCase() + newStr.slice(1);
   }
   // 短横
-  if (value.indexOf("-") > 0) {
+  else if (value.indexOf("-") > 0) {
     let newStr = value.replace(/\-(\w)/g, function (all, letter) {
       return letter.toUpperCase();
     });
     return newStr.charAt(0).toUpperCase() + newStr.slice(1);
   }
   // 驼峰
-  if (
+  else if (
     /^[a-z]$/.test(value.charAt(0)) &&
     !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
   ) {
     return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+  // 返回自身
+  else {
+    return value;
   }
 }
 

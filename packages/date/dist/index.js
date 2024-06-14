@@ -1,18 +1,13 @@
 /*!
  * @lime-util/date v3.2.8
- * Copyright 2021-2023, Gaoshiwei <575792372@qq.com>
+ * Copyright 2021-2024, Gaoshiwei <575792372@qq.com>
  * Released under the MIT License.
  */
 (function (global, factory) {
-  typeof exports === "object" && typeof module !== "undefined"
-    ? (module.exports = factory())
-    : typeof define === "function" && define.amd
-    ? define(factory)
-    : ((global =
-        typeof globalThis !== "undefined" ? globalThis : global || self),
-      (global.LimeDate = factory()));
-})(this, function () {
-  "use strict";
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeDate = factory());
+})(this, (function () { 'use strict';
 
   /* 数据类型 */
   /**
@@ -410,7 +405,6 @@
    * @returns {String} 返回周几
    */
   function getWeek(date = new Date(), format = "EE") {
-    // TODO
     let week = {
       0: "日",
       1: "一",
@@ -1203,7 +1197,7 @@
     return array;
   }
 
-  var dateUtil = /*#__PURE__*/ Object.freeze({
+  var dateUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     today: today,
     yesterday: yesterday,
@@ -1268,7 +1262,7 @@
     betweenYears: betweenYears,
     compareDate: compareDate,
     formatDate: formatDate,
-    parseDate: parseDate,
+    parseDate: parseDate
   });
 
   // 测试加载成功方法
@@ -1283,4 +1277,5 @@
   };
 
   return index;
-});
+
+}));
