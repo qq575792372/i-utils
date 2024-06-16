@@ -211,7 +211,7 @@ export function isLastDayOfWeek(date = new Date()) {
  * @param {Date} date 日期参数，默认当前日期
  * @returns {Boolean} 返回结果
  */
-export function isFirstDateOfMonth(date = new Date()) {
+export function isFirstDayOfMonth(date = new Date()) {
   return getDayOfMonth(date) === 1;
 }
 
@@ -220,8 +220,26 @@ export function isFirstDateOfMonth(date = new Date()) {
  * @param {Date} date 日期参数，默认当前日期
  * @returns {Boolean} 返回结果
  */
-export function isLastDateOfMonth(date = new Date()) {
+export function isLastDayOfMonth(date = new Date()) {
   return getDayOfMonth(date) === getDaysOfMonth(date);
+}
+
+/**
+ * 是否为本年第一天
+ * @param {Date} date 日期参数，默认当前日期
+ * @returns {Boolean} 返回结果
+ */
+export function isFirstDayOfYear(date = new Date()) {
+  return getDayOfYear(date) === 1;
+}
+
+/**
+ * 是否为本年最后一天
+ * @param {Date} date 日期参数，默认当前日期
+ * @returns {Boolean} 返回结果
+ */
+export function isLastDayOfYear(date = new Date()) {
+  return getDayOfYear(date) === getDaysOfYear(date);
 }
 
 /* 判断年 */
@@ -740,6 +758,153 @@ export function getFullDateOfYear(date = new Date()) {
   return array;
 }
 
+/* 计算两个日期相差 */
+/**
+ * 计算两个日期相差的天数，不满一天为0
+ * @param {Date} startDate 开始日期
+ * @param {Date} endDate 结束日期
+ * @returns {Number} 返回两个日期相差的天数，结果为正数或者负数
+ */
+export function getDiffDay(startDate, endDate) {
+  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
+  let diff = (endDate - startDate) / (24 * 60 * 60 * 1000);
+
+  // 返回
+  return diff >= 0 ? Math.abs(diff) : diff;
+}
+
+/**
+ * 计算两个日期相差的周数，不满一周为0
+ * @param {Date} startDate 开始日期
+ * @param {Date} endDate 结束日期
+ * @returns {Number} 返回两个日期相差的周数，结果为正数或者负数
+ */
+export function getDiffWeek(startDate, endDate) {
+  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
+  let diff = (endDate - startDate) / (7 * 24 * 60 * 60 * 1000);
+
+  // 返回
+  return diff >= 0 ? Math.abs(diff) : diff;
+}
+
+/**
+ * 计算两个日期相差的月数，不满一月为0
+ * @param {Date} startDate 开始日期
+ * @param {Date} endDate 结束日期
+ * @returns {Number} 返回两个日期相差的月数，结果为正数或者负数
+ */
+export function getDiffMonth(startDate, endDate) {
+  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
+  let diff = (startDate - endDate) / (30 * 24 * 60 * 60 * 1000);
+
+  // 返回
+  return diff >= 0 ? Math.abs(diff) : diff;
+}
+
+/**
+ * 计算两个日期相差的年数，不满一年为0
+ * @param {Date} startDate 开始日期
+ * @param {Date} endDate 结束日期
+ * @returns {Number} 返回两个日期相差的年数，结果为正数或者负数
+ */
+export function getDiffYear(startDate, endDate) {
+  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
+  let diff = (endDate - startDate) / (12 * 30 * 24 * 60 * 60 * 1000);
+
+  // 返回
+  return diff >= 0 ? Math.abs(diff) : diff;
+}
+
+/* 获得两个日期之间所有日期 */
+/**
+ * 获得两个日期之间的年月日数组
+ * @param {Date} startDate 开始日期
+ * @param {Date} endDate 结束日期
+ * @returns {Array} 返回年月日数组
+ */
+export function getBetweenDates(startDate, endDate) {
+  if (isEmpty(startDate) || isEmpty(endDate)) return [];
+
+  // 计算
+  let array = [];
+  while (endDate - startDate >= 0) {
+    let year = startDate.getFullYear(),
+      month = _digit(startDate.getMonth() + 1),
+      day = _digit(startDate.getDate());
+
+    // 加入数组
+    array.push(year + "-" + month + "-" + day);
+    // 更新日期
+    startDate.setDate(startDate.getDate() + 1);
+  }
+  return array;
+}
+
+/**
+ * 获得两个日期之间的年月数组
+ * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
+ * @param {Date} startDate 开始日期
+ * @param {Date} endDate 结束日期
+ * @returns {Array} 返回年月数组
+ */
+export function getBetweenMonths(startDate, endDate) {
+  if (isEmpty(startDate) || isEmpty(endDate)) return [];
+
+  // 计算
+  let array = [];
+  // 获取时间对象
+  let min = new Date();
+  let max = new Date();
+  // 设置起始时间
+  min.setFullYear(startDate.getFullYear(), startDate.getMonth() + 1);
+  // 设置结束时间
+  max.setFullYear(endDate.getFullYear(), endDate.getMonth() + 1);
+
+  // 复制一份起始时间对象
+  let curr = min;
+  // 定义字符串
+  let str = "";
+  // 起始时间在结束时间之前
+  while (curr <= max) {
+    // 获取此时间的月份
+    let month = curr.getMonth();
+    // 如果月份为0，也就是代表12月份
+    if (month === 0) {
+      str = curr.getFullYear() - 1 + "-" + 12;
+    } else {
+      // 正常月份
+      str = curr.getFullYear() + "-" + _digit(month);
+    }
+    // 将此年月加入数组
+    array.push(str);
+    // 更新此时间月份
+    curr.setMonth(month + 1);
+  }
+  return array;
+}
+
+/**
+ * 获得两个日期之间的年数组
+ * @param {Date} startDate 开始日期
+ * @param {Date} endDate 结束日期
+ * @returns {Array} 返回年数组
+ */
+export function getBetweenYears(startDate, endDate) {
+  if (isEmpty(startDate) || isEmpty(endDate)) return [];
+
+  // 计算
+  let array = [];
+  while (endDate - startDate >= 0) {
+    let year = startDate.getFullYear();
+
+    // 加入数组
+    array.push(year);
+    // 更新日期
+    startDate.setFullYear(startDate.getFullYear() + 1);
+  }
+  return array;
+}
+
 /* 过去时间和剩余时间的显示 */
 /**
  * 获得过去时间的字符串显示
@@ -912,153 +1077,6 @@ export function addWeek(date = new Date(), num = +1) {
 export function addQuarter(date = new Date(), num = +1) {
   date.setMonth(date.getMonth() + num * 4);
   return date;
-}
-
-/* 计算两个日期相差 */
-/**
- * 计算两个日期相差的天数，不满一天为0
- * @param {Date} startDate 开始日期
- * @param {Date} endDate 结束日期
- * @returns {Number} 返回两个日期相差的天数，结果为正数或者负数
- */
-export function getDiffDay(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
-  let diff = (endDate - startDate) / (24 * 60 * 60 * 1000);
-
-  // 返回
-  return diff >= 0 ? Math.abs(diff) : diff;
-}
-
-/**
- * 计算两个日期相差的周数，不满一周为0
- * @param {Date} startDate 开始日期
- * @param {Date} endDate 结束日期
- * @returns {Number} 返回两个日期相差的周数，结果为正数或者负数
- */
-export function getDiffWeek(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
-  let diff = (endDate - startDate) / (7 * 24 * 60 * 60 * 1000);
-
-  // 返回
-  return diff >= 0 ? Math.abs(diff) : diff;
-}
-
-/**
- * 计算两个日期相差的月数，不满一月为0
- * @param {Date} startDate 开始日期
- * @param {Date} endDate 结束日期
- * @returns {Number} 返回两个日期相差的月数，结果为正数或者负数
- */
-export function getDiffMonth(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
-  let diff = (startDate - endDate) / (30 * 24 * 60 * 60 * 1000);
-
-  // 返回
-  return diff >= 0 ? Math.abs(diff) : diff;
-}
-
-/**
- * 计算两个日期相差的年数，不满一年为0
- * @param {Date} startDate 开始日期
- * @param {Date} endDate 结束日期
- * @returns {Number} 返回两个日期相差的年数，结果为正数或者负数
- */
-export function getDiffYear(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
-  let diff = (endDate - startDate) / (12 * 30 * 24 * 60 * 60 * 1000);
-
-  // 返回
-  return diff >= 0 ? Math.abs(diff) : diff;
-}
-
-/* 获得两个日期之间所有日期 */
-/**
- * 获得两个日期之间的年月日数组
- * @param {Date} startDate 开始日期
- * @param {Date} endDate 结束日期
- * @returns {Array} 返回年月日数组
- */
-export function getBetweenDates(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return [];
-
-  // 计算
-  let array = [];
-  while (endDate - startDate >= 0) {
-    let year = startDate.getFullYear(),
-      month = _digit(startDate.getMonth() + 1),
-      day = _digit(startDate.getDate());
-
-    // 加入数组
-    array.push(year + "-" + month + "-" + day);
-    // 更新日期
-    startDate.setDate(startDate.getDate() + 1);
-  }
-  return array;
-}
-
-/**
- * 获得两个日期之间的年月数组
- * @description 支持：日期字符串，日期对象，时间戳，Unix时间戳
- * @param {Date} startDate 开始日期
- * @param {Date} endDate 结束日期
- * @returns {Array} 返回年月数组
- */
-export function getBetweenMonths(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return [];
-
-  // 计算
-  let array = [];
-  // 获取时间对象
-  let min = new Date();
-  let max = new Date();
-  // 设置起始时间
-  min.setFullYear(startDate.getFullYear(), startDate.getMonth() + 1);
-  // 设置结束时间
-  max.setFullYear(endDate.getFullYear(), endDate.getMonth() + 1);
-
-  // 复制一份起始时间对象
-  let curr = min;
-  // 定义字符串
-  let str = "";
-  // 起始时间在结束时间之前
-  while (curr <= max) {
-    // 获取此时间的月份
-    let month = curr.getMonth();
-    // 如果月份为0，也就是代表12月份
-    if (month === 0) {
-      str = curr.getFullYear() - 1 + "-" + 12;
-    } else {
-      // 正常月份
-      str = curr.getFullYear() + "-" + _digit(month);
-    }
-    // 将此年月加入数组
-    array.push(str);
-    // 更新此时间月份
-    curr.setMonth(month + 1);
-  }
-  return array;
-}
-
-/**
- * 获得两个日期之间的年数组
- * @param {Date} startDate 开始日期
- * @param {Date} endDate 结束日期
- * @returns {Array} 返回年数组
- */
-export function getBetweenYears(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return [];
-
-  // 计算
-  let array = [];
-  while (endDate - startDate >= 0) {
-    let year = startDate.getFullYear();
-
-    // 加入数组
-    array.push(year);
-    // 更新日期
-    startDate.setFullYear(startDate.getFullYear() + 1);
-  }
-  return array;
 }
 
 /* 格式化和解析日期 */

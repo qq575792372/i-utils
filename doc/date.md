@@ -498,7 +498,7 @@ console.log(res); // 输出：true
 
 ---
 
-### \_.isFirstDateOfMonth(date = new Date())
+### \_.isFirstDayOfMonth(date = new Date())
 
 是否为本月第一天
 
@@ -513,13 +513,13 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isFirstDateOfMonth(new Date("2024-06-01"));
+let res = LimeUtil.isFirstDayOfMonth(new Date("2024-06-01"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isLastDateOfMonth(date = new Date())
+### \_.isLastDayOfMonth(date = new Date())
 
 是否为本月最后一天
 
@@ -534,7 +534,49 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isLastDateOfMonth(new Date("2024-06-30"));
+let res = LimeUtil.isLastDayOfMonth(new Date("2024-06-30"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isFirstDayOfYear(date = new Date())
+
+是否为本年第一天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isFirstDayOfYear(new Date("2024-01-01"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isLastDayOfYear(date = new Date())
+
+是否为本年最后一天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isLastDayOfYear(new Date("2024-12-31"));
 console.log(res); // 输出：true
 ```
 
@@ -1458,6 +1500,202 @@ console.log(res); // 输出：['2024-01-01', ..., '2024-12-31']
 
 ---
 
+## 计算两个日期相差
+
+### \_.getDiffDay(startDate, endDate)
+
+算两个日期相差的天数，不满一天为0
+
+- #### 参数
+
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Number} 返回两个日期相差的天数，结果为正数或者负数
+
+- #### 示例
+
+```javascript
+// 大于0
+let res = LimeUtil.getDiffDay("2021-12-10", "2021-12-11");
+console.log(res); // 输出： 1
+
+// 等于0
+let res = LimeUtil.getDiffDay("2021-12-11", "2021-12-11");
+console.log(res); // 输出： 0
+
+// 小于0
+let res = LimeUtil.getDiffDay("2021-12-11", "2021-12-10");
+console.log(res); // 输出： -1
+```
+
+---
+
+### \_.getDiffWeek(startDate, endDate)
+
+算两个日期相差的周数，不满一周为0
+
+- #### 参数
+
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Number} 返回两个日期相差的周数，结果为正数或者负数
+
+- #### 示例
+
+```javascript
+// 大于0
+let res = LimeUtil.getDiffWeek("2021-12-01", "2021-12-11");
+console.log(res); // 输出： 1
+
+// 不满一周等于0
+let res = LimeUtil.getDiffWeek("2021-12-11", "2021-12-11");
+console.log(res); // 输出： 0
+
+// 小于0
+let res = LimeUtil.getDiffWeek("2021-12-10", "2021-12-01");
+console.log(res); // 输出： -1
+```
+
+---
+
+### \_.getDiffMonth(startDate, endDate)
+
+计算两个日期相差的月数，不满一月为0
+
+- #### 参数
+
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Number} 返回两个日期相差的月数，结果为正数或者负数
+
+- #### 示例
+
+```javascript
+// 大于0
+let res = LimeUtil.getDiffMonth("2024-06-12", "2021-12-11");
+console.log(res); // 输出： 1
+
+// 等于0
+let res = LimeUtil.getDiffMonth("2021-12-11", "2021-12-11");
+console.log(res); // 输出： 0
+
+// 小于0
+let res = LimeUtil.getDiffMonth("2021-12-11", "2024-06-12");
+console.log(res); // 输出： -1
+```
+
+---
+
+### \_.getDiffYear(startDate, endDate)
+
+计算两个日期相差的年数，不满一年为0
+
+- #### 参数
+
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Number} 返回两个日期相差的年数，结果为正数或者负数
+
+- #### 示例
+
+```javascript
+// 大于0
+let res = LimeUtil.getDiffYear("2020-11-10", "2021-12-11");
+console.log(res); // 输出： 1
+
+// 等于0
+let res = LimeUtil.getDiffYear("2021-12-11", "2021-12-11");
+console.log(res); // 输出： 0
+
+// 小于0
+let res = LimeUtil.getDiffYear("2021-12-11", "2020-11-10");
+console.log(res); // 输出： -1
+```
+
+---
+
+<!-- 获得两个日期之间所有日期 -->
+
+## 获得两个日期之间数组
+
+### \_.getBetweenDates(startDate, endDate)
+
+获得两个日期之间的年月日数组
+
+- #### 参数
+
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Array} 返回年月日数组
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getBetweenDates("2021-12-11", "2024-06-12");
+console.log(res); // 输出： ['2021-12-11', '2024-01-16', '2024-06-12']
+```
+
+---
+
+### \_.getBetweenMonths(startDate, endDate)
+
+获得两个日期之间的年月数组
+
+- #### 参数
+
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Array} 返回年月数组
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getBetweenMonths("2021-11-11", "2024-06-12");
+console.log(res); // 输出： ['2021-11', '2021-12']
+```
+
+---
+
+### \_.getBetweenYears(startDate, endDate)
+
+获得两个日期之间的年数组
+
+- #### 参数
+
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Array} 返回年数组
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.betweenYears("2020-11-11", "2024-06-12");
+console.log(res); // 输出： [2020, 2021]
+```
+
+---
+
 ## 过去时间和剩余时间的显示
 
 ### \_.getPastTime(date, lang = "zh")
@@ -1756,202 +1994,6 @@ console.log(res); // 输出：日期对象
 // 减去
 let res = LimeUtil.addQuarter(new Date(), -1);
 console.log(res); // 输出：日期对象
-```
-
----
-
-## 计算两个日期相差
-
-### \_.getDiffDay(startDate, endDate)
-
-算两个日期相差的天数，不满一天为0
-
-- #### 参数
-
-  `startDate` {Date} 开始日期  
-  `endDate` {Date} 结束日期
-
-- #### 返回值
-
-  {Number} 返回两个日期相差的天数，结果为正数或者负数
-
-- #### 示例
-
-```javascript
-// 大于0
-let res = LimeUtil.getDiffDay("2021-12-10", "2021-12-11");
-console.log(res); // 输出： 1
-
-// 等于0
-let res = LimeUtil.getDiffDay("2021-12-11", "2021-12-11");
-console.log(res); // 输出： 0
-
-// 小于0
-let res = LimeUtil.getDiffDay("2021-12-11", "2021-12-10");
-console.log(res); // 输出： -1
-```
-
----
-
-### \_.getDiffWeek(startDate, endDate)
-
-算两个日期相差的周数，不满一周为0
-
-- #### 参数
-
-  `startDate` {Date} 开始日期  
-  `endDate` {Date} 结束日期
-
-- #### 返回值
-
-  {Number} 返回两个日期相差的周数，结果为正数或者负数
-
-- #### 示例
-
-```javascript
-// 大于0
-let res = LimeUtil.getDiffWeek("2021-12-01", "2021-12-11");
-console.log(res); // 输出： 1
-
-// 不满一周等于0
-let res = LimeUtil.getDiffWeek("2021-12-11", "2021-12-11");
-console.log(res); // 输出： 0
-
-// 小于0
-let res = LimeUtil.getDiffWeek("2021-12-10", "2021-12-01");
-console.log(res); // 输出： -1
-```
-
----
-
-### \_.getDiffMonth(startDate, endDate)
-
-计算两个日期相差的月数，不满一月为0
-
-- #### 参数
-
-  `startDate` {Date} 开始日期  
-  `endDate` {Date} 结束日期
-
-- #### 返回值
-
-  {Number} 返回两个日期相差的月数，结果为正数或者负数
-
-- #### 示例
-
-```javascript
-// 大于0
-let res = LimeUtil.getDiffMonth("2024-06-12", "2021-12-11");
-console.log(res); // 输出： 1
-
-// 等于0
-let res = LimeUtil.getDiffMonth("2021-12-11", "2021-12-11");
-console.log(res); // 输出： 0
-
-// 小于0
-let res = LimeUtil.getDiffMonth("2021-12-11", "2024-06-12");
-console.log(res); // 输出： -1
-```
-
----
-
-### \_.getDiffYear(startDate, endDate)
-
-计算两个日期相差的年数，不满一年为0
-
-- #### 参数
-
-  `startDate` {Date} 开始日期  
-  `endDate` {Date} 结束日期
-
-- #### 返回值
-
-  {Number} 返回两个日期相差的年数，结果为正数或者负数
-
-- #### 示例
-
-```javascript
-// 大于0
-let res = LimeUtil.getDiffYear("2020-11-10", "2021-12-11");
-console.log(res); // 输出： 1
-
-// 等于0
-let res = LimeUtil.getDiffYear("2021-12-11", "2021-12-11");
-console.log(res); // 输出： 0
-
-// 小于0
-let res = LimeUtil.getDiffYear("2021-12-11", "2020-11-10");
-console.log(res); // 输出： -1
-```
-
----
-
-<!-- 获得两个日期之间所有日期 -->
-
-## 获得两个日期之间数组
-
-### \_.getBetweenDates(startDate, endDate)
-
-获得两个日期之间的年月日数组
-
-- #### 参数
-
-  `startDate` {Date} 开始日期  
-  `endDate` {Date} 结束日期
-
-- #### 返回值
-
-  {Array} 返回年月日数组
-
-- #### 示例
-
-```javascript
-let res = LimeUtil.getBetweenDates("2021-12-11", "2024-06-12");
-console.log(res); // 输出： ['2021-12-11', '2024-01-16', '2024-06-12']
-```
-
----
-
-### \_.getBetweenMonths(startDate, endDate)
-
-获得两个日期之间的年月数组
-
-- #### 参数
-
-  `startDate` {Date} 开始日期  
-  `endDate` {Date} 结束日期
-
-- #### 返回值
-
-  {Array} 返回年月数组
-
-- #### 示例
-
-```javascript
-let res = LimeUtil.getBetweenMonths("2021-11-11", "2024-06-12");
-console.log(res); // 输出： ['2021-11', '2021-12']
-```
-
----
-
-### \_.getBetweenYears(startDate, endDate)
-
-获得两个日期之间的年数组
-
-- #### 参数
-
-  `startDate` {Date} 开始日期  
-  `endDate` {Date} 结束日期
-
-- #### 返回值
-
-  {Array} 返回年数组
-
-- #### 示例
-
-```javascript
-let res = LimeUtil.betweenYears("2020-11-11", "2024-06-12");
-console.log(res); // 输出： [2020, 2021]
 ```
 
 ---
