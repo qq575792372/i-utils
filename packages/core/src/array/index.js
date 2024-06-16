@@ -1,5 +1,5 @@
 import { isNull } from "../validate";
-import { SORT_MODE } from "../constant/sort";
+import { SORT_TYPE } from "../constants/sort";
 
 /* 数组计算 */
 /**
@@ -224,17 +224,9 @@ export function arrayDown(source = [], index = 0) {
  */
 export function arraySwap(array, sourceIndex, targetIndex) {
   // TODO
-  if (
-    sourceIndex < 0 ||
-    targetIndex < 0 ||
-    sourceIndex > array.length - 1 ||
-    targetIndex > array.length - 1
-  )
+  if (sourceIndex < 0 || targetIndex < 0 || sourceIndex > array.length - 1 || targetIndex > array.length - 1)
     return array;
-  [array[targetIndex], array[sourceIndex]] = [
-    array[sourceIndex],
-    array[targetIndex],
-  ];
+  [array[targetIndex], array[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
   return array;
 }
 
@@ -268,17 +260,17 @@ export function arrayShuffle(array) {
  * @param {Constant} mode 排序模式，参考常量集合中 数组常量，默认是升序
  * @returns {Array} 返回排序后的新数组
  */
-export function arraySort(array, mode = SORT_MODE.SORT_ASC) {
+export function arraySort(array, mode = SORT_TYPE.SORT_ASC) {
   return array.sort((a, b) => {
     switch (mode) {
       // 升序
-      case SORT_MODE.SORT_ASC:
+      case SORT_TYPE.SORT_ASC:
         return a - b;
       // 降序
-      case SORT_MODE.SORT_DESC:
+      case SORT_TYPE.SORT_DESC:
         return b - a;
       // 随机
-      case SORT_MODE.SORT_RANDOM:
+      case SORT_TYPE.SORT_RANDOM:
         return Math.random() - 0.5;
       // 默认
       default:
@@ -294,16 +286,48 @@ export function arraySort(array, mode = SORT_MODE.SORT_ASC) {
  * @param {String|Number} pid 父级的id
  * @returns {Array} 返回树形结构数组
  */
-export function arrayToTree(array, pid) {
+export function arrayToTree(array, setting = { key: "id", parentKey: "pid", childrenKey: "children" }) {
   // TODO
-  let res = [];
-  array.forEach((v) => {
-    if (v.pid == pid) {
-      v.children = toTree(array, v.id);
-      res.push(v);
+  let key = setting.key,
+    parentKey = setting.parentKey,
+    childrenKey = setting.childrenKey;
+  // 数组或者key是否为空
+  if (!array || array.length === 0 || !key || key === "") return [];
+
+  // 获得子节点方法
+  const nodeChildren = function (node, childrenKey, newChildren) {
+    if (!node) {
+      return null;
     }
-  });
-  return res;
+    if (typeof newChildren !== "undefined") {
+      node[childrenKey] = newChildren;
+    }
+    return node[childrenKey];
+  };
+
+  // 声明变量
+  let result = [];
+  let tempMap = {};
+  for (let i = 0; i < array.length; i++) {
+    // 如果源数据数组中有children，则需要删除掉，否则会导致和之前的children合并
+    array[i][childrenKey] && delete array[i][childrenKey];
+    tempMap[array[i][key]] = array[i];
+  }
+  for (let i = 0; i < array.length; i++) {
+    let parent = tempMap[array[i][parentKey]];
+    if (parent && array[i][key] !== array[i][parentKey]) {
+      let children = nodeChildren(parent, childrenKey);
+
+      if (!children) {
+        children = nodeChildren(parent, childrenKey, []);
+      }
+      children.push(array[i]);
+    } else {
+      result.push(array[i]);
+    }
+  }
+
+  return result;
 }
 /**
  * 树形结构转一维数组
@@ -312,6 +336,22 @@ export function arrayToTree(array, pid) {
  */
 export function treeToArray(treeData, childrenKey = "children") {
   // TODO
+  let childrenKey = setting.childrenKey;
+  let result = [];
+  for (let node of nodes) {
+    // 删除掉多余空的children
+    if (node[childrenKey] && !node[childrenKey].length) {
+      delete node[childrenKey];
+    }
+    result.push(node);
+    // 继续执行
+    if (node[childrenKey] && node[childrenKey].length) {
+      let array = this.treeToArray(node[childrenKey], setting);
+      array && result.push(...array);
+    }
+  }
+
+  return result;
 }
 
 /* 数组并集，交集，差集等 */

@@ -75,7 +75,7 @@ pnpm build:date
 
 ### 📝API 文档
 
-1. [常量集合 Constant](https://github.com/qq575792372/lime-util/blob/master/doc/constant.md)
+1. [常量集合 Constant](https://github.com/qq575792372/lime-util/blob/master/doc/constants.md)
 
 2. [字符串 String](https://github.com/qq575792372/lime-util/blob/master/doc/string.md)
 

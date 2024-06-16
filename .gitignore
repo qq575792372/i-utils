@@ -1,11 +1,17 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# dir
 .DS_Store
 node_modules
 /dist
 /*/dist/
-
-# local env files
-.env.local
-.env.*.local
 
 # Log files
 npm-debug.log*
@@ -16,8 +22,10 @@ yarn-error.log*
 
 # Editor directories and files
 .idea
+.vscode
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.components.d.ts

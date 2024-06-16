@@ -1,0 +1,10 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "printWidth": 120,
+  "singleQuote": false,
+  "semi": true,
+  "endOfLine": "auto",
+  "eslintIntegration": true,
+  "htmlWhitespaceSensitivity": "ignore"
+}

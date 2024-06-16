@@ -1,6 +1,75 @@
 # 日期 Date
 
-<!-- 快捷日期 -->
+## 日期格式
+
+| 标识 | 描述                        | 示例      |
+| ---- | --------------------------- | --------- |
+| yy   | 年，两位数                  | 24        |
+| yyyy | 年，四位数                  | 2024      |
+| M    | 月，从1开始                 | 1-12      |
+| MM   | 月，从1开始，会补齐到两位   | 01-12     |
+| d    | 日，从1开始                 | 1-31      |
+| dd   | 日，从1开始，会补齐到两位   | 01-31     |
+| h    | 小时，12小时制              | 1-12      |
+| HH   | 小时，24小时制              | 01-24     |
+| m    | 分钟，从1开始               | 1-59      |
+| mm   | 分钟，从1开始，会补齐到两位 | 01-59     |
+| s    | 秒数，从1开始               | 1-59      |
+| ss   | 秒数，从1开始，会补齐到两位 | 01-59     |
+| SSS  | 毫秒数，共3位               | 123       |
+| a    | 上午/下午，英文小写         | am/pm     |
+| A    | 上午/下午，英文大写         | AM/PM     |
+| aa   | 上午/下午，中文             | 上午/下午 |
+| AA   | 上午/下午，中文             | 上午/下午 |
+| E    | 周，1位字符                 | 六        |
+| EE   | 周，2位字符                 | 周六      |
+| EEE  | 周，3位字符                 | 星期六    |
+| Q    | 季度，1位字符               | 三        |
+| QQ   | 季度，3位字符               | 三季度    |
+| QQQ  | 季度，4位字符               | 第三季度  |
+
+常用日期格式示例：
+
+```bash
+yyyy-MM-dd  # 输出：2024-06-16
+yyyy/MM/dd # 输出：2024/06/16
+yyyy.MM.dd # 输出：2024-06-16
+yyyy年MM月dd日 # 输出：2024年06月16日
+
+yyyy-MM-dd HH:mm:ss # 输出：2024-06-16 15:48:55
+yyyy/MM/dd HH:mm:ss # 输出：2024/06/16 15:48:55
+yyyy.MM.dd HH:mm:ss # 输出：2024-06-16
+yyyy-MM-dd h:mm:ss # 输出：2024-06-16 3:49:53
+yyyy年MM月dd日 HH时mm分ss秒 # 输出：2024年06月16日 17时30分01秒
+
+yy-MM-dd # 输出：24-06-16
+yy/MM/dd # 输出：24/06/16
+yy.MM.dd # 输出：24.06.16
+yy年MM月dd日 # 输出：24年06月16日
+
+dd-MM-yyyy # 输出：16-06-2024
+dd/MM/yyyy # 输出：16/06/2024
+dd.MM.yyyy # 输出：16.06.2024
+
+HH:mm:ss # 输出：17:35:22
+HH:mm:ss:SSS # 输出：17:35:22:764
+HH时mm分ss秒 # 输出：17时35分34秒
+HH时mm分ss秒SSS毫秒 # 输出：17时36分37秒764毫秒
+
+yyyy-MM-dd HH:mm # 输出：2024-06-16 17:35
+yyyy-MM-dd HH:mm:ss.SSS # 输出：2024-06-16 17:35:58.810
+
+yyyyMMdd # 输出：20240616
+yyyyMMddHHmmss # 输出：20240616173723
+yyyyMMddHHmmssSSS # 输出：20240616173730304
+
+yyyy-MM-dd A # 输出：2024-06-16 PM
+yyyy-MM-dd AA # 输出：2024-06-16 下午
+
+yyyy-MM-dd A EE # 输出：2024-06-16 PM 周日
+yyyy-MM-dd A EEE # 输出：2024-06-16 PM 星期天
+yyyy-MM-dd A EEE QQQ # 输出：2024-06-16 PM 星期日 第二季度
+```
 
 ## 快捷日期
 
@@ -20,7 +89,7 @@
 
 ```javascript
 let res = LimeUtil.today();
-console.log(res); // 输出：2021-12-13
+console.log(res); // 输出：2024-06-16
 ```
 
 ### \_.yesterday()
@@ -39,7 +108,7 @@ console.log(res); // 输出：2021-12-13
 
 ```javascript
 let res = LimeUtil.yesterday();
-console.log(res); // 输出：2021-12-11
+console.log(res); // 输出：2024-01-16
 ```
 
 ---
@@ -60,18 +129,18 @@ console.log(res); // 输出：2021-12-11
 
 ```javascript
 let res = LimeUtil.tomorrow();
-console.log(res); // 输出：2021-12-12
+console.log(res); // 输出：2024-01-16
 ```
 
 ---
 
-### \_.prevWeek()
+### \_.lastWeek(date = new Date())
 
-上周（7 天前日期）
+上周（7天前日期）
 
 - #### 参数
 
-  无
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
@@ -80,17 +149,17 @@ console.log(res); // 输出：2021-12-12
 - #### 示例
 
 ```javascript
-let res = LimeUtil.prevWeek();
+let res = LimeUtil.lastWeek();
 console.log(res); // 输出：2021-12-06
 ```
 
-### \_.nextWeek()
+### \_.nextWeek(date = new Date())
 
-下周（7 天后日期）
+下周（7天后日期）
 
 - #### 参数
 
-  无
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
@@ -105,13 +174,13 @@ console.log(res); // 输出：2021-12-20
 
 ---
 
-### \_.prevMonth()
+### \_.lastMonth(date = new Date())
 
 上个月（30 天前日期）
 
 - #### 参数
 
-  无
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
@@ -126,13 +195,13 @@ console.log(res); // 输出：2021-11-13
 
 ---
 
-### \_.nextMonth()
+### \_.nextMonth(date = new Date())
 
 下个月（30 天后日期）
 
 - #### 参数
 
-  无
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
@@ -147,13 +216,13 @@ console.log(res); // 输出：2022-01-12
 
 ---
 
-### \_.prevYear()
+### \_.lastYear(date = new Date())
 
 去年（365 天前日期）
 
 - #### 参数
 
-  无
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
@@ -168,13 +237,13 @@ console.log(res); // 输出：2020-12-13
 
 ---
 
-### \_.nextYear()
+### \_.nextYear(date = new Date())
 
 明年（365 天后日期）
 
 - #### 参数
 
-  无
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
@@ -189,19 +258,21 @@ console.log(res); // 输出：2022-12-13
 
 ---
 
+<!-- 判断当前日期 -->
+
 ## 判断某刻日期
 
-### \_.isAM()
+### \_.isAM(date = new Date())
 
-现在是否为上午
+是否为上午
 
 - #### 参数
 
-  无
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -212,17 +283,17 @@ console.log(res); // 输出：true
 
 ---
 
-### \_.isPM()
+### \_.isPM(date = new Date())
 
-现在是否为下午
+是否为下午
 
 - #### 参数
 
-  无
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -233,17 +304,17 @@ console.log(res); // 输出：true
 
 ---
 
-### \_.isToday(date)
+### \_.isToday(date = new Date())
 
 是否为今天
 
 - #### 参数
 
-  `date` {String|Date} 日期参数
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -251,219 +322,476 @@ console.log(res); // 输出：true
 // 日期
 let res = LimeUtil.isToday(new Date());
 console.log(res); // 输出：true
-
-// 日期字符串
-let res = LimeUtil.isToday("2021-12-13");
-console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isWorkday()
+### \_.isYesterday(date = new Date())
 
-今天是否为工作日
+是否为昨天
 
 - #### 参数
 
-  无
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isWorkday();
+// 日期
+let res = LimeUtil.isToday(new Date("2024-06-12"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isWeekend()
+### \_.isBeforeYesterday(date = new Date())
 
-今天是否为周末（周六和周日）
+是否为前天
 
 - #### 参数
 
-  无
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isWeekend();
+// 日期
+let res = LimeUtil.isBeforeYesterday(new Date("2024-06-12"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isLeapYear(year)
+### \_.isTomorrow(date = new Date())
+
+是否为明天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+// 日期
+let res = LimeUtil.isTomorrow(new Date("2024-06-12"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isAfterTomorrow(date = new Date())
+
+是否为后天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+// 日期
+let res = LimeUtil.isAfterTomorrow(new Date("2024-06-12"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isWorkday(date = new Date())
+
+是否为工作日
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isWorkday(new Date("2024-06-12"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isWeekend(date = new Date())
+
+是否为周末（周六和周日）
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isWeekend(new Date("2024-06-15"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isFirstDayOfWeek(date = new Date())
+
+是否为本周第一天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isFirstDayOfWeek(new Date("2024-06-17"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isLastDayOfWeek(date = new Date())
+
+是否为本周最后一天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isLastDayOfWeek(new Date("2024-06-16"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isFirstDateOfMonth(date = new Date())
+
+是否为本月第一天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isFirstDateOfMonth(new Date("2024-06-01"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isLastDateOfMonth(date = new Date())
+
+是否为本月最后一天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isLastDateOfMonth(new Date("2024-06-30"));
+console.log(res); // 输出：true
+```
+
+---
+
+<!-- 判断年 -->
+
+### \_.isLeapYear(date = new Date())
 
 是否为闰年  
 `闰年366天，平年365天`
 
 - #### 参数
 
-  `year` {Number} 年份
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isLeapYear(2020);
+let res = LimeUtil.isLeapYear();
 console.log(res); // 输出：true
 ```
 
 ---
 
-<!-- 比较同一 天，月，年 -->
+### \_.isCommonYear(date = new Date())
 
-## 比较同一 天，月，年
-
-### \_.isSameDay(date1, date2)
-
-比较两个日期是否为同一天
+是否为平年  
+`闰年366天，平年365天`
 
 - #### 参数
 
-  `date1` {Date} 第一个日期  
-  `date2` {Date} 第二个日期
+  `date` {Date} 日期参数，默认当前日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSameDay(new Date("2021-12-13"), new Date("2021-12-13"));
-console.log(res); // 输出：true
+let res = LimeUtil.isCommonYear();
+console.log(res); // 输出：false
 ```
 
 ---
 
-### \_.isSameWeek(date1, date2)
+## 比较日期区间
 
-比较两个日期是否为同一周
+### \_.isBefore(startDate, endDate = new Date())
+
+是否在日期之前
 
 - #### 参数
 
-  `date1` {Date} 第一个日期  
-  `date2` {Date} 第二个日期
+  `startDate` {Date} 开始日期
+  `endDate` {Date} 结束日期，默认当前日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSameWeek(new Date("2021-12-13"), new Date("2021-12-14"));
+let res = LimeUtil.isBefore(new Date("2024-06-14"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isSameMonth(date1, date2)
+### \_.isAfter(startDate, endDate = new Date())
 
-比较两个日期是否为同一个月
+是否在日期之后
 
 - #### 参数
 
-  `date1` {Date} 第一个日期  
-  `date2` {Date} 第二个日期
+  `startDate` {Date} 开始日期
+  `endDate` {Date} 结束日期，默认当前日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSameMonth(new Date("2021-12-13"), new Date("2021-12-13"));
+let res = LimeUtil.isAfter(new Date("2024-06-17"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isSameYear(date1, date2)
+### \_.isBetween(date, startDate, endDate)
 
-比较两个日期是否为同一年
+是否在两个日期之间
 
 - #### 参数
 
-  `date1` {Date} 第一个日期  
-  `date2` {Date} 第二个日期
+  `date` {Date} 要比较的日期
+  `startDate` {Date} 开始日期
+  `endDate` {Date} 结束日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSameYear(new Date("2021-12-13"), new Date("2021-12-13"));
+let res = LimeUtil.isBetween(new Date("2024-06-16"), new Date("2024-06-17"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-<!-- 今天是否为 月初、月末 -->
+## 日期是否相同
 
-## 今天是否为 月初、月末
+### \_.isSame(startDate, endDate)
 
-### \_.isFirstDayOfMonth()
-
-今天是否为本月第一天
+两个日期是否为同一天
 
 - #### 参数
 
-  无
+  `startDate` {Date} 开始日期
+  `endDate` {Date} 结束日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isFirstDayOfMonth();
+let res = LimeUtil.isSame(new Date("2024-06-15"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isLastDayOfMonth()
+### \_.isSameWeek(startDate, endDate)
 
-今天是否为本月最后一天
+两个日期是否为同一周
 
 - #### 参数
 
-  无
+  `startDate` {Date} 开始日期
+  `endDate` {Date} 结束日期
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isLastDayOfMonth();
+let res = LimeUtil.isSameWeek(new Date("2024-06-15"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-<!-- 获取日期，时间戳等 -->
+### \_.isSameMonth(startDate, endDate)
 
-## 获取日期，时间戳等
+两个日期是否为同一个月
+
+- #### 参数
+
+  `startDate` {Date} 开始日期
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isSameMonth(new Date("2024-06-15"), new Date("2024-06-15"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isSameYear(startDate, endDate)
+
+两个日期是否为同一年
+
+- #### 参数
+
+  `startDate` {Date} 开始日期
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isSameYear(new Date("2024-06-15"), new Date("2024-06-15"));
+console.log(res); // 输出：true
+```
+
+---
+
+## 比较两个日期相同 或 之前/之后
+
+### \_.isSameOrBefore(startDate, endDate)
+
+两个日期是否相同或之前
+
+- #### 参数
+
+  `startDate` {Date} 开始日期
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isSameOrBefore(new Date("2024-06-14"), new Date("2024-06-15"));
+console.log(res); // 输出：true
+```
+
+---
+
+### \_.isSameOrAfter(startDate, endDate)
+
+两个日期是否相同或之后
+
+- #### 参数
+
+  `startDate` {Date} 开始日期
+  `endDate` {Date} 结束日期
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.isSameOrAfter(new Date("2024-06-17"), new Date("2024-06-15"));
+console.log(res); // 输出：true
+```
+
+---
+
+## 获取 日期/时间戳/周/季度
 
 ### \_.getNow()
 
@@ -475,25 +803,25 @@ console.log(res); // 输出：true
 
 - #### 返回值
 
-  {Date} 返回日期
+  {Boolean} 返回结果
 
 - #### 示例
 
 ```javascript
 let res = LimeUtil.getNow();
-console.log(res); // 输出：Mon Dec 13 2021 16:23:29 GMT+0800 (中国标准时间)
+console.log(res); // 输出：Sun Jun 16 2024 19:54:48 GMT+0800 (中国标准时间)
 ```
 
 ---
 
-### \_.getDate(date = new Date(), separator = "-")
+### \_.getDate(date = new Date(), format = "yyyy-MM-dd")
 
 获得当前日期字符串
 
 - #### 参数
 
   `date` {Date} 日期参数，默认当前日期  
-  `separator` {String} 年月日分隔符，默认“-”分隔
+  `format` {String} 日期字符串格式
 
 - #### 返回值
 
@@ -504,38 +832,38 @@ console.log(res); // 输出：Mon Dec 13 2021 16:23:29 GMT+0800 (中国标准时
 ```javascript
 // 默认
 let res = LimeUtil.getDate();
-console.log(res); // 输出：2021-12-13
+console.log(res); // 输出：2024-06-12
 
-// 指定日期和分隔符
-let res = LimeUtil.getDate(new Date('2021-11-10),'/');
-console.log(res); // 输出：2021/11/10
+// 指定日期格式
+let res = LimeUtil.getDate(new Date("2024-06-12"), "yyyy/MM/dd");
+console.log(res); // 输出：2024/06/12
 ```
 
 ---
 
-### \_.getDateTime(date = new Date(), separator = "-")
+### \_.getDateTime(date = new Date(), format = "yyyy-MM-dd HH:mm:ss")
 
-获得当前时间字符串
+获得当前日期时间字符串
 
 - #### 参数
 
   `date` {Date} 日期参数，默认当前日期  
-  `separator` {String} 年月日分隔符，默认“-”分隔
+  `format` {String} 日期时间字符串格式
 
 - #### 返回值
 
-  {String} 返回时间字符串
+  {String} 返回日期时间字符串
 
 - #### 示例
 
 ```javascript
 // 默认
 let res = LimeUtil.getDateTime();
-console.log(res); // 输出：2021-12-13 10:10:30
+console.log(res); // 输出：2024-06-12 10:10:30
 
 // 指定日期和分隔符
-let res = LimeUtil.getDateTime(new Date('2021-11-10),'/');
-console.log(res); // 输出：2021/11/10 10:10:30
+let res = LimeUtil.getDateTime(new Date("2024-06-12"), "yyyy/MM/dd HH:mm:ss");
+console.log(res); // 输出：2024-06-12 10:10:30
 ```
 
 ---
@@ -550,7 +878,7 @@ console.log(res); // 输出：2021/11/10 10:10:30
 
 - #### 返回值
 
-  {Timestamp} 返回时间戳
+  {Number} 返回时间戳
 
 - #### 示例
 
@@ -568,7 +896,7 @@ console.log(res); // 输出：1639094400000
 
 ### \_.getUnixTimestamp(date = new Date())
 
-获取当前 Unix 时间戳
+获取当前Unix时间戳
 
 - #### 参数
 
@@ -576,7 +904,7 @@ console.log(res); // 输出：1639094400000
 
 - #### 返回值
 
-  {UnixTimestamp} 返回 Unix 时间戳
+  {Number} 返回Unix时间戳
 
 - #### 示例
 
@@ -592,30 +920,9 @@ console.log(res); // 输出：1639094400
 
 ---
 
-### \_.getDay(date = new Date())
+### \_.getDateObject(date = new Date())
 
-获得当前日
-
-- #### 参数
-
-  `date` {Date} 日期参数，默认当前日期
-
-- #### 返回值
-
-  {Number} 返回日
-
-- #### 示例
-
-```javascript
-let res = LimeUtil.getDay();
-console.log(res); // 输出：20
-```
-
----
-
-### \_.getMonth(date = new Date())
-
-获得当前月
+获得当前日期的对象形式
 
 - #### 参数
 
@@ -623,20 +930,22 @@ console.log(res); // 输出：20
 
 - #### 返回值
 
-  {Number} 返回月
+  {Object} 返回日期的对象形式  
+  `返回的对象含义：{year:年，month：月，date：日，hours：时，minutes：分，seconds：秒，milliseconds：毫秒}`
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getMonth();
-console.log(res); // 输出：2
+// 默认
+let res = LimeUtil.getDateObject();
+console.log(res); // 输出： { "year": 2024,  "month": 6, "date": 16, "hours": 20, "minutes": 1, "seconds": 30, "milliseconds": 521}
 ```
 
 ---
 
-### \_.getYear(date = new Date())
+### \_.getDateArray(date = new Date())
 
-获得当前年
+获得当前日期的数组形式
 
 - #### 参数
 
@@ -644,86 +953,102 @@ console.log(res); // 输出：2
 
 - #### 返回值
 
-  {Number} 返回年
+  {Object} 返回日期的数组形式  
+  `返回的数组含义：[年，月，日，时，分，秒，毫秒]`
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getYear();
-console.log(res); // 输出：2022
+// 默认
+let res = LimeUtil.getDateArray();
+console.log(res); // 输出： [2024, 6, 16, 20, 6, 42, 110, 0, 3]
 ```
 
 ---
 
-### \_.getYearMonth(date = new Date(), separator = "-")
-
-获得当前年月
-
-- #### 参数
-
-  `date` {Date} 日期参数，默认当前日期  
-  `separator` {String} 年月分隔符，默认“-”分隔
-
-- #### 返回值
-
-  {String} 返回年月
-
-- #### 示例
-
-```javascript
-let res = LimeUtil.getYearMonth();
-console.log(res); // 输出：2022-02
-```
-
----
-
-### \_.getWeek(date = new Date(), format = "EE")
+### \_.getWeek(date = new Date(), format = "E", lang = "zh")
 
 获得当前日期是周几
 
 - #### 参数
 
-  `date` {Date} 日期参数，默认当前日期  
-  `format` {String} 周格式化结果：“E”:日, “EE”:周日, “EEE”:星期日；默认“EE”
+  `date` {Date} 日期参数，默认当前日期
+  `format` {String} 周格式化结果：E：如“日”，EE：如“周日”, EEE：如“星期日”；默认为E，为空则返回数字
+  `lang` {String} 语言zh和en，默认zh
 
 - #### 返回值
 
-  {String} 返回周几
+  {Number,String} 返回周几，会根据语言返回
 
 - #### 示例
 
 ```javascript
+// 默认
 let res = LimeUtil.getWeek();
-console.log(res); // 输出：周一
+console.log(res); // 输出：六
+
+// 中文周几
+let res = LimeUtil.getWeek(new Date(), (format = "E"), (lang = "zh"));
+console.log(res); // 输出：六
+let res = LimeUtil.getWeek(new Date(), (format = "EE"), (lang = "zh"));
+console.log(res); // 输出：周六
+let res = LimeUtil.getWeek(new Date(), (format = "EEE"), (lang = "zh"));
+console.log(res); // 输出：星期六
+
+// 英文周几
+let res = LimeUtil.getWeek(new Date(), (format = "E"), (lang = "en"));
+console.log(res); // 输出：Sa
+let res = LimeUtil.getWeek(new Date(), (format = "EE"), (lang = "en"));
+console.log(res); // 输出：Sat
+let res = LimeUtil.getWeek(new Date(), (format = "EEE"), (lang = "en"));
+console.log(res); // 输出：Saturday
 ```
 
 ---
 
-### \_.getQuarter(date = new Date(), format = "q")
+### \_.getQuarter(date = new Date(), format = "Q", lang = "zh")
 
 获得当前日期是第几季度
 
 - #### 参数
 
   `date` {Date} 日期参数，默认当前日期  
-  `format` {String} 季度格式化结果：“q”:一季度, "qq":第一季度；默认：“q”
+  `format` {String} 季度格式化结果：Q：如“一”, QQ：如“一季度”；QQQ：如“第一季度”；默认为Q，为空则返回数字
+  `lang` {String} 语言zh和en，默认zh
 
 - #### 返回值
 
-  {String} 返回第几季度
+  {String} 返回第几季度，会根据语言返回
 
 - #### 示例
 
 ```javascript
+// 默认
 let res = LimeUtil.getQuarter();
+console.log(res); // 输出：六
+
+// 中文周几
+let res = LimeUtil.getWeek(new Date(), (format = "Q"), (lang = "zh"));
+console.log(res); // 输出：一
+let res = LimeUtil.getQuarter(new Date(), (format = "QQ"), (lang = "zh"));
 console.log(res); // 输出：一季度
+let res = LimeUtil.getQuarter(new Date(), (format = "QQQ"), (lang = "zh"));
+console.log(res); // 输出：第一季度
+
+// 英文周几
+let res = LimeUtil.getQuarter(new Date(), (format = "Q"), (lang = "en"));
+console.log(res); // 输出：Q1
+let res = LimeUtil.getQuarter(new Date(), (format = "QQ"), (lang = "en"));
+console.log(res); // 输出：Q1th
+let res = LimeUtil.getQuarter(new Date(), (format = "QQQ"), (lang = "en"));
+console.log(res); // 输出：quarter 1st
 ```
 
 ---
 
-<!-- 当前日期是所在 周，月，年 的第几天 -->
+<!-- 当前日期是所在 周/月/年 的第几天 -->
 
-## 当前日期是所在 周，月，年 的第几天
+## 当前日期是所在 周/月/年 的第几天
 
 ### \_.getDayOfWeek(date = new Date())
 
@@ -770,7 +1095,7 @@ console.log(res); // 输出：13
 
 ### \_.getDayOfYear(date = new Date())
 
-获得当前日期是所在月的第几天
+获得当前日期是所在年的第几天
 
 - #### 参数
 
@@ -789,9 +1114,7 @@ console.log(res); // 输出：348
 
 ---
 
-<!-- 当前日期是所在 月，年的第几周 -->
-
-## 当前日期是所在 月，年的第几周
+## 当前日期的周是所在 月/年 的第几周
 
 ### \_.getWeekOfMonth(date = new Date())
 
@@ -835,11 +1158,118 @@ console.log(res); // 输出：51
 
 ---
 
-<!-- 当前日期所在 周，月 的第一天和最后一天 -->
+## 当前日期所在 周/月/年 共几天
 
-## 当前日期所在 周，月 的第一天和最后一天
+### \_.getDaysOfWeek(date = new Date())
 
-### \_.getFirstDayOfWeek(date = new Date())
+获得当前日期所在的周共几天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Number} 返回天数
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getDaysOfWeek();
+console.log(res); // 输出：7
+```
+
+---
+
+### \_.getDaysOfMonth(date = new Date())
+
+获得当前日期所在的月共几天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Number} 返回天数
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getDaysOfMonth();
+console.log(res); // 输出：31
+```
+
+---
+
+### \_.getDaysOfYear(date = new Date())
+
+获得当前日期所在的年共几天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Number} 返回天数
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getDaysOfYear();
+console.log(res); // 输出：365
+```
+
+---
+
+## 当前周所在 月/年 共几周
+
+### \_.getWeeksOfMonth(date = new Date())
+
+获得当前日期是所在月的第几周
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Number} 返回周数
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getWeeksOfMonth((date = new Date()));
+console.log(res); // 输出：4
+```
+
+---
+
+### \_.getWeeksOfYear(date = new Date())
+
+获得当前日期是所在年的第几周
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {Number} 返回周数
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getWeeksOfYear((date = new Date()));
+console.log(res); // 输出：12
+```
+
+---
+
+## 当前日期所在 周/月/年 的 第一天/最后一天/所有天数数组
+
+### \_.getFirstDateOfWeek(date = new Date())
 
 获得当前日期所在周的第一天
 
@@ -854,13 +1284,13 @@ console.log(res); // 输出：51
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFirstDayOfWeek((date = new Date()));
-console.log(res); // 输出：2021-12-13
+let res = LimeUtil.getFirstDateOfWeek();
+console.log(res); // 输出：2024-06-10
 ```
 
 ---
 
-### \_.getLastDayOfWeek(date = new Date())
+### \_.getLastDateOfWeek(date = new Date())
 
 获得当前日期所在周的最后一天
 
@@ -875,13 +1305,34 @@ console.log(res); // 输出：2021-12-13
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getLastDayOfWeek();
-console.log(res); // 输出：2021-12-19
+let res = LimeUtil.getLastDateOfWeek();
+console.log(res); // 输出：2024-06-16
 ```
 
 ---
 
-### \_.getFirstDayOfMonth(date = new Date())
+### \_.getFullDateOfWeek(date = new Date())
+
+获得当前日期所在周的最后一天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {String} 返回日期字符串
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getFullDateOfWeek();
+console.log(res); // 输出：['2024-06-10','2024-06-11','2024-06-12','2024-06-13','2024-06-14','2024-06-15','2024-06-16',]
+```
+
+---
+
+### \_.getFirstDateOfMonth(date = new Date())
 
 获得当前日期所在月的第一天
 
@@ -896,13 +1347,13 @@ console.log(res); // 输出：2021-12-19
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFirstDayOfMonth();
+let res = LimeUtil.getFirstDateOfMonth();
 console.log(res); // 输出：2021-12-01
 ```
 
 ---
 
-### \_.getLastDayOfMonth(date = new Date())
+### \_.getLastDateOfMonth(date = new Date())
 
 获得当前日期所在月的最后一天
 
@@ -917,19 +1368,15 @@ console.log(res); // 输出：2021-12-01
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getLastDayOfMonth();
+let res = LimeUtil.getLastDateOfMonth();
 console.log(res); // 输出：2021-12-31
 ```
 
 ---
 
-<!-- 获得当前 月，年 的总天数 -->
+### \_.getFullDateOfMonth(date = new Date())
 
-## 获得当前 月，年 的总天数
-
-### \_.getFullDayOfMonth(date = new Date())
-
-获得当前日期所在月总共多少天
+获取当前日期所在月的所有日期
 
 - #### 参数
 
@@ -937,20 +1384,20 @@ console.log(res); // 输出：2021-12-31
 
 - #### 返回值
 
-  {Number} 返回总天数
+  {String} 返回日期字符串
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFullDayOfMonth();
-console.log(res); // 输出：31
+let res = LimeUtil.getFullDateOfMonth();
+console.log(res); // 输出：['2024-06-01', ..., '2024-06-30']
 ```
 
 ---
 
-### \_.getFullDayOfYear(date = new Date())
+### \_.getFirstDateOfYear(date = new Date())
 
-获得当前日期所在年总共多少天
+获取当前日期所在年的第一天
 
 - #### 参数
 
@@ -958,18 +1405,58 @@ console.log(res); // 输出：31
 
 - #### 返回值
 
-  {Number} 返回总天数
+  {String} 返回日期字符串
 
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFullDayOfYear();
-console.log(res); // 输出：365
+let res = LimeUtil.getFirstDateOfYear();
+console.log(res); // 输出：2024-01-01
 ```
 
 ---
 
-<!-- 过去时间和剩余时间的显示 -->
+### \_.getLastDateOfYear(date = new Date())
+
+获取当前日期所在年的最后一天
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {String} 返回日期字符串
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getLastDateOfYear();
+console.log(res); // 输出：2024-12-31
+```
+
+---
+
+### \_.getFullDateOfYear(date = new Date())
+
+获取当前日期所在年的所有日期
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期
+
+- #### 返回值
+
+  {String} 返回日期字符串
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getFullDateOfYear();
+console.log(res); // 输出：['2024-01-01', ..., '2024-12-31']
+```
+
+---
 
 ## 过去时间和剩余时间的显示
 
@@ -980,8 +1467,8 @@ console.log(res); // 输出：365
 
 - #### 参数
 
-  `date` {Date|String} 日期或日期字符串  
-  `lang` {String} 字符串语言，zh 和 en，默认 zh
+  `date` {Date} 日期或日期字符串  
+  `lang` {String} 语言zh和en，默认zh
 
 - #### 返回值
 
@@ -991,28 +1478,29 @@ console.log(res); // 输出：365
 
 ```javascript
 // 日期
-let res = LimeUtil.getPastTime(new Date("2021-12-12"));
+let res = LimeUtil.getPastTime(new Date("2024-01-16"));
 console.log(res); // 输出：1天前
 
 // 日期字符串
-let res = LimeUtil.getPastTime("2021-12-12");
+let res = LimeUtil.getPastTime("2024-01-16");
 console.log(res); // 输出：1天前
 
 // 语言 英文
-let res = LimeUtil.getPastTime("2021-12-12", "en");
+let res = LimeUtil.getPastTime("2024-01-16", "en");
 console.log(res); // 输出：1 day ago
 ```
 
 ---
 
-### \_.getOverTime(date)
+### \_.getOverTime(date, lang = "zh")
 
 获得剩余时间的字符串显示  
 `例如：1天 10小时 20分钟 30秒`
 
 - #### 参数
 
-  `date` {Date|String} 日期或日期字符串
+  `date` {Date} 日期或日期字符串  
+  `lang` {String} 语言zh和en，默认zh
 
 - #### 返回值
 
@@ -1022,14 +1510,12 @@ console.log(res); // 输出：1 day ago
 
 ```javascript
 let res = LimeUtil.getOverTime("2021-12-14");
-console.log(res); // 输出：0天 7小时 10分钟 48秒
+console.log(res); // 输出：0天 7时 10分 48秒
 ```
 
 ---
 
-<!-- 计算日期加减 年，月，日，时，分，秒 -->
-
-## 计算日期加减 年，月，日，时，分，秒
+## 计算日期加减 年，月，日，时，分，秒，周，季度
 
 ### \_.addYear(date = new Date(), num = +1)
 
@@ -1193,19 +1679,97 @@ console.log(res); // 输出：日期对象
 
 ---
 
-<!-- 计算两个日期相差 -->
+### \_.addMillisecond(date = new Date(), num = +100)
 
-## 计算两个日期相差
-
-### \_.diffDay(date1, date2)
-
-计算两个日期相差的天数，不满一天为 0  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+日期加减毫秒
 
 - #### 参数
 
-  `date1` {String|Date|Timestamp|UnixTimestamp} 第一个日期  
-  `date2` {String|Date|Timestamp|UnixTimestamp} 第二个日期
+  `date` {Date} 日期参数，默认当前日期  
+  `num` {Number} 加减数量，用正数和负数表示；默认 +100
+
+- #### 返回值
+
+  {Date} 返回加减后的日期
+
+- #### 示例
+
+```javascript
+// 默认
+let res = LimeUtil.addMillisecond();
+console.log(res); // 输出：日期对象
+
+// 减去
+let res = LimeUtil.addMillisecond(new Date(), -100);
+console.log(res); // 输出：日期对象
+```
+
+---
+
+### \_.addWeek(date = new Date(), num = +1)
+
+日期加减周
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期  
+  `num` {Number} 加减数量，用正数和负数表示；默认 +1
+
+- #### 返回值
+
+  {Date} 返回加减后的日期
+
+- #### 示例
+
+```javascript
+// 默认
+let res = LimeUtil.addWeek();
+console.log(res); // 输出：日期对象
+
+// 减去
+let res = LimeUtil.addWeek(new Date(), -1);
+console.log(res); // 输出：日期对象
+```
+
+---
+
+### \_.addQuarter(date = new Date(), num = +1)
+
+日期加减季度
+
+- #### 参数
+
+  `date` {Date} 日期参数，默认当前日期  
+  `num` {Number} 加减数量，用正数和负数表示；默认 +1
+
+- #### 返回值
+
+  {Date} 返回加减后的日期
+
+- #### 示例
+
+```javascript
+// 默认
+let res = LimeUtil.addQuarter();
+console.log(res); // 输出：日期对象
+
+// 减去
+let res = LimeUtil.addQuarter(new Date(), -1);
+console.log(res); // 输出：日期对象
+```
+
+---
+
+## 计算两个日期相差
+
+### \_.getDiffDay(startDate, endDate)
+
+算两个日期相差的天数，不满一天为0
+
+- #### 参数
+
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
 
 - #### 返回值
 
@@ -1215,29 +1779,28 @@ console.log(res); // 输出：日期对象
 
 ```javascript
 // 大于0
-let res = LimeUtil.diffDay("2021-12-10", "2021-12-11");
+let res = LimeUtil.getDiffDay("2021-12-10", "2021-12-11");
 console.log(res); // 输出： 1
 
 // 等于0
-let res = LimeUtil.diffDay("2021-12-11", "2021-12-11");
+let res = LimeUtil.getDiffDay("2021-12-11", "2021-12-11");
 console.log(res); // 输出： 0
 
 // 小于0
-let res = LimeUtil.diffDay("2021-12-11", "2021-12-10");
+let res = LimeUtil.getDiffDay("2021-12-11", "2021-12-10");
 console.log(res); // 输出： -1
 ```
 
 ---
 
-### \_.diffWeek(date1, date2)
+### \_.getDiffWeek(startDate, endDate)
 
-计算两个日期相差的周数，不满一周为 0  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+算两个日期相差的周数，不满一周为0
 
 - #### 参数
 
-  `date1` {String|Date|Timestamp|UnixTimestamp} 第一个日期  
-  `date2` {String|Date|Timestamp|UnixTimestamp} 第二个日期
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
 
 - #### 返回值
 
@@ -1247,29 +1810,28 @@ console.log(res); // 输出： -1
 
 ```javascript
 // 大于0
-let res = LimeUtil.diffWeek("2021-12-01", "2021-12-11");
+let res = LimeUtil.getDiffWeek("2021-12-01", "2021-12-11");
 console.log(res); // 输出： 1
 
 // 不满一周等于0
-let res = LimeUtil.diffWeek("2021-12-11", "2021-12-11");
+let res = LimeUtil.getDiffWeek("2021-12-11", "2021-12-11");
 console.log(res); // 输出： 0
 
 // 小于0
-let res = LimeUtil.diffWeek("2021-12-10", "2021-12-01");
+let res = LimeUtil.getDiffWeek("2021-12-10", "2021-12-01");
 console.log(res); // 输出： -1
 ```
 
 ---
 
-### \_.diffMonth(date1, date2)
+### \_.getDiffMonth(startDate, endDate)
 
-计算两个日期相差的月数，不满一月为 0  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+计算两个日期相差的月数，不满一月为0
 
 - #### 参数
 
-  `date1` {String|Date|Timestamp|UnixTimestamp} 第一个日期  
-  `date2` {String|Date|Timestamp|UnixTimestamp} 第二个日期
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
 
 - #### 返回值
 
@@ -1279,65 +1841,63 @@ console.log(res); // 输出： -1
 
 ```javascript
 // 大于0
-let res = LimeUtil.diffMonth("2021-11-10", "2021-12-11");
+let res = LimeUtil.getDiffMonth("2024-06-12", "2021-12-11");
 console.log(res); // 输出： 1
 
 // 等于0
-let res = LimeUtil.diffMonth("2021-12-11", "2021-12-11");
+let res = LimeUtil.getDiffMonth("2021-12-11", "2021-12-11");
 console.log(res); // 输出： 0
 
 // 小于0
-let res = LimeUtil.diffMonth("2021-12-11", "2021-11-10");
+let res = LimeUtil.getDiffMonth("2021-12-11", "2024-06-12");
 console.log(res); // 输出： -1
 ```
 
 ---
 
-### \_.diffYear(date1, date2)
+### \_.getDiffYear(startDate, endDate)
 
-计算两个日期相差的年数，不满一年为 0  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+计算两个日期相差的年数，不满一年为0
 
 - #### 参数
 
-  `date1` {String|Date|Timestamp|UnixTimestamp} 第一个日期  
-  `date2` {String|Date|Timestamp|UnixTimestamp} 第二个日期
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
 
 - #### 返回值
 
-  {Number} 返回两个日期相差的月数，结果为正数或者负数
+  {Number} 返回两个日期相差的年数，结果为正数或者负数
 
 - #### 示例
 
 ```javascript
 // 大于0
-let res = LimeUtil.diffYear("2020-11-10", "2021-12-11");
+let res = LimeUtil.getDiffYear("2020-11-10", "2021-12-11");
 console.log(res); // 输出： 1
 
 // 等于0
-let res = LimeUtil.diffYear("2021-12-11", "2021-12-11");
+let res = LimeUtil.getDiffYear("2021-12-11", "2021-12-11");
 console.log(res); // 输出： 0
 
 // 小于0
-let res = LimeUtil.diffYear("2021-12-11", "2020-11-10");
+let res = LimeUtil.getDiffYear("2021-12-11", "2020-11-10");
 console.log(res); // 输出： -1
 ```
 
 ---
 
-<!-- 获得两个日期之间数组 -->
+<!-- 获得两个日期之间所有日期 -->
 
 ## 获得两个日期之间数组
 
-### \_.betweenDays(date1, date2)
+### \_.getBetweenDates(startDate, endDate)
 
-获得两个日期之间的年月日数组  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+获得两个日期之间的年月日数组
 
 - #### 参数
 
-  `date1` {String|Date|Timestamp|UnixTimestamp} 第一个日期  
-  `date2` {String|Date|Timestamp|UnixTimestamp} 第二个日期
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
 
 - #### 返回值
 
@@ -1346,21 +1906,20 @@ console.log(res); // 输出： -1
 - #### 示例
 
 ```javascript
-let res = LimeUtil.betweenDays("2021-12-11", "2021-12-13");
-console.log(res); // 输出： ['2021-12-11', '2021-12-12', '2021-12-13']
+let res = LimeUtil.getBetweenDates("2021-12-11", "2024-06-12");
+console.log(res); // 输出： ['2021-12-11', '2024-01-16', '2024-06-12']
 ```
 
 ---
 
-### \_.betweenMonths(date1, date2)
+### \_.getBetweenMonths(startDate, endDate)
 
-获得两个日期之间的年月数组  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+获得两个日期之间的年月数组
 
 - #### 参数
 
-  `date1` {String|Date|Timestamp|UnixTimestamp} 第一个日期  
-  `date2` {String|Date|Timestamp|UnixTimestamp} 第二个日期
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
 
 - #### 返回值
 
@@ -1369,21 +1928,20 @@ console.log(res); // 输出： ['2021-12-11', '2021-12-12', '2021-12-13']
 - #### 示例
 
 ```javascript
-let res = LimeUtil.betweenMonths("2021-11-11", "2021-12-13");
+let res = LimeUtil.getBetweenMonths("2021-11-11", "2024-06-12");
 console.log(res); // 输出： ['2021-11', '2021-12']
 ```
 
 ---
 
-### \_.betweenYears(date1, date2)
+### \_.getBetweenYears(startDate, endDate)
 
-获得两个日期之间的年数组  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+获得两个日期之间的年数组
 
 - #### 参数
 
-  `date1` {String|Date|Timestamp|UnixTimestamp} 第一个日期  
-  `date2` {String|Date|Timestamp|UnixTimestamp} 第二个日期
+  `startDate` {Date} 开始日期  
+  `endDate` {Date} 结束日期
 
 - #### 返回值
 
@@ -1392,135 +1950,82 @@ console.log(res); // 输出： ['2021-11', '2021-12']
 - #### 示例
 
 ```javascript
-let res = LimeUtil.betweenYears("2020-11-11", "2021-12-13");
+let res = LimeUtil.betweenYears("2020-11-11", "2024-06-12");
 console.log(res); // 输出： [2020, 2021]
 ```
 
 ---
 
-<!-- 比较日期大小 -->
-
-## 比较日期大小
-
-### \_.compareDate(date1, date2)
-
-比较两个日期的大小  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
-
-- #### 参数
-
-  `date1` {String|Date|Timestamp|UnixTimestamp} 第一个日期  
-  `date2` {String|Date|Timestamp|UnixTimestamp} 第二个日期
-
-- #### 返回值
-
-  {Boolean} 返回 true：第一个日期大于第二个日期；false：第一个日期小于第二个日期；
-
-- #### 示例
-
-```javascript
-let res = LimeUtil.compareDate("2021-12-11", "2021-12-10");
-console.log(res); // 输出： true
-```
-
----
-
-<!-- 格式化和解析日期 -->
-
 ## 格式化和解析日期
 
-### \_.formatDate(date = new Date(), format = "yyyy-MM-dd")
+### \_.toDateString(date, format = "yyyy-MM-dd", lang = "zh")
 
-格式化日期字符串  
-`支持：日期字符串，日期对象，时间戳，Unix时间戳`
+日期对象转为日期字符串  
+`支持日期字符串，日期对象，时间戳，unix时间戳`
 
 - #### format 格式
 
-```javascript
-// 年-月-日
-yyyy-MM-dd // 输出：2021-12-13
-yyyy-MM-dd HH:mm:ss // 输出：2021-12-13 17:10:10
-yyyy-MM-dd hh:mm:ss // 输出：2021-12-13 05:10:10
-
-// 年/月/日
-yyyy/MM/dd // 输出：2021/12/13
-yyyy/MM/dd HH:mm:ss // 输出：2021/12/13 17:10:10
-yyyy/MM/dd hh:mm:ss // 输出：2021/12/13 05:10:10
-
-// 日/月/年
-dd/MM/yyyy // 26/11/2021
-dd/MM/yyyy HH:mm:ss // 输出：26/11/2021 17:10:10
-dd/MM/yyyy hh:mm:ss // 输出：26/11/2021 05:10:10
-
-// 月/日/年
-MM/dd/yyyy // 输出：11/26/2021
-MM/dd/yyyy HH:mm:ss // 输出：11/26/2021 17:10:10
-MM/dd/yyyy hh:mm:ss // 输出：11/26/2021 05:10:10
-
-// 时分秒
-HH:mm:ss // 输出：17:10:10
-hh:mm:ss // 输出：05:10:10
-
-// 星期和季度
-yyyy-MM-dd HH:mm:ss EE // 输出：2021-12-11 17:33:00 周六
-yyyy-MM-dd HH:mm:ss E q // 输出：2021-12-11 17:33:00 六 四季度
-yyyy-MM-dd HH:mm:ss EE qq // 输出：2021-12-11 17:33:00 周六 第四季度
-yyyy-MM-dd HH:mm:ss EEE qq // 输出：2021-12-11 17:33:00 星期六 第四季度
-yyyy-MM-dd hh:mm:ss E q // 输出：2021-12-11 05:33:00 六 四季度
-```
+  格式化的规则和常用的日期格式请参考最上面的日期格式
 
 - #### 参数
 
-  `date1` {String|Date|Timestamp|UnixTimestamp} 日期参数  
-  `format` {String} 转化格式，具体参考上面的 <span style="color:#ff9900">`format 格式`</span>，默认是 <span style="color:#ff9900">`yyyy-MM-dd`</span>
+  `date1` {String|Date|Number} 日期参数  
+  `format` {String} 转化格式
+  `lang` {String} 语言zh和en，默认zh
 
 - #### 返回值
 
-  {String} 返回格式化后的日期字符串
+  {String} 返回日期字符串
 
 - #### 示例
 
 ```javascript
-// 使用方法，具体格式化参数以及结果参考上面的 format 格式
-let res = LimeUtil.formatDate("2021-12-10", "yyyy-MM-dd HH:mm:ss");
+// 使用方法，具体格式化参数以及结果参考最上面的 format 格式
+let res = LimeUtil.toDateString(new Date(), "yyyy-MM-dd HH:mm:ss");
 console.log(res); // 输出： 2021-12-10 17:10:10
+
+let res = LimeUtil.toDateString("2021-12-10", "yyyy/MM/dd HH:mm:ss");
+console.log(res); // 输出： 2021/12/10 17:10:10
 ```
 
 ---
 
-### \_.parseDate(value)
+### \_.toDate(value)
 
-解析为日期对象  
-`支持：日期字符串，时间戳，Unix时间戳`
+日期字符串转为日期对象  
+`支持日期字符串，时间戳，Unix时间戳`
 
 - #### 参数
 
-  `date` {String|Timestamp|UnixTimestamp} 日期参数；  
-  如果是字符串格式，仅支持：<span style="color:#ff9900">`yyyy-MM-dd`</span>，</span><span style="color:#ff9900">`yyyy-MM-dd HH:mm:ss`</span>，<span style="color:#ff9900">`yyyy/MM/dd`</span>，<span style="color:#ff9900">`yyyy/MM/dd HH:mm:ss`</span>，<span style="color:#ff9900">`MM/dd/yyyy`</span>，<span style="color:#ff9900">`MM/dd/yyyy HH:mm:ss`</span>，以上是 js 中 <span style="color:#ff9900">`new Date()`</span>支持的格式，否则会报错 <span style="color:#ed4014">`Invalid Date`</span>。
+  `date` {String|Number} 日期参数
 
 - #### 返回值
 
-  {Date} 返回转换后的日期
+  {Date} 返回日期对象
 
 - #### 示例
 
 ```javascript
-// 日期字符串，仅支持以下几种，在参数中有说明
 // yyyy-MM-dd
 let res = LimeUtil.parseDate("2021-12-10");
 console.log(res); // 输出：Fri Dec 10 2021 00:00:00 GMT+0800 (中国标准时间)
+
 // yyyy-MM-dd HH:mm:ss
 let res = LimeUtil.parseDate("2021-12-10 15:10:10");
 console.log(res); // 输出：Fri Dec 10 2021 15:10:10 GMT+0800 (中国标准时间)
+
 // yyyy/MM/dd
 let res = LimeUtil.parseDate("2021-12-10");
 console.log(res); // 输出：Fri Dec 10 2021 00:00:00 GMT+0800 (中国标准时间)
+
 // yyyy/MM/dd HH:mm:ss
 let res = LimeUtil.parseDate("2021-12-10 15:10:10");
 console.log(res); // 输出：Fri Dec 10 2021 15:10:10 GMT+0800 (中国标准时间)
+
 // MM/dd/yyyy
 let res = LimeUtil.parseDate("12/10/2021");
 console.log(res); // 输出：Fri Dec 10 2021 00:00:00 GMT+0800 (中国标准时间)
+
 // MM/dd/yyyy HH:mm:ss
 let res = LimeUtil.parseDate("12/10/2021 15:10:10");
 console.log(res); // 输出：Fri Dec 10 2021 15:10:10 GMT+0800 (中国标准时间)

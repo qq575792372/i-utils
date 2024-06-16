@@ -73,10 +73,7 @@ export function toLower(value) {
  */
 export function toSnakeCase(value) {
   // 驼峰
-  if (
-    /^[a-z]$/.test(value.charAt(0)) &&
-    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
-  ) {
+  if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     return value.replace(/([A-Z])/g, "_$1").toLowerCase();
   }
   // 短横
@@ -84,10 +81,7 @@ export function toSnakeCase(value) {
     return value.replace(/-/g, "_").toLowerCase();
   }
   // 帕斯卡
-  if (
-    /^[A-Z]$/.test(value.charAt(0)) &&
-    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
-  ) {
+  if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     value = value.charAt(0).toLowerCase() + value.slice(1);
     return value.replace(/([A-Z])/g, "_$1").toLowerCase();
   }
@@ -105,17 +99,11 @@ export function toKebabCase(value) {
     return value.replace(/_/g, "-").toLowerCase();
   }
   // 驼峰
-  if (
-    /^[a-z]$/.test(value.charAt(0)) &&
-    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
-  ) {
+  if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     return value.replace(/([A-Z])/g, "-$1").toLowerCase();
   }
   // 帕斯卡
-  if (
-    /^[A-Z]$/.test(value.charAt(0)) &&
-    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
-  ) {
+  if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     let newStr = value.charAt(0).toLowerCase() + value.slice(1);
     return newStr.replace(/([A-Z])/g, "-$1").toLowerCase();
   }
@@ -141,10 +129,7 @@ export function toCamelCase(value) {
     });
   }
   // 帕斯卡
-  else if (
-    /^[A-Z]$/.test(value.charAt(0)) &&
-    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
-  ) {
+  else if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     return value.charAt(0).toLowerCase() + value.slice(1);
   }
   // 返回自身
@@ -175,10 +160,7 @@ export function toPascalCase(value) {
     return newStr.charAt(0).toUpperCase() + newStr.slice(1);
   }
   // 驼峰
-  else if (
-    /^[a-z]$/.test(value.charAt(0)) &&
-    !(value.indexOf("-") > 0 || value.indexOf("_") > 0)
-  ) {
+  else if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
   // 返回自身
@@ -258,8 +240,7 @@ export function zeroEnd(value, maxLength = 2) {
 export function formatThousand(num) {
   if (!parseFloat(num)) return num;
   num = String(num);
-  let regex =
-    num.indexOf(".") > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
+  let regex = num.indexOf(".") > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
   return num.replace(regex, "$1,");
 }
 
@@ -269,53 +250,42 @@ export function formatThousand(num) {
  * @returns {String} 返回金额大写
  */
 export function formatRmbChinese(money) {
-  //汉字的数字
-  let cnNums = new Array(
-    "零",
-    "壹",
-    "贰",
-    "叁",
-    "肆",
-    "伍",
-    "陆",
-    "柒",
-    "捌",
-    "玖"
-  );
-  //基本单位
+  // 汉字的数字
+  let cnNums = new Array("零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖");
+  // 基本单位
   let cnIntRadice = new Array("", "拾", "佰", "仟");
-  //对应整数部分扩展单位
+  // 对应整数部分扩展单位
   let cnIntUnits = new Array("", "万", "亿", "兆");
-  //对应小数部分单位
+  // 对应小数部分单位
   let cnDecUnits = new Array("角", "分", "毫", "厘");
-  //整数金额时后面跟的字符
+  // 整数金额时后面跟的字符
   let cnInteger = "整";
-  //整型完以后的单位
+  // 整型完以后的单位
   let cnIntLast = "元";
-  //最大处理的数字
+  // 最大处理的数字
   let maxNum = 999999999999999.9999;
-  //金额整数部分
+  // 金额整数部分
   let integerNum;
-  //金额小数部分
+  // 金额小数部分
   let decimalNum;
-  //输出的中文金额字符串
+  // 输出的中文金额字符串
   let chineseStr = "";
-  //分离金额后用的数组，预定义
+  // 分离金额后用的数组，预定义
   let parts;
   if (money === "") {
-    //不能用==
+    // 不能用==
     return "";
   }
   money = parseFloat(money);
   if (money >= maxNum) {
-    //超出最大处理数字，抛出异常
+    // 超出最大处理数字，抛出异常
     throw new Error("Calculated number overflow!");
   }
   if (money == 0) {
     chineseStr = cnNums[0] + cnIntLast + cnInteger;
     return chineseStr;
   }
-  //转换为字符串
+  // 转换为字符串
   money = money.toString();
   if (money.indexOf(".") == -1) {
     integerNum = money;
@@ -325,7 +295,7 @@ export function formatRmbChinese(money) {
     integerNum = parts[0];
     decimalNum = parts[1].substr(0, 4);
   }
-  //获取整型部分转换
+  // 获取整型部分转换
   if (parseInt(integerNum, 10) > 0) {
     let zeroCount = 0;
     let IntLen = integerNum.length;
@@ -340,7 +310,7 @@ export function formatRmbChinese(money) {
         if (zeroCount > 0) {
           chineseStr += cnNums[0];
         }
-        //归零
+        // 归零
         zeroCount = 0;
         chineseStr += cnNums[parseInt(n)] + cnIntRadice[m];
       }
@@ -350,7 +320,7 @@ export function formatRmbChinese(money) {
     }
     chineseStr += cnIntLast;
   }
-  //小数部分
+  // 小数部分
   if (decimalNum != "") {
     let decLen = decimalNum.length;
     for (let i = 0; i < decLen; i++) {

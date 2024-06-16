@@ -1,5 +1,5 @@
 import { isNaN } from "../validate";
-import { MATH_MODE } from "../constant/math";
+import { MATH_TYPE } from "../constants/math";
 
 /* 数字计算 */
 /**
@@ -63,10 +63,7 @@ export function multiply(arg1, arg2) {
   try {
     m += s2.split(".")[1].length;
   } catch (e) {}
-  return (
-    (Number(s1.replace(".", "")) * Number(s2.replace(".", ""))) /
-    Math.pow(10, m)
-  );
+  return (Number(s1.replace(".", "")) * Number(s2.replace(".", ""))) / Math.pow(10, m);
 }
 
 /**
@@ -140,13 +137,13 @@ export function scm(arg1, arg2) {
  * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
  * @returns {String} 返回保留后的数字字符串
  */
-export function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
+export function toFixed(num, decimals = 2, mode = MATH_TYPE.ROUND) {
   // 四舍五入
-  if (mode == MATH_MODE.ROUND) {
+  if (mode == MATH_TYPE.ROUND) {
     return _toFixedRound(num, decimals);
   }
   // 向下舍出
-  if (mode == MATH_MODE.ROUND_FLOOR) {
+  if (mode == MATH_TYPE.ROUND_FLOOR) {
     return _toFixedFloor(num, decimals);
   }
 }
@@ -158,13 +155,13 @@ export function toFixed(num, decimals = 2, mode = MATH_MODE.ROUND) {
  * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
  * @returns {Number} 返回保留后的数字
  */
-export function toDecimal(num, decimals = 2, mode = MATH_MODE.ROUND) {
+export function toDecimal(num, decimals = 2, mode = MATH_TYPE.ROUND) {
   // 四舍五入
-  if (mode == MATH_MODE.ROUND) {
+  if (mode == MATH_TYPE.ROUND) {
     return _toDecimalRound(num, decimals);
   }
   // 向下舍出
-  if (mode == MATH_MODE.ROUND_FLOOR) {
+  if (mode == MATH_TYPE.ROUND_FLOOR) {
     return _toDecimalFloor(num, decimals);
   }
 }
@@ -185,11 +182,7 @@ function _toFixedRound(num, decimals = 2) {
   if (!decimals) decimals = 0;
   if (s.indexOf(".") == -1) s += ".";
   s += new Array(decimals + 1).join("0");
-  if (
-    new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(
-      s
-    )
-  ) {
+  if (new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(s)) {
     let s = "0" + RegExp.$2,
       pm = RegExp.$1,
       a = RegExp.$3.length,
@@ -205,9 +198,7 @@ function _toFixedRound(num, decimals = 2) {
           } else break;
         }
       }
-      s = a
-        .join("")
-        .replace(new RegExp("(\\d+)(\\d{" + decimals + "})\\d$"), "$1.$2");
+      s = a.join("").replace(new RegExp("(\\d+)(\\d{" + decimals + "})\\d$"), "$1.$2");
     }
     if (b) s = s.substr(1);
     return (pm + s).replace(/\.$/, "");
@@ -248,9 +239,7 @@ function _toFixedFloor(num, decimals = 2) {
   }
   let realVal = "";
   // 截取当前数据到小数点后decimals位
-  realVal = `${String(tempNum).split(".")[0]}.${String(tempNum)
-    .split(".")[1]
-    .substring(0, dec)}`;
+  realVal = `${String(tempNum).split(".")[0]}.${String(tempNum).split(".")[1].substring(0, dec)}`;
   return String(realVal);
 }
 
