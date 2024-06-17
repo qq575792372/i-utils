@@ -117,13 +117,7 @@ export function getIdCardInfo(idCard) {
   // 15位身份证
   if (idCard.length == 15) {
     // 生日
-    info.birthday =
-      "19" +
-      idCard.substring(6, 8) +
-      "-" +
-      idCard.substring(8, 10) +
-      "-" +
-      idCard.substring(10, 12);
+    info.birthday = "19" + idCard.substring(6, 8) + "-" + idCard.substring(8, 10) + "-" + idCard.substring(10, 12);
     // 年龄
     info.age = getAge(info.birthday);
     // 性别
@@ -132,12 +126,7 @@ export function getIdCardInfo(idCard) {
   // 18位身份证
   if (idCard.length == 18) {
     // 生日
-    info.birthday =
-      idCard.substring(6, 10) +
-      "-" +
-      idCard.substring(10, 12) +
-      "-" +
-      idCard.substring(12, 14);
+    info.birthday = idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
     // 年龄
     info.age = getAge(info.birthday);
     // 性别
@@ -181,64 +170,6 @@ export function getAge(dateStr) {
     }
   }
   return age;
-}
-/**
- * 通过日期计算星座
- * @param {String} dateStr 日期字符串
- * @returns {String} 返回星座
- */
-export function getZodiac(dateStr) {
-  if (isEmpty(dateStr)) return;
-  // 计算
-  let days = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22];
-  let arr = [
-    "摩羯座",
-    "水瓶座",
-    "双鱼座",
-    "白羊座",
-    "金牛座",
-    "双子座",
-    "巨蟹座",
-    "狮子座",
-    "处女座",
-    "天秤座",
-    "天蝎座",
-    "射手座",
-    "摩羯座",
-  ];
-  let date = parseDate(dateStr);
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  return day < days[month - 1] ? arr[month - 1] : arr[month];
-}
-/**
- * 通过日期计算生肖
- * @param {String} dateStr 日期字符串
- * @returns {String} 返回生肖
- */
-export function getChineseZodiac(dateStr) {
-  if (isEmpty(dateStr)) return;
-  // 计算
-  let arr = [
-    "鼠",
-    "牛",
-    "虎",
-    "兔",
-    "龙",
-    "蛇",
-    "马",
-    "羊",
-    "猴",
-    "鸡",
-    "狗",
-    "猪",
-  ];
-  let date = parseDate(dateStr);
-  let year = date.getFullYear();
-  if (year < 1900) {
-    return "未知";
-  }
-  return arr[(year - 1900) % arr.length];
 }
 
 /**
@@ -284,7 +215,7 @@ export function setTargetByPath(source, path, value) {
   const fn = new Function(
     "source",
     `source${fxStr}=${value}
-        `
+        `,
   );
   fn(source);
 }

@@ -331,10 +331,10 @@ export function arrayToTree(array, setting = { key: "id", parentKey: "pid", chil
 }
 /**
  * 树形结构转一维数组
- * @param {*} treeData
+ * @param {*} nodes
  * @param {*} childrenKey
  */
-export function treeToArray(treeData, childrenKey = "children") {
+export function treeToArray(nodes, setting = { childrenKey: "children" }) {
   // TODO
   let childrenKey = setting.childrenKey;
   let result = [];
@@ -346,7 +346,7 @@ export function treeToArray(treeData, childrenKey = "children") {
     result.push(node);
     // 继续执行
     if (node[childrenKey] && node[childrenKey].length) {
-      let array = this.treeToArray(node[childrenKey], setting);
+      let array = treeToArray(node[childrenKey], setting);
       array && result.push(...array);
     }
   }

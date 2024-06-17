@@ -1,17 +1,17 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>date- 测试页面</title>
-    <style></style>
-  </head>
-  <body></body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>date- 测试页面</title>
+  <style></style>
+</head>
+<body></body>
 
-  <!-- 直接使用module模式，对源码进行测试 -->
-  <script type="module">
-    import { getFullDateOfYear, getWeek, toDateString, getOverTime, getPastTime } from "../packages/date/src/date.js";
+<!-- 使用module模式对源码进行测试，用webstorm启动服务 -->
+<script type="module">
+  import { getFullDateOfYear, getZodiac, toDateString, getOverTime, getPastTime } from "../packages/date/src/date.js";
 
-    console.log(getWeek());
-  </script>
+  console.log(getZodiac(new Date()));
+</script>
 </html>
