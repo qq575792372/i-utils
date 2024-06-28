@@ -1,6 +1,6 @@
 import { isEmpty, isNull, isInteger, isDate, isString } from "../../core/src/validate";
 import { parseInt } from "../../core/src/number";
-import { WEEK, MONTH, ZODIAC, CHINESE_ZODIAC, QUARTER, OVER_TIME, PASS_TIME, AM_PM } from "./constants";
+import { WEEK, AM_PM, PASS_TIME, QUARTER } from "./constants";
 
 /* 快捷日期 */
 /**

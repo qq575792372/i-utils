@@ -12,19 +12,19 @@
   /**
    * 数组排序常量
    */
-  const SORT_TYPE = {
+  const SORT = {
     // 降序
-    SORT_DESC: 0,
+    DESC: 0,
     // 升序
-    SORT_ASC: 1,
+    ASC: 1,
     // 随机排序
-    SORT_RANDOM: 2,
+    RANDOM: 2,
   };
 
   /**
    * 数学计算常量
    */
-  const MATH_TYPE = {
+  const MATH = {
     // 正常四舍五入，如：1.354保留两位是1.35；1.355保留两位是1.36；
     ROUND: 0,
     // 向下舍出，如：1.354保留两位是1.35；1.355保留两位是1.35；
@@ -34,7 +34,7 @@
   /**
    * 语言敞亮
    */
-  const LANG_TYPE = {
+  const LANG = {
     // 中文
     ZH: "zh",
     // 英文
@@ -42,15 +42,65 @@
   };
 
   /**
-   * 核心包常量集合
+   * 正则常量集合
+   */
+  const REGEXP = {
+    // 中文汉字
+    CH: /^[\u4E00-\u9FA5]+$/,
+    // 英文字母
+    EN: /^[a-zA-Z]$/,
+    // 小写字母
+    LOWER_CASE: /^[a-z]+$/,
+    // 大写字母
+    UPPER_CASE: /^[A-Z]+$/,
+    // 中文姓名，2-16位
+    CH_NAME: /^[\u4e00-\u9fa5·]{2,16}$/,
+    // 英文姓名，0-20位
+    EN_NAME: /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/,
+    // 数字，包含正数和负数
+    NUMBER: /^([-+])?\d+(\.\d+)?$/,
+    // 整数，包含：0，正整数和负整数
+    INTEGER: /^(0|[1-9][0-9]*|-[1-9][0-9]*)$/,
+    // 小数，包含正小数和负小数
+    DECIMAL: /^\d+\.\d+$/,
+    // 正整数或者保留两位小数
+    INT_OR_FLOAT: /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
+    // 手机号码，支持+86
+    MOBILE: /^(?:(?:\+|00)86)?1[1-9]\d{9}$/,
+    // 固定电话号码，比如：0755-1111111
+    PHONE: /^(?:(?:\d{3}-)?\d{8}|^(?:\d{4}-)?\d{7,8})(?:-\d+)?$/,
+    // 邮箱
+    EMAIL: /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/,
+    // 一代15位和二代18位身份证
+    ID_CARD:
+      /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
+    // 仅校验一代15位身份证
+    ID_CARD15: /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)/,
+    // 仅校验二代18位身份证
+    ID_CARD18: /(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
+    // 银行卡号
+    BANK_CARD: /^[1-9]\d{9,29}$/,
+    // 邮政编码
+    POST_CODE: /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
+    // url网址
+    URL: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
+    // ip地址
+    IP: /((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))/,
+    // 是外链，http，https，mail，tel电话
+    EXTERNAL: /^(http?:|https?:|mailto:|tel:)/,
+  };
+
+  /**
+   * 常量集合
    */
 
-  // 导出
-  var constants = {
-    SORT_TYPE,
-    MATH_TYPE,
-    LANG_TYPE,
-  };
+  var constants = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    SORT: SORT,
+    MATH: MATH,
+    LANG: LANG,
+    REGEXP: REGEXP
+  });
 
   /* 字符串处理 */
   /**
@@ -1204,17 +1254,17 @@
    * @param {Number} mode 排序模式，参考常量集合中 数组常量，默认是升序
    * @returns {Array} 返回操作后的数组
    */
-  function arraySort(array, mode = SORT_TYPE.SORT_ASC) {
+  function arraySort(array, mode = SORT.ASC) {
     return array.sort((a, b) => {
       switch (mode) {
         // 升序
-        case SORT_TYPE.SORT_ASC:
+        case SORT.ASC:
           return a - b;
         // 降序
-        case SORT_TYPE.SORT_DESC:
+        case SORT.DESC:
           return b - a;
         // 随机
-        case SORT_TYPE.SORT_RANDOM:
+        case SORT.RANDOM:
           return Math.random() - 0.5;
         // 默认
         default:
@@ -1700,57 +1750,6 @@
   });
 
   /* 常用正则集合 */
-  /**
-   * 常用的正则表达式集合
-   */
-  const REGEXP = {
-    // 中文汉字
-    CH: /^[\u4E00-\u9FA5]+$/,
-    // 英文字母
-    EN: /^[a-zA-Z]$/,
-    // 小写字母
-    LOWER_CASE: /^[a-z]+$/,
-    // 大写字母
-    UPPER_CASE: /^[A-Z]+$/,
-    // 中文姓名，2-16位
-    CH_NAME: /^(?:[\u4e00-\u9fa5·]{2,16})$/,
-    // 英文姓名，0-20位
-    EN_NAME: /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/,
-    // 数字，包含正数和负数
-    NUMBER: /^(\-|\+)?\d+(\.\d+)?$/,
-    // 整数，包含：0，正整数和负整数
-    INTEGER: /^(0|[1-9][0-9]*|-[1-9][0-9]*)$/,
-    // 小数，包含正小数和负小数
-    DECIMAL: /^\d+\.\d+$/,
-    // 正整数或者保留两位小数
-    INT_OR_FLOAT:
-      /(^[1-9][0-9]*$)|(^[1-9][0-9]*\.[0-9]{1,2}$)|(^0\.[0-9]{1,2}$)|(^0$)/,
-    // 手机号码，支持+86
-    MOBILE: /^(?:(?:\+|00)86)?1[1-9]\d{9}$/,
-    // 固定电话号码，比如：0755-1111111
-    PHONE: /^(?:(?:\d{3}-)?\d{8}|^(?:\d{4}-)?\d{7,8})(?:-\d+)?$/,
-    // 邮箱
-    EMAIL: /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/,
-    // 一代15位和二代18位身份证
-    ID_CARD:
-      /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
-    // 仅校验一代15位身份证
-    ID_CARD15: /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)/,
-    // 仅校验二代18位身份证
-    ID_CARD18:
-      /(^\d{6}(18|19|20)\d{2}(0[1-9]|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/,
-    // 银行卡号
-    BANK_CARD: /^[1-9]\d{9,29}$/,
-    // 邮政编码
-    POST_CODE:
-      /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
-    // url网址
-    URL: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
-    // ip地址
-    IP: /((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))/,
-    // 是外链，http，https，mail，tel电话
-    EXTERNAL: /^(http?:|https?:|mailto:|tel:)/,
-  };
 
   /* 正则校验方法 */
   /**
@@ -1837,6 +1836,7 @@
   function isIdCard(value) {
     return regexpTest(value, REGEXP.ID_CARD);
   }
+
   /**
    * 是url链接
    * @param {String} value 校验的参数
@@ -1848,7 +1848,6 @@
 
   var regexpUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    REGEXP: REGEXP,
     regexpTest: regexpTest,
     isChinese: isChinese,
     isEnglish: isEnglish,
@@ -1994,16 +1993,16 @@
    * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
    * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
+   * @param {Number} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH.ROUND
    * @returns {String} 返回保留后的数字字符串
    */
-  function toFixed(num, decimals = 2, mode = MATH_TYPE.ROUND) {
+  function toFixed(num, decimals = 2, mode = MATH.ROUND) {
     // 四舍五入
-    if (mode == MATH_TYPE.ROUND) {
+    if (mode === MATH.ROUND) {
       return _toFixedRound(num, decimals);
     }
     // 向下舍出
-    if (mode == MATH_TYPE.ROUND_FLOOR) {
+    if (mode === MATH.ROUND_FLOOR) {
       return _toFixedFloor(num, decimals);
     }
   }
@@ -2012,16 +2011,16 @@
    * 尽可能保留小数位数
    * @param {String|Number} num 数字
    * @param {Number} decimals 保留小数的位数，默认2位
-   * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
+   * @param {Number} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
    * @returns {Number} 返回保留后的数字
    */
-  function toDecimal(num, decimals = 2, mode = MATH_TYPE.ROUND) {
+  function toDecimal(num, decimals = 2, mode = MATH.ROUND) {
     // 四舍五入
-    if (mode == MATH_TYPE.ROUND) {
+    if (mode === MATH.ROUND) {
       return _toDecimalRound(num, decimals);
     }
     // 向下舍出
-    if (mode == MATH_TYPE.ROUND_FLOOR) {
+    if (mode === MATH.ROUND_FLOOR) {
       return _toDecimalFloor(num, decimals);
     }
   }
@@ -2040,21 +2039,21 @@
     }
     let s = String(num);
     if (!decimals) decimals = 0;
-    if (s.indexOf(".") == -1) s += ".";
+    if (s.indexOf(".") === -1) s += ".";
     s += new Array(decimals + 1).join("0");
     if (new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(s)) {
       let s = "0" + RegExp.$2,
         pm = RegExp.$1,
         a = RegExp.$3.length,
         b = true;
-      if (a == decimals + 2) {
+      if (a === decimals + 2) {
         a = s.match(/\d/g);
         if (parseInt(a[a.length - 1]) > 4) {
           for (let i = a.length - 2; i >= 0; i--) {
             a[i] = parseInt(a[i]) + 1;
-            if (a[i] == 10) {
+            if (a[i] === 10) {
               a[i] = 0;
-              b = i != 1;
+              b = i !== 1;
             } else break;
           }
         }

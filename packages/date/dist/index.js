@@ -9,6 +9,194 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.LimeDate = factory());
 })(this, (function () { 'use strict';
 
+  /**
+   * 日期常量
+   */
+
+  // 上午和下午
+  const AM_PM = {
+    zh: {
+      AM: "上午",
+      PM: "下午",
+    },
+    en: {
+      AM: "AM",
+      PM: "PM",
+    },
+  };
+  // 周
+  const WEEK = {
+    zh: {
+      FULL: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+      SHORT: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+      MINI: ["日", "一", "二", "三", "四", "五", "六"],
+    },
+    en: {
+      FULL: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      SHORT: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      MINI: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+    },
+  };
+
+  // 月
+  const MONTH = {
+    zh: {
+      FULL: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+      SHORT: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
+    },
+    en: {
+      FULL: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+      SHORT: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    },
+  };
+  // 季度
+  const QUARTER = {
+    zh: {
+      FULL: ["第一季度", "第二季度", "第三季度", "第四季度"],
+      SHORT: ["一季度", "二季度", "三季度", "四季度"],
+      MINI: ["一", "二", "三", "四"],
+    },
+    en: {
+      FULL: ["quarter 1st", "quarter 2nd", "quarter 3rd", "quarter 4th"],
+      SHORT: ["Q1th", "Q2nd", "Q3rd", "Q4th"],
+      MINI: ["Q1", "Q2", "Q3", "Q4"],
+    },
+  };
+
+  // 已过日期类型
+  const OVER_TIME$1 = {
+    zh: {
+      YEAR: "年",
+      MONTH: "月",
+      DATE: "日",
+      HOUR: "时",
+      MINUTE: "分",
+      SECOND: "秒",
+      MILLISECOND: "毫秒",
+      DAY: "天",
+      QUARTER: "季度",
+    },
+    en: {
+      YEAR: "year",
+      MONTH: "month",
+      DATE: "date",
+      HOUR: "hour",
+      MINUTE: "minute",
+      SECOND: "second",
+      MILLISECOND: "millisecond",
+      DAY: "day",
+      QUARTER: "quarter",
+    },
+  };
+
+  // 时间节点
+  const PASS_TIME = {
+    zh: {
+      YEAR: "年前",
+      MONTH: "个月前",
+      DAY: "天前",
+      BEFORE_YESTERDAY: "前天",
+      YESTERDAY: "昨天",
+      TODAY: "今天",
+      HOUR: "小时前",
+      MINUTE: "分钟前",
+      JUST: "刚刚",
+    },
+    en: {
+      YEAR: " year ago",
+      MONTH: " month ago",
+      DAY: " day ago",
+      BEFORE_YESTERDAY: "before yesterday",
+      YESTERDAY: " yesterday",
+      TODAY: " today",
+      HOUR: " hour ago",
+      MINUTE: " minute ago",
+      JUST: " just",
+    },
+  };
+
+  // 节假日
+  const HOLIDAY = {
+    zh: ["元旦", "春节", "清明节", "劳动节", "端午节", "中秋节", "国庆节"],
+    en: [
+      "New Year‘s Day",
+      "Spring Festival",
+      "Tomb Sweeping Day",
+      "Labor Day",
+      "Dragon Boat Festival",
+      "Mid-Autumn Day",
+      "National Day",
+    ],
+  };
+
+  // 星座
+  const ZODIAC = {
+    zh: [
+      "摩羯座",
+      "水瓶座",
+      "双鱼座",
+      "白羊座",
+      "金牛座",
+      "双子座",
+      "巨蟹座",
+      "狮子座",
+      "处女座",
+      "天秤座",
+      "天蝎座",
+      "射手座",
+      "摩羯座",
+    ],
+    en: [],
+  };
+
+  // 生肖
+  const CHINESE_ZODIAC = {
+    zh: ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"],
+    en: ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"],
+  };
+
+  // 天干地支
+  const HEAVENLY_STEMS = {
+    zh: ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"],
+    en: ["Jia", "Yi", "Bing", "Ding", "Wu", "Ji", "Geng", "Xin", "Ren", "Gui"],
+  };
+  const EARTHLY_BRANCHES = {
+    zh: ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+    en: ["Zi", "Chou", "Yin", "Mao", "Chen", "Si", "Wu", "Wei", "Shen", "You", "Xu", "Hai"],
+  };
+
+  /**
+   * 常量集合
+   */
+
+  var constants = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    AM_PM: AM_PM,
+    WEEK: WEEK,
+    MONTH: MONTH,
+    QUARTER: QUARTER,
+    OVER_TIME: OVER_TIME$1,
+    PASS_TIME: PASS_TIME,
+    HOLIDAY: HOLIDAY,
+    ZODIAC: ZODIAC,
+    CHINESE_ZODIAC: CHINESE_ZODIAC,
+    HEAVENLY_STEMS: HEAVENLY_STEMS,
+    EARTHLY_BRANCHES: EARTHLY_BRANCHES
+  });
+
   /* 数据类型 */
   /**
    * 判断是整数
@@ -68,100 +256,6 @@
     return Number.parseInt(value, radix);
   }
 
-  /**
-   * 日期包常量
-   */
-
-  // 上午和下午
-  const AM_PM = {
-    zh: {
-      AM: "上午",
-      PM: "下午",
-    },
-    en: {
-      AM: "AM",
-      PM: "PM",
-    },
-  };
-  // 周
-  const WEEK = {
-    zh: {
-      FULL: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-      SHORT: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
-      MINI: ["日", "一", "二", "三", "四", "五", "六"],
-    },
-    en: {
-      FULL: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      SHORT: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      MINI: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-    },
-  };
-  // 季度
-  const QUARTER = {
-    zh: {
-      FULL: ["第一季度", "第二季度", "第三季度", "第四季度"],
-      SHORT: ["一季度", "二季度", "三季度", "四季度"],
-      MINI: ["一", "二", "三", "四"],
-    },
-    en: {
-      FULL: ["quarter 1st", "quarter 2nd", "quarter 3rd", "quarter 4th"],
-      SHORT: ["Q1th", "Q2nd", "Q3rd", "Q4th"],
-      MINI: ["Q1", "Q2", "Q3", "Q4"],
-    },
-  };
-
-  // 已过日期类型
-  const OVER_TIME = {
-    zh: {
-      YEAR: "年",
-      MONTH: "月",
-      DATE: "日",
-      HOUR: "时",
-      MINUTE: "分",
-      SECOND: "秒",
-      MILLISECOND: "毫秒",
-      DAY: "天",
-      QUARTER: "季度",
-    },
-    en: {
-      YEAR: "year",
-      MONTH: "month",
-      DATE: "date",
-      HOUR: "hour",
-      MINUTE: "minute",
-      SECOND: "second",
-      MILLISECOND: "millisecond",
-      DAY: "day",
-      QUARTER: "quarter",
-    },
-  };
-
-  // 时间节点
-  const PASS_TIME = {
-    zh: {
-      YEAR: "年前",
-      MONTH: "个月前",
-      DAY: "天前",
-      BEFORE_YESTERDAY: "前天",
-      YESTERDAY: "昨天",
-      TODAY: "今天",
-      HOUR: "小时前",
-      MINUTE: "分钟前",
-      JUST: "刚刚",
-    },
-    en: {
-      YEAR: " year ago",
-      MONTH: " month ago",
-      DAY: " day ago",
-      BEFORE_YESTERDAY: "before yesterday",
-      YESTERDAY: " yesterday",
-      TODAY: " today",
-      HOUR: " hour ago",
-      MINUTE: " minute ago",
-      JUST: " just",
-    },
-  };
-
   /* 快捷日期 */
   /**
    * 今天
@@ -176,7 +270,7 @@
    * @returns {String} 返回日期字符串
    */
   function yesterday() {
-    return toDateString(addDate(new Date(), -1));
+    return formatDate(addDate(new Date(), -1));
   }
 
   /**
@@ -184,7 +278,7 @@
    *@returns {String} 返回日期字符串
    */
   function tomorrow() {
-    return toDateString(addDate(new Date(), +1));
+    return formatDate(addDate(new Date(), +1));
   }
 
   /**
@@ -193,7 +287,7 @@
    * @returns {String} 返回日期字符串
    */
   function lastWeek(date = new Date()) {
-    return toDateString(addDate(date, -7));
+    return formatDate(addDate(date, -7));
   }
 
   /**
@@ -202,7 +296,7 @@
    * @returns {String} 返回日期字符串
    */
   function nextWeek(date = new Date()) {
-    return toDateString(addDate(date, +7));
+    return formatDate(addDate(date, +7));
   }
 
   /**
@@ -211,7 +305,7 @@
    * @returns {String} 返回日期字符串
    */
   function lastMonth(date = new Date()) {
-    return toDateString(addDate(date, -30));
+    return formatDate(addDate(date, -30));
   }
 
   /**
@@ -220,7 +314,7 @@
    * @returns {String} 返回日期字符串
    */
   function nextMonth(date = new Date()) {
-    return toDateString(addDate(date, +30));
+    return formatDate(addDate(date, +30));
   }
 
   /**
@@ -229,7 +323,7 @@
    * @returns {String} 返回日期字符串
    */
   function lastYear(date = new Date()) {
-    return toDateString(addDate(date, -365));
+    return formatDate(addDate(date, -365));
   }
 
   /**
@@ -238,7 +332,7 @@
    * @returns {String} 返回日期字符串
    */
   function nextYear(date = new Date()) {
-    return toDateString(addDate(date, +365));
+    return formatDate(addDate(date, +365));
   }
 
   /* 判断当前日期 */
@@ -547,7 +641,7 @@
    * @returns {String} 返回日期字符串
    */
   function getDate(date = new Date(), format = "yyyy-MM-dd") {
-    return toDateString(date, format);
+    return formatDate(date, format);
   }
 
   /**
@@ -557,7 +651,7 @@
    * @returns {String} 返回日期时间字符串
    */
   function getDateTime(date = new Date(), format = "yyyy-MM-dd HH:mm:ss") {
-    return toDateString(date, format);
+    return formatDate(date, format);
   }
 
   /**
@@ -814,7 +908,7 @@
   function getFirstDateOfWeek(date = new Date()) {
     let weekDay = getDayOfWeek(date);
     date.setDate(date.getDate() - weekDay + 1);
-    return toDateString(date);
+    return formatDate(date);
   }
 
   /**
@@ -825,7 +919,7 @@
   function getLastDateOfWeek(date = new Date()) {
     let weekDay = getDayOfWeek(date);
     date.setDate(date.getDate() + (7 - weekDay));
-    return toDateString(date);
+    return formatDate(date);
   }
 
   /**
@@ -843,7 +937,7 @@
     for (let i = 0; i < 7; i++) {
       let currentDate = new Date(firstDateOfWeek);
       currentDate.setDate(currentDate.getDate() + i);
-      array.push(toDateString(currentDate));
+      array.push(formatDate(currentDate));
     }
 
     return array;
@@ -856,7 +950,7 @@
    */
   function getFirstDateOfMonth(date = new Date()) {
     date.setDate(1);
-    return toDateString(date);
+    return formatDate(date);
   }
 
   /**
@@ -865,7 +959,7 @@
    * @returns {String} 返回日期字符串
    */
   function getLastDateOfMonth(date = new Date()) {
-    return toDateString(new Date(date.getFullYear(), date.getMonth() + 1, 0));
+    return formatDate(new Date(date.getFullYear(), date.getMonth() + 1, 0));
   }
 
   /**
@@ -1248,12 +1342,12 @@
    * @param {String} lang 语言zh和en，默认zh
    * @returns {String} 返回日期字符串
    */
-  function toDateString(date, format = "yyyy-MM-dd", lang = "zh") {
+  function formatDate(date, format = "yyyy-MM-dd", lang = "zh") {
     if (isNull(date)) return;
 
     // 是日期字符串
     if (isString(date)) {
-      date = toDate(date);
+      date = parseDate(date);
     }
     // 是日期对象
     else if (isDate(date)) ;
@@ -1358,7 +1452,7 @@
    * @param {String|Number} value 日期参数
    * @returns {Date} 返回日期对象
    */
-  function toDate(value) {
+  function parseDate(value) {
     if (isNull(value)) return;
 
     // 是日期字符串
@@ -1474,8 +1568,8 @@
     addMillisecond: addMillisecond,
     addWeek: addWeek,
     addQuarter: addQuarter,
-    toDateString: toDateString,
-    toDate: toDate
+    formatDate: formatDate,
+    parseDate: parseDate
   });
 
   // 测试加载成功方法
@@ -1486,6 +1580,10 @@
   // 导出
   var index = {
     loadedTest,
+    // 常量集合
+    ...constants,
+
+    // 日期工具
     ...dateUtil,
   };
 

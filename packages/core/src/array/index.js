@@ -1,5 +1,5 @@
 import { isEmpty, isNull } from "../validate";
-import { SORT_TYPE } from "../constants/sort";
+import { SORT } from "../constants";
 
 /* 数组计算 */
 /**
@@ -235,17 +235,17 @@ export function arraySwap(array, sourceIndex, targetIndex) {
  * @param {Number} mode 排序模式，参考常量集合中 数组常量，默认是升序
  * @returns {Array} 返回操作后的数组
  */
-export function arraySort(array, mode = SORT_TYPE.SORT_ASC) {
+export function arraySort(array, mode = SORT.ASC) {
   return array.sort((a, b) => {
     switch (mode) {
       // 升序
-      case SORT_TYPE.SORT_ASC:
+      case SORT.ASC:
         return a - b;
       // 降序
-      case SORT_TYPE.SORT_DESC:
+      case SORT.DESC:
         return b - a;
       // 随机
-      case SORT_TYPE.SORT_RANDOM:
+      case SORT.RANDOM:
         return Math.random() - 0.5;
       // 默认
       default:

@@ -1,5 +1,5 @@
 import { isNaN } from "../validate";
-import { MATH_TYPE } from "../constants/math";
+import { MATH } from "../constants";
 
 /* 数字计算 */
 /**
@@ -134,16 +134,16 @@ export function scm(arg1, arg2) {
  * @description 默认保留两位小数，解决原生的toFixed()会五舍六入的问题
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
+ * @param {Number} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH.ROUND
  * @returns {String} 返回保留后的数字字符串
  */
-export function toFixed(num, decimals = 2, mode = MATH_TYPE.ROUND) {
+export function toFixed(num, decimals = 2, mode = MATH.ROUND) {
   // 四舍五入
-  if (mode == MATH_TYPE.ROUND) {
+  if (mode === MATH.ROUND) {
     return _toFixedRound(num, decimals);
   }
   // 向下舍出
-  if (mode == MATH_TYPE.ROUND_FLOOR) {
+  if (mode === MATH.ROUND_FLOOR) {
     return _toFixedFloor(num, decimals);
   }
 }
@@ -152,16 +152,16 @@ export function toFixed(num, decimals = 2, mode = MATH_TYPE.ROUND) {
  * 尽可能保留小数位数
  * @param {String|Number} num 数字
  * @param {Number} decimals 保留小数的位数，默认2位
- * @param {Constant} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
+ * @param {Number} mode 保留小数模式，参考常量集合中 数学计算常量，默认MATH_MODE.ROUND
  * @returns {Number} 返回保留后的数字
  */
-export function toDecimal(num, decimals = 2, mode = MATH_TYPE.ROUND) {
+export function toDecimal(num, decimals = 2, mode = MATH.ROUND) {
   // 四舍五入
-  if (mode == MATH_TYPE.ROUND) {
+  if (mode === MATH.ROUND) {
     return _toDecimalRound(num, decimals);
   }
   // 向下舍出
-  if (mode == MATH_TYPE.ROUND_FLOOR) {
+  if (mode === MATH.ROUND_FLOOR) {
     return _toDecimalFloor(num, decimals);
   }
 }
@@ -180,21 +180,21 @@ function _toFixedRound(num, decimals = 2) {
   }
   let s = String(num);
   if (!decimals) decimals = 0;
-  if (s.indexOf(".") == -1) s += ".";
+  if (s.indexOf(".") === -1) s += ".";
   s += new Array(decimals + 1).join("0");
   if (new RegExp("^(-|\\+)?(\\d+(\\.\\d{0," + (decimals + 1) + "})?)\\d*$").test(s)) {
     let s = "0" + RegExp.$2,
       pm = RegExp.$1,
       a = RegExp.$3.length,
       b = true;
-    if (a == decimals + 2) {
+    if (a === decimals + 2) {
       a = s.match(/\d/g);
       if (parseInt(a[a.length - 1]) > 4) {
         for (let i = a.length - 2; i >= 0; i--) {
           a[i] = parseInt(a[i]) + 1;
-          if (a[i] == 10) {
+          if (a[i] === 10) {
             a[i] = 0;
-            b = i != 1;
+            b = i !== 1;
           } else break;
         }
       }

@@ -4,7 +4,7 @@ const loadedTest = function () {
 };
 
 // 常量集合
-import constants from "./src/constants/index.js";
+import * as constants from "./src/constants/index.js";
 
 // 字符串
 import * as stringUtil from "./src/string/index.js";

@@ -1,7 +1,7 @@
 /**
  * 语言敞亮
  */
-export const LANG_TYPE = {
+export const LANG = {
   // 中文
   ZH: "zh",
   // 英文

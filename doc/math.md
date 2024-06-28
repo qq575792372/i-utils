@@ -173,7 +173,7 @@ console.log(res); // 输出：20
 
   `num` {String|Number} 数字  
   `decimals` {Number} 保留小数的位数，默认 2 位  
-  `mode` {Constant} 保留小数模式，参考<span style="color:#ff9900">`常量集合`</span> 中 <span style="color:#ff9900">`数学计算`</span>，默认<span style="color:#ff9900">`ROUND`</span>
+  `mode` {Number} 保留小数模式，参考<span style="color:#ff9900">`常量集合`</span> 中 <span style="color:#ff9900">`数学计算`</span>，默认<span style="color:#ff9900">`ROUND`</span>
 
 - #### 返回值
 
@@ -199,7 +199,7 @@ console.log(LimeUtil.toFixed(1.015, 2, ROUND_FLOOR)); // 输出：1.01（切换�
 
   `num` {String|Number} 数字  
   `decimals` {Number} 保留小数的位数，默认 2 位  
-  `mode` {Constant} 保留小数模式，参考<span style="color:#ff9900">`常量集合`</span> 中 <span style="color:#ff9900">`数学计算`</span>，默认<span style="color:#ff9900">`ROUND`</span>
+  `mode` {Number} 保留小数模式，参考<span style="color:#ff9900">`常量集合`</span> 中 <span style="color:#ff9900">`数学计算`</span>，默认<span style="color:#ff9900">`ROUND`</span>
 
 - #### 返回值
 
