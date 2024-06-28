@@ -3,7 +3,9 @@
 [![npm version](https://img.shields.io/npm/v/xe-utils.svg?style=flat-square)](https://github.com/qq575792372/lime-util)
 [![npm license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-🔥 **lime-util** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **248+** ⚡️ 个 Api 方法，包含了开发中经常用到的一些模块方法集合，如`字符串`，`数组`，`浏览器缓存`，`浏览器Cookie`，`Dom处理`，`日期工具`，`数学计算`，`文件处理`，`正则校验`，`微信小程序工具库`等等。
+🔥 **lime-util** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **248+** ⚡️ 个 Api
+方法，包含了开发中经常用到的一些模块方法集合，如`字符串`，`数组`，`浏览器缓存`，`浏览器Cookie`，`Dom处理`，`日期工具`，`数学计算`，`文件处理`，`正则校验`，`身份证信息`,`微信小程序工具库`
+等等。
 
 ### 📦 安装
 
@@ -31,10 +33,12 @@ npm i @lime-util/util --save
 ```javascript
 // 全部引入
 import LimeUtil from "@lime-util/util";
+
 LimeUtil.loadedTest();
 
 // 按需引入
 import { loadedTest } from "@lime-util/util";
+
 loadedTest();
 ```
 
@@ -67,7 +71,8 @@ pnpm build:date
 
 ### 📚 模块介绍
 
-`lime-util` 分为`lime-util 整合工具库`，`lime-core 核心工具库` 或 `lime-date 日期工具库`，`整合工具库`包含所有的功能，如果你想轻量级使用，可以只引入`核心库`或`日期库`。
+`lime-util` 分为`lime-util 整合工具库`，`lime-core 核心工具库` 或 `lime-date 日期工具库`，`整合工具库`
+包含所有的功能，如果你想轻量级使用，可以只引入`核心库`或`日期库`。
 
 1. [lime-util 整合工具库（传送阵）](https://github.com/qq575792372/lime-util)
 2. [lime-core 核心工具库（传送阵）](https://github.com/qq575792372/lime-util/tree/master/packages/core)
@@ -83,29 +88,29 @@ pnpm build:date
 4. [数组 Array](https://github.com/qq575792372/lime-util/blob/master/doc/array.md)
 5. [对象 Object](https://github.com/qq575792372/lime-util/blob/master/doc/object.md)
 6. [函数 Function](https://github.com/qq575792372/lime-util/blob/master/doc/function.md)
-
 7. [日期 Date](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
 8. [正则 Regexp](https://github.com/qq575792372/lime-util/blob/master/doc/regexp.md)
-
 9. [数学 Math](https://github.com/qq575792372/lime-util/blob/master/doc/math.md)
 
 10. [随机数 Random](https://github.com/qq575792372/lime-util/blob/master/doc/random.md)
+11. [生成 id](https://github.com/qq575792372/lime-util/blob/master/doc/id.md)
+13. [身份证 ID-card](https://github.com/qq575792372/lime-util/blob/master/doc/ID-card.md)
 
-11. [文件 File](https://github.com/qq575792372/lime-util/blob/master/doc/file.md)
+14. [文件 File](https://github.com/qq575792372/lime-util/blob/master/doc/file.md)
 
-12. [颜色 Color](https://github.com/qq575792372/lime-util/blob/master/doc/color.md)
+15. [颜色 Color](https://github.com/qq575792372/lime-util/blob/master/doc/color.md)
 
-13. [校验 Validate](https://github.com/qq575792372/lime-util/blob/master/doc/validate.md)
+16. [校验 Validate](https://github.com/qq575792372/lime-util/blob/master/doc/validate.md)
 
-14. [键盘 Keycode](https://github.com/qq575792372/lime-util/blob/master/doc/keycode.md)
+17. [键盘 Keycode](https://github.com/qq575792372/lime-util/blob/master/doc/keycode.md)
 
-15. [浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)
-16. [浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)
-17. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
-18. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
-19. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
+18. [浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)
+19. [浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)
+20. [浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
+21. [浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
+22. [浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
 
-20. [微信小程序工具库 Weapp](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)
+23. [微信小程序工具库 Weapp](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)
 
 ### 🔖Git 提交规范
 

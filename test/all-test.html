@@ -1,21 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>all-测试页面</title>
-    <style></style>
-  </head>
-  <body></body>
-  <script src="../dist/index.js"></script>
-  <script>
-    // 统计api的个数
-    let num = 0;
-    Object.keys(LimeUtil).forEach((key) => {
-      if (typeof LimeUtil[key] === "function" && key !== "loadedTest") {
-        num++;
-      }
-    });
-    console.log(`LimeUtil一共 ${num} 个api`);
-  </script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>all-测试页面</title>
+  <style></style>
+</head>
+<body></body>
+<script src="../dist/index.js"></script>
+<script>
+  // 统计api的个数
+  console.log(333,LimeUtil);
+  let num = 0;
+  Object.keys(LimeUtil).forEach((key) => {
+    if (typeof LimeUtil[key] === "function" && key !== "loadedTest") {
+      num++;
+    }
+  });
+  console.log(`LimeUtil一共 ${num} 个api`);
+
+</script>
 </html>

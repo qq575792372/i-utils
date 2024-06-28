@@ -162,32 +162,6 @@
     },
   };
 
-  // 星座
-  const ZODIAC = {
-    zh: [
-      "摩羯座",
-      "水瓶座",
-      "双鱼座",
-      "白羊座",
-      "金牛座",
-      "双子座",
-      "巨蟹座",
-      "狮子座",
-      "处女座",
-      "天秤座",
-      "天蝎座",
-      "射手座",
-      "摩羯座",
-    ],
-    en: [],
-  };
-
-  // 生肖
-  const CHINESE_ZODIAC = {
-    zh: ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"],
-    en: ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"],
-  };
-
   /* 快捷日期 */
   /**
    * 今天
@@ -1001,7 +975,7 @@
     return diff >= 0 ? Math.abs(diff) : diff;
   }
 
-  /* 获得两个日期之间所有日期 */
+  /* 获得两个日期之间 年月日/年月/年 数组 */
   /**
    * 获得两个日期之间的年月日数组
    * @param {Date} startDate 开始日期
@@ -1163,40 +1137,6 @@
       s = Math.floor((t / 1000) % 60);
     }
     return `${d}${OVER_TIME[lang].DAY} ${h}${OVER_TIME[lang].HOUR} ${m}${OVER_TIME[lang].MINUTE} ${s}${OVER_TIME[lang].SECOND}`;
-  }
-
-  /* 通过日期获得 星座/生肖 */
-  /**
-   * 通过日期获得星座
-   * @param {Date} date 日期参数
-   * @param {String} lang 语言zh和en，默认zh
-   * @returns {String} 返回星座
-   */
-  function getZodiac(date, lang = "zh") {
-    console.log(3333, date, lang);
-    if (isNull(date)) return;
-
-    // 计算
-    let days = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22];
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    return day < days[month - 1] ? ZODIAC[lang][month - 1] : ZODIAC[lang][month];
-  }
-  /**
-   * 通过日期获得生肖
-   * @param {Date} date 日期参数
-   * @param {String} lang 语言zh和en，默认zh
-   * @returns {String} 返回生肖
-   */
-  function getChineseZodiac(date, lang = "zh") {
-    if (isNull(date)) return;
-
-    // 计算
-    let year = date.getFullYear();
-    if (year < 1900) {
-      return "未知";
-    }
-    return CHINESE_ZODIAC[lang][(year - 1900) % CHINESE_ZODIAC[lang].length];
   }
 
   /* 计算日期加减 年，月，日，时，分，秒，周，季度 */
@@ -1525,8 +1465,6 @@
     getBetweenYears: getBetweenYears,
     getPastTime: getPastTime,
     getOverTime: getOverTime,
-    getZodiac: getZodiac,
-    getChineseZodiac: getChineseZodiac,
     addYear: addYear,
     addMonth: addMonth,
     addDate: addDate,

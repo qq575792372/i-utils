@@ -1747,52 +1747,6 @@ console.log(res); // 输出：0天 7时 10分 48秒
 
 ---
 
-## 通过日期获得 星座/生肖
-
-### \_.getZodiac(date, lang = "zh")
-
-通过日期获得星座
-
-- #### 参数
-
-  `date` {Date} 日期参数  
-  `lang` {String} 语言zh和en，默认zh
-
-- #### 返回值
-
-  {String} 返回星座
-
-- #### 示例
-
-```javascript
-let res = LimeUtil.getZodiac("2024-06-17");
-console.log(res); // 输出：双子座
-```
-
----
-
-### \_.getChineseZodiac(date, lang = "zh")
-
-通过日期获得生肖
-
-- #### 参数
-
-  `date` {Date} 日期参数  
-  `lang` {String} 语言zh和en，默认zh
-
-- #### 返回值
-
-  {String} 返回生肖
-
-- #### 示例
-
-```javascript
-let res = LimeUtil.getChineseZodiac("2024-06-17");
-console.log(res); // 输出：龙
-```
-
----
-
 ## 计算日期加减 年，月，日，时，分，秒，周，季度
 
 ### \_.addYear(date = new Date(), num = +1)

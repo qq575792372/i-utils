@@ -979,40 +979,6 @@ export function getOverTime(date, lang = "zh") {
   return `${d}${OVER_TIME[lang].DAY} ${h}${OVER_TIME[lang].HOUR} ${m}${OVER_TIME[lang].MINUTE} ${s}${OVER_TIME[lang].SECOND}`;
 }
 
-/* 通过日期获得 星座/生肖 */
-/**
- * 通过日期获得星座
- * @param {Date} date 日期参数
- * @param {String} lang 语言zh和en，默认zh
- * @returns {String} 返回星座
- */
-export function getZodiac(date, lang = "zh") {
-  if (isNull(date)) return;
-
-  // 计算
-  let days = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22];
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  return day < days[month - 1] ? ZODIAC[lang][month - 1] : ZODIAC[lang][month];
-}
-
-/**
- * 通过日期获得生肖
- * @param {Date} date 日期参数
- * @param {String} lang 语言zh和en，默认zh
- * @returns {String} 返回生肖
- */
-export function getChineseZodiac(date, lang = "zh") {
-  if (isNull(date)) return;
-
-  // 计算
-  let year = date.getFullYear();
-  if (year < 1900) {
-    return "未知";
-  }
-  return CHINESE_ZODIAC[lang][(year - 1900) % CHINESE_ZODIAC[lang].length];
-}
-
 /* 计算日期加减 年，月，日，时，分，秒，周，季度 */
 /**
  * 日期加减年

@@ -1,11 +1,11 @@
-import { isNull } from "../validate";
+import { isEmpty, isNull } from "../validate";
 import { SORT_TYPE } from "../constants/sort";
 
 /* 数组计算 */
 /**
  * 数组最小值
  * @param {Array} array 数组
- * @returns {Number} 返回数组中最小的值
+ * @returns {Number} 返回最小值
  */
 export function arrayMin(array) {
   return Math.min.apply(null, array);
@@ -14,7 +14,7 @@ export function arrayMin(array) {
 /**
  * 数组最大值
  * @param {Array} array 数组
- * @returns {Number} 返回数组中最大的值
+ * @returns {Number} 返回最大值
  */
 export function arrayMax(array) {
   return Math.max.apply(null, array);
@@ -23,7 +23,7 @@ export function arrayMax(array) {
 /**
  * 数组求和
  * @param {Array} array 数组
- * @returns {Number} 返回数组元素的总和
+ * @returns {Number} 返回和
  */
 export function arraySum(array) {
   return array.reduce(function (pre, cur) {
@@ -34,7 +34,7 @@ export function arraySum(array) {
 /**
  * 数组求平均值
  * @param {Array} array 数组
- * @returns {Number} 返回数组平均值
+ * @returns {Number} 返回平均数
  */
 export function arrayAvg(array) {
   return arraySum(array) / array.length;
@@ -45,10 +45,10 @@ export function arrayAvg(array) {
  * 数组中是否包含指定的元素
  * @param {String|Number} value 元素
  * @param {Array} array 查找的数组
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function inArray(value, array) {
-  if (isNull(value)) return;
+  if (isNull(value)) return false;
   return array.includes(value);
 }
 
@@ -56,11 +56,11 @@ export function inArray(value, array) {
  * 比较两个数组是否相等
  * @param {Array} array1 数组1
  * @param {Array} array2 数组2
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function arrayEquals(array1, array2) {
   if (array1 === array2) return true;
-  if (array1.length != array2.length) return false;
+  if (array1.length !== array2.length) return false;
   return array1.every((v, i) => v === array2[i]);
 }
 
@@ -68,7 +68,7 @@ export function arrayEquals(array1, array2) {
 /**
  * 生成指定长度的数组
  * @param {Number} length 长度，默认 0
- * @returns {Array} 返回生成的数组
+ * @returns {Array} 返回数组
  */
 export function arrayCreate(length = 0) {
   return [...Array(length).keys()];
@@ -76,143 +76,141 @@ export function arrayCreate(length = 0) {
 
 /**
  * 数组指定位置添加元素
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
+ * @param {Array} array 数组
+ * @param {Number} index 下标位置，默认0
  * @param {*} value 添加的元素
- * @returns {Array} 返回新的数组
+ * @returns {Array} 返回操作后的数组
  */
-export function arrayInsert(source = [], index = 0, value = undefined) {
-  source.splice(index, 0, value);
-  return source;
+export function arrayInsert(array = [], index = 0, value = undefined) {
+  array.splice(index, 0, value);
+  return array;
 }
 
 /**
  * 数组指定位置前面添加元素
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
+ * @param {Array} array 数组
+ * @param {Number} index 下标位置，默认0
  * @param {*} value 添加的元素
- * @returns {Array} 返回新的数组
+ * @returns {Array} 返回操作后的数组
  */
-export function arrayInsertBefore(source = [], index = 0, value = null) {
-  // TODO
-  if (index < 0 || index > source.length - 1) return source;
-  source.splice(index, 0, value);
-  return source;
+export function arrayInsertBefore(array = [], index = 0, value = undefined) {
+  if (index < 0 || index > array.length - 1) return array;
+
+  array.splice(index, 0, value);
+  return array;
 }
 
 /**
  * 数组指定位置后面添加元素
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
+ * @param {Array} array 数组
+ * @param {Number} index 下标位置，默认0
  * @param {*} value 添加的元素
- * @returns {Array} 返回新的数组
+ * @returns {Array} 返回操作后的数组
  */
-export function arrayInsertAfter(source = [], index = 0, value = null) {
-  // TODO
-  if (index < 0 || index > source.length - 1) return source;
-  source.splice(index, 0, source.splice(index, 1, value)[0]);
-  return source;
+export function arrayInsertAfter(array = [], index = 0, value = undefined) {
+  if (index < 0 || index > array.length - 1) return array;
+
+  array.splice(index, 0, array.splice(index, 1, value)[0]);
+  return array;
 }
 
 /**
  * 数组指定位置删除元素
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
- * @returns {Array} 返回新的数组
+ * @param {Array} array 数组
+ * @param {Number} index 下标位置，默认0
+ * @returns {Array} 返回操作后的数组
  */
-export function arrayRemove(source = [], index = 0) {
-  if (index < 0 || index > source.length - 1) return source;
-  source.splice(index, 1);
-  return source;
+export function arrayRemove(array = [], index = 0) {
+  if (index < 0 || index > array.length - 1) return array;
+
+  array.splice(index, 1);
+  return array;
 }
 
 /**
  * 数组指定位置前面删除元素
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
- * @returns {Array} 返回新的数组
+ * @param {Array} array 数组
+ * @param {Number} index 下标位置，默认0
+ * @returns {Array} 返回操作后的数组
  */
-export function arrayRemoveBefore(source = [], index = 0) {
-  // TODO
-  if (index < 0 || index > source.length - 1) return source;
-  source.splice(index - 1, 1);
-  return source;
+export function arrayRemoveBefore(array = [], index = 0) {
+  if (index < 0 || index > array.length - 1) return array;
+
+  array.splice(index - 1, 1);
+  return array;
 }
+
 /**
  * 数组指定位置后面删除元素
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
- * @returns {Array} 返回新的数组
+ * @param {Array} array 数组
+ * @param {Number} index 下标位置，默认0
+ * @returns {Array} 返回操作后的数组
  */
-export function arrayRemoveAfter(source = [], index = 0) {
-  // TODO
-  if (index < 0 || index > source.length - 1) return source;
-  source.splice(index + 1, 1);
-  return source;
+export function arrayRemoveAfter(array = [], index = 0) {
+  if (index < 0 || index > array.length - 1) return array;
+
+  array.splice(index + 1, 1);
+  return array;
 }
 
 /**
  * 数组置顶
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
- * @param {*} value 添加的元素
- * @returns {Array} 返回新的数组
+ * @param {Array} array 数组
+ * @param {Number} index 下标位置，默认0
+ * @returns {Array} 返回操作后的数组
  */
-export function arrayTop(source = [], index = 0) {
-  // TODO
-  if (index < 0 || index > source.length - 1) return source;
-  source.unshift(source.splice(index, 1)[0]);
-  return source;
+export function arrayTop(array = [], index = 0) {
+  if (index < 0 || index > array.length - 1) return array;
+
+  array.unshift(array.splice(index, 1)[0]);
+  return array;
 }
+
 /**
  * 数组置尾
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
- * @param {*} value 添加的元素
- * @returns {Array} 返回新的数组
+ * @param {Array} array 数组
+ * @param {Number} index 下标位置，默认0
+ * @returns {Array} 返回操作后的数组
  */
-export function arrayBottom(source = [], index = 0) {
-  // TODO
-  if (index < 0 || index > source.length - 1) return source;
-  source.push(source.splice(index, 1)[0]);
-  return source;
+export function arrayBottom(array = [], index = 0) {
+  if (index < 0 || index > array.length - 1) return array;
+
+  array.push(array.splice(index, 1)[0]);
+  return array;
 }
 
 /**
  * 数组向上移动
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
- * @param {*} value 添加的元素
- * @returns {Array} 返回新的数组
+ * @param {Array} array 数组
+ * @param {Number} index 下标位置，默认0
+ * @returns {Array} 返回操作后的数组
  */
-export function arrayUp(source = [], index = 0) {
-  // TODO
-  if (index < 0 || index > source.length - 1) return source;
+export function arrayUp(array = [], index = 0) {
+  if (index < 0 || index > array.length - 1) return array;
+
   if (index > 0) {
-    source.splice(index - 1, 0, source.splice(index, 1)[0]);
+    array.splice(index - 1, 0, array.splice(index, 1)[0]);
   } else {
-    source.push(source.splice(index, 1)[0]);
+    array.push(array.splice(index, 1)[0]);
   }
-  return source;
+  return array;
 }
 
 /**
  * 数组向下移动
- * @param {Array} source 源数组
- * @param {Number} index 下标索引，默认0
- * @param {*} value 添加的元素
- * @returns {Array} 返回新的数组
+ * @param {Array} array 数组
+ * @param {Number} index 下标位置，默认0
+ * @returns {Array} 返回操作后的数组
  */
-export function arrayDown(source = [], index = 0) {
-  // TODO
-  if (index < 0 || index > source.length - 1) return source;
-  if (index < source.length - 1) {
-    source.splice(index + 1, 0, source.splice(index, 1)[0]);
-  } else {
-    source.unshift(source.splice(index, 1)[0]);
-  }
+export function arrayDown(array = [], index = 0) {
+  if (index < 0 || index > array.length - 1) return array;
 
-  return source;
+  if (index < array.length - 1) {
+    array.splice(index + 1, 0, array.splice(index, 1)[0]);
+  } else {
+    array.unshift(array.splice(index, 1)[0]);
+  }
+  return array;
 }
 
 /**
@@ -220,45 +218,22 @@ export function arrayDown(source = [], index = 0) {
  * @param {Array} array 数组
  * @param {Number} sourceIndex 原索引
  * @param {Number} targetIndex 目标索引
- * @returns {Array} 返回交换元素后的新数组
+ * @returns {Array} 返回操作后的数组
  */
 export function arraySwap(array, sourceIndex, targetIndex) {
-  // TODO
-  if (sourceIndex < 0 || targetIndex < 0 || sourceIndex > array.length - 1 || targetIndex > array.length - 1)
+  if (sourceIndex < 0 || targetIndex < 0 || sourceIndex > array.length - 1 || targetIndex > array.length - 1) {
     return array;
-  [array[targetIndex], array[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
-  return array;
-}
-
-/**
- * 数组元素去重
- * @param {Array} array 数组
- * @returns {Array} 返回去重后的数组
- */
-export function arrayUnique(array) {
-  if (isNull(value)) return;
-  return Array.from(new Set(array));
-}
-
-/**
- * 数组打乱元素
- * @description 可以适用于一些抽奖人员列表打乱顺序
- * @param {Array} array 数组
- * @returns {Array} 返回打乱之后新的数组
- */
-export function arrayShuffle(array) {
-  for (let i = 1; i < array.length; i++) {
-    const random = Math.floor(Math.random() * (i + 1));
-    [array[random], array[i]] = [array[i], array[random]];
   }
+
+  [array[targetIndex], array[sourceIndex]] = [array[sourceIndex], array[targetIndex]];
   return array;
 }
 
 /**
  * 数组排序
  * @param {Array} array 数组
- * @param {Constant} mode 排序模式，参考常量集合中 数组常量，默认是升序
- * @returns {Array} 返回排序后的新数组
+ * @param {Number} mode 排序模式，参考常量集合中 数组常量，默认是升序
+ * @returns {Array} 返回操作后的数组
  */
 export function arraySort(array, mode = SORT_TYPE.SORT_ASC) {
   return array.sort((a, b) => {
@@ -280,17 +255,43 @@ export function arraySort(array, mode = SORT_TYPE.SORT_ASC) {
 }
 
 /**
- * 一维数组转树形结构
+ * 数组元素去重
+ * @param {Array} array 数组
+ * @returns {Array} 返回操作后的数组
+ */
+export function arrayUnique(array) {
+  if (isEmpty(array)) return [];
+
+  return Array.from(new Set(array));
+}
+
+/**
+ * 数组打乱元素
+ * @description 可以适用于一些抽奖人员列表打乱顺序
+ * @param {Array} array 数组
+ * @returns {Array} 返回操作后的数组
+ */
+export function arrayShuffle(array) {
+  for (let i = 1; i < array.length; i++) {
+    const random = Math.floor(Math.random() * (i + 1));
+    [array[random], array[i]] = [array[i], array[random]];
+  }
+  return array;
+}
+
+/* 数组转换 */
+/**
+ * 普通数组转树形结构
  * @description 包含id和pid属性关系的一维数组，转为children的树形结构
  * @param {Array} array 数组
- * @param {String|Number} pid 父级的id
- * @returns {Array} 返回树形结构数组
+ * @param {Object} setting 配置项
+ * @returns {Array} 返回树形节点
  */
 export function arrayToTree(array, setting = { key: "id", parentKey: "pid", childrenKey: "children" }) {
-  // TODO
   let key = setting.key,
     parentKey = setting.parentKey,
     childrenKey = setting.childrenKey;
+
   // 数组或者key是否为空
   if (!array || array.length === 0 || !key || key === "") return [];
 
@@ -327,15 +328,17 @@ export function arrayToTree(array, setting = { key: "id", parentKey: "pid", chil
     }
   }
 
+  // 返回结果
   return result;
 }
+
 /**
- * 树形结构转一维数组
- * @param {*} nodes
- * @param {*} childrenKey
+ * 树形结构转普通数组
+ * @param {Array} nodes 树形节点
+ * @param {Object} setting 配置项
+ * @returns {Array} 返回普通数组
  */
 export function treeToArray(nodes, setting = { childrenKey: "children" }) {
-  // TODO
   let childrenKey = setting.childrenKey;
   let result = [];
   for (let node of nodes) {
@@ -351,17 +354,17 @@ export function treeToArray(nodes, setting = { childrenKey: "children" }) {
     }
   }
 
+  // 返回结果
   return result;
 }
 
-/* 数组并集，交集，差集等 */
-
+/* 数组求并集，交集，差集等 */
 /**
  * 数组求并集
  * @description 数组1 和 数组2 合并一起的元素集合
  * @param {Array} array1 数组1
  * @param {Array} array2 数组2
- * @returns {Number} 返回数组并集
+ * @returns {Array} 返回数组
  */
 export function arrayUnion(array1, array2) {
   return [...new Set(array1.concat(array2))];
@@ -372,7 +375,7 @@ export function arrayUnion(array1, array2) {
  * @description 数组1 和 数组2 相同的元素集合
  * @param {Array} array1 数组1
  * @param {Array} array2 数组2
- * @returns {Number} 返回数组交集
+ * @returns {Array} 返回数组
  */
 export function arrayIntersect(array1, array2) {
   return [...new Set(array1)].filter((item) => array2.includes(item));
@@ -383,7 +386,7 @@ export function arrayIntersect(array1, array2) {
  * @description 数组1 中不包含 数组2 的元素集合
  * @param {Array} array1 数组1
  * @param {Array} array2 数组2
- * @returns {Number} 返回数组差集
+ * @returns {Array} 返回数组
  */
 export function arrayDifference(array1, array2) {
   return [...new Set(array1)].filter((item) => !array2.includes(item));
@@ -394,7 +397,7 @@ export function arrayDifference(array1, array2) {
  * @description 数组1 和 数组2 不相同的元素集合
  * @param {Array} array1 数组1
  * @param {Array} array2 数组2
- * @returns {Number} 返回数组补集
+ * @returns {Array} 返回数组
  */
 export function arrayComplement(array1, array2) {
   return [
