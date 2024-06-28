@@ -10,8 +10,8 @@
 
 <!-- 使用module模式对源码进行测试，用webstorm启动服务 -->
 <script type="module">
-  import { getFullDateOfYear, getZodiac, toDateString, getOverTime, getPastTime } from "../packages/date/src/date.js";
+  import { getFullDateOfYear, formatDate, parseDate, getOverTime, getPastTime } from "../packages/date/src/date.js";
 
-  console.log(getZodiac(new Date()));
+  console.log(formatDate(new Date()));
 </script>
 </html>

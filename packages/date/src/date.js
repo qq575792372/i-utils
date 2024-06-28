@@ -16,7 +16,7 @@ export function today() {
  * @returns {String} 返回日期字符串
  */
 export function yesterday() {
-  return toDateString(addDate(new Date(), -1));
+  return formatDate(addDate(new Date(), -1));
 }
 
 /**
@@ -24,7 +24,7 @@ export function yesterday() {
  *@returns {String} 返回日期字符串
  */
 export function tomorrow() {
-  return toDateString(addDate(new Date(), +1));
+  return formatDate(addDate(new Date(), +1));
 }
 
 /**
@@ -33,7 +33,7 @@ export function tomorrow() {
  * @returns {String} 返回日期字符串
  */
 export function lastWeek(date = new Date()) {
-  return toDateString(addDate(date, -7));
+  return formatDate(addDate(date, -7));
 }
 
 /**
@@ -42,7 +42,7 @@ export function lastWeek(date = new Date()) {
  * @returns {String} 返回日期字符串
  */
 export function nextWeek(date = new Date()) {
-  return toDateString(addDate(date, +7));
+  return formatDate(addDate(date, +7));
 }
 
 /**
@@ -51,7 +51,7 @@ export function nextWeek(date = new Date()) {
  * @returns {String} 返回日期字符串
  */
 export function lastMonth(date = new Date()) {
-  return toDateString(addDate(date, -30));
+  return formatDate(addDate(date, -30));
 }
 
 /**
@@ -60,7 +60,7 @@ export function lastMonth(date = new Date()) {
  * @returns {String} 返回日期字符串
  */
 export function nextMonth(date = new Date()) {
-  return toDateString(addDate(date, +30));
+  return formatDate(addDate(date, +30));
 }
 
 /**
@@ -69,7 +69,7 @@ export function nextMonth(date = new Date()) {
  * @returns {String} 返回日期字符串
  */
 export function lastYear(date = new Date()) {
-  return toDateString(addDate(date, -365));
+  return formatDate(addDate(date, -365));
 }
 
 /**
@@ -78,7 +78,7 @@ export function lastYear(date = new Date()) {
  * @returns {String} 返回日期字符串
  */
 export function nextYear(date = new Date()) {
-  return toDateString(addDate(date, +365));
+  return formatDate(addDate(date, +365));
 }
 
 /* 判断当前日期 */
@@ -387,7 +387,7 @@ export function getNow() {
  * @returns {String} 返回日期字符串
  */
 export function getDate(date = new Date(), format = "yyyy-MM-dd") {
-  return toDateString(date, format);
+  return formatDate(date, format);
 }
 
 /**
@@ -397,7 +397,7 @@ export function getDate(date = new Date(), format = "yyyy-MM-dd") {
  * @returns {String} 返回日期时间字符串
  */
 export function getDateTime(date = new Date(), format = "yyyy-MM-dd HH:mm:ss") {
-  return toDateString(date, format);
+  return formatDate(date, format);
 }
 
 /**
@@ -654,7 +654,7 @@ export function getWeeksOfYear(date = new Date()) {
 export function getFirstDateOfWeek(date = new Date()) {
   let weekDay = getDayOfWeek(date);
   date.setDate(date.getDate() - weekDay + 1);
-  return toDateString(date);
+  return formatDate(date);
 }
 
 /**
@@ -665,7 +665,7 @@ export function getFirstDateOfWeek(date = new Date()) {
 export function getLastDateOfWeek(date = new Date()) {
   let weekDay = getDayOfWeek(date);
   date.setDate(date.getDate() + (7 - weekDay));
-  return toDateString(date);
+  return formatDate(date);
 }
 
 /**
@@ -683,7 +683,7 @@ export function getFullDateOfWeek(date = new Date()) {
   for (let i = 0; i < 7; i++) {
     let currentDate = new Date(firstDateOfWeek);
     currentDate.setDate(currentDate.getDate() + i);
-    array.push(toDateString(currentDate));
+    array.push(formatDate(currentDate));
   }
 
   return array;
@@ -696,7 +696,7 @@ export function getFullDateOfWeek(date = new Date()) {
  */
 export function getFirstDateOfMonth(date = new Date()) {
   date.setDate(1);
-  return toDateString(date);
+  return formatDate(date);
 }
 
 /**
@@ -705,7 +705,7 @@ export function getFirstDateOfMonth(date = new Date()) {
  * @returns {String} 返回日期字符串
  */
 export function getLastDateOfMonth(date = new Date()) {
-  return toDateString(new Date(date.getFullYear(), date.getMonth() + 1, 0));
+  return formatDate(new Date(date.getFullYear(), date.getMonth() + 1, 0));
 }
 
 /**
@@ -1088,12 +1088,12 @@ export function addQuarter(date = new Date(), num = +1) {
  * @param {String} lang 语言zh和en，默认zh
  * @returns {String} 返回日期字符串
  */
-export function toDateString(date, format = "yyyy-MM-dd", lang = "zh") {
+export function formatDate(date, format = "yyyy-MM-dd", lang = "zh") {
   if (isNull(date)) return;
 
   // 是日期字符串
   if (isString(date)) {
-    date = toDate(date);
+    date = parseDate(date);
   }
   // 是日期对象
   else if (isDate(date)) {
@@ -1200,7 +1200,7 @@ export function toDateString(date, format = "yyyy-MM-dd", lang = "zh") {
  * @param {String|Number} value 日期参数
  * @returns {Date} 返回日期对象
  */
-export function toDate(value) {
+export function parseDate(value) {
   if (isNull(value)) return;
 
   // 是日期字符串

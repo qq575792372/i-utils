@@ -1994,7 +1994,7 @@ console.log(res); // 输出：日期对象
 
 ## 格式化和解析日期
 
-### \_.toDateString(date, format = "yyyy-MM-dd", lang = "zh")
+### \_.formatDate(date, format = "yyyy-MM-dd", lang = "zh")
 
 日期对象转为日期字符串  
 `支持日期字符串，日期对象，时间戳，unix时间戳`
@@ -2017,16 +2017,16 @@ console.log(res); // 输出：日期对象
 
 ```javascript
 // 使用方法，具体格式化参数以及结果参考最上面的 format 格式
-let res = LimeUtil.toDateString(new Date(), "yyyy-MM-dd HH:mm:ss");
+let res = LimeUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
 console.log(res); // 输出： 2021-12-10 17:10:10
 
-let res = LimeUtil.toDateString("2021-12-10", "yyyy/MM/dd HH:mm:ss");
+let res = LimeUtil.formatDate("2021-12-10", "yyyy/MM/dd HH:mm:ss");
 console.log(res); // 输出： 2021/12/10 17:10:10
 ```
 
 ---
 
-### \_.toDate(value)
+### \_.parseDate(value)
 
 日期字符串转为日期对象  
 `支持日期字符串，时间戳，Unix时间戳`
