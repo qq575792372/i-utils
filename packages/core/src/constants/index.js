@@ -1,7 +1,7 @@
 /**
  * 常量集合
  */
-export * from "./sort";
-export * from "./math";
-export * from "./lang";
-export * from "./regexp";
+export * from "./sort.js";
+export * from "./math.js";
+export * from "./lang.js";
+export * from "./regexp.js";

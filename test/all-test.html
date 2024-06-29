@@ -7,19 +7,19 @@
   <style></style>
 </head>
 <body></body>
-<script src="../dist/index.js"></script>
-<script>
-  // 测试是否加载成功
-  LimeUtil.loadedTest()
-  console.log(222,LimeUtil);
+
+<!-- 使用module模式对源码进行测试，用webstorm启动服务 -->
+<script type="module">
+  import limeUtil from "../packages/core/index.js";
+  limeUtil.loadedTest();
+
   // 统计api的个数
   let num = 0;
-  Object.keys(LimeUtil).forEach((key) => {
-    if (typeof LimeUtil[key] === "function" && key !== "loadedTest") {
+  Object.keys(limeUtil).forEach((key) => {
+    if (typeof limeUtil[key] === "function" && key !== "loadedTest") {
       num++;
     }
   });
   console.log(`LimeUtil一共 ${num} 个api`);
-
 </script>
 </html>

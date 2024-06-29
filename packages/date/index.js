@@ -7,7 +7,7 @@ const loadedTest = function () {
 import * as constants from "./src/constants/index.js";
 
 // 日期
-import * as dateUtil from "./src/date";
+import * as dateUtil from "./src/date/index.js";
 
 // 导出
 export default {

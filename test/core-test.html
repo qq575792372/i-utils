@@ -11,9 +11,9 @@
 
 <!-- 使用module模式对源码进行测试，用webstorm启动服务 -->
 <script type="module">
-  import { getUUID } from "../packages/core/src/id";
+  import limeCore from "../packages/core/index.js";
 
-  console.log(getUUID());
+  console.log(limeCore);
 </script>
 
 <script>

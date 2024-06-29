@@ -1,6 +1,6 @@
-import { isEmpty, isNull, isInteger, isDate, isString } from "../../core/src/validate";
-import { parseInt } from "../../core/src/number";
-import { WEEK, AM_PM, PASS_TIME, QUARTER } from "./constants";
+import { isEmpty, isNull, isInteger, isDate, isString } from "../../../core/src/validate";
+import { parseInt } from "../../../core/src/number";
+import { DATE } from "../constants";
 
 /* 快捷日期 */
 /**
@@ -452,41 +452,13 @@ export function getDateArray(date = new Date()) {
  * @returns {Number,String} 返回周几，会根据语言返回
  */
 export function getWeek(date = new Date(), format = "E", lang = "zh") {
-  /* 中文周 */
-  // 中文周-最短缩写
-  let weekZhMiniShort = ["日", "一", "二", "三", "四", "五", "六"];
-  // 中文周-缩写
-  let weekZhShort = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
-  // 中文周-全写
-  let weekZhFull = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-
-  /* 中文周 */
-  // 英文周-最短缩写
-  let weekEnMiniShort = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-  // 英文周-缩写
-  let weekEnShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  // 英文周-全写
-  let weekEnFull = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
   // 根据格式化和语言返回对应的周
   if (format === "E") {
-    if (lang === "zh") {
-      return weekZhMiniShort[date.getDay()];
-    } else {
-      return weekEnMiniShort[date.getDay()];
-    }
+    return DATE.WEEK[lang].MINI[date.getDay()];
   } else if (format === "EE") {
-    if (lang === "zh") {
-      return weekZhShort[date.getDay()];
-    } else {
-      return weekEnShort[date.getDay()];
-    }
+    return DATE.WEEK[lang].SHORT[date.getDay()];
   } else if (format === "EEE") {
-    if (lang === "zh") {
-      return weekZhFull[date.getDay()];
-    } else {
-      return weekEnFull[date.getDay()];
-    }
+    return DATE.WEEK[lang].FULL[date.getDay()];
   } else {
     return getDayOfWeek(date);
   }
@@ -497,40 +469,19 @@ export function getWeek(date = new Date(), format = "E", lang = "zh") {
  * @param {Date} date 日期参数，默认当前日期
  * @param {String} format 季度格式化结果：Q：如“一”, QQ：如“一季度”；QQQ：如“第一季度”；默认为Q，为空则返回数字
  * @param {String} lang 语言zh和en，默认zh
- * @returns {String} 返回第几季度，会根据语言返回
+ * @returns {Number,String} 返回第几季度，会根据语言返回
  */
 export function getQuarter(date = new Date(), format = "Q", lang = "zh") {
-  /* 中文季度 */
-  let quarterZhMiniShort = ["一", "二", "三", "四"];
-  let quarterZhShort = ["一季度", "二季度", "三季度", "四季度"];
-  let quarterZhFull = ["第一季度", "第二季度", "第三季度", "第四季度"];
-
-  /* 英文季度 */
-  let quarterEnMiniShort = ["Q1", "Q2", "Q3", "Q4"];
-  let quarterEnShort = ["Q1th", "Q2nd", "Q3rd", "Q4th"];
-  let quarterEnFull = ["quarter 1st", "quarter 2nd", "quarter 3rd", "quarter 4th"];
-
   // 根据格式化和语言返回对应的周
+  let quarterNum = Number(Math.floor((date.getMonth() + 3) / 3));
   if (format === "Q") {
-    if (lang === "zh") {
-      return quarterZhMiniShort[Math.floor((date.getMonth() + 3) / 3) - 1];
-    } else {
-      return quarterEnMiniShort[Math.floor((date.getMonth() + 3) / 3) - 1];
-    }
+    return DATE.QUARTER[lang].MINI[quarterNum - 1];
   } else if (format === "QQ") {
-    if (lang === "zh") {
-      return quarterZhShort[Math.floor((date.getMonth() + 3) / 3) - 1];
-    } else {
-      return quarterEnShort[Math.floor((date.getMonth() + 3) / 3) - 1];
-    }
+    return DATE.QUARTER[lang].SHORT[quarterNum - 1];
   } else if (format === "QQQ") {
-    if (lang === "zh") {
-      return quarterZhFull[Math.floor((date.getMonth() + 3) / 3) - 1];
-    } else {
-      return quarterEnFull[Math.floor((date.getMonth() + 3) / 3) - 1];
-    }
+    return DATE.QUARTER[lang].FULL[quarterNum - 1];
   } else {
-    return Math.floor((date.getMonth() + 3) / 3);
+    return quarterNum;
   }
 }
 
@@ -976,7 +927,41 @@ export function getOverTime(date, lang = "zh") {
     m = Math.floor((t / 1000 / 60) % 60);
     s = Math.floor((t / 1000) % 60);
   }
-  return `${d}${OVER_TIME[lang].DAY} ${h}${OVER_TIME[lang].HOUR} ${m}${OVER_TIME[lang].MINUTE} ${s}${OVER_TIME[lang].SECOND}`;
+  return `${d}${DATE.OVER_TIME[lang].DAY} ${h}${DATE.OVER_TIME[lang].HOUR} ${m}${DATE.OVER_TIME[lang].MINUTE} ${s}${DATE.OVER_TIME[lang].SECOND}`;
+}
+
+/* 通过日期获得 星座和生肖 */
+/**
+ * 通过日期获得星座
+ * @param {Date} date 日期参数
+ * @param {String} lang 语言zh和en，默认zh
+ * @returns {String} 返回星座
+ */
+export function getZodiac(date, lang = "zh") {
+  if (isNull(date)) return;
+
+  // 计算
+  let days = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22];
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  return day < days[month - 1] ? DATE.ZODIAC[lang][month - 1] : DATE.ZODIAC[lang][month];
+}
+
+/**
+ * 通过日期获得生肖
+ * @param {Date} date 日期参数
+ * @param {String} lang 语言zh和en，默认zh
+ * @returns {String} 返回生肖
+ */
+export function getChineseZodiac(date, lang = "zh") {
+  if (isNull(date)) return;
+
+  // 计算
+  let year = date.getFullYear();
+  if (year < 1900) {
+    return "未知";
+  }
+  return DATE.CHINESE_ZODIAC[lang][(year - 1900) % DATE.CHINESE_ZODIAC[lang].length];
 }
 
 /* 计算日期加减 年，月，日，时，分，秒，周，季度 */

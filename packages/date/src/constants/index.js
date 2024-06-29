@@ -1,4 +1,4 @@
 /**
  * 常量集合
  */
-export * from "./date";
+export * from "./date.js";

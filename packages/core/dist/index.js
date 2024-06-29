@@ -3046,11 +3046,7 @@
    * @returns {Boolean} 返回true和false
    */
   function isSupportStorage() {
-    if (window.localStorage && window.sessionStorage) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!(window.localStorage && window.sessionStorage);
   }
 
   var storageUtil = /*#__PURE__*/Object.freeze({

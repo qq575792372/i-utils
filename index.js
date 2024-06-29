@@ -9,9 +9,9 @@ const loadedTest = function () {
 };
 
 // 核心工具
-import core from "./packages/core/index";
+import core from "./packages/core/index.js";
 // 日期工具
-import date from "./packages/date/index";
+import date from "./packages/date/index.js";
 
 // 导出
 export default {

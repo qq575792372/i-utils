@@ -3,15 +3,11 @@
  * @returns {Boolean} 返回true和false
  */
 export function isSupportStorage() {
-  if (window.localStorage && window.sessionStorage) {
-    return true;
-  } else {
-    return false;
-  }
+  return !!(window.localStorage && window.sessionStorage);
 }
 
 /**
- * 导出localStorage，sessionStorage
+ * 导出localStorage和sessionStorage
  */
-export * from "./localStorage";
-export * from "./sessionStorage";
+export * from "./localStorage.js";
+export * from "./sessionStorage.js";

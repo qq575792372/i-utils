@@ -1747,6 +1747,52 @@ console.log(res); // 输出：0天 7时 10分 48秒
 
 ---
 
+## 通过日期获得 星座和生肖
+
+### \_.getZodiac(date, lang = "zh")
+
+通过日期获得星座
+
+- #### 参数
+
+  `date` {Date} 日期参数
+  `lang` {String} 语言zh和en，默认zh
+
+- #### 返回值
+
+  {String} 返回星座
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getZodiac("2000-10-10");
+console.log(res); // 输出：天秤座
+```
+
+---
+
+### \_.getChineseZodiac(date, lang = "zh")
+
+通过日期获得生肖
+
+- #### 参数
+
+  `date` {Date} 日期参数
+  `lang` {String} 语言zh和en，默认zh
+
+- #### 返回值
+
+  {String} 返回生肖
+
+- #### 示例
+
+```javascript
+let res = LimeUtil.getChineseZodiac("2000-10-10");
+console.log(res); // 输出：龙
+```
+
+---
+
 ## 计算日期加减 年，月，日，时，分，秒，周，季度
 
 ### \_.addYear(date = new Date(), num = +1)
@@ -2033,7 +2079,7 @@ console.log(res); // 输出： 2021/12/10 17:10:10
 
 - #### 参数
 
-  `date` {String|Number} 日期参数
+  `value` {String|Number} 日期参数
 
 - #### 返回值
 
@@ -2075,4 +2121,4 @@ let res = LimeUtil.parseDate(1639388270);
 console.log(res); // 输出：Mon Dec 13 2021 17:37:50 GMT+0800 (中国标准时间)
 ```
 
----
+
