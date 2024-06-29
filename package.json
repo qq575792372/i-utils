@@ -4,12 +4,12 @@
   "description": "lime-util 前端模块化 JavaScript 工具库",
   "main": "./dist/index.min.js",
   "moduleName": "LimeUtil",
+  "type": "module",
   "scripts": {
     "build": "node ./build/build.js",
-    "build:core": "cd packages/core && pnpm run build",
-    "build:date": "cd packages/date && pnpm run build"
+    "build:lib": "rollup -c"
   },
-  "author": "Gaoshiwei <575792372@qq.com>",
+  "author": "<575792372@qq.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -29,13 +29,13 @@
   "dependencies": {},
   "devDependencies": {
     "chalk": "^4.1.2",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.79.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-uglify": "^6.0.4",
+    "rimraf": "^4.4.1",
+    "rollup": "^4.18.0",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
     "runjs": "4.4.2",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3"

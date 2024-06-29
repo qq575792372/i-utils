@@ -1,16 +1,19 @@
 // 引入path
-const path = require("path");
 // 使用插件
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
-import { uglify } from "rollup-plugin-uglify";
-// 引入package.json
-import pkg from "./package.json";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import terser from "@rollup/plugin-terser";
 
-// 获得文件全路径
-function pathResolve(dir) {
-  return path.resolve(__dirname, dir);
-}
+console.log(111, resolve);
+console.log(222, commonjs);
+// 引入package.json
+// import pkg from "./package.json";
+
+import pkg from "./package.json" assert { type: "json" };
+// 引入打包工具类
+import { pathResolve } from "./build/utils/util.js";
+// 引入打包路径
+import { inputSrc, outputCjs, outputEsm, outputLib, outputRoot, outputSrc, root } from "./build/utils/paths.js";
 
 // 声明注释
 const banner = `/*!
@@ -24,25 +27,63 @@ const banner = `/*!
  */
 export default {
   // 入口
-  input: pathResolve("./index.js"),
+  input: pathResolve(inputSrc, "./index.js"),
   // 输出
   output: [
-    // 开发版js
+    // 按需打包
     {
-      file: pathResolve(`./dist/index.js`),
-      format: "umd", // 输出模式
-      name: pkg.moduleName,
+      format: "es",
+      entryFileNames: "[name].mjs",
+      preserveModules: true,
+      preserveModulesRoot: pathResolve(outputRoot, "src"),
+      dir: pathResolve(outputEsm),
+      exports: undefined,
+    },
+    {
+      format: "cjs",
+      entryFileNames: "[name].cjs",
+      preserveModules: true,
+      preserveModulesRoot: pathResolve(outputRoot, "src"),
+      dir: pathResolve(outputCjs),
+      exports: "named",
+    },
+
+    // 打全量包es和umd
+    {
+      format: "es",
+      entryFileNames: `index.full.esm.js`,
+      dir: pathResolve(outputLib),
+      exports: undefined,
       banner,
     },
-    // 压缩版js
     {
-      file: pathResolve(`./dist/index.min.js`),
-      format: "umd", // 输出模式
+      format: "umd",
+      entryFileNames: `index.full.umd.js`,
+      dir: pathResolve(outputLib),
       name: pkg.moduleName,
+      exports: "named",
       banner,
-      plugins: [uglify()],
     },
+
+    // 打全量包es和umd的压缩包
+    {
+      format: "es",
+      entryFileNames: `index.full.esm.min.js`,
+      dir: pathResolve(outputLib),
+      exports: undefined,
+      banner,
+      plugins: [terser()],
+    },
+    /*     {
+      format: "umd",
+      entryFileNames: `index.full.umd.min.js`,
+      dir: pathResolve(outputLib),
+      name: pkg.moduleName,
+      exports: "named",
+      banner,
+    }, */
   ],
+
   // 使用插件
-  plugins: [resolve(), commonjs()],
+  // plugins: [resolve(), commonjs()],
 };
