@@ -1,7 +1,5 @@
 # 对象 Object
 
-<!-- 对象转换 -->
-
 ## 对象转换
 
 ### \_.mapToObject(map)
@@ -149,7 +147,7 @@ console.log(obj); // 输出：obj对象
 - #### 示例
 
 ```javascript
-let obj = { id: 1, name: "test" };
+let obj = {id: 1, name: "test"};
 let newObj = LimeUtil.clone(obj);
 console.log(newObj); // 输出：浅拷贝后的对象
 ```
@@ -172,12 +170,12 @@ console.log(newObj); // 输出：浅拷贝后的对象
 
 ```javascript
 // 对象
-let obj = { id: 1, name: "test" };
+let obj = {id: 1, name: "test"};
 let newObj = LimeUtil.cloneDeep(obj);
 console.log(newObj); // 输出：深拷贝后的对象
 
 // 数组对象
-let list = [{ id: 1, name: "test" }];
+let list = [{id: 1, name: "test"}];
 let newList = LimeUtil.cloneDeep(list);
 console.log(newList); // 输出：深拷贝后的数组对象
 ```
@@ -202,22 +200,28 @@ console.log(newList); // 输出：深拷贝后的数组对象
 
 ```javascript
 // 场景1
-let obj1 = { id: 1, name: "test" };
-let obj2 = { id: 1, name: "test" };
+let obj1 = {id: 1, name: "test"};
+let obj2 = {id: 1, name: "test"};
 let flag = LimeUtil.objectEquals(obj1, obj2);
 console.log(flag); // 输出：true
 
 // 场景2
 // 属性顺序不同也是会当做相等的
-let obj1 = { id: 1, name: "test" };
-let obj2 = { name: "test", id: 1 };
+let obj1 = {id: 1, name: "test"};
+let obj2 = {name: "test", id: 1};
 let flag = LimeUtil.objectEquals(obj1, obj2);
 console.log(flag); // 输出：true
 
 // 场景3
 // 属性里面包含function则无法判断，需要用 deepCompare()方法
-let obj1 = { id: 1, name: "test", say: function () {} };
-let obj2 = { name: "test", id: 1, say: function () {} };
+let obj1 = {
+    id: 1, name: "test", say: function () {
+    }
+};
+let obj2 = {
+    name: "test", id: 1, say: function () {
+    }
+};
 let flag = LimeUtil.objectEquals(obj1, obj2);
 console.log(flag); // 输出：false
 ```
@@ -240,8 +244,8 @@ console.log(flag); // 输出：false
 - #### 示例
 
 ```javascript
-let obj1 = { a: 1 };
-let obj2 = { b: 2 };
+let obj1 = {a: 1};
+let obj2 = {b: 2};
 
 // 1.目标对象如果是obj1，则原obj1对象也会改变
 console.log(LimeUtil.merge(obj1, obj2)); // 输出：{a: 1, b: 2}
@@ -250,4 +254,49 @@ console.log(obj1); // 输出：{a: 1, b: 2}
 // 2.目标对象如果是空的，则会都合并到目标空对象上，不会影响原对象
 console.log(LimeUtil.merge({}, obj1, obj2)); // 输出：{a: 1, b: 2}
 console.log(obj1); // 输出：{a: 1} 并未改变原对象
+```
+
+## 根据字符串属性路径操作对象值
+
+### \_.getTargetValueByPath(target, path = "data")
+
+根据字符串属性路径获取目标对象的值
+
+- #### 参数
+
+  `target` {Object} 目标对象
+  `path` {String} 字符串属性路径
+
+- #### 返回值
+
+  {Object} 返回目标对象
+
+- #### 示例
+
+```javascript
+let res = {code: 200, data: {rows: [], pages: {current: 1, pageSize: 20}}}
+LimeUtil.getTargetValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
+```
+
+---
+
+### \_.setTargetValueByPath(target, path = "data")
+
+根据字符串属性路径设置目标对象的值
+
+- #### 参数
+
+  `target` {Object} 目标对象
+  `path` {String} 字符串属性路径
+  `value` {*} 值
+
+- #### 返回值
+
+  无
+
+- #### 示例
+
+```javascript
+let res = {code: 200, data: {rows: [], pages: {current: 1, pageSize: 20}}}
+LimeUtil.setTargetValueByPath(res, 'data.pages.pageSize', 30); // 打印res对象会发现pageSize的值改为了30
 ```

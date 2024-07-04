@@ -1,7 +1,5 @@
 # 函数 Function
 
-## 函数处理
-
 ### \_.throttle(fn, interval = 1 \* 1000)
 
 节流函数  
@@ -23,7 +21,7 @@
 <button onclick="myclick()">点击</button>;
 
 function hello() {
-  console.log("say hello");
+    console.log("say hello");
 }
 
 const myclick = LimeUtil.throttle(hello, 1 * 1000);
@@ -32,7 +30,7 @@ const myclick = LimeUtil.throttle(hello, 1 * 1000);
 <button id="mybtn">点击</button>;
 
 function hello() {
-  console.log("say hello");
+    console.log("say hello");
 }
 
 document.getElementById("mybtn").onclick = LimeUtil.throttle(hello, 1 * 1000);
@@ -62,7 +60,7 @@ document.getElementById("mybtn").onclick = LimeUtil.throttle(hello, 1 * 1000);
 <button onclick="myclick()">点击</button>;
 
 function hello() {
-  console.log("say hello");
+    console.log("say hello");
 }
 
 const myclick = LimeUtil.debounce(hello, 1 * 1000);
@@ -71,11 +69,13 @@ const myclick = LimeUtil.debounce(hello, 1 * 1000);
 <button id="mybtn">点击</button>;
 
 function hello() {
-  console.log("say hello");
+    console.log("say hello");
 }
 
 document.getElementById("mybtn").onclick = LimeUtil.debounce(hello, 1 * 1000);
 ```
+
+---
 
 ### \_.sleep(delay = 1 \* 1000)
 
@@ -95,11 +95,10 @@ document.getElementById("mybtn").onclick = LimeUtil.debounce(hello, 1 * 1000);
 ```javascript
 // 以下方法打印第二个数字会延迟3秒后执行
 async function sleepWork() {
-  console.log(1);
-  await LimeUtil.sleep(3 * 1000);
-  console.log(2);
+    console.log(1);
+    await LimeUtil.sleep(3 * 1000);
+    console.log(2);
 }
 
 sleepWork();
 ```
-
