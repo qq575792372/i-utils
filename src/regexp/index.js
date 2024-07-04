@@ -1,4 +1,3 @@
-/* 常用正则集合 */
 import { REGEXP } from "../constants";
 
 /* 正则校验方法 */

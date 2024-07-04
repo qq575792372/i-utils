@@ -1,4 +1,3 @@
-/* 缓存处理（同步） */
 /**
  * 设置缓存
  * @param {String} key key值

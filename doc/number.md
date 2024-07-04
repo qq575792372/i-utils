@@ -7,7 +7,7 @@
 
 - #### 参数
 
-  `value` {String} 转换的值  
+  `value` {String,Number} 转换的值  
   `radix` {Number} 进制数，默认 10 进制
 
 - #### 返回值

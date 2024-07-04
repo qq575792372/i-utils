@@ -1,4 +1,3 @@
-/* 数据类型 */
 /**
  * 判断是整数
  * @param {*} value 参数
@@ -151,6 +150,7 @@ export function isSet(value) {
 export function isWeakSet(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "WeakSet";
 }
+
 /**
  * 判断类型是 BigInt
  * @param {*} value 参数
@@ -177,13 +177,13 @@ export function isTrue(value) {
  */
 export function isFalse(value) {
   return (
-    value == undefined ||
-    value == null ||
-    value == "undefined" ||
-    value == "null" ||
-    value == 0 ||
-    value == false ||
-    value == NaN
+    value === undefined ||
+    value === null ||
+    value === "undefined" ||
+    value === "null" ||
+    value === 0 ||
+    value === false ||
+    value === NaN
   );
 }
 
@@ -194,7 +194,7 @@ export function isFalse(value) {
  */
 export function isNaN(value) {
   // window的isNaN函数是有缺陷的，空数组/数组有一个元素，null，空字符串 都会被认为是数字
-  return window.isNaN(value) || isArray(value) || value == null || value == "";
+  return window.isNaN(value) || isArray(value) || value == null || value === "";
 }
 
 /**
@@ -214,7 +214,7 @@ export function isNotNaN(value) {
  * @returns {Boolean} 返回true和false
  */
 export function isNull(value) {
-  return value == undefined || value == null || value == "";
+  return value === undefined || value === null || value === "";
 }
 
 /**
@@ -275,6 +275,7 @@ export function isNotBlank(value) {
 export function isUndefined(value) {
   return value === undefined;
 }
+
 /**
  * 判断值不是undefined
  * @param {*} value 校验的参数
@@ -320,12 +321,7 @@ export function deepCompare(x, y) {
 
     // remember that NaN === NaN returns false
     // and isNaN(undefined) returns true
-    if (
-      isNaN(x) &&
-      isNaN(y) &&
-      typeof x === "number" &&
-      typeof y === "number"
-    ) {
+    if (isNaN(x) && isNaN(y) && typeof x === "number" && typeof y === "number") {
       return true;
     }
 
@@ -413,7 +409,7 @@ export function deepCompare(x, y) {
   }
 
   if (arguments.length < 1) {
-    return true; //Die silently? Don't know how to handle such case, please help...
+    return true; // Die silently? Don't know how to handle such case, please help...
     // throw "Need two or more arguments to compare";
   }
 

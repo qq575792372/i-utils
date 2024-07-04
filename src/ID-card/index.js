@@ -1,5 +1,5 @@
 import { isEmpty, isNull } from "../validate";
-import { CHINESE_ZODIAC, ZODIAC } from "../../../date/src/constants";
+import { DATE } from "../constants";
 
 /**
  * 根据身份证号码获取信息
