@@ -1,11 +1,10 @@
 // 引入path
 // 使用插件
-import resolve from "@rollup/plugin-node-resolve";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import { babel } from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 
-console.log(111, resolve);
-console.log(222, commonjs);
 // 引入package.json
 // import pkg from "./package.json";
 
@@ -48,7 +47,7 @@ export default {
       exports: "named",
     },
 
-    // 打全量包es和umd
+    // 打全量包
     {
       format: "es",
       entryFileNames: `index.full.esm.js`,
@@ -72,7 +71,7 @@ export default {
       dir: pathResolve(outputLib),
       exports: undefined,
       banner,
-      plugins: [terser()],
+      // plugins: [terser()],
     },
     /*     {
       format: "umd",
@@ -85,5 +84,5 @@ export default {
   ],
 
   // 使用插件
-  // plugins: [resolve(), commonjs()],
+  plugins: [nodeResolve(), commonjs(), babel({ babelHelpers: "bundled" })],
 };
