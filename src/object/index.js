@@ -158,7 +158,7 @@ export function merge(target, ...source) {
     return Object.assign(target, ...source);
 }
 
-/* 根据字符串属性路径操作对象值 */
+/* 根据字符串属性路径操作目标对象 */
 /**
  * 根据字符串属性路径获取目标对象的值
  * @example

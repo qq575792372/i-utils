@@ -256,7 +256,7 @@ console.log(LimeUtil.merge({}, obj1, obj2)); // 输出：{a: 1, b: 2}
 console.log(obj1); // 输出：{a: 1} 并未改变原对象
 ```
 
-## 根据字符串属性路径操作对象值
+## 根据字符串属性路径操作目标对象
 
 ### \_.getTargetValueByPath(target, path = "data")
 
