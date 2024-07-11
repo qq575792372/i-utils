@@ -1,7 +1,6 @@
 /**
  * 日期常量
  */
-
 export const DATE = {
   // 上午和下午
   AM_PM: {

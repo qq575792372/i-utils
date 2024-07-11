@@ -1,31 +1,15 @@
 {
   "name": "nova-util",
+  "moduleName": "novaUtil",
   "version": "1.0.0",
-  "description": "lime-util 前端模块化 JavaScript 工具库",
-  "main": "./dist/index.min.js",
-  "moduleName": "LimeUtil",
-  "type": "module",
-  "scripts": {
-    "build": "node ./build/build.js",
-    "build:lib": "rimraf dist && rollup -c --bundleConfigAsCjs"
-  },
+  "description": "前端模块化 JavaScript 工具库",
+  "main": "./dist/index.umd.min.js",
   "author": "<575792372@qq.com>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/qq575792372/lime-util.git"
+  "type": "module",
+  "scripts": {
+    "build": "node ./build/build.js"
   },
-  "bugs": {
-    "url": "https://github.com/qq575792372/lime-util/issues"
-  },
-  "homepage": "https://github.com/qq575792372/lime-util#readme",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {},
   "devDependencies": {
     "chalk": "^4.1.2",
@@ -42,12 +26,26 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qq575792372/lime-util.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qq575792372/lime-util/issues"
+  },
+  "homepage": "https://github.com/qq575792372/lime-util#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "js-util",
-    "lime-util",
-    "limeUtil",
     "js工具库",
     "模块化js库",
+    "前端工具库",
     "JavaScript 工具库"
   ]
 }

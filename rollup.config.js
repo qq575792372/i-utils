@@ -1,23 +1,18 @@
-// 引入path
 // 使用插件
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import { babel } from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
-
 // 引入package.json
-// import pkg from "./package.json";
-
-import pkg from "./package.json" assert { type: "json" };
+import pkg from "./package.json";
 // 引入打包工具类
 import { pathResolve } from "./build/utils/util.js";
 // 引入打包路径
 import { inputSrc, outputCjs, outputEsm, outputLib, outputRoot, outputSrc, root } from "./build/utils/paths.js";
 
 // 声明注释
-const banner = `/*!
+const banner = `/*
  * ${pkg.name} v${pkg.version}
- * Copyright 2021-${new Date().getFullYear()}, ${pkg.author}
+ * Copyright 2024-${new Date().getFullYear()}, ${pkg.author}
  * Released under the ${pkg.license} License.
  */`;
 
@@ -64,25 +59,26 @@ export default {
       banner,
     },
 
-    // 打全量包es和umd的压缩包
+    // 打全量包-压缩包
     {
       format: "es",
       entryFileNames: `index.full.esm.min.js`,
       dir: pathResolve(outputLib),
       exports: undefined,
       banner,
-      // plugins: [terser()],
+      plugins: [terser()],
     },
-    /*     {
+    {
       format: "umd",
       entryFileNames: `index.full.umd.min.js`,
       dir: pathResolve(outputLib),
       name: pkg.moduleName,
       exports: "named",
       banner,
-    }, */
+      plugins: [terser()],
+    },
   ],
 
   // 使用插件
-  plugins: [nodeResolve(), commonjs(), babel({ babelHelpers: "bundled" })],
+  plugins: [nodeResolve(), commonjs()],
 };

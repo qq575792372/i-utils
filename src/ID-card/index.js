@@ -1,5 +1,4 @@
-import { isEmpty, isNull } from "../validate";
-import { DATE } from "../constants";
+import { isEmpty } from "../validate";
 
 /**
  * 根据身份证号码获取信息

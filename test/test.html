@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,10 +10,11 @@
 
 <!-- 使用module模式对源码进行测试，用webstorm启动服务 -->
 <script type="module">
-  import limeUtil from "../src/index.js";
+  import * as limeUtil from "../src/index.js";
 
   limeUtil.loadedTest();
   console.log(limeUtil);
+
   // 统计api的个数
   let num = 0;
   Object.keys(limeUtil).forEach((key) => {

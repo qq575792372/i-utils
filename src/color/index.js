@@ -61,13 +61,9 @@ export function rgbaToHsl(rgba) {
     h /= 6;
   }
   if (a) {
-    return `hsla(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(
-      l * 100
-    )}%,${a})`;
+    return `hsla(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(l * 100)}%,${a})`;
   }
-  return `hsl(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(
-    l * 100
-  )}%)`;
+  return `hsl(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(l * 100)}%)`;
 }
 
 /**
@@ -148,9 +144,7 @@ export function hexToHsl(hex) {
     }
     h /= 6;
   }
-  return `hsl(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(
-    l * 100
-  )}%)`;
+  return `hsl(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(l * 100)}%)`;
 }
 
 /**
