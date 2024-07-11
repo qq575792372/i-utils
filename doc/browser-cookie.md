@@ -48,7 +48,7 @@ console.log(res); // 输出：1
 
   `name` {String} 参数 name  
   `value` {String} 设置的 value  
-  `timestamp` {Timestamp} 过期的时间戳值，默认为一天，设置一天过期则为：<span style="color:#ff9900">`24 * 60 * 60 * 1000`</span>
+  `timestamp` {Number} 过期的时间戳值，默认为一天，设置一天过期则为：<span style="color:#ff9900">`24 * 60 * 60 * 1000`</span>
 
 - #### 返回值
 

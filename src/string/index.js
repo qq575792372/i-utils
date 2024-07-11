@@ -181,7 +181,7 @@ export function encode(str) {
 /**
  * base64 解密
  * @param {String} str 字符串
- * @returns {Boolean} 返回解密后的字符串
+ * @returns {String} 返回解密后的字符串
  */
 export function decode(str) {
   return window.atob(str);
@@ -250,19 +250,19 @@ export function formatThousand(num) {
  */
 export function formatRmbChinese(money) {
   // 汉字的数字
-  let cnNums = new Array("零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖");
+  let cnNums = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
   // 基本单位
-  let cnIntRadice = new Array("", "拾", "佰", "仟");
+  let cnIntRadiance = ["", "拾", "佰", "仟"];
   // 对应整数部分扩展单位
-  let cnIntUnits = new Array("", "万", "亿", "兆");
+  let cnIntUnits = ["", "万", "亿", "兆"];
   // 对应小数部分单位
-  let cnDecUnits = new Array("角", "分", "毫", "厘");
+  let cnDecUnits = ["角", "分", "毫", "厘"];
   // 整数金额时后面跟的字符
   let cnInteger = "整";
   // 整型完以后的单位
   let cnIntLast = "元";
   // 最大处理的数字
-  let maxNum = 999999999999999.9999;
+  let maxNum = Number("999999999999999.9999");
   // 金额整数部分
   let integerNum;
   // 金额小数部分
@@ -280,13 +280,13 @@ export function formatRmbChinese(money) {
     // 超出最大处理数字，抛出异常
     throw new Error("Calculated number overflow!");
   }
-  if (money == 0) {
+  if (money === 0) {
     chineseStr = cnNums[0] + cnIntLast + cnInteger;
     return chineseStr;
   }
   // 转换为字符串
   money = money.toString();
-  if (money.indexOf(".") == -1) {
+  if (money.indexOf(".") === -1) {
     integerNum = money;
     decimalNum = "";
   } else {
@@ -303,7 +303,7 @@ export function formatRmbChinese(money) {
       let p = IntLen - i - 1;
       let q = p / 4;
       let m = p % 4;
-      if (n == "0") {
+      if (n === "0") {
         zeroCount++;
       } else {
         if (zeroCount > 0) {
@@ -311,27 +311,27 @@ export function formatRmbChinese(money) {
         }
         // 归零
         zeroCount = 0;
-        chineseStr += cnNums[parseInt(n)] + cnIntRadice[m];
+        chineseStr += cnNums[parseInt(n)] + cnIntRadiance[m];
       }
-      if (m == 0 && zeroCount < 4) {
+      if (m === 0 && zeroCount < 4) {
         chineseStr += cnIntUnits[q];
       }
     }
     chineseStr += cnIntLast;
   }
   // 小数部分
-  if (decimalNum != "") {
+  if (decimalNum !== "") {
     let decLen = decimalNum.length;
     for (let i = 0; i < decLen; i++) {
       let n = decimalNum.substr(i, 1);
-      if (n != "0") {
+      if (n !== "0") {
         chineseStr += cnNums[Number(n)] + cnDecUnits[i];
       }
     }
   }
-  if (chineseStr == "") {
+  if (chineseStr === "") {
     chineseStr += cnNums[0] + cnIntLast + cnInteger;
-  } else if (decimalNum == "") {
+  } else if (decimalNum === "") {
     chineseStr += cnInteger;
   }
   return chineseStr;
@@ -343,7 +343,7 @@ export function formatRmbChinese(money) {
  * @returns {String} 返回转化后字符串
  */
 export function formatStartOfName(value) {
-  if (value.length == 2) {
+  if (value.length === 2) {
     return _formatStartOf(value, 1, 1);
   } else if (value.length > 2) {
     return _formatStartOf(value, 1, value.length - 2);

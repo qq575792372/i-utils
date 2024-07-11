@@ -13,13 +13,6 @@ node_modules
 /dist
 /*/dist/
 
-# Log files
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-**/*.log
-
 # Editor directories and files
 .idea
 .vscode

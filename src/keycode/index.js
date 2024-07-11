@@ -1,4 +1,4 @@
-var keyCodeMap = {
+const keyCodeMap = {
   // 字符键
   8: "Backspace",
   9: "Tab",
@@ -130,7 +130,7 @@ export function getKeyName(keycode) {
  */
 export function getKeyCode(keyname) {
   for (let key in keyCodeMap) {
-    if (keyCodeMap[key] == keyname) {
+    if (keyCodeMap[key] === keyname) {
       return key;
     }
   }

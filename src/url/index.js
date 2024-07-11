@@ -22,8 +22,7 @@ export function queryStringToObj(url = window.location.href) {
   if (url.indexOf("?") === -1) {
     return {};
   }
-  let search =
-    url[0] === "?" ? url.substr(1) : url.substring(url.lastIndexOf("?") + 1);
+  let search = url[0] === "?" ? url.substr(1) : url.substring(url.lastIndexOf("?") + 1);
   search = search.split("&");
   let obj = {};
   for (let i = 0; i < search.length; i++) {
@@ -45,11 +44,7 @@ export function objToQueryString(obj) {
     let value = obj[key];
     if (value instanceof Array) {
       for (let i = 0; i < value.length; ++i) {
-        pairs.push(
-          encodeURIComponent(key + "[" + i + "]") +
-            "=" +
-            encodeURIComponent(value[i])
-        );
+        pairs.push(encodeURIComponent(key + "[" + i + "]") + "=" + encodeURIComponent(value[i]));
       }
       continue;
     }

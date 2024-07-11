@@ -3,7 +3,7 @@ import { isEmpty } from "../validate";
 /* 文件信息处理 */
 /**
  * 格式化文件大小自动转为 B，KB，MB，GB
- * @param {Byte} size 文件的大小，单位byte字节
+ * @param {Number} size 文件的大小，单位byte字节
  * @returns {String} 返回格式化后的字符串
  */
 export function formatFileSize(size) {
@@ -159,7 +159,7 @@ export function blobToBase64(blob) {
 
 /**
  * base64转file
- * @param {Base64} base64 base64数据
+ * @param {String} base64 base64数据
  * @param {String} fileName 文件名称，默认以时间戳命名
  * @returns {Promise} 返回Promise的file
  */
@@ -187,7 +187,7 @@ export function base64ToFile(base64, fileName = Date.now()) {
 
 /**
  * base64转成blob
- * @param {Base64} base64 base64数据
+ * @param {String} base64 base64数据
  * @returns {Promise} 返回Promise的blob
  */
 export function base64ToBlob(base64) {

@@ -880,27 +880,27 @@ export function getPastTime(date, lang = "zh") {
 
   // 返回结果
   if (year) {
-    return year + PASS_TIME[lang].YEAR;
+    return year + DATE.PASS_TIME[lang].YEAR;
   } else if (month) {
-    return month + PASS_TIME[lang].MONTH;
+    return month + DATE.PASS_TIME[lang].MONTH;
   } else if (day) {
     if (day === 1) {
-      return PASS_TIME[lang].YESTERDAY;
+      return DATE.PASS_TIME[lang].YESTERDAY;
     } else if (day === 2) {
-      return PASS_TIME[lang].BEFORE_YESTERDAY;
+      return DATE.PASS_TIME[lang].BEFORE_YESTERDAY;
     } else {
-      return day + PASS_TIME[lang].DAY;
+      return day + DATE.PASS_TIME[lang].DAY;
     }
   } else if (hour) {
     if (hour > 12) {
-      return PASS_TIME[lang].TODAY;
+      return DATE.PASS_TIME[lang].TODAY;
     } else {
-      return hour + PASS_TIME[lang].HOUR;
+      return hour + DATE.PASS_TIME[lang].HOUR;
     }
   } else if (min) {
-    return min + PASS_TIME[lang].MINUTE;
+    return min + DATE.PASS_TIME[lang].MINUTE;
   } else {
-    return PASS_TIME[lang].JUST;
+    return DATE.PASS_TIME[lang].JUST;
   }
 }
 
@@ -938,7 +938,7 @@ export function getOverTime(date, lang = "zh") {
  * @returns {String} 返回星座
  */
 export function getZodiac(date, lang = "zh") {
-  if (isNull(date)) return;
+  if (isNull(date)) return "";
 
   // 计算
   let days = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22];
@@ -954,7 +954,7 @@ export function getZodiac(date, lang = "zh") {
  * @returns {String} 返回生肖
  */
 export function getChineseZodiac(date, lang = "zh") {
-  if (isNull(date)) return;
+  if (isNull(date)) return "";
 
   // 计算
   let year = date.getFullYear();
@@ -1074,7 +1074,7 @@ export function addQuarter(date = new Date(), num = +1) {
  * @returns {String} 返回日期字符串
  */
 export function formatDate(date, format = "yyyy-MM-dd", lang = "zh") {
-  if (isNull(date)) return;
+  if (isNull(date)) return "";
 
   // 是日期字符串
   if (isString(date)) {
@@ -1127,17 +1127,17 @@ export function formatDate(date, format = "yyyy-MM-dd", lang = "zh") {
     format = format.replace(amPmReg, function (match, $1) {
       // AA或者aa为中文
       if ($1.length > 1) {
-        return date.getHours() < 12 ? AM_PM[lang].AM : AM_PM[lang].PM;
+        return date.getHours() < 12 ? DATE.AM_PM[lang].AM : DATE.AM_PM[lang].PM;
       }
       // 其他为英文
       else {
         return $1 === $1.toLowerCase()
           ? date.getHours() < 12
-            ? AM_PM["en"].AM.toLowerCase()
-            : AM_PM["en"].PM.toLowerCase()
+            ? DATE.AM_PM["en"].AM.toLowerCase()
+            : DATE.AM_PM["en"].PM.toLowerCase()
           : date.getHours() < 12
-            ? AM_PM["en"].AM
-            : AM_PM["en"].PM;
+            ? DATE.AM_PM["en"].AM
+            : DATE.AM_PM["en"].PM;
       }
     });
   }
@@ -1146,10 +1146,10 @@ export function formatDate(date, format = "yyyy-MM-dd", lang = "zh") {
   if (weekReg.test(format)) {
     format = format.replace(weekReg, function (match, $1) {
       return $1.length === 1
-        ? WEEK[lang].MINI[date.getDay()]
+        ? DATE.WEEK[lang].MINI[date.getDay()]
         : $1.length === 2
-          ? WEEK[lang].SHORT[date.getDay()]
-          : WEEK[lang].FULL[date.getDay()];
+          ? DATE.WEEK[lang].SHORT[date.getDay()]
+          : DATE.WEEK[lang].FULL[date.getDay()];
     });
   }
   // 季度
@@ -1157,10 +1157,10 @@ export function formatDate(date, format = "yyyy-MM-dd", lang = "zh") {
   if (quarterReg.test(format)) {
     format = format.replace(quarterReg, function (match, $1) {
       return $1.length === 1
-        ? QUARTER[lang].MINI[Math.floor((date.getMonth() + 3) / 3) - 1]
+        ? DATE.QUARTER[lang].MINI[Math.floor((date.getMonth() + 3) / 3) - 1]
         : $1.length === 2
-          ? QUARTER[lang].SHORT[Math.floor((date.getMonth() + 3) / 3) - 1]
-          : QUARTER[lang].FULL[Math.floor((date.getMonth() + 3) / 3) - 1];
+          ? DATE.QUARTER[lang].SHORT[Math.floor((date.getMonth() + 3) / 3) - 1]
+          : DATE.QUARTER[lang].FULL[Math.floor((date.getMonth() + 3) / 3) - 1];
     });
   }
   // 经过上面的过滤，剩余的日期参数处理
@@ -1186,7 +1186,7 @@ export function formatDate(date, format = "yyyy-MM-dd", lang = "zh") {
  * @returns {Date} 返回日期对象
  */
 export function parseDate(value) {
-  if (isNull(value)) return;
+  if (isNull(value)) return null;
 
   // 是日期字符串
   if (isString(value)) {

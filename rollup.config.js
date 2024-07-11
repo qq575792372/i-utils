@@ -7,7 +7,7 @@ import pkg from "./package.json";
 // 引入打包工具类
 import { pathResolve } from "./build/utils/util.js";
 // 引入打包路径
-import { inputSrc, outputCjs, outputEsm, outputLib, outputRoot, outputSrc, root } from "./build/utils/paths.js";
+import { inputSrc, outputCjs, outputEsm, outputLib, outputRoot } from "./build/utils/paths.js";
 
 // 声明注释
 const banner = `/*

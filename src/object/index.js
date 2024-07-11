@@ -1,4 +1,4 @@
-import {isEmpty, isObject, isArray, isDate} from "../validate";
+import { isEmpty, isObject, isArray, isDate } from "../validate";
 
 /* 对象转换 */
 /**
@@ -7,11 +7,11 @@ import {isEmpty, isObject, isArray, isDate} from "../validate";
  * @returns {Object} 返回Object
  */
 export function mapToObject(map) {
-    let obj = Object.create(null);
-    for (let [k, v] of map) {
-        obj[k] = v;
-    }
-    return obj;
+  let obj = Object.create(null);
+  for (let [k, v] of map) {
+    obj[k] = v;
+  }
+  return obj;
 }
 
 /**
@@ -20,7 +20,7 @@ export function mapToObject(map) {
  * @returns {String} 返回Json字符串
  */
 export function mapToJson(map) {
-    return JSON.stringify(mapToObject(map));
+  return JSON.stringify(mapToObject(map));
 }
 
 /**
@@ -29,11 +29,11 @@ export function mapToJson(map) {
  * @returns {Map} 返回Map
  */
 export function objectToMap(obj) {
-    let map = new Map();
-    for (let k of Object.keys(obj)) {
-        map.set(k, obj[k]);
-    }
-    return map;
+  let map = new Map();
+  for (let k of Object.keys(obj)) {
+    map.set(k, obj[k]);
+  }
+  return map;
 }
 
 /**
@@ -42,7 +42,7 @@ export function objectToMap(obj) {
  * @returns {Map} 返回Map
  */
 export function jsonToMap(json) {
-    return objToMap(JSON.parse(json));
+  return objectToMap(JSON.parse(json));
 }
 
 /**
@@ -51,7 +51,7 @@ export function jsonToMap(json) {
  * @returns {String} 返回Json字符串
  */
 export function stringifyJson(json) {
-    return JSON.stringify(json);
+  return JSON.stringify(json);
 }
 
 /**
@@ -60,8 +60,8 @@ export function stringifyJson(json) {
  * @returns {Object} 返回Json对象
  */
 export function parseJson(json) {
-    if (isEmpty(json)) return;
-    return JSON.parse(json);
+  if (isEmpty(json)) return;
+  return JSON.parse(json);
 }
 
 /* 数据拷贝，对比，合并等操作 */
@@ -71,7 +71,7 @@ export function parseJson(json) {
  * @returns {*} 返回浅拷贝的数据
  */
 export function clone(source) {
-    return Object.assign(source);
+  return Object.assign(source);
 }
 
 /**
@@ -80,35 +80,35 @@ export function clone(source) {
  * @returns {*} 返回深拷贝的数据
  */
 export function cloneDeep(source) {
-    //  Object
-    if (isObject(source)) {
-        let copy = {};
-        for (let attr in source) {
-            if (source.hasOwnProperty(attr)) copy[attr] = cloneDeep(source[attr]);
-        }
-        return copy;
+  //  Object
+  if (isObject(source)) {
+    let copy = {};
+    for (let attr in source) {
+      if (source.hasOwnProperty(attr)) copy[attr] = cloneDeep(source[attr]);
     }
+    return copy;
+  }
 
-    //  Array
-    else if (isArray(source)) {
-        let copy = [];
-        for (let i = 0, len = source.length; i < len; i++) {
-            copy[i] = cloneDeep(source[i]);
-        }
-        return copy;
+  //  Array
+  else if (isArray(source)) {
+    let copy = [];
+    for (let i = 0, len = source.length; i < len; i++) {
+      copy[i] = cloneDeep(source[i]);
     }
+    return copy;
+  }
 
-    //  Date
-    else if (isDate(source)) {
-        let copy = new Date();
-        copy.setTime(source.getTime());
-        return copy;
-    }
+  //  Date
+  else if (isDate(source)) {
+    let copy = new Date();
+    copy.setTime(source.getTime());
+    return copy;
+  }
 
-    // Other 原路返回源数据
-    else {
-        return source;
-    }
+  // Other 原路返回源数据
+  else {
+    return source;
+  }
 }
 
 /**
@@ -119,33 +119,29 @@ export function cloneDeep(source) {
  * @returns {Boolean} 返回true和false
  */
 export function objectEquals(obj1, obj2) {
-    // 比较值相等
-    if (obj1 === obj2) {
-        return true;
-    }
-    // 比较Date
-    if (obj1 instanceof Date && b instanceof Date) {
-        return a.getTime() === b.getTime();
-    }
-    // 对象比较引用
-    if (
-        !obj1 ||
-        !obj2 ||
-        (typeof obj1 !== "object" && typeof obj2 !== "object")
-    ) {
-        return obj1 === obj2;
-    }
-    // 比较原型
-    if (obj1.prototype !== b.prototype) {
-        return false;
-    }
-    // 比较对象的值
-    const keys = Object.keys(obj1);
-    if (keys.length !== Object.keys(obj2).length) {
-        return false;
-    } else {
-        return keys.every((k) => objectEquals(obj1[k], obj2[k]));
-    }
+  // 比较值相等
+  if (obj1 === obj2) {
+    return true;
+  }
+  // 比较Date
+  if (obj1 instanceof Date && obj2 instanceof Date) {
+    return obj1.getTime() === obj2.getTime();
+  }
+  // 对象比较引用
+  if (!obj1 || !obj2 || (typeof obj1 !== "object" && typeof obj2 !== "object")) {
+    return obj1 === obj2;
+  }
+  // 比较原型
+  if (obj1.prototype !== obj2.prototype) {
+    return false;
+  }
+  // 比较对象的值
+  const keys = Object.keys(obj1);
+  if (keys.length !== Object.keys(obj2).length) {
+    return false;
+  } else {
+    return keys.every((k) => objectEquals(obj1[k], obj2[k]));
+  }
 }
 
 /**
@@ -155,7 +151,7 @@ export function objectEquals(obj1, obj2) {
  * @returns {Object} 返回合并后的对象
  */
 export function merge(target, ...source) {
-    return Object.assign(target, ...source);
+  return Object.assign(target, ...source);
 }
 
 /* 根据字符串属性路径操作目标对象 */
@@ -169,18 +165,18 @@ export function merge(target, ...source) {
  * @returns {Object} 返回目标对象
  */
 export function getTargetValueByPath(target, path = "data") {
-    const paths = (path || "data").split(".");
-    let data = target;
-    // 属性总个数
-    let lastIndex = paths.length - 1;
-    for (const index in paths) {
-        // 如果路径中没有该属性，则创建一个
-        if (!data[paths[index]]) {
-            data[paths[index]] = Number(index) !== lastIndex ? {} : undefined;
-        }
-        data = data[paths[index]];
+  const paths = (path || "data").split(".");
+  let data = target;
+  // 属性总个数
+  let lastIndex = paths.length - 1;
+  for (const index in paths) {
+    // 如果路径中没有该属性，则创建一个
+    if (!data[paths[index]]) {
+      data[paths[index]] = Number(index) !== lastIndex ? {} : undefined;
     }
-    return data;
+    data = data[paths[index]];
+  }
+  return data;
 }
 
 /**
@@ -193,16 +189,16 @@ export function getTargetValueByPath(target, path = "data") {
  * @param {*} value 值
  */
 export function setTargetValueByPath(target, path = "data", value) {
-    const paths = (path || "data").split(".");
-    // 变量表达式拼接
-    let fxStr = "";
-    for (const name of paths) {
-        fxStr += `['${name}']`;
-    }
-    const fn = new Function(
-        "target",
-        `target${fxStr}=${value}
+  const paths = (path || "data").split(".");
+  // 变量表达式拼接
+  let fxStr = "";
+  for (const name of paths) {
+    fxStr += `['${name}']`;
+  }
+  const fn = new Function(
+    "target",
+    `target${fxStr}=${value}
         `,
-    );
-    fn(target);
+  );
+  fn(target);
 }

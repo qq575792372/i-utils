@@ -15,14 +15,12 @@ export function isSupportCookie() {
  * @returns {String} 返回获取的值
  */
 export function getCookie(name) {
-  if (typeof document == "undefined") return;
+  if (typeof document == "undefined") return "";
   // cookie中每个分号后面是有个空格的，需要替换掉
-  let arr = document.cookie
-    ? document.cookie.replace(/\s/g, "").split(";")
-    : [];
+  let arr = document.cookie ? document.cookie.replace(/\s/g, "").split(";") : [];
   for (let i in arr) {
     let tempArr = arr[i].split("=");
-    if (tempArr[0] == name) {
+    if (tempArr[0] === name) {
       return decodeURIComponent(tempArr[1]);
     }
   }
@@ -34,12 +32,11 @@ export function getCookie(name) {
  * 注：timestamp参数不填，则默认为session级别，浏览器关闭即cookie过期
  * @param {String} name 参数name
  * @param {String} value 设置的value
- * @param {Timestamp} timestamp 过期的时间戳值，默认为一天，设置一天过期则为：24*60*60*1000
+ * @param {Number} timestamp 过期的时间戳值，默认为一天，设置一天过期则为：24*60*60*1000
  */
 export function setCookie(name, value, timestamp = 24 * 60 * 60 * 1000) {
   if (typeof document == "undefined") return;
-  document.cookie =
-    name + "=" + value + ";expires=" + new Date(Date.now() + timestamp);
+  document.cookie = name + "=" + value + ";expires=" + new Date(Date.now() + timestamp);
 }
 
 /**
@@ -56,13 +53,11 @@ export function removeCookie(name) {
  * @param {String} domain 域名地址，默认是当前站点域名
  */
 export function clearCookie(domain = document.domain) {
-  let names = document.cookie.match(/[^ =;]+(?=\=)/g);
+  let names = document.cookie.match(/[^ =;]+(?==)/g);
   if (names) {
     for (let i = names.length; i--; ) {
       document.cookie =
-        names[i] + "=0;path=/;" + domain
-          ? "domain=" + domain + ";"
-          : "" + "expires=" + new Date(0).toUTCString();
+        names[i] + "=0;path=/;" + domain ? "domain=" + domain + ";" : "" + "expires=" + new Date(0).toUTCString();
     }
   }
 }

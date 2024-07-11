@@ -46,9 +46,7 @@ export function isPc() {
  */
 export function isMobile() {
   let ua = window.navigator.userAgent;
-  return /Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|IEMobile/i.test(
-    ua
-  );
+  return /Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|IEMobile/i.test(ua);
 }
 
 /* 操作系统类型 */

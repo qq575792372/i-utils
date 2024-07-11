@@ -15,7 +15,9 @@ export function hasClass(elem, className) {
  * @param {String} className 类名
  */
 export function addClass(elem, className) {
-  if (!hasClass(elem, className)) elem.className += " " + className;
+  if (!hasClass(elem, className)) {
+    elem.className += " " + className;
+  }
 }
 
 /**
@@ -24,8 +26,9 @@ export function addClass(elem, className) {
  * @param {String} className 类名
  */
 export function removeClass(elem, className) {
-  if (hasClass(elem, className))
+  if (hasClass(elem, className)) {
     elem.className = elem.className.replace(new RegExp(className, "gm"), "");
+  }
 }
 
 /**
@@ -113,12 +116,9 @@ export function htmlDecode(htmlStr) {
     "&quot;": '"',
     "&#39;": "'",
   };
-  return htmlStr.replace(
-    /(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi,
-    function (all, t) {
-      return temp[t];
-    }
-  );
+  return htmlStr.replace(/(&lt;|&gt;|&amp;|&#40;|&#41;|&#47;|&nbsp;|&quot;|&#39;)/gi, function (all, t) {
+    return temp[t];
+  });
 }
 
 /* 复制剪切板 */

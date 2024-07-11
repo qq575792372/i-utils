@@ -4,10 +4,10 @@
  * @returns {String} 返回生成的hex颜色
  */
 export function rgbToHex(rgb) {
-  rgb = rgb.split(",");
-  let r = parseInt(rgb[0].split("(")[1]);
-  let g = parseInt(rgb[1]);
-  let b = parseInt(rgb[2].split(")")[0]);
+  let arr = rgb.split(",");
+  let r = parseInt(arr[0].split("(")[1]);
+  let g = parseInt(arr[1]);
+  let b = parseInt(arr[2].split(")")[0]);
   return "#" + _hex(r) + _hex(g) + _hex(b);
 }
 
@@ -17,11 +17,11 @@ export function rgbToHex(rgb) {
  * @returns {String} 返回生成的hex颜色
  */
 export function rgbaToHex(rgba) {
-  rgba = rgba.split(",");
-  let r = parseInt(rgba[0].split("(")[1]);
-  let g = parseInt(rgba[1]);
-  let b = parseInt(rgba[2]);
-  let a = parseFloat(rgba[3].split(")")[0]);
+  let arr = rgba.split(",");
+  let r = parseInt(arr[0].split("(")[1]);
+  let g = parseInt(arr[1]);
+  let b = parseInt(arr[2]);
+  let a = parseFloat(arr[3].split(")")[0]);
 
   return `#${_hex(Math.round(a * 256 - 1))}${_hex(r)}${_hex(g)}${_hex(b)}`;
 }
@@ -32,11 +32,11 @@ export function rgbaToHex(rgba) {
  * @returns {String} 返回生成的hsl颜色
  */
 export function rgbaToHsl(rgba) {
-  rgba = rgba.split(",");
-  let r = parseInt(rgba[0].split("(")[1]) / 255;
-  let g = parseInt(rgba[1]) / 255;
-  let b = parseInt(rgba[2]) / 255;
-  let a = parseFloat(rgba[3] && rgba[3].split(")")[0]);
+  let arr = rgba.split(",");
+  let r = parseInt(arr[0].split("(")[1]) / 255;
+  let g = parseInt(arr[1]) / 255;
+  let b = parseInt(arr[2]) / 255;
+  let a = parseFloat(arr[3] && arr[3].split(")")[0]);
   let max = Math.max(r, g, b),
     min = Math.min(r, g, b);
   let h,
@@ -179,7 +179,7 @@ export function getRandomRgba() {
   let r = Math.floor(Math.random() * 256);
   let g = Math.floor(Math.random() * 256);
   let b = Math.floor(Math.random() * 256);
-  let a = Number(Math.random() * 1).toFixed(2);
+  let a = Number(Math.random()).toFixed(2);
   return `rgba(${r},${g},${b},${a})`;
 }
 

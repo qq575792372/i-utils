@@ -16,6 +16,5 @@ export const inputSrc = pathResolve(root, "src");
 // 输出
 export const outputRoot = pathResolve(root, ROOT_DIR); // 打包根路径
 export const outputLib = pathResolve(root, outputRoot, "lib"); // lib全量包路径
-export const outputSrc = pathResolve(root, outputRoot, "src"); // src源码包路径
 export const outputEsm = pathResolve(root, outputRoot, "es"); // es包路径
 export const outputCjs = pathResolve(root, outputRoot, "cjs"); // cjs包路径

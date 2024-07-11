@@ -10,7 +10,7 @@
 
 - #### 参数
 
-  `size` {Byte} 文件的大小，单位 byte 字节
+  `size` {Number} 文件的大小，单位 byte 字节
 
 - #### 返回值
 
@@ -192,7 +192,7 @@ base64 转 file
 
 - #### 参数
 
-  `base64` {Base64} base64 数据  
+  `base64` {String} base64 数据  
   `fileName` {String} 文件名称，默认以时间戳命名
 
 - #### 返回值
@@ -215,7 +215,7 @@ base64 转成 blob
 
 - #### 参数
 
-  `base64` {Base64} base64 数据
+  `base64` {String} base64 数据
 
 - #### 返回值
 
