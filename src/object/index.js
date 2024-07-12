@@ -171,9 +171,10 @@ export function getTargetValueByPath(target, path = "data") {
   let lastIndex = paths.length - 1;
   for (const index in paths) {
     // 如果路径中没有该属性，则创建一个
-    if (!data[paths[index]]) {
+    if (data[paths[index]] === null || data[paths[index]] === undefined) {
       data[paths[index]] = Number(index) !== lastIndex ? {} : undefined;
     }
+    // 逐层向下找到对应属性的值
     data = data[paths[index]];
   }
   return data;
@@ -190,15 +191,11 @@ export function getTargetValueByPath(target, path = "data") {
  */
 export function setTargetValueByPath(target, path = "data", value) {
   const paths = (path || "data").split(".");
-  // 变量表达式拼接
+  // 变量表达式拼接，最终结果如：target['personInfo']['personName']='xxx';
   let fxStr = "";
   for (const name of paths) {
     fxStr += `['${name}']`;
   }
-  const fn = new Function(
-    "target",
-    `target${fxStr}=${value}
-        `,
-  );
+  const fn = new Function("target", `target${fxStr}=${value}`);
   fn(target);
 }

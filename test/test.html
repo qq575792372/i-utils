@@ -23,5 +23,31 @@
     }
   });
   console.log(`LimeUtil一共 ${num} 个api`);
+
+
+  let tableData = {
+    id: 1,
+    unitName: "指挥中心",
+    summaryCount: {
+      total: 48,
+      oneLevel: { subtotal: 6, oneG: 0, oneD: 2, oneZr: 3, customInput: 10 },
+      twoLevel: { subtotal: 6, twoG: 1, twoD: 2, twoZr: 3, customInput: 10 },
+      threeLevel: { subtotal: 6, threeG: 1, threeD: 2, threeZr: 3, customInput: 10 }
+    },
+    oneLevelTeamMembers: {
+      total: 18,
+      oneLevel: { subtotal: 6, oneG: 1, oneD: 2, oneZr: 3 },
+      twoLevel: { subtotal: 6, twoG: 1, twoD: 2, twoZr: 3 },
+      threeLevel: { subtotal: 6, threeG: 1, threeD: 2, threeZr: 3 }
+    },
+    notOneLevelTeamMembers: {
+      total: 18,
+      oneLevel: { subtotal: 6, oneG: 1, oneD: 2, oneZr: 3 },
+      twoLevel: { subtotal: 6, twoG: 1, twoD: 2, twoZr: 3 },
+      threeLevel: { subtotal: 6, threeG: 1, threeD: 2, threeZr: 3 }
+    }
+  };
+
+  console.log(11,limeUtil.getTargetValueByPath(tableData,'summaryCount.oneLevel.oneG'));
 </script>
 </html>
