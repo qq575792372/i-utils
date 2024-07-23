@@ -1,7 +1,7 @@
 {
-  "name": "nova-util",
-  "moduleName": "novaUtil",
-  "version": "1.0.0",
+  "name": "@ivu-web/util",
+  "moduleName": "iUtil",
+  "version": "0.0.1",
   "description": "前端模块化 JavaScript 工具库",
   "main": "./dist/index.umd.min.js",
   "author": "<575792372@qq.com>",

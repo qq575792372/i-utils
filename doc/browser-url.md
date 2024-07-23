@@ -1,6 +1,6 @@
 # 浏览器 Url
 
-### \_.getQueryString(name, url = window.location.href)
+### getQueryString(name, url = window.location.href)
 
 从 url 中获取参数值
 
@@ -16,14 +16,16 @@
 - #### 示例
 
 ```javascript
+import { getQueryString } from "@ivu-web/util";
+
 let url = "http://xxx.com?id=1&name=test";
-let res = LimeUtil.getQueryString("id", url);
+let res = getQueryString("id", url);
 console.log(res); // 输出：1
 ```
 
 ---
 
-### \_.queryStringToObject(url = window.location.href)
+### queryStringToObject(url = window.location.href)
 
 url 查询参数转为对象
 
@@ -38,14 +40,16 @@ url 查询参数转为对象
 - #### 示例
 
 ```javascript
+import { queryStringToObject } from "@ivu-web/util";
+
 let url = "http://xxx.com?id=1&name=test";
-let res = LimeUtil.queryStringToObject(url);
+let res = queryStringToObject(url);
 console.log(res); // 输出：{id: 1, name: 'test'}
 ```
 
 ---
 
-### \_.objectToUrlQuery(obj)
+### objectToUrlQuery(obj)
 
 对象转 url 查询参数
 
@@ -60,7 +64,9 @@ console.log(res); // 输出：{id: 1, name: 'test'}
 - #### 示例
 
 ```javascript
+import { objectToUrlQuery } from "@ivu-web/util";
+
 let obj = { id: 1, name: "test" };
-let res = LimeUtil.objectToUrlQuery(obj);
+let res = objectToUrlQuery(obj);
 console.log(res); // 输出：id=1&name=test
 ```

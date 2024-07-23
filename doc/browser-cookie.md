@@ -1,6 +1,6 @@
 # 浏览器 Cookie
 
-### \_.isSupportCookie()
+### isSupportCookie()
 
 浏览器是否支持 Cookie
 
@@ -15,11 +15,13 @@
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSupportCookie();
+import { isSupportCookie } from "@ivu-web/util";
+
+let res = isSupportCookie();
 console.log(res); // 输出：true
 ```
 
-### \_.getCookie(name)
+### getCookie(name)
 
 通过 name 获取 cookie
 
@@ -34,13 +36,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getCookie("id");
+import { getCookie } from "@ivu-web/util";
+
+let res = getCookie("id");
 console.log(res); // 输出：1
 ```
 
 ---
 
-### \_.setCookie(name, value, timestamp = 24 \* 60 \* 60 \* 1000)
+### setCookie(name, value, timestamp = 24 \* 60 \* 60 \* 1000)
 
 通过 name 获取 cookie
 
@@ -48,7 +52,8 @@ console.log(res); // 输出：1
 
   `name` {String} 参数 name  
   `value` {String} 设置的 value  
-  `timestamp` {Number} 过期的时间戳值，默认为一天，设置一天过期则为：<span style="color:#ff9900">`24 * 60 * 60 * 1000`</span>
+  `timestamp` {Number}
+  过期的时间戳值，默认为一天，设置一天过期则为：<span style="color:#ff9900">`24 * 60 * 60 * 1000`</span>
 
 - #### 返回值
 
@@ -57,13 +62,15 @@ console.log(res); // 输出：1
 - #### 示例
 
 ```javascript
+import { setCookie } from "@ivu-web/util";
+
 // 设置一天过期
-LimeUtil.setCookie("id", 1, 24 * 60 * 60 * 1000);
+setCookie("id", 1, 24 * 60 * 60 * 1000);
 ```
 
 ---
 
-### \_.removeCookie(name)
+### removeCookie(name)
 
 通过 name 删除 cookie
 
@@ -78,12 +85,14 @@ LimeUtil.setCookie("id", 1, 24 * 60 * 60 * 1000);
 - #### 示例
 
 ```javascript
-LimeUtil.removeCookie("id");
+import { removeCookie } from "@ivu-web/util";
+
+removeCookie("id");
 ```
 
 ---
 
-### \_.clearCookie(domain = document.domain)
+### clearCookie(domain = document.domain)
 
 清空当前站点域名的 cookie
 
@@ -98,5 +107,7 @@ LimeUtil.removeCookie("id");
 - #### 示例
 
 ```javascript
-LimeUtil.clearCookie();
+import { clearCookie } from "@ivu-web/util";
+
+clearCookie();
 ```

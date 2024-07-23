@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/xe-utils.svg?style=flat-square)](https://github.com/qq575792372/lime-util)
 [![npm license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-🔥 **lime-util** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **248** ⚡️ 个 Api
+🔥 **iUtil** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **281** ⚡️ 个 Api
 方法，支持`esm模块`和`umd浏览器环境`使用
 ，工具库包含了开发中经常用到的一些模块方法集合，如`字符串`，`数组`，`浏览器缓存`，`浏览器Cookie`，`浏览器剪切板`，`Dom处理`，`日期工具`，`加解密`，`数学计算`，`文件处理`，`正则校验`，`身份证信息`,`微信小程序工具库`
 等等。
@@ -13,45 +13,52 @@
 #### 1. 使用 npm 安装
 
 ```bash
-npm i @lime-util/util --save
-```
+# npm
+npm i @ivu-web/util --save
 
-#### 2. 或在浏览器环境中直接引入
+# pnpm
+pnpm i @ivu-web/util --save
 
-```html
-<!-- 将工具包下面 dist/index.js 文件拷贝出来引入 -->
-<script src="dist/index.js"></script>
-<!-- 使用 -->
-<script>
-  LimeUtil.loadedTest();
-</script>
+# yarn
+yarn add @ivu-web/util --save
 ```
 
 ### 🎨 使用
 
-#### 1. es 方式
+#### 1. es 模块化引入方式
 
 ```javascript
-// 全部引入
-import * as LimeUtil from "@lime-util/util";
-
-LimeUtil.loadedTest();
-
 // 按需引入
-import { loadedTest } from "@lime-util/util";
+import { loadedTest } from "@ivu-web/util";
 
 loadedTest();
+
+// 全部引入
+import * as iUtil from "@ivu-web/util";
+
+iUtil.loadedTest();
 ```
 
-#### 2. require 方式
+#### 2. umd 浏览器环境引入方式
+
+```javascript
+<!-- 将工具库下面 dist/lib/index.full.umd.js 文件拷贝出来引入 -->
+<script src="dist/lib/index.full.umd.js"></script>;
+<!-- 这里使用的实际是全局的 window.iUtil 对象 -->
+<script>
+  iUtil.loadedTest();
+</script>;
+```
+
+#### 3. require 服务端环境引入方式
 
 ```javascript
 // 全部引入
-const LimeUtil = require("@lime-util/util");
-LimeUtil.loadedTest();
+const iUtil = require("@ivu-web/util");
+iUtil.loadedTest();
 
 // 按需引入
-const { loadedTest } = require("@lime-util/util");
+const { loadedTest } = require("@ivu-web/util");
 loadedTest();
 ```
 
@@ -60,58 +67,39 @@ loadedTest();
 工具库源码架构使用 `pnpm` 做为包管理工具，在 `packages` 目录中分为多个工程模块来构建。
 
 ```bash
-# 构建所有模块的包
+# 构建包
 pnpm build
-
-# 构建核心模块的包
-pnpm build:core
-
-# 构建日期模块的包
-pnpm build:date
 ```
 
-### 📚 模块介绍
+### ✅ 发布
 
-`lime-util` 分为`lime-util 整合工具库`，`lime-core 核心工具库` 或 `lime-date 日期工具库`，`整合工具库`
-包含所有的功能，如果你想轻量级使用，可以只引入`核心库`或`日期库`。
-
-[lime-util 整合工具库（传送阵）](https://github.com/qq575792372/lime-util)
-[lime-core 核心工具库（传送阵）](https://github.com/qq575792372/lime-util/tree/master/packages/core)
-[lime-date 日期工具库（传送阵）](https://github.com/qq575792372/lime-util/tree/master/packages/date)
+```bash
+pnpm publish
+```
 
 ### 📝API 文档
 
-[常量集合 Constant](https://github.com/qq575792372/lime-util/blob/master/doc/constants.md)
-
-[字符串 String](https://github.com/qq575792372/lime-util/blob/master/doc/string.md)
-
-[数字 Number](https://github.com/qq575792372/lime-util/blob/master/doc/number.md)
-[数组 Array](https://github.com/qq575792372/lime-util/blob/master/doc/array.md)
-[对象 Object](https://github.com/qq575792372/lime-util/blob/master/doc/object.md)
-[函数 Function](https://github.com/qq575792372/lime-util/blob/master/doc/function.md)
-[日期 Date](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)
-[正则 Regexp](https://github.com/qq575792372/lime-util/blob/master/doc/regexp.md)
-[数学 Math](https://github.com/qq575792372/lime-util/blob/master/doc/math.md)
-
-[随机数 Random](https://github.com/qq575792372/lime-util/blob/master/doc/random.md)
-[生成 id](https://github.com/qq575792372/lime-util/blob/master/doc/id.md)
-[身份证 ID-card](https://github.com/qq575792372/lime-util/blob/master/doc/ID-card.md)
-
-[文件 File](https://github.com/qq575792372/lime-util/blob/master/doc/file.md)
-
-[颜色 Color](https://github.com/qq575792372/lime-util/blob/master/doc/color.md)
-
-[校验 Validate](https://github.com/qq575792372/lime-util/blob/master/doc/validate.md)
-
-[键盘 Keycode](https://github.com/qq575792372/lime-util/blob/master/doc/keycode.md)
-
-[浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)
-
-[浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)
-[浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)
-[浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)
-[浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)
-
+[常量集合 Constant](https://github.com/qq575792372/lime-util/blob/master/doc/constants.md)  
+[字符串 String](https://github.com/qq575792372/lime-util/blob/master/doc/string.md)  
+[数字 Number](https://github.com/qq575792372/lime-util/blob/master/doc/number.md)     
+[数组 Array](https://github.com/qq575792372/lime-util/blob/master/doc/array.md)    
+[对象 Object](https://github.com/qq575792372/lime-util/blob/master/doc/object.md)    
+[函数 Function](https://github.com/qq575792372/lime-util/blob/master/doc/function.md)    
+[日期 Date](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)   
+[正则 Regexp](https://github.com/qq575792372/lime-util/blob/master/doc/regexp.md)  
+[数学 Math](https://github.com/qq575792372/lime-util/blob/master/doc/math.md)  
+[随机数 Random](https://github.com/qq575792372/lime-util/blob/master/doc/random.md)  
+[生成 id](https://github.com/qq575792372/lime-util/blob/master/doc/id.md)  
+[身份证 ID-card](https://github.com/qq575792372/lime-util/blob/master/doc/ID-card.md)  
+[文件 File](https://github.com/qq575792372/lime-util/blob/master/doc/file.md)  
+[颜色 Color](https://github.com/qq575792372/lime-util/blob/master/doc/color.md)  
+[校验 Validate](https://github.com/qq575792372/lime-util/blob/master/doc/validate.md)  
+[键盘 Keycode](https://github.com/qq575792372/lime-util/blob/master/doc/keycode.md)  
+[浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)  
+[浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)    
+[浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)   
+[浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)  
+[浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)  
 [微信小程序工具库 Weapp](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)
 
 ### 🔖Git 提交规范
@@ -149,8 +137,3 @@ git commit -m 'fix(string): 修复了string工具类的xxx问题'
 git commit -m 'docs: 更新了字符串模块文档'
 ```
 
-### ✅ 发布
-
-```bash
-pnpm publish
-```

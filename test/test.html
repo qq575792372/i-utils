@@ -10,44 +10,17 @@
 
 <!-- 使用module模式对源码进行测试，用webstorm启动服务 -->
 <script type="module">
-  import * as limeUtil from "../src/index.js";
+  import * as iUtil from "../src/index.js";
 
-  limeUtil.loadedTest();
-  console.log(limeUtil);
+  iUtil.loadedTest();
 
   // 统计api的个数
   let num = 0;
-  Object.keys(limeUtil).forEach((key) => {
-    if (typeof limeUtil[key] === "function" && key !== "loadedTest") {
+  Object.keys(iUtil).forEach((key) => {
+    if (typeof iUtil[key] === "function" && key !== "loadedTest") {
       num++;
     }
   });
-  console.log(`LimeUtil一共 ${num} 个api`);
-
-
-  let tableData = {
-    id: 1,
-    unitName: "指挥中心",
-    summaryCount: {
-      total: 48,
-      oneLevel: { subtotal: 6, oneG: 0, oneD: 2, oneZr: 3, customInput: 10 },
-      twoLevel: { subtotal: 6, twoG: 1, twoD: 2, twoZr: 3, customInput: 10 },
-      threeLevel: { subtotal: 6, threeG: 1, threeD: 2, threeZr: 3, customInput: 10 }
-    },
-    oneLevelTeamMembers: {
-      total: 18,
-      oneLevel: { subtotal: 6, oneG: 1, oneD: 2, oneZr: 3 },
-      twoLevel: { subtotal: 6, twoG: 1, twoD: 2, twoZr: 3 },
-      threeLevel: { subtotal: 6, threeG: 1, threeD: 2, threeZr: 3 }
-    },
-    notOneLevelTeamMembers: {
-      total: 18,
-      oneLevel: { subtotal: 6, oneG: 1, oneD: 2, oneZr: 3 },
-      twoLevel: { subtotal: 6, twoG: 1, twoD: 2, twoZr: 3 },
-      threeLevel: { subtotal: 6, threeG: 1, threeD: 2, threeZr: 3 }
-    }
-  };
-
-  console.log(11,limeUtil.getTargetValueByPath(tableData,'summaryCount.oneLevel.oneG'));
+  console.log(`iUtil一共 ${num} 个api`);
 </script>
 </html>

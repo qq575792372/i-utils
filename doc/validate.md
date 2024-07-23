@@ -1,10 +1,9 @@
 # 校验 Validate
 
-<!-- 数据类型 -->
 
 ## 数据类型
 
-### \_.isInteger(value)
+### isInteger(value)
 
 判断是整数
 
@@ -19,13 +18,15 @@
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isInteger("123")); // 输出：true
-console.log(LimeUtil.isInteger(12.01)); // 输出：false
+import { isInteger } from "@ivu-web/util";
+
+console.log(isInteger("123")); // 输出：true
+console.log(isInteger(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isDecimal(value)
+### isDecimal(value)
 
 判断是小数
 
@@ -40,13 +41,15 @@ console.log(LimeUtil.isInteger(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isDecimal("123")); // 输出：false
-console.log(LimeUtil.isDecimal(12.01)); // 输出：true
+import { isDecimal } from "@ivu-web/util";
+
+console.log(isDecimal("123")); // 输出：false
+console.log(isDecimal(12.01)); // 输出：true
 ```
 
 ---
 
-### \_.isNumber(value)
+### isNumber(value)
 
 判断类型是数字 Number
 
@@ -61,14 +64,16 @@ console.log(LimeUtil.isDecimal(12.01)); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isNumber(123)); // 输出：true
-console.log(LimeUtil.isNumber("123")); // 输出：false
-console.log(LimeUtil.isNumber("3.1dd32")); // 输出：false
+import { isNumber } from "@ivu-web/util";
+
+console.log(isNumber(123)); // 输出：true
+console.log(isNumber("123")); // 输出：false
+console.log(isNumber("3.1dd32")); // 输出：false
 ```
 
 ---
 
-### \_.isString(value)
+### isString(value)
 
 判断类型是字符串 String
 
@@ -83,13 +88,15 @@ console.log(LimeUtil.isNumber("3.1dd32")); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isString("123")); // 输出：true
-console.log(LimeUtil.isString(12.01)); // 输出：false
+import { isString } from "@ivu-web/util";
+
+console.log(isString("123")); // 输出：true
+console.log(isString(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isArray(value)
+### isArray(value)
 
 判断类型是数组 Array
 
@@ -104,13 +111,15 @@ console.log(LimeUtil.isString(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isArray("123")); // 输出：false
-console.log(LimeUtil.isArray([1, 2])); // 输出：true
+import { isArray } from "@ivu-web/util";
+
+console.log(isArray("123")); // 输出：false
+console.log(isArray([1, 2])); // 输出：true
 ```
 
 ---
 
-### \_.isObject(value)
+### isObject(value)
 
 判断类型是对象 Object
 
@@ -125,13 +134,15 @@ console.log(LimeUtil.isArray([1, 2])); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isObject({ id: 1 })); // 输出：true
-console.log(LimeUtil.isObject(12.01)); // 输出：false
+import { isObject } from "@ivu-web/util";
+
+console.log(isObject({ id: 1 })); // 输出：true
+console.log(isObject(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isBoolean(value)
+### isBoolean(value)
 
 判断类型是布尔 Boolean
 
@@ -146,13 +157,15 @@ console.log(LimeUtil.isObject(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isBoolean(true)); // 输出：true
-console.log(LimeUtil.isBoolean(12.01)); // 输出：false
+import { isBoolean } from "@ivu-web/util";
+
+console.log(isBoolean(true)); // 输出：true
+console.log(isBoolean(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isDate(value)
+### isDate(value)
 
 判断类型是日期 Date
 
@@ -167,13 +180,15 @@ console.log(LimeUtil.isBoolean(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isDate(new Date())); // 输出：true
-console.log(LimeUtil.isDate(12.01)); // 输出：false
+import { isDate } from "@ivu-web/util";
+
+console.log(isDate(new Date())); // 输出：true
+console.log(isDate(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isFunction(value)
+### isFunction(value)
 
 判断类型是函数 Function
 
@@ -188,13 +203,15 @@ console.log(LimeUtil.isDate(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isFunction(function () {})); // 输出：true
-console.log(LimeUtil.isFunction(12.01)); // 输出：false
+import { isFunction } from "@ivu-web/util";
+
+console.log(isFunction(function () {})); // 输出：true
+console.log(isFunction(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isSymbol(value)
+### isSymbol(value)
 
 判断类型是 Symbol
 
@@ -209,13 +226,15 @@ console.log(LimeUtil.isFunction(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isSymbol(Symbol(1))); // 输出：true
-console.log(LimeUtil.isSymbol(12.01)); // 输出：false
+import { isSymbol } from "@ivu-web/util";
+
+console.log(isSymbol(Symbol(1))); // 输出：true
+console.log(isSymbol(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isRegExp(value)
+### isRegExp(value)
 
 判断类型是正则 RegExp
 
@@ -230,14 +249,16 @@ console.log(LimeUtil.isSymbol(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isRegExp(/^\d$/)); // 输出：true
-console.log(LimeUtil.isRegExp(new RegExp())); // 输出：true
-console.log(LimeUtil.isRegExp(12.01)); // 输出：false
+import { isRegExp } from "@ivu-web/util";
+
+console.log(isRegExp(/^\d$/)); // 输出：true
+console.log(isRegExp(new RegExp())); // 输出：true
+console.log(isRegExp(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isError(value)
+### isError(value)
 
 判断类型是错误 Error
 
@@ -252,13 +273,15 @@ console.log(LimeUtil.isRegExp(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isError(new Error("has error"))); // 输出：true
-console.log(LimeUtil.isError(12.01)); // 输出：false
+import { isError } from "@ivu-web/util";
+
+console.log(isError(new Error("has error"))); // 输出：true
+console.log(isError(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isPromise(value)
+### isPromise(value)
 
 判断类型是 Promise
 
@@ -273,13 +296,15 @@ console.log(LimeUtil.isError(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isPromise(Promise.resolve())); // 输出：true
-console.log(LimeUtil.isPromise(12.01)); // 输出：false
+import { isPromise } from "@ivu-web/util";
+
+console.log(isPromise(Promise.resolve())); // 输出：true
+console.log(isPromise(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isMap(value)
+### isMap(value)
 
 判断类型是 Map
 
@@ -294,12 +319,14 @@ console.log(LimeUtil.isPromise(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isMap(new Map())); // 输出：true
+import { isMap } from "@ivu-web/util";
+
+console.log(isMap(new Map())); // 输出：true
 ```
 
 ---
 
-### \_.isWeakMap(value)
+### isWeakMap(value)
 
 判断类型是 WeakMap
 
@@ -314,12 +341,14 @@ console.log(LimeUtil.isMap(new Map())); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isWeakMap(new WeakMap())); // 输出：true
+import { isWeakMap } from "@ivu-web/util";
+
+console.log(isWeakMap(new WeakMap())); // 输出：true
 ```
 
 ---
 
-### \_.isSet(value)
+### isSet(value)
 
 判断类型是 Set
 
@@ -334,12 +363,14 @@ console.log(LimeUtil.isWeakMap(new WeakMap())); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isSet(new Set())); // 输出：true
+import { isSet } from "@ivu-web/util";
+
+console.log(isSet(new Set())); // 输出：true
 ```
 
 ---
 
-### \_.isWeakSet(value)
+### isWeakSet(value)
 
 判断类型是 WeakSet
 
@@ -354,12 +385,14 @@ console.log(LimeUtil.isSet(new Set())); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isWeakSet(new WeakSet())); // 输出：true
+import { isWeakSet } from "@ivu-web/util";
+
+console.log(isWeakSet(new WeakSet())); // 输出：true
 ```
 
 ---
 
-### \_.isBigInt(value)
+### isBigInt(value)
 
 判断类型是 BigInt
 
@@ -374,16 +407,17 @@ console.log(LimeUtil.isWeakSet(new WeakSet())); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isBigInt(new BigInt())); // 输出：true
+import { isBigInt } from "@ivu-web/util";
+
+console.log(isBigInt(new BigInt())); // 输出：true
 ```
 
 ---
 
-<!-- 数据值校验 -->
 
 ## 数据值校验
 
-### \_.isTrue(value)
+### isTrue(value)
 
 判断值为真
 
@@ -398,18 +432,20 @@ console.log(LimeUtil.isBigInt(new BigInt())); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isTrue(1)); // 输出：true
-console.log(LimeUtil.isTrue(0)); // 输出：false
-console.log(LimeUtil.isTrue(null)); // 输出：false
-console.log(LimeUtil.isTrue("")); // 输出：false
-console.log(LimeUtil.isTrue(undefined)); // 输出：false
-console.log(LimeUtil.isTrue("undefined")); // 输出：false
-console.log(LimeUtil.isTrue("null")); // 输出：false
+import { isTrue } from "@ivu-web/util";
+
+console.log(isTrue(1)); // 输出：true
+console.log(isTrue(0)); // 输出：false
+console.log(isTrue(null)); // 输出：false
+console.log(isTrue("")); // 输出：false
+console.log(isTrue(undefined)); // 输出：false
+console.log(isTrue("undefined")); // 输出：false
+console.log(isTrue("null")); // 输出：false
 ```
 
 ---
 
-### \_.isFalse(value)
+### isFalse(value)
 
 判断值为假
 
@@ -424,18 +460,20 @@ console.log(LimeUtil.isTrue("null")); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isFalse(1)); // 输出：false
-console.log(LimeUtil.isFalse(0)); // 输出：true
-console.log(LimeUtil.isFalse(null)); // 输出：true
-console.log(LimeUtil.isFalse("")); // 输出：true
-console.log(LimeUtil.isFalse(undefined)); // 输出：true
-console.log(LimeUtil.isFalse("undefined")); // 输出：true
-console.log(LimeUtil.isFalse("null")); // 输出：true
+import { isFalse } from "@ivu-web/util";
+
+console.log(isFalse(1)); // 输出：false
+console.log(isFalse(0)); // 输出：true
+console.log(isFalse(null)); // 输出：true
+console.log(isFalse("")); // 输出：true
+console.log(isFalse(undefined)); // 输出：true
+console.log(isFalse("undefined")); // 输出：true
+console.log(isFalse("null")); // 输出：true
 ```
 
 ---
 
-### \_.isNaN(value)
+### isNaN(value)
 
 判断非数字
 
@@ -450,13 +488,15 @@ console.log(LimeUtil.isFalse("null")); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isNaN("abc")); // 输出：true
-console.log(LimeUtil.isNaN("123")); // 输出：false
+import { isNaN } from "@ivu-web/util";
+
+console.log(isNaN("abc")); // 输出：true
+console.log(isNaN("123")); // 输出：false
 ```
 
 ---
 
-### \_.isNotNaN(value)
+### isNotNaN(value)
 
 判断是数字  
 `等同于 isNumber()`
@@ -472,13 +512,15 @@ console.log(LimeUtil.isNaN("123")); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isNotNaN("abc")); // 输出：false
-console.log(LimeUtil.isNotNaN("123")); // 输出：true
+import { isNotNaN } from "@ivu-web/util";
+
+console.log(isNotNaN("abc")); // 输出：false
+console.log(isNotNaN("123")); // 输出：true
 ```
 
 ---
 
-### \_.isNull(value)
+### isNull(value)
 
 判断对象为空  
 `判断值是否为空，如果对象初始化了值则不为空`
@@ -494,15 +536,17 @@ console.log(LimeUtil.isNotNaN("123")); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isNull(null)); // 输出：true
-console.log(LimeUtil.isNull(undefined)); // 输出：true
-console.log(LimeUtil.isNull(" ")); // 输出：false
-console.log(LimeUtil.isNull(12.01)); // 输出：false
+import { isNull } from "@ivu-web/util";
+
+console.log(isNull(null)); // 输出：true
+console.log(isNull(undefined)); // 输出：true
+console.log(isNull(" ")); // 输出：false
+console.log(isNull(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isNotNull(value)
+### isNotNull(value)
 
 判断对象不为空  
 `判断值是否为空，如果对象初始化了值则不为空`
@@ -518,15 +562,17 @@ console.log(LimeUtil.isNull(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isNotNull(null)); // 输出：false
-console.log(LimeUtil.isNotNull(undefined)); // 输出：false
-console.log(LimeUtil.isNotNull(" ")); // 输出：true
-console.log(LimeUtil.isNotNull(12.01)); // 输出：true
+import { isNotNull } from "@ivu-web/util";
+
+console.log(isNotNull(null)); // 输出：false
+console.log(isNotNull(undefined)); // 输出：false
+console.log(isNotNull(" ")); // 输出：true
+console.log(isNotNull(12.01)); // 输出：true
 ```
 
 ---
 
-### \_.isEmpty(value)
+### isEmpty(value)
 
 判断值为空
 `判断是否是有意义不为空的值，如果值是{},[]空的数据则为空`
@@ -542,15 +588,17 @@ console.log(LimeUtil.isNotNull(12.01)); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isEmpty(11)); // 输出：false
-console.log(LimeUtil.isEmpty(" ")); // 输出：false
-console.log(LimeUtil.isEmpty(null)); // 输出：true
-console.log(LimeUtil.isEmpty(undefined)); // 输出：true
+import { isEmpty } from "@ivu-web/util";
+
+console.log(isEmpty(11)); // 输出：false
+console.log(isEmpty(" ")); // 输出：false
+console.log(isEmpty(null)); // 输出：true
+console.log(isEmpty(undefined)); // 输出：true
 ```
 
 ---
 
-### \_.isNotEmpty(value)
+### isNotEmpty(value)
 
 判断值不为空
 `判断是否是有意义不为空的值，如果值是{},[]空的数据则为空`
@@ -566,15 +614,17 @@ console.log(LimeUtil.isEmpty(undefined)); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isNotEmpty(11)); // 输出：true
-console.log(LimeUtil.isNotEmpty(" ")); // 输出：true
-console.log(LimeUtil.isNotEmpty(null)); // 输出：false
-console.log(LimeUtil.isNotEmpty(undefined)); // 输出：false
+import { isNotEmpty } from "@ivu-web/util";
+
+console.log(isNotEmpty(11)); // 输出：true
+console.log(isNotEmpty(" ")); // 输出：true
+console.log(isNotEmpty(null)); // 输出：false
+console.log(isNotEmpty(undefined)); // 输出：false
 ```
 
 ---
 
-### \_.isBlank(value)
+### isBlank(value)
 
 判断值是空白的  
 `同时会校验空值，空对象，以及空白符号`
@@ -590,15 +640,17 @@ console.log(LimeUtil.isNotEmpty(undefined)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isBlank(" ")); // 输出：true
-console.log(LimeUtil.isBlank(null)); // 输出：true
-console.log(LimeUtil.isBlank(undefined)); // 输出：true
-console.log(LimeUtil.isBlank(12.01)); // 输出：false
+import { isBlank } from "@ivu-web/util";
+
+console.log(isBlank(" ")); // 输出：true
+console.log(isBlank(null)); // 输出：true
+console.log(isBlank(undefined)); // 输出：true
+console.log(isBlank(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isNotBlank(value)
+### isNotBlank(value)
 
 判断值不是空白的
 `同时会校验空值，空对象，以及空白符号`
@@ -614,15 +666,17 @@ console.log(LimeUtil.isBlank(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isNotBlank(" ")); // 输出：false
-console.log(LimeUtil.isNotBlank(null)); // 输出：false
-console.log(LimeUtil.isNotBlank(undefined)); // 输出：false
-console.log(LimeUtil.isNotBlank(12.01)); // 输出：true
+import { isNotBlank } from "@ivu-web/util";
+
+console.log(isNotBlank(" ")); // 输出：false
+console.log(isNotBlank(null)); // 输出：false
+console.log(isNotBlank(undefined)); // 输出：false
+console.log(isNotBlank(12.01)); // 输出：true
 ```
 
 ---
 
-### \_.isUndefined(value)
+### isUndefined(value)
 
 判断值是 undefined
 
@@ -637,15 +691,17 @@ console.log(LimeUtil.isNotBlank(12.01)); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isUndefined(undefined)); // 输出：true
-console.log(LimeUtil.isUndefined(null)); // 输出：false
-console.log(LimeUtil.isUndefined("")); // 输出：false
-console.log(LimeUtil.isUndefined(12.01)); // 输出：false
+import { isUndefined } from "@ivu-web/util";
+
+console.log(isUndefined(undefined)); // 输出：true
+console.log(isUndefined(null)); // 输出：false
+console.log(isUndefined("")); // 输出：false
+console.log(isUndefined(12.01)); // 输出：false
 ```
 
 ---
 
-### \_.isNotUndefined(value)
+### isNotUndefined(value)
 
 判断值不是 undefined
 
@@ -660,19 +716,20 @@ console.log(LimeUtil.isUndefined(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.isNotUndefined(undefined)); // 输出：false
-console.log(LimeUtil.isNotUndefined(null)); // 输出：true
-console.log(LimeUtil.isNotUndefined("")); // 输出：true
-console.log(LimeUtil.isNotUndefined(12.01)); // 输出：true
+import { isNotUndefined } from "@ivu-web/util";
+
+console.log(isNotUndefined(undefined)); // 输出：false
+console.log(isNotUndefined(null)); // 输出：true
+console.log(isNotUndefined("")); // 输出：true
+console.log(isNotUndefined(12.01)); // 输出：true
 ```
 
 ---
 
-<!-- 数据比较 -->
 
 ## 数据比较
 
-### \_.equals(value)
+### equals(value)
 
 判断两个值是否相等
 
@@ -688,15 +745,17 @@ console.log(LimeUtil.isNotUndefined(12.01)); // 输出：true
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.equals("1", "1")); // 输出：true
-console.log(LimeUtil.equals("abc", "ABC")); // 输出：false
-console.log(LimeUtil.equals(12, 12)); // 输出：true
-console.log(LimeUtil.equals(121, 12)); // 输出：false
+import { equals } from "@ivu-web/util";
+
+console.log(equals("1", "1")); // 输出：true
+console.log(equals("abc", "ABC")); // 输出：false
+console.log(equals(12, 12)); // 输出：true
+console.log(equals(121, 12)); // 输出：false
 ```
 
 ---
 
-### \_.equalsIgnoreCase(value)
+### equalsIgnoreCase(value)
 
 判断两个值是否相等（忽略大小写）
 
@@ -712,15 +771,17 @@ console.log(LimeUtil.equals(121, 12)); // 输出：false
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.equalsIgnoreCase("1", "1")); // 输出：true
-console.log(LimeUtil.equalsIgnoreCase("abc", "ABC")); // 输出：false
-console.log(LimeUtil.equalsIgnoreCase(12, 12)); // 输出：true
-console.log(LimeUtil.equalsIgnoreCase(121, 12)); // 输出：false
+import { equalsIgnoreCase } from "@ivu-web/util";
+
+console.log(equalsIgnoreCase("1", "1")); // 输出：true
+console.log(equalsIgnoreCase("abc", "ABC")); // 输出：false
+console.log(equalsIgnoreCase(12, 12)); // 输出：true
+console.log(equalsIgnoreCase(121, 12)); // 输出：false
 ```
 
 ---
 
-### \_.deepCompare(value)
+### deepCompare(value)
 
 深度对比数据
 `可以对比任意数据，对象，数组，日期等也可深度对比，对象不区分先后顺序`
@@ -737,26 +798,40 @@ console.log(LimeUtil.equalsIgnoreCase(121, 12)); // 输出：false
 - #### 示例
 
 ```javascript
+import { deepCompare } from "@ivu-web/util";
+
 // 基础场景
-console.log(LimeUtil.deepCompare(1, 1)); // 输出：true
-console.log(LimeUtil.deepCompare(0, -0)); // 输出：true
-console.log(LimeUtil.deepCompare(1, "-1")); // 输出：false
+console.log(deepCompare(1, 1)); // 输出：true
+console.log(deepCompare(0, -0)); // 输出：true
+console.log(deepCompare(1, "-1")); // 输出：false
 
 // 复杂场景1
 // 对象属性不区分顺序
 let obj1 = { id: 1, name: "test" };
 let obj2 = { name: "test", id: 1 };
-console.log(LimeUtil.deepCompare(obj1, obj2)); // 输出：true
+console.log(deepCompare(obj1, obj2)); // 输出：true
 
 // 复杂场景2
 // 对象可以判断函数属性
-let obj1 = { id: 1, name: "test", say: function () {} };
-let obj2 = { name: "test", id: 1, say: function () {} };
-console.log(LimeUtil.deepCompare(obj1, obj2)); // 输出：true
+let obj1 = {
+  id: 1, name: "test", say: function() {
+  }
+};
+let obj2 = {
+  name: "test", id: 1, say: function() {
+  }
+};
+console.log(deepCompare(obj1, obj2)); // 输出：true
 
 // 复杂场景3
 // 数组对象也可以深层次的判断
-let arr1 = [{ id: 1, name: "test", info: { age: 10 }, say: function () {} }];
-let arr2 = [{ id: 1, name: "test", info: { age: 10 }, say: function () {} }];
-console.log(LimeUtil.deepCompare(arr1, arr2)); // 输出：true
+let arr1 = [{
+  id: 1, name: "test", info: { age: 10 }, say: function() {
+  }
+}];
+let arr2 = [{
+  id: 1, name: "test", info: { age: 10 }, say: function() {
+  }
+}];
+console.log(deepCompare(arr1, arr2)); // 输出：true
 ```

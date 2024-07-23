@@ -73,7 +73,7 @@ yyyy-MM-dd A EEE QQQ # 输出：2024-06-16 PM 星期日 第二季度
 
 ## 快捷日期
 
-### \_.today()
+### today()
 
 今天
 
@@ -88,11 +88,13 @@ yyyy-MM-dd A EEE QQQ # 输出：2024-06-16 PM 星期日 第二季度
 - #### 示例
 
 ```javascript
-let res = LimeUtil.today();
+import { today } from "@ivu-web/util";
+
+let res = today();
 console.log(res); // 输出：2024-06-16
 ```
 
-### \_.yesterday()
+### yesterday()
 
 昨天
 
@@ -107,13 +109,15 @@ console.log(res); // 输出：2024-06-16
 - #### 示例
 
 ```javascript
-let res = LimeUtil.yesterday();
+import { yesterday } from "@ivu-web/util";
+
+let res = yesterday();
 console.log(res); // 输出：2024-01-16
 ```
 
 ---
 
-### \_.tomorrow()
+### tomorrow()
 
 明天
 
@@ -128,13 +132,15 @@ console.log(res); // 输出：2024-01-16
 - #### 示例
 
 ```javascript
-let res = LimeUtil.tomorrow();
+import { tomorrow } from "@ivu-web/util";
+
+let res = tomorrow();
 console.log(res); // 输出：2024-01-16
 ```
 
 ---
 
-### \_.lastWeek(date = new Date())
+### lastWeek(date = new Date())
 
 上周（7天前日期）
 
@@ -149,11 +155,13 @@ console.log(res); // 输出：2024-01-16
 - #### 示例
 
 ```javascript
-let res = LimeUtil.lastWeek();
+import { lastWeek } from "@ivu-web/util";
+
+let res = lastWeek();
 console.log(res); // 输出：2021-12-06
 ```
 
-### \_.nextWeek(date = new Date())
+### nextWeek(date = new Date())
 
 下周（7天后日期）
 
@@ -168,13 +176,15 @@ console.log(res); // 输出：2021-12-06
 - #### 示例
 
 ```javascript
-let res = LimeUtil.nextWeek();
+import { nextWeek } from "@ivu-web/util";
+
+let res = nextWeek();
 console.log(res); // 输出：2021-12-20
 ```
 
 ---
 
-### \_.lastMonth(date = new Date())
+### lastMonth(date = new Date())
 
 上个月（30 天前日期）
 
@@ -189,13 +199,15 @@ console.log(res); // 输出：2021-12-20
 - #### 示例
 
 ```javascript
-let res = LimeUtil.prevMonth();
+import { lastMonth } from "@ivu-web/util";
+
+let res = lastMonth();
 console.log(res); // 输出：2021-11-13
 ```
 
 ---
 
-### \_.nextMonth(date = new Date())
+### nextMonth(date = new Date())
 
 下个月（30 天后日期）
 
@@ -210,13 +222,15 @@ console.log(res); // 输出：2021-11-13
 - #### 示例
 
 ```javascript
-let res = LimeUtil.nextMonth();
+import { nextMonth } from "@ivu-web/util";
+
+let res = nextMonth();
 console.log(res); // 输出：2022-01-12
 ```
 
 ---
 
-### \_.lastYear(date = new Date())
+### lastYear(date = new Date())
 
 去年（365 天前日期）
 
@@ -231,13 +245,15 @@ console.log(res); // 输出：2022-01-12
 - #### 示例
 
 ```javascript
-let res = LimeUtil.prevYear();
+import { lastYear } from "@ivu-web/util";
+
+let res = lastYear();
 console.log(res); // 输出：2020-12-13
 ```
 
 ---
 
-### \_.nextYear(date = new Date())
+### nextYear(date = new Date())
 
 明年（365 天后日期）
 
@@ -252,7 +268,9 @@ console.log(res); // 输出：2020-12-13
 - #### 示例
 
 ```javascript
-let res = LimeUtil.nextYear();
+import { nextYear } from "@ivu-web/util";
+
+let res = nextYear();
 console.log(res); // 输出：2022-12-13
 ```
 
@@ -260,7 +278,7 @@ console.log(res); // 输出：2022-12-13
 
 ## 判断当前日期
 
-### \_.isAM(date = new Date())
+### isAM(date = new Date())
 
 是否为上午
 
@@ -275,13 +293,15 @@ console.log(res); // 输出：2022-12-13
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isAM();
+import { isAM } from "@ivu-web/util";
+
+let res = isAM();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isPM(date = new Date())
+### isPM(date = new Date())
 
 是否为下午
 
@@ -296,13 +316,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isPM();
+import { isPM } from "@ivu-web/util";
+
+let res = isPM();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isToday(date = new Date())
+### isToday(date = new Date())
 
 是否为今天
 
@@ -317,14 +339,16 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
+import { isToday } from "@ivu-web/util";
+
 // 日期
-let res = LimeUtil.isToday(new Date());
+let res = isToday(new Date());
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isYesterday(date = new Date())
+### isYesterday(date = new Date())
 
 是否为昨天
 
@@ -339,14 +363,16 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
+import { isYesterday } from "@ivu-web/util";
+
 // 日期
-let res = LimeUtil.isToday(new Date("2024-06-12"));
+let res = isYesterday(new Date("2024-06-12"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isBeforeYesterday(date = new Date())
+### isBeforeYesterday(date = new Date())
 
 是否为前天
 
@@ -361,14 +387,16 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
+import { isBeforeYesterday } from "@ivu-web/util";
+
 // 日期
-let res = LimeUtil.isBeforeYesterday(new Date("2024-06-12"));
+let res = isBeforeYesterday(new Date("2024-06-12"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isTomorrow(date = new Date())
+### isTomorrow(date = new Date())
 
 是否为明天
 
@@ -383,14 +411,16 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
+import { isTomorrow } from "@ivu-web/util";
+
 // 日期
-let res = LimeUtil.isTomorrow(new Date("2024-06-12"));
+let res = isTomorrow(new Date("2024-06-12"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isAfterTomorrow(date = new Date())
+### isAfterTomorrow(date = new Date())
 
 是否为后天
 
@@ -405,14 +435,16 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
+import { isAfterTomorrow } from "@ivu-web/util";
+
 // 日期
-let res = LimeUtil.isAfterTomorrow(new Date("2024-06-12"));
+let res = isAfterTomorrow(new Date("2024-06-12"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isWorkday(date = new Date())
+### isWorkday(date = new Date())
 
 是否为工作日
 
@@ -427,13 +459,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isWorkday(new Date("2024-06-12"));
+import { isWorkday } from "@ivu-web/util";
+
+let res = isWorkday(new Date("2024-06-12"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isWeekend(date = new Date())
+### isWeekend(date = new Date())
 
 是否为周末（周六和周日）
 
@@ -448,13 +482,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isWeekend(new Date("2024-06-15"));
+import { isWeekend } from "@ivu-web/util";
+
+let res = isWeekend(new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isFirstDayOfWeek(date = new Date())
+### isFirstDayOfWeek(date = new Date())
 
 是否为本周第一天
 
@@ -469,13 +505,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isFirstDayOfWeek(new Date("2024-06-17"));
+import { isFirstDayOfWeek } from "@ivu-web/util";
+
+let res = isFirstDayOfWeek(new Date("2024-06-17"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isLastDayOfWeek(date = new Date())
+### isLastDayOfWeek(date = new Date())
 
 是否为本周最后一天
 
@@ -490,13 +528,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isLastDayOfWeek(new Date("2024-06-16"));
+import { isLastDayOfWeek } from "@ivu-web/util";
+
+let res = isLastDayOfWeek(new Date("2024-06-16"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isFirstDayOfMonth(date = new Date())
+### isFirstDayOfMonth(date = new Date())
 
 是否为本月第一天
 
@@ -511,13 +551,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isFirstDayOfMonth(new Date("2024-06-01"));
+import { isFirstDayOfMonth } from "@ivu-web/util";
+
+let res = isFirstDayOfMonth(new Date("2024-06-01"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isLastDayOfMonth(date = new Date())
+### isLastDayOfMonth(date = new Date())
 
 是否为本月最后一天
 
@@ -532,13 +574,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isLastDayOfMonth(new Date("2024-06-30"));
+import { isLastDayOfMonth } from "@ivu-web/util";
+
+let res = isLastDayOfMonth(new Date("2024-06-30"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isFirstDayOfYear(date = new Date())
+### isFirstDayOfYear(date = new Date())
 
 是否为本年第一天
 
@@ -553,13 +597,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isFirstDayOfYear(new Date("2024-01-01"));
+import { isFirstDayOfYear } from "@ivu-web/util";
+
+let res = isFirstDayOfYear(new Date("2024-01-01"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isLastDayOfYear(date = new Date())
+### isLastDayOfYear(date = new Date())
 
 是否为本年最后一天
 
@@ -574,7 +620,9 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isLastDayOfYear(new Date("2024-12-31"));
+import { isLastDayOfYear } from "@ivu-web/util";
+
+let res = isLastDayOfYear(new Date("2024-12-31"));
 console.log(res); // 输出：true
 ```
 
@@ -582,7 +630,7 @@ console.log(res); // 输出：true
 
 ## 判断年
 
-### \_.isLeapYear(date = new Date())
+### isLeapYear(date = new Date())
 
 是否为闰年  
 `闰年366天，平年365天`
@@ -598,13 +646,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isLeapYear();
+import { isLeapYear } from "@ivu-web/util";
+
+let res = isLeapYear();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isCommonYear(date = new Date())
+### isCommonYear(date = new Date())
 
 是否为平年  
 `闰年366天，平年365天`
@@ -620,7 +670,9 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isCommonYear();
+import { isCommonYear } from "@ivu-web/util";
+
+let res = isCommonYear();
 console.log(res); // 输出：false
 ```
 
@@ -628,7 +680,7 @@ console.log(res); // 输出：false
 
 ## 比较日期区间
 
-### \_.isBefore(startDate, endDate = new Date())
+### isBefore(startDate, endDate = new Date())
 
 是否在日期之前
 
@@ -644,13 +696,15 @@ console.log(res); // 输出：false
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isBefore(new Date("2024-06-14"), new Date("2024-06-15"));
+import { isBefore } from "@ivu-web/util";
+
+let res = isBefore(new Date("2024-06-14"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isAfter(startDate, endDate = new Date())
+### isAfter(startDate, endDate = new Date())
 
 是否在日期之后
 
@@ -666,13 +720,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isAfter(new Date("2024-06-17"), new Date("2024-06-15"));
+import { isAfter } from "@ivu-web/util";
+
+let res = isAfter(new Date("2024-06-17"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isBetween(date, startDate, endDate)
+### isBetween(date, startDate, endDate)
 
 是否在两个日期之间
 
@@ -689,7 +745,9 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isBetween(new Date("2024-06-16"), new Date("2024-06-17"), new Date("2024-06-15"));
+import { isBetween } from "@ivu-web/util";
+
+let res = isBetween(new Date("2024-06-16"), new Date("2024-06-17"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
@@ -697,7 +755,7 @@ console.log(res); // 输出：true
 
 ## 日期是否相同
 
-### \_.isSame(startDate, endDate)
+### isSame(startDate, endDate)
 
 两个日期是否为同一天
 
@@ -713,13 +771,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSame(new Date("2024-06-15"), new Date("2024-06-15"));
+import { isSame } from "@ivu-web/util";
+
+let res = isSame(new Date("2024-06-15"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isSameWeek(startDate, endDate)
+### isSameWeek(startDate, endDate)
 
 两个日期是否为同一周
 
@@ -735,13 +795,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSameWeek(new Date("2024-06-15"), new Date("2024-06-15"));
+import { isSameWeek } from "@ivu-web/util";
+
+let res = isSameWeek(new Date("2024-06-15"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isSameMonth(startDate, endDate)
+### isSameMonth(startDate, endDate)
 
 两个日期是否为同一个月
 
@@ -757,13 +819,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSameMonth(new Date("2024-06-15"), new Date("2024-06-15"));
+import { isSameMonth } from "@ivu-web/util";
+
+let res = isSameMonth(new Date("2024-06-15"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isSameYear(startDate, endDate)
+### isSameYear(startDate, endDate)
 
 两个日期是否为同一年
 
@@ -779,7 +843,9 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSameYear(new Date("2024-06-15"), new Date("2024-06-15"));
+import { isSameYear } from "@ivu-web/util";
+
+let res = isSameYear(new Date("2024-06-15"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
@@ -787,7 +853,7 @@ console.log(res); // 输出：true
 
 ## 比较两个日期相同 或 之前/之后
 
-### \_.isSameOrBefore(startDate, endDate)
+### isSameOrBefore(startDate, endDate)
 
 两个日期是否相同或之前
 
@@ -803,13 +869,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSameOrBefore(new Date("2024-06-14"), new Date("2024-06-15"));
+import { isSameOrBefore } from "@ivu-web/util";
+
+let res = isSameOrBefore(new Date("2024-06-14"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isSameOrAfter(startDate, endDate)
+### isSameOrAfter(startDate, endDate)
 
 两个日期是否相同或之后
 
@@ -825,7 +893,9 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSameOrAfter(new Date("2024-06-17"), new Date("2024-06-15"));
+import { isSameOrAfter } from "@ivu-web/util";
+
+let res = isSameOrAfter(new Date("2024-06-17"), new Date("2024-06-15"));
 console.log(res); // 输出：true
 ```
 
@@ -833,7 +903,7 @@ console.log(res); // 输出：true
 
 ## 获取 日期/时间戳/周/季度
 
-### \_.getNow()
+### getNow()
 
 获得此刻的日期
 
@@ -848,13 +918,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getNow();
+import { getNow } from "@ivu-web/util";
+
+let res = getNow();
 console.log(res); // 输出：Sun Jun 16 2024 19:54:48 GMT+0800 (中国标准时间)
 ```
 
 ---
 
-### \_.getDate(date = new Date(), format = "yyyy-MM-dd")
+### getDate(date = new Date(), format = "yyyy-MM-dd")
 
 获得当前日期字符串
 
@@ -870,18 +942,20 @@ console.log(res); // 输出：Sun Jun 16 2024 19:54:48 GMT+0800 (中国标准时
 - #### 示例
 
 ```javascript
+import { getDate } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.getDate();
+let res = getDate();
 console.log(res); // 输出：2024-06-12
 
 // 指定日期格式
-let res = LimeUtil.getDate(new Date("2024-06-12"), "yyyy/MM/dd");
+let res = getDate(new Date("2024-06-12"), "yyyy/MM/dd");
 console.log(res); // 输出：2024/06/12
 ```
 
 ---
 
-### \_.getDateTime(date = new Date(), format = "yyyy-MM-dd HH:mm:ss")
+### getDateTime(date = new Date(), format = "yyyy-MM-dd HH:mm:ss")
 
 获得当前日期时间字符串
 
@@ -897,18 +971,20 @@ console.log(res); // 输出：2024/06/12
 - #### 示例
 
 ```javascript
+import { getDateTime } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.getDateTime();
+let res = getDateTime();
 console.log(res); // 输出：2024-06-12 10:10:30
 
 // 指定日期和分隔符
-let res = LimeUtil.getDateTime(new Date("2024-06-12"), "yyyy/MM/dd HH:mm:ss");
+let res = getDateTime(new Date("2024-06-12"), "yyyy/MM/dd HH:mm:ss");
 console.log(res); // 输出：2024-06-12 10:10:30
 ```
 
 ---
 
-### \_.getTimestamp(date = new Date())
+### getTimestamp(date = new Date())
 
 获取当前时间戳
 
@@ -923,18 +999,20 @@ console.log(res); // 输出：2024-06-12 10:10:30
 - #### 示例
 
 ```javascript
+import { getTimestamp } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.getTimestamp();
+let res = getTimestamp();
 console.log(res); // 输出：1639384118890
 
 // 指定日期
-let res = LimeUtil.getTimestamp(new Date("2021-12-10"));
+let res = getTimestamp(new Date("2021-12-10"));
 console.log(res); // 输出：1639094400000
 ```
 
 ---
 
-### \_.getUnixTimestamp(date = new Date())
+### getUnixTimestamp(date = new Date())
 
 获取当前Unix时间戳
 
@@ -949,18 +1027,20 @@ console.log(res); // 输出：1639094400000
 - #### 示例
 
 ```javascript
+import { getUnixTimestamp } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.getUnixTimestamp();
+let res = getUnixTimestamp();
 console.log(res); // 输出：1639384195
 
 // 指定日期
-let res = LimeUtil.getUnixTimestamp(new Date("2021-12-10"));
+let res = getUnixTimestamp(new Date("2021-12-10"));
 console.log(res); // 输出：1639094400
 ```
 
 ---
 
-### \_.getDateObject(date = new Date())
+### getDateObject(date = new Date())
 
 获得当前日期的对象形式
 
@@ -976,14 +1056,16 @@ console.log(res); // 输出：1639094400
 - #### 示例
 
 ```javascript
+import { getDateObject } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.getDateObject();
+let res = getDateObject();
 console.log(res); // 输出： { "year": 2024,  "month": 6, "date": 16, "hours": 20, "minutes": 1, "seconds": 30, "milliseconds": 521}
 ```
 
 ---
 
-### \_.getDateArray(date = new Date())
+### getDateArray(date = new Date())
 
 获得当前日期的数组形式
 
@@ -999,14 +1081,16 @@ console.log(res); // 输出： { "year": 2024,  "month": 6, "date": 16, "hours":
 - #### 示例
 
 ```javascript
+import { getDateArray } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.getDateArray();
+let res = getDateArray();
 console.log(res); // 输出： [2024, 6, 16, 20, 6, 42, 110, 0, 3]
 ```
 
 ---
 
-### \_.getWeek(date = new Date(), format = "E", lang = "zh")
+### getWeek(date = new Date(), format = "E", lang = "zh")
 
 获得当前日期是周几
 
@@ -1023,30 +1107,32 @@ console.log(res); // 输出： [2024, 6, 16, 20, 6, 42, 110, 0, 3]
 - #### 示例
 
 ```javascript
+import { getWeek } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.getWeek();
+let res = getWeek();
 console.log(res); // 输出：六
 
 // 中文周几
-let res = LimeUtil.getWeek(new Date(), (format = "E"), (lang = "zh"));
+let res = getWeek(new Date(), (format = "E"), (lang = "zh"));
 console.log(res); // 输出：六
-let res = LimeUtil.getWeek(new Date(), (format = "EE"), (lang = "zh"));
+let res = getWeek(new Date(), (format = "EE"), (lang = "zh"));
 console.log(res); // 输出：周六
-let res = LimeUtil.getWeek(new Date(), (format = "EEE"), (lang = "zh"));
+let res = getWeek(new Date(), (format = "EEE"), (lang = "zh"));
 console.log(res); // 输出：星期六
 
 // 英文周几
-let res = LimeUtil.getWeek(new Date(), (format = "E"), (lang = "en"));
+let res = getWeek(new Date(), (format = "E"), (lang = "en"));
 console.log(res); // 输出：Sa
-let res = LimeUtil.getWeek(new Date(), (format = "EE"), (lang = "en"));
+let res = getWeek(new Date(), (format = "EE"), (lang = "en"));
 console.log(res); // 输出：Sat
-let res = LimeUtil.getWeek(new Date(), (format = "EEE"), (lang = "en"));
+let res = getWeek(new Date(), (format = "EEE"), (lang = "en"));
 console.log(res); // 输出：Saturday
 ```
 
 ---
 
-### \_.getQuarter(date = new Date(), format = "Q", lang = "zh")
+### getQuarter(date = new Date(), format = "Q", lang = "zh")
 
 获得当前日期是第几季度
 
@@ -1063,24 +1149,26 @@ console.log(res); // 输出：Saturday
 - #### 示例
 
 ```javascript
+import { getQuarter } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.getQuarter();
+let res = getQuarter();
 console.log(res); // 输出：六
 
 // 中文周几
-let res = LimeUtil.getWeek(new Date(), (format = "Q"), (lang = "zh"));
+let res = getWeek(new Date(), (format = "Q"), (lang = "zh"));
 console.log(res); // 输出：一
-let res = LimeUtil.getQuarter(new Date(), (format = "QQ"), (lang = "zh"));
+let res = getQuarter(new Date(), (format = "QQ"), (lang = "zh"));
 console.log(res); // 输出：一季度
-let res = LimeUtil.getQuarter(new Date(), (format = "QQQ"), (lang = "zh"));
+let res = getQuarter(new Date(), (format = "QQQ"), (lang = "zh"));
 console.log(res); // 输出：第一季度
 
 // 英文周几
-let res = LimeUtil.getQuarter(new Date(), (format = "Q"), (lang = "en"));
+let res = getQuarter(new Date(), (format = "Q"), (lang = "en"));
 console.log(res); // 输出：Q1
-let res = LimeUtil.getQuarter(new Date(), (format = "QQ"), (lang = "en"));
+let res = getQuarter(new Date(), (format = "QQ"), (lang = "en"));
 console.log(res); // 输出：Q1th
-let res = LimeUtil.getQuarter(new Date(), (format = "QQQ"), (lang = "en"));
+let res = getQuarter(new Date(), (format = "QQQ"), (lang = "en"));
 console.log(res); // 输出：quarter 1st
 ```
 
@@ -1088,7 +1176,7 @@ console.log(res); // 输出：quarter 1st
 
 ## 当前日期是所在 周/月/年 的第几天
 
-### \_.getDayOfWeek(date = new Date())
+### getDayOfWeek(date = new Date())
 
 获得当前日期是所在周的第几天
 
@@ -1103,14 +1191,16 @@ console.log(res); // 输出：quarter 1st
 - #### 示例
 
 ```javascript
+import { getDayOfWeek } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.getDayOfWeek();
+let res = getDayOfWeek();
 console.log(res); // 输出：1
 ```
 
 ---
 
-### \_.getDayOfMonth(date = new Date())
+### getDayOfMonth(date = new Date())
 
 获得当前日期是所在月的第几天
 
@@ -1125,13 +1215,15 @@ console.log(res); // 输出：1
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getDayOfMonth();
+import { getDayOfMonth } from "@ivu-web/util";
+
+let res = getDayOfMonth();
 console.log(res); // 输出：13
 ```
 
 ---
 
-### \_.getDayOfYear(date = new Date())
+### getDayOfYear(date = new Date())
 
 获得当前日期是所在年的第几天
 
@@ -1146,7 +1238,9 @@ console.log(res); // 输出：13
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getDayOfYear();
+import { getDayOfYear } from "@ivu-web/util";
+
+let res = getDayOfYear();
 console.log(res); // 输出：348
 ```
 
@@ -1154,7 +1248,7 @@ console.log(res); // 输出：348
 
 ## 当前日期的周是所在 月/年 的第几周
 
-### \_.getWeekOfMonth(date = new Date())
+### getWeekOfMonth(date = new Date())
 
 获得当前日期是所在月的第几周
 
@@ -1169,13 +1263,15 @@ console.log(res); // 输出：348
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getWeekOfMonth();
+import { getWeekOfMonth } from "@ivu-web/util";
+
+let res = getWeekOfMonth();
 console.log(res); // 输出：3
 ```
 
 ---
 
-### \_.getWeekOfYear(date = new Date())
+### getWeekOfYear(date = new Date())
 
 获得当前日期是所在年的第几周
 
@@ -1190,7 +1286,9 @@ console.log(res); // 输出：3
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getWeekOfYear();
+import { getWeekOfYear } from "@ivu-web/util";
+
+let res = getWeekOfYear();
 console.log(res); // 输出：51
 ```
 
@@ -1198,7 +1296,7 @@ console.log(res); // 输出：51
 
 ## 当前日期所在 周/月/年 共几天
 
-### \_.getDaysOfWeek(date = new Date())
+### getDaysOfWeek(date = new Date())
 
 获得当前日期所在的周共几天
 
@@ -1213,13 +1311,15 @@ console.log(res); // 输出：51
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getDaysOfWeek();
+import { getDaysOfWeek } from "@ivu-web/util";
+
+let res = getDaysOfWeek();
 console.log(res); // 输出：7
 ```
 
 ---
 
-### \_.getDaysOfMonth(date = new Date())
+### getDaysOfMonth(date = new Date())
 
 获得当前日期所在的月共几天
 
@@ -1234,13 +1334,15 @@ console.log(res); // 输出：7
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getDaysOfMonth();
+import { getDaysOfMonth } from "@ivu-web/util";
+
+let res = getDaysOfMonth();
 console.log(res); // 输出：31
 ```
 
 ---
 
-### \_.getDaysOfYear(date = new Date())
+### getDaysOfYear(date = new Date())
 
 获得当前日期所在的年共几天
 
@@ -1255,7 +1357,9 @@ console.log(res); // 输出：31
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getDaysOfYear();
+import { getDaysOfYear } from "@ivu-web/util";
+
+let res = getDaysOfYear();
 console.log(res); // 输出：365
 ```
 
@@ -1263,7 +1367,7 @@ console.log(res); // 输出：365
 
 ## 当前周所在 月/年 共几周
 
-### \_.getWeeksOfMonth(date = new Date())
+### getWeeksOfMonth(date = new Date())
 
 获得当前日期是所在月的第几周
 
@@ -1278,13 +1382,15 @@ console.log(res); // 输出：365
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getWeeksOfMonth((date = new Date()));
+import { getWeeksOfMonth } from "@ivu-web/util";
+
+let res = getWeeksOfMonth((date = new Date()));
 console.log(res); // 输出：4
 ```
 
 ---
 
-### \_.getWeeksOfYear(date = new Date())
+### getWeeksOfYear(date = new Date())
 
 获得当前日期是所在年的第几周
 
@@ -1299,7 +1405,9 @@ console.log(res); // 输出：4
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getWeeksOfYear((date = new Date()));
+import { getWeeksOfYear } from "@ivu-web/util";
+
+let res = getWeeksOfYear((date = new Date()));
 console.log(res); // 输出：12
 ```
 
@@ -1307,7 +1415,7 @@ console.log(res); // 输出：12
 
 ## 当前日期所在 周/月/年 的 第一天/最后一天/所有天数数组
 
-### \_.getFirstDateOfWeek(date = new Date())
+### getFirstDateOfWeek(date = new Date())
 
 获得当前日期所在周的第一天
 
@@ -1322,13 +1430,15 @@ console.log(res); // 输出：12
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFirstDateOfWeek();
+import { getFirstDateOfWeek } from "@ivu-web/util";
+
+let res = getFirstDateOfWeek();
 console.log(res); // 输出：2024-06-10
 ```
 
 ---
 
-### \_.getLastDateOfWeek(date = new Date())
+### getLastDateOfWeek(date = new Date())
 
 获得当前日期所在周的最后一天
 
@@ -1343,13 +1453,15 @@ console.log(res); // 输出：2024-06-10
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getLastDateOfWeek();
+import { getLastDateOfWeek } from "@ivu-web/util";
+
+let res = getLastDateOfWeek();
 console.log(res); // 输出：2024-06-16
 ```
 
 ---
 
-### \_.getFullDateOfWeek(date = new Date())
+### getFullDateOfWeek(date = new Date())
 
 获得当前日期所在周的最后一天
 
@@ -1364,13 +1476,15 @@ console.log(res); // 输出：2024-06-16
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFullDateOfWeek();
+import { getFullDateOfWeek } from "@ivu-web/util";
+
+let res = getFullDateOfWeek();
 console.log(res); // 输出：['2024-06-10','2024-06-11','2024-06-12','2024-06-13','2024-06-14','2024-06-15','2024-06-16',]
 ```
 
 ---
 
-### \_.getFirstDateOfMonth(date = new Date())
+### getFirstDateOfMonth(date = new Date())
 
 获得当前日期所在月的第一天
 
@@ -1385,13 +1499,15 @@ console.log(res); // 输出：['2024-06-10','2024-06-11','2024-06-12','2024-06-1
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFirstDateOfMonth();
+import { getFirstDateOfMonth } from "@ivu-web/util";
+
+let res = getFirstDateOfMonth();
 console.log(res); // 输出：2021-12-01
 ```
 
 ---
 
-### \_.getLastDateOfMonth(date = new Date())
+### getLastDateOfMonth(date = new Date())
 
 获得当前日期所在月的最后一天
 
@@ -1406,13 +1522,15 @@ console.log(res); // 输出：2021-12-01
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getLastDateOfMonth();
+import { getLastDateOfMonth } from "@ivu-web/util";
+
+let res = getLastDateOfMonth();
 console.log(res); // 输出：2021-12-31
 ```
 
 ---
 
-### \_.getFullDateOfMonth(date = new Date())
+### getFullDateOfMonth(date = new Date())
 
 获取当前日期所在月的所有日期
 
@@ -1427,13 +1545,15 @@ console.log(res); // 输出：2021-12-31
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFullDateOfMonth();
+import { getFullDateOfMonth } from "@ivu-web/util";
+
+let res = getFullDateOfMonth();
 console.log(res); // 输出：['2024-06-01', ..., '2024-06-30']
 ```
 
 ---
 
-### \_.getFirstDateOfYear(date = new Date())
+### getFirstDateOfYear(date = new Date())
 
 获取当前日期所在年的第一天
 
@@ -1448,13 +1568,15 @@ console.log(res); // 输出：['2024-06-01', ..., '2024-06-30']
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFirstDateOfYear();
+import { getFirstDateOfYear } from "@ivu-web/util";
+
+let res = getFirstDateOfYear();
 console.log(res); // 输出：2024-01-01
 ```
 
 ---
 
-### \_.getLastDateOfYear(date = new Date())
+### getLastDateOfYear(date = new Date())
 
 获取当前日期所在年的最后一天
 
@@ -1469,13 +1591,15 @@ console.log(res); // 输出：2024-01-01
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getLastDateOfYear();
+import { getLastDateOfYear } from "@ivu-web/util";
+
+let res = getLastDateOfYear();
 console.log(res); // 输出：2024-12-31
 ```
 
 ---
 
-### \_.getFullDateOfYear(date = new Date())
+### getFullDateOfYear(date = new Date())
 
 获取当前日期所在年的所有日期
 
@@ -1490,7 +1614,9 @@ console.log(res); // 输出：2024-12-31
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFullDateOfYear();
+import { getFullDateOfYear } from "@ivu-web/util";
+
+let res = getFullDateOfYear();
 console.log(res); // 输出：['2024-01-01', ..., '2024-12-31']
 ```
 
@@ -1498,7 +1624,7 @@ console.log(res); // 输出：['2024-01-01', ..., '2024-12-31']
 
 ## 计算两个日期相差
 
-### \_.getDiffDay(startDate, endDate)
+### getDiffDay(startDate, endDate)
 
 算两个日期相差的天数，不满一天为0
 
@@ -1514,22 +1640,24 @@ console.log(res); // 输出：['2024-01-01', ..., '2024-12-31']
 - #### 示例
 
 ```javascript
+import { getDiffDay } from "@ivu-web/util";
+
 // 大于0
-let res = LimeUtil.getDiffDay("2021-12-10", "2021-12-11");
+let res = getDiffDay("2021-12-10", "2021-12-11");
 console.log(res); // 输出： 1
 
 // 等于0
-let res = LimeUtil.getDiffDay("2021-12-11", "2021-12-11");
+let res = getDiffDay("2021-12-11", "2021-12-11");
 console.log(res); // 输出： 0
 
 // 小于0
-let res = LimeUtil.getDiffDay("2021-12-11", "2021-12-10");
+let res = getDiffDay("2021-12-11", "2021-12-10");
 console.log(res); // 输出： -1
 ```
 
 ---
 
-### \_.getDiffWeek(startDate, endDate)
+### getDiffWeek(startDate, endDate)
 
 算两个日期相差的周数，不满一周为0
 
@@ -1545,22 +1673,24 @@ console.log(res); // 输出： -1
 - #### 示例
 
 ```javascript
+import { getDiffWeek } from "@ivu-web/util";
+
 // 大于0
-let res = LimeUtil.getDiffWeek("2021-12-01", "2021-12-11");
+let res = getDiffWeek("2021-12-01", "2021-12-11");
 console.log(res); // 输出： 1
 
 // 不满一周等于0
-let res = LimeUtil.getDiffWeek("2021-12-11", "2021-12-11");
+let res = getDiffWeek("2021-12-11", "2021-12-11");
 console.log(res); // 输出： 0
 
 // 小于0
-let res = LimeUtil.getDiffWeek("2021-12-10", "2021-12-01");
+let res = getDiffWeek("2021-12-10", "2021-12-01");
 console.log(res); // 输出： -1
 ```
 
 ---
 
-### \_.getDiffMonth(startDate, endDate)
+### getDiffMonth(startDate, endDate)
 
 计算两个日期相差的月数，不满一月为0
 
@@ -1576,22 +1706,24 @@ console.log(res); // 输出： -1
 - #### 示例
 
 ```javascript
+import { getDiffMonth } from "@ivu-web/util";
+
 // 大于0
-let res = LimeUtil.getDiffMonth("2024-06-12", "2021-12-11");
+let res = getDiffMonth("2024-06-12", "2021-12-11");
 console.log(res); // 输出： 1
 
 // 等于0
-let res = LimeUtil.getDiffMonth("2021-12-11", "2021-12-11");
+let res = getDiffMonth("2021-12-11", "2021-12-11");
 console.log(res); // 输出： 0
 
 // 小于0
-let res = LimeUtil.getDiffMonth("2021-12-11", "2024-06-12");
+let res = getDiffMonth("2021-12-11", "2024-06-12");
 console.log(res); // 输出： -1
 ```
 
 ---
 
-### \_.getDiffYear(startDate, endDate)
+### getDiffYear(startDate, endDate)
 
 计算两个日期相差的年数，不满一年为0
 
@@ -1607,16 +1739,18 @@ console.log(res); // 输出： -1
 - #### 示例
 
 ```javascript
+import { getDiffYear } from "@ivu-web/util";
+
 // 大于0
-let res = LimeUtil.getDiffYear("2020-11-10", "2021-12-11");
+let res = getDiffYear("2020-11-10", "2021-12-11");
 console.log(res); // 输出： 1
 
 // 等于0
-let res = LimeUtil.getDiffYear("2021-12-11", "2021-12-11");
+let res = getDiffYear("2021-12-11", "2021-12-11");
 console.log(res); // 输出： 0
 
 // 小于0
-let res = LimeUtil.getDiffYear("2021-12-11", "2020-11-10");
+let res = getDiffYear("2021-12-11", "2020-11-10");
 console.log(res); // 输出： -1
 ```
 
@@ -1624,7 +1758,7 @@ console.log(res); // 输出： -1
 
 ## 获得两个日期之间 年月日/年月/年 数组
 
-### \_.getBetweenDates(startDate, endDate)
+### getBetweenDates(startDate, endDate)
 
 获得两个日期之间的年月日数组
 
@@ -1640,13 +1774,15 @@ console.log(res); // 输出： -1
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getBetweenDates("2021-12-11", "2024-06-12");
+import { getBetweenDates } from "@ivu-web/util";
+
+let res = getBetweenDates("2021-12-11", "2024-06-12");
 console.log(res); // 输出： ['2021-12-11', '2024-01-16', '2024-06-12']
 ```
 
 ---
 
-### \_.getBetweenMonths(startDate, endDate)
+### getBetweenMonths(startDate, endDate)
 
 获得两个日期之间的年月数组
 
@@ -1662,13 +1798,15 @@ console.log(res); // 输出： ['2021-12-11', '2024-01-16', '2024-06-12']
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getBetweenMonths("2021-11-11", "2024-06-12");
+import { getBetweenMonths } from "@ivu-web/util";
+
+let res = getBetweenMonths("2021-11-11", "2024-06-12");
 console.log(res); // 输出： ['2021-11', '2021-12']
 ```
 
 ---
 
-### \_.getBetweenYears(startDate, endDate)
+### getBetweenYears(startDate, endDate)
 
 获得两个日期之间的年数组
 
@@ -1684,7 +1822,9 @@ console.log(res); // 输出： ['2021-11', '2021-12']
 - #### 示例
 
 ```javascript
-let res = LimeUtil.betweenYears("2020-11-11", "2024-06-12");
+import { getBetweenYears } from "@ivu-web/util";
+
+let res = betweenYears("2020-11-11", "2024-06-12");
 console.log(res); // 输出： [2020, 2021]
 ```
 
@@ -1692,7 +1832,7 @@ console.log(res); // 输出： [2020, 2021]
 
 ## 过去时间和剩余时间的显示
 
-### \_.getPastTime(date, lang = "zh")
+### getPastTime(date, lang = "zh")
 
 获得过去时间的字符串显示  
 `例如：刚刚，1分钟前，1小时前等`
@@ -1709,22 +1849,24 @@ console.log(res); // 输出： [2020, 2021]
 - #### 示例
 
 ```javascript
+import { getPastTime } from "@ivu-web/util";
+
 // 日期
-let res = LimeUtil.getPastTime(new Date("2024-01-16"));
+let res = getPastTime(new Date("2024-01-16"));
 console.log(res); // 输出：1天前
 
 // 日期字符串
-let res = LimeUtil.getPastTime("2024-01-16");
+let res = getPastTime("2024-01-16");
 console.log(res); // 输出：1天前
 
 // 语言 英文
-let res = LimeUtil.getPastTime("2024-01-16", "en");
+let res = getPastTime("2024-01-16", "en");
 console.log(res); // 输出：1 day ago
 ```
 
 ---
 
-### \_.getOverTime(date, lang = "zh")
+### getOverTime(date, lang = "zh")
 
 获得剩余时间的字符串显示  
 `例如：1天 10小时 20分钟 30秒`
@@ -1741,7 +1883,9 @@ console.log(res); // 输出：1 day ago
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getOverTime("2021-12-14");
+import { getOverTime } from "@ivu-web/util";
+
+let res = getOverTime("2021-12-14");
 console.log(res); // 输出：0天 7时 10分 48秒
 ```
 
@@ -1749,7 +1893,7 @@ console.log(res); // 输出：0天 7时 10分 48秒
 
 ## 通过日期获得 星座和生肖
 
-### \_.getZodiac(date, lang = "zh")
+### getZodiac(date, lang = "zh")
 
 通过日期获得星座
 
@@ -1765,13 +1909,15 @@ console.log(res); // 输出：0天 7时 10分 48秒
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getZodiac("2000-10-10");
+import { getZodiac } from "@ivu-web/util";
+
+let res = getZodiac("2000-10-10");
 console.log(res); // 输出：天秤座
 ```
 
 ---
 
-### \_.getChineseZodiac(date, lang = "zh")
+### getChineseZodiac(date, lang = "zh")
 
 通过日期获得生肖
 
@@ -1787,7 +1933,9 @@ console.log(res); // 输出：天秤座
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getChineseZodiac("2000-10-10");
+import { getChineseZodiac } from "@ivu-web/util";
+
+let res = getChineseZodiac("2000-10-10");
 console.log(res); // 输出：龙
 ```
 
@@ -1795,7 +1943,7 @@ console.log(res); // 输出：龙
 
 ## 计算日期加减 年，月，日，时，分，秒，周，季度
 
-### \_.addYear(date = new Date(), num = +1)
+### addYear(date = new Date(), num = +1)
 
 日期加减年
 
@@ -1811,18 +1959,20 @@ console.log(res); // 输出：龙
 - #### 示例
 
 ```javascript
+import { addYear } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.addYear();
+let res = addYear();
 console.log(res); // 输出：日期对象
 
 // 减去
-let res = LimeUtil.addYear(new Date(), -1);
+let res = addYear(new Date(), -1);
 console.log(res); // 输出：日期对象
 ```
 
 ---
 
-### \_.addMonth(date = new Date(), num = +1)
+### addMonth(date = new Date(), num = +1)
 
 日期加减月
 
@@ -1838,18 +1988,20 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
+import { addMonth } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.addMonth();
+let res = addMonth();
 console.log(res); // 输出：日期对象
 
 // 减去
-let res = LimeUtil.addMonth(new Date(), -1);
+let res = addMonth(new Date(), -1);
 console.log(res); // 输出：日期对象
 ```
 
 ---
 
-### \_.addDate(date = new Date(), num = +1)
+### addDate(date = new Date(), num = +1)
 
 日期加减天
 
@@ -1865,18 +2017,20 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
+import { addDate } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.addDate();
+let res = addDate();
 console.log(res); // 输出：日期对象
 
 // 减去
-let res = LimeUtil.addDate(new Date(), -1);
+let res = addDate(new Date(), -1);
 console.log(res); // 输出：日期对象
 ```
 
 ---
 
-### \_.addHours(date = new Date(), num = +1)
+### addHours(date = new Date(), num = +1)
 
 日期加减小时
 
@@ -1892,18 +2046,20 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
+import { addHours } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.addHours();
+let res = addHours();
 console.log(res); // 输出：日期对象
 
 // 减去
-let res = LimeUtil.addHours(new Date(), -1);
+let res = addHours(new Date(), -1);
 console.log(res); // 输出：日期对象
 ```
 
 ---
 
-### \_.addMinutes(date = new Date(), num = +1)
+### addMinutes(date = new Date(), num = +1)
 
 日期加减分钟
 
@@ -1919,18 +2075,20 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
+import { addMinutes } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.addMinutes();
+let res = addMinutes();
 console.log(res); // 输出：日期对象
 
 // 减去
-let res = LimeUtil.addMinutes(new Date(), -1);
+let res = addMinutes(new Date(), -1);
 console.log(res); // 输出：日期对象
 ```
 
 ---
 
-### \_.addSeconds(date = new Date(), num = +1)
+### addSeconds(date = new Date(), num = +1)
 
 日期加减秒
 
@@ -1946,18 +2104,20 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
+import { addSeconds } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.addSeconds();
+let res = addSeconds();
 console.log(res); // 输出：日期对象
 
 // 减去
-let res = LimeUtil.addSeconds(new Date(), -1);
+let res = addSeconds(new Date(), -1);
 console.log(res); // 输出：日期对象
 ```
 
 ---
 
-### \_.addMillisecond(date = new Date(), num = +100)
+### addMillisecond(date = new Date(), num = +100)
 
 日期加减毫秒
 
@@ -1973,18 +2133,20 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
+import { addMillisecond } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.addMillisecond();
+let res = addMillisecond();
 console.log(res); // 输出：日期对象
 
 // 减去
-let res = LimeUtil.addMillisecond(new Date(), -100);
+let res = addMillisecond(new Date(), -100);
 console.log(res); // 输出：日期对象
 ```
 
 ---
 
-### \_.addWeek(date = new Date(), num = +1)
+### addWeek(date = new Date(), num = +1)
 
 日期加减周
 
@@ -2000,18 +2162,20 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
+import { addWeek } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.addWeek();
+let res = addWeek();
 console.log(res); // 输出：日期对象
 
 // 减去
-let res = LimeUtil.addWeek(new Date(), -1);
+let res = addWeek(new Date(), -1);
 console.log(res); // 输出：日期对象
 ```
 
 ---
 
-### \_.addQuarter(date = new Date(), num = +1)
+### addQuarter(date = new Date(), num = +1)
 
 日期加减季度
 
@@ -2027,12 +2191,14 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
+import { addQuarter } from "@ivu-web/util";
+
 // 默认
-let res = LimeUtil.addQuarter();
+let res = addQuarter();
 console.log(res); // 输出：日期对象
 
 // 减去
-let res = LimeUtil.addQuarter(new Date(), -1);
+let res = addQuarter(new Date(), -1);
 console.log(res); // 输出：日期对象
 ```
 
@@ -2040,7 +2206,7 @@ console.log(res); // 输出：日期对象
 
 ## 格式化和解析日期
 
-### \_.formatDate(date, format = "yyyy-MM-dd", lang = "zh")
+### formatDate(date, format = "yyyy-MM-dd", lang = "zh")
 
 日期对象转为日期字符串  
 `支持日期字符串，日期对象，时间戳，unix时间戳`
@@ -2062,17 +2228,19 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
+import { formatDate } from "@ivu-web/util";
+
 // 使用方法，具体格式化参数以及结果参考最上面的 format 格式
-let res = LimeUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
+let res = formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
 console.log(res); // 输出： 2021-12-10 17:10:10
 
-let res = LimeUtil.formatDate("2021-12-10", "yyyy/MM/dd HH:mm:ss");
+let res = formatDate("2021-12-10", "yyyy/MM/dd HH:mm:ss");
 console.log(res); // 输出： 2021/12/10 17:10:10
 ```
 
 ---
 
-### \_.parseDate(value)
+### parseDate(value)
 
 日期字符串转为日期对象  
 `支持日期字符串，时间戳，Unix时间戳`
@@ -2088,36 +2256,38 @@ console.log(res); // 输出： 2021/12/10 17:10:10
 - #### 示例
 
 ```javascript
+import { parseDate } from "@ivu-web/util";
+
 // yyyy-MM-dd
-let res = LimeUtil.parseDate("2021-12-10");
+let res = parseDate("2021-12-10");
 console.log(res); // 输出：Fri Dec 10 2021 00:00:00 GMT+0800 (中国标准时间)
 
 // yyyy-MM-dd HH:mm:ss
-let res = LimeUtil.parseDate("2021-12-10 15:10:10");
+let res = parseDate("2021-12-10 15:10:10");
 console.log(res); // 输出：Fri Dec 10 2021 15:10:10 GMT+0800 (中国标准时间)
 
 // yyyy/MM/dd
-let res = LimeUtil.parseDate("2021-12-10");
+let res = parseDate("2021-12-10");
 console.log(res); // 输出：Fri Dec 10 2021 00:00:00 GMT+0800 (中国标准时间)
 
 // yyyy/MM/dd HH:mm:ss
-let res = LimeUtil.parseDate("2021-12-10 15:10:10");
+let res = parseDate("2021-12-10 15:10:10");
 console.log(res); // 输出：Fri Dec 10 2021 15:10:10 GMT+0800 (中国标准时间)
 
 // MM/dd/yyyy
-let res = LimeUtil.parseDate("12/10/2021");
+let res = parseDate("12/10/2021");
 console.log(res); // 输出：Fri Dec 10 2021 00:00:00 GMT+0800 (中国标准时间)
 
 // MM/dd/yyyy HH:mm:ss
-let res = LimeUtil.parseDate("12/10/2021 15:10:10");
+let res = parseDate("12/10/2021 15:10:10");
 console.log(res); // 输出：Fri Dec 10 2021 15:10:10 GMT+0800 (中国标准时间)
 
 // 时间戳
-let res = LimeUtil.parseDate(1639388213194);
+let res = parseDate(1639388213194);
 console.log(res); // 输出：Mon Dec 13 2021 17:36:53 GMT+0800 (中国标准时间)
 
 // Unix时间戳
-let res = LimeUtil.parseDate(1639388270);
+let res = parseDate(1639388270);
 console.log(res); // 输出：Mon Dec 13 2021 17:37:50 GMT+0800 (中国标准时间)
 ```
 

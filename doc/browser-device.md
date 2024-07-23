@@ -2,7 +2,7 @@
 
 ## 浏览器信息
 
-### \_.getBrowserInfo()
+### getBrowserInfo()
 
 获取浏览器信息  
 `会获取到浏览器对应的名称以及版本`
@@ -18,17 +18,18 @@
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getBrowserInfo();
+import { getBrowserInfo } from "@ivu-web/util";
+
+let res = getBrowserInfo();
 console.log(res); // 输出：{name: "edge", version: "96.0.1054.43"}
 ```
 
 ---
 
-<!-- 设备类型 -->
 
 ## 设备类型
 
-### \_.isPc()
+### isPc()
 
 判断是 pc 端
 
@@ -43,13 +44,15 @@ console.log(res); // 输出：{name: "edge", version: "96.0.1054.43"}
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isPc();
+import { isPc } from "@ivu-web/util";
+
+let res = isPc();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isMobile()
+### isMobile()
 
 判断是手机端  
 `包含 android、iphone、黑莓手机、微软手机 等多种操作系统机型`
@@ -65,17 +68,18 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isMobile();
+import { isMobile } from "@ivu-web/util";
+
+let res = isMobile();
 console.log(res); // 输出：true
 ```
 
 ---
 
-<!-- 操作系统类型 -->
 
 ## 操作系统类型
 
-### \_.isAndroid()
+### isAndroid()
 
 判断是 android
 
@@ -90,13 +94,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isAndroid();
+import { isAndroid } from "@ivu-web/util";
+
+let res = isAndroid();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isIos()
+### isIos()
 
 判断是 ios
 
@@ -111,13 +117,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isIos();
+import { isIos } from "@ivu-web/util";
+
+let res = isIos();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isWindowsPhone()
+### isWindowsPhone()
 
 判断是 windows phone
 
@@ -132,13 +140,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isWindowsPhone();
+import { isWindowsPhone } from "@ivu-web/util";
+
+let res = isWindowsPhone();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isWindows()
+### isWindows()
 
 判断是 windows
 
@@ -153,13 +163,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isWindows();
+import { isWindows } from "@ivu-web/util";
+
+let res = isWindows();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isLinux()
+### isLinux()
 
 判断是 linux
 
@@ -174,13 +186,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isLinux();
+import { isLinux } from "@ivu-web/util";
+
+let res = isLinux();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isMac()
+### isMac()
 
 判断是 Mac
 
@@ -195,17 +209,18 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isMac();
+import { removeCookie } from "@ivu-web/util";
+
+let res = isMac();
 console.log(res); // 输出：true
 ```
 
 ---
 
-<!-- 苹果设备类型 -->
 
 ## 苹果设备类型
 
-### \_.isIphone()
+### isIphone()
 
 判断是 iphone
 
@@ -220,13 +235,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isIphone();
+import { isIphone } from "@ivu-web/util";
+
+let res = isIphone();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isIpad()
+### isIpad()
 
 判断是 ipad
 
@@ -241,17 +258,18 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isIpad();
+import { isIpad } from "@ivu-web/util";
+
+let res = isIpad();
 console.log(res); // 输出：true
 ```
 
 ---
 
-<!-- 手机浏览器类型 -->
 
 ## 手机浏览器类型
 
-### \_.isWeixin()
+### isWeixin()
 
 判断是微信内置浏览器
 
@@ -266,13 +284,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isWeixin();
+import { isWeixin } from "@ivu-web/util";
+
+let res = isWeixin();
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isQQ()
+### isQQ()
 
 判断是 QQ 内置浏览器
 
@@ -287,6 +307,8 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isQQ();
+import { isQQ } from "@ivu-web/util";
+
+let res = isQQ();
 console.log(res); // 输出：true
 ```

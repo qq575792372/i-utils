@@ -1,6 +1,6 @@
 # 身份证 ID-card
 
-### \_.getIdCardInfo(idCard)
+### getIdCardInfo(idCard)
 
 根据身份证号码获取信息
 
@@ -17,14 +17,16 @@
 - #### 示例
 
 ```javascript
+import { getIdCardInfo } from "@ivu-web/util";
+
 // 输出：{province: '河南', birthday: '2010-12-01', age: 11, sex: '女'}
-console.log(LimeUtil.getIdCardInfo("412821201012012221"));
+console.log(getIdCardInfo("412821201012012221"));
 
 // 输出：{province: '四川', birthday: '1980-02-22', age: 41, sex: '女'}
-console.log(LimeUtil.getIdCardInfo("511702800222130"));
+console.log(getIdCardInfo("511702800222130"));
 ```
 
-### \_.getAge(dateStr)
+### getAge(dateStr)
 
 通过日期计算周岁年龄
 
@@ -39,8 +41,9 @@ console.log(LimeUtil.getIdCardInfo("511702800222130"));
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getAge("2000-10-10");
+import { getAge } from "@ivu-web/util";
+
+let res = getAge("2000-10-10");
 console.log(res); // 输出：21
 ```
 
----

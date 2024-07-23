@@ -1,10 +1,8 @@
 # 浏览器 Dom
 
-<!-- Class操作 -->
-
 ## Class 操作
 
-### \_.hasClass(elem, className)
+### hasClass(elem, className)
 
 判断元素包含某个类名
 
@@ -20,14 +18,16 @@
 - #### 示例
 
 ```javascript
+import { hasClass } from "@ivu-web/util";
+
 let btn = document.getElementById("myBtn");
-let res = LimeUtil.hasClass(btn, "btn-primary");
+let res = hasClass(btn, "btn-primary");
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.addClass(elem, className)
+### addClass(elem, className)
 
 元素添加类名
 
@@ -43,13 +43,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
+import { addClass } from "@ivu-web/util";
+
 let btn = document.getElementById("myBtn");
-LimeUtil.addClass(btn, "btn-primary");
+addClass(btn, "btn-primary");
 ```
 
 ---
 
-### \_.removeClass(elem, className)
+### removeClass(elem, className)
 
 元素删除类名
 
@@ -65,13 +67,15 @@ LimeUtil.addClass(btn, "btn-primary");
 - #### 示例
 
 ```javascript
+import { removeClass } from "@ivu-web/util";
+
 let btn = document.getElementById("myBtn");
-LimeUtil.removeClass(btn, "btn-primary");
+removeClass(btn, "btn-primary");
 ```
 
 ---
 
-### \_.replaceClass(elem, newClassName, oldClassName)
+### replaceClass(elem, newClassName, oldClassName)
 
 元素替换类名
 
@@ -88,17 +92,17 @@ LimeUtil.removeClass(btn, "btn-primary");
 - #### 示例
 
 ```javascript
+import { replaceClass } from "@ivu-web/util";
+
 let btn = document.getElementById("myBtn");
-LimeUtil.removeClass(btn, "btn-primary", "btn-success");
+replaceClass(btn, "btn-primary", "btn-success");
 ```
 
 ---
 
-<!-- Style操作 -->
-
 ## Style 操作
 
-### \_.addStyle(elem, styles = {})
+### addStyle(elem, styles = {})
 
 添加元素的 style 样式
 
@@ -114,13 +118,15 @@ LimeUtil.removeClass(btn, "btn-primary", "btn-success");
 - #### 示例
 
 ```javascript
+import { addStyle } from "@ivu-web/util";
+
 let btn = document.getElementById("myBtn");
-LimeUtil.addStyle(btn, { height: "30px", "background-color": "blue" });
+addStyle(btn, { height: "30px", "background-color": "blue" });
 ```
 
 ---
 
-### \_.getStyle(elem, name)
+### getStyle(elem, name)
 
 获取元素的 style 样式
 
@@ -136,13 +142,15 @@ LimeUtil.addStyle(btn, { height: "30px", "background-color": "blue" });
 - #### 示例
 
 ```javascript
+import { getStyle } from "@ivu-web/util";
+
 let btn = document.getElementById("myBtn");
-LimeUtil.getStyle(btn, "height"); // 输出： 30px
+getStyle(btn, "height"); // 输出： 30px
 ```
 
 ---
 
-### \_.removeStyle(elem, name)
+### removeStyle(elem, name)
 
 删除元素的 style 样式
 
@@ -158,17 +166,17 @@ LimeUtil.getStyle(btn, "height"); // 输出： 30px
 - #### 示例
 
 ```javascript
+import { removeStyle } from "@ivu-web/util";
+
 let btn = document.getElementById("myBtn");
-LimeUtil.removeStyle(btn, "height");
+removeStyle(btn, "height");
 ```
 
 ---
 
-<!-- Html转码 -->
-
 ## Html 转码
 
-### \_.htmlEncode(htmlStr)
+### htmlEncode(htmlStr)
 
 html 标签转义
 
@@ -183,13 +191,15 @@ html 标签转义
 - #### 示例
 
 ```javascript
-let encode = LimeUtil.htmlEncode("<div id='1'>测试</div>");
+import { htmlEncode } from "@ivu-web/util";
+
+let encode = htmlEncode("<div id='1'>测试</div>");
 console.log(encode); // 输出：&lt;div&nbsp;id=&#39;1&#39;&gt;测试&lt;&#47;div&gt;
 ```
 
 ---
 
-### \_.htmlDecode(htmlStr)
+### htmlDecode(htmlStr)
 
 html 标签解码
 
@@ -204,7 +214,9 @@ html 标签解码
 - #### 示例
 
 ```javascript
-let encode = LimeUtil.htmlDecode(
+import { htmlDecode } from "@ivu-web/util";
+
+let encode = htmlDecode(
   "&lt;div&nbsp;id=&#39;1&#39;&gt;测试&lt;&#47;div&gt;"
 );
 console.log(encode); // 输出：<div id='1'>测试</div>
@@ -212,9 +224,9 @@ console.log(encode); // 输出：<div id='1'>测试</div>
 
 ---
 
-<!-- 复制剪切板 -->
+## 复制剪切板
 
-### \_.copyText(text)
+### copyText(text)
 
 复制文本到剪贴板  
 `仅支持谷歌等新浏览器`
@@ -230,7 +242,9 @@ console.log(encode); // 输出：<div id='1'>测试</div>
 - #### 示例
 
 ```javascript
-LimeUtil.copyText("我是复制的文本")
+import { copyText } from "@ivu-web/util";
+
+copyText("我是复制的文本")
   .then((text) => {
     console.log("复制成功，内容是：", text);
   })
@@ -241,7 +255,7 @@ LimeUtil.copyText("我是复制的文本")
 
 ---
 
-### \_.getCopyText()
+### getCopyText()
 
 从剪贴板获取文本  
 `仅支持谷歌等新浏览器`
@@ -257,8 +271,10 @@ LimeUtil.copyText("我是复制的文本")
 - #### 示例
 
 ```javascript
+import { getCopyText } from "@ivu-web/util";
+
 // 使用此API复制时会弹出来授权
-LimeUtil.getCopyText()
+getCopyText()
   .then((text) => {
     console.log("获取成功，内容是：", text);
   })

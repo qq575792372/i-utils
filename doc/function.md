@@ -1,6 +1,6 @@
 # 函数 Function
 
-### \_.throttle(fn, interval = 1 \* 1000)
+### throttle(fn, interval = 1 \* 1000)
 
 节流函数  
 `高频触发时，在指定时间间隔内只执行一次`
@@ -17,28 +17,30 @@
 - #### 示例
 
 ```javascript
+import { throttle } from "@ivu-web/util";
+
 // 第一种调用方式
 <button onclick="myclick()">点击</button>;
 
 function hello() {
-    console.log("say hello");
+  console.log("say hello");
 }
 
-const myclick = LimeUtil.throttle(hello, 1 * 1000);
+const myclick = throttle(hello, 1 * 1000);
 
 // 第二种调用方式
 <button id="mybtn">点击</button>;
 
 function hello() {
-    console.log("say hello");
+  console.log("say hello");
 }
 
-document.getElementById("mybtn").onclick = LimeUtil.throttle(hello, 1 * 1000);
+document.getElementById("mybtn").onclick = throttle(hello, 1 * 1000);
 ```
 
 ---
 
-### \_.debounce(fn, delay = 1 \* 1000, immediate = true)
+### debounce(fn, delay = 1 \* 1000, immediate = true)
 
 防抖函数  
 `事件执行后，在延迟时间内如果再次执行，会清空定时器重新延迟执行`
@@ -56,28 +58,30 @@ document.getElementById("mybtn").onclick = LimeUtil.throttle(hello, 1 * 1000);
 - #### 示例
 
 ```javascript
+import { debounce } from "@ivu-web/util";
+
 // 第一种调用方式
 <button onclick="myclick()">点击</button>;
 
 function hello() {
-    console.log("say hello");
+  console.log("say hello");
 }
 
-const myclick = LimeUtil.debounce(hello, 1 * 1000);
+const myclick = debounce(hello, 1 * 1000);
 
 // 第二种调用方式
 <button id="mybtn">点击</button>;
 
 function hello() {
-    console.log("say hello");
+  console.log("say hello");
 }
 
-document.getElementById("mybtn").onclick = LimeUtil.debounce(hello, 1 * 1000);
+document.getElementById("mybtn").onclick = debounce(hello, 1 * 1000);
 ```
 
 ---
 
-### \_.sleep(delay = 1 \* 1000)
+### sleep(delay = 1 \* 1000)
 
 睡眠延迟执行  
 `需要配合 async/await 来达到延迟效果`
@@ -93,11 +97,13 @@ document.getElementById("mybtn").onclick = LimeUtil.debounce(hello, 1 * 1000);
 - #### 示例
 
 ```javascript
+import { sleep } from "@ivu-web/util";
+
 // 以下方法打印第二个数字会延迟3秒后执行
 async function sleepWork() {
-    console.log(1);
-    await LimeUtil.sleep(3 * 1000);
-    console.log(2);
+  console.log(1);
+  await sleep(3 * 1000);
+  console.log(2);
 }
 
 sleepWork();

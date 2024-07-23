@@ -11,14 +11,16 @@
 - #### 示例
 
 ```javascript
+import { arraySort, SORT } from "@ivu-web/util";
+
 // 降序
-let res = LimeUtil.arraySort([3, 1, 2], LimeUtil.SORT_DESC);
+let res = arraySort([3, 1, 2], SORT.SORT_DESC);
 console.log(res); // 输出：[3,2,1]
 // 升序
-let res = LimeUtil.arraySort([3, 1, 2], LimeUtil.SORT_ASC);
+let res = arraySort([3, 1, 2], SORT.SORT_ASC);
 console.log(res); // 输出：[1,2,3]
 // 随机排序
-let res = LimeUtil.arraySort([3, 1, 2], LimeUtil.SORT_RANDOM);
+let res = arraySort([3, 1, 2], SORT.SORT_RANDOM);
 console.log(res); // 输出：[1,3,2]
 ```
 
@@ -34,6 +36,8 @@ console.log(res); // 输出：[1,3,2]
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.toFixed(1.015, 2, LimeUtil.ROUND)); // 输出：1.02
-console.log(LimeUtil.toDecimal(1.015, 2, LimeUtil.ROUND_FLOOR)); // 输出：1.01
+import { toFixed, toDecimal, MATH } from "@ivu-web/util";
+
+console.log(toFixed(1.015, 2, MATH.ROUND)); // 输出：1.02
+console.log(toDecimal(1.015, 2, MATH.ROUND_FLOOR)); // 输出：1.01
 ```

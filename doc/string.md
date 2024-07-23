@@ -2,7 +2,7 @@
 
 ## 字符串处理
 
-### \_.trim(value)
+### trim(value)
 
 去除字符串前后位置空格
 
@@ -17,13 +17,15 @@
 - #### 示例
 
 ```javascript
-let res = LimeUtil.trim(" 123 ");
+import { trim } from "@ivu-web/util";
+
+let res = trim(" 123 ");
 console.log(res); // 输出：123
 ```
 
 ---
 
-### \_.trimStart(value)
+### trimStart(value)
 
 去除字符串开始位置的空格
 
@@ -38,13 +40,15 @@ console.log(res); // 输出：123
 - #### 示例
 
 ```javascript
-let res = LimeUtil.trimStart(" 123 ");
+import { trimStart } from "@ivu-web/util";
+
+let res = trimStart(" 123 ");
 console.log(res); // 输出：123&nbsp; 后面会有空格
 ```
 
 ---
 
-### \_.trimEnd(value)
+### trimEnd(value)
 
 去除字符串结束位置的空格
 
@@ -59,13 +63,15 @@ console.log(res); // 输出：123&nbsp; 后面会有空格
 - #### 示例
 
 ```javascript
-let res = LimeUtil.trim(" 123 ");
+import { trimEnd } from "@ivu-web/util";
+
+let res = trim(" 123 ");
 console.log(res); // 输出：&nbsp;123 前面会有空格
 ```
 
 ---
 
-### \_.trimAll(value)
+### trimAll(value)
 
 去除字符串中全部的空格
 
@@ -80,13 +86,15 @@ console.log(res); // 输出：&nbsp;123 前面会有空格
 - #### 示例
 
 ```javascript
-let res = LimeUtil.trimAll(" 1 2 3 ");
+import { trimAll } from "@ivu-web/util";
+
+let res = trimAll(" 1 2 3 ");
 console.log(res); // 输出：123
 ```
 
 ---
 
-### \_.replaceAll(value, oldSubstr, newSubstr)
+### replaceAll(value, oldSubstr, newSubstr)
 
 替换所有指定字符串为新的字符串
 
@@ -103,7 +111,9 @@ console.log(res); // 输出：123
 - #### 示例
 
 ```javascript
-let res = LimeUtil.replaceAll("say hello hello!", "hello", "hi");
+import { replaceAll } from "@ivu-web/util";
+
+let res = replaceAll("say hello hello!", "hello", "hi");
 console.log(res); // 输出：say hi hi!
 ```
 
@@ -113,7 +123,7 @@ console.log(res); // 输出：say hi hi!
 
 ## 字符串转换
 
-### \_.toUpper(value)
+### toUpper(value)
 
 字符串转大写
 
@@ -128,13 +138,15 @@ console.log(res); // 输出：say hi hi!
 - #### 示例
 
 ```javascript
-let res = LimeUtil.toUpper("say hello");
+import { toUpper } from "@ivu-web/util";
+
+let res = toUpper("say hello");
 console.log(res); // 输出：SAY HELLO
 ```
 
 ---
 
-### \_.toLower(value)
+### toLower(value)
 
 字符串转小写
 
@@ -149,15 +161,17 @@ console.log(res); // 输出：SAY HELLO
 - #### 示例
 
 ```javascript
-let res = LimeUtil.toLower("Say Hello");
+import { toLower } from "@ivu-web/util";
+
+let res = toLower("Say Hello");
 console.log(res); // 输出：say hello
 ```
 
 ---
 
-### \_.toSnakeCase(value)
+### toSnakeCase(value)
 
-转为　 snake_case 下划线命名  
+转为 snake_case 下划线命名  
 `支持 驼峰命名，短横命名，帕斯卡命名`
 
 - #### 参数
@@ -171,6 +185,8 @@ console.log(res); // 输出：say hello
 - #### 示例
 
 ```javascript
+import { toSnakeCase } from "@ivu-web/util";
+
 // 驼峰转下划线
 console.log(LimeCore.toSnakeCase("userName")); // 输出：user_name
 // 短横转下划线
@@ -181,9 +197,9 @@ console.log(LimeCore.toSnakeCase("UserName")); // 输出：user_name
 
 ---
 
-### \_.toKebabCase(value)
+### toKebabCase(value)
 
-转为　 kebab-case 短横命名  
+转为 kebab-case 短横命名  
 `支持 下划线，驼峰命名，帕斯卡命名`
 
 - #### 参数
@@ -197,6 +213,8 @@ console.log(LimeCore.toSnakeCase("UserName")); // 输出：user_name
 - #### 示例
 
 ```javascript
+import { toKebabCase } from "@ivu-web/util";
+
 // 下划线转短横
 console.log(LimeCore.toKebabCase("user_name")); // 输出：user-name
 // 驼峰转短横
@@ -207,9 +225,9 @@ console.log(LimeCore.toKebabCase("UserName")); // 输出：user-name
 
 ---
 
-### \_.toCamelCase(value)
+### toCamelCase(value)
 
-转为　 camelCase 驼峰命名  
+转为 camelCase 驼峰命名  
 `支持 下划线命名，短横命名，帕斯卡命名`
 
 - #### 参数
@@ -223,6 +241,8 @@ console.log(LimeCore.toKebabCase("UserName")); // 输出：user-name
 - #### 示例
 
 ```javascript
+import { toCamelCase } from "@ivu-web/util";
+
 // 下划线转驼峰
 console.log(LimeCore.toCamelCase("user_name")); // 输出：userName
 // 短横转驼峰
@@ -233,9 +253,9 @@ console.log(LimeCore.toCamelCase("UserName")); // 输出：userName
 
 ---
 
-### \_.toPascalCase(value)
+### toPascalCase(value)
 
-转为　 PascalCase 帕斯卡命名  
+转为 PascalCase 帕斯卡命名  
 `支持 下划线命名，短横命名，驼峰命名`
 
 - #### 参数
@@ -249,6 +269,8 @@ console.log(LimeCore.toCamelCase("UserName")); // 输出：userName
 - #### 示例
 
 ```javascript
+import { toPascalCase } from "@ivu-web/util";
+
 // 下划线转帕斯卡
 console.log(LimeCore.toPascalCase("user_name")); // 输出：UserName
 // 短横转帕斯卡
@@ -259,13 +281,12 @@ console.log(LimeCore.toPascalCase("userName")); // 输出：UserName
 
 ---
 
-<!-- 字符串加密 -->
-
 ## 字符串加密
 
-工具库只提供了 `base64` 方式加密和解密，你也可以用功能更强大的[crypto-js](https://github.com/brix/crypto-js)，包含了`md5`，`aes`，`sha1`，`sha256` 更多加密方式。
+工具库只提供了 `base64` 方式加密和解密，你也可以用功能更强大的[crypto-js](https://github.com/brix/crypto-js)
+，包含了`md5`，`aes`，`sha1`，`sha256` 更多加密方式。
 
-### \_.encode(str)
+### encode(str)
 
 base64 加密
 
@@ -280,13 +301,15 @@ base64 加密
 - #### 示例
 
 ```javascript
-let res = LimeUtil.encode("dGVzdDEyMw==");
+import { encode } from "@ivu-web/util";
+
+let res = encode("dGVzdDEyMw==");
 console.log(res); // 输出：dGVzdDEyMw==
 ```
 
 ---
 
-### \_.decode(str)
+### decode(str)
 
 base64 加密
 
@@ -301,17 +324,17 @@ base64 加密
 - #### 示例
 
 ```javascript
-let res = LimeUtil.decode("dGVzdDEyMw==");
+import { decode } from "@ivu-web/util";
+
+let res = decode("dGVzdDEyMw==");
 console.log(res); // 输出：test123
 ```
 
 ---
 
-<!-- 字符串格式化 -->
-
 ## 字符串格式化
 
-### \_.inString(value, str)
+### inString(value, str)
 
 字符串中是否包含指定的元素
 
@@ -327,13 +350,15 @@ console.log(res); // 输出：test123
 - #### 示例
 
 ```javascript
-let res = LimeUtil.inString("hello", "say hello");
+import { inString } from "@ivu-web/util";
+
+let res = inString("hello", "say hello");
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.zeroStart(value, maxLength = 2)
+### zeroStart(value, maxLength = 2)
 
 数字前补齐 0 达到指定位数  
 `相当于原生的 padStart(2,'0')`
@@ -350,13 +375,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.zeroStart("1", 3);
+import { zeroStart } from "@ivu-web/util";
+
+let res = zeroStart("1", 3);
 console.log(res); // 输出：001
 ```
 
 ---
 
-### \_.zeroEnd(value, maxLength = 2)
+### zeroEnd(value, maxLength = 2)
 
 数字后补齐 0 达到指定位数  
 `相当于原生的 padEnd(2,'0')`
@@ -373,13 +400,15 @@ console.log(res); // 输出：001
 - #### 示例
 
 ```javascript
-let res = LimeUtil.zeroEnd("1", 3);
+import { zeroEnd } from "@ivu-web/util";
+
+let res = zeroEnd("1", 3);
 console.log(res); // 输出：100
 ```
 
 ---
 
-### \_.formatThousand(num)
+### formatThousand(num)
 
 格式化千分位数字  
 `支持任意数据传参，如果非数字则不会格式化，并返回原数据`
@@ -395,13 +424,15 @@ console.log(res); // 输出：100
 - #### 示例
 
 ```javascript
-let res = LimeUtil.formatThousand(1234567.12345);
+import { formatThousand } from "@ivu-web/util";
+
+let res = formatThousand(1234567.12345);
 console.log(res); // 输出：1,234,567.12345
 ```
 
 ---
 
-### \_.formatRmbChinese(money)
+### formatRmbChinese(money)
 
 格式化人民币金额大写
 
@@ -416,13 +447,15 @@ console.log(res); // 输出：1,234,567.12345
 - #### 示例
 
 ```javascript
-let res = LimeUtil.formatAmountChinese(1234567.12345);
+import { formatRmbChinese } from "@ivu-web/util";
+
+let res = formatAmountChinese(1234567.12345);
 console.log(res); // 输出：壹佰贰拾叁万肆仟伍佰陆拾柒元壹角贰分叁毫肆厘
 ```
 
 ---
 
-### \_.formatStartOfName(value)
+### formatStartOfName(value)
 
 姓名中间转为星号
 
@@ -437,14 +470,16 @@ console.log(res); // 输出：壹佰贰拾叁万肆仟伍佰陆拾柒元壹角�
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.formatStartOfName("张三")); // 输出：张*
-console.log(LimeUtil.formatStartOfName("张三封")); // 输出：张*封
-console.log(LimeUtil.formatStartOfName("张三封封")); // 输出：张**封
+import { formatStartOfName } from "@ivu-web/util";
+
+console.log(formatStartOfName("张三")); // 输出：张*
+console.log(formatStartOfName("张三封")); // 输出：张*封
+console.log(formatStartOfName("张三封封")); // 输出：张**封
 ```
 
 ---
 
-### \_.formatStartOfMobile(value, start = 3, len = 4)
+### formatStartOfMobile(value, start = 3, len = 4)
 
 手机号码固定位数转为星号
 
@@ -461,13 +496,15 @@ console.log(LimeUtil.formatStartOfName("张三封封")); // 输出：张**封
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.formatStartOfMobile("13000000000")); // 输出：130****0000
-console.log(LimeUtil.formatStartOfMobile("13000000000", 3, 5)); // 输出：130*****000
+import { formatStartOfMobile } from "@ivu-web/util";
+
+console.log(formatStartOfMobile("13000000000")); // 输出：130****0000
+console.log(formatStartOfMobile("13000000000", 3, 5)); // 输出：130*****000
 ```
 
 ---
 
-### \_.formatStartOfIdCard(value, start = 4, len = 8)
+### formatStartOfIdCard(value, start = 4, len = 8)
 
 手机号码固定位数转为星号
 
@@ -484,12 +521,14 @@ console.log(LimeUtil.formatStartOfMobile("13000000000", 3, 5)); // 输出：130*
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.formatStartOfIdCard("412929199312223012")); // 输出：4129********223012
+import { formatStartOfIdCard } from "@ivu-web/util";
+
+console.log(formatStartOfIdCard("412929199312223012")); // 输出：4129********223012
 ```
 
 ---
 
-### \_.formatStartOfBankCard(value, start = 4, len = 11)
+### formatStartOfBankCard(value, start = 4, len = 11)
 
 手机号码固定位数转为星号
 
@@ -506,5 +545,7 @@ console.log(LimeUtil.formatStartOfIdCard("412929199312223012")); // 输出：412
 - #### 示例
 
 ```javascript
-console.log(LimeUtil.formatStartOfIdCard("6222021208888993029")); // 输出：6222***********3029
+import { formatStartOfBankCard } from "@ivu-web/util";
+
+console.log(formatStartOfIdCard("6222021208888993029")); // 输出：6222***********3029
 ```

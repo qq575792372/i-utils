@@ -2,7 +2,7 @@
 
 ## 数组计算
 
-### \_.arrayMin(array)
+### arrayMin(array)
 
 数组最小值
 
@@ -17,13 +17,15 @@
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayMin([1, 3, 4, 8]);
+import { arrayMin } from "@ivu-web/util";
+
+let res = arrayMin([1, 3, 4, 8]);
 console.log(res); // 输出：1
 ```
 
 ---
 
-### \_.arrayMax(array)
+### arrayMax(array)
 
 数组最大值
 
@@ -38,13 +40,15 @@ console.log(res); // 输出：1
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayMax([1, 3, 4, 8]);
+import { arrayMax } from "@ivu-web/util";
+
+let res = arrayMax([1, 3, 4, 8]);
 console.log(res); // 输出：8
 ```
 
 ---
 
-### \_.arraySum(array)
+### arraySum(array)
 
 数组求和
 
@@ -59,13 +63,15 @@ console.log(res); // 输出：8
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arraySum([1, 3, 4, 8]);
+import { arraySum } from "@ivu-web/util";
+
+let res = arraySum([1, 3, 4, 8]);
 console.log(res); // 输出：16
 ```
 
 ---
 
-### \_.arrayAvg(array)
+### arrayAvg(array)
 
 数组求平均值
 
@@ -80,13 +86,15 @@ console.log(res); // 输出：16
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayAvg([1, 3, 4, 8]);
+import { arrayAvg } from "@ivu-web/util";
+
+let res = arrayAvg([1, 3, 4, 8]);
 console.log(res); // 输出：4
 ```
 
 ## 数组比较
 
-### \_.inArray(value, array)
+### inArray(value, array)
 
 数组中是否包含指定的元素
 
@@ -102,13 +110,15 @@ console.log(res); // 输出：4
 - #### 示例
 
 ```javascript
-let res = LimeUtil.inArray(1, [1, 2, 3]);
+import { inArray } from "@ivu-web/util";
+
+let res = inArray(1, [1, 2, 3]);
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.arrayEquals(array1, array2)
+### arrayEquals(array1, array2)
 
 比较两个数组是否相等
 
@@ -124,21 +134,23 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
+import { arrayEquals } from "@ivu-web/util";
+
 // 场景1
 let array1 = [1, 2, 3];
 let array2 = [1, 2, 3];
-console.log(LimeUtil.arrayEquals(array1, array2)); // 输出：true
+console.log(arrayEquals(array1, array2)); // 输出：true
 
 // 场景2
 // 值虽然相等，但是顺序不同也是不相同的
 let array1 = [1, 2, 3];
 let array2 = [1, 3, 2];
-console.log(LimeUtil.arrayEquals(array1, array2)); // 输出：false
+console.log(arrayEquals(array1, array2)); // 输出：false
 ```
 
 ## 数组操作
 
-### \_.arrayCreate(length = 0)
+### arrayCreate(length = 0)
 
 生成指定长度的数组
 
@@ -153,13 +165,15 @@ console.log(LimeUtil.arrayEquals(array1, array2)); // 输出：false
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayCreate(3);
+import { arrayCreate } from "@ivu-web/util";
+
+let res = arrayCreate(3);
 console.log(res); // 输出：[0,1,2]
 ```
 
 ---
 
-### \_.arrayInsert(array = [], index = 0, value = undefined)
+### arrayInsert(array = [], index = 0, value = undefined)
 
 数组指定位置添加元素
 
@@ -176,13 +190,15 @@ console.log(res); // 输出：[0,1,2]
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayInsert([1, 2], 1, "MM");
+import { arrayInsert } from "@ivu-web/util";
+
+let res = arrayInsert([1, 2], 1, "MM");
 console.log(res); // 输出：[1, 'MM', 2]
 ```
 
 ---
 
-### \_.arrayInsertBefore(array = [], index = 0, value = undefined)
+### arrayInsertBefore(array = [], index = 0, value = undefined)
 
 数组指定位置前面添加元素
 
@@ -199,13 +215,15 @@ console.log(res); // 输出：[1, 'MM', 2]
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayInsertBefore([1, 2], 1, "MM");
+import { arrayInsertBefore } from "@ivu-web/util";
+
+let res = arrayInsertBefore([1, 2], 1, "MM");
 console.log(res); // 输出：[1, 'MM', 2]
 ```
 
 ---
 
-### \_.arrayInsertAfter(array = [], index = 0, value = undefined)
+### arrayInsertAfter(array = [], index = 0, value = undefined)
 
 数组指定位置后面添加元素
 
@@ -222,13 +240,15 @@ console.log(res); // 输出：[1, 'MM', 2]
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayInsertBefore([1, 2], 1, "MM");
+import { arrayInsertAfter } from "@ivu-web/util";
+
+let res = arrayInsertAfter([1, 2], 1, "MM");
 console.log(res); // 输出：[1, 2, 'MM']
 ```
 
 ---
 
-### \_.arrayRemove(array = [], index = 0)
+### arrayRemove(array = [], index = 0)
 
 数组指定位置删除元素
 
@@ -244,13 +264,15 @@ console.log(res); // 输出：[1, 2, 'MM']
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayRemove([1, 2], 1);
+import { arrayRemove } from "@ivu-web/util";
+
+let res = arrayRemove([1, 2], 1);
 console.log(res); // 输出：[1]
 ```
 
 ---
 
-### \_.arrayRemoveBefore(array = [], index = 0)
+### arrayRemoveBefore(array = [], index = 0)
 
 数组指定位置前面删除元素
 
@@ -266,13 +288,15 @@ console.log(res); // 输出：[1]
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayRemoveBefore([1, 2], 1);
+import { arrayRemoveBefore } from "@ivu-web/util";
+
+let res = arrayRemoveBefore([1, 2], 1);
 console.log(res); // 输出：[2]
 ```
 
 ---
 
-### \_.arrayRemoveAfter(array = [], index = 0)
+### arrayRemoveAfter(array = [], index = 0)
 
 数组指定位置后面删除元素
 
@@ -288,13 +312,15 @@ console.log(res); // 输出：[2]
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayRemoveAfter([1, 2], 0);
+import { arrayRemoveAfter } from "@ivu-web/util";
+
+let res = arrayRemoveAfter([1, 2], 0);
 console.log(res); // 输出：[1]
 ```
 
 ---
 
-### \_.arrayTop(array = [], index = 0)
+### arrayTop(array = [], index = 0)
 
 数组置顶
 
@@ -310,13 +336,15 @@ console.log(res); // 输出：[1]
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayTop([1, 2, 3], 2);
+import { arrayTop } from "@ivu-web/util";
+
+let res = arrayTop([1, 2, 3], 2);
 console.log(res); // 输出：[3,1,2]
 ```
 
 ---
 
-### \_.arrayBottom(array = [], index = 0)
+### arrayBottom(array = [], index = 0)
 
 数组置尾
 
@@ -332,13 +360,15 @@ console.log(res); // 输出：[3,1,2]
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayBottom([1, 2, 3], 1);
+import { arrayBottom } from "@ivu-web/util";
+
+let res = arrayBottom([1, 2, 3], 1);
 console.log(res); // 输出：[1,3,2]
 ```
 
 ---
 
-### \_.arrayUp(array = [], index = 0)
+### arrayUp(array = [], index = 0)
 
 数组向上移动
 
@@ -354,13 +384,15 @@ console.log(res); // 输出：[1,3,2]
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayUp([1, 2, 3], 1);
+import { arrayUp } from "@ivu-web/util";
+
+let res = arrayUp([1, 2, 3], 1);
 console.log(res); // 输出：[2,1,3]
 ```
 
 ---
 
-### \_.arrayDown(array = [], index = 0)
+### arrayDown(array = [], index = 0)
 
 数组向下移动
 
@@ -376,13 +408,15 @@ console.log(res); // 输出：[2,1,3]
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayUp([1, 2, 3], 1);
+import { arrayDown } from "@ivu-web/util";
+
+let res = arrayDown([1, 2, 3], 1);
 console.log(res); // 输出：[1,3,2]
 ```
 
 ---
 
-### \_.arraySwap(array, sourceIndex, targetIndex)
+### arraySwap(array, sourceIndex, targetIndex)
 
 数组交换元素
 
@@ -399,14 +433,16 @@ console.log(res); // 输出：[1,3,2]
 * #### 示例
 
 ```javascript
+import { arraySwap } from "@ivu-web/util";
+
 // 第0个和第1个交换位置
-let res = LimeUtil.arraySwap([1, 2, 3, 4], 0, 1);
+let res = arraySwap([1, 2, 3, 4], 0, 1);
 console.log(res); // 输出：[2,1,3,4]
 ```
 
 ---
 
-### \_.arraySort(array, mode = LimeUtil.SORT_TYPE.SORT_ASC)
+### arraySort(array, mode = SORT.SORT_ASC)
 
 数组排序
 
@@ -422,20 +458,22 @@ console.log(res); // 输出：[2,1,3,4]
 * #### 示例
 
 ```javascript
+import { SORT, arraySort } from "@ivu-web/util";
+
 // 降序
-let res = LimeUtil.arraySort([3, 1, 2], LimeUtil.SORT_DESC);
+let res = arraySort([3, 1, 2], SORT.SORT_DESC);
 console.log(res); // 输出：[3,2,1]
 // 升序
-let res = LimeUtil.arraySort([3, 1, 2], LimeUtil.SORT_ASC);
+let res = arraySort([3, 1, 2], SORT.SORT_ASC);
 console.log(res); // 输出：[1,2,3]
 // 随机排序
-let res = LimeUtil.arraySort([3, 1, 2], LimeUtil.SORT_RANDOM);
+let res = arraySort([3, 1, 2], SORT.SORT_RANDOM);
 console.log(res); // 输出：[1,3,2]
 ```
 
 ---
 
-### \_.arrayUnique(array)
+### arrayUnique(array)
 
 数组元素去重
 
@@ -450,13 +488,15 @@ console.log(res); // 输出：[1,3,2]
 - #### 示例
 
 ```javascript
-let res = LimeUtil.arrayUnique([1, 3, 4, 2, 2, 3]);
+import { arrayUnique } from "@ivu-web/util";
+
+let res = arrayUnique([1, 3, 4, 2, 2, 3]);
 console.log(res); // 输出：[1,3,4,2]
 ```
 
 ---
 
-### \_.arrayShuffle(array)
+### arrayShuffle(array)
 
 数组打乱元素  
 `可以适用于一些抽奖人员列表打乱顺序`
@@ -472,8 +512,10 @@ console.log(res); // 输出：[1,3,4,2]
 * #### 示例
 
 ```javascript
+import { arrayShuffle } from "@ivu-web/util";
+
 let array = [1, 2, 3, 4];
-let res = LimeUtil.arrayShuffle(array);
+let res = arrayShuffle(array);
 console.log(res); // 输出：[3,1,4,2]
 ```
 
@@ -481,7 +523,7 @@ console.log(res); // 输出：[3,1,4,2]
 
 ## 数组转换
 
-### \_.arrayToTree(array, setting = { key: "id", parentKey: "pid", childrenKey: "children" })
+### arrayToTree(array, setting = { key: "id", parentKey: "pid", childrenKey: "children" })
 
 普通数组转树形结构
 
@@ -497,6 +539,8 @@ console.log(res); // 输出：[3,1,4,2]
 * #### 示例
 
 ```javascript
+import { arrayToTree } from "@ivu-web/util";
+
 let array = [
   { id: 1, name: "节点1" },
   { id: 11, name: "节点1-1", pid: 1 },
@@ -510,13 +554,13 @@ let array = [
   { id: 31, name: "节点3-1", pid: 3 },
   { id: 32, name: "节点3-2", pid: 3 }
 ];
-let res = LimeUtil.arrayToTree(array);
+let res = arrayToTree(array);
 console.log(res); // 输出：返回父子级children的节点
 ```
 
 ---
 
-### \_.treeToArray(nodes, setting = { childrenKey: "children" })
+### treeToArray(nodes, setting = { childrenKey: "children" })
 
 树形结构转普通数组
 
@@ -532,6 +576,8 @@ console.log(res); // 输出：返回父子级children的节点
 * #### 示例
 
 ```javascript
+import { treeToArray } from "@ivu-web/util";
+
 let nodes = [
   {
     id: 1,
@@ -587,7 +633,7 @@ let nodes = [
     ]
   }
 ];
-let res = LimeUtil.arrayToTree(nodes);
+let res = arrayToTree(nodes);
 console.log(res); // 输出：返回父子级children的节点
 ```
 
@@ -595,7 +641,7 @@ console.log(res); // 输出：返回父子级children的节点
 
 ## 数组求并集，交集，差集等
 
-### \_.arrayUnion(array1, array2)
+### arrayUnion(array1, array2)
 
 数组求并集
 
@@ -613,20 +659,22 @@ console.log(res); // 输出：返回父子级children的节点
 - #### 示例
 
 ```javascript
+import { arrayUnion } from "@ivu-web/util";
+
 // 无重复元素
 let array1 = [1, 2];
 let array2 = [2, 3];
-console.log(LimeUtil.arrayUnion(array1, array2)); // 输出：[1, 2, 3]
+console.log(arrayUnion(array1, array2)); // 输出：[1, 2, 3]
 
 // 有重复元素
 let array1 = [1, 2, 2];
 let array2 = [2, 3, 3];
-console.log(LimeUtil.arrayUnion(array1, array2)); // 输出：[1, 2, 3]
+console.log(arrayUnion(array1, array2)); // 输出：[1, 2, 3]
 ```
 
 ---
 
-### \_.arrayIntersect(array1, array2)
+### arrayIntersect(array1, array2)
 
 数组求交集
 
@@ -644,20 +692,22 @@ console.log(LimeUtil.arrayUnion(array1, array2)); // 输出：[1, 2, 3]
 - #### 示例
 
 ```javascript
+import { arrayIntersect } from "@ivu-web/util";
+
 // 无重复元素
 let array1 = [1, 2, 3];
 let array2 = [2, 3, 4];
-console.log(LimeUtil.arrayIntersect(array1, array2)); // 输出：[2, 3]
+console.log(arrayIntersect(array1, array2)); // 输出：[2, 3]
 
 // 有重复元素
 let array1 = [1, 2, 3];
 let array2 = [2, 2, 3, 3, 4];
-console.log(LimeUtil.arrayIntersect(array1, array2)); // 输出：[2, 3]
+console.log(arrayIntersect(array1, array2)); // 输出：[2, 3]
 ```
 
 ---
 
-### \_.arrayDifference(array1, array2)
+### arrayDifference(array1, array2)
 
 数组求差集
 
@@ -675,20 +725,22 @@ console.log(LimeUtil.arrayIntersect(array1, array2)); // 输出：[2, 3]
 - #### 示例
 
 ```javascript
+import { arrayDifference } from "@ivu-web/util";
+
 // 无重复元素
 let array1 = [1, 2, 3];
 let array2 = [3, 4, 5];
-console.log(LimeUtil.arrayDifference(array1, array2)); // 输出：[1, 2]
+console.log(arrayDifference(array1, array2)); // 输出：[1, 2]
 
 // 有重复元素
 let array1 = [1, 2, 3];
 let array2 = [2, 2, 3, 3, 4];
-console.log(LimeUtil.arrayDifference(array1, array2)); // 输出：[1, 2]
+console.log(arrayDifference(array1, array2)); // 输出：[1, 2]
 ```
 
 ---
 
-### \_.arrayComplement(array1, array2)
+### arrayComplement(array1, array2)
 
 数组求补集
 
@@ -706,13 +758,15 @@ console.log(LimeUtil.arrayDifference(array1, array2)); // 输出：[1, 2]
 - #### 示例
 
 ```javascript
+import { arrayComplement } from "@ivu-web/util";
+
 // 无重复元素
 let array1 = [1, 2, 3];
 let array2 = [3, 4, 5];
-console.log(LimeUtil.arrayComplement(array1, array2)); // 输出：[1, 2, 4, 5]
+console.log(arrayComplement(array1, array2)); // 输出：[1, 2, 4, 5]
 
 // 有重复元素
 let array1 = [1, 2, 3];
 let array2 = [3, 3, 4, 5];
-console.log(LimeUtil.arrayComplement(array1, array2)); // 输出：[1, 2, 4, 5]
+console.log(arrayComplement(array1, array2)); // 输出：[1, 2, 4, 5]
 ```

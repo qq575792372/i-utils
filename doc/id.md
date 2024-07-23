@@ -1,6 +1,6 @@
 # 生成 ID
 
-### \_.getUUID(len = 32, radix = 16)
+### getUUID(len = 32, radix = 16)
 
 生成UUID
 
@@ -16,13 +16,15 @@
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getUUID();
+import { getUUID } from "@ivu-web/util";
+
+let res = getUUID();
 console.log(res); // 输出：5e71b6a38364c189ab1229bf5c2d5695
 ```
 
 ---
 
-### \_.getGUID()
+### getGUID()
 
 生成GUID
 
@@ -37,6 +39,8 @@ console.log(res); // 输出：5e71b6a38364c189ab1229bf5c2d5695
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getGUID();
+import { getGUID } from "@ivu-web/util";
+
+let res = getGUID();
 console.log(res); // 输出：e854e2ec-063c-1ee7-942f-57c5733ce0cb
 ```

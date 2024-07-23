@@ -2,9 +2,12 @@
 
 ## 常用正则集合
 
-### \_.REGEXP.XXX
+### REGEXP.XXX
 
 ```javascript
+import { REGEXP } from "@ivu-web/util";
+
+// 包含的规则如下
 const REGEXP = {
   // 中文汉字
   CH: /^[\u4E00-\u9FA5]+$/,
@@ -57,11 +60,9 @@ const REGEXP = {
 
 ---
 
-<!-- 正则校验方法 -->
-
 ## 正则校验方法
 
-### \_.regexpTest(value, regex)
+### regexpTest(value, regex)
 
 正则校验方法  
 `类型为REGEXP对应的正则`
@@ -78,17 +79,17 @@ const REGEXP = {
 - #### 示例
 
 ```javascript
-let res = LimeUtil.regexpTest("13000000000", LimeUtil.REGEXP.MOBILE);
+import { regexpTest } from "@ivu-web/util";
+
+let res = regexpTest("13000000000", REGEXP.MOBILE);
 console.log(res); // 输出：true
 ```
 
 ---
 
-<!-- 常用校验 -->
-
 ## 常用校验
 
-### \_.isChinese(value)
+### isChinese(value)
 
 是中文
 
@@ -103,13 +104,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isChinese("中国");
+import { isChinese } from "@ivu-web/util";
+
+let res = isChinese("中国");
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isEnglish(value)
+### isEnglish(value)
 
 是英文
 
@@ -124,13 +127,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isEnglish("abc");
+import { isEnglish } from "@ivu-web/util";
+
+let res = isEnglish("abc");
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isExternal(value)
+### isExternal(value)
 
 是外链  
 `支持http，https，mail，tel电话`
@@ -146,13 +151,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isExternal("http://test.com/11");
+import { isExternal } from "@ivu-web/util";
+
+let res = isExternal("http://test.com/11");
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isLowerCase(value)
+### isLowerCase(value)
 
 是小写字母
 
@@ -167,13 +174,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isLowerCase("abc");
+import { isLowerCase } from "@ivu-web/util";
+
+let res = isLowerCase("abc");
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isUpperCase(value)
+### isUpperCase(value)
 
 是大写字母
 
@@ -188,13 +197,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isUpperCase("ABC");
+import { isUpperCase } from "@ivu-web/util";
+
+let res = isUpperCase("ABC");
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isMobile(value)
+### isMobile(value)
 
 是 11 位手机号码
 
@@ -209,13 +220,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isMobile("13000000000");
+import { isMobile } from "@ivu-web/util";
+
+let res = isMobile("13000000000");
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isEmail(value)
+### isEmail(value)
 
 是 11 位手机号码
 
@@ -230,13 +243,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isEmail("321123488@qq.com");
+import { isEmail } from "@ivu-web/util";
+
+let res = isEmail("321123488@qq.com");
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isIdCard(value)
+### isIdCard(value)
 
 是身份证号码（15-18 位）
 
@@ -251,13 +266,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isMobile("411828198901112311");
+import { isIdCard } from "@ivu-web/util";
+
+let res = isMobile("411828198901112311");
 console.log(res); // 输出：true
 ```
 
 ---
 
-### \_.isUrl(value)
+### isUrl(value)
 
 是 url 链接
 
@@ -272,8 +289,10 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isUrl("http://www.test.com");
+import { isUrl } from "@ivu-web/util";
+
+let res = isUrl("http://www.test.com");
 console.log(res); // 输出：true
-let res = LimeUtil.isUrl("ftps://192.168.3.22/ddd");
+let res = isUrl("ftps://192.168.3.22/ddd");
 console.log(res); // 输出：true
 ```

@@ -1,6 +1,6 @@
 # 颜色 Color
 
-### \_.rgbToHex(rgb)
+### rgbToHex(rgb)
 
 rgb 颜色转 hex
 
@@ -15,13 +15,15 @@ rgb 颜色转 hex
 - #### 示例
 
 ```javascript
-let res = LimeUtil.rgbToHex("rgb(255,34,33)");
+import { rgbToHex } from "@ivu-web/util";
+
+let res = rgbToHex("rgb(255,34,33)");
 console.log(res); // 输出：#002221
 ```
 
 ---
 
-### \_.rgbaToHex(rgba)
+### rgbaToHex(rgba)
 
 rgba 颜色转 hex
 
@@ -36,13 +38,15 @@ rgba 颜色转 hex
 - #### 示例
 
 ```javascript
-let res = LimeUtil.rgbaToHex("rgba(112,123,124,1)");
+import { rgbaToHex } from "@ivu-web/util";
+
+let res = rgbaToHex("rgba(112,123,124,1)");
 console.log(res); // 输出：#ff707b7c
 ```
 
 ---
 
-### \_.rgbaToHsl(rgba)
+### rgbaToHsl(rgba)
 
 rgba 颜色转 hsl
 
@@ -57,16 +61,18 @@ rgba 颜色转 hsl
 - #### 示例
 
 ```javascript
-let res = LimeUtil.rgbaToHsl("rgba(112,123,124,1)");
+import { rgbaToHsl } from "@ivu-web/util";
+
+let res = rgbaToHsl("rgba(112,123,124,1)");
 console.log(res); // 输出：hsla(185,5%,46%,1)
 // 支持传入rgb
-let res = LimeUtil.rgbaToHsl("rgb(112,123,124)");
+let res = rgbaToHsl("rgb(112,123,124)");
 console.log(res); // 输出：hsl(185,5%,46%)
 ```
 
 ---
 
-### \_.hexToRgb(hex)
+### hexToRgb(hex)
 
 hex 颜色转 rgb
 
@@ -81,13 +87,15 @@ hex 颜色转 rgb
 - #### 示例
 
 ```javascript
-let res = LimeUtil.hexToRgb("#cccccc");
+import { hexToRgb } from "@ivu-web/util";
+
+let res = hexToRgb("#cccccc");
 console.log(res); // 输出：rgb(204,204,204)
 ```
 
 ---
 
-### \_.hexToRgba(hex, opacity = 1)
+### hexToRgba(hex, opacity = 1)
 
 hex 颜色转 rgb
 
@@ -103,13 +111,15 @@ hex 颜色转 rgb
 - #### 示例
 
 ```javascript
-let res = LimeUtil.hexToRgba("#cccccc", 1);
+import { hexToRgba } from "@ivu-web/util";
+
+let res = hexToRgba("#cccccc", 1);
 console.log(res); // 输出：rgb(204,204,204,1)
 ```
 
 ---
 
-### \_.hexToHsl(hex)
+### hexToHsl(hex)
 
 hex 颜色转 hsl
 
@@ -124,13 +134,15 @@ hex 颜色转 hsl
 - #### 示例
 
 ```javascript
-let res = LimeUtil.hexToHsl("#cccccc");
+import { hexToHsl } from "@ivu-web/util";
+
+let res = hexToHsl("#cccccc");
 console.log(res); // 输出：hsl(0,0%,80%)
 ```
 
 ---
 
-### \_.getRandomHex()
+### getRandomHex()
 
 获取随机生成的 16 进制颜色
 
@@ -145,13 +157,15 @@ console.log(res); // 输出：hsl(0,0%,80%)
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getRandomHex();
+import { getRandomHex } from "@ivu-web/util";
+
+let res = getRandomHex();
 console.log(res); // 输出：#2d8cf0
 ```
 
 ---
 
-### \_.getRandomRgb()
+### getRandomRgb()
 
 获取随机生成的 rgb 颜色
 
@@ -166,13 +180,15 @@ console.log(res); // 输出：#2d8cf0
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getRandomRgb();
+import { getRandomRgb } from "@ivu-web/util";
+
+let res = getRandomRgb();
 console.log(res); // 输出：rgba(45,140,240,1)
 ```
 
 ---
 
-### \_.getRandomRgba()
+### getRandomRgba()
 
 获取随机生成的 rgba 颜色
 
@@ -187,6 +203,8 @@ console.log(res); // 输出：rgba(45,140,240,1)
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getRandomRgba();
+import { getRandomRgba } from "@ivu-web/util";
+
+let res = getRandomRgba();
 console.log(res); // 输出：rgba(45,140,240,0.38)
 ```

@@ -1,6 +1,6 @@
 # 键盘 Keycode
 
-### \_.getKeyName(keycode)
+### getKeyName(keycode)
 
 根据 keycode 获得键名
 
@@ -15,13 +15,15 @@
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getKeyName(13);
+import { getKeyName } from "@ivu-web/util";
+
+let res = getKeyName(13);
 console.log(res); // 输出：Enter
 ```
 
 ---
 
-### \_.getKeyCode(keyname)
+### getKeyCode(keyname)
 
 根据 keyname 获得键值
 
@@ -36,6 +38,8 @@ console.log(res); // 输出：Enter
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getKeyCode("Enter");
+import { getKeyCode } from "@ivu-web/util";
+
+let res = getKeyCode("Enter");
 console.log(res); // 输出：13
 ```

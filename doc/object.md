@@ -2,7 +2,7 @@
 
 ## 对象转换
 
-### \_.mapToObject(map)
+### mapToObject(map)
 
 map 转 object
 
@@ -17,13 +17,15 @@ map 转 object
 - #### 示例
 
 ```javascript
-let obj = LimeUtil.mapToObject(map);
+import { mapToObject } from "@ivu-web/util";
+
+let obj = mapToObject(map);
 console.log(obj); // 输出：obj对象
 ```
 
 ---
 
-### \_.mapToJson(map)
+### mapToJson(map)
 
 map 转 json 字符串
 
@@ -38,13 +40,15 @@ map 转 json 字符串
 - #### 示例
 
 ```javascript
-let json = LimeUtil.mapToJson(map);
+import { mapToJson } from "@ivu-web/util";
+
+let json = mapToJson(map);
 console.log(json); // 输出：json字符串
 ```
 
 ---
 
-### \_.objectToMap(obj)
+### objectToMap(obj)
 
 object 转 map
 
@@ -59,13 +63,15 @@ object 转 map
 - #### 示例
 
 ```javascript
-let map = LimeUtil.objectToMap(obj);
+import { objectToMap } from "@ivu-web/util";
+
+let map = objectToMap(obj);
 console.log(map); // 输出：map对象
 ```
 
 ---
 
-### \_.jsonToMap(json)
+### jsonToMap(json)
 
 json 字符串转 map
 
@@ -80,13 +86,15 @@ json 字符串转 map
 - #### 示例
 
 ```javascript
-let map = LimeUtil.jsonToMap(json);
+import { jsonToMap } from "@ivu-web/util";
+
+let map = jsonToMap(json);
 console.log(map); // 输出：map对象
 ```
 
 ---
 
-### \_.stringifyJson(json)
+### stringifyJson(json)
 
 json 对象转 json 字符串
 
@@ -101,13 +109,15 @@ json 对象转 json 字符串
 - #### 示例
 
 ```javascript
-let str = LimeUtil.stringifyJson(json);
+import { stringifyJson } from "@ivu-web/util";
+
+let str = stringifyJson(json);
 console.log(obj); // 输出：json字符串
 ```
 
 ---
 
-### \_.parseJson(json)
+### parseJson(json)
 
 json 字符串转 json 对象
 
@@ -122,17 +132,18 @@ json 字符串转 json 对象
 - #### 示例
 
 ```javascript
-let obj = LimeUtil.parseJson(json);
+import { parseJson } from "@ivu-web/util";
+
+let obj = parseJson(json);
 console.log(obj); // 输出：obj对象
 ```
 
 ---
 
-<!-- 数据拷贝，对比，合并等操作 -->
 
 ## 数据拷贝，对比，合并等操作
 
-### \_.clone(source)
+### clone(source)
 
 浅拷贝数据
 
@@ -147,14 +158,16 @@ console.log(obj); // 输出：obj对象
 - #### 示例
 
 ```javascript
+import { clone } from "@ivu-web/util";
+
 let obj = {id: 1, name: "test"};
-let newObj = LimeUtil.clone(obj);
+let newObj = clone(obj);
 console.log(newObj); // 输出：浅拷贝后的对象
 ```
 
 ---
 
-### \_.cloneDeep(source)
+### cloneDeep(source)
 
 深拷贝数据
 
@@ -169,20 +182,22 @@ console.log(newObj); // 输出：浅拷贝后的对象
 - #### 示例
 
 ```javascript
+import { cloneDeep } from "@ivu-web/util";
+
 // 对象
 let obj = {id: 1, name: "test"};
-let newObj = LimeUtil.cloneDeep(obj);
+let newObj = cloneDeep(obj);
 console.log(newObj); // 输出：深拷贝后的对象
 
 // 数组对象
 let list = [{id: 1, name: "test"}];
-let newList = LimeUtil.cloneDeep(list);
+let newList = cloneDeep(list);
 console.log(newList); // 输出：深拷贝后的数组对象
 ```
 
 ---
 
-### \_.objectEquals(obj1, obj2)
+### objectEquals(obj1, obj2)
 
 比较两个对象是否相等  
 `方法只能对比简单的对象，不能包含function，另外对象的属性顺序不一致也是相等的`
@@ -199,17 +214,19 @@ console.log(newList); // 输出：深拷贝后的数组对象
 - #### 示例
 
 ```javascript
+import { objectEquals } from "@ivu-web/util";
+
 // 场景1
 let obj1 = {id: 1, name: "test"};
 let obj2 = {id: 1, name: "test"};
-let flag = LimeUtil.objectEquals(obj1, obj2);
+let flag = objectEquals(obj1, obj2);
 console.log(flag); // 输出：true
 
 // 场景2
 // 属性顺序不同也是会当做相等的
 let obj1 = {id: 1, name: "test"};
 let obj2 = {name: "test", id: 1};
-let flag = LimeUtil.objectEquals(obj1, obj2);
+let flag = objectEquals(obj1, obj2);
 console.log(flag); // 输出：true
 
 // 场景3
@@ -222,13 +239,13 @@ let obj2 = {
     name: "test", id: 1, say: function () {
     }
 };
-let flag = LimeUtil.objectEquals(obj1, obj2);
+let flag = objectEquals(obj1, obj2);
 console.log(flag); // 输出：false
 ```
 
 ---
 
-### \_.merge(target)
+### merge(target)
 
 合并对象
 
@@ -244,21 +261,23 @@ console.log(flag); // 输出：false
 - #### 示例
 
 ```javascript
+import { merge } from "@ivu-web/util";
+
 let obj1 = {a: 1};
 let obj2 = {b: 2};
 
 // 1.目标对象如果是obj1，则原obj1对象也会改变
-console.log(LimeUtil.merge(obj1, obj2)); // 输出：{a: 1, b: 2}
+console.log(merge(obj1, obj2)); // 输出：{a: 1, b: 2}
 console.log(obj1); // 输出：{a: 1, b: 2}
 
 // 2.目标对象如果是空的，则会都合并到目标空对象上，不会影响原对象
-console.log(LimeUtil.merge({}, obj1, obj2)); // 输出：{a: 1, b: 2}
+console.log(merge({}, obj1, obj2)); // 输出：{a: 1, b: 2}
 console.log(obj1); // 输出：{a: 1} 并未改变原对象
 ```
 
 ## 根据字符串属性路径操作目标对象
 
-### \_.getTargetValueByPath(target, path = "data")
+### getTargetValueByPath(target, path = "data")
 
 根据字符串属性路径获取目标对象的值
 
@@ -274,13 +293,15 @@ console.log(obj1); // 输出：{a: 1} 并未改变原对象
 - #### 示例
 
 ```javascript
+import { getTargetValueByPath } from "@ivu-web/util";
+
 let res = {code: 200, data: {rows: [], pages: {current: 1, pageSize: 20}}}
-LimeUtil.getTargetValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
+getTargetValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
 ```
 
 ---
 
-### \_.setTargetValueByPath(target, path = "data")
+### setTargetValueByPath(target, path = "data")
 
 根据字符串属性路径设置目标对象的值
 
@@ -297,6 +318,8 @@ LimeUtil.getTargetValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
 - #### 示例
 
 ```javascript
+import { setTargetValueByPath } from "@ivu-web/util";
+
 let res = {code: 200, data: {rows: [], pages: {current: 1, pageSize: 20}}}
-LimeUtil.setTargetValueByPath(res, 'data.pages.pageSize', 30); // 打印res对象会发现pageSize的值改为了30
+setTargetValueByPath(res, 'data.pages.pageSize', 30); // 打印res对象会发现pageSize的值改为了30
 ```

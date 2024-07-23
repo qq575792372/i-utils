@@ -1,10 +1,9 @@
 # 微信小程序工具库 Weapp
 
-<!-- 缓存处理-同步 -->
 
 ## 缓存处理（同步）
 
-### \_.setStorageSync(key, data)
+### setStorageSync(key, data)
 
 设置缓存
 
@@ -20,12 +19,14 @@
 - #### 示例
 
 ```javascript
-let res = LimeUtil.setStorageSync("name", "小红");
+import { setStorageSync } from "@ivu-web/util";
+
+let res = setStorageSync("name", "小红");
 ```
 
 ---
 
-### \_.getStorageSync(key)
+### getStorageSync(key)
 
 获得缓存数据
 
@@ -40,13 +41,15 @@ let res = LimeUtil.setStorageSync("name", "小红");
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getStorageSync("name");
+import { getStorageSync } from "@ivu-web/util";
+
+let res = getStorageSync("name");
 console.log(res); // 输出：小红
 ```
 
 ---
 
-### \_.getStorageInfoSync()
+### getStorageInfoSync()
 
 获得缓存信息
 
@@ -61,13 +64,15 @@ console.log(res); // 输出：小红
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getStorageInfoSync("name");
+import { getStorageInfoSync } from "@ivu-web/util";
+
+let res = getStorageInfoSync("name");
 console.log(res); // 输出：{currentSize: 0, errMsg:"getStorageInfo:ok", key: [], limitSize: 0}
 ```
 
 ---
 
-### \_.removeStorageSync(key)
+### removeStorageSync(key)
 
 删除缓存数据
 
@@ -82,12 +87,14 @@ console.log(res); // 输出：{currentSize: 0, errMsg:"getStorageInfo:ok", key: 
 - #### 示例
 
 ```javascript
-LimeUtil.removeStorageSync("name");
+import { removeStorageSync } from "@ivu-web/util";
+
+removeStorageSync("name");
 ```
 
 ---
 
-### \_.clearStorageSync()
+### clearStorageSync()
 
 清空所有缓存数据
 
@@ -102,16 +109,17 @@ LimeUtil.removeStorageSync("name");
 - #### 示例
 
 ```javascript
-LimeUtil.clearStorageSync();
+import { clearStorageSync } from "@ivu-web/util";
+
+clearStorageSync();
 ```
 
-<!-- 缓存处理（异步） -->
 
 ## 缓存处理（异步）
 
 使用 `Promise` 封装小程序的 Api，`then / catch / finally` 分别对应小程序的 `success / fail / complete` 方法处理。
 
-### \_.setStorage({ key, data, encrypt = false })
+### setStorage({ key, data, encrypt = false })
 
 设置缓存
 
@@ -128,7 +136,9 @@ LimeUtil.clearStorageSync();
 - #### 示例
 
 ```javascript
-LimeUtil.setStorage({
+import { setStorage } from "@ivu-web/util";
+
+setStorage({
   key: "name",
   data: "小红",
 })
@@ -145,7 +155,7 @@ LimeUtil.setStorage({
 
 ---
 
-### \_.getStorage({ key, encrypt = false })
+### getStorage({ key, encrypt = false })
 
 获得缓存数据
 
@@ -161,7 +171,9 @@ LimeUtil.setStorage({
 - #### 示例
 
 ```javascript
-LimeUtil.getStorage({
+import { getStorage } from "@ivu-web/util";
+
+getStorage({
   key: "name",
 })
   .then((res) => {
@@ -177,7 +189,7 @@ LimeUtil.getStorage({
 
 ---
 
-### \_.getStorageInfo()
+### getStorageInfo()
 
 获得缓存信息
 
@@ -190,7 +202,9 @@ LimeUtil.getStorage({
 - #### 示例
 
 ```javascript
-LimeUtil.getStorageInfo()
+import { getStorageInfo } from "@ivu-web/util";
+
+getStorageInfo()
   .then((res) => {
     console.log("获取成功", res);
   })
@@ -204,7 +218,7 @@ LimeUtil.getStorageInfo()
 
 ---
 
-### \_.removeStorage({ key })
+### removeStorage({ key })
 
 删除缓存数据
 
@@ -219,7 +233,9 @@ LimeUtil.getStorageInfo()
 - #### 示例
 
 ```javascript
-LimeUtil.removeStorage({
+import { removeStorage } from "@ivu-web/util";
+
+removeStorage({
   key: "name",
 })
   .then((res) => {
@@ -235,7 +251,7 @@ LimeUtil.removeStorage({
 
 ---
 
-### \_.clearStorage()
+### clearStorage()
 
 清空所有缓存数据
 
@@ -250,7 +266,9 @@ LimeUtil.removeStorage({
 - #### 示例
 
 ```javascript
-LimeUtil.clearStorage({})
+import { clearStorage } from "@ivu-web/util";
+
+clearStorage({})
   .then((res) => {
     console.log("清除成功", res);
   })

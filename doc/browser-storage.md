@@ -1,6 +1,6 @@
 # 浏览器 Storage
 
-### \_.isSupportStorage()
+### isSupportStorage()
 
 浏览器是否支持 Storage
 
@@ -15,17 +15,17 @@
 - #### 示例
 
 ```javascript
-let res = LimeUtil.isSupportStorage();
+import { isSupportStorage } from "@ivu-web/util";
+
+let res = isSupportStorage();
 console.log(res); // 输出：true
 ```
 
 ---
 
-<!-- localStorage存储 -->
-
 ## localStorage 存储
 
-### \_.getLocalStorage(key)
+### getLocalStorage(key)
 
 通过 key 从 localStorage 缓存中获取数据
 
@@ -40,13 +40,15 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getLocalStorage("id");
+import { getLocalStorage } from "@ivu-web/util";
+
+let res = getLocalStorage("id");
 console.log(res); // 输出：1
 ```
 
 ---
 
-### \_.setLocalStorage(key)
+### setLocalStorage(key)
 
 设置 localStorage 缓存数据
 
@@ -62,12 +64,14 @@ console.log(res); // 输出：1
 - #### 示例
 
 ```javascript
-LimeUtil.setLocalStorage("id");
+import { setLocalStorage } from "@ivu-web/util";
+
+setLocalStorage("id");
 ```
 
 ---
 
-### \_.removeLocalStorage(key)
+### removeLocalStorage(key)
 
 通过 key 从 localStorage 缓存中删除数据
 
@@ -82,12 +86,14 @@ LimeUtil.setLocalStorage("id");
 - #### 示例
 
 ```javascript
-LimeUtil.removeLocalStorage("id");
+import { removeLocalStorage } from "@ivu-web/util";
+
+removeLocalStorage("id");
 ```
 
 ---
 
-### \_.clearLocalStorage()
+### clearLocalStorage()
 
 清空 localStorage 缓存中所有数据
 
@@ -102,16 +108,16 @@ LimeUtil.removeLocalStorage("id");
 - #### 示例
 
 ```javascript
-LimeUtil.clearLocalStorage();
+import { clearLocalStorage } from "@ivu-web/util";
+
+clearLocalStorage();
 ```
 
 ---
 
-<!-- sessionStorage存储 -->
-
 ## sessionStorage 存储
 
-### \_.getSessionStorage(key)
+### getSessionStorage(key)
 
 通过 key 从 sessionStorage 缓存中获取数据
 
@@ -126,13 +132,15 @@ LimeUtil.clearLocalStorage();
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getSessionStorage("id");
+import { sessionStorage } from "@ivu-web/util";
+
+let res = getSessionStorage("id");
 console.log(res); // 输出：1
 ```
 
 ---
 
-### \_.setSessionStorage(key)
+### setSessionStorage(key)
 
 设置 sessionStorage 缓存数据
 
@@ -148,12 +156,14 @@ console.log(res); // 输出：1
 - #### 示例
 
 ```javascript
-LimeUtil.setSessionStorage("id");
+import { setSessionStorage } from "@ivu-web/util";
+
+setSessionStorage("id");
 ```
 
 ---
 
-### \_.removeSessionStorage(key)
+### removeSessionStorage(key)
 
 通过 key 从 sessionStorage 缓存中删除数据
 
@@ -168,12 +178,14 @@ LimeUtil.setSessionStorage("id");
 - #### 示例
 
 ```javascript
-LimeUtil.removeSessionStorage("id");
+import { removeSessionStorage } from "@ivu-web/util";
+
+removeSessionStorage("id");
 ```
 
 ---
 
-### \_.clearSessionStorage()
+### clearSessionStorage()
 
 清空 sessionStorage 缓存中所有数据
 
@@ -188,5 +200,7 @@ LimeUtil.removeSessionStorage("id");
 - #### 示例
 
 ```javascript
-LimeUtil.clearSessionStorage();
+import { clearSessionStorage } from "@ivu-web/util";
+
+clearSessionStorage();
 ```

@@ -1,10 +1,8 @@
 # 文件 File
 
-<!-- 文件信息处理 -->
-
 ## 文件信息处理
 
-### \_.formatFileSize(size)
+### formatFileSize(size)
 
 格式化文件大小自动转为 B，KB，MB，GB
 
@@ -19,13 +17,15 @@
 - #### 示例
 
 ```javascript
-let res = LimeUtil.formatFileSize(102433);
+import { formatFileSize } from "@ivu-web/util";
+
+let res = formatFileSize(102433);
 console.log(res); // 输出：100.03KB
 ```
 
 ---
 
-### \_.getFileName(fileName)
+### getFileName(fileName)
 
 获得文件名称
 
@@ -40,13 +40,15 @@ console.log(res); // 输出：100.03KB
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFileName("测试图片.jpg");
+import { getFileName } from "@ivu-web/util";
+
+let res = getFileName("测试图片.jpg");
 console.log(res); // 输出：测试图片
 ```
 
 ---
 
-### \_.getFileSuffix(value)
+### getFileSuffix(value)
 
 获得文件后缀名
 
@@ -61,20 +63,20 @@ console.log(res); // 输出：测试图片
 - #### 示例
 
 ```javascript
-let res = LimeUtil.getFileSuffix("测试图片.jpg");
+import { getFileSuffix } from "@ivu-web/util";
+
+let res = getFileSuffix("测试图片.jpg");
 console.log(res); // 输出：jpg
 
-let res1 = LimeUtil.getFileSuffix("http://xxx.com/mytest.jpg");
+let res1 = getFileSuffix("http://xxx.com/mytest.jpg");
 console.log(res1); // 输出：mytest
 ```
 
 ---
 
-<!-- 文件转换 -->
-
 ## 文件转换
 
-### \_.fileToBlob(file)
+### fileToBlob(file)
 
 file 转 blob
 
@@ -89,14 +91,16 @@ file 转 blob
 - #### 示例
 
 ```javascript
-LimeUtil.fileToBlob(file).then((blob) => {
+import { fileToBlob } from "@ivu-web/util";
+
+fileToBlob(file).then((blob) => {
   console.log(blob); // 输出：blob数据
 });
 ```
 
 ---
 
-### \_.fileToBase64(file)
+### fileToBase64(file)
 
 file 转 base64
 
@@ -111,14 +115,16 @@ file 转 base64
 - #### 示例
 
 ```javascript
-LimeUtil.fileToBase64(file).then((base64) => {
+import { fileToBase64 } from "@ivu-web/util";
+
+fileToBase64(file).then((base64) => {
   console.log(base64); // 输出：base64数据
 });
 ```
 
 ---
 
-### \_.fileToUrl(file)
+### fileToUrl(file)
 
 file 转 url
 `适用于本地上传图片并预览，需要注意 URL.revokeObjectURL(file) 内存释放`
@@ -134,14 +140,16 @@ file 转 url
 - #### 示例
 
 ```javascript
-LimeUtil.fileToUrl(file).then((url) => {
+import { fileToUrl } from "@ivu-web/util";
+
+fileToUrl(file).then((url) => {
   console.log(url); // 输出：base64数据
 });
 ```
 
 ---
 
-### \_.blobToFile(blob, fileName = Date.now())
+### blobToFile(blob, fileName = Date.now())
 
 blob 转 file
 
@@ -157,14 +165,16 @@ blob 转 file
 - #### 示例
 
 ```javascript
-LimeUtil.blobToFile(blob).then((file) => {
+import { blobToFile } from "@ivu-web/util";
+
+blobToFile(blob).then((file) => {
   console.log(file); // 输出：file数据
 });
 ```
 
 ---
 
-### \_.blobToBase64(blob)
+### blobToBase64(blob)
 
 blob 转 base64
 
@@ -179,14 +189,16 @@ blob 转 base64
 - #### 示例
 
 ```javascript
-LimeUtil.blobToBase64(blob).then((base64) => {
+import { blobToBase64 } from "@ivu-web/util";
+
+blobToBase64(blob).then((base64) => {
   console.log(base64); // 输出：base64数据
 });
 ```
 
 ---
 
-### \_.base64ToFile(base64, fileName = Date.now())
+### base64ToFile(base64, fileName = Date.now())
 
 base64 转 file
 
@@ -202,14 +214,16 @@ base64 转 file
 - #### 示例
 
 ```javascript
-LimeUtil.base64ToFile(base64).then((file) => {
+import { base64ToFile } from "@ivu-web/util";
+
+base64ToFile(base64).then((file) => {
   console.log(file); // 输出：file数据
 });
 ```
 
 ---
 
-### \_.base64ToBlob(base64)
+### base64ToBlob(base64)
 
 base64 转成 blob
 
@@ -224,14 +238,16 @@ base64 转成 blob
 - #### 示例
 
 ```javascript
-LimeUtil.base64ToBlob(base64).then((blob) => {
+import { base64ToBlob } from "@ivu-web/util";
+
+base64ToBlob(base64).then((blob) => {
   console.log(blob); // 输出：blob数据
 });
 ```
 
 ---
 
-### \_.urlToBase64(imgUrl)
+### urlToBase64(imgUrl)
 
 图片 url 转 base64
 
@@ -246,18 +262,18 @@ LimeUtil.base64ToBlob(base64).then((blob) => {
 - #### 示例
 
 ```javascript
-LimeUtil.urlToBase64(imgUrl).then((base64) => {
+import { urlToBase64 } from "@ivu-web/util";
+
+urlToBase64(imgUrl).then((base64) => {
   console.log(base64); // 输出：base64数据
 });
 ```
 
 ---
 
-<!-- 下载文件 -->
-
 ## 下载文件
 
-### \_.downloadBlobFile(blob, fileName)
+### downloadBlobFile(blob, fileName)
 
 下载 blob 格式的文件
 
@@ -273,13 +289,15 @@ LimeUtil.urlToBase64(imgUrl).then((base64) => {
 - #### 示例
 
 ```javascript
+import { downloadBlobFile } from "@ivu-web/util";
+
 // 调用该方法，浏览器会自动弹出下载文件
-LimeUtil.downloadBlobFile(blob, "test_file");
+downloadBlobFile(blob, "test_file");
 ```
 
 ---
 
-### \_.downloadFileUrl(fileUrl, fileName)
+### downloadFileUrl(fileUrl, fileName)
 
 通过文件 url 地址下载
 
@@ -295,6 +313,8 @@ LimeUtil.downloadBlobFile(blob, "test_file");
 - #### 示例
 
 ```javascript
+import { downloadFileUrl } from "@ivu-web/util";
+
 // 调用该方法，浏览器会自动弹出下载文件
-LimeUtil.downloadFileUrl("http://wwww.123.com/测试文件.txt", "test_file");
+downloadFileUrl("http://wwww.123.com/测试文件.txt", "test_file");
 ```

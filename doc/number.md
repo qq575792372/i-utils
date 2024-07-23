@@ -1,6 +1,6 @@
 # 数字 Number
 
-### \_.parseInt(value, radix = 10)
+### parseInt(value, radix = 10)
 
 转为数字类型  
 `解决某些旧浏览器在使用 parseInt('08') 等 0 开头，由于进制数导致转换是 0 的问题`
@@ -17,6 +17,8 @@
 - #### 示例
 
 ```javascript
-let res = LimeUtil.parseInt("08");
+import { parseInt } from "@ivu-web/util";
+
+let res = parseInt("08");
 console.log(res); // 输出：8
 ```
