@@ -3,10 +3,11 @@
   "moduleName": "iUtils",
   "version": "1.0.0",
   "description": "前端模块化 JavaScript 工具库",
-  "main": "./lib/index.umd.min.js",
-  "module": "./es/index.mjs",
   "author": "<575792372@qq.com>",
   "license": "MIT",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/es/index.mjs",
+  "unpkg": "lib/index.full.umd.min.js",
   "type": "module",
   "scripts": {
     "build": "node ./build/build.js"
@@ -27,26 +28,27 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/qq575792372/lime-util.git"
-  },
-  "bugs": {
-    "url": "https://github.com/qq575792372/lime-util/issues"
-  },
-  "homepage": "https://github.com/qq575792372/lime-util#readme",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
+  "keywords": [
+    "i-utils",
+    "iUtils",
+    "js tools",
+    "js工具库",
+    "前端工具库",
+    "JavaScript工具库"
+  ],
   "files": [
     "dist"
   ],
-  "keywords": [
-    "js-util",
-    "js工具库",
-    "模块化js库",
-    "前端工具库",
-    "JavaScript 工具库"
-  ]
+  "homepage": "https://github.com/qq575792372/i-utils#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qq575792372/i-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qq575792372/i-utils/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }
