@@ -10,17 +10,17 @@
 
 <!-- 使用module模式对源码进行测试，用webstorm启动服务 -->
 <script type="module">
-  import * as iUtil from "../src/index.js";
+  import * as iUtils from "../src/index.js";
 
-  iUtil.loadedTest();
+  iUtils.loadedTest();
 
   // 统计api的个数
   let num = 0;
-  Object.keys(iUtil).forEach((key) => {
-    if (typeof iUtil[key] === "function" && key !== "loadedTest") {
+  Object.keys(iUtils).forEach((key) => {
+    if (typeof iUtils[key] === "function" && key !== "loadedTest") {
       num++;
     }
   });
-  console.log(`iUtil一共 ${num} 个api`);
+  console.log(`iUtils一共 ${num} 个api`);
 </script>
 </html>

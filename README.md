@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/xe-utils.svg?style=flat-square)](https://github.com/qq575792372/lime-util)
 [![npm license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-🔥 **iUtil** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **281** ⚡️ 个 Api
+🔥 **i-utils** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **281** ⚡️ 个 Api
 方法，支持`esm模块`和`umd浏览器环境`使用
 ，工具库包含了开发中经常用到的一些模块方法集合，如`字符串`，`数组`，`浏览器缓存`，`浏览器Cookie`，`浏览器剪切板`，`Dom处理`，`日期工具`，`加解密`，`数学计算`，`文件处理`，`正则校验`，`身份证信息`,`微信小程序工具库`
 等等。
@@ -14,13 +14,13 @@
 
 ```bash
 # npm
-npm i @ivu-web/util --save
+npm i @ivujs/i-utils --save
 
 # pnpm
-pnpm i @ivu-web/util --save
+pnpm i @ivujs/i-utils --save
 
 # yarn
-yarn add @ivu-web/util --save
+yarn add @ivujs/i-utils --save
 ```
 
 ### 🎨 使用
@@ -29,14 +29,14 @@ yarn add @ivu-web/util --save
 
 ```javascript
 // 按需引入
-import { loadedTest } from "@ivu-web/util";
+import { loadedTest } from "@ivujs/i-utils";
 
 loadedTest();
 
 // 全部引入
-import * as iUtil from "@ivu-web/util";
+import * as iUtils from "@ivujs/i-utils";
 
-iUtil.loadedTest();
+iUtils.loadedTest();
 ```
 
 #### 2. umd 浏览器环境引入方式
@@ -44,9 +44,9 @@ iUtil.loadedTest();
 ```javascript
 <!-- 将工具库下面 dist/lib/index.full.umd.js 文件拷贝出来引入 -->
 <script src="dist/lib/index.full.umd.js"></script>;
-<!-- 这里使用的实际是全局的 window.iUtil 对象 -->
+<!-- 这里使用的实际是全局的 window.iUtils 对象 -->
 <script>
-  iUtil.loadedTest();
+  iUtils.loadedTest();
 </script>;
 ```
 
@@ -54,17 +54,17 @@ iUtil.loadedTest();
 
 ```javascript
 // 全部引入
-const iUtil = require("@ivu-web/util");
-iUtil.loadedTest();
+const iUtils = require("@ivujs/i-utils");
+iUtils.loadedTest();
 
 // 按需引入
-const { loadedTest } = require("@ivu-web/util");
+const { loadedTest } = require("@ivujs/i-utils");
 loadedTest();
 ```
 
 ### 🔨 构建
 
-工具库源码架构使用 `pnpm` 做为包管理工具，在 `packages` 目录中分为多个工程模块来构建。
+工具库源码架构使用 `pnpm` 做为包管理工具，打包后生成esm和umd可以用的包。
 
 ```bash
 # 构建包
