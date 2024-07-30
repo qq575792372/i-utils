@@ -12,7 +12,7 @@ import { inputSrc, outputCjs, outputEsm, outputLib, outputRoot } from "./build/u
 // 声明注释
 const banner = `/*
  * ${pkg.name} v${pkg.version}
- * Copyright 2024-${new Date().getFullYear()}, ${pkg.author}
+ * Copyright 2021-${new Date().getFullYear()}, ${pkg.author}
  * Released under the ${pkg.license} License.
  */`;
 

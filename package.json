@@ -3,7 +3,7 @@
   "moduleName": "iUtils",
   "version": "1.0.0",
   "description": "前端模块化 JavaScript 工具库",
-  "author": "<575792372@qq.com>",
+  "author": "<gao911222@163.com>",
   "license": "MIT",
   "main": "dist/cjs/index.cjs",
   "module": "dist/es/index.mjs",
