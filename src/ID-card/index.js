@@ -1,4 +1,5 @@
-import { isEmpty } from "../validate";
+import { isNull } from "../validate";
+import { parseDate, getAge } from "../date/index.js";
 
 /**
  * 根据身份证号码获取信息
@@ -6,11 +7,73 @@ import { isEmpty } from "../validate";
  * @param {String} idCard 身份证号码，支持一代15位和二代18位
  * @returns {Object} 返回身份证信息对象
  */
-export function getIdCardInfo(idCard) {
-  if (isEmpty(idCard)) return;
-  const info = {};
-  // 省份
-  const area = {
+export function getInfoByIDCard(idCard) {
+  if (isNull(idCard)) return;
+  return {
+    // 省份
+    province: getProvinceByIDCard(idCard),
+    // 生日
+    birthday: getBirthdayByIDCard(idCard),
+    // 年龄
+    age: getAgeByIDCard(idCard),
+    // 性别
+    sex: getSexByIDCard(idCard),
+  };
+}
+
+/**
+ * 根据身份证号码获得生日
+ * @param {String} idCard 身份证号码，支持一代15位和二代18位
+ * @returns {String} 返回生日
+ */
+export function getBirthdayByIDCard(idCard) {
+  if (isNull(idCard)) return;
+  // 15位身份证
+  if (idCard.length === 15) {
+    return "19" + idCard.substring(6, 8) + "-" + idCard.substring(8, 10) + "-" + idCard.substring(10, 12);
+  }
+  // 18位身份证
+  if (idCard.length === 18) {
+    return idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
+  }
+}
+
+/**
+ * 根据身份证号码获得年龄
+ * @param {String} idCard 身份证号码，支持一代15位和二代18位
+ * @returns {Number} 返回年龄
+ */
+export function getAgeByIDCard(idCard) {
+  if (isNull(idCard)) return;
+  let birthday = getBirthdayByIDCard(idCard);
+  return getAge(parseDate(birthday));
+}
+
+/**
+ * 根据身份证号码获得性别
+ * @param {String} idCard 身份证号码，支持一代15位和二代18位
+ * @returns {String} 返回性别
+ */
+export function getSexByIDCard(idCard) {
+  if (isNull(idCard)) return;
+  // 15位身份证
+  if (idCard.length === 15) {
+    return Number(idCard.substring(14)) % 2 === 0 ? "女" : "男";
+  }
+  // 18位身份证
+  if (idCard.length === 18) {
+    return Number(idCard.substring(16, 17)) % 2 === 0 ? "女" : "男";
+  }
+}
+
+/**
+ * 根据身份证号码获得省份
+ * @param {String} idCard 身份证号码，支持一代15位和二代18位
+ * @returns {String} 返回省份
+ */
+export function getProvinceByIDCard(idCard) {
+  if (isNull(idCard)) return;
+  const province = {
     11: "北京",
     12: "天津",
     13: "河北",
@@ -47,62 +110,5 @@ export function getIdCardInfo(idCard) {
     82: "澳门",
     91: "国外",
   };
-  info.province = area[idCard.substring(0, 2)];
-
-  // 15位身份证
-  if (idCard.length === 15) {
-    // 生日
-    info.birthday = "19" + idCard.substring(6, 8) + "-" + idCard.substring(8, 10) + "-" + idCard.substring(10, 12);
-    // 年龄
-    info.age = getAge(info.birthday);
-    // 性别
-    info.sex = Number(idCard.substring(14)) % 2 === 0 ? "女" : "男";
-  }
-  // 18位身份证
-  if (idCard.length === 18) {
-    // 生日
-    info.birthday = idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
-    // 年龄
-    info.age = getAge(info.birthday);
-    // 性别
-    info.sex = Number(idCard.substring(16, 17)) % 2 === 0 ? "女" : "男";
-  }
-  return info;
-}
-
-/**
- * 通过日期计算周岁年龄
- * @param {String} dateStr 日期字符串
- * @returns {Number} 返回周岁年龄
- */
-export function getAge(dateStr) {
-  if (isEmpty(dateStr)) return 0;
-  // age
-  let age = 0;
-  // 传参日期
-  let dateArray = dateStr.split("-");
-  let birthYear = Number(dateArray[0]),
-    birthMonth = Number(dateArray[1]),
-    birthDay = Number(dateArray[2]);
-  // 当前的日期
-  let nowDate = new Date();
-  let nowYear = nowDate.getFullYear(),
-    nowMonth = nowDate.getMonth() + 1,
-    nowDay = nowDate.getDate();
-
-  // 出生年份需要小于当年，否则是0岁
-  let diffAge = nowYear - birthYear;
-  if (diffAge > 0) {
-    if (nowMonth - birthMonth <= 0) {
-      // 日期差小于0，证明还没满周岁，需要减1
-      if (nowDay - birthDay < 0) {
-        age = diffAge - 1;
-      } else {
-        age = diffAge;
-      }
-    } else {
-      age = diffAge;
-    }
-  }
-  return age;
+  return province[idCard.substring(0, 2)];
 }

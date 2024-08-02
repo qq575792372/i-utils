@@ -17,7 +17,7 @@
 - #### 示例
 
 ```javascript
-import { arrayMin } from "@ivu-web/util";
+import { arrayMin } from "@ivujs/util";
 
 let res = arrayMin([1, 3, 4, 8]);
 console.log(res); // 输出：1
@@ -40,7 +40,7 @@ console.log(res); // 输出：1
 - #### 示例
 
 ```javascript
-import { arrayMax } from "@ivu-web/util";
+import { arrayMax } from "@ivujs/util";
 
 let res = arrayMax([1, 3, 4, 8]);
 console.log(res); // 输出：8
@@ -63,7 +63,7 @@ console.log(res); // 输出：8
 - #### 示例
 
 ```javascript
-import { arraySum } from "@ivu-web/util";
+import { arraySum } from "@ivujs/util";
 
 let res = arraySum([1, 3, 4, 8]);
 console.log(res); // 输出：16
@@ -86,7 +86,7 @@ console.log(res); // 输出：16
 - #### 示例
 
 ```javascript
-import { arrayAvg } from "@ivu-web/util";
+import { arrayAvg } from "@ivujs/util";
 
 let res = arrayAvg([1, 3, 4, 8]);
 console.log(res); // 输出：4
@@ -110,7 +110,7 @@ console.log(res); // 输出：4
 - #### 示例
 
 ```javascript
-import { inArray } from "@ivu-web/util";
+import { inArray } from "@ivujs/util";
 
 let res = inArray(1, [1, 2, 3]);
 console.log(res); // 输出：true
@@ -134,7 +134,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { arrayEquals } from "@ivu-web/util";
+import { arrayEquals } from "@ivujs/util";
 
 // 场景1
 let array1 = [1, 2, 3];
@@ -165,7 +165,7 @@ console.log(arrayEquals(array1, array2)); // 输出：false
 - #### 示例
 
 ```javascript
-import { arrayCreate } from "@ivu-web/util";
+import { arrayCreate } from "@ivujs/util";
 
 let res = arrayCreate(3);
 console.log(res); // 输出：[0,1,2]
@@ -190,7 +190,7 @@ console.log(res); // 输出：[0,1,2]
 - #### 示例
 
 ```javascript
-import { arrayInsert } from "@ivu-web/util";
+import { arrayInsert } from "@ivujs/util";
 
 let res = arrayInsert([1, 2], 1, "MM");
 console.log(res); // 输出：[1, 'MM', 2]
@@ -215,7 +215,7 @@ console.log(res); // 输出：[1, 'MM', 2]
 - #### 示例
 
 ```javascript
-import { arrayInsertBefore } from "@ivu-web/util";
+import { arrayInsertBefore } from "@ivujs/util";
 
 let res = arrayInsertBefore([1, 2], 1, "MM");
 console.log(res); // 输出：[1, 'MM', 2]
@@ -240,7 +240,7 @@ console.log(res); // 输出：[1, 'MM', 2]
 - #### 示例
 
 ```javascript
-import { arrayInsertAfter } from "@ivu-web/util";
+import { arrayInsertAfter } from "@ivujs/util";
 
 let res = arrayInsertAfter([1, 2], 1, "MM");
 console.log(res); // 输出：[1, 2, 'MM']
@@ -264,7 +264,7 @@ console.log(res); // 输出：[1, 2, 'MM']
 - #### 示例
 
 ```javascript
-import { arrayRemove } from "@ivu-web/util";
+import { arrayRemove } from "@ivujs/util";
 
 let res = arrayRemove([1, 2], 1);
 console.log(res); // 输出：[1]
@@ -288,7 +288,7 @@ console.log(res); // 输出：[1]
 - #### 示例
 
 ```javascript
-import { arrayRemoveBefore } from "@ivu-web/util";
+import { arrayRemoveBefore } from "@ivujs/util";
 
 let res = arrayRemoveBefore([1, 2], 1);
 console.log(res); // 输出：[2]
@@ -312,7 +312,7 @@ console.log(res); // 输出：[2]
 - #### 示例
 
 ```javascript
-import { arrayRemoveAfter } from "@ivu-web/util";
+import { arrayRemoveAfter } from "@ivujs/util";
 
 let res = arrayRemoveAfter([1, 2], 0);
 console.log(res); // 输出：[1]
@@ -336,7 +336,7 @@ console.log(res); // 输出：[1]
 - #### 示例
 
 ```javascript
-import { arrayTop } from "@ivu-web/util";
+import { arrayTop } from "@ivujs/util";
 
 let res = arrayTop([1, 2, 3], 2);
 console.log(res); // 输出：[3,1,2]
@@ -360,7 +360,7 @@ console.log(res); // 输出：[3,1,2]
 - #### 示例
 
 ```javascript
-import { arrayBottom } from "@ivu-web/util";
+import { arrayBottom } from "@ivujs/util";
 
 let res = arrayBottom([1, 2, 3], 1);
 console.log(res); // 输出：[1,3,2]
@@ -384,7 +384,7 @@ console.log(res); // 输出：[1,3,2]
 - #### 示例
 
 ```javascript
-import { arrayUp } from "@ivu-web/util";
+import { arrayUp } from "@ivujs/util";
 
 let res = arrayUp([1, 2, 3], 1);
 console.log(res); // 输出：[2,1,3]
@@ -408,7 +408,7 @@ console.log(res); // 输出：[2,1,3]
 - #### 示例
 
 ```javascript
-import { arrayDown } from "@ivu-web/util";
+import { arrayDown } from "@ivujs/util";
 
 let res = arrayDown([1, 2, 3], 1);
 console.log(res); // 输出：[1,3,2]
@@ -433,7 +433,7 @@ console.log(res); // 输出：[1,3,2]
 * #### 示例
 
 ```javascript
-import { arraySwap } from "@ivu-web/util";
+import { arraySwap } from "@ivujs/util";
 
 // 第0个和第1个交换位置
 let res = arraySwap([1, 2, 3, 4], 0, 1);
@@ -458,7 +458,7 @@ console.log(res); // 输出：[2,1,3,4]
 * #### 示例
 
 ```javascript
-import { SORT, arraySort } from "@ivu-web/util";
+import { SORT, arraySort } from "@ivujs/util";
 
 // 降序
 let res = arraySort([3, 1, 2], SORT.SORT_DESC);
@@ -488,7 +488,7 @@ console.log(res); // 输出：[1,3,2]
 - #### 示例
 
 ```javascript
-import { arrayUnique } from "@ivu-web/util";
+import { arrayUnique } from "@ivujs/util";
 
 let res = arrayUnique([1, 3, 4, 2, 2, 3]);
 console.log(res); // 输出：[1,3,4,2]
@@ -512,7 +512,7 @@ console.log(res); // 输出：[1,3,4,2]
 * #### 示例
 
 ```javascript
-import { arrayShuffle } from "@ivu-web/util";
+import { arrayShuffle } from "@ivujs/util";
 
 let array = [1, 2, 3, 4];
 let res = arrayShuffle(array);
@@ -539,7 +539,7 @@ console.log(res); // 输出：[3,1,4,2]
 * #### 示例
 
 ```javascript
-import { arrayToTree } from "@ivu-web/util";
+import { arrayToTree } from "@ivujs/util";
 
 let array = [
   { id: 1, name: "节点1" },
@@ -576,7 +576,7 @@ console.log(res); // 输出：返回父子级children的节点
 * #### 示例
 
 ```javascript
-import { treeToArray } from "@ivu-web/util";
+import { treeToArray } from "@ivujs/util";
 
 let nodes = [
   {
@@ -659,7 +659,7 @@ console.log(res); // 输出：返回父子级children的节点
 - #### 示例
 
 ```javascript
-import { arrayUnion } from "@ivu-web/util";
+import { arrayUnion } from "@ivujs/util";
 
 // 无重复元素
 let array1 = [1, 2];
@@ -692,7 +692,7 @@ console.log(arrayUnion(array1, array2)); // 输出：[1, 2, 3]
 - #### 示例
 
 ```javascript
-import { arrayIntersect } from "@ivu-web/util";
+import { arrayIntersect } from "@ivujs/util";
 
 // 无重复元素
 let array1 = [1, 2, 3];
@@ -725,7 +725,7 @@ console.log(arrayIntersect(array1, array2)); // 输出：[2, 3]
 - #### 示例
 
 ```javascript
-import { arrayDifference } from "@ivu-web/util";
+import { arrayDifference } from "@ivujs/util";
 
 // 无重复元素
 let array1 = [1, 2, 3];
@@ -758,7 +758,7 @@ console.log(arrayDifference(array1, array2)); // 输出：[1, 2]
 - #### 示例
 
 ```javascript
-import { arrayComplement } from "@ivu-web/util";
+import { arrayComplement } from "@ivujs/util";
 
 // 无重复元素
 let array1 = [1, 2, 3];

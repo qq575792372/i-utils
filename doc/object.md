@@ -17,7 +17,7 @@ map 转 object
 - #### 示例
 
 ```javascript
-import { mapToObject } from "@ivu-web/util";
+import { mapToObject } from "@ivujs/util";
 
 let obj = mapToObject(map);
 console.log(obj); // 输出：obj对象
@@ -40,7 +40,7 @@ map 转 json 字符串
 - #### 示例
 
 ```javascript
-import { mapToJson } from "@ivu-web/util";
+import { mapToJson } from "@ivujs/util";
 
 let json = mapToJson(map);
 console.log(json); // 输出：json字符串
@@ -63,7 +63,7 @@ object 转 map
 - #### 示例
 
 ```javascript
-import { objectToMap } from "@ivu-web/util";
+import { objectToMap } from "@ivujs/util";
 
 let map = objectToMap(obj);
 console.log(map); // 输出：map对象
@@ -86,7 +86,7 @@ json 字符串转 map
 - #### 示例
 
 ```javascript
-import { jsonToMap } from "@ivu-web/util";
+import { jsonToMap } from "@ivujs/util";
 
 let map = jsonToMap(json);
 console.log(map); // 输出：map对象
@@ -109,7 +109,7 @@ json 对象转 json 字符串
 - #### 示例
 
 ```javascript
-import { stringifyJson } from "@ivu-web/util";
+import { stringifyJson } from "@ivujs/util";
 
 let str = stringifyJson(json);
 console.log(obj); // 输出：json字符串
@@ -132,7 +132,7 @@ json 字符串转 json 对象
 - #### 示例
 
 ```javascript
-import { parseJson } from "@ivu-web/util";
+import { parseJson } from "@ivujs/util";
 
 let obj = parseJson(json);
 console.log(obj); // 输出：obj对象
@@ -158,7 +158,7 @@ console.log(obj); // 输出：obj对象
 - #### 示例
 
 ```javascript
-import { clone } from "@ivu-web/util";
+import { clone } from "@ivujs/util";
 
 let obj = {id: 1, name: "test"};
 let newObj = clone(obj);
@@ -182,7 +182,7 @@ console.log(newObj); // 输出：浅拷贝后的对象
 - #### 示例
 
 ```javascript
-import { cloneDeep } from "@ivu-web/util";
+import { cloneDeep } from "@ivujs/util";
 
 // 对象
 let obj = {id: 1, name: "test"};
@@ -214,7 +214,7 @@ console.log(newList); // 输出：深拷贝后的数组对象
 - #### 示例
 
 ```javascript
-import { objectEquals } from "@ivu-web/util";
+import { objectEquals } from "@ivujs/util";
 
 // 场景1
 let obj1 = {id: 1, name: "test"};
@@ -261,7 +261,7 @@ console.log(flag); // 输出：false
 - #### 示例
 
 ```javascript
-import { merge } from "@ivu-web/util";
+import { merge } from "@ivujs/util";
 
 let obj1 = {a: 1};
 let obj2 = {b: 2};
@@ -293,7 +293,7 @@ console.log(obj1); // 输出：{a: 1} 并未改变原对象
 - #### 示例
 
 ```javascript
-import { getTargetValueByPath } from "@ivu-web/util";
+import { getTargetValueByPath } from "@ivujs/util";
 
 let res = {code: 200, data: {rows: [], pages: {current: 1, pageSize: 20}}}
 getTargetValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
@@ -318,7 +318,7 @@ getTargetValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
 - #### 示例
 
 ```javascript
-import { setTargetValueByPath } from "@ivu-web/util";
+import { setTargetValueByPath } from "@ivujs/util";
 
 let res = {code: 200, data: {rows: [], pages: {current: 1, pageSize: 20}}}
 setTargetValueByPath(res, 'data.pages.pageSize', 30); // 打印res对象会发现pageSize的值改为了30

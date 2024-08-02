@@ -17,7 +17,7 @@
 - #### 示例
 
 ```javascript
-import { parseInt } from "@ivu-web/util";
+import { parseInt } from "@ivujs/util";
 
 let res = parseInt("08");
 console.log(res); // 输出：8

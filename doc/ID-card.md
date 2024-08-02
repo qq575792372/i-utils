@@ -1,6 +1,6 @@
 # 身份证 ID-card
 
-### getIdCardInfo(idCard)
+### getInfoByIDCard(idCard)
 
 根据身份证号码获取信息
 
@@ -17,18 +17,18 @@
 - #### 示例
 
 ```javascript
-import { getIdCardInfo } from "@ivu-web/util";
+import { getInfoByIDCard } from "@ivujs/util";
 
 // 输出：{province: '河南', birthday: '2010-12-01', age: 11, sex: '女'}
-console.log(getIdCardInfo("412821201012012221"));
+console.log(getInfoByIDCard("412821201012012221"));
 
 // 输出：{province: '四川', birthday: '1980-02-22', age: 41, sex: '女'}
-console.log(getIdCardInfo("511702800222130"));
+console.log(getInfoByIDCard("511702800222130"));
 ```
 
-### getAge(dateStr)
+### getAgeByIDCard(dateStr)
 
-通过日期计算周岁年龄
+根据身份证号码获得年龄
 
 - #### 参数
 
@@ -41,9 +41,9 @@ console.log(getIdCardInfo("511702800222130"));
 - #### 示例
 
 ```javascript
-import { getAge } from "@ivu-web/util";
+import { getAgeByIDCard } from "@ivujs/util";
 
-let res = getAge("2000-10-10");
+let res = getAgeByIDCard("2000-10-10");
 console.log(res); // 输出：21
 ```
 

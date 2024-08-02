@@ -1,6 +1,6 @@
 // 测试加载成功方法
 export const loadedTest = function () {
-  console.log("Nice, loaded successfully!");
+  console.log("Nice, iUtils loaded successfully!");
 };
 
 // 常量集合
@@ -24,6 +24,7 @@ export * from "./math/index.js";
 export * from "./regexp/index.js";
 // 随机数
 export * from "./random/index.js";
+
 // 文件
 export * from "./file/index.js";
 // 颜色
@@ -32,14 +33,15 @@ export * from "./color/index.js";
 export * from "./validate/index.js";
 // 键盘
 export * from "./keycode/index.js";
-// 脱敏
-export * from "./desensitized/index.js";
-// id生成
+
+// 生成id
 export * from "./id/index.js";
 // md5加密
 export * from "./md5/index.js";
 // base64加解密
 export * from "./base64/index.js";
+// 脱敏
+export * from "./desensitized/index.js";
 // 身份证号码
 export * from "./ID-card/index.js";
 // 网络IP

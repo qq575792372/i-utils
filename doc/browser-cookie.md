@@ -15,7 +15,7 @@
 - #### 示例
 
 ```javascript
-import { isSupportCookie } from "@ivu-web/util";
+import { isSupportCookie } from "@ivujs/util";
 
 let res = isSupportCookie();
 console.log(res); // 输出：true
@@ -36,7 +36,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { getCookie } from "@ivu-web/util";
+import { getCookie } from "@ivujs/util";
 
 let res = getCookie("id");
 console.log(res); // 输出：1
@@ -62,7 +62,7 @@ console.log(res); // 输出：1
 - #### 示例
 
 ```javascript
-import { setCookie } from "@ivu-web/util";
+import { setCookie } from "@ivujs/util";
 
 // 设置一天过期
 setCookie("id", 1, 24 * 60 * 60 * 1000);
@@ -85,7 +85,7 @@ setCookie("id", 1, 24 * 60 * 60 * 1000);
 - #### 示例
 
 ```javascript
-import { removeCookie } from "@ivu-web/util";
+import { removeCookie } from "@ivujs/util";
 
 removeCookie("id");
 ```
@@ -107,7 +107,7 @@ removeCookie("id");
 - #### 示例
 
 ```javascript
-import { clearCookie } from "@ivu-web/util";
+import { clearCookie } from "@ivujs/util";
 
 clearCookie();
 ```

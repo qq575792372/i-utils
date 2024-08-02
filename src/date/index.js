@@ -930,7 +930,50 @@ export function getOverTime(date, lang = "zh") {
   return `${d}${DATE.OVER_TIME[lang].DAY} ${h}${DATE.OVER_TIME[lang].HOUR} ${m}${DATE.OVER_TIME[lang].MINUTE} ${s}${DATE.OVER_TIME[lang].SECOND}`;
 }
 
-/* 通过日期获得 星座和生肖 */
+/* 通过日期获得 年龄、星座和生肖 */
+
+/**
+ * 通过日期获得年龄
+ * @param {Date} date 日期参数
+ * @returns {Number} 返回周岁年龄
+ */
+export function getAge(date) {
+  let age = 0;
+  // 传参日期
+  let dateArray = formatDate(date).split("-");
+  let birthYear = Number(dateArray[0]);
+  let birthMonth = Number(dateArray[1]);
+  let birthDay = Number(dateArray[2]);
+  // 当前的日期
+  let nowDate = new Date();
+  let nowYear = nowDate.getFullYear(),
+    nowMonth = nowDate.getMonth() + 1,
+    nowDay = nowDate.getDate();
+
+  // 出生年份需要小于当年，否则是0岁
+  let diffAge = nowYear - birthYear;
+  if (diffAge > 0) {
+    let diffMonth = nowMonth - birthMonth;
+    let diffDay = nowDay - birthDay;
+    if (diffMonth === 0) {
+      if (diffDay < 0) {
+        age = diffAge - 1;
+      } else {
+        age = diffAge;
+      }
+    } else {
+      if (diffMonth < 0) {
+        age = diffAge - 1;
+      } else {
+        age = diffAge;
+      }
+    }
+  }
+
+  // 返回周岁年龄
+  return age;
+}
+
 /**
  * 通过日期获得星座
  * @param {Date} date 日期参数

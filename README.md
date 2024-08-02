@@ -1,6 +1,6 @@
 # 前端模块化 JavaScript 工具库
 
-[![npm version](https://img.shields.io/npm/v/xe-utils.svg?style=flat-square)](https://github.com/qq575792372/lime-util)
+[![npm version](https://img.shields.io/npm/v/xe-utils.svg?style=flat-square)](https://github.com/qq575792372/i-utils)
 [![npm license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
 🔥 **i-utils** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **281** ⚡️ 个 Api
@@ -79,28 +79,38 @@ pnpm publish
 
 ### 📝API 文档
 
-[常量集合 Constant](https://github.com/qq575792372/lime-util/blob/master/doc/constants.md)  
-[字符串 String](https://github.com/qq575792372/lime-util/blob/master/doc/string.md)  
-[数字 Number](https://github.com/qq575792372/lime-util/blob/master/doc/number.md)     
-[数组 Array](https://github.com/qq575792372/lime-util/blob/master/doc/array.md)    
-[对象 Object](https://github.com/qq575792372/lime-util/blob/master/doc/object.md)    
-[函数 Function](https://github.com/qq575792372/lime-util/blob/master/doc/function.md)    
-[日期 Date](https://github.com/qq575792372/lime-util/blob/master/doc/date.md)   
-[正则 Regexp](https://github.com/qq575792372/lime-util/blob/master/doc/regexp.md)  
-[数学 Math](https://github.com/qq575792372/lime-util/blob/master/doc/math.md)  
-[随机数 Random](https://github.com/qq575792372/lime-util/blob/master/doc/random.md)  
-[生成 id](https://github.com/qq575792372/lime-util/blob/master/doc/id.md)  
-[身份证 ID-card](https://github.com/qq575792372/lime-util/blob/master/doc/ID-card.md)  
-[文件 File](https://github.com/qq575792372/lime-util/blob/master/doc/file.md)  
-[颜色 Color](https://github.com/qq575792372/lime-util/blob/master/doc/color.md)  
-[校验 Validate](https://github.com/qq575792372/lime-util/blob/master/doc/validate.md)  
-[键盘 Keycode](https://github.com/qq575792372/lime-util/blob/master/doc/keycode.md)  
-[浏览器 Url](https://github.com/qq575792372/lime-util/blob/master/doc/browser-url.md)  
-[浏览器 Storage](https://github.com/qq575792372/lime-util/blob/master/doc/browser-storage.md)    
-[浏览器 Cookie](https://github.com/qq575792372/lime-util/blob/master/doc/browser-cookie.md)   
-[浏览器 Dom](https://github.com/qq575792372/lime-util/blob/master/doc/browser-dom.md)  
-[浏览器 Device](https://github.com/qq575792372/lime-util/blob/master/doc/browser-device.md)  
-[微信小程序工具库 Weapp](https://github.com/qq575792372/lime-util/blob/master/doc/weapp.md)
+[常量集合 Constant](https://github.com/qq575792372/i-utils/blob/main/doc/constants.md)
+
+[字符串](https://github.com/qq575792372/i-utils/blob/main/doc/string.md)  
+[数字](https://github.com/qq575792372/i-utils/blob/main/doc/number.md)     
+[数组](https://github.com/qq575792372/i-utils/blob/main/doc/array.md)    
+[对象](https://github.com/qq575792372/i-utils/blob/main/doc/object.md)    
+[函数](https://github.com/qq575792372/i-utils/blob/main/doc/function.md)    
+[日期](https://github.com/qq575792372/i-utils/blob/main/doc/date.md)   
+[数学](https://github.com/qq575792372/i-utils/blob/main/doc/math.md)  
+[正则](https://github.com/qq575792372/i-utils/blob/main/doc/regexp.md)  
+[随机数](https://github.com/qq575792372/i-utils/blob/main/doc/random.md)
+
+[文件](https://github.com/qq575792372/i-utils/blob/main/doc/file.md)  
+[颜色](https://github.com/qq575792372/i-utils/blob/main/doc/color.md)  
+[校验](https://github.com/qq575792372/i-utils/blob/main/doc/validate.md)  
+[键盘](https://github.com/qq575792372/i-utils/blob/main/doc/keycode.md)
+
+[生成id](https://github.com/qq575792372/i-utils/blob/main/doc/id.md)  
+[md5加密](https://github.com/qq575792372/i-utils/blob/main/doc/md5.md)  
+[base64加密](https://github.com/qq575792372/i-utils/blob/main/doc/base64.md)  
+[脱敏](https://github.com/qq575792372/i-utils/blob/main/doc/desensitized.md)  
+[身份证号码](https://github.com/qq575792372/i-utils/blob/main/doc/ID-card.md)  
+[网络IP](https://github.com/qq575792372/i-utils/blob/main/doc/net.md)
+
+[浏览器 Url](https://github.com/qq575792372/i-utils/blob/main/doc/browser-url.md)  
+[浏览器 Cookie](https://github.com/qq575792372/i-utils/blob/main/doc/browser-storage.md)    
+[浏览器 Storage](https://github.com/qq575792372/i-utils/blob/main/doc/browser-cookie.md)   
+[浏览器 Dom](https://github.com/qq575792372/i-utils/blob/main/doc/browser-dom.md)  
+[浏览器 Device](https://github.com/qq575792372/i-utils/blob/main/doc/browser-device.md)  
+[浏览器 Clipboard](https://github.com/qq575792372/i-utils/blob/main/doc/browser-clipboard.md)
+
+[微信小程序工具库](https://github.com/qq575792372/i-utils/blob/main/doc/weapp.md)
 
 ### 🔖Git 提交规范
 

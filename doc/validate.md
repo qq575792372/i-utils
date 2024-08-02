@@ -18,7 +18,7 @@
 - #### 示例
 
 ```javascript
-import { isInteger } from "@ivu-web/util";
+import { isInteger } from "@ivujs/util";
 
 console.log(isInteger("123")); // 输出：true
 console.log(isInteger(12.01)); // 输出：false
@@ -41,7 +41,7 @@ console.log(isInteger(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isDecimal } from "@ivu-web/util";
+import { isDecimal } from "@ivujs/util";
 
 console.log(isDecimal("123")); // 输出：false
 console.log(isDecimal(12.01)); // 输出：true
@@ -64,7 +64,7 @@ console.log(isDecimal(12.01)); // 输出：true
 - #### 示例
 
 ```javascript
-import { isNumber } from "@ivu-web/util";
+import { isNumber } from "@ivujs/util";
 
 console.log(isNumber(123)); // 输出：true
 console.log(isNumber("123")); // 输出：false
@@ -88,7 +88,7 @@ console.log(isNumber("3.1dd32")); // 输出：false
 - #### 示例
 
 ```javascript
-import { isString } from "@ivu-web/util";
+import { isString } from "@ivujs/util";
 
 console.log(isString("123")); // 输出：true
 console.log(isString(12.01)); // 输出：false
@@ -111,7 +111,7 @@ console.log(isString(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isArray } from "@ivu-web/util";
+import { isArray } from "@ivujs/util";
 
 console.log(isArray("123")); // 输出：false
 console.log(isArray([1, 2])); // 输出：true
@@ -134,7 +134,7 @@ console.log(isArray([1, 2])); // 输出：true
 - #### 示例
 
 ```javascript
-import { isObject } from "@ivu-web/util";
+import { isObject } from "@ivujs/util";
 
 console.log(isObject({ id: 1 })); // 输出：true
 console.log(isObject(12.01)); // 输出：false
@@ -157,7 +157,7 @@ console.log(isObject(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isBoolean } from "@ivu-web/util";
+import { isBoolean } from "@ivujs/util";
 
 console.log(isBoolean(true)); // 输出：true
 console.log(isBoolean(12.01)); // 输出：false
@@ -180,7 +180,7 @@ console.log(isBoolean(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isDate } from "@ivu-web/util";
+import { isDate } from "@ivujs/util";
 
 console.log(isDate(new Date())); // 输出：true
 console.log(isDate(12.01)); // 输出：false
@@ -203,7 +203,7 @@ console.log(isDate(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isFunction } from "@ivu-web/util";
+import { isFunction } from "@ivujs/util";
 
 console.log(isFunction(function () {})); // 输出：true
 console.log(isFunction(12.01)); // 输出：false
@@ -226,7 +226,7 @@ console.log(isFunction(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isSymbol } from "@ivu-web/util";
+import { isSymbol } from "@ivujs/util";
 
 console.log(isSymbol(Symbol(1))); // 输出：true
 console.log(isSymbol(12.01)); // 输出：false
@@ -249,7 +249,7 @@ console.log(isSymbol(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isRegExp } from "@ivu-web/util";
+import { isRegExp } from "@ivujs/util";
 
 console.log(isRegExp(/^\d$/)); // 输出：true
 console.log(isRegExp(new RegExp())); // 输出：true
@@ -273,7 +273,7 @@ console.log(isRegExp(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isError } from "@ivu-web/util";
+import { isError } from "@ivujs/util";
 
 console.log(isError(new Error("has error"))); // 输出：true
 console.log(isError(12.01)); // 输出：false
@@ -296,7 +296,7 @@ console.log(isError(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isPromise } from "@ivu-web/util";
+import { isPromise } from "@ivujs/util";
 
 console.log(isPromise(Promise.resolve())); // 输出：true
 console.log(isPromise(12.01)); // 输出：false
@@ -319,7 +319,7 @@ console.log(isPromise(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isMap } from "@ivu-web/util";
+import { isMap } from "@ivujs/util";
 
 console.log(isMap(new Map())); // 输出：true
 ```
@@ -341,7 +341,7 @@ console.log(isMap(new Map())); // 输出：true
 - #### 示例
 
 ```javascript
-import { isWeakMap } from "@ivu-web/util";
+import { isWeakMap } from "@ivujs/util";
 
 console.log(isWeakMap(new WeakMap())); // 输出：true
 ```
@@ -363,7 +363,7 @@ console.log(isWeakMap(new WeakMap())); // 输出：true
 - #### 示例
 
 ```javascript
-import { isSet } from "@ivu-web/util";
+import { isSet } from "@ivujs/util";
 
 console.log(isSet(new Set())); // 输出：true
 ```
@@ -385,7 +385,7 @@ console.log(isSet(new Set())); // 输出：true
 - #### 示例
 
 ```javascript
-import { isWeakSet } from "@ivu-web/util";
+import { isWeakSet } from "@ivujs/util";
 
 console.log(isWeakSet(new WeakSet())); // 输出：true
 ```
@@ -407,7 +407,7 @@ console.log(isWeakSet(new WeakSet())); // 输出：true
 - #### 示例
 
 ```javascript
-import { isBigInt } from "@ivu-web/util";
+import { isBigInt } from "@ivujs/util";
 
 console.log(isBigInt(new BigInt())); // 输出：true
 ```
@@ -432,7 +432,7 @@ console.log(isBigInt(new BigInt())); // 输出：true
 - #### 示例
 
 ```javascript
-import { isTrue } from "@ivu-web/util";
+import { isTrue } from "@ivujs/util";
 
 console.log(isTrue(1)); // 输出：true
 console.log(isTrue(0)); // 输出：false
@@ -460,7 +460,7 @@ console.log(isTrue("null")); // 输出：false
 - #### 示例
 
 ```javascript
-import { isFalse } from "@ivu-web/util";
+import { isFalse } from "@ivujs/util";
 
 console.log(isFalse(1)); // 输出：false
 console.log(isFalse(0)); // 输出：true
@@ -488,7 +488,7 @@ console.log(isFalse("null")); // 输出：true
 - #### 示例
 
 ```javascript
-import { isNaN } from "@ivu-web/util";
+import { isNaN } from "@ivujs/util";
 
 console.log(isNaN("abc")); // 输出：true
 console.log(isNaN("123")); // 输出：false
@@ -512,7 +512,7 @@ console.log(isNaN("123")); // 输出：false
 - #### 示例
 
 ```javascript
-import { isNotNaN } from "@ivu-web/util";
+import { isNotNaN } from "@ivujs/util";
 
 console.log(isNotNaN("abc")); // 输出：false
 console.log(isNotNaN("123")); // 输出：true
@@ -536,7 +536,7 @@ console.log(isNotNaN("123")); // 输出：true
 - #### 示例
 
 ```javascript
-import { isNull } from "@ivu-web/util";
+import { isNull } from "@ivujs/util";
 
 console.log(isNull(null)); // 输出：true
 console.log(isNull(undefined)); // 输出：true
@@ -562,7 +562,7 @@ console.log(isNull(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isNotNull } from "@ivu-web/util";
+import { isNotNull } from "@ivujs/util";
 
 console.log(isNotNull(null)); // 输出：false
 console.log(isNotNull(undefined)); // 输出：false
@@ -588,7 +588,7 @@ console.log(isNotNull(12.01)); // 输出：true
 - #### 示例
 
 ```javascript
-import { isEmpty } from "@ivu-web/util";
+import { isEmpty } from "@ivujs/util";
 
 console.log(isEmpty(11)); // 输出：false
 console.log(isEmpty(" ")); // 输出：false
@@ -614,7 +614,7 @@ console.log(isEmpty(undefined)); // 输出：true
 - #### 示例
 
 ```javascript
-import { isNotEmpty } from "@ivu-web/util";
+import { isNotEmpty } from "@ivujs/util";
 
 console.log(isNotEmpty(11)); // 输出：true
 console.log(isNotEmpty(" ")); // 输出：true
@@ -640,7 +640,7 @@ console.log(isNotEmpty(undefined)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isBlank } from "@ivu-web/util";
+import { isBlank } from "@ivujs/util";
 
 console.log(isBlank(" ")); // 输出：true
 console.log(isBlank(null)); // 输出：true
@@ -666,7 +666,7 @@ console.log(isBlank(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isNotBlank } from "@ivu-web/util";
+import { isNotBlank } from "@ivujs/util";
 
 console.log(isNotBlank(" ")); // 输出：false
 console.log(isNotBlank(null)); // 输出：false
@@ -691,7 +691,7 @@ console.log(isNotBlank(12.01)); // 输出：true
 - #### 示例
 
 ```javascript
-import { isUndefined } from "@ivu-web/util";
+import { isUndefined } from "@ivujs/util";
 
 console.log(isUndefined(undefined)); // 输出：true
 console.log(isUndefined(null)); // 输出：false
@@ -716,7 +716,7 @@ console.log(isUndefined(12.01)); // 输出：false
 - #### 示例
 
 ```javascript
-import { isNotUndefined } from "@ivu-web/util";
+import { isNotUndefined } from "@ivujs/util";
 
 console.log(isNotUndefined(undefined)); // 输出：false
 console.log(isNotUndefined(null)); // 输出：true
@@ -745,7 +745,7 @@ console.log(isNotUndefined(12.01)); // 输出：true
 - #### 示例
 
 ```javascript
-import { equals } from "@ivu-web/util";
+import { equals } from "@ivujs/util";
 
 console.log(equals("1", "1")); // 输出：true
 console.log(equals("abc", "ABC")); // 输出：false
@@ -771,7 +771,7 @@ console.log(equals(121, 12)); // 输出：false
 - #### 示例
 
 ```javascript
-import { equalsIgnoreCase } from "@ivu-web/util";
+import { equalsIgnoreCase } from "@ivujs/util";
 
 console.log(equalsIgnoreCase("1", "1")); // 输出：true
 console.log(equalsIgnoreCase("abc", "ABC")); // 输出：false
@@ -798,7 +798,7 @@ console.log(equalsIgnoreCase(121, 12)); // 输出：false
 - #### 示例
 
 ```javascript
-import { deepCompare } from "@ivu-web/util";
+import { deepCompare } from "@ivujs/util";
 
 // 基础场景
 console.log(deepCompare(1, 1)); // 输出：true
