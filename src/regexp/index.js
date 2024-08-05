@@ -5,7 +5,7 @@ import { REGEXP } from "../constants";
  * 正则校验的方法
  * @description 类型为REGEXP对应的正则
  * @param {String|Number} value 校验的参数
- * @param {REGEXP} regex 使用的REGEXP中的正则
+ * @param {RegExp} regex 使用的REGEXP中的正则
  * @returns {Boolean} 返回校验的结果
  */
 export function regexpTest(value, regex) {

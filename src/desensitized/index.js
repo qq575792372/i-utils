@@ -31,7 +31,7 @@ export function formatStartOfMobile(value, start = 3, len = 4) {
  * @param {Number} len 显示星号的长度，默认8位
  * @returns {String} 返回转化后字符串
  */
-export function formatStartOfIdCard(value, start = 4, len = 8) {
+export function formatStartOfIDCard(value, start = 4, len = 8) {
   return _formatStartOf(value, start, len);
 }
 

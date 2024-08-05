@@ -12,7 +12,9 @@
   "scripts": {
     "build": "node ./build/build.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "js-base64": "^3.7.7"
+  },
   "devDependencies": {
     "chalk": "^4.1.2",
     "rimraf": "^4.4.1",

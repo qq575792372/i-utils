@@ -78,7 +78,8 @@ export default {
       plugins: [terser()],
     },
   ],
-
+  // 排除模块
+  external: ["js-base64"],
   // 使用插件
   plugins: [nodeResolve(), commonjs()],
 };

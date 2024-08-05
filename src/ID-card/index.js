@@ -3,7 +3,7 @@ import { parseDate, getAge } from "../date/index.js";
 
 /**
  * 根据身份证号码获取信息
- * @description 能获取到 籍贯，出生日期，年龄，性别 信息
+ * @description 能获取到 籍贯，出生日期，年龄，性别
  * @param {String} idCard 身份证号码，支持一代15位和二代18位
  * @returns {Object} 返回身份证信息对象
  */

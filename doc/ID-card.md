@@ -4,11 +4,11 @@
 
 根据身份证号码获取信息
 
-`能获取到 籍贯，出生日期，年龄，性别 信息`
+`能获取到 籍贯，出生日期，年龄，性别`
 
 - #### 参数
 
-  `idCard` {String} 身份证号码，支持一代 15 位和二代 18 位
+  `idCard` {String} 身份证号码，支持一代15位和二代18位
 
 - #### 返回值
 
@@ -26,13 +26,38 @@ console.log(getInfoByIDCard("412821201012012221"));
 console.log(getInfoByIDCard("511702800222130"));
 ```
 
-### getAgeByIDCard(dateStr)
+---
+
+### getBirthdayByIDCard(idCard)
+
+根据身份证号码获得生日
+
+- #### 参数
+
+  `idCard` {String} 身份证号码，支持一代15位和二代18位
+
+- #### 返回值
+
+  {String} 返回生日
+
+- #### 示例
+
+```javascript
+import { getBirthdayByIDCard } from "@ivujs/util";
+
+let res = getBirthdayByIDCard("412821201012012221");
+console.log(res); // 输出：2010-12-01
+```
+
+---
+
+### getAgeByIDCard(idCard)
 
 根据身份证号码获得年龄
 
 - #### 参数
 
-  `dateStr` {String} 日期字符串
+  `idCard` {String} 身份证号码，支持一代15位和二代18位
 
 - #### 返回值
 
@@ -43,7 +68,53 @@ console.log(getInfoByIDCard("511702800222130"));
 ```javascript
 import { getAgeByIDCard } from "@ivujs/util";
 
-let res = getAgeByIDCard("2000-10-10");
-console.log(res); // 输出：21
+let res = getAgeByIDCard("412821201012012221");
+console.log(res); // 输出：13
+```
+
+---
+
+### getSexByIDCard(dateStr)
+
+根据身份证号码获得性别
+
+- #### 参数
+
+  `idCard` {String} 身份证号码，支持一代15位和二代18位
+
+- #### 返回值
+
+  {Number} 返回性别
+
+- #### 示例
+
+```javascript
+import { getSexByIDCard } from "@ivujs/util";
+
+let res = getSexByIDCard("412821201012012221");
+console.log(res); // 输出：女
+```
+
+---
+
+### getProvinceByIDCard(dateStr)
+
+根据身份证号码获得年龄
+
+- #### 参数
+
+  `idCard` {String} 身份证号码，支持一代15位和二代18位
+
+- #### 返回值
+
+  {Number} 返回省份
+
+- #### 示例
+
+```javascript
+import { getProvinceByIDCard } from "@ivujs/util";
+
+let res = getProvinceByIDCard("412821201012012221");
+console.log(res); // 输出：河南
 ```
 

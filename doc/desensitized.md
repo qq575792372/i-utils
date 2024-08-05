@@ -17,9 +17,9 @@
 ```javascript
 import { formatStartOfName } from "@ivujs/util";
 
-console.log(formatStartOfName("张三")); // 输出：张*
-console.log(formatStartOfName("张三封")); // 输出：张*封
-console.log(formatStartOfName("张三封封")); // 输出：张**封
+console.log(formatStartOfName("张静")); // 输出：张*
+console.log(formatStartOfName("张小静")); // 输出：张*静
+console.log(formatStartOfName("张小静静")); // 输出：张**静
 ```
 
 ---
@@ -49,7 +49,7 @@ console.log(formatStartOfMobile("13000000000", 3, 5)); // 输出：130*****000
 
 ---
 
-### formatStartOfIdCard(value, start = 4, len = 8)
+### formatStartOfIDCard(value, start = 4, len = 8)
 
 手机号码固定位数转为星号
 
@@ -66,9 +66,9 @@ console.log(formatStartOfMobile("13000000000", 3, 5)); // 输出：130*****000
 - #### 示例
 
 ```javascript
-import { formatStartOfIdCard } from "@ivujs/util";
+import { formatStartOfIDCard } from "@ivujs/util";
 
-console.log(formatStartOfIdCard("412929199312223012")); // 输出：4129********223012
+console.log(formatStartOfIDCard("412929199312223012")); // 输出：4129********223012
 ```
 
 ---
