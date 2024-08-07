@@ -1,10 +1,47 @@
 /**
- * 从url地址中获取查询参数
+ * 获得主机地址
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回主机地址
+ */
+export function getHost(url = window.location.href) {}
+
+/**
+ * 获得主机名称
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回主机名称
+ */
+export function getHostName(url = window.location.href) {}
+
+/**
+ * 获得主机端口号
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回端口号
+ */
+export function getPort(url = window.location.href) {}
+
+/**
+ * 获得协议名
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回协议名
+ */
+export function getProtocol(url = window.location.href) {}
+
+/**
+ * 获得url地址的查询参数字符串
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回查询参数字符串
+ */
+export function getSearchString(url = window.location.href) {
+  return window.location.search;
+}
+
+/**
+ * url地址的查询参数字符串中获得某个参数的值
  * @param {String} name 参数名
  * @param {String} url url地址，默认当前url地址
  * @returns {String} 返回查询到的值
  */
-export function getQueryString(name, url = window.location.href) {
+export function getSearchParam(name, url = window.location.href) {
   name = name.replace(/[\[\]]/g, "\\$&");
   url = url.split("?")[1];
   let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -14,11 +51,65 @@ export function getQueryString(name, url = window.location.href) {
 }
 
 /**
- * url查询参数转为对象
- * @param {String} url url地址，默认当前url地址
- * @returns {Object} 返回参数对象
+ * url地址的查询参数字符串中设置某个参数的值
+ * @param name
+ * @param url
+ * @param value
  */
-export function queryStringToObj(url = window.location.href) {
+export function setSearchParam(name, value, url = window.location.href) {}
+
+/**
+ * url地址的查询参数字符串中是否包含某个参数
+ * @param name
+ * @param url
+ */
+export function hasSearchParam(name, url = window.location.href) {}
+
+/**
+ * url地址的查询参数字符串中在前面追加新参数和值
+ * @param name
+ * @param url
+ * @param value
+ */
+export function prependSearchParam(name, value, url = window.location.href) {}
+
+/**
+ * url地址的查询参数字符串中在某个参数的前面追加新参数和值
+ * @param name
+ * @param url
+ * @param value
+ */
+export function prependToSearchParam(name, value, beforeParam, url = window.location.href) {}
+
+/**
+ * url地址的查询参数字符串中在后面追加新参数和值
+ * @param name
+ * @param url
+ * @param value
+ */
+export function appendSearchParam(name, value, url = window.location.href) {}
+
+/**
+ * url地址的查询参数字符串中在某个参数的后面追加新参数和值
+ * @param name
+ * @param url
+ * @param value
+ */
+export function appendToSearchParam(name, value, afterName, url = window.location.href) {}
+
+/**
+ * url地址的查询参数字符串中移除某个参数和值
+ * @param name
+ * @param url
+ */
+export function removeSearchParam(name, url = window.location.href) {}
+
+/**
+ * url地址的查询参数字符串转为对象
+ * @param {String} url url地址，默认当前url地址
+ * @returns {Object} 返回对象
+ */
+export function toSearchParam(url = window.location.href) {
   if (url.indexOf("?") === -1) {
     return {};
   }
@@ -33,11 +124,11 @@ export function queryStringToObj(url = window.location.href) {
 }
 
 /**
- * 对象转url查询参数
+ * 对象转为url地址的查询参数字符串
  *  @param {Object} obj 参数对象
  *  @returns {String} 返回如 id=1&name=xx 格式的url查询参数
  */
-export function objToQueryString(obj) {
+export function toSearchString(obj) {
   if (!obj) return "";
   let pairs = [];
   for (let key in obj) {

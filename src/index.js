@@ -36,16 +36,16 @@ export * from "./keycode/index.js";
 
 // 生成id
 export * from "./id/index.js";
-// md5加密
-export * from "./md5/index.js";
-// base64加解密
-export * from "./base64/index.js";
+// 加解密算法
+export * from "./crypto/index.js";
 // 脱敏
 export * from "./desensitized/index.js";
 // 身份证号码
 export * from "./ID-card/index.js";
 // 网络IP
 export * from "./net/index.js";
+// 分页
+export * from "./pagination/index.js";
 
 // 浏览器 Url
 export * from "./url/index.js";

@@ -1,4 +1,4 @@
-# 生成 ID
+# 加解密算法 Crypto
 
 ### getUUID(len = 32, radix = 16)
 

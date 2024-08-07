@@ -97,8 +97,7 @@ pnpm publish
 [键盘](https://github.com/qq575792372/i-utils/blob/main/doc/keycode.md)
 
 [生成id](https://github.com/qq575792372/i-utils/blob/main/doc/id.md)  
-[md5加密](https://github.com/qq575792372/i-utils/blob/main/doc/md5.md)  
-[base64加密](https://github.com/qq575792372/i-utils/blob/main/doc/base64.md)  
+[加解密算法](https://github.com/qq575792372/i-utils/blob/main/doc/crypto.md)  
 [脱敏](https://github.com/qq575792372/i-utils/blob/main/doc/desensitized.md)  
 [身份证号码](https://github.com/qq575792372/i-utils/blob/main/doc/ID-card.md)  
 [网络IP](https://github.com/qq575792372/i-utils/blob/main/doc/net.md)
