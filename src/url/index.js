@@ -1,30 +1,52 @@
+import { REGEXP } from "../constants";
+
 /**
  * 获得主机地址
  * @param {String} url url地址，默认当前url地址
  * @returns {String} 返回主机地址
  */
-export function getHost(url = window.location.href) {}
+export function getHost(url = window.location.href) {
+  let match = url.match(REGEXP.URL);
+  if (match) {
+    return (match[2] || "") + (match[3] ? ":" + match[3] : "");
+  }
+}
 
 /**
  * 获得主机名称
  * @param {String} url url地址，默认当前url地址
  * @returns {String} 返回主机名称
  */
-export function getHostName(url = window.location.href) {}
+export function getHostName(url = window.location.href) {
+  let match = url.match(REGEXP.URL);
+  if (match) {
+    return match[2] || "";
+  }
+}
 
 /**
  * 获得主机端口号
  * @param {String} url url地址，默认当前url地址
  * @returns {String} 返回端口号
  */
-export function getPort(url = window.location.href) {}
+export function getPort(url = window.location.href) {
+  let match = url.match(REGEXP.URL);
+  if (match) {
+    return match[3] || "";
+  }
+}
 
 /**
  * 获得协议名
  * @param {String} url url地址，默认当前url地址
  * @returns {String} 返回协议名
  */
-export function getProtocol(url = window.location.href) {}
+export function getProtocol(url = window.location.href) {
+  let match = url.match(REGEXP.URL);
+  if (match) {
+    return match[1] || "";
+  }
+}
 
 /**
  * 获得url地址的查询参数字符串
@@ -32,7 +54,10 @@ export function getProtocol(url = window.location.href) {}
  * @returns {String} 返回查询参数字符串
  */
 export function getSearchString(url = window.location.href) {
-  return window.location.search;
+  let match = url.match(REGEXP.URL);
+  if (match) {
+    return match[5] || "";
+  }
 }
 
 /**
@@ -42,12 +67,14 @@ export function getSearchString(url = window.location.href) {
  * @returns {String} 返回查询到的值
  */
 export function getSearchParam(name, url = window.location.href) {
-  name = name.replace(/[\[\]]/g, "\\$&");
-  url = url.split("?")[1];
+  name = name.replace(/[[\]]/g, "\\$&");
+  url = getSearchString(url);
+  console.log(999, url);
   let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-  let r = url.substring(0).match(reg);
-  if (r != null) return decodeURI(r[2]);
-  return "";
+  let match = url.substring(0).match(reg);
+  if (match) {
+    return decodeURI(match[2]);
+  }
 }
 
 /**
@@ -55,6 +82,7 @@ export function getSearchParam(name, url = window.location.href) {
  * @param name
  * @param url
  * @param value
+ * @returns {String} 返回查询参数字符串
  */
 export function setSearchParam(name, value, url = window.location.href) {}
 

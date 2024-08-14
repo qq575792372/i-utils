@@ -42,8 +42,6 @@ export * from "./crypto/index.js";
 export * from "./desensitized/index.js";
 // 身份证号码
 export * from "./ID-card/index.js";
-// 网络IP
-export * from "./net/index.js";
 // 分页
 export * from "./pagination/index.js";
 
