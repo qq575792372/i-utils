@@ -76,41 +76,69 @@ export function arrayCreate(length = 0) {
 
 /**
  * 数组指定位置添加元素
+ * @description 如果数组为空，则在0位置添加元素
  * @param {Array} array 数组
  * @param {Number} index 下标位置，默认0
  * @param {*} value 添加的元素
  * @returns {Array} 返回操作后的数组
  */
 export function arrayInsert(array = [], index = 0, value = undefined) {
-  array.splice(index, 0, value);
+  if (index < 0) return array;
+
+  if (array.length === 0) {
+    array.push(value);
+  } else {
+    if (index > array.length - 1) {
+      return array;
+    }
+    array.splice(index, 0, value);
+  }
+
   return array;
 }
 
 /**
  * 数组指定位置前面添加元素
+ * @description 如果数组为空，则在0位置添加元素
  * @param {Array} array 数组
  * @param {Number} index 下标位置，默认0
  * @param {*} value 添加的元素
  * @returns {Array} 返回操作后的数组
  */
 export function arrayInsertBefore(array = [], index = 0, value = undefined) {
-  if (index < 0 || index > array.length - 1) return array;
+  if (index < 0) return array;
 
-  array.splice(index, 0, value);
+  if (array.length === 0) {
+    array.push(value);
+  } else {
+    if (index > array.length - 1) {
+      return array;
+    }
+    array.splice(index, 0, value);
+  }
   return array;
 }
 
 /**
  * 数组指定位置后面添加元素
+ * @description 如果数组为空，则在0位置添加元素
  * @param {Array} array 数组
  * @param {Number} index 下标位置，默认0
  * @param {*} value 添加的元素
  * @returns {Array} 返回操作后的数组
  */
 export function arrayInsertAfter(array = [], index = 0, value = undefined) {
-  if (index < 0 || index > array.length - 1) return array;
+  if (index < 0) return array;
 
-  array.splice(index, 0, array.splice(index, 1, value)[0]);
+  if (array.length === 0) {
+    array.push(value);
+  } else {
+    if (index > array.length - 1) {
+      return array;
+    }
+    array.splice(index, 0, array.splice(index, 1, value)[0]);
+  }
+
   return array;
 }
 
@@ -134,7 +162,7 @@ export function arrayRemove(array = [], index = 0) {
  * @returns {Array} 返回操作后的数组
  */
 export function arrayRemoveBefore(array = [], index = 0) {
-  if (index < 0 || index > array.length - 1) return array;
+  if (index <= 0 || index > array.length - 1) return array;
 
   array.splice(index - 1, 1);
   return array;

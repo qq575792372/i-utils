@@ -175,7 +175,8 @@ console.log(res); // 输出：[0,1,2]
 
 ### arrayInsert(array = [], index = 0, value = undefined)
 
-数组指定位置添加元素
+数组指定位置添加元素  
+`如果数组为空，则在0位置添加元素`
 
 - #### 参数
 
@@ -200,7 +201,8 @@ console.log(res); // 输出：[1, 'MM', 2]
 
 ### arrayInsertBefore(array = [], index = 0, value = undefined)
 
-数组指定位置前面添加元素
+数组指定位置前面添加元素  
+`如果数组为空，则在0位置添加元素`
 
 - #### 参数
 
@@ -225,7 +227,8 @@ console.log(res); // 输出：[1, 'MM', 2]
 
 ### arrayInsertAfter(array = [], index = 0, value = undefined)
 
-数组指定位置后面添加元素
+数组指定位置后面添加元素  
+`如果数组为空，则在0位置添加元素`
 
 - #### 参数
 

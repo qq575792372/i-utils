@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>测试源码</title>
+  <title>测试开发环境源码</title>
   <style></style>
 </head>
 <body></body>
@@ -23,9 +23,10 @@
   });
   console.log(`iUtils一共 ${num} 个api`);
 
-  console.log(iUtils.getSearchParam('id',"http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1"));
+  const url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin&id=hahaha#tag1";
 
 
+  console.log(iUtils.prependToSearchParam("sex", "女", "name", url));
 
 </script>
 </html>
