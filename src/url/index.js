@@ -1,6 +1,6 @@
 import { REGEXP } from "../constants";
 import { isArray } from "../validate/index.js";
-import { arrayInsertBefore } from "../array/index.js";
+import { arrayInsertAfter, arrayInsertBefore } from "../array/index.js";
 
 /**
  * 获得协议名
@@ -39,7 +39,7 @@ export function getHostName(url = window.location.href) {
 }
 
 /**
- * 获得主机端口号
+ * 获得端口号
  * @param {String} url url地址，默认当前url地址
  * @returns {String} 返回端口号
  */
@@ -51,14 +51,26 @@ export function getPort(url = window.location.href) {
 }
 
 /**
- * 获得路径地址
+ * 获得地址路径
  * @param {String} url url地址，默认当前url地址
- * @returns {String} 返回路径地址
+ * @returns {String} 返回地址路径
  */
 export function getUrlPath(url = window.location.href) {
   let match = url.match(REGEXP.URL);
   if (match) {
     return match[4] || "";
+  }
+}
+
+/**
+ * 获得hash字符串
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回hash字符串
+ */
+export function getUrlHash(url = window.location.href) {
+  let match = url.match(REGEXP.URL);
+  if (match) {
+    return match[6] || "";
   }
 }
 
@@ -76,18 +88,6 @@ export function getSearchString(url = window.location.href) {
 }
 
 /**
- * 获得hash字符串
- * @param {String} url url地址，默认当前url地址
- * @returns {String} 返回hash字符串
- */
-export function getUrlHash(url = window.location.href) {
-  let match = url.match(REGEXP.URL);
-  if (match) {
-    return match[6] || "";
-  }
-}
-
-/**
  * 查询参数字符串中获得某个参数的值
  * @param {String} name 参数名
  * @param {String} url url地址，默认当前url地址
@@ -99,15 +99,15 @@ export function getSearchParam(name, url = window.location.href) {
   let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
   let match = url.substring(0).match(reg);
   if (match) {
-    return decodeURI(match[2]);
+    return decodeURIComponent(match[2]);
   }
 }
 
 /**
  * 查询参数字符串中设置某个参数的值
- * @param name
- * @param url
- * @param value
+ * @param {String} name 参数名
+ * @param {String,Number,Array} value 参数值，如果是数组，则解析为：&ids[0]=1&ids[2]=2
+ * @param {String} url url地址，默认当前url地址
  * @returns {String} 返回查询参数字符串
  */
 export function setSearchParam(name, value, url = window.location.href) {
@@ -120,8 +120,9 @@ export function setSearchParam(name, value, url = window.location.href) {
 
 /**
  * 查询参数字符串中是否包含某个参数
- * @param name
- * @param url
+ * @param {String} name 参数名
+ * @param {String} url url地址，默认当前url地址
+ * @returns {Boolean} 返回结果
  */
 export function hasSearchParam(name, url = window.location.href) {
   let params = toSearchParam(url);
@@ -129,56 +130,95 @@ export function hasSearchParam(name, url = window.location.href) {
 }
 
 /**
- * 查询参数字符串中在前面追加新参数和值
- * @param name
- * @param url
- * @param value
+ * 查询参数字符串中在最前面追加新参数和值
+ * @param {String} name 参数名
+ * @param {String,Number,Array} value 参数值，如果是数组，则解析为：&ids[0]=1&ids[2]=2
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回查询参数字符串
  */
-export function prependSearchParam({ name, value, url = window.location.href }) {}
-
-/**
- * 查询参数字符串中在某个参数的前面追加新参数和值
- * @param name
- * @param url
- * @param value
- */
-export function prependToSearchParam(name, value, beforeParam, url = window.location.href) {
+export function prependSearchParam(name, value, url = window.location.href) {
   let searchArr = getSearchString(url).split("&");
-  let beforeIndex = searchArr.findIndex((v) => v.includes(beforeParam));
-  searchArr = arrayInsertBefore(searchArr, beforeIndex, `${name}=${value}`);
+  if (isArray(value)) {
+    let arr = [];
+    for (let i = 0; i < value.length; i++) {
+      arr.push(`${encodeURIComponent(name)}[${i}]=${encodeURIComponent(value[i])}`);
+    }
+    searchArr.unshift(...arr);
+  } else {
+    searchArr.unshift(`${encodeURIComponent(name)}=${encodeURIComponent(value)}`);
+  }
 
   return url.replace(/(\?.+?)(?=#|$)/, "?" + searchArr.join("&"));
 }
 
 /**
- * 查询参数字符串中在后面追加新参数和值
- * @param name
- * @param url
- * @param value
+ * 查询参数字符串中在某个参数的前面追加新参数和值
+ * @param {String} name 参数名
+ * @param {String,Number,Array} value 参数值，如果是数组，则解析为：&ids[0]=1&ids[2]=2
+ * @param {String} beforeParam 在前面追加参数的名称
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回查询参数字符串
  */
-export function appendSearchParam(name, value, url = window.location.href) {}
+export function prependToSearchParam(name, value, beforeParam, url = window.location.href) {
+  let searchArr = getSearchString(url).split("&");
+  let beforeIndex = searchArr.findIndex((v) => v.includes(beforeParam));
+  let beforeArr = arrayInsertBefore(searchArr, beforeIndex, `${name}=${value}`);
+
+  return url.replace(/(\?.+?)(?=#|$)/, "?" + beforeArr.join("&"));
+}
+
+/**
+ * 查询参数字符串中在最后面追加新参数和值
+ * @param {String} name 参数名
+ * @param {String,Number,Array} value 参数值，如果是数组，则解析为：&ids[0]=1&ids[2]=2
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回查询参数字符串
+ */
+export function appendSearchParam(name, value, url = window.location.href) {
+  let searchArr = getSearchString(url).split("&");
+  searchArr.push(`${name}=${value}`);
+
+  return url.replace(/(\?.+?)(?=#|$)/, "?" + searchArr.join("&"));
+}
 
 /**
  * 查询参数字符串中在某个参数的后面追加新参数和值
- * @param name
- * @param url
- * @param value
+ * @param {String} name 参数名
+ * @param {String,Number,Array} value 参数值，如果是数组，则解析为：&ids[0]=1&ids[2]=2
+ * @param {String} afterName 在后面追加参数的名称
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回查询参数字符串
  */
-export function appendToSearchParam(name, value, afterName, url = window.location.href) {}
+export function appendToSearchParam(name, value, afterName, url = window.location.href) {
+  let searchArr = getSearchString(url).split("&");
+  let beforeIndex = searchArr.findIndex((v) => v.includes(afterName));
+  let afterArr = arrayInsertAfter(searchArr, beforeIndex, `${name}=${value}`);
+
+  return url.replace(/(\?.+?)(?=#|$)/, "?" + afterArr.join("&"));
+}
 
 /**
  * 查询参数字符串中移除某个参数和值
- * @paraxm name
- * @param url
+ * @param {String} name 参数名
+ * @param {String} url url地址，默认当前url地址
+ * @returns {String} 返回查询参数字符串
  */
-export function removeSearchParam(name, url = window.location.href) {}
+export function removeSearchParam(name, url = window.location.href) {
+  let searchArr = getSearchString(url).split("&");
+  let delIndex = searchArr.findIndex((v) => v.includes(name));
+  if (delIndex > -1) {
+    searchArr.splice(delIndex, 1);
+  }
+
+  return url.replace(/(\?.+?)(?=#|$)/, "?" + searchArr.join("&"));
+}
 
 /**
  * 查询参数字符串转为对象
  * @param {String} url url地址，默认当前url地址
- * @returns {Object} 返回对象
+ * @returns {Object} 返回参数对象
  */
-export function toSearchParam(url = window.location.href) {
+export function parseSearchParam(url = window.location.href) {
   let searchString = getSearchString(url);
   let searchArr = searchString.split("&");
   let param = {};
@@ -192,9 +232,12 @@ export function toSearchParam(url = window.location.href) {
 /**
  * 对象转为查询参数字符串
  *  @param {Object} params 参数对象
- *  @returns {String} 返回如 id=1&name=xx 格式的url查询参数
+ *  @param {String} url url地址，如果不为空，则会拼接好查询参数字符串的url地址
+ *  @returns {String} 返回查询参数字符串
  */
-export function toSearchString(params) {
+export function formatSearchString(params, url = undefined) {
+  if (typeof params !== "object") return params;
+
   let arr = [];
   for (let key in params) {
     let value = params[key];
@@ -206,5 +249,11 @@ export function toSearchString(params) {
       arr.push(encodeURIComponent(key) + "=" + encodeURIComponent(params[key]));
     }
   }
-  return arr.join("&");
+
+  // 如果url不为空，则会返回拼接好url字符串
+  if (url) {
+    return url.replace(/(\?.+?)(?=#|$)/, "?" + arr.join("&"));
+  } else {
+    return arr.join("&");
+  }
 }
