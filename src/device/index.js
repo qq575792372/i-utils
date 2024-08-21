@@ -36,7 +36,7 @@ export function getBrowserInfo() {
  * @returns {Boolean} 返回true和false
  */
 export function isPc() {
-  return !isMobile();
+  return !isPhone();
 }
 
 /**
@@ -44,7 +44,7 @@ export function isPc() {
  * @description 包含 android、iphone、黑莓手机、微软手机 等多种操作系统机型
  * @returns {Boolean} 返回true和false
  */
-export function isMobile() {
+export function isPhone() {
   let ua = window.navigator.userAgent;
   return /Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|IEMobile/i.test(ua);
 }

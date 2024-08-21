@@ -168,25 +168,6 @@ export function toPascalCase(value) {
   }
 }
 
-/* 字符串加密 */
-/**
- * base64 加密
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function encode(str) {
-  return window.btoa(str);
-}
-
-/**
- * base64 解密
- * @param {String} str 字符串
- * @returns {String} 返回解密后的字符串
- */
-export function decode(str) {
-  return window.atob(str);
-}
-
 /* 字符串格式化 */
 /**
  * 字符串中是否包含指定的元素

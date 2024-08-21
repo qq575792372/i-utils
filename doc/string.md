@@ -279,59 +279,6 @@ console.log(LimeCore.toPascalCase("user-name")); // 输出：UserName
 console.log(LimeCore.toPascalCase("userName")); // 输出：UserName
 ```
 
----
-
-## 字符串加密
-
-工具库只提供了 `base64` 方式加密和解密，你也可以用功能更强大的[crypto-js](https://github.com/brix/crypto-js)
-，包含了`md5`，`aes`，`sha1`，`sha256` 更多加密方式。
-
-### encode(str)
-
-base64 加密
-
-- #### 参数
-
-  `str` {String} 字符串
-
-- #### 返回值
-
-  {String} 返回加密后的字符串
-
-- #### 示例
-
-```javascript
-import { encode } from "@ivujs/util";
-
-let res = encode("dGVzdDEyMw==");
-console.log(res); // 输出：dGVzdDEyMw==
-```
-
----
-
-### decode(str)
-
-base64 加密
-
-- #### 参数
-
-  `str` {String} 字符串
-
-- #### 返回值
-
-  {String} 返回解密后的字符串
-
-- #### 示例
-
-```javascript
-import { decode } from "@ivujs/util";
-
-let res = decode("dGVzdDEyMw==");
-console.log(res); // 输出：test123
-```
-
----
-
 ## 字符串格式化
 
 ### inString(value, str)

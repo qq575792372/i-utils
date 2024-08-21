@@ -8,11 +8,18 @@
 </head>
 <body></body>
 <script src="../dist/lib/index.full.umd.min.js"></script>
+
+<!-- 整体引入 -->
 <script>
-  console.log("获得工具库", iUtils);
+  console.log("从window对象获得工具库", iUtils);
 </script>
+
+<!-- 按需引入 -->
 <script type="module">
   import * as iUtils from "../dist/lib/index.full.esm.min.js";
-  console.log("获得工具库", iUtils);
+
+  console.log("从模块中获得工具库", iUtils);
+
+  console.log(222, iUtils.md5("这是什么啊"));
 </script>
 </html>
