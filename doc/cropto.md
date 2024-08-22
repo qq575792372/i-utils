@@ -32,7 +32,7 @@ md5加密
 
 - #### 参数
 
-  `string` {String} 输入的字符串  
+  `string` {String} 字符串  
   `key` {String} HMAC密钥
   `raw` {Boolean} 原始输出开关
 
