@@ -12,10 +12,7 @@
   "scripts": {
     "build": "node ./build/build.js"
   },
-  "dependencies": {
-    "crypto-js": "^4.2.0",
-    "js-sha1": "^0.7.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "chalk": "^4.1.2",
     "rimraf": "^4.4.1",
