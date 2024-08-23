@@ -1,29 +1,32 @@
 /**
- * md5 加密
- * @param {String} str 字符串
- * @returns {string} 返回加密后的字符串
+ * [js-md5]{@link https://github.com/emn178/js-md5}
+ *
+ * @namespace md5
+ * @version 0.8.3
+ * @author Chen, Yi-Cyuan [emn178@gmail.com]
+ * @copyright Chen, Yi-Cyuan 2014-2023
+ * @license MIT
  */
-export function md5(str) {
-  let hash = createMethod();
-  return hash(str);
-}
 
-/**
- * md5_hmac 加密
- * @param {String} key 秘钥
- * @param {String} str 字符串
- * @returns {string} 返回加密后的字符串
- */
-export function md5_hmac(key, str) {
-  let hash = createHmacMethod();
-  return hash(key, str);
-}
+"use strict";
 
-/* 以下是内部实现方法 */
-// https://github.com/emn178/js-md5
 var INPUT_ERROR = "input is invalid type";
 var FINALIZE_ERROR = "finalize already called";
-var ARRAY_BUFFER = typeof ArrayBuffer !== "undefined";
+var WINDOW = typeof window === "object";
+var root = WINDOW ? window : {};
+if (root.JS_MD5_NO_WINDOW) {
+  WINDOW = false;
+}
+var WEB_WORKER = !WINDOW && typeof self === "object";
+var NODE_JS = !root.JS_MD5_NO_NODE_JS && typeof process === "object" && process.versions && process.versions.node;
+if (NODE_JS) {
+  root = global;
+} else if (WEB_WORKER) {
+  root = self;
+}
+var COMMON_JS = !root.JS_MD5_NO_COMMON_JS && typeof module === "object" && module.exports;
+var AMD = typeof define === "function" && define.amd;
+var ARRAY_BUFFER = !root.JS_MD5_NO_ARRAY_BUFFER && typeof ArrayBuffer !== "undefined";
 var HEX_CHARS = "0123456789abcdef".split("");
 var EXTRA = [128, 32768, 8388608, -2147483648];
 var SHIFT = [0, 8, 16, 24];
@@ -39,14 +42,14 @@ if (ARRAY_BUFFER) {
 }
 
 var isArray = Array.isArray;
-if (!isArray) {
+if (root.JS_MD5_NO_NODE_JS || !isArray) {
   isArray = function (obj) {
     return Object.prototype.toString.call(obj) === "[object Array]";
   };
 }
 
 var isView = ArrayBuffer.isView;
-if (ARRAY_BUFFER && !isView) {
+if (ARRAY_BUFFER && (root.JS_MD5_NO_ARRAY_BUFFER_IS_VIEW || !isView)) {
   isView = function (obj) {
     return typeof obj === "object" && obj.buffer && obj.buffer.constructor === ArrayBuffer;
   };
@@ -155,6 +158,9 @@ var createOutputMethod = function (outputType) {
  */
 var createMethod = function () {
   var method = createOutputMethod("hex");
+  if (NODE_JS) {
+    method = nodeWrap(method);
+  }
   method.create = function () {
     return new Md5();
   };
@@ -166,6 +172,36 @@ var createMethod = function () {
     method[type] = createOutputMethod(type);
   }
   return method;
+};
+
+var nodeWrap = function (method) {
+  var crypto = require("crypto");
+  var Buffer = require("buffer").Buffer;
+  var bufferFrom;
+  if (Buffer.from && !root.JS_MD5_NO_BUFFER_FROM) {
+    bufferFrom = Buffer.from;
+  } else {
+    bufferFrom = function (message) {
+      return new Buffer(message);
+    };
+  }
+  var nodeMethod = function (message) {
+    if (typeof message === "string") {
+      return crypto.createHash("md5").update(message, "utf8").digest("hex");
+    } else {
+      if (message === null || message === undefined) {
+        throw new Error(INPUT_ERROR);
+      } else if (message.constructor === ArrayBuffer) {
+        message = new Uint8Array(message);
+      }
+    }
+    if (isArray(message) || isView(message) || message.constructor === Buffer) {
+      return crypto.createHash("md5").update(bufferFrom(message)).digest("hex");
+    } else {
+      return method(message);
+    }
+  };
+  return nodeMethod;
 };
 
 /**
@@ -901,3 +937,7 @@ HmacMd5.prototype.finalize = function () {
     Md5.prototype.finalize.call(this);
   }
 };
+
+/* 以下是内部实现需要的导出方法 */
+export const md5 = createMethod();
+export const md5_hmac = createHmacMethod();

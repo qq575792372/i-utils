@@ -1,49 +1,31 @@
 /**
- * sha256 加密
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
+ * [js-sha256]{@link https://github.com/emn178/js-sha256}
+ *
+ * @version 0.11.0
+ * @author Chen, Yi-Cyuan [emn178@gmail.com]
+ * @copyright Chen, Yi-Cyuan 2014-2024
+ * @license MIT
  */
-export function sha256(str) {
-  let hash = createMethod();
-  return hash(str);
-}
+/* jslint bitwise: true */
 
-/**
- * sha224 加密
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function sha224(str) {
-  let hash = createMethod(true);
-  return hash(str);
-}
+"use strict";
 
-/**
- * sha256_hmac 加密
- * @param {String} key 秘钥
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function sha256_hmac(key, str) {
-  let hash = createHmacMethod();
-  return hash(key, str);
-}
-
-/**
- * sha224_hmac 加密
- * @param {String} key 秘钥
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function sha224_hmac(key, str) {
-  let hash = createHmacMethod(true);
-  return hash(key, str);
-}
-
-/* 以下是内部实现方法 */
-// https://github.com/emn178/js-sha256
 var ERROR = "input is invalid type";
-var ARRAY_BUFFER = typeof ArrayBuffer !== "undefined";
+var WINDOW = typeof window === "object";
+var root = WINDOW ? window : {};
+if (root.JS_SHA256_NO_WINDOW) {
+  WINDOW = false;
+}
+var WEB_WORKER = !WINDOW && typeof self === "object";
+var NODE_JS = !root.JS_SHA256_NO_NODE_JS && typeof process === "object" && process.versions && process.versions.node;
+if (NODE_JS) {
+  root = global;
+} else if (WEB_WORKER) {
+  root = self;
+}
+var COMMON_JS = !root.JS_SHA256_NO_COMMON_JS && typeof module === "object" && module.exports;
+var AMD = typeof define === "function" && define.amd;
+var ARRAY_BUFFER = !root.JS_SHA256_NO_ARRAY_BUFFER && typeof ArrayBuffer !== "undefined";
 var HEX_CHARS = "0123456789abcdef".split("");
 var EXTRA = [-2147483648, 8388608, 32768, 128];
 var SHIFT = [24, 16, 8, 0];
@@ -61,13 +43,13 @@ var OUTPUT_TYPES = ["hex", "array", "digest", "arrayBuffer"];
 
 var blocks = [];
 
-if (!Array.isArray) {
+if (root.JS_SHA256_NO_NODE_JS || !Array.isArray) {
   Array.isArray = function (obj) {
     return Object.prototype.toString.call(obj) === "[object Array]";
   };
 }
 
-if (ARRAY_BUFFER && !ArrayBuffer.isView) {
+if (ARRAY_BUFFER && (root.JS_SHA256_NO_ARRAY_BUFFER_IS_VIEW || !ArrayBuffer.isView)) {
   ArrayBuffer.isView = function (obj) {
     return typeof obj === "object" && obj.buffer && obj.buffer.constructor === ArrayBuffer;
   };
@@ -75,14 +57,17 @@ if (ARRAY_BUFFER && !ArrayBuffer.isView) {
 
 var createOutputMethod = function (outputType, is224) {
   return function (message) {
-    return new Sha256(is224, true).update(message)[outputType]();
+    return new SHA256(is224, true).update(message)[outputType]();
   };
 };
 
 var createMethod = function (is224) {
   var method = createOutputMethod("hex", is224);
+  if (NODE_JS) {
+    method = nodeWrap(method, is224);
+  }
   method.create = function () {
-    return new Sha256(is224);
+    return new SHA256(is224);
   };
   method.update = function (message) {
     return method.create().update(message);
@@ -92,6 +77,37 @@ var createMethod = function (is224) {
     method[type] = createOutputMethod(type, is224);
   }
   return method;
+};
+
+var nodeWrap = function (method, is224) {
+  var crypto = require("crypto");
+  var Buffer = require("buffer").Buffer;
+  var algorithm = is224 ? "sha224" : "sha256";
+  var bufferFrom;
+  if (Buffer.from && !root.JS_SHA256_NO_BUFFER_FROM) {
+    bufferFrom = Buffer.from;
+  } else {
+    bufferFrom = function (message) {
+      return new Buffer(message);
+    };
+  }
+  var nodeMethod = function (message) {
+    if (typeof message === "string") {
+      return crypto.createHash(algorithm).update(message, "utf8").digest("hex");
+    } else {
+      if (message === null || message === undefined) {
+        throw new Error(ERROR);
+      } else if (message.constructor === ArrayBuffer) {
+        message = new Uint8Array(message);
+      }
+    }
+    if (Array.isArray(message) || ArrayBuffer.isView(message) || message.constructor === Buffer) {
+      return crypto.createHash(algorithm).update(bufferFrom(message)).digest("hex");
+    } else {
+      return method(message);
+    }
+  };
+  return nodeMethod;
 };
 
 var createHmacOutputMethod = function (outputType, is224) {
@@ -115,7 +131,7 @@ var createHmacMethod = function (is224) {
   return method;
 };
 
-function Sha256(is224, sharedMemory) {
+function SHA256(is224, sharedMemory) {
   if (sharedMemory) {
     blocks[0] =
       blocks[16] =
@@ -167,7 +183,7 @@ function Sha256(is224, sharedMemory) {
   this.is224 = is224;
 }
 
-Sha256.prototype.update = function (message) {
+SHA256.prototype.update = function (message) {
   if (this.finalized) {
     return;
   }
@@ -262,7 +278,7 @@ Sha256.prototype.update = function (message) {
   return this;
 };
 
-Sha256.prototype.finalize = function () {
+SHA256.prototype.finalize = function () {
   if (this.finalized) {
     return;
   }
@@ -300,7 +316,7 @@ Sha256.prototype.finalize = function () {
   this.hash();
 };
 
-Sha256.prototype.hash = function () {
+SHA256.prototype.hash = function () {
   var a = this.h0,
     b = this.h1,
     c = this.h2,
@@ -397,7 +413,7 @@ Sha256.prototype.hash = function () {
   this.h7 = (this.h7 + h) << 0;
 };
 
-Sha256.prototype.hex = function () {
+SHA256.prototype.hex = function () {
   this.finalize();
 
   var h0 = this.h0,
@@ -480,9 +496,9 @@ Sha256.prototype.hex = function () {
   return hex;
 };
 
-Sha256.prototype.toString = Sha256.prototype.hex;
+SHA256.prototype.toString = SHA256.prototype.hex;
 
-Sha256.prototype.digest = function () {
+SHA256.prototype.digest = function () {
   this.finalize();
 
   var h0 = this.h0,
@@ -530,9 +546,9 @@ Sha256.prototype.digest = function () {
   return arr;
 };
 
-Sha256.prototype.array = Sha256.prototype.digest;
+SHA256.prototype.array = SHA256.prototype.digest;
 
-Sha256.prototype.arrayBuffer = function () {
+SHA256.prototype.arrayBuffer = function () {
   this.finalize();
 
   var buffer = new ArrayBuffer(this.is224 ? 28 : 32);
@@ -595,7 +611,7 @@ function HmacSha256(key, is224, sharedMemory) {
   }
 
   if (key.length > 64) {
-    key = new Sha256(is224, true).update(key).array();
+    key = new SHA256(is224, true).update(key).array();
   }
 
   var oKeyPad = [],
@@ -606,7 +622,7 @@ function HmacSha256(key, is224, sharedMemory) {
     iKeyPad[i] = 0x36 ^ b;
   }
 
-  Sha256.call(this, is224, sharedMemory);
+  SHA256.call(this, is224, sharedMemory);
 
   this.update(iKeyPad);
   this.oKeyPad = oKeyPad;
@@ -614,16 +630,22 @@ function HmacSha256(key, is224, sharedMemory) {
   this.sharedMemory = sharedMemory;
 }
 
-HmacSha256.prototype = new Sha256();
+HmacSha256.prototype = new SHA256();
 
 HmacSha256.prototype.finalize = function () {
-  Sha256.prototype.finalize.call(this);
+  SHA256.prototype.finalize.call(this);
   if (this.inner) {
     this.inner = false;
     var innerHash = this.array();
-    Sha256.call(this, this.is224, this.sharedMemory);
+    SHA256.call(this, this.is224, this.sharedMemory);
     this.update(this.oKeyPad);
     this.update(innerHash);
-    Sha256.prototype.finalize.call(this);
+    SHA256.prototype.finalize.call(this);
   }
 };
+
+/* 以下是内部实现需要的导出方法 */
+export const sha256 = createMethod();
+export const sha224 = createMethod(true);
+export const sha256_hmac = createHmacMethod();
+export const sha224_hmac = createHmacMethod(true);

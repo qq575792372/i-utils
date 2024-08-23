@@ -1,44 +1,22 @@
-/**
- * base32 加密
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
+/*
+ * [hi-base32]{@link https://github.com/emn178/hi-base32}
+ *
+ * @version 0.5.0
+ * @author Chen, Yi-Cyuan [emn178@gmail.com]
+ * @copyright Chen, Yi-Cyuan 2015-2018
+ * @license MIT
  */
-export function base32Encode(str) {
-  return encode(str);
-}
+/* jslint bitwise: true */
 
-/**
- * base32 解密
- * @param {String} str 字符串
- * @returns {String} 返回解密后的字符串
- */
-export function base32Decode(str) {
-  return decode(str);
-}
+"use strict";
 
-/**
- * base32 加密字节
- * @param {Array} array 数组
- * @returns {String} 返回加密后的字符串
- */
-export function base32EncodeAsBytes(array) {
-  return encode(array);
-}
-
-/**
- * base32 解密字节
- * @param {String} base32Str base32字符串
- * @returns {Array} 返回解密后的字节
- */
-export function base32DecodeAsBytes(base32Str) {
-  return decodeAsBytes(base32Str);
-}
-
-/* 内部实现方法 */
-// https://github.com/emn178/hi-base32
-var ENCODING_ERROR = "not a UTF-8 string";
-var WINDOW = typeof window === "object";
 var root = typeof window === "object" ? window : {};
+var NODE_JS = !root.HI_BASE32_NO_NODE_JS && typeof process === "object" && process.versions && process.versions.node;
+if (NODE_JS) {
+  root = global;
+}
+var COMMON_JS = !root.HI_BASE32_NO_COMMON_JS && typeof module === "object" && module.exports;
+var AMD = typeof define === "function" && define.amd;
 var BASE32_ENCODE_CHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567".split("");
 var BASE32_DECODE_CHAR = {
   A: 0,
@@ -551,3 +529,9 @@ var decode = function (base32Str, asciiOnly) {
   }
   return str;
 };
+
+var exports = {
+  encode: encode,
+  decode: decode,
+};
+decode.asBytes = decodeAsBytes;

@@ -1,92 +1,32 @@
-/**
- * sha256 加密
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
+/*
+ * [js-sha512]{@link https://github.com/emn178/js-sha512}
+ *
+ * @version 0.9.0
+ * @author Chen, Yi-Cyuan [emn178@gmail.com]
+ * @copyright Chen, Yi-Cyuan 2014-2024
+ * @license MIT
  */
-export function sha512(str) {
-  let hash = createMethod(512);
-  return hash(str);
-}
+/* jslint bitwise: true */
 
-/**
- * sha384 加密
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function sha384(str) {
-  let hash = createMethod(384);
-  return hash(str);
-}
+"use strict";
 
-/**
- * sha512_256 加密
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function sha512_256(str) {
-  let hash = createMethod(256);
-  return hash(str);
-}
-
-/**
- * sha512_224 加密
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function sha512_224(str) {
-  let hash = createMethod(224);
-  return hash(str);
-}
-
-/**
- * sha512_hmac 加密
- * @param {String} key 秘钥
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function sha512_hmac(key, str) {
-  let hash = createHmacMethod(512);
-  return hash(key, str);
-}
-
-/**
- * sha384_hmac 加密
- * @param {String} key 秘钥
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function sha384_hmac(key, str) {
-  let hash = createHmacMethod(384);
-  return hash(key, str);
-}
-
-/**
- * sha512_256_hmac 加密
- * @param {String} key 秘钥
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function sha512_256_hmac(key, str) {
-  let hash = createHmacMethod(256);
-  return hash(key, str);
-}
-
-/**
- * sha512_224_hmac 加密
- * @param {String} key 秘钥
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
- */
-export function sha512_224_hmac(key, str) {
-  let hash = createHmacMethod(224);
-  return hash(key, str);
-}
-
-/* 以下是内部实现方法 */
-// https://github.com/emn178/js-sha512
 var INPUT_ERROR = "input is invalid type";
 var FINALIZE_ERROR = "finalize already called";
-var ARRAY_BUFFER = typeof ArrayBuffer !== "undefined";
+var WINDOW = typeof window === "object";
+var root = WINDOW ? window : {};
+if (root.JS_SHA512_NO_WINDOW) {
+  WINDOW = false;
+}
+var WEB_WORKER = !WINDOW && typeof self === "object";
+var NODE_JS = !root.JS_SHA512_NO_NODE_JS && typeof process === "object" && process.versions && process.versions.node;
+if (NODE_JS) {
+  root = global;
+} else if (WEB_WORKER) {
+  root = self;
+}
+var COMMON_JS = !root.JS_SHA512_NO_COMMON_JS && typeof module === "object" && module.exports;
+var AMD = typeof define === "function" && define.amd;
+var ARRAY_BUFFER = !root.JS_SHA512_NO_ARRAY_BUFFER && typeof ArrayBuffer !== "undefined";
 var HEX_CHARS = "0123456789abcdef".split("");
 var EXTRA = [-2147483648, 8388608, 32768, 128];
 var SHIFT = [24, 16, 8, 0];
@@ -116,14 +56,14 @@ var OUTPUT_TYPES = ["hex", "array", "digest", "arrayBuffer"];
 var blocks = [];
 
 var isArray = Array.isArray;
-if (!isArray) {
+if (root.JS_SHA512_NO_NODE_JS || !isArray) {
   isArray = function (obj) {
     return Object.prototype.toString.call(obj) === "[object Array]";
   };
 }
 
 var isView = ArrayBuffer.isView;
-if (ARRAY_BUFFER && !isView) {
+if (ARRAY_BUFFER && (root.JS_SHA512_NO_ARRAY_BUFFER_IS_VIEW || !isView)) {
   isView = function (obj) {
     return typeof obj === "object" && obj.buffer && obj.buffer.constructor === ArrayBuffer;
   };
@@ -1227,3 +1167,13 @@ HmacSha512.prototype.clone = function () {
   }
   return hash;
 };
+
+/* 以下是内部实现需要的导出方法 */
+export const sha512 = createMethod(512);
+export const sha384 = createMethod(384);
+export const sha512_256 = createMethod(256);
+export const sha512_224 = createMethod(224);
+export const sha512_hmac = createHmacMethod(512);
+export const sha384_hmac = createHmacMethod(384);
+export const sha512_256_hmac = createHmacMethod(256);
+export const sha512_224_hmac = createHmacMethod(224);

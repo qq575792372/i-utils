@@ -1,44 +1,30 @@
-/**
- * base64 加密
- * @param {String} str 字符串
- * @returns {String} 返回加密后的字符串
+/*
+ * [hi-base64]{@link https://github.com/emn178/hi-base64}
+ *
+ * @version 0.3.1
+ * @author Chen, Yi-Cyuan [emn178@gmail.com]
+ * @copyright Chen, Yi-Cyuan 2014-2023
+ * @license MIT
  */
-export function base64Encode(str) {
-  return encode(str);
-}
+/* jslint bitwise: true */
 
-/**
- * base64 解密
- * @param {String} value 解密的字符串
- * @returns {String} 返回解密后的字符串
- */
-export function base64Decode(value) {
-  return decode(value);
-}
+"use strict";
 
-/**
- * base64 加密字节
- * @param {Array} array 数组
- * @returns {String} 返回加密后的字符串
- */
-export function base64EncodeAsBytes(array) {
-  return encode(array);
-}
-
-/**
- * base64 解密字节
- * @param {String} base64Str base64字符串
- * @returns {Array} 返回解密后的字节
- */
-export function base64DecodeAsBytes(base64Str) {
-  return decodeAsBytes(base64Str);
-}
-
-/* 内部实现方法 */
-// https://github.com/emn178/hi-base64
 var ENCODING_ERROR = "not a UTF-8 string";
 var WINDOW = typeof window === "object";
 var root = WINDOW ? window : {};
+if (root.HI_BASE64_NO_WINDOW) {
+  WINDOW = false;
+}
+var WEB_WORKER = !WINDOW && typeof self === "object";
+var NODE_JS = !root.HI_BASE64_NO_NODE_JS && typeof process === "object" && process.versions && process.versions.node;
+if (NODE_JS) {
+  root = global;
+} else if (WEB_WORKER) {
+  root = self;
+}
+var COMMON_JS = !root.HI_BASE64_NO_COMMON_JS && typeof module === "object" && module.exports;
+var AMD = typeof define === "function" && define.amd;
 var BASE64_ENCODE_CHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
 var BASE64_DECODE_CHAR = {};
 for (var i = 0; i < 64; ++i) {
@@ -152,7 +138,26 @@ var btoa = root.btoa,
   atob = root.atob,
   utf8Base64Encode,
   utf8Base64Decode;
-if (!btoa) {
+if (NODE_JS) {
+  var Buffer = require("buffer").Buffer;
+  btoa = function (str) {
+    return Buffer.from(str, "ascii").toString("base64");
+  };
+
+  utf8Base64Encode = function (str) {
+    return Buffer.from(str).toString("base64");
+  };
+
+  encodeFromBytes = utf8Base64Encode;
+
+  atob = function (base64Str) {
+    return Buffer.from(base64Str, "base64").toString("ascii");
+  };
+
+  utf8Base64Decode = function (base64Str) {
+    return Buffer.from(base64Str, "base64").toString();
+  };
+} else if (!btoa) {
   btoa = function (str) {
     var v1,
       v2,
@@ -406,7 +411,6 @@ var encode = function (str, asciiOnly) {
   if (notString) {
     return encodeFromBytes(str);
   } else {
-    // eslint-disable-next-line no-control-regex
     if (!asciiOnly && /[^\x00-\x7F]/.test(str)) {
       return utf8Base64Encode(str);
     } else {
@@ -419,3 +423,6 @@ var decode = function (base64Str, asciiOnly) {
   base64Str = cleanBase64Str(base64Str);
   return asciiOnly ? atob(base64Str) : utf8Base64Decode(base64Str);
 };
+
+/* 以下是内部实现需要的导出方法 */
+export { encode, decode, atob, btoa, decodeAsBytes };
