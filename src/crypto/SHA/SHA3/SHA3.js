@@ -8,8 +8,6 @@
  */
 /* jslint bitwise: true */
 
-"use strict";
-
 var INPUT_ERROR = "input is invalid type";
 var FINALIZE_ERROR = "finalize already called";
 var WINDOW = typeof window === "object";
@@ -740,7 +738,7 @@ var f = function (s) {
   }
 };
 
-/* 以下是内部实现需要的导出方法 */
+/* 以下是内部实现需要的es模块化导出方法 */
 export const sha3_512 = methods["sha3_512"];
 export const sha3_384 = methods["sha3_384"];
 export const sha3_256 = methods["sha3_256"];

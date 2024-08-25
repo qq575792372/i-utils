@@ -8,8 +8,6 @@
  * @license MIT
  */
 
-"use strict";
-
 var INPUT_ERROR = "input is invalid type";
 var FINALIZE_ERROR = "finalize already called";
 var WINDOW = typeof window === "object";
@@ -938,6 +936,6 @@ HmacMd5.prototype.finalize = function () {
   }
 };
 
-/* 以下是内部实现需要的导出方法 */
+/* 以下是内部实现需要的es模块化导出方法 */
 export const md5 = createMethod();
 export const md5_hmac = createHmacMethod();

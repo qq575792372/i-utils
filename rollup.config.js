@@ -79,7 +79,7 @@ export default {
     },
   ],
   // 排除模块
-  // external: ["crypto-js"],
+  external: [],
   // 使用插件
   plugins: [nodeResolve(), commonjs()],
 };

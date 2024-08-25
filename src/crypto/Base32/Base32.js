@@ -8,8 +8,6 @@
  */
 /* jslint bitwise: true */
 
-"use strict";
-
 var root = typeof window === "object" ? window : {};
 var NODE_JS = !root.HI_BASE32_NO_NODE_JS && typeof process === "object" && process.versions && process.versions.node;
 if (NODE_JS) {
@@ -530,8 +528,5 @@ var decode = function (base32Str, asciiOnly) {
   return str;
 };
 
-var exports = {
-  encode: encode,
-  decode: decode,
-};
-decode.asBytes = decodeAsBytes;
+/* 以下是内部实现需要的es模块化导出方法 */
+export { encode, decode, decodeAsBytes };

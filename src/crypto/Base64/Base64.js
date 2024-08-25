@@ -8,8 +8,6 @@
  */
 /* jslint bitwise: true */
 
-"use strict";
-
 var ENCODING_ERROR = "not a UTF-8 string";
 var WINDOW = typeof window === "object";
 var root = WINDOW ? window : {};
@@ -424,5 +422,5 @@ var decode = function (base64Str, asciiOnly) {
   return asciiOnly ? atob(base64Str) : utf8Base64Decode(base64Str);
 };
 
-/* 以下是内部实现需要的导出方法 */
-export { encode, decode, atob, btoa, decodeAsBytes };
+/* 以下是内部实现需要的es模块化导出方法 */
+export { encode, decode, decodeAsBytes };

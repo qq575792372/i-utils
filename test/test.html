@@ -23,9 +23,6 @@
   });
   console.log(`iUtils一共 ${num} 个api`);
   let key = "0123456789abcdeffedcba9876543210";
-  console.log(iUtils.sha3_512('ffff'));
-  let res = iUtils.sm4Encrypt([1,2,3], key,{padding: 'none', output: 'array'});
-  console.log(res);
-  console.log(iUtils.sm4Decrypt(res, key,{padding: 'none', output: 'array'}));
+  console.log(iUtils.sm2Encrypt("你好啊"));
 </script>
 </html>

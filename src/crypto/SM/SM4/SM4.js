@@ -1,21 +1,3 @@
-/* 国密算法 SM4 */
-/**
- * sm4 加密
- * @param value
- * @param key
- * @param options
- * @returns {String}
- */
-export function sm4Encrypt(value, key, options) {
-  return sm4(value, key, 1, options);
-}
-
-export function sm4Decrypt(value, key, options) {
-  return sm4(value, key, 0, options);
-}
-
-/* 内部实现方法 */
-// https://github.com/JuneAndGreen/sm-crypto
 /* eslint-disable no-bitwise, no-mixed-operators, complexity */
 const DECRYPT = 0;
 const ROUND = 32;
@@ -364,4 +346,13 @@ function sm4(inArray, key, cryptFlag, { padding = "pkcs#7", mode, iv = [], outpu
   } else {
     return outArray;
   }
+}
+
+/* 以下是内部实现需要的es模块化导出方法 */
+export function encrypt(inArray, key, options) {
+  return sm4(inArray, key, 1, options);
+}
+
+export function decrypt(inArray, key, options) {
+  return sm4(inArray, key, 0, options);
 }

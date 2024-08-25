@@ -1,10 +1,12 @@
+import * as Base64 from "./Base64.js";
+
 /**
  * base64 加密
  * @param {String} str 字符串
  * @returns {String} 返回加密后的字符串
  */
 export function base64Encode(str) {
-  return encode(str);
+  return Base64.encode(str);
 }
 
 /**
@@ -13,23 +15,23 @@ export function base64Encode(str) {
  * @returns {String} 返回解密后的字符串
  */
 export function base64Decode(value) {
-  return decode(value);
+  return Base64.decode(value);
 }
 
 /**
- * base64 加密字节
+ * base64 加密字节数组
  * @param {Array} array 数组
  * @returns {String} 返回加密后的字符串
  */
 export function base64EncodeAsBytes(array) {
-  return encode(array);
+  return Base64.encode(array);
 }
 
 /**
- * base64 解密字节
- * @param {String} base64Str base64字符串
- * @returns {Array} 返回解密后的字节
+ * base64 解密字节数组
+ * @param {String} str 字符串
+ * @returns {Array} 返回解密后的字节数组
  */
-export function base64DecodeAsBytes(base64Str) {
-  return decodeAsBytes(base64Str);
+export function base64DecodeAsBytes(str) {
+  return Base64.decodeAsBytes(str);
 }

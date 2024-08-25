@@ -8,8 +8,6 @@
  */
 /* jslint bitwise: true */
 
-"use strict";
-
 var INPUT_ERROR = "input is invalid type";
 var FINALIZE_ERROR = "finalize already called";
 var WINDOW = typeof window === "object";
@@ -1168,7 +1166,7 @@ HmacSha512.prototype.clone = function () {
   return hash;
 };
 
-/* 以下是内部实现需要的导出方法 */
+/* 以下是内部实现需要的es模块化导出方法 */
 export const sha512 = createMethod(512);
 export const sha384 = createMethod(384);
 export const sha512_256 = createMethod(256);

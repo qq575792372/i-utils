@@ -7,7 +7,7 @@
   <style></style>
 </head>
 <body></body>
-<script src="../dist/lib/index.full.umd.min.js"></script>
+<script src="../dist/lib/index.full.umd.js"></script>
 
 <!-- 整体引入 -->
 <script>
@@ -16,10 +16,10 @@
 
 <!-- 按需引入 -->
 <script type="module">
-  import * as iUtils from "../dist/lib/index.full.esm.min.js";
+  import * as iUtils from "../dist/lib/index.full.esm.js";
 
   console.log("从模块中获得工具库", iUtils);
 
-  console.log(222, iUtils.md5("这是什么啊"));
+  console.log(222, iUtils.base64Encode("这是什么啊"));
 </script>
 </html>

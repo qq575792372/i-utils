@@ -8,8 +8,6 @@
  */
 /* jslint bitwise: true */
 
-"use strict";
-
 var ERROR = "input is invalid type";
 var WINDOW = typeof window === "object";
 var root = WINDOW ? window : {};
@@ -644,7 +642,7 @@ HmacSha256.prototype.finalize = function () {
   }
 };
 
-/* 以下是内部实现需要的导出方法 */
+/* 以下是内部实现需要的es模块化导出方法 */
 export const sha256 = createMethod();
 export const sha224 = createMethod(true);
 export const sha256_hmac = createHmacMethod();
