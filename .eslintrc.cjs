@@ -27,5 +27,6 @@ module.exports = {
     "no-control-regex": "off", // 忽略regex在行内写
     "no-case-declarations": "off", // 忽略在case中对变量赋值
     "no-use-before-define": "off",
+    "class-methods-use-this": "off",
   },
 };

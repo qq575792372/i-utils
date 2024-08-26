@@ -66,9 +66,16 @@ export default {
       dir: pathResolve(outputLib),
       exports: undefined,
       banner,
-      plugins: [terser()],
+      plugins: [
+        terser({
+          compress: {
+            toplevel: false,
+            hoist_funs: false,
+          },
+        }),
+      ],
     },
-    {
+    /*     {
       format: "umd",
       entryFileNames: `index.full.umd.min.js`,
       dir: pathResolve(outputLib),
@@ -76,7 +83,7 @@ export default {
       exports: "named",
       banner,
       plugins: [terser()],
-    },
+    }, */
   ],
   // 排除模块
   external: [],

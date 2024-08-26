@@ -11,11 +11,11 @@ export function base64Encode(str) {
 
 /**
  * base64 解密
- * @param {String} value 解密的字符串
+ * @param {String} str 字符串
  * @returns {String} 返回解密后的字符串
  */
-export function base64Decode(value) {
-  return Base64.decode(value);
+export function base64Decode(str) {
+  return Base64.decode(str);
 }
 
 /**
