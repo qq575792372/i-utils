@@ -1,5 +1,2 @@
-import * as RSA from "./RSA.js";
-
-export function rsa(str) {
-  return RSA.RSAEncrypt(str);
-}
+/* 非对称加密 RSA */
+export function rsa(str) {}
