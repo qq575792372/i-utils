@@ -1,4 +1,3 @@
-/* eslint-disable no-bitwise, no-mixed-operators, complexity */
 const DECRYPT = 0;
 const ROUND = 32;
 const BLOCK = 16;

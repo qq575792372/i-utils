@@ -21,9 +21,9 @@
       num++;
     }
   });
-  console.log(`iUtils一共 ${num} 个api`);
+  console.log(`iUtils一共 ${num} 个api`, iUtils);
   let key = "0123456789abcdeffedcba9876543210";
-  let keypair = iUtils.generateKeyPairHex();
-  console.log(iUtils.sm2Encrypt("admin", keypair.privateKey));
+  let str = "admin";
+  console.log(iUtils.rsa(str));
 </script>
 </html>

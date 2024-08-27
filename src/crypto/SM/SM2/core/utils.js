@@ -1,8 +1,8 @@
 import * as jsbn from "./jsbn.js";
-
-import { ECCurveFp } from "./ec.js";
+import * as ec from "./ec.js";
 
 const { BigInteger, SecureRandom } = jsbn;
+const { ECCurveFp } = ec;
 
 const rng = new SecureRandom();
 const { curve, G, n } = generateEcparam();

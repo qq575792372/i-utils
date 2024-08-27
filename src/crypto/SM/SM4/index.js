@@ -16,7 +16,7 @@ export function sm4Encrypt(str, key, options) {
  * @param {String} str 字符串
  * @param {String} key 秘钥
  * @param {Object} options 配置
- * @returns {String} 返回解密后的字符串
+ * @returns {String} 返回解密后的数据
  */
 export function sm4Decrypt(str, key, options) {
   return SM4.decrypt(str, key, options);

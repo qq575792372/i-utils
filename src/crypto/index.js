@@ -11,7 +11,7 @@ export * from "./SM/index.js";
 // 对称加密 AES
 export * from "./AES.js";
 // 非对称加密 RSA
-export * from "./RSA.js";
+export * from "./RSA/index.js";
 // 非对称加密 DSA
 export * from "./DSA.js";
 // 非对称加密 ECC

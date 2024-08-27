@@ -249,6 +249,7 @@ function getPoint() {
   return keypair;
 }
 
+// es6 export
 export const generateKeyPairHex = _.generateKeyPairHex;
 export const compressPublicKeyHex = _.compressPublicKeyHex;
 export const comparePublicKeyHex = _.comparePublicKeyHex;
