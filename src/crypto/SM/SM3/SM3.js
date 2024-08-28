@@ -1,4 +1,4 @@
-import { sm3, hmac } from "../SM2/core/sm3.js";
+import { sm3, hmac } from "../lib/sm3.js";
 
 /**
  * 补全16进制字符串

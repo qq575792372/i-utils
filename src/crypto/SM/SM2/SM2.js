@@ -1,7 +1,7 @@
-import * as jsbn from "./core/jsbn.js";
-import * as asn1 from "./core/asn1.js";
-import * as _ from "./core/utils.js";
-import { sm3 } from "./core/sm3.js";
+import * as jsbn from "../lib/jsbn.js";
+import * as asn1 from "../lib/asn1.js";
+import * as _ from "../lib/utils.js";
+import { sm3 } from "../lib/sm3.js";
 
 const { BigInteger } = jsbn;
 const { decodeDer, encodeDer } = asn1;
