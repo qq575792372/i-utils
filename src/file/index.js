@@ -107,6 +107,28 @@ export function fileToUrl(file) {
 }
 
 /**
+ * url赚file
+ * @param {String} url url地址
+ * @returns {Promise} 返回Promise的file
+ */
+export function urlToFile(url) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let res = await fetch(url);
+      console.log(111, res);
+      if (res.status === 200) {
+        let blob = await res.blob();
+        let file = blobToFile(blob);
+        resolve(file);
+      }
+    } catch (err) {
+      console.error(err);
+      reject(err);
+    }
+  });
+}
+
+/**
  * blob转file
  * @param {Blob} blob blob数据
  * @param {String} fileName 文件名称，默认以时间戳命名
@@ -131,6 +153,24 @@ export function blobToFile(blob, fileName = Date.now()) {
       console.error(err);
       reject(err);
     }
+  });
+}
+
+/**
+ * blob转文本
+ * @param {Blob} blob blob数据
+ * @returns {Promise} 返回Promise的文本
+ */
+export function blobToText(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      resolve(event.target.result);
+    };
+    reader.onerror = function (error) {
+      reject(error);
+    };
+    reader.readAsText(blob);
   });
 }
 

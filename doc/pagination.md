@@ -158,5 +158,4 @@ getNextPage(pagination).then(page => {
 getNextPage(pagination, page => {
   console.log(res); // 输出：3
 });
-
 ```

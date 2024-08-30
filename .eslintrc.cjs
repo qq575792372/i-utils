@@ -28,5 +28,6 @@ module.exports = {
     "no-case-declarations": "off", // 忽略在case中对变量赋值
     "no-use-before-define": "off",
     "class-methods-use-this": "off",
+    "no-async-promise-executor": "off", // 忽略不能在promise中用async
   },
 };
