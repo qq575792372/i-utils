@@ -55,7 +55,7 @@ export * from "./storage/index.js";
 export * from "./dom/index.js";
 // 浏览器 Device
 export * from "./device/index.js";
-// 浏览器 Clipboard todo
+// 浏览器 Clipboard
 export * from "./clipboard/index.js";
 
 // 微信小程序

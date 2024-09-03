@@ -1,6 +1,5 @@
 # 校验 Validate
 
-
 ## 数据类型
 
 ### isInteger(value)
@@ -205,8 +204,41 @@ console.log(isDate(12.01)); // 输出：false
 ```javascript
 import { isFunction } from "@ivujs/util";
 
-console.log(isFunction(function () {})); // 输出：true
+console.log(isFunction(function() {
+})); // 输出：true
 console.log(isFunction(12.01)); // 输出：false
+```
+
+---
+
+### isAsyncFunction(value)
+
+判断类型是异步函数 AsyncFunction
+
+- #### 参数
+
+  `value` {\*} 参数
+
+- #### 返回值
+
+  {Boolean} 返回 true 和 false
+
+- #### 示例
+
+```javascript
+import { isAsyncFunction } from "@ivujs/util";
+
+// 演示是async异步函数和async箭头函数
+console.log(isAsyncFunction(async function() {
+})); // 输出：true
+console.log(isAsyncFunction(async () => {
+})); // 输出：true
+
+// 演示普通函数和箭头函数
+console.log(isAsyncFunction(() => {
+})); // 输出：false
+console.log(isAsyncFunction(function() {
+})); // 输出：false
 ```
 
 ---
@@ -413,7 +445,6 @@ console.log(isBigInt(new BigInt())); // 输出：true
 ```
 
 ---
-
 
 ## 数据值校验
 
@@ -725,7 +756,6 @@ console.log(isNotUndefined(12.01)); // 输出：true
 ```
 
 ---
-
 
 ## 数据比较
 

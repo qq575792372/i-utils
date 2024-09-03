@@ -33,31 +33,11 @@
   });
   console.log(`iUtils一共 ${num} 个api`, iUtils);
 
-  let encryptData = iUtils.des.encrypt("hello! admin!你好啊，管理员", "mykeddddymykeddddymykeddddymykeddddymykeddddy");
+  let encryptData = iUtils.des.encrypt("你好", "mykeddddymykeddddymykeddddymykeddddymykeddddy");
   console.log(11, encryptData);
   let decryptData = iUtils.des.decrypt(encryptData, "mykeddddymykeddddymykeddddymykeddddymykeddddy");
   console.log(22, decryptData);
 
-  // iUtils.setClipboardText("快来复制我吧").then(res => {
-  //   console.log("复制结果：", res);
-  // });
-
-let file = await iUtils.urlToFile('https://dummyimage.com/300.png');
-let blob = await iUtils.fileToBlob(file)
-  console.log(2222,blob);
-  let res = await iUtils.setClipboard(blob)
-  console.log(111,res);
-
-  setTimeout(async () => {
-    // iUtils.getClipboardText().then(text => {
-    //   console.log("获得文本1：", text);
-    // });
-    // let res = await iUtils.getClipboardText();
-    // console.log("获得文本2：", res);
-
-    let res1 = await iUtils.getClipboard();
-    console.log("获得数据1", res1);
-  }, 1000);
 
 </script>
 </html>

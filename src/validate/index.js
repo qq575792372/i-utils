@@ -76,7 +76,16 @@ export function isDate(value) {
  * @returns {Boolean} 返回true和false
  */
 export function isFunction(value) {
-  return Object.prototype.toString.call(value).slice(8, -1) === "Function";
+  return Object.prototype.toString === "Function";
+}
+
+/**
+ * 判断类型是异步函数 AsyncFunction
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isAsyncFunction(value) {
+  return Object.prototype.toString.call(value).slice(8, -1) === "AsyncFunction";
 }
 
 /**

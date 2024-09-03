@@ -49,7 +49,7 @@ export function fileToBlob(file) {
   return new Promise((resolve, reject) => {
     // 读取解析文件
     let reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsArrayBuffer(file);
 
     // 加载成功
     reader.onload = (e) => {
@@ -114,11 +114,10 @@ export function fileToUrl(file) {
 export function urlToFile(url) {
   return new Promise(async (resolve, reject) => {
     try {
-      let res = await fetch(url);
-      console.log(111, res);
+      let res = await window.fetch(url);
       if (res.status === 200) {
         let blob = await res.blob();
-        let file = blobToFile(blob);
+        let file = await blobToFile(blob);
         resolve(file);
       }
     } catch (err) {

@@ -1,10 +1,9 @@
-/* 剪切板 */
 import { blobToText } from "../file/index.js";
 
 /**
  * 获得剪切板数据
  * @description 获得的剪切板的数据是会返回多个可用的MIME类型，比如是纯文本就返回一个['text/plain']，是复制的html则会返回两个可用的['text/plain','text/html']，是复制的图片则是['image/png']
- * @returns {Promise} 返回剪切板的数据，根据需要用对应MIME类型的数据
+ * @returns {Promise} 返回剪切板的数据，是数组形式，如果是文本则是字符串，否则是blob数据
  */
 export function getClipboard() {
   return new Promise((resolve, reject) => {
@@ -34,6 +33,10 @@ export function getClipboard() {
   });
 }
 
+/**
+ * 获得剪切板文本
+ * @returns {Promise} 返回剪切板文本
+ */
 export function getClipboardText() {
   return new Promise((resolve, reject) => {
     if (window.navigator.clipboard) {
@@ -51,25 +54,31 @@ export function getClipboardText() {
   });
 }
 
+/**
+ * 设置剪切板数据
+ * @description 可以设置文本或者blob类型的数据
+ * @param {String,Blob} data 写入的数据，可以是文本或blob数据
+ * @returns {Promise} 返回结果
+ */
 export function setClipboard(data) {
   return new Promise((resolve, reject) => {
     // 现代浏览器
     if (window.navigator.clipboard) {
-      console.log("地方撒地方十多分", data);
-      let item = null;
+      let clipboardItem = null;
       // 是文本类型
       if (typeof data === "string") {
         let blob = new Blob([data], { type: "text/plain" });
-        item = new window.ClipboardItem({
+        clipboardItem = new window.ClipboardItem({
           ["text/plain"]: blob,
         });
       }
       // 其他文件类型
       else {
-        item = new window.ClipboardItem({ [data.type]: data });
+        clipboardItem = new window.ClipboardItem({ [data.type]: data });
       }
-      console.log("fsfsfsfsf", item);
-      window.navigator.clipboard.write([item]).then(
+
+      // 写入到剪切板中
+      window.navigator.clipboard.write([clipboardItem]).then(
         (success) => {
           resolve(true);
         },
@@ -83,16 +92,21 @@ export function setClipboard(data) {
   });
 }
 
+/**
+ * 设置剪切板文本
+ * @param {String} text 写入的文本
+ * @returns {Promise} 返回结果
+ */
 export function setClipboardText(text) {
   return new Promise((resolve, reject) => {
     // 现代浏览器
     if (window.navigator.clipboard) {
       window.navigator.clipboard.writeText(text).then(
         (success) => {
-          resolve(text);
+          resolve(true);
         },
         (failed) => {
-          reject(failed);
+          reject(false);
         },
       );
     } else {
@@ -103,7 +117,7 @@ export function setClipboardText(text) {
 
 /**
  * 清空剪切板
- * @returns {Promise} 返回promise对象
+ * @returns {Promise} 返回结果
  */
 export function clearClipboard() {
   return new Promise(async (resolve, reject) => {
