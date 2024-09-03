@@ -10,6 +10,8 @@ export * from "./sha/index.js";
 export * from "./sm/index.js";
 // 对称加密 AES todo
 export * as aes from "./aes/index.js";
+// 分组加密算法 TEA todo
+export * as tea from "./tea/index.js";
 // 对称加密 DES
 export * as des from "./des/index.js";
 // 非对称加密 RSA todo

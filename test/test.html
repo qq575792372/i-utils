@@ -33,11 +33,15 @@
   });
   console.log(`iUtils一共 ${num} 个api`, iUtils);
 
-  let encryptData = iUtils.des.encrypt("你好", "mykeddddymykeddddymykeddddymykeddddymykeddddy");
+/*   let encryptData = iUtils.des.encrypt("你好", "mykeddddymykeddddymykeddddymykeddddymykeddddy");
   console.log(11, encryptData);
   let decryptData = iUtils.des.decrypt(encryptData, "mykeddddymykeddddymykeddddymykeddddymykeddddy");
-  console.log(22, decryptData);
+  console.log(22, decryptData); */
 
 
+  let res1 = iUtils.tea.encrypt('你好啊','mykedyff');
+  console.log(res1);
+  let res2 = iUtils.tea.decrypt(res1,'mykedyff')
+  console.log(res2);
 </script>
 </html>

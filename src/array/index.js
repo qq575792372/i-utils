@@ -1,5 +1,5 @@
-import { isEmpty, isNull } from "../validate";
 import { SORT } from "../constants";
+import { isEmpty, isNull } from "../validate";
 
 /* 数组计算 */
 /**
