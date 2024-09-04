@@ -1,4 +1,7 @@
 import * as base64 from "../base64/index.js";
+
+const { encode, decode, utf8Decode, utf8Encode } = base64;
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 /* AES implementation in JavaScript                                   (c) Chris Veness 2005-2019  */
 /*                                                                                   MIT Licence  */
@@ -477,7 +480,7 @@ class AesCtr extends Aes {
     //   // no TextEncoder available?
     //   return unescape(encodeURIComponent(str)); // monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
     // }
-    return base64.utf8Encode(str);
+    return utf8Encode(str);
   }
 
   /**
@@ -492,7 +495,7 @@ class AesCtr extends Aes {
     //   return decodeURIComponent(escape(str)); // monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
     // }
 
-    return base64.utf8Decode(str);
+    return utf8Decode(str);
   }
 
   /*
@@ -508,7 +511,7 @@ class AesCtr extends Aes {
     // if (typeof Buffer != "undefined") return new Buffer(str, "binary").toString("base64"); // Node.js
     // throw new Error("No Base64 Encode");
 
-    return base64.encode(str);
+    return encode(str);
   }
 
   /*
@@ -519,7 +522,7 @@ class AesCtr extends Aes {
     // if (typeof Buffer != "undefined") return new Buffer(str, "base64").toString("binary"); // Node.js
     // throw new Error("No Base64 Decode");
 
-    return base64.decode(str);
+    return decode(str);
   }
 }
 

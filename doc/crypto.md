@@ -1190,6 +1190,76 @@ console.log(dectyptData4); // 输出：hello! admin!你好啊，管理员
 
 ## 对称加密 AES
 
+### aes.encrypt(str, key)
+
+aes 加密
+
+- #### 参数
+
+  `str` {String} 字符串
+  `key` {String} 秘钥
+  `bits` {Number} 密钥长度位数，支持128、192和256，默认256
+
+- #### 返回值
+
+  {String} 返回加密后的字符串
+
+- #### 示例
+
+```javascript
+import { aes } from "@ivujs/util";
+
+let str = "hello! admin!你好啊，管理员";
+let key = "0123456789abcdeffedcba9876543210";
+
+// 加密字符串
+let enctyptData1 = aes.encrypt(str, key);
+console.log(enctyptData1); // 输出：CwAXM8O2DsOXZsOYb8OXLMKEw5tqwpkBYVfChcKgwqAmw6PChjRmw57Dgg5TLDEKw4rDgsKGIMOZIDFeIsOHJ8KPIWswPR5ifsOAV3k=
+
+// 加密字符串,128位
+let enctyptData1 = aes.encrypt(str, key, 128);
+console.log(enctyptData1); // 输出：PgJgEsKeFMOXZlAkwp7CvsK6VmVMCBDCrD8aw4otIMOlXXTDk2XCrRbChxDDgsKNwp3Dp8OIw6rDvcKXAlpbwpvCgMKyWR1Hw53DucKjw4okEw==
+
+// 加密字符串,192位
+let enctyptData1 = aes.encrypt(str, key, 192);
+console.log(enctyptData1); // 输出：w5IAwrTCkMOTFMOXZsKlCFbDo0nDgMOQwrjDpEh0XcOawrBswozCucOKwq/CqMKFVj7DjMOxw4cgY8KSw4rCnXXCuwHDmcKFEcOVwoLCilQBH2rClggYwoM=
+
+```
+
+---
+
+### aes.decrypt(str, key)
+
+aes 解密
+
+- #### 参数
+
+  `str` {String} 字符串
+  `key` {String} 秘钥
+  `bits` {Number} 密钥长度位数，支持128、192和256，默认256
+-
+- #### 返回值
+
+  {String} 返回解密后的字符串
+
+- #### 示例
+
+```javascript
+import { aes } from "@ivujs/util";
+
+let str = "CwAXM8O2DsOXZsOYb8OXLMKEw5tqwpkBYVfChcKgwqAmw6PChjRmw57Dgg5TLDEKw4rDgsKGIMOZIDFeIsOHJ8KPIWswPR5ifsOAV3k=";
+let str_128 = "PgJgEsKeFMOXZlAkwp7CvsK6VmVMCBDCrD8aw4otIMOlXXTDk2XCrRbChxDDgsKNwp3Dp8OIw6rDvcKXAlpbwpvCgMKyWR1Hw53DucKjw4okEw==";
+let key = "0123456789abcdeffedcba9876543210";
+
+// 解密字符串
+let dectyptData1 = aes.decrypt(str, key);
+console.log(dectyptData1); // 输出：hello! admin!你好啊，管理员
+
+// 解密时候需要注意位数，加密是用128加密的，则解密需要也用128
+let dectyptData1 = aes.decrypt(str_128, key, 128);
+console.log(dectyptData1); // 输出：hello! admin!你好啊，管理员
+```
+
 ## 对称加密 DES
 
 ### des.encrypt(str, key)
@@ -1218,6 +1288,8 @@ let enctyptData1 = des.encrypt(str, key);
 console.log(enctyptData1); // 输出：dbf58bb877237a1172c69ceae37c78bc7606e70ad626383f701e178d4aa214ffb298d438cd58c29b92a9d984877ed5db
 ```
 
+---
+
 ### des.decrypt(str, key)
 
 des 解密
@@ -1241,6 +1313,62 @@ let key = "0123456789abcdeffedcba9876543210";
 
 // 解密字符串
 let dectyptData1 = des.decrypt(str, key);
+console.log(dectyptData1); // 输出：hello! admin!你好啊，管理员
+```
+
+## 分组加密算法 TEA
+
+### tea.encrypt(str, key)
+
+tea 加密
+
+- #### 参数
+
+  `str` {String} 字符串
+  `key` {String} 秘钥
+
+- #### 返回值
+
+  {String} 返回加密后的字符串
+
+- #### 示例
+
+```javascript
+import { tea } from "@ivujs/util";
+
+let str = "hello! admin!你好啊，管理员";
+let key = "0123456789abcdeffedcba9876543210";
+
+// 加密字符串
+let enctyptData1 = tea.encrypt(str, key);
+console.log(enctyptData1); // 输出：WTjuM8R+49u8I9Pj0ND++KMi1y2Y2Hk93pjTiZEd1OWeRaCQ
+```
+
+---
+
+### tea.decrypt(str, key)
+
+tea 解密
+
+- #### 参数
+
+  `str` {String} 字符串
+  `key` {String} 秘钥
+
+- #### 返回值
+
+  {String} 返回解密后的字符串
+
+- #### 示例
+
+```javascript
+import { tea } from "@ivujs/util";
+
+let str = "WTjuM8R+49u8I9Pj0ND++KMi1y2Y2Hk93pjTiZEd1OWeRaCQ";
+let key = "0123456789abcdeffedcba9876543210";
+
+// 解密字符串
+let dectyptData1 = tea.decrypt(str, key);
 console.log(dectyptData1); // 输出：hello! admin!你好啊，管理员
 ```
 

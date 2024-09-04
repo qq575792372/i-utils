@@ -3,10 +3,10 @@
 [![npm version](https://img.shields.io/npm/v/xe-utils.svg?style=flat-square)](https://github.com/qq575792372/i-utils)
 [![npm license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-🔥 **i-utils** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **299** ⚡️ 个 Api
+🔥 **i-utils** 🔥 是一个 前端模块化 **JavaScript** 工具库，目前共有 **361** ⚡️ 个 Api
 方法，支持`esm模块`和`umd浏览器环境`使用
 ，工具库包含了开发中经常用到的一些模块方法集合，如`字符串`，`数组`，`浏览器缓存`，`浏览器Cookie`，`浏览器剪切板`，`Dom处理`，
-`日期工具`，`加解密`，`数学计算`，`文件处理`，`正则校验`，`身份证信息`,`微信小程序工具库`
+`日期工具`，`加密解密`，`数学计算`，`文件处理`，`正则校验`，`身份证信息`,`微信小程序工具`
 等等。
 
 ### 📦 安装
@@ -101,7 +101,7 @@ pnpm publish
 [加解密算法](https://github.com/qq575792372/i-utils/blob/main/doc/crypto.md)  
 [脱敏](https://github.com/qq575792372/i-utils/blob/main/doc/desensitized.md)  
 [身份证号码](https://github.com/qq575792372/i-utils/blob/main/doc/ID-card.md)  
-[网络IP](https://github.com/qq575792372/i-utils/blob/main/doc/net.md)
+[分页](https://github.com/qq575792372/i-utils/blob/main/pagination/net.md)
 
 [浏览器 Url](https://github.com/qq575792372/i-utils/blob/main/doc/browser-url.md)  
 [浏览器 Cookie](https://github.com/qq575792372/i-utils/blob/main/doc/browser-storage.md)    
@@ -110,7 +110,7 @@ pnpm publish
 [浏览器 Device](https://github.com/qq575792372/i-utils/blob/main/doc/browser-device.md)  
 [浏览器 Clipboard](https://github.com/qq575792372/i-utils/blob/main/doc/browser-clipboard.md)
 
-[微信小程序工具库](https://github.com/qq575792372/i-utils/blob/main/doc/weapp.md)
+[微信小程序工具](https://github.com/qq575792372/i-utils/blob/main/doc/weapp.md)
 
 ### 🔖Git 提交规范
 
