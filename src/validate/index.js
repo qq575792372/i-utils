@@ -1,7 +1,7 @@
 /**
  * 判断是整数
  * @param {*} value 参数
- * @returns {Boolean} result 返回true和false
+ * @returns {Boolean} result 返回结果
  */
 export function isInteger(value) {
   return Number.isInteger(value);
@@ -10,7 +10,7 @@ export function isInteger(value) {
 /**
  * 判断是小数
  * @param {*} value 参数
- * @returns {Boolean} result 返回true和false
+ * @returns {Boolean} result 返回结果
  */
 export function isDecimal(value) {
   return /^\d+\.\d+$/.test(value);
@@ -19,7 +19,7 @@ export function isDecimal(value) {
 /**
  * 判断类型是数字 Number
  * @param {Number} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isNumber(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Number";
@@ -28,7 +28,7 @@ export function isNumber(value) {
 /**
  * 判断类型是字符串 String
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isString(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "String";
@@ -37,7 +37,7 @@ export function isString(value) {
 /**
  * 判断类型是数组 Array
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isArray(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Array";
@@ -46,7 +46,7 @@ export function isArray(value) {
 /**
  * 判断类型是对象 Object
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isObject(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Object";
@@ -55,7 +55,7 @@ export function isObject(value) {
 /**
  * 判断类型是布尔 Boolean
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isBoolean(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Boolean";
@@ -64,7 +64,7 @@ export function isBoolean(value) {
 /**
  * 判断类型是日期 Date
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isDate(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Date";
@@ -73,7 +73,7 @@ export function isDate(value) {
 /**
  * 判断类型是函数 Function
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isFunction(value) {
   return Object.prototype.toString === "Function";
@@ -82,7 +82,7 @@ export function isFunction(value) {
 /**
  * 判断类型是异步函数 AsyncFunction
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isAsyncFunction(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "AsyncFunction";
@@ -91,7 +91,7 @@ export function isAsyncFunction(value) {
 /**
  * 判断类型是 Symbol
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isSymbol(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Symbol";
@@ -100,7 +100,7 @@ export function isSymbol(value) {
 /**
  * 判断类型是正则 RegExp
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isRegExp(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "RegExp";
@@ -109,7 +109,7 @@ export function isRegExp(value) {
 /**
  * 判断类型是错误 Error
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isError(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Error";
@@ -118,7 +118,7 @@ export function isError(value) {
 /**
  * 判断类型是 Promise
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isPromise(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Promise";
@@ -127,7 +127,7 @@ export function isPromise(value) {
 /**
  *判断类型是 Map
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isMap(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Map";
@@ -136,7 +136,7 @@ export function isMap(value) {
 /**
  * 判断类型是 WeakMap
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isWeakMap(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "WeakMap";
@@ -145,7 +145,7 @@ export function isWeakMap(value) {
 /**
  * 判断类型是 Set
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isSet(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "Set";
@@ -154,7 +154,7 @@ export function isSet(value) {
 /**
  * 判断类型是 WeakSet
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isWeakSet(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "WeakSet";
@@ -163,7 +163,7 @@ export function isWeakSet(value) {
 /**
  * 判断类型是 BigInt
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isBigInt(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "BigInt";
@@ -172,7 +172,7 @@ export function isBigInt(value) {
 /**
  * 判断类型是 Json
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isJson(value) {
   try {
@@ -187,7 +187,7 @@ export function isJson(value) {
 /**
  * 判断值为真
  * @param {*} value 校验的参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isTrue(value) {
   return !isFalse(value);
@@ -196,7 +196,7 @@ export function isTrue(value) {
 /**
  * 判断值为假
  * @param {*} value 校验的参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isFalse(value) {
   return (
@@ -213,7 +213,7 @@ export function isFalse(value) {
 /**
  * 判断非数字
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isNaN(value) {
   // window的isNaN函数是有缺陷的，空数组/数组有一个元素，null，空字符串 都会被认为是数字
@@ -224,7 +224,7 @@ export function isNaN(value) {
  * 判断是数字
  * @description 等同于isNumber()
  * @param {*} value 参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isNotNaN(value) {
   return !isNaN(value);
@@ -234,7 +234,7 @@ export function isNotNaN(value) {
  * 判断对象为空
  * @description 判断值是否为空，如果对象初始化了值则不为空
  * @param {*} value 校验的参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isNull(value) {
   return value === undefined || value === null || value === "";
@@ -244,7 +244,7 @@ export function isNull(value) {
  * 判断对象不为空
  * @description 判断值是否为空，如果对象初始化了值则不为空
  * @param {*} value 校验的参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isNotNull(value) {
   return !isNull(value);
@@ -254,7 +254,7 @@ export function isNotNull(value) {
  * 判断值为空
  * @description 判断是否是有意义不为空的值，如果值是{},[]空的数据则为空
  * @param {*} value 校验的参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isEmpty(value) {
   return isNull(value) || !(Object.keys(value) || value).length;
@@ -264,7 +264,7 @@ export function isEmpty(value) {
  * 判断值不为空
  * @description 判断是否是有意义不为空的值，如果值是{},[]空的数据则为空
  * @param {*} value 校验的参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isNotEmpty(value) {
   return !isEmpty(value);
@@ -274,7 +274,7 @@ export function isNotEmpty(value) {
  * 判断值是空白的
  * @description 同时会校验空值，空对象，以及空白符号
  * @param {*} value 校验的参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isBlank(value) {
   return isEmpty(value) || /^\s*$/.test(value);
@@ -284,7 +284,7 @@ export function isBlank(value) {
  * 判断值不是空白的
  * @description 同时会校验空值，空对象，以及空白符号
  * @param {*} value 校验的参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isNotBlank(value) {
   return !isBlank(value);
@@ -293,7 +293,7 @@ export function isNotBlank(value) {
 /**
  * 判断值是undefined
  * @param {*} value 校验的参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isUndefined(value) {
   return value === undefined;
@@ -302,7 +302,7 @@ export function isUndefined(value) {
 /**
  * 判断值不是undefined
  * @param {*} value 校验的参数
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function isNotUndefined(value) {
   return !isUndefined(value);
@@ -313,7 +313,7 @@ export function isNotUndefined(value) {
  * 判断两个值是否相等
  * @param {String|Number} value1 参数1
  * @param {String|Number} value2 参数2
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function equals(value1, value2) {
   return Object.is(value1, value2);
@@ -323,7 +323,7 @@ export function equals(value1, value2) {
  * 判断两个值是否相等（忽略大小写）
  * @param {String|Number} value1 参数1
  * @param {String|Number} value2 参数2
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function equalsIgnoreCase(value1, value2) {
   return Object.is(value1.toLowerCase(), value2.toLowerCase());
@@ -334,7 +334,7 @@ export function equalsIgnoreCase(value1, value2) {
  * @description 可以对比任意数据，对象，数组，日期等也可深度对比，对象不区分先后顺序
  * @param {*} x 数据1
  * @param {*} y 数据2
- * @returns {Boolean} 返回true和false
+ * @returns {Boolean} 返回结果
  */
 export function deepCompare(x, y) {
   let i, l, leftChain, rightChain;
