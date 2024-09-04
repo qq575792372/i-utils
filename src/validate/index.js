@@ -169,6 +169,20 @@ export function isBigInt(value) {
   return Object.prototype.toString.call(value).slice(8, -1) === "BigInt";
 }
 
+/**
+ * 判断类型是 Json
+ * @param {*} value 参数
+ * @returns {Boolean} 返回true和false
+ */
+export function isJson(value) {
+  try {
+    JSON.parse(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 /* 数据值校验 */
 /**
  * 判断值为真

@@ -12,7 +12,7 @@
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -35,7 +35,7 @@ console.log(isInteger(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -58,7 +58,7 @@ console.log(isDecimal(12.01)); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -82,7 +82,7 @@ console.log(isNumber("3.1dd32")); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -105,7 +105,7 @@ console.log(isString(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -128,7 +128,7 @@ console.log(isArray([1, 2])); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -151,7 +151,7 @@ console.log(isObject(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -174,7 +174,7 @@ console.log(isBoolean(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -197,7 +197,7 @@ console.log(isDate(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -221,7 +221,7 @@ console.log(isFunction(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -253,7 +253,7 @@ console.log(isAsyncFunction(function() {
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -276,7 +276,7 @@ console.log(isSymbol(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -300,7 +300,7 @@ console.log(isRegExp(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -323,7 +323,7 @@ console.log(isError(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -346,7 +346,7 @@ console.log(isPromise(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -368,7 +368,7 @@ console.log(isMap(new Map())); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -390,7 +390,7 @@ console.log(isWeakMap(new WeakMap())); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -412,7 +412,7 @@ console.log(isSet(new Set())); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -434,7 +434,7 @@ console.log(isWeakSet(new WeakSet())); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -442,6 +442,28 @@ console.log(isWeakSet(new WeakSet())); // 输出：true
 import { isBigInt } from "@ivujs/util";
 
 console.log(isBigInt(new BigInt())); // 输出：true
+```
+
+---
+
+### isJson(value)
+
+判断类型是 Json
+
+- #### 参数
+
+  `value` {\*} 参数
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+import { isJson } from "@ivujs/util";
+
+console.log(isJson({ "name": "test" })); // 输出：true
 ```
 
 ---
@@ -458,7 +480,7 @@ console.log(isBigInt(new BigInt())); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -486,7 +508,7 @@ console.log(isTrue("null")); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -514,7 +536,7 @@ console.log(isFalse("null")); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -538,7 +560,7 @@ console.log(isNaN("123")); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -562,7 +584,7 @@ console.log(isNotNaN("123")); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -588,7 +610,7 @@ console.log(isNull(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -614,7 +636,7 @@ console.log(isNotNull(12.01)); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -640,7 +662,7 @@ console.log(isEmpty(undefined)); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -666,7 +688,7 @@ console.log(isNotEmpty(undefined)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -692,7 +714,7 @@ console.log(isBlank(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -717,7 +739,7 @@ console.log(isNotBlank(12.01)); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -742,7 +764,7 @@ console.log(isUndefined(12.01)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -770,7 +792,7 @@ console.log(isNotUndefined(12.01)); // 输出：true
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -796,7 +818,7 @@ console.log(equals(121, 12)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
@@ -823,7 +845,7 @@ console.log(equalsIgnoreCase(121, 12)); // 输出：false
 
 - #### 返回值
 
-  {Boolean} 返回 true 和 false
+  {Boolean} 返回结果
 
 - #### 示例
 
