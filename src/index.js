@@ -36,7 +36,7 @@ export * from "./keycode/index.js";
 
 // 生成id
 export * from "./id/index.js";
-// 加解密算法 todo
+// 加解密算法
 export * from "./crypto/index.js";
 // 脱敏
 export * from "./desensitized/index.js";
@@ -58,5 +58,5 @@ export * from "./device/index.js";
 // 浏览器 Clipboard
 export * from "./clipboard/index.js";
 
-// 微信小程序
+// 微信小程序工具
 export * from "./weapp/index.js";
