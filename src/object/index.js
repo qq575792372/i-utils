@@ -170,12 +170,25 @@ export function getTargetValueByPath(target, path = "data") {
   // 属性总个数
   let lastIndex = paths.length - 1;
   for (const index in paths) {
-    // 如果路径中没有该属性，则创建一个
-    if (data[paths[index]] === null || data[paths[index]] === undefined) {
-      data[paths[index]] = Number(index) !== lastIndex ? {} : undefined;
+    // 判断属性是取的数组
+    let pathArrayMatch = paths[index].match(/^(\w+)\[(\d+)]$/);
+    if (pathArrayMatch) {
+      let propName = pathArrayMatch[1];
+      let propIndex = parseInt(pathArrayMatch[2], 10);
+      if (!data[propName]) {
+        data[propName] = [];
+      }
+      // 逐层向下找到对应属性的值
+      data = data[propName][propIndex];
     }
-    // 逐层向下找到对应属性的值
-    data = data[paths[index]];
+    // 判断属性是取的对象属性
+    else {
+      if (!data[paths[index]]) {
+        data[paths[index]] = Number(index) !== lastIndex ? {} : undefined;
+      }
+      // 逐层向下找到对应属性的值
+      data = data[paths[index]];
+    }
   }
   return data;
 }
