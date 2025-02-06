@@ -5,7 +5,7 @@
 ### REGEXP.XXX
 
 ```javascript
-import { REGEXP } from "@ivujs/util";
+import { REGEXP } from "@ivu-plus/util";
 
 // 包含的规则如下
 const REGEXP = {
@@ -79,7 +79,7 @@ const REGEXP = {
 - #### 示例
 
 ```javascript
-import { regexpTest } from "@ivujs/util";
+import { regexpTest } from "@ivu-plus/util";
 
 let res = regexpTest("13000000000", REGEXP.MOBILE);
 console.log(res); // 输出：true
@@ -104,7 +104,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isChinese } from "@ivujs/util";
+import { isChinese } from "@ivu-plus/util";
 
 let res = isChinese("中国");
 console.log(res); // 输出：true
@@ -127,7 +127,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isEnglish } from "@ivujs/util";
+import { isEnglish } from "@ivu-plus/util";
 
 let res = isEnglish("abc");
 console.log(res); // 输出：true
@@ -151,7 +151,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isExternal } from "@ivujs/util";
+import { isExternal } from "@ivu-plus/util";
 
 let res = isExternal("http://test.com/11");
 console.log(res); // 输出：true
@@ -174,7 +174,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isLowerCase } from "@ivujs/util";
+import { isLowerCase } from "@ivu-plus/util";
 
 let res = isLowerCase("abc");
 console.log(res); // 输出：true
@@ -197,7 +197,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isUpperCase } from "@ivujs/util";
+import { isUpperCase } from "@ivu-plus/util";
 
 let res = isUpperCase("ABC");
 console.log(res); // 输出：true
@@ -220,7 +220,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isMobile } from "@ivujs/util";
+import { isMobile } from "@ivu-plus/util";
 
 let res = isMobile("13000000000");
 console.log(res); // 输出：true
@@ -243,7 +243,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isEmail } from "@ivujs/util";
+import { isEmail } from "@ivu-plus/util";
 
 let res = isEmail("321123488@qq.com");
 console.log(res); // 输出：true
@@ -266,7 +266,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isIdCard } from "@ivujs/util";
+import { isIdCard } from "@ivu-plus/util";
 
 let res = isMobile("411828198901112311");
 console.log(res); // 输出：true
@@ -289,7 +289,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isUrl } from "@ivujs/util";
+import { isUrl } from "@ivu-plus/util";
 
 let res = isUrl("http://www.test.com");
 console.log(res); // 输出：true

@@ -18,7 +18,7 @@
 - #### 示例
 
 ```javascript
-import { getBrowserInfo } from "@ivujs/util";
+import { getBrowserInfo } from "@ivu-plus/util";
 
 let res = getBrowserInfo();
 console.log(res); // 输出：{name: "edge", version: "96.0.1054.43"}
@@ -44,7 +44,7 @@ console.log(res); // 输出：{name: "edge", version: "96.0.1054.43"}
 - #### 示例
 
 ```javascript
-import { isPc } from "@ivujs/util";
+import { isPc } from "@ivu-plus/util";
 
 let res = isPc();
 console.log(res); // 输出：true
@@ -68,7 +68,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isMobile } from "@ivujs/util";
+import { isMobile } from "@ivu-plus/util";
 
 let res = isMobile();
 console.log(res); // 输出：true
@@ -94,7 +94,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isAndroid } from "@ivujs/util";
+import { isAndroid } from "@ivu-plus/util";
 
 let res = isAndroid();
 console.log(res); // 输出：true
@@ -117,7 +117,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isIos } from "@ivujs/util";
+import { isIos } from "@ivu-plus/util";
 
 let res = isIos();
 console.log(res); // 输出：true
@@ -140,7 +140,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isWindowsPhone } from "@ivujs/util";
+import { isWindowsPhone } from "@ivu-plus/util";
 
 let res = isWindowsPhone();
 console.log(res); // 输出：true
@@ -163,7 +163,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isWindows } from "@ivujs/util";
+import { isWindows } from "@ivu-plus/util";
 
 let res = isWindows();
 console.log(res); // 输出：true
@@ -186,7 +186,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isLinux } from "@ivujs/util";
+import { isLinux } from "@ivu-plus/util";
 
 let res = isLinux();
 console.log(res); // 输出：true
@@ -209,7 +209,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { removeCookie } from "@ivujs/util";
+import { removeCookie } from "@ivu-plus/util";
 
 let res = isMac();
 console.log(res); // 输出：true
@@ -235,7 +235,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isIphone } from "@ivujs/util";
+import { isIphone } from "@ivu-plus/util";
 
 let res = isIphone();
 console.log(res); // 输出：true
@@ -258,7 +258,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isIpad } from "@ivujs/util";
+import { isIpad } from "@ivu-plus/util";
 
 let res = isIpad();
 console.log(res); // 输出：true
@@ -284,7 +284,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isWeixin } from "@ivujs/util";
+import { isWeixin } from "@ivu-plus/util";
 
 let res = isWeixin();
 console.log(res); // 输出：true
@@ -307,7 +307,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isQQ } from "@ivujs/util";
+import { isQQ } from "@ivu-plus/util";
 
 let res = isQQ();
 console.log(res); // 输出：true

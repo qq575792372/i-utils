@@ -3,6 +3,7 @@
  * @param {String} key key值
  * @param {*} data data数据
  */
+
 export function setStorageSync(key, data) {
   wx.setStorageSync(key, data);
 }

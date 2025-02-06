@@ -206,7 +206,7 @@ export function isFalse(value) {
     value === "null" ||
     value === 0 ||
     value === false ||
-    value === NaN
+    isNaN(value)
   );
 }
 

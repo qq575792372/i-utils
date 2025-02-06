@@ -88,7 +88,7 @@ yyyy-MM-dd A EEE QQQ # 输出：2024-06-16 PM 星期日 第二季度
 - #### 示例
 
 ```javascript
-import { today } from "@ivujs/util";
+import { today } from "@ivu-plus/util";
 
 let res = today();
 console.log(res); // 输出：2024-06-16
@@ -109,7 +109,7 @@ console.log(res); // 输出：2024-06-16
 - #### 示例
 
 ```javascript
-import { yesterday } from "@ivujs/util";
+import { yesterday } from "@ivu-plus/util";
 
 let res = yesterday();
 console.log(res); // 输出：2024-01-16
@@ -132,7 +132,7 @@ console.log(res); // 输出：2024-01-16
 - #### 示例
 
 ```javascript
-import { tomorrow } from "@ivujs/util";
+import { tomorrow } from "@ivu-plus/util";
 
 let res = tomorrow();
 console.log(res); // 输出：2024-01-16
@@ -155,7 +155,7 @@ console.log(res); // 输出：2024-01-16
 - #### 示例
 
 ```javascript
-import { lastWeek } from "@ivujs/util";
+import { lastWeek } from "@ivu-plus/util";
 
 let res = lastWeek();
 console.log(res); // 输出：2021-12-06
@@ -176,7 +176,7 @@ console.log(res); // 输出：2021-12-06
 - #### 示例
 
 ```javascript
-import { nextWeek } from "@ivujs/util";
+import { nextWeek } from "@ivu-plus/util";
 
 let res = nextWeek();
 console.log(res); // 输出：2021-12-20
@@ -199,7 +199,7 @@ console.log(res); // 输出：2021-12-20
 - #### 示例
 
 ```javascript
-import { lastMonth } from "@ivujs/util";
+import { lastMonth } from "@ivu-plus/util";
 
 let res = lastMonth();
 console.log(res); // 输出：2021-11-13
@@ -222,7 +222,7 @@ console.log(res); // 输出：2021-11-13
 - #### 示例
 
 ```javascript
-import { nextMonth } from "@ivujs/util";
+import { nextMonth } from "@ivu-plus/util";
 
 let res = nextMonth();
 console.log(res); // 输出：2022-01-12
@@ -245,7 +245,7 @@ console.log(res); // 输出：2022-01-12
 - #### 示例
 
 ```javascript
-import { lastYear } from "@ivujs/util";
+import { lastYear } from "@ivu-plus/util";
 
 let res = lastYear();
 console.log(res); // 输出：2020-12-13
@@ -268,7 +268,7 @@ console.log(res); // 输出：2020-12-13
 - #### 示例
 
 ```javascript
-import { nextYear } from "@ivujs/util";
+import { nextYear } from "@ivu-plus/util";
 
 let res = nextYear();
 console.log(res); // 输出：2022-12-13
@@ -293,7 +293,7 @@ console.log(res); // 输出：2022-12-13
 - #### 示例
 
 ```javascript
-import { isAM } from "@ivujs/util";
+import { isAM } from "@ivu-plus/util";
 
 let res = isAM();
 console.log(res); // 输出：true
@@ -316,7 +316,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isPM } from "@ivujs/util";
+import { isPM } from "@ivu-plus/util";
 
 let res = isPM();
 console.log(res); // 输出：true
@@ -339,7 +339,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isToday } from "@ivujs/util";
+import { isToday } from "@ivu-plus/util";
 
 // 日期
 let res = isToday(new Date());
@@ -363,7 +363,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isYesterday } from "@ivujs/util";
+import { isYesterday } from "@ivu-plus/util";
 
 // 日期
 let res = isYesterday(new Date("2024-06-12"));
@@ -387,7 +387,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isBeforeYesterday } from "@ivujs/util";
+import { isBeforeYesterday } from "@ivu-plus/util";
 
 // 日期
 let res = isBeforeYesterday(new Date("2024-06-12"));
@@ -411,7 +411,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isTomorrow } from "@ivujs/util";
+import { isTomorrow } from "@ivu-plus/util";
 
 // 日期
 let res = isTomorrow(new Date("2024-06-12"));
@@ -435,7 +435,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isAfterTomorrow } from "@ivujs/util";
+import { isAfterTomorrow } from "@ivu-plus/util";
 
 // 日期
 let res = isAfterTomorrow(new Date("2024-06-12"));
@@ -459,7 +459,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isWorkday } from "@ivujs/util";
+import { isWorkday } from "@ivu-plus/util";
 
 let res = isWorkday(new Date("2024-06-12"));
 console.log(res); // 输出：true
@@ -482,7 +482,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isWeekend } from "@ivujs/util";
+import { isWeekend } from "@ivu-plus/util";
 
 let res = isWeekend(new Date("2024-06-15"));
 console.log(res); // 输出：true
@@ -505,7 +505,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isFirstDayOfWeek } from "@ivujs/util";
+import { isFirstDayOfWeek } from "@ivu-plus/util";
 
 let res = isFirstDayOfWeek(new Date("2024-06-17"));
 console.log(res); // 输出：true
@@ -528,7 +528,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isLastDayOfWeek } from "@ivujs/util";
+import { isLastDayOfWeek } from "@ivu-plus/util";
 
 let res = isLastDayOfWeek(new Date("2024-06-16"));
 console.log(res); // 输出：true
@@ -551,7 +551,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isFirstDayOfMonth } from "@ivujs/util";
+import { isFirstDayOfMonth } from "@ivu-plus/util";
 
 let res = isFirstDayOfMonth(new Date("2024-06-01"));
 console.log(res); // 输出：true
@@ -574,7 +574,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isLastDayOfMonth } from "@ivujs/util";
+import { isLastDayOfMonth } from "@ivu-plus/util";
 
 let res = isLastDayOfMonth(new Date("2024-06-30"));
 console.log(res); // 输出：true
@@ -597,7 +597,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isFirstDayOfYear } from "@ivujs/util";
+import { isFirstDayOfYear } from "@ivu-plus/util";
 
 let res = isFirstDayOfYear(new Date("2024-01-01"));
 console.log(res); // 输出：true
@@ -620,7 +620,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isLastDayOfYear } from "@ivujs/util";
+import { isLastDayOfYear } from "@ivu-plus/util";
 
 let res = isLastDayOfYear(new Date("2024-12-31"));
 console.log(res); // 输出：true
@@ -646,7 +646,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isLeapYear } from "@ivujs/util";
+import { isLeapYear } from "@ivu-plus/util";
 
 let res = isLeapYear();
 console.log(res); // 输出：true
@@ -670,7 +670,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isCommonYear } from "@ivujs/util";
+import { isCommonYear } from "@ivu-plus/util";
 
 let res = isCommonYear();
 console.log(res); // 输出：false
@@ -696,7 +696,7 @@ console.log(res); // 输出：false
 - #### 示例
 
 ```javascript
-import { isBefore } from "@ivujs/util";
+import { isBefore } from "@ivu-plus/util";
 
 let res = isBefore(new Date("2024-06-14"), new Date("2024-06-15"));
 console.log(res); // 输出：true
@@ -720,7 +720,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isAfter } from "@ivujs/util";
+import { isAfter } from "@ivu-plus/util";
 
 let res = isAfter(new Date("2024-06-17"), new Date("2024-06-15"));
 console.log(res); // 输出：true
@@ -745,7 +745,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isBetween } from "@ivujs/util";
+import { isBetween } from "@ivu-plus/util";
 
 let res = isBetween(new Date("2024-06-16"), new Date("2024-06-17"), new Date("2024-06-15"));
 console.log(res); // 输出：true
@@ -771,7 +771,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isSame } from "@ivujs/util";
+import { isSame } from "@ivu-plus/util";
 
 let res = isSame(new Date("2024-06-15"), new Date("2024-06-15"));
 console.log(res); // 输出：true
@@ -795,7 +795,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isSameWeek } from "@ivujs/util";
+import { isSameWeek } from "@ivu-plus/util";
 
 let res = isSameWeek(new Date("2024-06-15"), new Date("2024-06-15"));
 console.log(res); // 输出：true
@@ -819,7 +819,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isSameMonth } from "@ivujs/util";
+import { isSameMonth } from "@ivu-plus/util";
 
 let res = isSameMonth(new Date("2024-06-15"), new Date("2024-06-15"));
 console.log(res); // 输出：true
@@ -843,7 +843,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isSameYear } from "@ivujs/util";
+import { isSameYear } from "@ivu-plus/util";
 
 let res = isSameYear(new Date("2024-06-15"), new Date("2024-06-15"));
 console.log(res); // 输出：true
@@ -869,7 +869,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isSameOrBefore } from "@ivujs/util";
+import { isSameOrBefore } from "@ivu-plus/util";
 
 let res = isSameOrBefore(new Date("2024-06-14"), new Date("2024-06-15"));
 console.log(res); // 输出：true
@@ -893,7 +893,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isSameOrAfter } from "@ivujs/util";
+import { isSameOrAfter } from "@ivu-plus/util";
 
 let res = isSameOrAfter(new Date("2024-06-17"), new Date("2024-06-15"));
 console.log(res); // 输出：true
@@ -918,7 +918,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { getNow } from "@ivujs/util";
+import { getNow } from "@ivu-plus/util";
 
 let res = getNow();
 console.log(res); // 输出：Sun Jun 16 2024 19:54:48 GMT+0800 (中国标准时间)
@@ -942,7 +942,7 @@ console.log(res); // 输出：Sun Jun 16 2024 19:54:48 GMT+0800 (中国标准时
 - #### 示例
 
 ```javascript
-import { getDate } from "@ivujs/util";
+import { getDate } from "@ivu-plus/util";
 
 // 默认
 let res = getDate();
@@ -971,7 +971,7 @@ console.log(res); // 输出：2024/06/12
 - #### 示例
 
 ```javascript
-import { getDateTime } from "@ivujs/util";
+import { getDateTime } from "@ivu-plus/util";
 
 // 默认
 let res = getDateTime();
@@ -999,7 +999,7 @@ console.log(res); // 输出：2024-06-12 10:10:30
 - #### 示例
 
 ```javascript
-import { getTimestamp } from "@ivujs/util";
+import { getTimestamp } from "@ivu-plus/util";
 
 // 默认
 let res = getTimestamp();
@@ -1027,7 +1027,7 @@ console.log(res); // 输出：1639094400000
 - #### 示例
 
 ```javascript
-import { getUnixTimestamp } from "@ivujs/util";
+import { getUnixTimestamp } from "@ivu-plus/util";
 
 // 默认
 let res = getUnixTimestamp();
@@ -1056,7 +1056,7 @@ console.log(res); // 输出：1639094400
 - #### 示例
 
 ```javascript
-import { getDateObject } from "@ivujs/util";
+import { getDateObject } from "@ivu-plus/util";
 
 // 默认
 let res = getDateObject();
@@ -1081,7 +1081,7 @@ console.log(res); // 输出： { "year": 2024,  "month": 6, "date": 16, "hours":
 - #### 示例
 
 ```javascript
-import { getDateArray } from "@ivujs/util";
+import { getDateArray } from "@ivu-plus/util";
 
 // 默认
 let res = getDateArray();
@@ -1107,7 +1107,7 @@ console.log(res); // 输出： [2024, 6, 16, 20, 6, 42, 110, 0, 3]
 - #### 示例
 
 ```javascript
-import { getWeek } from "@ivujs/util";
+import { getWeek } from "@ivu-plus/util";
 
 // 默认
 let res = getWeek();
@@ -1149,7 +1149,7 @@ console.log(res); // 输出：Saturday
 - #### 示例
 
 ```javascript
-import { getQuarter } from "@ivujs/util";
+import { getQuarter } from "@ivu-plus/util";
 
 // 默认
 let res = getQuarter();
@@ -1191,7 +1191,7 @@ console.log(res); // 输出：quarter 1st
 - #### 示例
 
 ```javascript
-import { getDayOfWeek } from "@ivujs/util";
+import { getDayOfWeek } from "@ivu-plus/util";
 
 // 默认
 let res = getDayOfWeek();
@@ -1215,7 +1215,7 @@ console.log(res); // 输出：1
 - #### 示例
 
 ```javascript
-import { getDayOfMonth } from "@ivujs/util";
+import { getDayOfMonth } from "@ivu-plus/util";
 
 let res = getDayOfMonth();
 console.log(res); // 输出：13
@@ -1238,7 +1238,7 @@ console.log(res); // 输出：13
 - #### 示例
 
 ```javascript
-import { getDayOfYear } from "@ivujs/util";
+import { getDayOfYear } from "@ivu-plus/util";
 
 let res = getDayOfYear();
 console.log(res); // 输出：348
@@ -1263,7 +1263,7 @@ console.log(res); // 输出：348
 - #### 示例
 
 ```javascript
-import { getWeekOfMonth } from "@ivujs/util";
+import { getWeekOfMonth } from "@ivu-plus/util";
 
 let res = getWeekOfMonth();
 console.log(res); // 输出：3
@@ -1286,7 +1286,7 @@ console.log(res); // 输出：3
 - #### 示例
 
 ```javascript
-import { getWeekOfYear } from "@ivujs/util";
+import { getWeekOfYear } from "@ivu-plus/util";
 
 let res = getWeekOfYear();
 console.log(res); // 输出：51
@@ -1311,7 +1311,7 @@ console.log(res); // 输出：51
 - #### 示例
 
 ```javascript
-import { getDaysOfWeek } from "@ivujs/util";
+import { getDaysOfWeek } from "@ivu-plus/util";
 
 let res = getDaysOfWeek();
 console.log(res); // 输出：7
@@ -1334,7 +1334,7 @@ console.log(res); // 输出：7
 - #### 示例
 
 ```javascript
-import { getDaysOfMonth } from "@ivujs/util";
+import { getDaysOfMonth } from "@ivu-plus/util";
 
 let res = getDaysOfMonth();
 console.log(res); // 输出：31
@@ -1357,7 +1357,7 @@ console.log(res); // 输出：31
 - #### 示例
 
 ```javascript
-import { getDaysOfYear } from "@ivujs/util";
+import { getDaysOfYear } from "@ivu-plus/util";
 
 let res = getDaysOfYear();
 console.log(res); // 输出：365
@@ -1382,7 +1382,7 @@ console.log(res); // 输出：365
 - #### 示例
 
 ```javascript
-import { getWeeksOfMonth } from "@ivujs/util";
+import { getWeeksOfMonth } from "@ivu-plus/util";
 
 let res = getWeeksOfMonth((date = new Date()));
 console.log(res); // 输出：4
@@ -1405,7 +1405,7 @@ console.log(res); // 输出：4
 - #### 示例
 
 ```javascript
-import { getWeeksOfYear } from "@ivujs/util";
+import { getWeeksOfYear } from "@ivu-plus/util";
 
 let res = getWeeksOfYear((date = new Date()));
 console.log(res); // 输出：12
@@ -1430,7 +1430,7 @@ console.log(res); // 输出：12
 - #### 示例
 
 ```javascript
-import { getFirstDateOfWeek } from "@ivujs/util";
+import { getFirstDateOfWeek } from "@ivu-plus/util";
 
 let res = getFirstDateOfWeek();
 console.log(res); // 输出：2024-06-10
@@ -1453,7 +1453,7 @@ console.log(res); // 输出：2024-06-10
 - #### 示例
 
 ```javascript
-import { getLastDateOfWeek } from "@ivujs/util";
+import { getLastDateOfWeek } from "@ivu-plus/util";
 
 let res = getLastDateOfWeek();
 console.log(res); // 输出：2024-06-16
@@ -1476,7 +1476,7 @@ console.log(res); // 输出：2024-06-16
 - #### 示例
 
 ```javascript
-import { getFullDateOfWeek } from "@ivujs/util";
+import { getFullDateOfWeek } from "@ivu-plus/util";
 
 let res = getFullDateOfWeek();
 console.log(res); // 输出：['2024-06-10','2024-06-11','2024-06-12','2024-06-13','2024-06-14','2024-06-15','2024-06-16',]
@@ -1499,7 +1499,7 @@ console.log(res); // 输出：['2024-06-10','2024-06-11','2024-06-12','2024-06-1
 - #### 示例
 
 ```javascript
-import { getFirstDateOfMonth } from "@ivujs/util";
+import { getFirstDateOfMonth } from "@ivu-plus/util";
 
 let res = getFirstDateOfMonth();
 console.log(res); // 输出：2021-12-01
@@ -1522,7 +1522,7 @@ console.log(res); // 输出：2021-12-01
 - #### 示例
 
 ```javascript
-import { getLastDateOfMonth } from "@ivujs/util";
+import { getLastDateOfMonth } from "@ivu-plus/util";
 
 let res = getLastDateOfMonth();
 console.log(res); // 输出：2021-12-31
@@ -1545,7 +1545,7 @@ console.log(res); // 输出：2021-12-31
 - #### 示例
 
 ```javascript
-import { getFullDateOfMonth } from "@ivujs/util";
+import { getFullDateOfMonth } from "@ivu-plus/util";
 
 let res = getFullDateOfMonth();
 console.log(res); // 输出：['2024-06-01', ..., '2024-06-30']
@@ -1568,7 +1568,7 @@ console.log(res); // 输出：['2024-06-01', ..., '2024-06-30']
 - #### 示例
 
 ```javascript
-import { getFirstDateOfYear } from "@ivujs/util";
+import { getFirstDateOfYear } from "@ivu-plus/util";
 
 let res = getFirstDateOfYear();
 console.log(res); // 输出：2024-01-01
@@ -1591,7 +1591,7 @@ console.log(res); // 输出：2024-01-01
 - #### 示例
 
 ```javascript
-import { getLastDateOfYear } from "@ivujs/util";
+import { getLastDateOfYear } from "@ivu-plus/util";
 
 let res = getLastDateOfYear();
 console.log(res); // 输出：2024-12-31
@@ -1614,7 +1614,7 @@ console.log(res); // 输出：2024-12-31
 - #### 示例
 
 ```javascript
-import { getFullDateOfYear } from "@ivujs/util";
+import { getFullDateOfYear } from "@ivu-plus/util";
 
 let res = getFullDateOfYear();
 console.log(res); // 输出：['2024-01-01', ..., '2024-12-31']
@@ -1640,7 +1640,7 @@ console.log(res); // 输出：['2024-01-01', ..., '2024-12-31']
 - #### 示例
 
 ```javascript
-import { getDiffDay } from "@ivujs/util";
+import { getDiffDay } from "@ivu-plus/util";
 
 // 大于0
 let res = getDiffDay("2021-12-10", "2021-12-11");
@@ -1673,7 +1673,7 @@ console.log(res); // 输出： -1
 - #### 示例
 
 ```javascript
-import { getDiffWeek } from "@ivujs/util";
+import { getDiffWeek } from "@ivu-plus/util";
 
 // 大于0
 let res = getDiffWeek("2021-12-01", "2021-12-11");
@@ -1706,7 +1706,7 @@ console.log(res); // 输出： -1
 - #### 示例
 
 ```javascript
-import { getDiffMonth } from "@ivujs/util";
+import { getDiffMonth } from "@ivu-plus/util";
 
 // 大于0
 let res = getDiffMonth("2024-06-12", "2021-12-11");
@@ -1739,7 +1739,7 @@ console.log(res); // 输出： -1
 - #### 示例
 
 ```javascript
-import { getDiffYear } from "@ivujs/util";
+import { getDiffYear } from "@ivu-plus/util";
 
 // 大于0
 let res = getDiffYear("2020-11-10", "2021-12-11");
@@ -1774,7 +1774,7 @@ console.log(res); // 输出： -1
 - #### 示例
 
 ```javascript
-import { getBetweenDates } from "@ivujs/util";
+import { getBetweenDates } from "@ivu-plus/util";
 
 let res = getBetweenDates("2021-12-11", "2024-06-12");
 console.log(res); // 输出： ['2021-12-11', '2024-01-16', '2024-06-12']
@@ -1798,7 +1798,7 @@ console.log(res); // 输出： ['2021-12-11', '2024-01-16', '2024-06-12']
 - #### 示例
 
 ```javascript
-import { getBetweenMonths } from "@ivujs/util";
+import { getBetweenMonths } from "@ivu-plus/util";
 
 let res = getBetweenMonths("2021-11-11", "2024-06-12");
 console.log(res); // 输出： ['2021-11', '2021-12']
@@ -1822,7 +1822,7 @@ console.log(res); // 输出： ['2021-11', '2021-12']
 - #### 示例
 
 ```javascript
-import { getBetweenYears } from "@ivujs/util";
+import { getBetweenYears } from "@ivu-plus/util";
 
 let res = betweenYears("2020-11-11", "2024-06-12");
 console.log(res); // 输出： [2020, 2021]
@@ -1849,7 +1849,7 @@ console.log(res); // 输出： [2020, 2021]
 - #### 示例
 
 ```javascript
-import { getPastTime } from "@ivujs/util";
+import { getPastTime } from "@ivu-plus/util";
 
 // 日期
 let res = getPastTime(new Date("2024-01-16"));
@@ -1883,7 +1883,7 @@ console.log(res); // 输出：1 day ago
 - #### 示例
 
 ```javascript
-import { getOverTime } from "@ivujs/util";
+import { getOverTime } from "@ivu-plus/util";
 
 let res = getOverTime("2021-12-14");
 console.log(res); // 输出：0天 7时 10分 48秒
@@ -1905,7 +1905,7 @@ console.log(res); // 输出：0天 7时 10分 48秒
 - #### 示例
 
 ```javascript
-import { getAge } from "@ivujs/util";
+import { getAge } from "@ivu-plus/util";
 
 // 这里是按周岁计算
 let res = getOverTime("2010-08-10");
@@ -1931,7 +1931,7 @@ console.log(res); // 输出：13
 - #### 示例
 
 ```javascript
-import { getZodiac } from "@ivujs/util";
+import { getZodiac } from "@ivu-plus/util";
 
 let res = getZodiac("2000-10-10");
 console.log(res); // 输出：天秤座
@@ -1955,7 +1955,7 @@ console.log(res); // 输出：天秤座
 - #### 示例
 
 ```javascript
-import { getChineseZodiac } from "@ivujs/util";
+import { getChineseZodiac } from "@ivu-plus/util";
 
 let res = getChineseZodiac("2000-10-10");
 console.log(res); // 输出：龙
@@ -1981,7 +1981,7 @@ console.log(res); // 输出：龙
 - #### 示例
 
 ```javascript
-import { addYear } from "@ivujs/util";
+import { addYear } from "@ivu-plus/util";
 
 // 默认
 let res = addYear();
@@ -2010,7 +2010,7 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
-import { addMonth } from "@ivujs/util";
+import { addMonth } from "@ivu-plus/util";
 
 // 默认
 let res = addMonth();
@@ -2039,7 +2039,7 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
-import { addDate } from "@ivujs/util";
+import { addDate } from "@ivu-plus/util";
 
 // 默认
 let res = addDate();
@@ -2068,7 +2068,7 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
-import { addHours } from "@ivujs/util";
+import { addHours } from "@ivu-plus/util";
 
 // 默认
 let res = addHours();
@@ -2097,7 +2097,7 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
-import { addMinutes } from "@ivujs/util";
+import { addMinutes } from "@ivu-plus/util";
 
 // 默认
 let res = addMinutes();
@@ -2126,7 +2126,7 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
-import { addSeconds } from "@ivujs/util";
+import { addSeconds } from "@ivu-plus/util";
 
 // 默认
 let res = addSeconds();
@@ -2155,7 +2155,7 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
-import { addMillisecond } from "@ivujs/util";
+import { addMillisecond } from "@ivu-plus/util";
 
 // 默认
 let res = addMillisecond();
@@ -2184,7 +2184,7 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
-import { addWeek } from "@ivujs/util";
+import { addWeek } from "@ivu-plus/util";
 
 // 默认
 let res = addWeek();
@@ -2213,7 +2213,7 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
-import { addQuarter } from "@ivujs/util";
+import { addQuarter } from "@ivu-plus/util";
 
 // 默认
 let res = addQuarter();
@@ -2250,7 +2250,7 @@ console.log(res); // 输出：日期对象
 - #### 示例
 
 ```javascript
-import { formatDate } from "@ivujs/util";
+import { formatDate } from "@ivu-plus/util";
 
 // 使用方法，具体格式化参数以及结果参考最上面的 format 格式
 let res = formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
@@ -2278,7 +2278,7 @@ console.log(res); // 输出： 2021/12/10 17:10:10
 - #### 示例
 
 ```javascript
-import { parseDate } from "@ivujs/util";
+import { parseDate } from "@ivu-plus/util";
 
 // yyyy-MM-dd
 let res = parseDate("2021-12-10");

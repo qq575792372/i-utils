@@ -1,5 +1,5 @@
 /**
- * 正则常量
+ * 正则
  */
 export const REGEXP = {
   // 中文汉字

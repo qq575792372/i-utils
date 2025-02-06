@@ -1,3 +1,14 @@
+/* 字符串处理 */
+/**
+ * 字符串中是否包含指定的元素
+ * @param {String} value 包含的元素
+ * @param {String} str 查找的字符串
+ * @returns {Boolean} 返回true和false
+ */
+export function inString(value, str) {
+  return str.includes(value);
+}
+
 /**
  * 去除字符串前后位置空格
  * @param {String} value 参数
@@ -51,7 +62,7 @@ export function replaceAll(value, oldSubstr, newSubstr) {
  * @param {String} value 参数
  * @returns {String} 返回处理后的字符串
  */
-export function toUpper(value) {
+export function toUpperCase(value) {
   return String(value).toLocaleUpperCase();
 }
 
@@ -60,7 +71,7 @@ export function toUpper(value) {
  * @param {String} value 参数
  * @returns {String} 返回处理后的字符串
  */
-export function toLower(value) {
+export function toLowerCase(value) {
   String(value).toLocaleLowerCase();
 }
 
@@ -169,15 +180,6 @@ export function toPascalCase(value) {
 }
 
 /* 字符串格式化 */
-/**
- * 字符串中是否包含指定的元素
- * @param {String} value 包含的元素
- * @param {String} str 查找的字符串
- * @returns {Boolean} 返回true和false
- */
-export function inString(value, str) {
-  return str.includes(value);
-}
 
 /**
  * 数字前补齐0达到指定位数
@@ -209,6 +211,34 @@ export function zeroEnd(value, maxLength = 2) {
     len++;
   }
   return value;
+}
+
+/**
+ * 格式化为标题样式
+ * @param {String} value 字符串值
+ * @returns {String} 返回格式化后的标题样式
+ */
+export function formatTitle(value) {
+  if (!value) return "";
+  return value
+    .split(/(?=[A-Z])|[\.\-\s_]/)
+    .map((s) => s.trim())
+    .filter((s) => !!s)
+    .map((s) => toPascalCase(s.toLowerCase()))
+    .join(" ");
+}
+
+/**
+ * 格式化字符串模版
+ * @param {String} value 字符串值
+ * @param {Object} data 模版数据
+ * @returns {String} 返回格式化后的模版字符串
+ */
+export function formatTemplate(value, data) {
+  if (!value) return "";
+  return Array.from(value.matchAll(/\{\{(.+?)\}\}/g)).reduce((acc, match) => {
+    return acc.replace(match[0], data[match[1]]);
+  }, value);
 }
 
 /**

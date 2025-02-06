@@ -15,13 +15,13 @@
 
 ```bash
 # npm
-npm i @ivujs/i-utils --save
+npm i @ivu-plus/i-utils --save
 
 # pnpm
-pnpm i @ivujs/i-utils --save
+pnpm i @ivu-plus/i-utils --save
 
 # yarn
-yarn add @ivujs/i-utils --save
+yarn add @ivu-plus/i-utils --save
 ```
 
 ### 🎨 使用
@@ -30,12 +30,12 @@ yarn add @ivujs/i-utils --save
 
 ```javascript
 // 按需引入
-import { loadedTest } from "@ivujs/i-utils";
+import { loadedTest } from "@ivu-plus/i-utils";
 
 loadedTest();
 
 // 全部引入
-import * as iUtils from "@ivujs/i-utils";
+import * as iUtils from "@ivu-plus/i-utils";
 
 iUtils.loadedTest();
 ```
@@ -55,11 +55,11 @@ iUtils.loadedTest();
 
 ```javascript
 // 全部引入
-const iUtils = require("@ivujs/i-utils");
+const iUtils = require("@ivu-plus/i-utils");
 iUtils.loadedTest();
 
 // 按需引入
-const { loadedTest } = require("@ivujs/i-utils");
+const { loadedTest } = require("@ivu-plus/i-utils");
 loadedTest();
 ```
 

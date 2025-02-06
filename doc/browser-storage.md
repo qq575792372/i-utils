@@ -15,7 +15,7 @@
 - #### 示例
 
 ```javascript
-import { isSupportStorage } from "@ivujs/util";
+import { isSupportStorage } from "@ivu-plus/util";
 
 let res = isSupportStorage();
 console.log(res); // 输出：true
@@ -40,7 +40,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { getLocalStorage } from "@ivujs/util";
+import { getLocalStorage } from "@ivu-plus/util";
 
 let res = getLocalStorage("id");
 console.log(res); // 输出：1
@@ -64,7 +64,7 @@ console.log(res); // 输出：1
 - #### 示例
 
 ```javascript
-import { setLocalStorage } from "@ivujs/util";
+import { setLocalStorage } from "@ivu-plus/util";
 
 setLocalStorage("id");
 ```
@@ -86,7 +86,7 @@ setLocalStorage("id");
 - #### 示例
 
 ```javascript
-import { removeLocalStorage } from "@ivujs/util";
+import { removeLocalStorage } from "@ivu-plus/util";
 
 removeLocalStorage("id");
 ```
@@ -108,7 +108,7 @@ removeLocalStorage("id");
 - #### 示例
 
 ```javascript
-import { clearLocalStorage } from "@ivujs/util";
+import { clearLocalStorage } from "@ivu-plus/util";
 
 clearLocalStorage();
 ```
@@ -132,7 +132,7 @@ clearLocalStorage();
 - #### 示例
 
 ```javascript
-import { sessionStorage } from "@ivujs/util";
+import { sessionStorage } from "@ivu-plus/util";
 
 let res = getSessionStorage("id");
 console.log(res); // 输出：1
@@ -156,7 +156,7 @@ console.log(res); // 输出：1
 - #### 示例
 
 ```javascript
-import { setSessionStorage } from "@ivujs/util";
+import { setSessionStorage } from "@ivu-plus/util";
 
 setSessionStorage("id");
 ```
@@ -178,7 +178,7 @@ setSessionStorage("id");
 - #### 示例
 
 ```javascript
-import { removeSessionStorage } from "@ivujs/util";
+import { removeSessionStorage } from "@ivu-plus/util";
 
 removeSessionStorage("id");
 ```
@@ -200,7 +200,7 @@ removeSessionStorage("id");
 - #### 示例
 
 ```javascript
-import { clearSessionStorage } from "@ivujs/util";
+import { clearSessionStorage } from "@ivu-plus/util";
 
 clearSessionStorage();
 ```

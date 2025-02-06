@@ -17,7 +17,7 @@
 - #### 示例
 
 ```javascript
-import { getRandom } from "@ivujs/util";
+import { getRandom } from "@ivu-plus/util";
 
 let res = getRandom(0, 9);
 console.log(res); // 输出：0-9之间随机一位
@@ -41,7 +41,7 @@ console.log(res); // 输出：0-9之间随机一位
 - #### 示例
 
 ```javascript
-import { getRandomDigit } from "@ivujs/util";
+import { getRandomDigit } from "@ivu-plus/util";
 
 let res = getRandomDigit(2);
 console.log(res); // 输出：10-99之间随机两位

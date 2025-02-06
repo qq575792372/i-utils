@@ -15,7 +15,7 @@
 - #### 示例
 
 ```javascript
-import { getLimit } from "@ivujs/util";
+import { getLimit } from "@ivu-plus/util";
 
 let pagination = { page: 2, pageSize: 10, total: 30 };
 let res = getLimit(pagination);
@@ -39,7 +39,7 @@ console.log(res); // 输出：[10, 20]
 - #### 示例
 
 ```javascript
-import { getTotalPage } from "@ivujs/util";
+import { getTotalPage } from "@ivu-plus/util";
 
 let pagination = { page: 2, pageSize: 10, total: 30 };
 let res = getTotalPage(pagination);
@@ -64,7 +64,7 @@ console.log(res); // 输出：3
 - #### 示例
 
 ```javascript
-import { getRainbowPager } from "@ivujs/util";
+import { getRainbowPager } from "@ivu-plus/util";
 
 let pagination = { page: 2, pageSize: 10, total: 50 };
 
@@ -102,7 +102,7 @@ getRainbowPager(pagination, pager => {
 - #### 示例
 
 ```javascript
-import { getPrevPage } from "@ivujs/util";
+import { getPrevPage } from "@ivu-plus/util";
 
 let pagination = { page: 2, pageSize: 10, total: 50 };
 
@@ -141,7 +141,7 @@ getPrevPage(pagination, page => {
 - #### 示例
 
 ```javascript
-import { getNextPage } from "@ivujs/util";
+import { getNextPage } from "@ivu-plus/util";
 
 let pagination = { page: 2, pageSize: 10, total: 50 };
 

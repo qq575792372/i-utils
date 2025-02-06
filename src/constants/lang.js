@@ -1,5 +1,5 @@
 /**
- * 语言常量
+ * 语言
  */
 export const LANG = {
   // 中文

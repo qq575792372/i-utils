@@ -1,4 +1,4 @@
-import { SORT } from "../constants";
+import { Sort } from "../constants";
 import { isEmpty, isNull } from "../validate";
 
 /* 数组计算 */
@@ -263,23 +263,34 @@ export function arraySwap(array, sourceIndex, targetIndex) {
  * @param {Number} mode 排序模式，参考常量集合中 数组常量，默认是升序
  * @returns {Array} 返回操作后的数组
  */
-export function arraySort(array, mode = SORT.ASC) {
+export function arraySort(array, mode = Sort.ASC) {
   return array.sort((a, b) => {
     switch (mode) {
       // 升序
-      case SORT.ASC:
+      case Sort.ASC:
         return a - b;
       // 降序
-      case SORT.DESC:
+      case Sort.DESC:
         return b - a;
       // 随机
-      case SORT.RANDOM:
+      case Sort.RANDOM:
         return Math.random() - 0.5;
       // 默认
       default:
         return array;
     }
   });
+}
+
+/**
+ * 数组属性排序
+ * @param {Array} array 数组
+ * @param {Array} props 排序的属性名
+ * @param {Number} mode 排序模式，参考常量集合中 数组常量，默认是升序
+ * @returns {Array} 返回操作后的数组
+ */
+export function arraySortBy(array, props, mode = Sort.ASC) {
+  // todo
 }
 
 /**

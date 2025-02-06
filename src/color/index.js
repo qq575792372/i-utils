@@ -151,7 +151,7 @@ export function hexToHsl(hex) {
  * 随机生成hex颜色
  * @returns {String} 返回生成的十六进制颜色
  */
-export function getRandomHex() {
+export function getDrawHex() {
   return (
     "#" +
     (function (h) {
@@ -164,7 +164,7 @@ export function getRandomHex() {
  * 随机生成rgb颜色
  * @returns {String} 返回生成的 rgb 颜色
  */
-export function getRandomRgb() {
+export function getDrawRgb() {
   let r = Math.floor(Math.random() * 256);
   let g = Math.floor(Math.random() * 256);
   let b = Math.floor(Math.random() * 256);
@@ -175,7 +175,7 @@ export function getRandomRgb() {
  * 随机生成rgba颜色
  * @returns {String} 返回生成的 rgba 颜色
  */
-export function getRandomRgba() {
+export function getDrawRgba() {
   let r = Math.floor(Math.random() * 256);
   let g = Math.floor(Math.random() * 256);
   let b = Math.floor(Math.random() * 256);

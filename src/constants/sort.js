@@ -1,7 +1,7 @@
 /**
- * 数组常量
+ * 排序
  */
-export const SORT = {
+export const Sort = {
   // 降序
   DESC: 0,
   // 升序

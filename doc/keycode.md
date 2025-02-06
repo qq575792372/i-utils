@@ -15,7 +15,7 @@
 - #### 示例
 
 ```javascript
-import { getKeyName } from "@ivujs/util";
+import { getKeyName } from "@ivu-plus/util";
 
 let res = getKeyName(13);
 console.log(res); // 输出：Enter
@@ -38,7 +38,7 @@ console.log(res); // 输出：Enter
 - #### 示例
 
 ```javascript
-import { getKeyCode } from "@ivujs/util";
+import { getKeyCode } from "@ivu-plus/util";
 
 let res = getKeyCode("Enter");
 console.log(res); // 输出：13

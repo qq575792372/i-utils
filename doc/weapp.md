@@ -19,7 +19,7 @@
 - #### 示例
 
 ```javascript
-import { setStorageSync } from "@ivujs/util";
+import { setStorageSync } from "@ivu-plus/util";
 
 let res = setStorageSync("name", "小红");
 ```
@@ -41,7 +41,7 @@ let res = setStorageSync("name", "小红");
 - #### 示例
 
 ```javascript
-import { getStorageSync } from "@ivujs/util";
+import { getStorageSync } from "@ivu-plus/util";
 
 let res = getStorageSync("name");
 console.log(res); // 输出：小红
@@ -64,7 +64,7 @@ console.log(res); // 输出：小红
 - #### 示例
 
 ```javascript
-import { getStorageInfoSync } from "@ivujs/util";
+import { getStorageInfoSync } from "@ivu-plus/util";
 
 let res = getStorageInfoSync("name");
 console.log(res); // 输出：{currentSize: 0, errMsg:"getStorageInfo:ok", key: [], limitSize: 0}
@@ -87,7 +87,7 @@ console.log(res); // 输出：{currentSize: 0, errMsg:"getStorageInfo:ok", key: 
 - #### 示例
 
 ```javascript
-import { removeStorageSync } from "@ivujs/util";
+import { removeStorageSync } from "@ivu-plus/util";
 
 removeStorageSync("name");
 ```
@@ -109,7 +109,7 @@ removeStorageSync("name");
 - #### 示例
 
 ```javascript
-import { clearStorageSync } from "@ivujs/util";
+import { clearStorageSync } from "@ivu-plus/util";
 
 clearStorageSync();
 ```
@@ -136,7 +136,7 @@ clearStorageSync();
 - #### 示例
 
 ```javascript
-import { setStorage } from "@ivujs/util";
+import { setStorage } from "@ivu-plus/util";
 
 setStorage({
   key: "name",
@@ -171,7 +171,7 @@ setStorage({
 - #### 示例
 
 ```javascript
-import { getStorage } from "@ivujs/util";
+import { getStorage } from "@ivu-plus/util";
 
 getStorage({
   key: "name",
@@ -202,7 +202,7 @@ getStorage({
 - #### 示例
 
 ```javascript
-import { getStorageInfo } from "@ivujs/util";
+import { getStorageInfo } from "@ivu-plus/util";
 
 getStorageInfo()
   .then((res) => {
@@ -233,7 +233,7 @@ getStorageInfo()
 - #### 示例
 
 ```javascript
-import { removeStorage } from "@ivujs/util";
+import { removeStorage } from "@ivu-plus/util";
 
 removeStorage({
   key: "name",
@@ -266,7 +266,7 @@ removeStorage({
 - #### 示例
 
 ```javascript
-import { clearStorage } from "@ivujs/util";
+import { clearStorage } from "@ivu-plus/util";
 
 clearStorage({})
   .then((res) => {

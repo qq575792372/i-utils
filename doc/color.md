@@ -15,7 +15,7 @@ rgb 颜色转 hex
 - #### 示例
 
 ```javascript
-import { rgbToHex } from "@ivujs/util";
+import { rgbToHex } from "@ivu-plus/util";
 
 let res = rgbToHex("rgb(255,34,33)");
 console.log(res); // 输出：#002221
@@ -38,7 +38,7 @@ rgba 颜色转 hex
 - #### 示例
 
 ```javascript
-import { rgbaToHex } from "@ivujs/util";
+import { rgbaToHex } from "@ivu-plus/util";
 
 let res = rgbaToHex("rgba(112,123,124,1)");
 console.log(res); // 输出：#ff707b7c
@@ -61,7 +61,7 @@ rgba 颜色转 hsl
 - #### 示例
 
 ```javascript
-import { rgbaToHsl } from "@ivujs/util";
+import { rgbaToHsl } from "@ivu-plus/util";
 
 let res = rgbaToHsl("rgba(112,123,124,1)");
 console.log(res); // 输出：hsla(185,5%,46%,1)
@@ -87,7 +87,7 @@ hex 颜色转 rgb
 - #### 示例
 
 ```javascript
-import { hexToRgb } from "@ivujs/util";
+import { hexToRgb } from "@ivu-plus/util";
 
 let res = hexToRgb("#cccccc");
 console.log(res); // 输出：rgb(204,204,204)
@@ -111,7 +111,7 @@ hex 颜色转 rgb
 - #### 示例
 
 ```javascript
-import { hexToRgba } from "@ivujs/util";
+import { hexToRgba } from "@ivu-plus/util";
 
 let res = hexToRgba("#cccccc", 1);
 console.log(res); // 输出：rgb(204,204,204,1)
@@ -134,7 +134,7 @@ hex 颜色转 hsl
 - #### 示例
 
 ```javascript
-import { hexToHsl } from "@ivujs/util";
+import { hexToHsl } from "@ivu-plus/util";
 
 let res = hexToHsl("#cccccc");
 console.log(res); // 输出：hsl(0,0%,80%)
@@ -142,7 +142,7 @@ console.log(res); // 输出：hsl(0,0%,80%)
 
 ---
 
-### getRandomHex()
+### getDrawHex()
 
 获取随机生成的 16 进制颜色
 
@@ -157,15 +157,15 @@ console.log(res); // 输出：hsl(0,0%,80%)
 - #### 示例
 
 ```javascript
-import { getRandomHex } from "@ivujs/util";
+import { getDrawHex } from "@ivu-plus/util";
 
-let res = getRandomHex();
+let res = getDrawHex();
 console.log(res); // 输出：#2d8cf0
 ```
 
 ---
 
-### getRandomRgb()
+### getDrawRgb()
 
 获取随机生成的 rgb 颜色
 
@@ -180,15 +180,15 @@ console.log(res); // 输出：#2d8cf0
 - #### 示例
 
 ```javascript
-import { getRandomRgb } from "@ivujs/util";
+import { getDrawRgb } from "@ivu-plus/util";
 
-let res = getRandomRgb();
+let res = getDrawRgb();
 console.log(res); // 输出：rgba(45,140,240,1)
 ```
 
 ---
 
-### getRandomRgba()
+### getDrawRgba()
 
 获取随机生成的 rgba 颜色
 
@@ -203,8 +203,8 @@ console.log(res); // 输出：rgba(45,140,240,1)
 - #### 示例
 
 ```javascript
-import { getRandomRgba } from "@ivujs/util";
+import { getDrawRgba } from "@ivu-plus/util";
 
-let res = getRandomRgba();
+let res = getDrawRgba();
 console.log(res); // 输出：rgba(45,140,240,0.38)
 ```

@@ -16,7 +16,7 @@
 - #### 示例
 
 ```javascript
-import { getClipboard } from "@ivujs/util";
+import { getClipboard } from "@ivu-plus/util";
 
 let res = getClipboard();
 console.log(res); // 根据复制的内容类型决定，文本则输出可用的MIME类型，文件或图片则是blob
@@ -39,7 +39,7 @@ console.log(res); // 根据复制的内容类型决定，文本则输出可用�
 - #### 示例
 
 ```javascript
-import { getClipboardText } from "@ivujs/util";
+import { getClipboardText } from "@ivu-plus/util";
 
 let res = getClipboardText();
 console.log(res); // 这里输出复制的内容
@@ -62,7 +62,7 @@ console.log(res); // 这里输出复制的内容
 - #### 示例
 
 ```javascript
-import { setClipboard, urlToFile, fileToBlob } from "@ivujs/util";
+import { setClipboard, urlToFile, fileToBlob } from "@ivu-plus/util";
 
 // 设置普通文本数据
 let res1 = setClipboard("你好啊");
@@ -97,7 +97,7 @@ console.log(res3); // 输出：true
 - #### 示例
 
 ```javascript
-import { setClipboardText } from "@ivujs/util";
+import { setClipboardText } from "@ivu-plus/util";
 
 // 设置普通文本数据
 let res = setClipboard("你好啊");
@@ -123,7 +123,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { clearClipboard } from "@ivujs/util";
+import { clearClipboard } from "@ivu-plus/util";
 
 // 清空剪切板数据
 let res = clearClipboard();
