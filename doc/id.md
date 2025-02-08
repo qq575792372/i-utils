@@ -16,7 +16,7 @@
 - #### 示例
 
 ```javascript
-import { getUUID } from "@ivu-plus/util";
+import { getUUID } from "@ivu-plus/i-utils";
 
 let res = getUUID();
 console.log(res); // 输出：5e71b6a38364c189ab1229bf5c2d5695
@@ -39,7 +39,7 @@ console.log(res); // 输出：5e71b6a38364c189ab1229bf5c2d5695
 - #### 示例
 
 ```javascript
-import { getGUID } from "@ivu-plus/util";
+import { getGUID } from "@ivu-plus/i-utils";
 
 let res = getGUID();
 console.log(res); // 输出：e854e2ec-063c-1ee7-942f-57c5733ce0cb

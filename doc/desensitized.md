@@ -17,7 +17,7 @@
 - #### 示例
 
 ```javascript
-import { formatStartOf } from "@ivu-plus/util";
+import { formatStartOf } from "@ivu-plus/i-utils";
 
 console.log(formatStartOfName("张小静", 1, 2)); // 输出：张**
 ```
@@ -39,7 +39,7 @@ console.log(formatStartOfName("张小静", 1, 2)); // 输出：张**
 - #### 示例
 
 ```javascript
-import { formatStartOfName } from "@ivu-plus/util";
+import { formatStartOfName } from "@ivu-plus/i-utils";
 
 console.log(formatStartOfName("张静")); // 输出：张*
 console.log(formatStartOfName("张小静")); // 输出：张*静
@@ -65,7 +65,7 @@ console.log(formatStartOfName("张小静静")); // 输出：张**静
 - #### 示例
 
 ```javascript
-import { formatStartOfMobile } from "@ivu-plus/util";
+import { formatStartOfMobile } from "@ivu-plus/i-utils";
 
 console.log(formatStartOfMobile("13000000000")); // 输出：130****0000
 console.log(formatStartOfMobile("13000000000", 3, 5)); // 输出：130*****000
@@ -90,7 +90,7 @@ console.log(formatStartOfMobile("13000000000", 3, 5)); // 输出：130*****000
 - #### 示例
 
 ```javascript
-import { formatStartOfIDCard } from "@ivu-plus/util";
+import { formatStartOfIDCard } from "@ivu-plus/i-utils";
 
 console.log(formatStartOfIDCard("412929199312223012")); // 输出：4129********223012
 ```
@@ -114,7 +114,7 @@ console.log(formatStartOfIDCard("412929199312223012")); // 输出：4129********
 - #### 示例
 
 ```javascript
-import { formatStartOfBankCard } from "@ivu-plus/util";
+import { formatStartOfBankCard } from "@ivu-plus/i-utils";
 
 console.log(formatStartOfIdCard("6222021208888993029")); // 输出：6222***********3029
 ```

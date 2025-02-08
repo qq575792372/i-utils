@@ -18,7 +18,7 @@
 - #### 示例
 
 ```javascript
-import { debounce } from "@ivu-plus/util";
+import { debounce } from "@ivu-plus/i-utils";
 
 // 第一种调用方式
 <button onclick="myclick()">点击</button>;
@@ -58,7 +58,7 @@ document.getElementById("mybtn").onclick = debounce(hello, 1 * 1000);
 - #### 示例
 
 ```javascript
-import { throttle } from "@ivu-plus/util";
+import { throttle } from "@ivu-plus/i-utils";
 
 // 第一种调用方式
 <button onclick="myclick()">点击</button>;
@@ -97,7 +97,7 @@ document.getElementById("mybtn").onclick = throttle(hello, 1 * 1000);
 - #### 示例
 
 ```javascript
-import { sleep } from "@ivu-plus/util";
+import { sleep } from "@ivu-plus/i-utils";
 
 // 以下方法打印第二个数字会延迟3秒后执行
 async function sleepWork() {

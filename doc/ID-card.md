@@ -17,7 +17,7 @@
 - #### 示例
 
 ```javascript
-import { getInfoByIDCard } from "@ivu-plus/util";
+import { getInfoByIDCard } from "@ivu-plus/i-utils";
 
 // 输出：{province: '河南', birthday: '2010-12-01', age: 11, sex: '女'}
 console.log(getInfoByIDCard("412821201012012221"));
@@ -43,7 +43,7 @@ console.log(getInfoByIDCard("511702800222130"));
 - #### 示例
 
 ```javascript
-import { getBirthdayByIDCard } from "@ivu-plus/util";
+import { getBirthdayByIDCard } from "@ivu-plus/i-utils";
 
 let res = getBirthdayByIDCard("412821201012012221");
 console.log(res); // 输出：2010-12-01
@@ -66,7 +66,7 @@ console.log(res); // 输出：2010-12-01
 - #### 示例
 
 ```javascript
-import { getAgeByIDCard } from "@ivu-plus/util";
+import { getAgeByIDCard } from "@ivu-plus/i-utils";
 
 let res = getAgeByIDCard("412821201012012221");
 console.log(res); // 输出：13
@@ -89,7 +89,7 @@ console.log(res); // 输出：13
 - #### 示例
 
 ```javascript
-import { getSexByIDCard } from "@ivu-plus/util";
+import { getSexByIDCard } from "@ivu-plus/i-utils";
 
 let res = getSexByIDCard("412821201012012221");
 console.log(res); // 输出：女
@@ -112,7 +112,7 @@ console.log(res); // 输出：女
 - #### 示例
 
 ```javascript
-import { getProvinceByIDCard } from "@ivu-plus/util";
+import { getProvinceByIDCard } from "@ivu-plus/i-utils";
 
 let res = getProvinceByIDCard("412821201012012221");
 console.log(res); // 输出：河南

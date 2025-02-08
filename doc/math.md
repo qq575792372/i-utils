@@ -18,7 +18,7 @@
 - #### 示例
 
 ```javascript
-import { add } from "@ivu-plus/util";
+import { add } from "@ivu-plus/i-utils";
 
 let res = add(0.1, 0.2);
 console.log(res); // 输出：0.3
@@ -42,7 +42,7 @@ console.log(res); // 输出：0.3
 - #### 示例
 
 ```javascript
-import { subtract } from "@ivu-plus/util";
+import { subtract } from "@ivu-plus/i-utils";
 
 let res = subtract(0.2, 0.1);
 console.log(res); // 输出：0.1
@@ -66,7 +66,7 @@ console.log(res); // 输出：0.1
 - #### 示例
 
 ```javascript
-import { multiply } from "@ivu-plus/util";
+import { multiply } from "@ivu-plus/i-utils";
 
 let res = multiply(0.1, 0.2);
 console.log(res); // 输出：0.2
@@ -90,7 +90,7 @@ console.log(res); // 输出：0.2
 - #### 示例
 
 ```javascript
-import { divide } from "@ivu-plus/util";
+import { divide } from "@ivu-plus/i-utils";
 
 let res = divide(1, 2);
 console.log(res); // 输出：0.5
@@ -116,7 +116,7 @@ console.log(res); // 输出：0.5
 - #### 示例
 
 ```javascript
-import { modulo } from "@ivu-plus/util";
+import { modulo } from "@ivu-plus/i-utils";
 
 let res = modulo(1.1, 1);
 console.log(res); // 输出：0.1
@@ -140,7 +140,7 @@ console.log(res); // 输出：0.1
 - #### 示例
 
 ```javascript
-import { gcd } from "@ivu-plus/util";
+import { gcd } from "@ivu-plus/i-utils";
 
 let res = gcd(2, 10);
 console.log(res); // 输出：2
@@ -164,7 +164,7 @@ console.log(res); // 输出：2
 - #### 示例
 
 ```javascript
-import { scm } from "@ivu-plus/util";
+import { scm } from "@ivu-plus/i-utils";
 
 let res = gcd(4, 10);
 console.log(res); // 输出：20
@@ -192,7 +192,7 @@ console.log(res); // 输出：20
 - #### 示例
 
 ```javascript
-import { toFixed, MATH } from "@ivu-plus/util";
+import { toFixed, MATH } from "@ivu-plus/i-utils";
 
 console.log(toFixed(1, 2)); // 输出：1.00
 console.log(toFixed(1.0, 2)); // 输出：1.00
@@ -220,7 +220,7 @@ console.log(toFixed(1.015, 2, MATH.ROUND_FLOOR)); // 输出：1.01（切换舍�
 - #### 示例
 
 ```javascript
-import { toDecimal, MATH } from "@ivu-plus/util";
+import { toDecimal, MATH } from "@ivu-plus/i-utils";
 
 console.log(toDecimal(1, 2)); // 输出：1
 console.log(toDecimal(1.0, 2)); // 输出：1

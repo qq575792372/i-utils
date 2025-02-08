@@ -19,7 +19,7 @@
 - #### 示例
 
 ```javascript
-import { setStorageSync } from "@ivu-plus/util";
+import { setStorageSync } from "@ivu-plus/i-utils";
 
 let res = setStorageSync("name", "小红");
 ```
@@ -41,7 +41,7 @@ let res = setStorageSync("name", "小红");
 - #### 示例
 
 ```javascript
-import { getStorageSync } from "@ivu-plus/util";
+import { getStorageSync } from "@ivu-plus/i-utils";
 
 let res = getStorageSync("name");
 console.log(res); // 输出：小红
@@ -64,7 +64,7 @@ console.log(res); // 输出：小红
 - #### 示例
 
 ```javascript
-import { getStorageInfoSync } from "@ivu-plus/util";
+import { getStorageInfoSync } from "@ivu-plus/i-utils";
 
 let res = getStorageInfoSync("name");
 console.log(res); // 输出：{currentSize: 0, errMsg:"getStorageInfo:ok", key: [], limitSize: 0}
@@ -87,7 +87,7 @@ console.log(res); // 输出：{currentSize: 0, errMsg:"getStorageInfo:ok", key: 
 - #### 示例
 
 ```javascript
-import { removeStorageSync } from "@ivu-plus/util";
+import { removeStorageSync } from "@ivu-plus/i-utils";
 
 removeStorageSync("name");
 ```
@@ -109,7 +109,7 @@ removeStorageSync("name");
 - #### 示例
 
 ```javascript
-import { clearStorageSync } from "@ivu-plus/util";
+import { clearStorageSync } from "@ivu-plus/i-utils";
 
 clearStorageSync();
 ```
@@ -136,7 +136,7 @@ clearStorageSync();
 - #### 示例
 
 ```javascript
-import { setStorage } from "@ivu-plus/util";
+import { setStorage } from "@ivu-plus/i-utils";
 
 setStorage({
   key: "name",
@@ -171,7 +171,7 @@ setStorage({
 - #### 示例
 
 ```javascript
-import { getStorage } from "@ivu-plus/util";
+import { getStorage } from "@ivu-plus/i-utils";
 
 getStorage({
   key: "name",
@@ -202,7 +202,7 @@ getStorage({
 - #### 示例
 
 ```javascript
-import { getStorageInfo } from "@ivu-plus/util";
+import { getStorageInfo } from "@ivu-plus/i-utils";
 
 getStorageInfo()
   .then((res) => {
@@ -233,7 +233,7 @@ getStorageInfo()
 - #### 示例
 
 ```javascript
-import { removeStorage } from "@ivu-plus/util";
+import { removeStorage } from "@ivu-plus/i-utils";
 
 removeStorage({
   key: "name",
@@ -266,7 +266,7 @@ removeStorage({
 - #### 示例
 
 ```javascript
-import { clearStorage } from "@ivu-plus/util";
+import { clearStorage } from "@ivu-plus/i-utils";
 
 clearStorage({})
   .then((res) => {

@@ -18,7 +18,7 @@
 - #### 示例
 
 ```javascript
-import { inString } from "@ivu-plus/util";
+import { inString } from "@ivu-plus/i-utils";
 
 let res = inString("hello", "say hello");
 console.log(res); // 输出：true
@@ -41,7 +41,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { trim } from "@ivu-plus/util";
+import { trim } from "@ivu-plus/i-utils";
 
 let res = trim(" 123 ");
 console.log(res); // 输出：123
@@ -64,7 +64,7 @@ console.log(res); // 输出：123
 - #### 示例
 
 ```javascript
-import { trimStart } from "@ivu-plus/util";
+import { trimStart } from "@ivu-plus/i-utils";
 
 let res = trimStart(" 123 ");
 console.log(res); // 输出：123&nbsp; 后面会有空格
@@ -87,7 +87,7 @@ console.log(res); // 输出：123&nbsp; 后面会有空格
 - #### 示例
 
 ```javascript
-import { trimEnd } from "@ivu-plus/util";
+import { trimEnd } from "@ivu-plus/i-utils";
 
 let res = trim(" 123 ");
 console.log(res); // 输出：&nbsp;123 前面会有空格
@@ -110,7 +110,7 @@ console.log(res); // 输出：&nbsp;123 前面会有空格
 - #### 示例
 
 ```javascript
-import { trimAll } from "@ivu-plus/util";
+import { trimAll } from "@ivu-plus/i-utils";
 
 let res = trimAll(" 1 2 3 ");
 console.log(res); // 输出：123
@@ -135,7 +135,7 @@ console.log(res); // 输出：123
 - #### 示例
 
 ```javascript
-import { replaceAll } from "@ivu-plus/util";
+import { replaceAll } from "@ivu-plus/i-utils";
 
 let res = replaceAll("say hello hello!", "hello", "hi");
 console.log(res); // 输出：say hi hi!
@@ -160,7 +160,7 @@ console.log(res); // 输出：say hi hi!
 - #### 示例
 
 ```javascript
-import { toUpperCase } from "@ivu-plus/util";
+import { toUpperCase } from "@ivu-plus/i-utils";
 
 let res = toUpperCase("say hello");
 console.log(res); // 输出：SAY HELLO
@@ -183,7 +183,7 @@ console.log(res); // 输出：SAY HELLO
 - #### 示例
 
 ```javascript
-import { toLowerCase } from "@ivu-plus/util";
+import { toLowerCase } from "@ivu-plus/i-utils";
 
 let res = toLowerCase("Say Hello");
 console.log(res); // 输出：say hello
@@ -207,7 +207,7 @@ console.log(res); // 输出：say hello
 - #### 示例
 
 ```javascript
-import { toSnakeCase } from "@ivu-plus/util";
+import { toSnakeCase } from "@ivu-plus/i-utils";
 
 // 驼峰转下划线
 console.log(LimeCore.toSnakeCase("userName")); // 输出：user_name
@@ -235,7 +235,7 @@ console.log(LimeCore.toSnakeCase("UserName")); // 输出：user_name
 - #### 示例
 
 ```javascript
-import { toKebabCase } from "@ivu-plus/util";
+import { toKebabCase } from "@ivu-plus/i-utils";
 
 // 下划线转短横
 console.log(LimeCore.toKebabCase("user_name")); // 输出：user-name
@@ -263,7 +263,7 @@ console.log(LimeCore.toKebabCase("UserName")); // 输出：user-name
 - #### 示例
 
 ```javascript
-import { toCamelCase } from "@ivu-plus/util";
+import { toCamelCase } from "@ivu-plus/i-utils";
 
 // 下划线转驼峰
 console.log(LimeCore.toCamelCase("user_name")); // 输出：userName
@@ -291,7 +291,7 @@ console.log(LimeCore.toCamelCase("UserName")); // 输出：userName
 - #### 示例
 
 ```javascript
-import { toPascalCase } from "@ivu-plus/util";
+import { toPascalCase } from "@ivu-plus/i-utils";
 
 // 下划线转帕斯卡
 console.log(LimeCore.toPascalCase("user_name")); // 输出：UserName
@@ -320,7 +320,7 @@ console.log(LimeCore.toPascalCase("userName")); // 输出：UserName
 - #### 示例
 
 ```javascript
-import { zeroStart } from "@ivu-plus/util";
+import { zeroStart } from "@ivu-plus/i-utils";
 
 let res = zeroStart("1", 3);
 console.log(res); // 输出：001
@@ -345,7 +345,7 @@ console.log(res); // 输出：001
 - #### 示例
 
 ```javascript
-import { zeroEnd } from "@ivu-plus/util";
+import { zeroEnd } from "@ivu-plus/i-utils";
 
 let res = zeroEnd("1", 3);
 console.log(res); // 输出：100
@@ -368,7 +368,7 @@ console.log(res); // 输出：100
 - #### 示例
 
 ```javascript
-import { formatTitle } from "@ivu-plus/util";
+import { formatTitle } from "@ivu-plus/i-utils";
 
 let res = formatTitle("this is a title");
 console.log(res); // 输出：This Is A Title
@@ -392,7 +392,7 @@ console.log(res); // 输出：This Is A Title
 - #### 示例
 
 ```javascript
-import { formatTemplate } from "@ivu-plus/util";
+import { formatTemplate } from "@ivu-plus/i-utils";
 
 let res = formatTemplate("这是一个{{title}}", { title: "大标题" });
 console.log(res); // 输出：这是一个大标题 
@@ -416,7 +416,7 @@ console.log(res); // 输出：这是一个大标题
 - #### 示例
 
 ```javascript
-import { formatThousand } from "@ivu-plus/util";
+import { formatThousand } from "@ivu-plus/i-utils";
 
 let res = formatThousand(1234567.12345);
 console.log(res); // 输出：1,234,567.12345
@@ -439,7 +439,7 @@ console.log(res); // 输出：1,234,567.12345
 - #### 示例
 
 ```javascript
-import { formatRmbChinese } from "@ivu-plus/util";
+import { formatRmbChinese } from "@ivu-plus/i-utils";
 
 let res = formatAmountChinese(1234567.12345);
 console.log(res); // 输出：壹佰贰拾叁万肆仟伍佰陆拾柒元壹角贰分叁毫肆厘
@@ -462,7 +462,7 @@ console.log(res); // 输出：壹佰贰拾叁万肆仟伍佰陆拾柒元壹角�
 - #### 示例
 
 ```javascript
-import { formatStartOfName } from "@ivu-plus/util";
+import { formatStartOfName } from "@ivu-plus/i-utils";
 
 console.log(formatStartOfName("张三")); // 输出：张*
 console.log(formatStartOfName("张三封")); // 输出：张*封
@@ -488,7 +488,7 @@ console.log(formatStartOfName("张三封封")); // 输出：张**封
 - #### 示例
 
 ```javascript
-import { formatStartOfMobile } from "@ivu-plus/util";
+import { formatStartOfMobile } from "@ivu-plus/i-utils";
 
 console.log(formatStartOfMobile("13000000000")); // 输出：130****0000
 console.log(formatStartOfMobile("13000000000", 3, 5)); // 输出：130*****000
@@ -513,7 +513,7 @@ console.log(formatStartOfMobile("13000000000", 3, 5)); // 输出：130*****000
 - #### 示例
 
 ```javascript
-import { formatStartOfIdCard } from "@ivu-plus/util";
+import { formatStartOfIdCard } from "@ivu-plus/i-utils";
 
 console.log(formatStartOfIdCard("412929199312223012")); // 输出：4129********223012
 ```
@@ -537,7 +537,7 @@ console.log(formatStartOfIdCard("412929199312223012")); // 输出：4129********
 - #### 示例
 
 ```javascript
-import { formatStartOfBankCard } from "@ivu-plus/util";
+import { formatStartOfBankCard } from "@ivu-plus/i-utils";
 
 console.log(formatStartOfIdCard("6222021208888993029")); // 输出：6222***********3029
 ```

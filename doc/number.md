@@ -17,7 +17,7 @@
 - #### 示例
 
 ```javascript
-import { parseInt } from "@ivu-plus/util";
+import { parseInt } from "@ivu-plus/i-utils";
 
 let res = parseInt(null);
 console.log(res); // 输出：0
@@ -42,7 +42,7 @@ console.log(res1); // 输出：8
 - #### 示例
 
 ```javascript
-import { parseFloat } from "@ivu-plus/util";
+import { parseFloat } from "@ivu-plus/i-utils";
 
 let res = parseFloat(null);
 console.log(res); // 输出：0.0

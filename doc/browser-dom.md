@@ -18,7 +18,7 @@
 - #### 示例
 
 ```javascript
-import { hasClass } from "@ivu-plus/util";
+import { hasClass } from "@ivu-plus/i-utils";
 
 let btn = document.getElementById("myBtn");
 let res = hasClass(btn, "btn-primary");
@@ -43,7 +43,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { addClass } from "@ivu-plus/util";
+import { addClass } from "@ivu-plus/i-utils";
 
 let btn = document.getElementById("myBtn");
 addClass(btn, "btn-primary");
@@ -67,7 +67,7 @@ addClass(btn, "btn-primary");
 - #### 示例
 
 ```javascript
-import { removeClass } from "@ivu-plus/util";
+import { removeClass } from "@ivu-plus/i-utils";
 
 let btn = document.getElementById("myBtn");
 removeClass(btn, "btn-primary");
@@ -92,7 +92,7 @@ removeClass(btn, "btn-primary");
 - #### 示例
 
 ```javascript
-import { replaceClass } from "@ivu-plus/util";
+import { replaceClass } from "@ivu-plus/i-utils";
 
 let btn = document.getElementById("myBtn");
 replaceClass(btn, "btn-primary", "btn-success");
@@ -118,7 +118,7 @@ replaceClass(btn, "btn-primary", "btn-success");
 - #### 示例
 
 ```javascript
-import { addStyle } from "@ivu-plus/util";
+import { addStyle } from "@ivu-plus/i-utils";
 
 let btn = document.getElementById("myBtn");
 addStyle(btn, { height: "30px", "background-color": "blue" });
@@ -142,7 +142,7 @@ addStyle(btn, { height: "30px", "background-color": "blue" });
 - #### 示例
 
 ```javascript
-import { getStyle } from "@ivu-plus/util";
+import { getStyle } from "@ivu-plus/i-utils";
 
 let btn = document.getElementById("myBtn");
 getStyle(btn, "height"); // 输出： 30px
@@ -166,7 +166,7 @@ getStyle(btn, "height"); // 输出： 30px
 - #### 示例
 
 ```javascript
-import { removeStyle } from "@ivu-plus/util";
+import { removeStyle } from "@ivu-plus/i-utils";
 
 let btn = document.getElementById("myBtn");
 removeStyle(btn, "height");
@@ -191,7 +191,7 @@ html 标签转义
 - #### 示例
 
 ```javascript
-import { htmlEncode } from "@ivu-plus/util";
+import { htmlEncode } from "@ivu-plus/i-utils";
 
 let encode = htmlEncode("<div id='1'>测试</div>");
 console.log(encode); // 输出：&lt;div&nbsp;id=&#39;1&#39;&gt;测试&lt;&#47;div&gt;
@@ -214,7 +214,7 @@ html 标签解码
 - #### 示例
 
 ```javascript
-import { htmlDecode } from "@ivu-plus/util";
+import { htmlDecode } from "@ivu-plus/i-utils";
 
 let encode = htmlDecode(
   "&lt;div&nbsp;id=&#39;1&#39;&gt;测试&lt;&#47;div&gt;"

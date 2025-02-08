@@ -17,7 +17,7 @@ base64 加密
 - #### 示例
 
 ```javascript
-import { base64 } from "@ivu-plus/util";
+import { base64 } from "@ivu-plus/i-utils";
 
 let res = base64.encode('你好啊');
 console.log(res); // 输出：5L2g5aW95ZWK
@@ -40,7 +40,7 @@ base64 解密
 - #### 示例
 
 ```javascript
-import { base64 } from "@ivu-plus/util";
+import { base64 } from "@ivu-plus/i-utils";
 
 let res = base64.decode('5L2g5aW95ZWK');
 console.log(res); // 输出：你好啊
@@ -63,7 +63,7 @@ base64 加密字节数组
 - #### 示例
 
 ```javascript
-import { base64 } from "@ivu-plus/util";
+import { base64 } from "@ivu-plus/i-utils";
 
 let res = base64.encodeAsBytes([1, 2, 3]);
 console.log(res); // 输出：AQID
@@ -86,7 +86,7 @@ base64 解密字节数组
 - #### 示例
 
 ```javascript
-import { base64 } from "@ivu-plus/util";
+import { base64 } from "@ivu-plus/i-utils";
 
 let res = base64.decodeAsBytes("AQID");
 console.log(res); // 输出：[1, 2, 3]
@@ -109,7 +109,7 @@ base32 加密
 - #### 示例
 
 ```javascript
-import { base32 } from "@ivu-plus/util";
+import { base32 } from "@ivu-plus/i-utils";
 
 let res = base32.encode('你好啊');
 console.log(res); // 输出：4S62BZNFXXSZLCQ=
@@ -132,7 +132,7 @@ base64 解密
 - #### 示例
 
 ```javascript
-import { base32 } from "@ivu-plus/util";
+import { base32 } from "@ivu-plus/i-utils";
 
 let res = base32.decode('4S62BZNFXXSZLCQ=');
 console.log(res); // 输出：你好啊
@@ -155,7 +155,7 @@ base32 加密字节数组
 - #### 示例
 
 ```javascript
-import { base32 } from "@ivu-plus/util";
+import { base32 } from "@ivu-plus/i-utils";
 
 let res = base32.encodeAsBytes([1, 2, 3]);
 console.log(res); // 输出：AEBAG===
@@ -178,7 +178,7 @@ base32 解密字节数组
 - #### 示例
 
 ```javascript
-import { base32 } from "@ivu-plus/util";
+import { base32 } from "@ivu-plus/i-utils";
 
 let res = base32.decodeAsBytes("AEBAG===");
 console.log(res); // 输出：[1, 2, 3]
@@ -201,7 +201,7 @@ md5 加密
 - #### 示例
 
 ```javascript
-import { md5 } from "@ivu-plus/util";
+import { md5 } from "@ivu-plus/i-utils";
 
 console.log(md5("admin")); // 输出：21232f297a57a5a743894a0e4a801fc3
 
@@ -225,7 +225,7 @@ md5_hmac 加密
 - #### 示例
 
 ```javascript
-import { md5_hmac } from "@ivu-plus/util";
+import { md5_hmac } from "@ivu-plus/i-utils";
 
 console.log(md5_hmac("admin", "mykey")); // 输出：9db67d66029bcc2596f011b406d8384e
 
@@ -250,7 +250,7 @@ sha1 加密
 - #### 示例
 
 ```javascript
-import { sha1 } from "@ivu-plus/util";
+import { sha1 } from "@ivu-plus/i-utils";
 
 console.log(sha1("admin")); // 输出：d033e22ae348aeb5660fc2140aec35850c4da997
 
@@ -274,7 +274,7 @@ sha1_hmac 加密
 - #### 示例
 
 ```javascript
-import { sha1_hmac } from "@ivu-plus/util";
+import { sha1_hmac } from "@ivu-plus/i-utils";
 
 console.log(sha1_hmac("admin", "mykey")); // 输出：b14b78088d5aa4560ee2da70adb142c103039323
 
@@ -299,7 +299,7 @@ sha256 加密
 - #### 示例
 
 ```javascript
-import { sha256 } from "@ivu-plus/util";
+import { sha256 } from "@ivu-plus/i-utils";
 
 console.log(sha256("admin")); // 输出：8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
 
@@ -322,7 +322,7 @@ sha224 加密
 - #### 示例
 
 ```javascript
-import { sha224 } from "@ivu-plus/util";
+import { sha224 } from "@ivu-plus/i-utils";
 
 console.log(sha224("admin")); // 输出：58acb7acccce58ffa8b953b12b5a7702bd42dae441c1ad85057fa70b
 
@@ -346,7 +346,7 @@ sha256_hmac 加密
 - #### 示例
 
 ```javascript
-import { sha256_hmac } from "@ivu-plus/util";
+import { sha256_hmac } from "@ivu-plus/i-utils";
 
 console.log(sha256_hmac("admin", "mykey")); // 输出：e11fc8c67332c1fbd84d9cb93566c0ee4cfd86a9f23f92d135cf47110ac75b59
 
@@ -370,7 +370,7 @@ sha224_hmac 加密
 - #### 示例
 
 ```javascript
-import { sha224_hmac } from "@ivu-plus/util";
+import { sha224_hmac } from "@ivu-plus/i-utils";
 
 console.log(sha224_hmac("admin", "mykey")); // 输出：71f84d3281d06d4d6822d48e627c5069488e26aa824f7b8556b36bd5
 
@@ -393,7 +393,7 @@ sha512 加密
 - #### 示例
 
 ```javascript
-import { sha512 } from "@ivu-plus/util";
+import { sha512 } from "@ivu-plus/i-utils";
 
 console.log(sha512("admin")); // 输出：c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec
 
@@ -416,7 +416,7 @@ sha384 加密
 - #### 示例
 
 ```javascript
-import { sha384 } from "@ivu-plus/util";
+import { sha384 } from "@ivu-plus/i-utils";
 
 console.log(sha384("admin")); // 输出：9ca694a90285c034432c9550421b7b9dbd5c0f4b6673f05f6dbce58052ba20e4248041956ee8c9a2ec9f10290cdc0782
 
@@ -439,7 +439,7 @@ sha512_256 加密
 - #### 示例
 
 ```javascript
-import { sha512_256 } from "@ivu-plus/util";
+import { sha512_256 } from "@ivu-plus/i-utils";
 
 console.log(sha512_256("admin")); // 输出：30bb8411dd0cbf96b10a52371f7b3be1690f7afa16c3bd7bc7d02c0e2854768d
 
@@ -462,7 +462,7 @@ sha512_224 加密
 - #### 示例
 
 ```javascript
-import { sha512_224 } from "@ivu-plus/util";
+import { sha512_224 } from "@ivu-plus/i-utils";
 
 console.log(sha512_224("admin")); // 输出：9500df153ab6b96cdd6bf301e6062564009ebfff9c14aa1405d26be3
 
@@ -486,7 +486,7 @@ sha512_hmac 加密
 - #### 示例
 
 ```javascript
-import { sha512_hmac } from "@ivu-plus/util";
+import { sha512_hmac } from "@ivu-plus/i-utils";
 
 console.log(sha512_hmac("admin", "mykey")); // 输出：e0804b166c893b466a456d198ac4f0154fb4ad1140496a8ca590faaee25f9d57b3a81bb695b4410717438f54aeda60cb1d97b756af059b06383c3a798961b3a0
 
@@ -510,7 +510,7 @@ sha384_hmac 加密
 - #### 示例
 
 ```javascript
-import { sha384_hmac } from "@ivu-plus/util";
+import { sha384_hmac } from "@ivu-plus/i-utils";
 
 console.log(sha384_hmac("admin", "mykey")); // 输出：13c2e5402b190b314f8c716e6360fb706519d2da9aca422c08065ad8821fe49dc07092c19609868d86e46f74a5c2a64c
 
@@ -534,7 +534,7 @@ sha512_256_hmac 加密
 - #### 示例
 
 ```javascript
-import { sha512_256_hmac } from "@ivu-plus/util";
+import { sha512_256_hmac } from "@ivu-plus/i-utils";
 
 console.log(sha512_256_hmac("admin", "mykey")); // 输出：ed73eaf2aaffc3e52f0d3731e0b63a1bdad32239aaaa02d10d9936a3ee86ac51
 
@@ -558,7 +558,7 @@ sha512_224_hmac 加密
 - #### 示例
 
 ```javascript
-import { sha512_224_hmac } from "@ivu-plus/util";
+import { sha512_224_hmac } from "@ivu-plus/i-utils";
 
 console.log(sha512_224_hmac("admin", "mykey")); // 输出：276628cec9c993a07d23b752d68dddf97cabc26840f708753a9fe055
 
@@ -583,7 +583,7 @@ sha3_512 加密
 - #### 示例
 
 ```javascript
-import { sha3_512 } from "@ivu-plus/util";
+import { sha3_512 } from "@ivu-plus/i-utils";
 
 console.log(sha3_512("admin")); // 输出：5a38afb1a18d408e6cd367f9db91e2ab9bce834cdad3da24183cc174956c20ce35dd39c2bd36aae907111ae3d6ada353f7697a5f1a8fc567aae9e4ca41a9d19d
 
@@ -606,7 +606,7 @@ sha3_384 加密
 - #### 示例
 
 ```javascript
-import { sha3_384 } from "@ivu-plus/util";
+import { sha3_384 } from "@ivu-plus/i-utils";
 
 console.log(sha3_384("admin")); // 输出：9765a57f2010506383de91052915ce8bafbdb39f3e5a8c1a1693a0076365d37abbfd3305881ea3b5fa1426316afd7df3
 
@@ -629,7 +629,7 @@ sha3_256 加密
 - #### 示例
 
 ```javascript
-import { sha3_256 } from "@ivu-plus/util";
+import { sha3_256 } from "@ivu-plus/i-utils";
 
 console.log(sha3_256("admin")); // 输出：fb001dfcffd1c899f3297871406242f097aecf1a5342ccf3ebcd116146188e4b
 
@@ -652,7 +652,7 @@ sha3_224 加密
 - #### 示例
 
 ```javascript
-import { sha3_224 } from "@ivu-plus/util";
+import { sha3_224 } from "@ivu-plus/i-utils";
 
 console.log(sha3_224("admin")); // 输出：a53fff8dd075bed169e164743231ff533d8b9260b0b8073f0a4c1d20
 
@@ -680,7 +680,7 @@ sm2 生成公钥和私钥
 - #### 示例
 
 ```javascript
-import { sm2 } from "@ivu-plus/util";
+import { sm2 } from "@ivu-plus/i-utils";
 
 // 获取公钥和私钥
 let { publicKey, privateKey } = sm2.generateKeyPairHex();
@@ -710,7 +710,7 @@ sm2 压缩公钥
 - #### 示例
 
 ```javascript
-import { sm2 } from "@ivu-plus/util";
+import { sm2 } from "@ivu-plus/i-utils";
 
 // 获取公钥
 let { publicKey } = sm2.generateKeyPairHex();
@@ -738,7 +738,7 @@ sm2 对比公钥是否等价
 - #### 示例
 
 ```javascript
-import { sm2 } from "@ivu-plus/util";
+import { sm2 } from "@ivu-plus/i-utils";
 
 // 获取公钥
 let { publicKey } = sm2.generateKeyPairHex();
@@ -770,7 +770,7 @@ sm2 验证公钥
 - #### 示例
 
 ```javascript
-import { sm2 } from "@ivu-plus/util";
+import { sm2 } from "@ivu-plus/i-utils";
 
 // 获取公钥
 let { publicKey } = sm2.generateKeyPairHex();
@@ -807,7 +807,7 @@ sm2 加密
 - #### 示例
 
 ```javascript
-import { sm2 } from "@ivu-plus/util";
+import { sm2 } from "@ivu-plus/i-utils";
 
 // 获取公钥
 let { publicKey } = sm2.generateKeyPairHex();
@@ -841,7 +841,7 @@ sm2 解密
 - #### 示例
 
 ```javascript
-import { sm2 } from "@ivu-plus/util";
+import { sm2 } from "@ivu-plus/i-utils";
 
 // 获取私钥，解密是需要私钥
 let { privateKey } = sm2.generateKeyPairHex();
@@ -877,7 +877,7 @@ sm2 生成签名
 - #### 示例
 
 ```javascript
-import { sm2 } from "@ivu-plus/util";
+import { sm2 } from "@ivu-plus/i-utils";
 
 let str = "admin";
 // 获取私钥
@@ -943,7 +943,7 @@ sm2 验证签名
 - #### 示例
 
 ```javascript
-import { sm2 } from "@ivu-plus/util";
+import { sm2 } from "@ivu-plus/i-utils";
 
 let str = "admin";
 // 获取公钥和私钥
@@ -1037,7 +1037,7 @@ sm2 获取椭圆曲线点
 - #### 示例
 
 ```javascript
-import { sm2 } from "@ivu-plus/util";
+import { sm2 } from "@ivu-plus/i-utils";
 
 // 获取椭圆曲线点对象
 let point = sm2.getPoint();
@@ -1062,7 +1062,7 @@ sm2 根据私钥获取公钥
 - #### 示例
 
 ```javascript
-import { sm2 } from "@ivu-plus/util";
+import { sm2 } from "@ivu-plus/i-utils";
 
 let privateKey = "6c1d789b19ceb60161d6c91e18d449b7a8269b9c49a67db96381e1c1cb0f91cc"
 let publicKey = sm2.getPublicKeyFromPrivateKey(privateKey);
@@ -1087,7 +1087,7 @@ sm3 加密
 - #### 示例
 
 ```javascript
-import { sm3 } from "@ivu-plus/util";
+import { sm3 } from "@ivu-plus/i-utils";
 
 let str = "admin";
 // 加密字符串
@@ -1120,7 +1120,7 @@ sm4 加密
 - #### 示例
 
 ```javascript
-import { sm4 } from "@ivu-plus/util";
+import { sm4 } from "@ivu-plus/i-utils";
 
 let str = "hello! admin!你好啊，管理员";
 let key = "0123456789abcdeffedcba9876543210"; // 可以为 16 进制串或字节数组，要求为 128 比特
@@ -1161,7 +1161,7 @@ sm4 解密
 - #### 示例
 
 ```javascript
-import { sm4 } from "@ivu-plus/util";
+import { sm4 } from "@ivu-plus/i-utils";
 
 let str = "hello! admin!你好啊，管理员";
 let key = "0123456789abcdeffedcba9876543210"; // 可以为 16 进制串或字节数组，要求为 128 比特
@@ -1207,7 +1207,7 @@ aes 加密
 - #### 示例
 
 ```javascript
-import { aes } from "@ivu-plus/util";
+import { aes } from "@ivu-plus/i-utils";
 
 let str = "hello! admin!你好啊，管理员";
 let key = "0123456789abcdeffedcba9876543210";
@@ -1245,7 +1245,7 @@ aes 解密
 - #### 示例
 
 ```javascript
-import { aes } from "@ivu-plus/util";
+import { aes } from "@ivu-plus/i-utils";
 
 let str = "CwAXM8O2DsOXZsOYb8OXLMKEw5tqwpkBYVfChcKgwqAmw6PChjRmw57Dgg5TLDEKw4rDgsKGIMOZIDFeIsOHJ8KPIWswPR5ifsOAV3k=";
 let str_128 = "PgJgEsKeFMOXZlAkwp7CvsK6VmVMCBDCrD8aw4otIMOlXXTDk2XCrRbChxDDgsKNwp3Dp8OIw6rDvcKXAlpbwpvCgMKyWR1Hw53DucKjw4okEw==";
@@ -1278,7 +1278,7 @@ des 加密
 - #### 示例
 
 ```javascript
-import { des } from "@ivu-plus/util";
+import { des } from "@ivu-plus/i-utils";
 
 let str = "hello! admin!你好啊，管理员";
 let key = "0123456789abcdeffedcba9876543210";
@@ -1306,7 +1306,7 @@ des 解密
 - #### 示例
 
 ```javascript
-import { des } from "@ivu-plus/util";
+import { des } from "@ivu-plus/i-utils";
 
 let str = "dbf58bb877237a1172c69ceae37c78bc7606e70ad626383f701e178d4aa214ffb298d438cd58c29b92a9d984877ed5db";
 let key = "0123456789abcdeffedcba9876543210";
@@ -1334,7 +1334,7 @@ tea 加密
 - #### 示例
 
 ```javascript
-import { tea } from "@ivu-plus/util";
+import { tea } from "@ivu-plus/i-utils";
 
 let str = "hello! admin!你好啊，管理员";
 let key = "0123456789abcdeffedcba9876543210";
@@ -1362,7 +1362,7 @@ tea 解密
 - #### 示例
 
 ```javascript
-import { tea } from "@ivu-plus/util";
+import { tea } from "@ivu-plus/i-utils";
 
 let str = "WTjuM8R+49u8I9Pj0ND++KMi1y2Y2Hk93pjTiZEd1OWeRaCQ";
 let key = "0123456789abcdeffedcba9876543210";

@@ -11,7 +11,7 @@
 - #### 示例
 
 ```javascript
-import { arraySort, SORT } from "@ivu-plus/util";
+import { arraySort, SORT } from "@ivu-plus/i-utils";
 
 // 降序
 let res = arraySort([3, 1, 2], SORT.SORT_DESC);
@@ -36,7 +36,7 @@ console.log(res); // 输出：[1,3,2]
 - #### 示例
 
 ```javascript
-import { toFixed, toDecimal, MATH } from "@ivu-plus/util";
+import { toFixed, toDecimal, MATH } from "@ivu-plus/i-utils";
 
 console.log(toFixed(1.015, 2, MATH.ROUND)); // 输出：1.02
 console.log(toDecimal(1.015, 2, MATH.ROUND_FLOOR)); // 输出：1.01

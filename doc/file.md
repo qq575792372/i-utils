@@ -17,7 +17,7 @@
 - #### 示例
 
 ```javascript
-import { formatFileSize } from "@ivu-plus/util";
+import { formatFileSize } from "@ivu-plus/i-utils";
 
 let res = formatFileSize(102433);
 console.log(res); // 输出：100.03KB
@@ -40,7 +40,7 @@ console.log(res); // 输出：100.03KB
 - #### 示例
 
 ```javascript
-import { getFileName } from "@ivu-plus/util";
+import { getFileName } from "@ivu-plus/i-utils";
 
 let res = getFileName("测试图片.jpg");
 console.log(res); // 输出：测试图片
@@ -63,7 +63,7 @@ console.log(res); // 输出：测试图片
 - #### 示例
 
 ```javascript
-import { getFileSuffix } from "@ivu-plus/util";
+import { getFileSuffix } from "@ivu-plus/i-utils";
 
 let res = getFileSuffix("测试图片.jpg");
 console.log(res); // 输出：jpg
@@ -91,7 +91,7 @@ file 转 blob
 - #### 示例
 
 ```javascript
-import { fileToBlob } from "@ivu-plus/util";
+import { fileToBlob } from "@ivu-plus/i-utils";
 
 fileToBlob(file).then((blob) => {
   console.log(blob); // 输出：blob数据
@@ -115,7 +115,7 @@ file 转 base64
 - #### 示例
 
 ```javascript
-import { fileToBase64 } from "@ivu-plus/util";
+import { fileToBase64 } from "@ivu-plus/i-utils";
 
 fileToBase64(file).then((base64) => {
   console.log(base64); // 输出：base64数据
@@ -140,7 +140,7 @@ file 转 url
 - #### 示例
 
 ```javascript
-import { fileToUrl } from "@ivu-plus/util";
+import { fileToUrl } from "@ivu-plus/i-utils";
 
 fileToUrl(file).then((url) => {
   console.log(url); // 输出：base64数据
@@ -165,7 +165,7 @@ blob 转 file
 - #### 示例
 
 ```javascript
-import { blobToFile } from "@ivu-plus/util";
+import { blobToFile } from "@ivu-plus/i-utils";
 
 blobToFile(blob).then((file) => {
   console.log(file); // 输出：file数据
@@ -189,7 +189,7 @@ blob 转 base64
 - #### 示例
 
 ```javascript
-import { blobToBase64 } from "@ivu-plus/util";
+import { blobToBase64 } from "@ivu-plus/i-utils";
 
 blobToBase64(blob).then((base64) => {
   console.log(base64); // 输出：base64数据
@@ -214,7 +214,7 @@ base64 转 file
 - #### 示例
 
 ```javascript
-import { base64ToFile } from "@ivu-plus/util";
+import { base64ToFile } from "@ivu-plus/i-utils";
 
 base64ToFile(base64).then((file) => {
   console.log(file); // 输出：file数据
@@ -238,7 +238,7 @@ base64 转成 blob
 - #### 示例
 
 ```javascript
-import { base64ToBlob } from "@ivu-plus/util";
+import { base64ToBlob } from "@ivu-plus/i-utils";
 
 base64ToBlob(base64).then((blob) => {
   console.log(blob); // 输出：blob数据
@@ -262,7 +262,7 @@ base64ToBlob(base64).then((blob) => {
 - #### 示例
 
 ```javascript
-import { urlToBase64 } from "@ivu-plus/util";
+import { urlToBase64 } from "@ivu-plus/i-utils";
 
 urlToBase64(imgUrl).then((base64) => {
   console.log(base64); // 输出：base64数据
@@ -289,7 +289,7 @@ urlToBase64(imgUrl).then((base64) => {
 - #### 示例
 
 ```javascript
-import { downloadBlobFile } from "@ivu-plus/util";
+import { downloadBlobFile } from "@ivu-plus/i-utils";
 
 // 调用该方法，浏览器会自动弹出下载文件
 downloadBlobFile(blob, "test_file");
@@ -313,7 +313,7 @@ downloadBlobFile(blob, "test_file");
 - #### 示例
 
 ```javascript
-import { downloadFileUrl } from "@ivu-plus/util";
+import { downloadFileUrl } from "@ivu-plus/i-utils";
 
 // 调用该方法，浏览器会自动弹出下载文件
 downloadFileUrl("http://wwww.123.com/测试文件.txt", "test_file");

@@ -18,7 +18,7 @@
 - #### 示例
 
 ```javascript
-import { getBrowserInfo } from "@ivu-plus/util";
+import { getBrowserInfo } from "@ivu-plus/i-utils";
 
 let res = getBrowserInfo();
 console.log(res); // 输出：{name: "edge", version: "96.0.1054.43"}
@@ -44,7 +44,7 @@ console.log(res); // 输出：{name: "edge", version: "96.0.1054.43"}
 - #### 示例
 
 ```javascript
-import { isPc } from "@ivu-plus/util";
+import { isPc } from "@ivu-plus/i-utils";
 
 let res = isPc();
 console.log(res); // 输出：true
@@ -68,7 +68,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isMobile } from "@ivu-plus/util";
+import { isMobile } from "@ivu-plus/i-utils";
 
 let res = isMobile();
 console.log(res); // 输出：true
@@ -94,7 +94,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isAndroid } from "@ivu-plus/util";
+import { isAndroid } from "@ivu-plus/i-utils";
 
 let res = isAndroid();
 console.log(res); // 输出：true
@@ -117,7 +117,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isIos } from "@ivu-plus/util";
+import { isIos } from "@ivu-plus/i-utils";
 
 let res = isIos();
 console.log(res); // 输出：true
@@ -140,7 +140,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isWindowsPhone } from "@ivu-plus/util";
+import { isWindowsPhone } from "@ivu-plus/i-utils";
 
 let res = isWindowsPhone();
 console.log(res); // 输出：true
@@ -163,7 +163,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isWindows } from "@ivu-plus/util";
+import { isWindows } from "@ivu-plus/i-utils";
 
 let res = isWindows();
 console.log(res); // 输出：true
@@ -186,7 +186,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isLinux } from "@ivu-plus/util";
+import { isLinux } from "@ivu-plus/i-utils";
 
 let res = isLinux();
 console.log(res); // 输出：true
@@ -209,7 +209,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { removeCookie } from "@ivu-plus/util";
+import { removeCookie } from "@ivu-plus/i-utils";
 
 let res = isMac();
 console.log(res); // 输出：true
@@ -235,7 +235,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isIphone } from "@ivu-plus/util";
+import { isIphone } from "@ivu-plus/i-utils";
 
 let res = isIphone();
 console.log(res); // 输出：true
@@ -258,7 +258,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isIpad } from "@ivu-plus/util";
+import { isIpad } from "@ivu-plus/i-utils";
 
 let res = isIpad();
 console.log(res); // 输出：true
@@ -284,7 +284,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isWeixin } from "@ivu-plus/util";
+import { isWeixin } from "@ivu-plus/i-utils";
 
 let res = isWeixin();
 console.log(res); // 输出：true
@@ -307,7 +307,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { isQQ } from "@ivu-plus/util";
+import { isQQ } from "@ivu-plus/i-utils";
 
 let res = isQQ();
 console.log(res); // 输出：true

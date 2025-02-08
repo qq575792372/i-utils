@@ -15,7 +15,7 @@
 - #### 示例
 
 ```javascript
-import { getProtocol } from "@ivu-plus/util";
+import { getProtocol } from "@ivu-plus/i-utils";
 
 // 这里支持http/https/ftp/ftps
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
@@ -44,7 +44,7 @@ console.log(res); // 输出：http/https/ftp/ftps
 - #### 示例
 
 ```javascript
-import { getHost } from "@ivu-plus/util";
+import { getHost } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = getHost(url);
@@ -68,7 +68,7 @@ console.log(res); // 输出：192.168.0.180:8000
 - #### 示例
 
 ```javascript
-import { getHostName } from "@ivu-plus/util";
+import { getHostName } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = getHostName(url);
@@ -92,7 +92,7 @@ console.log(res); // 输出：192.168.0.180
 - #### 示例
 
 ```javascript
-import { getPort } from "@ivu-plus/util";
+import { getPort } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = getPort(url);
@@ -116,7 +116,7 @@ console.log(res); // 输出：8000
 - #### 示例
 
 ```javascript
-import { getUrlPath } from "@ivu-plus/util";
+import { getUrlPath } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = getUrlPath(url);
@@ -140,7 +140,7 @@ console.log(res); // 输出：user/getUserDetail
 - #### 示例
 
 ```javascript
-import { getUrlHash } from "@ivu-plus/util";
+import { getUrlHash } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = getUrlHash(url);
@@ -164,7 +164,7 @@ console.log(res); // 输出：tag1
 - #### 示例
 
 ```javascript
-import { getSearchString } from "@ivu-plus/util";
+import { getSearchString } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = getSearchString(url);
@@ -189,7 +189,7 @@ console.log(res); // 输出：id=123&name=admin
 - #### 示例
 
 ```javascript
-import { getSearchParam } from "@ivu-plus/util";
+import { getSearchParam } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = getSearchParam("id", url);
@@ -215,7 +215,7 @@ console.log(res); // 输出：123
 - #### 示例
 
 ```javascript
-import { setSearchParam } from "@ivu-plus/util";
+import { setSearchParam } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = setSearchParam("name", "test1", url);
@@ -240,7 +240,7 @@ console.log(res); // 输出：http://192.168.0.180:8000/user/getUserDetail?id=12
 - #### 示例
 
 ```javascript
-import { hasSearchParam } from "@ivu-plus/util";
+import { hasSearchParam } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = hasSearchParam("id", url);
@@ -266,7 +266,7 @@ console.log(res); // 输出：true
 - #### 示例
 
 ```javascript
-import { prependSearchParam } from "@ivu-plus/util";
+import { prependSearchParam } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = prependSearchParam("sex", "2", url);
@@ -293,7 +293,7 @@ console.log(res); // 输出：http://192.168.0.180:8000/user/getUserDetail?sex=2
 - #### 示例
 
 ```javascript
-import { prependToSearchParam } from "@ivu-plus/util";
+import { prependToSearchParam } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = prependToSearchParam("sex", "2", "name", url);
@@ -319,7 +319,7 @@ console.log(res); // 输出：http://192.168.0.180:8000/user/getUserDetail?id=12
 - #### 示例
 
 ```javascript
-import { appendSearchParam } from "@ivu-plus/util";
+import { appendSearchParam } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = appendSearchParam("sex", "2", url);
@@ -346,7 +346,7 @@ console.log(res); // 输出：http://192.168.0.180:8000/user/getUserDetail?id=12
 - #### 示例
 
 ```javascript
-import { appendToSearchParam } from "@ivu-plus/util";
+import { appendToSearchParam } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = appendSearchParam("sex", "2", "id", url);
@@ -371,7 +371,7 @@ console.log(res); // 输出：http://192.168.0.180:8000/user/getUserDetail?id=12
 - #### 示例
 
 ```javascript
-import { removeSearchParam } from "@ivu-plus/util";
+import { removeSearchParam } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = removeSearchParam("id", url);
@@ -395,7 +395,7 @@ console.log(res); // 输出：http://192.168.0.180:8000/user/getUserDetail?name=
 - #### 示例
 
 ```javascript
-import { parseSearchParam } from "@ivu-plus/util";
+import { parseSearchParam } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
 let res = parseSearchParam(url);
@@ -420,7 +420,7 @@ console.log(res); // 输出：{id: '123', name: 'admin'}
 - #### 示例
 
 ```javascript
-import { formatSearchString } from "@ivu-plus/util";
+import { formatSearchString } from "@ivu-plus/i-utils";
 
 let res = formatSearchString({ id: "123", name: "admin" });
 console.log(res); // 输出：id=123&name=admin
