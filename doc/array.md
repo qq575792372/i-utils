@@ -476,6 +476,50 @@ console.log(res); // 输出：[1,3,2]
 
 ---
 
+### arraySortBy(array, props)
+
+数组属性混合排序
+`排序默认为asc升序`
+
+- #### 参数
+
+  `array` {Array} 数组  
+  `props` {Array} 排序的属性
+
+- #### 返回值
+
+  {Array} 返回排序后的新数组
+
+* #### 示例
+
+```javascript
+import { SORT, arraySortBy } from "@ivu-plus/util";
+
+// 只传属性名排序，默认是asc升序
+let res = arraySortBy(
+  [
+    { id: 1, name: "张三", sex: "男" },
+    { id: 3, name: "刘红", sex: "女" },
+    { id: 2, name: "李四", sex: "男" }
+  ],
+  ['name',"sex"]
+)
+console.log(res); // 输出：[{id: 3, name: '刘红', sex: '女'},{id: 1, name: '张三', sex: '男'},{id: 2, name: '李四', sex: '男'}]
+
+// 传入属性名和指定排序类型，默认是asc升序
+let res = arraySortBy(
+  [
+    { id: 1, name: "张三", sex: "男" },
+    { id: 3, name: "刘红", sex: "女" },
+    { id: 2, name: "李四", sex: "男" }
+  ],
+  [{ prop: "sex", order: "asc" }, { prop: "name", order: "desc" }]
+)
+console.log(res); // 输出：[{id: 3, name: '刘红', sex: '女'},{id: 2, name: '李四', sex: '男'},{id: 1, name: '张三', sex: '男'}]
+```
+
+---
+
 ### arrayUnique(array)
 
 数组元素去重

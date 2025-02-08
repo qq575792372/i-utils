@@ -1,7 +1,7 @@
 /**
  * 排序
  */
-export const Sort = {
+export const SORT = {
   // 降序
   DESC: 0,
   // 升序

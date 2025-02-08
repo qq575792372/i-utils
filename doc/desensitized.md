@@ -1,5 +1,29 @@
 # 脱敏 Desensitized
 
+### formatStartOf(value,start,len)
+
+指定位置的字符串转为星号
+
+- #### 参数
+
+  `value` {String} 字符串参数
+  `start` {Number} 转换开始位置
+  `len` {Number} 显示星号的长度
+
+- #### 返回值
+
+  {String} 返回转化后字符串
+
+- #### 示例
+
+```javascript
+import { formatStartOf } from "@ivu-plus/util";
+
+console.log(formatStartOfName("张小静", 1, 2)); // 输出：张**
+```
+
+---
+
 ### formatStartOfName(value)
 
 姓名中间转为星号

@@ -1,13 +1,33 @@
 /**
+ * 指定位置的字符串转为星号
+ * @param {String|Number} value 字符串参数
+ * @param {Number} start 转换开始位置
+ * @param {Number} len 显示星号的长度
+ * @returns {String} 返回转化后字符串
+ */
+export function formatStartOf(value, start, len) {
+  value = String(value);
+  if (start > value.length) return value;
+  // len小于0和len大于剩余长度
+  let startStr = "";
+  if (len < 0) len = 0;
+  if (len > value.length - start) {
+    len = value.length - start;
+  }
+  startStr = String().padEnd(len, "*");
+  return value.substring(0, start) + startStr + value.substring(start + len);
+}
+
+/**
  * 姓名中间转为星号
  * @param {String} value 姓名
  * @returns {String} 返回转化后字符串
  */
 export function formatStartOfName(value) {
   if (value.length === 2) {
-    return _formatStartOf(value, 1, 1);
+    return formatStartOf(value, 1, 1);
   } else if (value.length > 2) {
-    return _formatStartOf(value, 1, value.length - 2);
+    return formatStartOf(value, 1, value.length - 2);
   } else {
     return value;
   }
@@ -21,7 +41,7 @@ export function formatStartOfName(value) {
  * @returns {String} 返回转化后字符串
  */
 export function formatStartOfMobile(value, start = 3, len = 4) {
-  return _formatStartOf(value, start, len);
+  return formatStartOf(value, start, len);
 }
 
 /**
@@ -32,7 +52,7 @@ export function formatStartOfMobile(value, start = 3, len = 4) {
  * @returns {String} 返回转化后字符串
  */
 export function formatStartOfIDCard(value, start = 4, len = 8) {
-  return _formatStartOf(value, start, len);
+  return formatStartOf(value, start, len);
 }
 
 /**
@@ -43,25 +63,5 @@ export function formatStartOfIDCard(value, start = 4, len = 8) {
  * @returns {String} 返回转化后字符串
  */
 export function formatStartOfBankCard(value, start = 4, len = 11) {
-  return _formatStartOf(value, start, len);
-}
-
-/**
- * 指定位置的字符串转为星号
- * @param {String|Number} value 参数
- * @param {Number} start 前缀长度
- * @param {Number} len 显示星号的长度
- * @returns {String} 返回转化后字符串
- */
-function _formatStartOf(value, start, len) {
-  value = String(value);
-  if (start > value.length) return value;
-  // len小于0和len大于剩余长度
-  let startStr = "";
-  if (len < 0) len = 0;
-  if (len > value.length - start) {
-    len = value.length - start;
-  }
-  startStr = String().padEnd(len, "*");
-  return value.substring(0, start) + startStr + value.substring(start + len);
+  return formatStartOf(value, start, len);
 }

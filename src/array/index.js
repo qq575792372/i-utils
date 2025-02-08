@@ -1,5 +1,5 @@
-import { Sort } from "../constants";
-import { isEmpty, isNull } from "../validate";
+import { SORT } from "../constants/index.js";
+import { isArray, isEmpty, isNull, isObject } from "../validate";
 
 /* 数组计算 */
 /**
@@ -263,17 +263,17 @@ export function arraySwap(array, sourceIndex, targetIndex) {
  * @param {Number} mode 排序模式，参考常量集合中 数组常量，默认是升序
  * @returns {Array} 返回操作后的数组
  */
-export function arraySort(array, mode = Sort.ASC) {
+export function arraySort(array, mode = SORT.ASC) {
   return array.sort((a, b) => {
     switch (mode) {
       // 升序
-      case Sort.ASC:
+      case SORT.ASC:
         return a - b;
       // 降序
-      case Sort.DESC:
+      case SORT.DESC:
         return b - a;
       // 随机
-      case Sort.RANDOM:
+      case SORT.RANDOM:
         return Math.random() - 0.5;
       // 默认
       default:
@@ -283,14 +283,35 @@ export function arraySort(array, mode = Sort.ASC) {
 }
 
 /**
- * 数组属性排序
+ * 数组属性混合排序
+ * @description 排序默认为asc升序
  * @param {Array} array 数组
- * @param {Array} props 排序的属性名
- * @param {Number} mode 排序模式，参考常量集合中 数组常量，默认是升序
+ * @param {Array} props 排序的属性
  * @returns {Array} 返回操作后的数组
  */
-export function arraySortBy(array, props, mode = Sort.ASC) {
-  // todo
+export function arraySortBy(array, props) {
+  return array.sort((a, b) => {
+    for (let item of props) {
+      // 排序配置
+      let prop = "",
+        order = "asc";
+      if (isObject(item)) {
+        prop = item.prop;
+        order = item.order || "asc";
+      } else {
+        prop = item;
+        order = "asc";
+      }
+      // 排序逻辑
+      if (a[prop] < b[prop]) {
+        return order === "asc" ? -1 : 1;
+      }
+      if (a[prop] > b[prop]) {
+        return order === "asc" ? 1 : -1;
+      }
+    }
+    return 0;
+  });
 }
 
 /**
