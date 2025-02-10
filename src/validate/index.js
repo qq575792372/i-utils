@@ -1,3 +1,5 @@
+import { REGEXP } from "../constants/index.js";
+
 /**
  * 判断是整数
  * @param {*} value 参数
@@ -77,6 +79,26 @@ export function isDate(value) {
  */
 export function isFunction(value) {
   return Object.prototype.toString === "Function";
+}
+
+/**
+ * 判断类型是函数字符串 FunctionString
+ * @param {*} value 参数
+ * @returns {Boolean} 返回结果
+ */
+export function isFunctionString(value) {
+  let isFnStr = REGEXP.FUNCTION_STR.test(value);
+  if (isFnStr) {
+    try {
+      new Function(`return ${value}`);
+      return true;
+    } catch (e) {
+      // 如果发生错误，比如语法错误，那么这不是一个有效的函数
+      return false;
+    }
+  } else {
+    return false;
+  }
 }
 
 /**

@@ -49,5 +49,5 @@ export const REGEXP = {
   EXTERNAL: /^(http?:|https?:|mailto:|tel:)/,
   // 是函数字符串，包括async异步函数和箭头函数
   FUNCTION_STR:
-    /^(function\([\w,\s]*\)\s*{[\s\S]*})|^\(\s*([\w,\s]*)\s*\)\s*=>\s*{[\s\S]*}|^(async\s*function\s*\([\w,\s]*\)\s*{[\s\S]*}\)\s*{[\s\S]*})|^(async\(\s*([\w,\s]*)\s*\)\s*=>\s*{[\s\S]*})$/,
+    /(function\([\w,\s]*\)\s*{[\s\S]*})|\(\s*([\w,\s]*)\s*\)\s*=>\s*{[\s\S]*}|(async\s*function\s*\([\w,\s]*\)\s*{[\s\S]*}\)\s*{[\s\S]*})|(async\(\s*([\w,\s]*)\s*\)\s*=>\s*{[\s\S]*})$/,
 };

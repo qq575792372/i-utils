@@ -211,6 +211,31 @@ console.log(isFunction(12.01)); // 输出：false
 
 ---
 
+### isFunctionString(value)
+
+判断类型是函数字符串 FunctionString
+
+- #### 参数
+
+  `value` {\*} 参数
+
+- #### 返回值
+
+  {Boolean} 返回结果
+
+- #### 示例
+
+```javascript
+import { isFunctionString } from "@ivu-plus/i-utils";
+
+console.log(isFunctionString("function (str) {}")); // 输出：true
+console.log(isFunctionString("(str) => {}")); // 输出：true
+console.log(isFunctionString("async (str) => {}")); // 输出：true
+console.log(isFunctionString("async function(str) {}")); // 输出：true
+console.log(isFunctionString("var fn = function (str) {}")); // 输出：false
+```
+---
+
 ### isAsyncFunction(value)
 
 判断类型是异步函数 AsyncFunction
