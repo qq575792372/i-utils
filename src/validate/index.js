@@ -83,6 +83,7 @@ export function isFunction(value) {
 
 /**
  * 判断类型是函数字符串 FunctionString
+ * @description 支持普通函数，异步函数，箭头函数
  * @param {*} value 参数
  * @returns {Boolean} 返回结果
  */
