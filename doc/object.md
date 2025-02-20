@@ -140,7 +140,6 @@ console.log(obj); // 输出：obj对象
 
 ---
 
-
 ## 数据拷贝，对比，合并等操作
 
 ### clone(source)
@@ -160,7 +159,7 @@ console.log(obj); // 输出：obj对象
 ```javascript
 import { clone } from "@ivu-plus/i-utils";
 
-let obj = {id: 1, name: "test"};
+let obj = { id: 1, name: "test" };
 let newObj = clone(obj);
 console.log(newObj); // 输出：浅拷贝后的对象
 ```
@@ -185,12 +184,12 @@ console.log(newObj); // 输出：浅拷贝后的对象
 import { cloneDeep } from "@ivu-plus/i-utils";
 
 // 对象
-let obj = {id: 1, name: "test"};
+let obj = { id: 1, name: "test" };
 let newObj = cloneDeep(obj);
 console.log(newObj); // 输出：深拷贝后的对象
 
 // 数组对象
-let list = [{id: 1, name: "test"}];
+let list = [{ id: 1, name: "test" }];
 let newList = cloneDeep(list);
 console.log(newList); // 输出：深拷贝后的数组对象
 ```
@@ -217,27 +216,27 @@ console.log(newList); // 输出：深拷贝后的数组对象
 import { objectEquals } from "@ivu-plus/i-utils";
 
 // 场景1
-let obj1 = {id: 1, name: "test"};
-let obj2 = {id: 1, name: "test"};
+let obj1 = { id: 1, name: "test" };
+let obj2 = { id: 1, name: "test" };
 let flag = objectEquals(obj1, obj2);
 console.log(flag); // 输出：true
 
 // 场景2
 // 属性顺序不同也是会当做相等的
-let obj1 = {id: 1, name: "test"};
-let obj2 = {name: "test", id: 1};
+let obj1 = { id: 1, name: "test" };
+let obj2 = { name: "test", id: 1 };
 let flag = objectEquals(obj1, obj2);
 console.log(flag); // 输出：true
 
 // 场景3
 // 属性里面包含function则无法判断，需要用 deepCompare()方法
 let obj1 = {
-    id: 1, name: "test", say: function () {
-    }
+  id: 1, name: "test", say: function() {
+  }
 };
 let obj2 = {
-    name: "test", id: 1, say: function () {
-    }
+  name: "test", id: 1, say: function() {
+  }
 };
 let flag = objectEquals(obj1, obj2);
 console.log(flag); // 输出：false
@@ -263,8 +262,8 @@ console.log(flag); // 输出：false
 ```javascript
 import { merge } from "@ivu-plus/i-utils";
 
-let obj1 = {a: 1};
-let obj2 = {b: 2};
+let obj1 = { a: 1 };
+let obj2 = { b: 2 };
 
 // 1.目标对象如果是obj1，则原obj1对象也会改变
 console.log(merge(obj1, obj2)); // 输出：{a: 1, b: 2}
@@ -295,13 +294,16 @@ console.log(obj1); // 输出：{a: 1} 并未改变原对象
 ```javascript
 import { getTargetValueByPath } from "@ivu-plus/i-utils";
 
-let res = {code: 200, data: {rows: [], pages: {current: 1, pageSize: 20}}}
-getTargetValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
+let res = { code: 200, data: { rows: [], pages: { current: 1, pageSize: 20 } } }
+getTargetValueByPath(res, 'data.pages.pageSize');
+getTargetValueByPath(res, 'data.rows[0].name');
+getTargetValueByPath(res, 'data.rows.0.name');
+getTargetValueByPath(res, 'data.rows.0.1.name');
 ```
 
 ---
 
-### setTargetValueByPath(target, path = "data")
+### setTargetValueByPath(target, path = "data", value)
 
 根据字符串属性路径设置目标对象的值
 
@@ -320,6 +322,10 @@ getTargetValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
 ```javascript
 import { setTargetValueByPath } from "@ivu-plus/i-utils";
 
-let res = {code: 200, data: {rows: [], pages: {current: 1, pageSize: 20}}}
-setTargetValueByPath(res, 'data.pages.pageSize', 30); // 打印res对象会发现pageSize的值改为了30
+let res = { code: 200, data: { rows: [], pages: { current: 1, pageSize: 20 } } };
+setTargetValueByPath(res, "data.pages.pageSize", 30);
+setTargetValueByPath(res, "data.rows[0].name", "张三");
+setTargetValueByPath(res, "data.rows.0.name", "张三");
+setTargetValueByPath(res, "data.rows.0.1.name", "张三");
+setTargetValueByPath(res, "data.userInfo", { name: "张三" }); 
 ```

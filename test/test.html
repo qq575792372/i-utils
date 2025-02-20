@@ -33,25 +33,27 @@
   });
   console.log(`iUtils一共 ${num} 个api`, iUtils);
 
-  console.log(1111,
-    iUtils.arraySortBy(
-      [
-        { id: 1, name: "张三", sex: "男" },
-        { id: 3, name: "刘红", sex: "女" },
-        { id: 2, name: "李四", sex: "男" }
-      ],
-      ["name", "sex"]
-    )
-  );
-  console.log(222,
-    iUtils.arraySortBy(
-      [
-        { id: 1, name: "张三", sex: "男" },
-        { id: 3, name: "刘红", sex: "女" },
-        { id: 2, name: "李四", sex: "男" }
-      ],
-      [{ prop: "sex", order: "asc" }, { prop: "name", order: "desc" }]
-    )
-  );
+  let target = {
+    name: "test",
+    age: 18,
+    sex: "男",
+    isOpen: true,
+    types: ["id1", "id2"],
+    info: {
+      token: "111"
+    },
+    selects: [
+      {
+        name: "张三",
+        age: 20,
+        arr: [1, 2]
+      }, {
+        name: "李四",
+        age: 11
+      }
+    ]
+  };
+  // console.log("第一个", iUtils.setTargetValueByPath(target, "info.token", "新的token"));
+  console.log("第2个", iUtils.setTargetValueByPath(target, "types.1.2.dd",{text:'ceshide'}));
 </script>
 </html>

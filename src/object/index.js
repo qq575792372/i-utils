@@ -1,4 +1,4 @@
-import { isEmpty, isObject, isArray, isDate } from "../validate";
+import { isEmpty, isObject, isArray, isDate, isNumber, isNotNaN, isNaN } from "../validate";
 
 /* 对象转换 */
 /**
@@ -166,31 +166,30 @@ export function merge(target, ...source) {
  */
 export function getTargetValueByPath(target, path = "data") {
   const paths = (path || "data").split(".");
-  let data = target;
-  // 属性总个数
-  let lastIndex = paths.length - 1;
+  let current = target;
   for (const index in paths) {
+    let part = paths[index];
     // 判断属性是取的数组
-    let pathArrayMatch = paths[index].match(/^(\w+)\[(\d+)]$/);
-    if (pathArrayMatch) {
-      let propName = pathArrayMatch[1];
-      let propIndex = parseInt(pathArrayMatch[2], 10);
-      if (!data[propName]) {
-        data[propName] = [];
+    let { propName, propIndex, isArray } = _getTargetPathPart(paths[index]);
+    if (isArray) {
+      // 获取的数组下标超出实际的长度
+      if (propIndex < 0 || propIndex >= current[propName].length) {
+        return undefined;
       }
       // 逐层向下找到对应属性的值
-      data = data[propName][propIndex];
+      current = current[propName][propIndex];
     }
     // 判断属性是取的对象属性
     else {
-      if (!data[paths[index]]) {
-        data[paths[index]] = Number(index) !== lastIndex ? {} : undefined;
+      // 如果属性不存在，则返回空的
+      if (!current || !current.hasOwnProperty(part) || typeof current !== "object") {
+        return undefined;
       }
       // 逐层向下找到对应属性的值
-      data = data[paths[index]];
+      current = current[part];
     }
   }
-  return data;
+  return current;
 }
 
 /**
@@ -204,11 +203,69 @@ export function getTargetValueByPath(target, path = "data") {
  */
 export function setTargetValueByPath(target, path = "data", value) {
   const paths = (path || "data").split(".");
-  // 变量表达式拼接，最终结果如：target['personInfo']['personName']='xxx';
-  let fxStr = "";
-  for (const name of paths) {
-    fxStr += `['${name}']`;
+  let current = target;
+
+  // 遍历到路径的倒数第二个属性
+  for (let index = 0; index < paths.length - 1; index++) {
+    let part = paths[index];
+    let nextPart = paths[index + 1];
+    // 判断属性是取的数组
+    let { propName, propIndex, isArray } = _getTargetPathPart(part);
+
+    if (isArray) {
+      // 检查当前属性是否存在，若不存在或者不是数组，则创建一个数组
+      if (!current || !current.hasOwnProperty(propName)) {
+        current[propName] = [];
+      }
+      // 确保数组长度足够容纳指定索引
+      while (current[propName].length <= propIndex) {
+        current[propName].push({});
+      }
+      // 逐层向下找到对应属性的值
+      current = current[propName][propIndex];
+    } else {
+      // 如果不是数组索引形式，处理普通对象属性，如果是.1.数组形式，则还是返回数组
+      if (!current || !current.hasOwnProperty(part) || typeof current[part] !== "object") {
+        current[part] = isNaN(nextPart) ? [] : {};
+      }
+      // 移动到对象的下一层属性
+      current = current[part];
+    }
   }
-  const fn = new Function("target", `target${fxStr}=${value}`);
-  fn(target);
+
+  // 处理最后一个路径部分
+  let lastPath = paths[paths.length - 1];
+  let { propName, propIndex, isArray } = _getTargetPathPart(lastPath);
+  if (isArray) {
+    // 检查当前属性是否存在，若不存在或者不是数组，则创建一个数组
+    if (!current.hasOwnProperty(propName) || !Array.isArray(current[propName])) {
+      current[propName] = [];
+    }
+    // 确保数组长度足够容纳指定索引
+    while (current[propName].length <= propIndex) {
+      current[propName].push({});
+    }
+    // 逐层向下找到对应属性的值
+    current[propName][propIndex] = value;
+  } else {
+    current[lastPath] = value;
+  }
+
+  // 返回源对象
+  return target;
+}
+
+/* 内部方法 */
+/**
+ * 获得目标路径的片段
+ * @param path
+ * @returns {{propName: (*|undefined), propIndex: (*|number|undefined), isArray: boolean}}
+ */
+function _getTargetPathPart(path) {
+  let pathArrayMatch = path.match(/^(\w+)\[(\d+)]$/);
+  return {
+    propName: (pathArrayMatch && pathArrayMatch[1]) || undefined, // 属性名
+    propIndex: pathArrayMatch ? parseInt(pathArrayMatch[2], 10) : undefined, // 属性数组时候的下标
+    isArray: !!pathArrayMatch, // 是否是数组
+  };
 }

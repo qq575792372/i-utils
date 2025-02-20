@@ -78,7 +78,7 @@ export function isDate(value) {
  * @returns {Boolean} 返回结果
  */
 export function isFunction(value) {
-  return Object.prototype.toString === "Function";
+  return Object.prototype.toString.call(value).slice(8, -1) === "Function";
 }
 
 /**
