@@ -79,12 +79,12 @@ export function clone(source) {
  * @param {*} source 拷贝的数据
  * @returns {*} 返回深拷贝的数据
  */
-export function cloneDeep(source) {
+export function deepClone(source) {
   //  Object
   if (isObject(source)) {
     let copy = {};
     for (let attr in source) {
-      if (source.hasOwnProperty(attr)) copy[attr] = cloneDeep(source[attr]);
+      if (source.hasOwnProperty(attr)) copy[attr] = deepClone(source[attr]);
     }
     return copy;
   }
@@ -93,7 +93,7 @@ export function cloneDeep(source) {
   else if (isArray(source)) {
     let copy = [];
     for (let i = 0, len = source.length; i < len; i++) {
-      copy[i] = cloneDeep(source[i]);
+      copy[i] = deepClone(source[i]);
     }
     return copy;
   }

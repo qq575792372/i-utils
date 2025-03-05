@@ -166,7 +166,7 @@ console.log(newObj); // 输出：浅拷贝后的对象
 
 ---
 
-### cloneDeep(source)
+### deepClone(source)
 
 深拷贝数据
 
@@ -181,16 +181,16 @@ console.log(newObj); // 输出：浅拷贝后的对象
 - #### 示例
 
 ```javascript
-import { cloneDeep } from "@ivu-plus/i-utils";
+import { deepClone } from "@ivu-plus/i-utils";
 
 // 对象
 let obj = { id: 1, name: "test" };
-let newObj = cloneDeep(obj);
+let newObj = deepClone(obj);
 console.log(newObj); // 输出：深拷贝后的对象
 
 // 数组对象
 let list = [{ id: 1, name: "test" }];
-let newList = cloneDeep(list);
+let newList = deepClone(list);
 console.log(newList); // 输出：深拷贝后的数组对象
 ```
 
