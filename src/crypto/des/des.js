@@ -1,5 +1,7 @@
 import * as base64 from "../base64/index.js";
+
 const { encode, decode } = base64;
+
 /**
  * 使用方法
  * 实例化对象 new Des()

@@ -159,12 +159,12 @@ export function merge(target, ...source) {
  * 根据字符串属性路径获取目标对象的值
  * @example
  * let res = {code:200, data:{rows:[], pages:{current:1,pageSize:20}}}
- * this._getTargetValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
+ * this._getValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
  * @param {Object} target 目标对象
  * @param {String} path 字符串属性路径
  * @returns {Object} 返回目标对象
  */
-export function getTargetValueByPath(target, path = "data") {
+export function getValueByPath(target, path = "data") {
   const paths = (path || "data").split(".");
   let current = target;
   for (const index in paths) {
@@ -196,12 +196,12 @@ export function getTargetValueByPath(target, path = "data") {
  * 根据字符串属性路径设置目标对象的值
  * @example
  * let res = {code:200, data:{rows:[], pages:{current:1,pageSize:20}}}
- * this._setTargetValueByPath(res, 'data.pages.pageSize', 30); // 打印res对象会发现pageSize的值改为了30
+ * this._setValueByPath(res, 'data.pages.pageSize', 30); // 打印res对象会发现pageSize的值改为了30
  * @param {Object} target 目标对象
  * @param {String} path 字符串属性路径
  * @param {*} value 值
  */
-export function setTargetValueByPath(target, path = "data", value) {
+export function setValueByPath(target, path = "data", value) {
   const paths = (path || "data").split(".");
   let current = target;
 

@@ -276,7 +276,7 @@ console.log(obj1); // 输出：{a: 1} 并未改变原对象
 
 ## 根据字符串属性路径操作目标对象
 
-### getTargetValueByPath(target, path = "data")
+### getValueByPath(target, path = "data")
 
 根据字符串属性路径获取目标对象的值
 
@@ -292,18 +292,18 @@ console.log(obj1); // 输出：{a: 1} 并未改变原对象
 - #### 示例
 
 ```javascript
-import { getTargetValueByPath } from "@ivu-plus/i-utils";
+import { getValueByPath } from "@ivu-plus/i-utils";
 
 let res = { code: 200, data: { rows: [], pages: { current: 1, pageSize: 20 } } }
-getTargetValueByPath(res, 'data.pages.pageSize');
-getTargetValueByPath(res, 'data.rows[0].name');
-getTargetValueByPath(res, 'data.rows.0.name');
-getTargetValueByPath(res, 'data.rows.0.1.name');
+getValueByPath(res, 'data.pages.pageSize');
+getValueByPath(res, 'data.rows[0].name');
+getValueByPath(res, 'data.rows.0.name');
+getValueByPath(res, 'data.rows.0.1.name');
 ```
 
 ---
 
-### setTargetValueByPath(target, path = "data", value)
+### setValueByPath(target, path = "data", value)
 
 根据字符串属性路径设置目标对象的值
 
@@ -320,12 +320,12 @@ getTargetValueByPath(res, 'data.rows.0.1.name');
 - #### 示例
 
 ```javascript
-import { setTargetValueByPath } from "@ivu-plus/i-utils";
+import { setValueByPath } from "@ivu-plus/i-utils";
 
 let res = { code: 200, data: { rows: [], pages: { current: 1, pageSize: 20 } } };
-setTargetValueByPath(res, "data.pages.pageSize", 30);
-setTargetValueByPath(res, "data.rows[0].name", "张三");
-setTargetValueByPath(res, "data.rows.0.name", "张三");
-setTargetValueByPath(res, "data.rows.0.1.name", "张三");
-setTargetValueByPath(res, "data.userInfo", { name: "张三" }); 
+setValueByPath(res, "data.pages.pageSize", 30);
+setValueByPath(res, "data.rows[0].name", "张三");
+setValueByPath(res, "data.rows.0.name", "张三");
+setValueByPath(res, "data.rows.0.1.name", "张三");
+setValueByPath(res, "data.userInfo", { name: "张三" }); 
 ```

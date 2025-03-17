@@ -14,9 +14,3 @@ export * as aes from "./aes/index.js";
 export * as des from "./des/index.js";
 // 分组加密算法 TEA
 export * as tea from "./tea/index.js";
-// 非对称加密 RSA todo
-// export * as rsa from "./rsa/index.js";
-// 非对称加密 DSA todo
-// export * as dsa from "./dsa.js";
-// 非对称加密 ECC todo
-// export * as ecc from "./ecc.js";
