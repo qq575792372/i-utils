@@ -310,6 +310,7 @@ export function downloadFileUrl(fileUrl, fileName) {
     const link = window.document.createElement("a");
     link.download = fileName;
     link.href = fileUrl;
+    link.target = "_blank";
     // 生成节点点击
     window.document.body.appendChild(link);
     link.click();
