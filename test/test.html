@@ -55,5 +55,12 @@
   };
   console.log("第一个", iUtils.setValueByPath(target, "info.token", "新的token"));
   console.log("第2个", iUtils.setValueByPath(target, "types.1.2.dd", { text: "ceshide" }));
+
+  console.log(iUtils.isFunctionString("function (str, $num) {}")); // 输出：true
+  console.log(iUtils.isFunctionString("(str, $num) => {}")); // 输出：true
+  console.log(iUtils.isFunctionString("async (str, $num) => {}")); // 输出：true
+  console.log(iUtils.isFunctionString("async function(str, $num) {}")); // 输出：true
+  console.log(iUtils.isFunctionString("async function $test(str, $num) {}")); // 输出：true
+  console.log(iUtils.isFunctionString("var fn = function (str, $num) {}")); // 输出：false
 </script>
 </html>

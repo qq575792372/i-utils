@@ -228,11 +228,13 @@ console.log(isFunction(12.01)); // 输出：false
 ```javascript
 import { isFunctionString } from "@ivu-plus/i-utils";
 
-console.log(isFunctionString("function (str) {}")); // 输出：true
-console.log(isFunctionString("(str) => {}")); // 输出：true
-console.log(isFunctionString("async (str) => {}")); // 输出：true
-console.log(isFunctionString("async function(str) {}")); // 输出：true
-console.log(isFunctionString("var fn = function (str) {}")); // 输出：false
+console.log(isFunctionString("function (str, $num) {}")); // 输出：true
+console.log(isFunctionString("(str, $num) => {}")); // 输出：true
+console.log(isFunctionString("async (str, $num) => {}")); // 输出：true
+console.log(isFunctionString("async function(str, $num) {}")); // 输出：true
+console.log(isFunctionString("async function test(str, $num) {}")); // 输出：true
+console.log(isFunctionString("async function $test($str, $num) {}")); // 输出：true
+console.log(isFunctionString("var fn = function (str, $num) {}")); // 输出：false
 ```
 ---
 

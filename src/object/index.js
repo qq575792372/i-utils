@@ -80,7 +80,7 @@ export function clone(source) {
  * @returns {*} 返回深拷贝的数据
  */
 export function deepClone(source) {
-  //  Object
+  // Object
   if (isObject(source)) {
     let copy = {};
     for (let attr in source) {
@@ -89,7 +89,7 @@ export function deepClone(source) {
     return copy;
   }
 
-  //  Array
+  // Array
   else if (isArray(source)) {
     let copy = [];
     for (let i = 0, len = source.length; i < len; i++) {
@@ -98,14 +98,14 @@ export function deepClone(source) {
     return copy;
   }
 
-  //  Date
+  // Date
   else if (isDate(source)) {
     let copy = new Date();
     copy.setTime(source.getTime());
     return copy;
   }
 
-  // Other 原路返回源数据
+  // Other 返回原数据
   else {
     return source;
   }
