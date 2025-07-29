@@ -228,14 +228,15 @@ console.log(isFunction(12.01)); // 输出：false
 ```javascript
 import { isFunctionString } from "@ivu-plus/i-utils";
 
-console.log(isFunctionString("function (str, $num) {}")); // 输出：true
-console.log(isFunctionString("(str, $num) => {}")); // 输出：true
-console.log(isFunctionString("async (str, $num) => {}")); // 输出：true
-console.log(isFunctionString("async function(str, $num) {}")); // 输出：true
-console.log(isFunctionString("async function test(str, $num) {}")); // 输出：true
-console.log(isFunctionString("async function $test($str, $num) {}")); // 输出：true
-console.log(isFunctionString("var fn = function (str, $num) {}")); // 输出：false
+console.log(isFunctionString("function(str, $axios) {console.log(123);}")); // 输出：true
+console.log(isFunctionString("async function(str, $axios) {let res = await $axios.get('http://111.12.22.44/getlist');}")); // 输出：true
+console.log(isFunctionString("(str, $axios) => {console.log(123);}")); // 输出：true
+console.log(isFunctionString("async (str, $axios) => {let res = await $axios.get('http://111.12.22.44/getlist');}")); // 输出：true
+console.log(isFunctionString("function name(str, $axios) {console.log(123);}")); // 输出：true
+console.log(isFunctionString("async function name(str, $axios) {let res = await $axios.get('http://111.12.22.44/getlist');}")); // 输出：true
+console.log(isFunctionString("var fn = async function (str, $axios) {let res = await $axios.get('http://111.12.22.44/getlist');}")); // 输出：false
 ```
+
 ---
 
 ### isAsyncFunction(value)

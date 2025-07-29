@@ -88,11 +88,10 @@ export function isFunction(value) {
  * @returns {Boolean} 返回结果
  */
 export function isFunctionString(value) {
-  let isFnStr = REGEXP.FUNCTION_STR.test(value);
-  if (isFnStr) {
+  if (value) {
     try {
-      new Function(`return ${value}`);
-      return true;
+      let fn = new Function(`return ${value}`)();
+      return typeof fn === "function";
     } catch (e) {
       // 如果发生错误，比如语法错误，那么这不是一个有效的函数
       return false;
