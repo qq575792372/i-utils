@@ -173,7 +173,7 @@ console.log(res); // 输出：id=123&name=admin
 
 ---
 
-### getSearchParam(url = window.location.href)
+### getSearchParam(url = window.location.href, name)
 
 查询参数字符串中获得某个参数的值
 
@@ -192,7 +192,7 @@ console.log(res); // 输出：id=123&name=admin
 import { getSearchParam } from "@ivu-plus/i-utils";
 
 let url = "http://192.168.0.180:8000/user/getUserDetail?id=123&name=admin#tag1";
-let res = getSearchParam("id", url);
+let res = getSearchParam(url, "id");
 console.log(res); // 输出：123
 ```
 
