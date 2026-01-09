@@ -1,66 +1,35 @@
 <!doctype html>
 <html lang="zh">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>测试开发环境源码</title>
-  <style></style>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>测试开发环境源码</title>
+    <style></style>
+  </head>
+  <body></body>
 
-<!-- 使用module模式对源码进行测试，用webstorm启动服务 -->
-<script type="module">
-  import * as iUtils from "../src/index.js";
+  <!-- 使用module模式对源码进行测试，用webstorm启动服务 -->
+  <script type="module">
+    import * as iUtils from "../src/index.js";
 
-  iUtils.loadedTest();
+    iUtils.loadedTest();
 
-  // 统计function api的数量
-  let num = 0;
-  Object.keys(iUtils).forEach((key) => {
-    // 是function api
-    if (typeof iUtils[key] === "function" && key !== "loadedTest") {
-      num++;
-    }
-    // 对象中包含function api，比如sm2，base64等加密算法的api
-    if (typeof iUtils[key] === "object") {
-      Object.keys(iUtils[key]).forEach(objKey => {
-        if (typeof iUtils[key][objKey] === "function") {
-          num++;
-        }
-      });
-    }
-  });
-  console.log(`iUtils一共 ${num} 个api`, iUtils);
-
-  let target = {
-    name: "test",
-    age: 18,
-    sex: "男",
-    isOpen: true,
-    types: ["id1", "id2"],
-    info: {
-      token: "111"
-    },
-    selects: [
-      {
-        name: "张三",
-        age: 20,
-        arr: [1, 2]
-      }, {
-        name: "李四",
-        age: 11
+    // 统计function api的数量
+    let num = 0;
+    Object.keys(iUtils).forEach((key) => {
+      // 是function api
+      if (typeof iUtils[key] === "function" && key !== "loadedTest") {
+        num++;
       }
-    ]
-  };
-  console.log("第一个", iUtils.setValueByPath(target, "info.token", "新的token"));
-  console.log("第2个", iUtils.setValueByPath(target, "types.1.2.dd", { text: "ceshide" }));
-
-  console.log(iUtils.isFunctionString("function (str, $num) {}")); // 输出：true
-  console.log(iUtils.isFunctionString("(str, $num) => {}")); // 输出：true
-  console.log(iUtils.isFunctionString("async (str, $num) => {}")); // 输出：true
-  console.log(iUtils.isFunctionString("async function(str, $num) {}")); // 输出：true
-  console.log(iUtils.isFunctionString("async function $test(str, $num) {}")); // 输出：true
-  console.log(iUtils.isFunctionString("var fn = function (str, $num) {}")); // 输出：false
-</script>
+      // 对象中包含function api，比如sm2，base64等加密算法的api
+      if (typeof iUtils[key] === "object") {
+        Object.keys(iUtils[key]).forEach((objKey) => {
+          if (typeof iUtils[key][objKey] === "function") {
+            num++;
+          }
+        });
+      }
+    });
+    console.log(`iUtils一共 ${num} 个api`, iUtils);
+  </script>
 </html>

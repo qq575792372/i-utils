@@ -1,7 +1,7 @@
 {
   "name": "@ivu-plus/i-utils",
   "moduleName": "iUtils",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "前端模块化 JavaScript 工具库",
   "author": "<gao911222@163.com>",
   "license": "MIT",

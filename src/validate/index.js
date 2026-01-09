@@ -280,7 +280,20 @@ export function isNotNull(value) {
  * @returns {Boolean} 返回结果
  */
 export function isEmpty(value) {
-  return isNull(value) || !(Object.keys(value) || value).length;
+  if (isNull(value)) return true;
+  if (typeof value === "string" || Array.isArray(value)) {
+    return value.length === 0;
+  }
+  if (typeof value === "object") {
+    if (value instanceof Map || value instanceof Set) {
+      return value.size === 0;
+    }
+    if (value instanceof Date || value instanceof RegExp || value instanceof Error) {
+      return false;
+    }
+    return Object.keys(value).length === 0;
+  }
+  return false;
 }
 
 /**

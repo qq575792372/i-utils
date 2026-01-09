@@ -1,4 +1,4 @@
-import { isEmpty, isNull, isInteger, isDate, isString } from "../validate";
+import { isNull, isInteger, isDate, isString } from "../validate";
 import { parseInt } from "../number";
 import { DATE } from "../constants";
 
@@ -717,7 +717,7 @@ export function getFullDateOfYear(date = new Date()) {
  * @returns {Number} 返回两个日期相差的天数，结果为正数或者负数
  */
 export function getDiffDay(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
+  if (isNull(startDate) || isNull(endDate)) return 0;
   let diff = (endDate - startDate) / (24 * 60 * 60 * 1000);
 
   // 返回
@@ -731,7 +731,7 @@ export function getDiffDay(startDate, endDate) {
  * @returns {Number} 返回两个日期相差的周数，结果为正数或者负数
  */
 export function getDiffWeek(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
+  if (isNull(startDate) || isNull(endDate)) return 0;
   let diff = (endDate - startDate) / (7 * 24 * 60 * 60 * 1000);
 
   // 返回
@@ -745,7 +745,7 @@ export function getDiffWeek(startDate, endDate) {
  * @returns {Number} 返回两个日期相差的月数，结果为正数或者负数
  */
 export function getDiffMonth(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
+  if (isNull(startDate) || isNull(endDate)) return 0;
   let diff = (startDate - endDate) / (30 * 24 * 60 * 60 * 1000);
 
   // 返回
@@ -759,7 +759,7 @@ export function getDiffMonth(startDate, endDate) {
  * @returns {Number} 返回两个日期相差的年数，结果为正数或者负数
  */
 export function getDiffYear(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return 0;
+  if (isNull(startDate) || isNull(endDate)) return 0;
   let diff = (endDate - startDate) / (12 * 30 * 24 * 60 * 60 * 1000);
 
   // 返回
@@ -774,7 +774,7 @@ export function getDiffYear(startDate, endDate) {
  * @returns {Array} 返回年月日数组
  */
 export function getBetweenDates(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return [];
+  if (isNull(startDate) || isNull(endDate)) return [];
 
   // 计算
   let array = [];
@@ -799,7 +799,7 @@ export function getBetweenDates(startDate, endDate) {
  * @returns {Array} 返回年月数组
  */
 export function getBetweenMonths(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return [];
+  if (isNull(startDate) || isNull(endDate)) return [];
 
   // 计算
   let array = [];
@@ -841,7 +841,7 @@ export function getBetweenMonths(startDate, endDate) {
  * @returns {Array} 返回年数组
  */
 export function getBetweenYears(startDate, endDate) {
-  if (isEmpty(startDate) || isEmpty(endDate)) return [];
+  if (isNull(startDate) || isNull(endDate)) return [];
 
   // 计算
   let array = [];
