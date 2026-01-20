@@ -9,14 +9,14 @@
 <body></body>
 <script src="../dist/lib/index.full.umd.js"></script>
 
-<!-- 整体引入 -->
+<!-- 直接引入全局包 -->
 <script>
   console.log("从window对象获得工具库", iUtils);
 </script>
 
-<!-- 按需引入 -->
+<!-- 从 esm 模块中按需引入 -->
 <script type="module">
-  import * as iUtils from "../dist/lib/index.full.esm.js";
+  import * as iUtils from "../dist/es/index.mjs";
 
   console.log("从模块中获得工具库", iUtils);
 </script>

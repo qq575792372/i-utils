@@ -1,7 +1,7 @@
-// 测试加载成功方法
-export const loadedTest = function () {
-  console.log("Nice, iUtils loaded successfully!");
-};
+// 测试加载
+export function testLoaded(): void {
+  console.log("loaded successfully!");
+}
 
 // 常量集合
 export * from "./constants/index.js";
@@ -35,7 +35,8 @@ export * from "./validate/index.js";
 export * from "./keycode/index.js";
 
 // 生成id
-export * from "./id/index.js";
+export * from "./id/index.ts";
+
 // 加解密算法
 export * from "./crypto/index.js";
 // 脱敏

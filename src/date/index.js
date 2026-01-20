@@ -1116,6 +1116,7 @@ export function addQuarter(date = new Date(), num = +1) {
  * @param {String} lang 语言zh和en，默认zh
  * @returns {String} 返回日期字符串
  */
+// TODO：需要支持"20260109" 这种格式的日期的转换
 export function formatDate(date, format = "yyyy-MM-dd", lang = "zh") {
   if (isNull(date)) return "";
 

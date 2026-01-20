@@ -6,9 +6,38 @@
   <title>前端模块化 JavaScript 工具库</title>
 </head>
 <body>
-<script src="./dist/lib/index.full.umd.min.js"></script>
-<script>
-  console.log(novaUtil);
+<!-- 通过vite启动服务器，直接使用模块的ts文件测试 -->
+<script type="module">
+  import * as iUtils from "./src/index.ts";
+
+  iUtils.loadedTestUtils();
+
+  // 统计function api的数量
+  let num = 0;
+  Object.keys(iUtils).forEach((key) => {
+    // 是function api
+    if (typeof iUtils[key] === "function" && key !== "loadedTestUtils") {
+      num++;
+    }
+    // 对象中包含function api，比如sm2，base64等加密算法的api
+    if (typeof iUtils[key] === "object") {
+      Object.keys(iUtils[key]).forEach((objKey) => {
+        if (typeof iUtils[key][objKey] === "function") {
+          num++;
+        }
+      });
+    }
+  });
+  console.log(`iUtils一共 ${num} 个api`, iUtils);
+
+  console.log(iUtils.getUUID(), iUtils.getGUID());
+</script>
+<script type="module">
+  import { IUtilsResolver } from "./src/resolver";
+
+  IUtilsResolver({
+    append: ["getUUID1"]
+  });
 </script>
 </body>
 </html>

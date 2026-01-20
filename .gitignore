@@ -1,3 +1,17 @@
+# System file
+.DS_Store
+Thumbs.db
+
+# Build
+node_modules
+dist
+dist-ssr
+components.d.ts
+auto-imports.d.ts
+
+# Ts build info
+*.tsbuildinfo
+
 # Logs
 logs
 *.log
@@ -7,18 +21,17 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# dir
-.DS_Store
-node_modules
-/dist
-/*/dist/
+# Local Env Files
+*.local
+.env.local
+.env.*.local
 
 # Editor directories and files
-.idea
 .vscode
+.idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-*.components.d.ts
+

@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".", // 模块解析的基准目录（所有相对路径都基于此目录）
+    "paths": {
+      "@/*": ["src/*"] // 路径别名：@/xxx 等价于 src/xxx（简化导入路径）
+    },
+    "declaration": true, // 开启：生成.d.ts类型声明文件（供外部项目引用）
+    "declarationDir": "./dist/es", // 类型文件输出目录（所有.d.ts文件会生成到这里）
+    "emitDeclarationOnly": true, // 开启：仅生成类型文件，不编译JS代码（JS编译交给Rollup/Vite）
+    "target": "ES2023", // 编译目标：TS代码最终兼容ES2023语法（可使用2023年新增JS特性）
+    "module": "ESNext", // 模块系统：输出最新ES模块（import/export），适配Node.js ESM
+    "lib": ["ES2023", "DOM"], // 引入的内置库类型：ES2023核心库 + DOM库（若纯Node端可移除DOM）
+    "types": ["node"], // 额外加载的类型声明：仅加载Node.js原生类型（如process、require等）
+    "moduleResolution": "Node", // 模块解析规则：使用Node.js的解析逻辑（处理node_modules、package.json等）
+    "resolveJsonModule": true, // 开启：允许导入.json文件（如import config from './config.json'）
+    "strict": true, // 开启严格模式：启用所有严格类型检查规则（如noImplicitAny、strictNullChecks等）
+    "skipLibCheck": true, // 开启：跳过第三方库（node_modules）的类型校验（提升编译速度，避免第三方类型报错）
+    "allowJs": true, // 开启：允许TS文件中导入/编译JS文件（支持JS/TS混写）
+    "allowSyntheticDefaultImports": true, // 开启：允许从无默认导出的模块中使用import xxx from 'xxx'（兼容CommonJS模块）
+    "esModuleInterop": true, // 开启：自动转换CommonJS模块为ESM格式（解决require/export混用问题）
+    "allowImportingTsExtensions": true, // 开启：允许导入语句中直接使用.ts/.tsx后缀（如import xxx from './index.ts'）
+    "verbatimModuleSyntax": false // 关闭：不强制区分类型导入和值导入（如import type xxx from 'xxx'可简写为import xxx from 'xxx'）
+  },
+  "include": ["src/**/*"], // 需要编译/类型检查的文件：src目录下所有文件（递归）
+  "exclude": ["node_modules", "dist"] // 排除的文件：第三方依赖 + 打包后的产物目录
+}
