@@ -1,21 +1,21 @@
 import fs from "fs";
 import chalk from "chalk";
 import { build } from "vite";
-import { execaCommand } from "execa";
 import { resolve } from "path";
-import dts from "vite-plugin-dts";
+import { execaCommand } from "execa";
+import { Project, SyntaxKind } from "ts-morph";
+// rollup打包工具
 import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import json from "@rollup/plugin-json";
 import dts from "rollup-plugin-dts";
-import { Project, SyntaxKind } from "ts-morph";
+import type { RollupOptions } from "rollup";
+// 自定义工具
 import { rollupBuild } from "./utils/rollup-build";
 import { banner } from "./banner";
 import pkg from "../package.json";
-import type { RollupOptions } from "rollup";
-import * as process from "node:process";
 
 /**
  * 打包主入口
@@ -171,7 +171,7 @@ export async function buildResolver() {
  */
 export async function generateModuleDts() {
   console.log(chalk.blue("📝 正在生成模块类型文件"));
-  await execaCommand("tsc --project tsconfig.json --pretty --listEmittedFiles", { stdio: "inherit" });
+  await execaCommand("tsc --project tsconfig.json --pretty --listEmittedFiles");
 }
 
 /**

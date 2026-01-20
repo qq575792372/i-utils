@@ -37,7 +37,7 @@ import * as iUtils from "@ivu-plus/i-utils";
 iUtils.testLoaded();
 ```
 
-#### commonjs 服务端环境
+#### cjs 服务端环境
 
 ```javascript
 // 全量引入
@@ -73,7 +73,7 @@ testLoaded();
 
 #### 自动导入
 
-需要使用额外的插件来实现自动导入，`IUtilsResolver`解析器支持 `Vite` 和 `Webpack` 工具。
+需要使用额外的插件来实现自动导入，`IUtilsResolver`解析器支持在 `Vite` 和 `Webpack` 工具中使用。
 
 首先需要安装自动导入插件
 
@@ -102,12 +102,12 @@ export default defineConfig({
 
 ```javascript
 const AutoImport = require("unplugin-auto-import/webpack");
-const { ElementPlusResolver } = require("@ivu-plus/i-utils/resolver");
+const { IUtilsResolver } = require("@ivu-plus/i-utils/resolver");
 
 module.exports = {
   plugins: [
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [IUtilsResolver()],
     }),
   ],
 };
@@ -142,7 +142,7 @@ pnpm build
 ### ✅ 发布
 
 ```bash
-pnpm publish
+npm publish
 ```
 
 ### 📝API 文档

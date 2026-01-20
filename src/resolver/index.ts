@@ -27,7 +27,7 @@ export type IUtilsResolverOptions =
  * // 场景3：精细化控制（排除/只包含/追加）
  * IUtilsResolver({
  *   include: ["getUUID", "getGUID"],
- *   exclude: ["loadedTestUtils"],
+ *   exclude: ["testLoaded"],
  *   append: ["formatDate"]
  * })
  */
@@ -60,7 +60,7 @@ export function IUtilsResolver(options?: IUtilsResolverOptions): Resolver {
       }
     }
   }
-  console.log("IUtilsResolver", finalApis);
+
   // 返回解析器
   return (name: string) => {
     if (finalApis.includes(name)) {
