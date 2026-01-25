@@ -10,13 +10,13 @@
 <script type="module">
   import * as iUtils from "./src/index.ts";
 
-  iUtils.loadedTestUtils();
+  iUtils.testLoaded();
 
   // 统计function api的数量
   let num = 0;
   Object.keys(iUtils).forEach((key) => {
     // 是function api
-    if (typeof iUtils[key] === "function" && key !== "loadedTestUtils") {
+    if (typeof iUtils[key] === "function" && key !== "testLoaded") {
       num++;
     }
     // 对象中包含function api，比如sm2，base64等加密算法的api
@@ -29,15 +29,12 @@
     }
   });
   console.log(`iUtils一共 ${num} 个api`, iUtils);
-
-  console.log(iUtils.getUUID(), iUtils.getGUID());
 </script>
+
 <script type="module">
-  import { IUtilsResolver } from "./src/resolver";
 
-  IUtilsResolver({
-    append: ["getUUID1"]
-  });
+
 </script>
+
 </body>
 </html>

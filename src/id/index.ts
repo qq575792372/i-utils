@@ -1,4 +1,7 @@
 /**
+ * @module 生成id
+ */
+/**
  * 生成UUID
  * @param {Number} len 生成的长度，默认32位
  * @param {Number} radix 进制数，默认16进制
@@ -8,8 +11,8 @@
  */
 export function getUUID(len: number = 32, radix: number = 16): string {
   const CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  let uuid = [],
-    i;
+  const uuid = [];
+  let i = 0;
   radix = radix || CHARS.length;
   if (len) {
     for (i = 0; i < len; i++) uuid[i] = CHARS[0 | (Math.random() * radix)];
@@ -34,7 +37,7 @@ export function getUUID(len: number = 32, radix: number = 16): string {
  * @returns {String} 返回字符串
  */
 export function getGUID(): string {
-  let s4 = function () {
+  const s4 = function () {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
   };
   return s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4();

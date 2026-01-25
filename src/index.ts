@@ -4,60 +4,57 @@ export function testLoaded(): void {
 }
 
 // 常量集合
-export * from "./constants/index.js";
+export * from "@/constants";
 
 // 字符串
-export * from "./string/index.js";
+export * from "@/string";
 // 数字
-export * from "./number/index.js";
+export * from "@/number";
 // 数组
-export * from "./array/index.js";
+export * from "@/array";
 // 对象
-export * from "./object/index.js";
+export * from "@/object";
 // 函数
-export * from "./function/index.js";
+export * from "@/function";
 // 日期
-export * from "./date/index.js";
+export * from "@/date/index.js";
 // 数学
-export * from "./math/index.js";
+export * from "@/math";
 // 正则
-export * from "./regexp/index.js";
+export * from "@/regexp";
 // 随机数
-export * from "./random/index.js";
+export * from "@/random";
 
 // 文件
-export * from "./file/index.js";
+export * from "@/file";
 // 颜色
-export * from "./color/index.js";
+export * from "@/color";
 // 校验
-export * from "./validate/index.js";
+export * from "@/validate";
 // 键盘
-export * from "./keycode/index.js";
+export * from "@/keycode";
 
 // 生成id
-export * from "./id/index.ts";
+export * from "@/id";
 
 // 加解密算法
-export * from "./crypto/index.js";
+export * from "@/crypto";
 // 脱敏
-export * from "./desensitized/index.js";
+export * from "@/desensitized";
 // 身份证号码
-export * from "./ID-card/index.js";
+export * from "@/ID-card";
 // 分页
-export * from "./pagination/index.js";
+export * from "@/pagination";
 
 // 浏览器 Url
-export * from "./url/index.js";
+export * from "@/url";
 // 浏览器 Cookie
-export * from "./cookie/index.js";
+export * from "@/cookie";
 // 浏览器 Storage
-export * from "./storage/index.js";
+export * from "@/storage";
 // 浏览器 Dom
-export * from "./dom/index.js";
+export * from "@/dom";
 // 浏览器 Device
-export * from "./device/index.js";
+export * from "@/device";
 // 浏览器 Clipboard
-export * from "./clipboard/index.js";
-
-// 微信小程序工具
-export * from "./weapp/index.js";
+export * from "@/clipboard";

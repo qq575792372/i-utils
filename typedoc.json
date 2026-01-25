@@ -1,0 +1,17 @@
+{
+  "entryPoints": ["./src/*/index.ts"],
+  "out": "docs",
+  "plugin": ["typedoc-plugin-markdown"],
+  "exclude": ["./src/index.ts", "./src/resolver/*.ts"],
+  "categorizeByGroup": true,
+  "outputFileStrategy": "modules",
+  "excludePrivate": true,
+  "cleanOutputDir": true,
+  "sort": ["source-order"],
+  "skipErrorChecking": true,
+  "hidePageHeader": true,
+  "hideBreadcrumbs": true,
+  "disableSources": true,
+  "readme": "none",
+  "lang": "zh"
+}

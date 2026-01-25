@@ -1,0 +1,605 @@
+/**
+ * 纯前端 SHA256/SHA224 实现（无 Node.js 依赖，兼容所有浏览器）
+ * 核心逻辑借鉴 js-sha256，移除所有服务端相关代码，仅保留浏览器环境实现
+ */
+
+// ========== 核心常量 ==========
+const ERROR = "input is invalid type";
+const HEX_CHARS = "0123456789abcdef".split("");
+const EXTRA = [-2147483648, 8388608, 32768, 128];
+const SHIFT = [24, 16, 8, 0];
+// SHA256 常量 K
+const K = [
+  0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5, 0xd807aa98,
+  0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174, 0xe49b69c1, 0xefbe4786,
+  0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da, 0x983e5152, 0xa831c66d, 0xb00327c8,
+  0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967, 0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13,
+  0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819,
+  0xd6990624, 0xf40e3585, 0x106aa070, 0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a,
+  0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7,
+  0xc67178f2,
+];
+
+// ========== SHA256 核心类 ==========
+class Sha256 {
+  constructor(is224 = false) {
+    // 初始化区块数组（仅浏览器环境，无需共享内存）
+    this.blocks = new Array(17).fill(0);
+
+    // 初始化哈希值（SHA224/SHA256 不同初始值）
+    if (is224) {
+      this.h0 = 0xc1059ed8;
+      this.h1 = 0x367cd507;
+      this.h2 = 0x3070dd17;
+      this.h3 = 0xf70e5939;
+      this.h4 = 0xffc00b31;
+      this.h5 = 0x68581511;
+      this.h6 = 0x64f98fa7;
+      this.h7 = 0xbefa4fa4;
+    } else {
+      this.h0 = 0x6a09e667;
+      this.h1 = 0xbb67ae85;
+      this.h2 = 0x3c6ef372;
+      this.h3 = 0xa54ff53a;
+      this.h4 = 0x510e527f;
+      this.h5 = 0x9b05688c;
+      this.h6 = 0x1f83d9ab;
+      this.h7 = 0x5be0cd19;
+    }
+
+    // 状态变量初始化
+    this.block = this.start = this.bytes = this.hBytes = 0;
+    this.finalized = this.hashed = false;
+    this.first = true;
+    this.is224 = is224;
+  }
+
+  // 更新哈希（处理输入数据）
+  update(message) {
+    if (this.finalized) return this;
+
+    // 校验输入类型
+    let notString = false;
+    const type = typeof message;
+    if (type !== "string") {
+      if (type === "object") {
+        if (message === null) throw new Error(ERROR);
+        // 支持 ArrayBuffer/Uint8Array
+        if (message.constructor === ArrayBuffer) {
+          message = new Uint8Array(message);
+        } else if (!Array.isArray(message) && !ArrayBuffer.isView(message)) {
+          throw new Error(ERROR);
+        }
+      } else {
+        throw new Error(ERROR);
+      }
+      notString = true;
+    }
+
+    let code,
+      index = 0,
+      i,
+      length = message.length;
+    const blocks = this.blocks;
+
+    while (index < length) {
+      if (this.hashed) {
+        this.hashed = false;
+        blocks.fill(0);
+        blocks[0] = this.block;
+      }
+
+      // 处理字符串/字节数组
+      if (notString) {
+        for (i = this.start; index < length && i < 64; ++index) {
+          blocks[i >>> 2] |= message[index] << SHIFT[i++ & 3];
+        }
+      } else {
+        for (i = this.start; index < length && i < 64; ++index) {
+          code = message.charCodeAt(index);
+          // UTF-8 编码处理
+          if (code < 0x80) {
+            blocks[i >>> 2] |= code << SHIFT[i++ & 3];
+          } else if (code < 0x800) {
+            blocks[i >>> 2] |= (0xc0 | (code >>> 6)) << SHIFT[i++ & 3];
+            blocks[i >>> 2] |= (0x80 | (code & 0x3f)) << SHIFT[i++ & 3];
+          } else if (code < 0xd800 || code >= 0xe000) {
+            blocks[i >>> 2] |= (0xe0 | (code >>> 12)) << SHIFT[i++ & 3];
+            blocks[i >>> 2] |= (0x80 | ((code >>> 6) & 0x3f)) << SHIFT[i++ & 3];
+            blocks[i >>> 2] |= (0x80 | (code & 0x3f)) << SHIFT[i++ & 3];
+          } else {
+            // 处理代理对
+            code = 0x10000 + (((code & 0x3ff) << 10) | (message.charCodeAt(++index) & 0x3ff));
+            blocks[i >>> 2] |= (0xf0 | (code >>> 18)) << SHIFT[i++ & 3];
+            blocks[i >>> 2] |= (0x80 | ((code >>> 12) & 0x3f)) << SHIFT[i++ & 3];
+            blocks[i >>> 2] |= (0x80 | ((code >>> 6) & 0x3f)) << SHIFT[i++ & 3];
+            blocks[i >>> 2] |= (0x80 | (code & 0x3f)) << SHIFT[i++ & 3];
+          }
+        }
+      }
+
+      this.lastByteIndex = i;
+      this.bytes += i - this.start;
+
+      // 区块满 64 字节，进行哈希计算
+      if (i >= 64) {
+        this.block = blocks[16];
+        this.start = i - 64;
+        this.hash();
+        this.hashed = true;
+      } else {
+        this.start = i;
+      }
+    }
+
+    // 处理字节长度溢出
+    if (this.bytes > 4294967295) {
+      this.hBytes += (this.bytes / 4294967296) << 0;
+      this.bytes = this.bytes % 4294967296;
+    }
+
+    return this;
+  }
+
+  // 核心哈希计算
+  hash() {
+    let a = this.h0,
+      b = this.h1,
+      c = this.h2,
+      d = this.h3;
+    let e = this.h4,
+      f = this.h5,
+      g = this.h6,
+      h = this.h7;
+    const blocks = this.blocks;
+    let j, s0, s1, maj, t1, t2, ch, ab, da, cd, bc;
+
+    // 扩展区块
+    for (j = 16; j < 64; ++j) {
+      t1 = blocks[j - 15];
+      s0 = ((t1 >>> 7) | (t1 << 25)) ^ ((t1 >>> 18) | (t1 << 14)) ^ (t1 >>> 3);
+      t1 = blocks[j - 2];
+      s1 = ((t1 >>> 17) | (t1 << 15)) ^ ((t1 >>> 19) | (t1 << 13)) ^ (t1 >>> 10);
+      blocks[j] = (blocks[j - 16] + s0 + blocks[j - 7] + s1) << 0;
+    }
+
+    bc = b & c;
+    // 64 轮哈希计算
+    for (j = 0; j < 64; j += 4) {
+      if (this.first) {
+        if (this.is224) {
+          ab = 300032;
+          t1 = blocks[0] - 1413257819;
+          h = (t1 - 150054599) << 0;
+          d = (t1 + 24177077) << 0;
+        } else {
+          ab = 704751109;
+          t1 = blocks[0] - 210244248;
+          h = (t1 - 1521486534) << 0;
+          d = (t1 + 143694565) << 0;
+        }
+        this.first = false;
+      } else {
+        s0 = ((a >>> 2) | (a << 30)) ^ ((a >>> 13) | (a << 19)) ^ ((a >>> 22) | (a << 10));
+        s1 = ((e >>> 6) | (e << 26)) ^ ((e >>> 11) | (e << 21)) ^ ((e >>> 25) | (e << 7));
+        ab = a & b;
+        maj = ab ^ (a & c) ^ bc;
+        ch = (e & f) ^ (~e & g);
+        t1 = h + s1 + ch + K[j] + blocks[j];
+        t2 = s0 + maj;
+        h = (d + t1) << 0;
+        d = (t1 + t2) << 0;
+      }
+
+      s0 = ((d >>> 2) | (d << 30)) ^ ((d >>> 13) | (d << 19)) ^ ((d >>> 22) | (d << 10));
+      s1 = ((h >>> 6) | (h << 26)) ^ ((h >>> 11) | (h << 21)) ^ ((h >>> 25) | (h << 7));
+      da = d & a;
+      maj = da ^ (d & b) ^ ab;
+      ch = (h & e) ^ (~h & f);
+      t1 = g + s1 + ch + K[j + 1] + blocks[j + 1];
+      t2 = s0 + maj;
+      g = (c + t1) << 0;
+      c = (t1 + t2) << 0;
+
+      s0 = ((c >>> 2) | (c << 30)) ^ ((c >>> 13) | (c << 19)) ^ ((c >>> 22) | (c << 10));
+      s1 = ((g >>> 6) | (g << 26)) ^ ((g >>> 11) | (g << 21)) ^ ((g >>> 25) | (g << 7));
+      cd = c & d;
+      maj = cd ^ (c & a) ^ da;
+      ch = (g & h) ^ (~g & e);
+      t1 = f + s1 + ch + K[j + 2] + blocks[j + 2];
+      t2 = s0 + maj;
+      f = (b + t1) << 0;
+      b = (t1 + t2) << 0;
+
+      s0 = ((b >>> 2) | (b << 30)) ^ ((b >>> 13) | (b << 19)) ^ ((b >>> 22) | (b << 10));
+      s1 = ((f >>> 6) | (f << 26)) ^ ((f >>> 11) | (f << 21)) ^ ((f >>> 25) | (f << 7));
+      bc = b & c;
+      maj = bc ^ (b & d) ^ cd;
+      ch = (f & g) ^ (~f & h);
+      t1 = e + s1 + ch + K[j + 3] + blocks[j + 3];
+      t2 = s0 + maj;
+      e = (a + t1) << 0;
+      a = (t1 + t2) << 0;
+    }
+
+    // 更新哈希值
+    this.h0 = (this.h0 + a) << 0;
+    this.h1 = (this.h1 + b) << 0;
+    this.h2 = (this.h2 + c) << 0;
+    this.h3 = (this.h3 + d) << 0;
+    this.h4 = (this.h4 + e) << 0;
+    this.h5 = (this.h5 + f) << 0;
+    this.h6 = (this.h6 + g) << 0;
+    this.h7 = (this.h7 + h) << 0;
+  }
+
+  // 完成哈希计算（补位）
+  finalize() {
+    if (this.finalized) return this;
+    this.finalized = true;
+
+    const blocks = this.blocks;
+    let i = this.lastByteIndex;
+
+    blocks[16] = this.block;
+    blocks[i >>> 2] |= EXTRA[i & 3];
+    this.block = blocks[16];
+
+    // 补位处理
+    if (i >= 56) {
+      if (!this.hashed) this.hash();
+      blocks.fill(0);
+      blocks[0] = this.block;
+    }
+
+    // 写入长度信息
+    blocks[14] = (this.hBytes << 3) | (this.bytes >>> 29);
+    blocks[15] = this.bytes << 3;
+    this.hash();
+
+    return this;
+  }
+
+  // 输出十六进制字符串
+  hex() {
+    this.finalize();
+
+    const h0 = this.h0,
+      h1 = this.h1,
+      h2 = this.h2,
+      h3 = this.h3;
+    const h4 = this.h4,
+      h5 = this.h5,
+      h6 = this.h6,
+      h7 = this.h7;
+
+    let hex = "";
+    // 拼接哈希值为十六进制
+    hex +=
+      HEX_CHARS[(h0 >>> 28) & 0x0f] +
+      HEX_CHARS[(h0 >>> 24) & 0x0f] +
+      HEX_CHARS[(h0 >>> 20) & 0x0f] +
+      HEX_CHARS[(h0 >>> 16) & 0x0f] +
+      HEX_CHARS[(h0 >>> 12) & 0x0f] +
+      HEX_CHARS[(h0 >>> 8) & 0x0f] +
+      HEX_CHARS[(h0 >>> 4) & 0x0f] +
+      HEX_CHARS[h0 & 0x0f];
+
+    hex +=
+      HEX_CHARS[(h1 >>> 28) & 0x0f] +
+      HEX_CHARS[(h1 >>> 24) & 0x0f] +
+      HEX_CHARS[(h1 >>> 20) & 0x0f] +
+      HEX_CHARS[(h1 >>> 16) & 0x0f] +
+      HEX_CHARS[(h1 >>> 12) & 0x0f] +
+      HEX_CHARS[(h1 >>> 8) & 0x0f] +
+      HEX_CHARS[(h1 >>> 4) & 0x0f] +
+      HEX_CHARS[h1 & 0x0f];
+
+    hex +=
+      HEX_CHARS[(h2 >>> 28) & 0x0f] +
+      HEX_CHARS[(h2 >>> 24) & 0x0f] +
+      HEX_CHARS[(h2 >>> 20) & 0x0f] +
+      HEX_CHARS[(h2 >>> 16) & 0x0f] +
+      HEX_CHARS[(h2 >>> 12) & 0x0f] +
+      HEX_CHARS[(h2 >>> 8) & 0x0f] +
+      HEX_CHARS[(h2 >>> 4) & 0x0f] +
+      HEX_CHARS[h2 & 0x0f];
+
+    hex +=
+      HEX_CHARS[(h3 >>> 28) & 0x0f] +
+      HEX_CHARS[(h3 >>> 24) & 0x0f] +
+      HEX_CHARS[(h3 >>> 20) & 0x0f] +
+      HEX_CHARS[(h3 >>> 16) & 0x0f] +
+      HEX_CHARS[(h3 >>> 12) & 0x0f] +
+      HEX_CHARS[(h3 >>> 8) & 0x0f] +
+      HEX_CHARS[(h3 >>> 4) & 0x0f] +
+      HEX_CHARS[h3 & 0x0f];
+
+    hex +=
+      HEX_CHARS[(h4 >>> 28) & 0x0f] +
+      HEX_CHARS[(h4 >>> 24) & 0x0f] +
+      HEX_CHARS[(h4 >>> 20) & 0x0f] +
+      HEX_CHARS[(h4 >>> 16) & 0x0f] +
+      HEX_CHARS[(h4 >>> 12) & 0x0f] +
+      HEX_CHARS[(h4 >>> 8) & 0x0f] +
+      HEX_CHARS[(h4 >>> 4) & 0x0f] +
+      HEX_CHARS[h4 & 0x0f];
+
+    hex +=
+      HEX_CHARS[(h5 >>> 28) & 0x0f] +
+      HEX_CHARS[(h5 >>> 24) & 0x0f] +
+      HEX_CHARS[(h5 >>> 20) & 0x0f] +
+      HEX_CHARS[(h5 >>> 16) & 0x0f] +
+      HEX_CHARS[(h5 >>> 12) & 0x0f] +
+      HEX_CHARS[(h5 >>> 8) & 0x0f] +
+      HEX_CHARS[(h5 >>> 4) & 0x0f] +
+      HEX_CHARS[h5 & 0x0f];
+
+    hex +=
+      HEX_CHARS[(h6 >>> 28) & 0x0f] +
+      HEX_CHARS[(h6 >>> 24) & 0x0f] +
+      HEX_CHARS[(h6 >>> 20) & 0x0f] +
+      HEX_CHARS[(h6 >>> 16) & 0x0f] +
+      HEX_CHARS[(h6 >>> 12) & 0x0f] +
+      HEX_CHARS[(h6 >>> 8) & 0x0f] +
+      HEX_CHARS[(h6 >>> 4) & 0x0f] +
+      HEX_CHARS[h6 & 0x0f];
+
+    // SHA224 不需要 h7
+    if (!this.is224) {
+      hex +=
+        HEX_CHARS[(h7 >>> 28) & 0x0f] +
+        HEX_CHARS[(h7 >>> 24) & 0x0f] +
+        HEX_CHARS[(h7 >>> 20) & 0x0f] +
+        HEX_CHARS[(h7 >>> 16) & 0x0f] +
+        HEX_CHARS[(h7 >>> 12) & 0x0f] +
+        HEX_CHARS[(h7 >>> 8) & 0x0f] +
+        HEX_CHARS[(h7 >>> 4) & 0x0f] +
+        HEX_CHARS[h7 & 0x0f];
+    }
+
+    return hex;
+  }
+
+  // 输出字节数组
+  digest() {
+    this.finalize();
+
+    const h0 = this.h0,
+      h1 = this.h1,
+      h2 = this.h2,
+      h3 = this.h3;
+    const h4 = this.h4,
+      h5 = this.h5,
+      h6 = this.h6,
+      h7 = this.h7;
+
+    const arr = [
+      (h0 >>> 24) & 0xff,
+      (h0 >>> 16) & 0xff,
+      (h0 >>> 8) & 0xff,
+      h0 & 0xff,
+      (h1 >>> 24) & 0xff,
+      (h1 >>> 16) & 0xff,
+      (h1 >>> 8) & 0xff,
+      h1 & 0xff,
+      (h2 >>> 24) & 0xff,
+      (h2 >>> 16) & 0xff,
+      (h2 >>> 8) & 0xff,
+      h2 & 0xff,
+      (h3 >>> 24) & 0xff,
+      (h3 >>> 16) & 0xff,
+      (h3 >>> 8) & 0xff,
+      h3 & 0xff,
+      (h4 >>> 24) & 0xff,
+      (h4 >>> 16) & 0xff,
+      (h4 >>> 8) & 0xff,
+      h4 & 0xff,
+      (h5 >>> 24) & 0xff,
+      (h5 >>> 16) & 0xff,
+      (h5 >>> 8) & 0xff,
+      h5 & 0xff,
+      (h6 >>> 24) & 0xff,
+      (h6 >>> 16) & 0xff,
+      (h6 >>> 8) & 0xff,
+      h6 & 0xff,
+    ];
+
+    if (!this.is224) {
+      arr.push((h7 >>> 24) & 0xff, (h7 >>> 16) & 0xff, (h7 >>> 8) & 0xff, h7 & 0xff);
+    }
+
+    return arr;
+  }
+
+  // 输出二进制原始字符串（raw）
+  raw() {
+    this.finalize();
+    const bytes = this.digest();
+    let rawStr = "";
+    for (let i = 0; i < bytes.length; i++) {
+      rawStr += String.fromCharCode(bytes[i]);
+    }
+    return rawStr;
+  }
+
+  // 输出 ArrayBuffer
+  arrayBuffer() {
+    this.finalize();
+    const buffer = new ArrayBuffer(this.is224 ? 28 : 32);
+    const dataView = new DataView(buffer);
+    dataView.setUint32(0, this.h0);
+    dataView.setUint32(4, this.h1);
+    dataView.setUint32(8, this.h2);
+    dataView.setUint32(12, this.h3);
+    dataView.setUint32(16, this.h4);
+    dataView.setUint32(20, this.h5);
+    dataView.setUint32(24, this.h6);
+    if (!this.is224) {
+      dataView.setUint32(28, this.h7);
+    }
+    return buffer;
+  }
+}
+
+// ========== HMAC-SHA256 实现 ==========
+class HmacSha256 {
+  constructor(key, is224 = false) {
+    // 处理密钥
+    let keyBytes = [];
+    const type = typeof key;
+
+    if (type === "string") {
+      // 字符串密钥转字节数组
+      let code,
+        index = 0,
+        length = key.length;
+      for (let i = 0; i < length; ++i) {
+        code = key.charCodeAt(i);
+        if (code < 0x80) {
+          keyBytes[index++] = code;
+        } else if (code < 0x800) {
+          keyBytes[index++] = 0xc0 | (code >>> 6);
+          keyBytes[index++] = 0x80 | (code & 0x3f);
+        } else if (code < 0xd800 || code >= 0xe000) {
+          keyBytes[index++] = 0xe0 | (code >>> 12);
+          keyBytes[index++] = 0x80 | ((code >>> 6) & 0x3f);
+          keyBytes[index++] = 0x80 | (code & 0x3f);
+        } else {
+          code = 0x10000 + (((code & 0x3ff) << 10) | (key.charCodeAt(++i) & 0x3ff));
+          keyBytes[index++] = 0xf0 | (code >>> 18);
+          keyBytes[index++] = 0x80 | ((code >>> 12) & 0x3f);
+          keyBytes[index++] = 0x80 | ((code >>> 6) & 0x3f);
+          keyBytes[index++] = 0x80 | (code & 0x3f);
+        }
+      }
+    } else if (type === "object") {
+      if (key === null) throw new Error(ERROR);
+      if (key.constructor === ArrayBuffer) {
+        keyBytes = Array.from(new Uint8Array(key));
+      } else if (Array.isArray(key) || ArrayBuffer.isView(key)) {
+        keyBytes = Array.from(key);
+      } else {
+        throw new Error(ERROR);
+      }
+    } else {
+      throw new Error(ERROR);
+    }
+
+    // 密钥长度超过 64 字节，先哈希
+    if (keyBytes.length > 64) {
+      keyBytes = new Sha256(is224).update(keyBytes).digest();
+    }
+
+    // 生成内外填充
+    const oKeyPad = [];
+    const iKeyPad = [];
+    for (let i = 0; i < 64; ++i) {
+      const b = keyBytes[i] || 0;
+      oKeyPad[i] = 0x5c ^ b;
+      iKeyPad[i] = 0x36 ^ b;
+    }
+
+    // 初始化 SHA256
+    this.sha256 = new Sha256(is224);
+    this.sha256.update(iKeyPad);
+    this.oKeyPad = oKeyPad;
+    this.is224 = is224;
+    this.inner = true;
+  }
+
+  update(message) {
+    this.sha256.update(message);
+    return this;
+  }
+
+  finalize() {
+    if (this.inner) {
+      // 计算内部哈希
+      const innerHash = this.sha256.digest();
+      // 初始化外部哈希
+      this.sha256 = new Sha256(this.is224);
+      this.sha256.update(this.oKeyPad).update(innerHash);
+      this.inner = false;
+    }
+    this.sha256.finalize();
+    return this;
+  }
+
+  hex() {
+    this.finalize();
+    return this.sha256.hex();
+  }
+
+  digest() {
+    this.finalize();
+    return this.sha256.digest();
+  }
+
+  raw() {
+    this.finalize();
+    return this.sha256.raw();
+  }
+
+  arrayBuffer() {
+    this.finalize();
+    return this.sha256.arrayBuffer();
+  }
+}
+
+// ========== 便捷方法封装 ==========
+const createMethod = (is224 = false) => {
+  const method = (message) => new Sha256(is224).update(message).hex();
+  method.raw = (message) => new Sha256(is224).update(message).raw();
+  method.digest = (message) => new Sha256(is224).update(message).digest();
+  method.arrayBuffer = (message) => new Sha256(is224).update(message).arrayBuffer();
+  method.create = () => new Sha256(is224);
+  method.update = (message) => method.create().update(message);
+  return method;
+};
+const createRawMethod = (is224 = false) => {
+  const method = (message) => new Sha256(is224).update(message).raw();
+  method.hex = (message) => new Sha256(is224).update(message).hex();
+  method.digest = (message) => new Sha256(is224).update(message).digest();
+  method.arrayBuffer = (message) => new Sha256(is224).update(message).arrayBuffer();
+  method.create = () => new Sha256(is224);
+  method.update = (message) => method.create().update(message);
+  return method;
+};
+const createHmacMethod = (is224 = false) => {
+  const method = (key, message) => new HmacSha256(key, is224).update(message).hex();
+  method.raw = (key, message) => new HmacSha256(key, is224).update(message).raw();
+  method.digest = (key, message) => new HmacSha256(key, is224).update(message).digest();
+  method.arrayBuffer = (key, message) => new HmacSha256(key, is224).update(message).arrayBuffer();
+  method.create = (key) => new HmacSha256(key, is224);
+  method.update = (key, message) => method.create(key).update(message);
+  return method;
+};
+const createHmacRawMethod = (is224 = false) => {
+  const method = (key, message) => new HmacSha256(key, is224).update(message).raw();
+  method.hex = (key, message) => new HmacSha256(key, is224).update(message).hex();
+  method.digest = (key, message) => new HmacSha256(key, is224).update(message).digest();
+  method.arrayBuffer = (key, message) => new HmacSha256(key, is224).update(message).arrayBuffer();
+  method.create = (key) => new HmacSha256(key, is224);
+  method.update = (key, message) => method.create(key).update(message);
+  return method;
+};
+
+/* 以下是内部实现需要的es模块化导出方法 */
+// SHA256 基础方法
+export const sha256 = createMethod();
+// SHA256 基础方法原始值
+export const sha256_raw = createRawMethod();
+// HMAC-SHA256
+export const sha256_hmac = createHmacMethod();
+// HMAC-SHA256原始值
+export const sha256_hmac_raw = createHmacRawMethod();
+
+// SHA224 基础方法
+export const sha224 = createMethod(true);
+// SHA224 基础方法原始值
+export const sha224_raw = createRawMethod(true);
+// HMAC-SHA224
+export const sha224_hmac = createHmacMethod(true);
+// HMAC-SHA224原始值
+export const sha224_hmac_raw = createHmacRawMethod(true);

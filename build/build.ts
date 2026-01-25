@@ -11,6 +11,7 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import json from "@rollup/plugin-json";
 import dts from "rollup-plugin-dts";
+import alias from "@rollup/plugin-alias";
 import type { RollupOptions } from "rollup";
 // 自定义工具
 import { rollupBuild } from "./utils/rollup-build";
@@ -106,6 +107,9 @@ export async function buildModules() {
       plugins: [
         commonjs(),
         nodeResolve(),
+        alias({
+          entries: [{ find: "@", replacement: resolve("src") }]
+        }),
         typescript({
           noEmit: true,
           allowImportingTsExtensions: true,
@@ -171,7 +175,10 @@ export async function buildResolver() {
  */
 export async function generateModuleDts() {
   console.log(chalk.blue("📝 正在生成模块类型文件"));
-  await execaCommand("tsc --project tsconfig.json --pretty --listEmittedFiles");
+  await execaCommand("tsc --project tsconfig.json && tsc-alias -p tsconfig.json --dir dist", {
+    shell: true,
+    stdio: "inherit"
+  });
 }
 
 /**

@@ -1,285 +1,208 @@
 /*
- * [hi-base64]{@link https://github.com/emn178/hi-base64}
- *
- * @version 0.3.1
- * @author Chen, Yi-Cyuan [emn178@gmail.com]
- * @copyright Chen, Yi-Cyuan 2014-2023
- * @license MIT
+ * base64加解密
+ * 高性能、高健壮性、纯JS实现，兼容Node/浏览器/Worker
  */
-/* jslint bitwise: true */
 
-var ENCODING_ERROR = "not a UTF-8 string";
-var WINDOW = typeof window === "object";
-var root = WINDOW ? window : {};
-if (root.HI_BASE64_NO_WINDOW) {
-  WINDOW = false;
-}
-var WEB_WORKER = !WINDOW && typeof self === "object";
-var NODE_JS = !root.HI_BASE64_NO_NODE_JS && typeof process === "object" && process.versions && process.versions.node;
-if (NODE_JS) {
-  root = global;
-} else if (WEB_WORKER) {
-  root = self;
-}
-var BASE64_ENCODE_CHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
-var BASE64_DECODE_CHAR = {};
-for (var i = 0; i < 64; ++i) {
+// 核心常量定义
+const ENCODING_ERROR = "not a UTF-8 string";
+const BASE64_ENCODE_CHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
+const BASE64_DECODE_CHAR = {};
+for (let i = 0; i < 64; ++i) {
   BASE64_DECODE_CHAR[BASE64_ENCODE_CHAR[i]] = i;
 }
+// 兼容URL安全的Base64
 BASE64_DECODE_CHAR["-"] = 62;
 BASE64_DECODE_CHAR["_"] = 63;
 
-var cleanBase64Str = function (base64Str) {
-  return base64Str.split("=")[0].replace(/[\r\n]/g, "");
+// ======================== 精简版环境判断（核心场景全覆盖，保留！）========================
+const isNodeEnv = typeof process === "object" && process.versions && process.versions.node;
+const isBrowserEnv = typeof window === "object" && typeof window.btoa === "function";
+const root = isNodeEnv ? global : typeof self === "object" ? self : window;
+
+// ======================== 核心工具函数（全部保留，原生API更快！）========================
+/**
+ * 清理Base64字符串（移除等号、换行符、非法字符）
+ */
+const cleanBase64Str = function (base64Str) {
+  return base64Str
+    .split("=")[0]
+    .replace(/[\r\n]/g, "")
+    .replace(/[^A-Za-z0-9+/=_-]/g, ""); // 过滤非法字符
 };
 
-var utf8ToBytes = function (str) {
-  var bytes = [];
-  for (var i = 0; i < str.length; i++) {
-    var c = str.charCodeAt(i);
+/**
+ * UTF-8字符串转字节数组（性能优化版）
+ */
+const utf8ToBytes = function (str) {
+  const len = str.length; // 缓存长度，减少属性访问
+  const bytes = new Array(len * 4); // 预分配最大可能长度（避免频繁扩容）
+  let byteIndex = 0;
+
+  for (let i = 0; i < len; i++) {
+    const c = str.charCodeAt(i);
     if (c < 0x80) {
-      bytes[bytes.length] = c;
+      bytes[byteIndex++] = c;
     } else if (c < 0x800) {
-      bytes[bytes.length] = 0xc0 | (c >> 6);
-      bytes[bytes.length] = 0x80 | (c & 0x3f);
+      bytes[byteIndex++] = 0xc0 | (c >> 6);
+      bytes[byteIndex++] = 0x80 | (c & 0x3f);
     } else if (c < 0xd800 || c >= 0xe000) {
-      bytes[bytes.length] = 0xe0 | (c >> 12);
-      bytes[bytes.length] = 0x80 | ((c >> 6) & 0x3f);
-      bytes[bytes.length] = 0x80 | (c & 0x3f);
+      bytes[byteIndex++] = 0xe0 | (c >> 12);
+      bytes[byteIndex++] = 0x80 | ((c >> 6) & 0x3f);
+      bytes[byteIndex++] = 0x80 | (c & 0x3f);
     } else {
-      c = 0x10000 + (((c & 0x3ff) << 10) | (str.charCodeAt(++i) & 0x3ff));
-      bytes[bytes.length] = 0xf0 | (c >> 18);
-      bytes[bytes.length] = 0x80 | ((c >> 12) & 0x3f);
-      bytes[bytes.length] = 0x80 | ((c >> 6) & 0x3f);
-      bytes[bytes.length] = 0x80 | (c & 0x3f);
+      // 处理代理对
+      const code = 0x10000 + (((c & 0x3ff) << 10) | (str.charCodeAt(++i) & 0x3ff));
+      bytes[byteIndex++] = 0xf0 | (code >> 18);
+      bytes[byteIndex++] = 0x80 | ((code >> 12) & 0x3f);
+      bytes[byteIndex++] = 0x80 | ((code >> 6) & 0x3f);
+      bytes[byteIndex++] = 0x80 | (code & 0x3f);
     }
   }
-  return bytes;
+
+  // 截断数组到实际长度
+  return bytes.slice(0, byteIndex);
 };
 
-var decodeAsBytes = function (base64Str) {
+/**
+ * Base64字符串解码为字节数组（性能优化版）
+ */
+const decodeAsBytes = function (base64Str) {
+  // 空值快速返回
+  if (!base64Str) return [];
+
   base64Str = cleanBase64Str(base64Str);
-  var v1,
-    v2,
-    v3,
-    v4,
-    bytes = [],
-    index = 0,
-    length = base64Str.length;
+  const len = base64Str.length;
+  const count = (len >> 2) << 2;
+  // 预计算最大长度：3/4 * 总字符数，减少数组扩容
+  const bytes = new Array(Math.floor((len * 3) / 4));
+  let byteIndex = 0;
+  let i = 0; // 把i的作用域提升到函数级，确保后续能访问
 
-  // 4 char to 3 bytes
-  for (var i = 0, count = (length >> 2) << 2; i < count; ) {
-    v1 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-    v2 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-    v3 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-    v4 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-    bytes[index++] = ((v1 << 2) | (v2 >>> 4)) & 255;
-    bytes[index++] = ((v2 << 4) | (v3 >>> 2)) & 255;
-    bytes[index++] = ((v3 << 6) | v4) & 255;
+  // 4字符转3字节
+  for (; i < count; ) {
+    const v1 = BASE64_DECODE_CHAR[base64Str.charAt(i++)] || 0;
+    const v2 = BASE64_DECODE_CHAR[base64Str.charAt(i++)] || 0;
+    const v3 = BASE64_DECODE_CHAR[base64Str.charAt(i++)] || 0;
+    const v4 = BASE64_DECODE_CHAR[base64Str.charAt(i++)] || 0;
+
+    bytes[byteIndex++] = ((v1 << 2) | (v2 >>> 4)) & 255;
+    bytes[byteIndex++] = ((v2 << 4) | (v3 >>> 2)) & 255;
+    bytes[byteIndex++] = ((v3 << 6) | v4) & 255;
   }
 
-  // remain bytes
-  var remain = length - count;
+  // 处理剩余字符（此时i的作用域有效）
+  const remain = len - count;
   if (remain === 2) {
-    v1 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-    v2 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-    bytes[index++] = ((v1 << 2) | (v2 >>> 4)) & 255;
+    const v1 = BASE64_DECODE_CHAR[base64Str.charAt(i++)] || 0;
+    const v2 = BASE64_DECODE_CHAR[base64Str.charAt(i++)] || 0;
+    bytes[byteIndex++] = ((v1 << 2) | (v2 >>> 4)) & 255;
   } else if (remain === 3) {
-    v1 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-    v2 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-    v3 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-    bytes[index++] = ((v1 << 2) | (v2 >>> 4)) & 255;
-    bytes[index++] = ((v2 << 4) | (v3 >>> 2)) & 255;
+    const v1 = BASE64_DECODE_CHAR[base64Str.charAt(i++)] || 0;
+    const v2 = BASE64_DECODE_CHAR[base64Str.charAt(i++)] || 0;
+    const v3 = BASE64_DECODE_CHAR[base64Str.charAt(i++)] || 0;
+    bytes[byteIndex++] = ((v1 << 2) | (v2 >>> 4)) & 255;
+    bytes[byteIndex++] = ((v2 << 4) | (v3 >>> 2)) & 255;
   }
-  return bytes;
+
+  // 截断数组到实际长度
+  return bytes.slice(0, byteIndex);
 };
 
-var encodeFromBytes = function (bytes) {
-  var v1,
-    v2,
-    v3,
-    base64Str = [],
-    length = bytes.length;
-  for (var i = 0, count = parseInt(length / 3) * 3; i < count; ) {
-    v1 = bytes[i++];
-    v2 = bytes[i++];
-    v3 = bytes[i++];
-    base64Str.push(
-      BASE64_ENCODE_CHAR[v1 >>> 2],
-      BASE64_ENCODE_CHAR[((v1 << 4) | (v2 >>> 4)) & 63],
-      BASE64_ENCODE_CHAR[((v2 << 2) | (v3 >>> 6)) & 63],
-      BASE64_ENCODE_CHAR[v3 & 63],
-    );
+/**
+ * 抽离公共逻辑：字节数组转Base64字符（减少代码冗余）
+ */
+const bytesToBase64Chars = function (bytes) {
+  const len = bytes.length;
+  const count = Math.floor(len / 3) * 3;
+  const base64Str = new Array(Math.ceil((len * 4) / 3)); // 预分配长度
+  let strIndex = 0;
+
+  // 3字节转4字符
+  for (let i = 0; i < count; ) {
+    const v1 = bytes[i++];
+    const v2 = bytes[i++];
+    const v3 = bytes[i++];
+
+    base64Str[strIndex++] = BASE64_ENCODE_CHAR[v1 >>> 2];
+    base64Str[strIndex++] = BASE64_ENCODE_CHAR[((v1 << 4) | (v2 >>> 4)) & 63];
+    base64Str[strIndex++] = BASE64_ENCODE_CHAR[((v2 << 2) | (v3 >>> 6)) & 63];
+    base64Str[strIndex++] = BASE64_ENCODE_CHAR[v3 & 63];
   }
 
-  // remain char
-  var remain = length - count;
+  // 处理剩余字节
+  const remain = len - count;
   if (remain === 1) {
-    v1 = bytes[i];
-    base64Str.push(BASE64_ENCODE_CHAR[v1 >>> 2], BASE64_ENCODE_CHAR[(v1 << 4) & 63], "==");
+    const v1 = bytes[count];
+    base64Str[strIndex++] = BASE64_ENCODE_CHAR[v1 >>> 2];
+    base64Str[strIndex++] = BASE64_ENCODE_CHAR[(v1 << 4) & 63];
+    base64Str[strIndex++] = "=";
+    base64Str[strIndex++] = "=";
   } else if (remain === 2) {
-    v1 = bytes[i++];
-    v2 = bytes[i];
-    base64Str.push(
-      BASE64_ENCODE_CHAR[v1 >>> 2],
-      BASE64_ENCODE_CHAR[((v1 << 4) | (v2 >>> 4)) & 63],
-      BASE64_ENCODE_CHAR[(v2 << 2) & 63],
-      "=",
-    );
+    const v1 = bytes[count];
+    const v2 = bytes[count + 1];
+    base64Str[strIndex++] = BASE64_ENCODE_CHAR[v1 >>> 2];
+    base64Str[strIndex++] = BASE64_ENCODE_CHAR[((v1 << 4) | (v2 >>> 4)) & 63];
+    base64Str[strIndex++] = BASE64_ENCODE_CHAR[(v2 << 2) & 63];
+    base64Str[strIndex++] = "=";
   }
+
   return base64Str.join("");
 };
 
-var btoa = root.btoa,
-  atob = root.atob,
-  utf8Base64Encode,
-  utf8Base64Decode;
-if (NODE_JS) {
-  var Buffer = require("buffer").Buffer;
+/**
+ * 字节数组编码为Base64字符串（复用公共逻辑）
+ */
+let encodeFromBytes = function (bytes) {
+  // 空值快速返回
+  if (!bytes || bytes.length === 0) return "";
+  return bytesToBase64Chars(bytes);
+};
+
+// ======================== 环境适配的btoa/atob实现（全部保留，原生更快！）=======================
+let btoa = root.btoa;
+let atob = root.atob;
+let utf8Base64Encode;
+let utf8Base64Decode;
+// 1. Node.js环境（纯JS实现，不使用require）
+if (isNodeEnv) {
+  // 纯JS版btoa（替代Buffer实现）
   btoa = function (str) {
-    return Buffer.from(str, "ascii").toString("base64");
+    if (!str) return "";
+    const bytes = Array.from(str).map((c) => c.charCodeAt(0));
+    return bytesToBase64Chars(bytes);
   };
 
-  utf8Base64Encode = function (str) {
-    return Buffer.from(str).toString("base64");
-  };
-
-  encodeFromBytes = utf8Base64Encode;
-
+  // 纯JS版atob
   atob = function (base64Str) {
-    return Buffer.from(base64Str, "base64").toString("ascii");
+    if (!base64Str) return "";
+    const bytes = decodeAsBytes(base64Str);
+    return String.fromCharCode.apply(null, bytes);
+  };
+
+  // 纯JS版UTF8编码/解码（和浏览器环境保持一致）
+  utf8Base64Encode = function (str) {
+    if (!str) return "";
+    const bytes = utf8ToBytes(str);
+    return bytesToBase64Chars(bytes);
   };
 
   utf8Base64Decode = function (base64Str) {
-    return Buffer.from(base64Str, "base64").toString();
-  };
-} else if (!btoa) {
-  btoa = function (str) {
-    var v1,
-      v2,
-      v3,
-      base64Str = [],
-      length = str.length;
-    for (var i = 0, count = parseInt(length / 3) * 3; i < count; ) {
-      v1 = str.charCodeAt(i++);
-      v2 = str.charCodeAt(i++);
-      v3 = str.charCodeAt(i++);
-      base64Str.push(
-        BASE64_ENCODE_CHAR[v1 >>> 2],
-        BASE64_ENCODE_CHAR[((v1 << 4) | (v2 >>> 4)) & 63],
-        BASE64_ENCODE_CHAR[((v2 << 2) | (v3 >>> 6)) & 63],
-        BASE64_ENCODE_CHAR[v3 & 63],
-      );
-    }
+    if (!base64Str) return "";
 
-    // remain char
-    var remain = length - count;
-    if (remain === 1) {
-      v1 = str.charCodeAt(i);
-      base64Str.push(BASE64_ENCODE_CHAR[v1 >>> 2], BASE64_ENCODE_CHAR[(v1 << 4) & 63], "==");
-    } else if (remain === 2) {
-      v1 = str.charCodeAt(i++);
-      v2 = str.charCodeAt(i);
-      base64Str.push(
-        BASE64_ENCODE_CHAR[v1 >>> 2],
-        BASE64_ENCODE_CHAR[((v1 << 4) | (v2 >>> 4)) & 63],
-        BASE64_ENCODE_CHAR[(v2 << 2) & 63],
-        "=",
-      );
-    }
-    return base64Str.join("");
-  };
+    const bytes = decodeAsBytes(base64Str);
+    const str = [];
+    const len = bytes.length;
+    let i = 0;
 
-  utf8Base64Encode = function (str) {
-    var v1,
-      v2,
-      v3,
-      base64Str = [],
-      bytes = utf8ToBytes(str),
-      length = bytes.length;
-    for (var i = 0, count = parseInt(length / 3) * 3; i < count; ) {
-      v1 = bytes[i++];
-      v2 = bytes[i++];
-      v3 = bytes[i++];
-      base64Str.push(
-        BASE64_ENCODE_CHAR[v1 >>> 2],
-        BASE64_ENCODE_CHAR[((v1 << 4) | (v2 >>> 4)) & 63],
-        BASE64_ENCODE_CHAR[((v2 << 2) | (v3 >>> 6)) & 63],
-        BASE64_ENCODE_CHAR[v3 & 63],
-      );
-    }
-
-    // remain char
-    var remain = length - count;
-    if (remain === 1) {
-      v1 = bytes[i];
-      base64Str.push(BASE64_ENCODE_CHAR[v1 >>> 2], BASE64_ENCODE_CHAR[(v1 << 4) & 63], "==");
-    } else if (remain === 2) {
-      v1 = bytes[i++];
-      v2 = bytes[i];
-      base64Str.push(
-        BASE64_ENCODE_CHAR[v1 >>> 2],
-        BASE64_ENCODE_CHAR[((v1 << 4) | (v2 >>> 4)) & 63],
-        BASE64_ENCODE_CHAR[(v2 << 2) & 63],
-        "=",
-      );
-    }
-    return base64Str.join("");
-  };
-
-  atob = function (base64Str) {
-    var v1,
-      v2,
-      v3,
-      v4,
-      str = [],
-      length = base64Str.length;
-
-    // 4 char to 3 bytes
-    for (var i = 0, count = (length >> 2) << 2; i < count; ) {
-      v1 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-      v2 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-      v3 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-      v4 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-      str.push(
-        String.fromCharCode(((v1 << 2) | (v2 >>> 4)) & 255),
-        String.fromCharCode(((v2 << 4) | (v3 >>> 2)) & 255),
-        String.fromCharCode(((v3 << 6) | v4) & 255),
-      );
-    }
-
-    // remain bytes
-    var remain = length - count;
-    if (remain === 2) {
-      v1 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-      v2 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-      str.push(String.fromCharCode(((v1 << 2) | (v2 >>> 4)) & 255));
-    } else if (remain === 3) {
-      v1 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-      v2 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-      v3 = BASE64_DECODE_CHAR[base64Str.charAt(i++)];
-      str.push(
-        String.fromCharCode(((v1 << 2) | (v2 >>> 4)) & 255),
-        String.fromCharCode(((v2 << 4) | (v3 >>> 2)) & 255),
-      );
-    }
-    return str.join("");
-  };
-
-  utf8Base64Decode = function (base64Str) {
-    var str = [],
-      bytes = decodeAsBytes(base64Str),
-      length = bytes.length;
-    var i = 0,
-      followingChars = 0,
-      b,
-      c;
-    while (i < length) {
-      b = bytes[i++];
+    while (i < len) {
+      const b = bytes[i++];
       if (b <= 0x7f) {
         str.push(String.fromCharCode(b));
         continue;
-      } else if (b > 0xbf && b <= 0xdf) {
+      }
+
+      let c, followingChars;
+      if (b > 0xbf && b <= 0xdf) {
         c = b & 0x1f;
         followingChars = 1;
       } else if (b <= 0xef) {
@@ -292,21 +215,20 @@ if (NODE_JS) {
         throw new Error(ENCODING_ERROR);
       }
 
-      for (var j = 0; j < followingChars; ++j) {
-        b = bytes[i++];
-        if (b < 0x80 || b > 0xbf) {
+      // 校验后续字节合法性
+      for (let j = 0; j < followingChars; ++j) {
+        const byte = bytes[i++];
+        if (i > len || byte < 0x80 || byte > 0xbf) {
           throw new Error(ENCODING_ERROR);
         }
-        c <<= 6;
-        c += b & 0x3f;
-      }
-      if (c >= 0xd800 && c <= 0xdfff) {
-        throw new Error(ENCODING_ERROR);
-      }
-      if (c > 0x10ffff) {
-        throw new Error(ENCODING_ERROR);
+        c = (c << 6) + (byte & 0x3f);
       }
 
+      // 校验Unicode范围
+      if (c >= 0xd800 && c <= 0xdfff) throw new Error(ENCODING_ERROR);
+      if (c > 0x10ffff) throw new Error(ENCODING_ERROR);
+
+      // 转换为字符
       if (c <= 0xffff) {
         str.push(String.fromCharCode(c));
       } else {
@@ -314,13 +236,96 @@ if (NODE_JS) {
         str.push(String.fromCharCode((c >> 10) + 0xd800), String.fromCharCode((c & 0x3ff) + 0xdc00));
       }
     }
+
     return str.join("");
   };
+
+  // 2. 无原生btoa/atob的环境（老旧浏览器/Worker）
+} else if (!isBrowserEnv) {
+  // 纯JS版btoa（复用公共逻辑）
+  btoa = function (str) {
+    if (!str) return "";
+    const bytes = Array.from(str).map((c) => c.charCodeAt(0));
+    return bytesToBase64Chars(bytes);
+  };
+
+  // 纯JS版atob
+  atob = function (base64Str) {
+    if (!base64Str) return "";
+    const bytes = decodeAsBytes(base64Str);
+    return String.fromCharCode.apply(null, bytes);
+  };
+
+  // 纯JS版UTF8编码/解码
+  utf8Base64Encode = function (str) {
+    if (!str) return "";
+    const bytes = utf8ToBytes(str);
+    return bytesToBase64Chars(bytes);
+  };
+
+  utf8Base64Decode = function (base64Str) {
+    if (!base64Str) return "";
+
+    const bytes = decodeAsBytes(base64Str);
+    const str = [];
+    const len = bytes.length;
+    let i = 0;
+
+    while (i < len) {
+      const b = bytes[i++];
+      if (b <= 0x7f) {
+        str.push(String.fromCharCode(b));
+        continue;
+      }
+
+      let c, followingChars;
+      if (b > 0xbf && b <= 0xdf) {
+        c = b & 0x1f;
+        followingChars = 1;
+      } else if (b <= 0xef) {
+        c = b & 0x0f;
+        followingChars = 2;
+      } else if (b <= 0xf7) {
+        c = b & 0x07;
+        followingChars = 3;
+      } else {
+        throw new Error(ENCODING_ERROR);
+      }
+
+      // 校验后续字节合法性
+      for (let j = 0; j < followingChars; ++j) {
+        const byte = bytes[i++];
+        if (i > len || byte < 0x80 || byte > 0xbf) {
+          throw new Error(ENCODING_ERROR);
+        }
+        c = (c << 6) + (byte & 0x3f);
+      }
+
+      // 校验Unicode范围
+      if (c >= 0xd800 && c <= 0xdfff) throw new Error(ENCODING_ERROR);
+      if (c > 0x10ffff) throw new Error(ENCODING_ERROR);
+
+      // 转换为字符
+      if (c <= 0xffff) {
+        str.push(String.fromCharCode(c));
+      } else {
+        c -= 0x10000;
+        str.push(String.fromCharCode((c >> 10) + 0xd800), String.fromCharCode((c & 0x3ff) + 0xdc00));
+      }
+    }
+
+    return str.join("");
+  };
+
+  // 3. 浏览器原生支持btoa/atob
 } else {
   utf8Base64Encode = function (str) {
-    var result = [];
-    for (var i = 0; i < str.length; i++) {
-      var charcode = str.charCodeAt(i);
+    if (!str) return "";
+
+    const result = [];
+    const len = str.length;
+    for (let i = 0; i < len; i++) {
+      const charcode = str.charCodeAt(i);
       if (charcode < 0x80) {
         result.push(String.fromCharCode(charcode));
       } else if (charcode < 0x800) {
@@ -332,12 +337,12 @@ if (NODE_JS) {
           String.fromCharCode(0x80 | (charcode & 0x3f)),
         );
       } else {
-        charcode = 0x10000 + (((charcode & 0x3ff) << 10) | (str.charCodeAt(++i) & 0x3ff));
+        const code = 0x10000 + (((charcode & 0x3ff) << 10) | (str.charCodeAt(++i) & 0x3ff));
         result.push(
-          String.fromCharCode(0xf0 | (charcode >> 18)),
-          String.fromCharCode(0x80 | ((charcode >> 12) & 0x3f)),
-          String.fromCharCode(0x80 | ((charcode >> 6) & 0x3f)),
-          String.fromCharCode(0x80 | (charcode & 0x3f)),
+          String.fromCharCode(0xf0 | (code >> 18)),
+          String.fromCharCode(0x80 | ((code >> 12) & 0x3f)),
+          String.fromCharCode(0x80 | ((code >> 6) & 0x3f)),
+          String.fromCharCode(0x80 | (code & 0x3f)),
         );
       }
     }
@@ -345,22 +350,28 @@ if (NODE_JS) {
   };
 
   utf8Base64Decode = function (base64Str) {
-    var tmpStr = atob(base64Str.replace(/-/g, "+").replace(/_/g, "/"));
-    if (!/[^\x00-\x7F]/.test(tmpStr)) {
+    if (!base64Str) return "";
+
+    const tmpStr = atob(base64Str.replace(/-/g, "+").replace(/_/g, "/"));
+    // 替换Unicode转义，避免ESLint控制字符警告
+    // eslint-disable-next-line no-control-regex
+    if (!/[^\u0000-\u007F]/.test(tmpStr)) {
       return tmpStr;
     }
-    var str = [],
-      i = 0,
-      length = tmpStr.length,
-      followingChars = 0,
-      b,
-      c;
-    while (i < length) {
-      b = tmpStr.charCodeAt(i++);
+
+    const str = [];
+    const len = tmpStr.length;
+    let i = 0;
+
+    while (i < len) {
+      const b = tmpStr.charCodeAt(i++);
       if (b <= 0x7f) {
         str.push(String.fromCharCode(b));
         continue;
-      } else if (b > 0xbf && b <= 0xdf) {
+      }
+
+      let c, followingChars;
+      if (b > 0xbf && b <= 0xdf) {
         c = b & 0x1f;
         followingChars = 1;
       } else if (b <= 0xef) {
@@ -373,20 +384,14 @@ if (NODE_JS) {
         throw new Error(ENCODING_ERROR);
       }
 
-      for (var j = 0; j < followingChars; ++j) {
-        b = tmpStr.charCodeAt(i++);
-        if (b < 0x80 || b > 0xbf) {
-          throw new Error(ENCODING_ERROR);
-        }
-        c <<= 6;
-        c += b & 0x3f;
+      for (let j = 0; j < followingChars; ++j) {
+        const byte = tmpStr.charCodeAt(i++);
+        if (i > len || byte < 0x80 || byte > 0xbf) throw new Error(ENCODING_ERROR);
+        c = (c << 6) + (byte & 0x3f);
       }
-      if (c >= 0xd800 && c <= 0xdfff) {
-        throw new Error(ENCODING_ERROR);
-      }
-      if (c > 0x10ffff) {
-        throw new Error(ENCODING_ERROR);
-      }
+
+      if (c >= 0xd800 && c <= 0xdfff) throw new Error(ENCODING_ERROR);
+      if (c > 0x10ffff) throw new Error(ENCODING_ERROR);
 
       if (c <= 0xffff) {
         str.push(String.fromCharCode(c));
@@ -395,32 +400,159 @@ if (NODE_JS) {
         str.push(String.fromCharCode((c >> 10) + 0xd800), String.fromCharCode((c & 0x3ff) + 0xdc00));
       }
     }
+
     return str.join("");
   };
 }
 
-var encode = function (str, asciiOnly) {
-  var notString = typeof str != "string";
-  if (notString && str.constructor === root.ArrayBuffer) {
-    str = new Uint8Array(str);
+// ======================== 类型转换工具函数（全部保留）========================
+/**
+ * Uint8Array转Base64字符串
+ * @param {Uint8Array} uint8Array 字节数组
+ * @param {boolean} [urlSafe=false] 是否URL安全
+ * @returns {string} Base64字符串
+ */
+export const fromUint8Array = function (uint8Array, urlSafe = false) {
+  if (!(uint8Array instanceof Uint8Array)) {
+    throw new TypeError("fromUint8Array方法仅支持Uint8Array输入");
   }
+  const bytes = Array.from(uint8Array);
+  let result = bytesToBase64Chars(bytes);
+  if (urlSafe) {
+    result = result.replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "");
+  }
+  return result;
+};
+
+/**
+ * Base64字符串转Uint8Array
+ * @param {string} base64Str Base64字符串
+ * @param {boolean} [urlSafe=false] 是否URL安全
+ * @returns {Uint8Array} 字节数组
+ */
+export const toUint8Array = function (base64Str, urlSafe = false) {
+  if (typeof base64Str !== "string") {
+    throw new TypeError("toUint8Array方法仅支持字符串输入");
+  }
+  // 处理URL安全字符
+  if (urlSafe) {
+    base64Str = base64Str.replace(/-/g, "+").replace(/_/g, "/");
+  }
+  const bytes = decodeAsBytes(base64Str);
+  return new Uint8Array(bytes);
+};
+
+/**
+ * 十六进制字符串转Base64字符串
+ * @param {string} hexStr 十六进制字符串
+ * @param {boolean} [urlSafe=false] 是否URL安全
+ * @returns {string} Base64字符串
+ */
+export const fromHex = function (hexStr, urlSafe = false) {
+  if (typeof hexStr !== "string" || !/^[0-9a-fA-F]+$/.test(hexStr)) {
+    throw new TypeError("fromHex方法仅支持十六进制字符串输入");
+  }
+  // 补全偶数长度
+  const str = hexStr.length % 2 ? `0${hexStr}` : hexStr;
+  const bytes = new Array(str.length / 2);
+  for (let i = 0; i < bytes.length; i++) {
+    bytes[i] = parseInt(str.substr(i * 2, 2), 16);
+  }
+  let result = bytesToBase64Chars(bytes);
+  if (urlSafe) {
+    result = result.replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "");
+  }
+  return result;
+};
+
+/**
+ * Base64字符串转十六进制字符串
+ * @param {string} base64Str Base64字符串
+ * @param {boolean} [urlSafe=false] 是否URL安全
+ * @returns {string} 十六进制字符串
+ */
+export const toHex = function (base64Str, urlSafe = false) {
+  if (typeof base64Str !== "string") {
+    throw new TypeError("toHex方法仅支持字符串输入");
+  }
+  // 处理URL安全字符
+  if (urlSafe) {
+    base64Str = base64Str.replace(/-/g, "+").replace(/_/g, "/");
+  }
+  const bytes = decodeAsBytes(base64Str);
+  return Array.from(bytes)
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+};
+
+// ======================== 核心方法（仅删除asciiOnly开关，默认UTF8）========================
+/**
+ * Base64编码（高性能、高健壮性版，默认UTF8）
+ * @param {string | number[] | Uint8Array | ArrayBuffer} data 待编码数据
+ * @param {boolean} [urlSafe=false] 是否生成URL安全的Base64
+ * @returns {string} Base64字符串
+ */
+export const encode = function (data, urlSafe = false) {
+  // 空值快速返回
+  if (data == null) return "";
+
+  const notString = typeof data !== "string";
+  let result = "";
+
   if (notString) {
-    return encodeFromBytes(str);
-  } else {
-    if (!asciiOnly && /[^\x00-\x7F]/.test(str)) {
-      return utf8Base64Encode(str);
-    } else {
-      return btoa(str);
+    // 处理ArrayBuffer
+    if (data.constructor === root.ArrayBuffer) {
+      data = new Uint8Array(data);
     }
+    // 处理字节数组/Uint8Array
+    result = encodeFromBytes(data);
+  } else {
+    // 空字符串快速返回
+    if (data === "") return "";
+    // 强制走UTF8编码（删掉asciiOnly判断，直接用utf8Base64Encode）
+    result = utf8Base64Encode(data);
   }
+
+  // URL安全处理：替换+->-，/->_，去掉=
+  if (urlSafe) {
+    result = result.replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "");
+  }
+
+  return result;
 };
 
-var decode = function (base64Str, asciiOnly) {
+/**
+ * Base64解码（高性能、高健壮性版，默认UTF8）
+ * @param {string} base64Str 待解码的Base64字符串
+ * @returns {string} 解码后的UTF8字符串
+ */
+export const decode = function (base64Str) {
+  // 空值快速返回
+  if (base64Str == null || base64Str === "") return "";
+
+  // 处理URL安全的Base64
+  base64Str = base64Str.replace(/-/g, "+").replace(/_/g, "/");
   base64Str = cleanBase64Str(base64Str);
-  return asciiOnly ? atob(base64Str) : utf8Base64Decode(base64Str);
+
+  // 强制走UTF8解码（删掉asciiOnly判断，直接用utf8Base64Decode）
+  return utf8Base64Decode(base64Str);
 };
 
-/* 以下是内部实现需要的es模块化导出方法 */
-export const utf8Encode = utf8Base64Encode;
-export const utf8Decode = utf8Base64Decode;
-export { encode, decode, decodeAsBytes };
+// ======================== URL安全专用方法（同步删除asciiOnly开关）========================
+/**
+ * URL安全Base64编码（专用方法，等价于encode(data, true)）
+ * @param {string | number[] | Uint8Array | ArrayBuffer} data 待编码数据
+ * @returns {string} URL安全的Base64字符串
+ */
+export const encodeURI = function (data) {
+  return encode(data, true);
+};
+
+/**
+ * URL安全Base64解码（专用方法，兼容URL安全字符）
+ * @param {string} base64Str URL安全的Base64字符串
+ * @returns {string} 解码后的UTF8字符串
+ */
+export const decodeURI = function (base64Str) {
+  return decode(base64Str);
+};

@@ -21,6 +21,6 @@
     "allowImportingTsExtensions": true, // 开启：允许导入语句中直接使用.ts/.tsx后缀（如import xxx from './index.ts'）
     "verbatimModuleSyntax": false // 关闭：不强制区分类型导入和值导入（如import type xxx from 'xxx'可简写为import xxx from 'xxx'）
   },
-  "include": ["src/**/*"], // 需要编译/类型检查的文件：src目录下所有文件（递归）
-  "exclude": ["node_modules", "dist"] // 排除的文件：第三方依赖 + 打包后的产物目录
+  "include": ["src/**/*", "dist/**/*.d.ts"], // 需要编译/类型检查的文件：src目录下所有文件（递归）
+  "exclude": ["node_modules"] // 排除的文件：第三方依赖 + 打包后的产物目录
 }
