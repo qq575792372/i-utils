@@ -88,7 +88,7 @@ export async function buildModules() {
           dir: resolve("dist/lib"),
           entryFileNames: `index.full.umd.js`,
           exports: "named",
-          name: "iUtils",
+          name: pkg.moduleName,
           banner
         },
 
@@ -98,7 +98,7 @@ export async function buildModules() {
           dir: resolve("dist/lib"),
           entryFileNames: `index.full.umd.min.js`,
           exports: "named",
-          name: "iUtils",
+          name: pkg.moduleName,
           sourcemap: true,
           banner,
           plugins: [terser()]

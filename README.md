@@ -12,13 +12,13 @@
 
 ```bash
 # npm
-npm i @ivu-plus/i-utils --save
+npm i @ivujs/i-utils --save
 
 # pnpm
-pnpm i @ivu-plus/i-utils --save
+pnpm i @ivujs/i-utils --save
 
 # yarn
-yarn add @ivu-plus/i-utils --save
+yarn add @ivujs/i-utils --save
 ```
 
 ### 🎨 使用
@@ -27,12 +27,12 @@ yarn add @ivu-plus/i-utils --save
 
 ```javascript
 // 按需引入
-import { testLoaded } from "@ivu-plus/i-utils";
+import { testLoaded } from "@ivujs/i-utils";
 
 testLoaded();
 
 // 全量引入
-import * as iUtils from "@ivu-plus/i-utils";
+import * as iUtils from "@ivujs/i-utils";
 
 iUtils.testLoaded();
 ```
@@ -41,11 +41,11 @@ iUtils.testLoaded();
 
 ```javascript
 // 全量引入
-const iUtils = require("@ivu-plus/i-utils");
+const iUtils = require("@ivujs/i-utils");
 iUtils.testLoaded();
 
 // 按需引入
-const { testLoaded } = require("@ivu-plus/i-utils");
+const { testLoaded } = require("@ivujs/i-utils");
 testLoaded();
 ```
 
@@ -87,7 +87,7 @@ pnpm install unplugin-auto-import -D
 ```javascript
 import { defineConfig } from "vite";
 import AutoImport from "unplugin-auto-import/vite";
-import { IUtilsResolver } from "@ivu-plus/i-utils/resolver";
+import { IUtilsResolver } from "@ivujs/i-utils/resolver";
 
 export default defineConfig({
   plugins: [
@@ -102,7 +102,7 @@ export default defineConfig({
 
 ```javascript
 const AutoImport = require("unplugin-auto-import/webpack");
-const { IUtilsResolver } = require("@ivu-plus/i-utils/resolver");
+const { IUtilsResolver } = require("@ivujs/i-utils/resolver");
 
 module.exports = {
   plugins: [
