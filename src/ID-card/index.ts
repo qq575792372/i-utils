@@ -2,7 +2,7 @@
  * @module 身份证号码
  */
 import { isNull } from "@/validate";
-import { parseDate, getAge } from "@/date";
+import { toDate, getAge } from "@/date";
 import { ID_CARD } from "@/constants";
 
 /**
@@ -58,7 +58,7 @@ export function getAgeByIDCard(idCard: string): number | undefined {
   if (isNull(idCard)) return;
   const birthday = getBirthdayByIDCard(idCard);
   if (birthday) {
-    return getAge(parseDate(String(birthday))!);
+    return getAge(toDate(String(birthday))!);
   }
 }
 

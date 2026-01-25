@@ -1,12 +1,12 @@
 // ========== 常量定义（规范化，避免魔法值） ==========
-export const SM4_MODE_ECB = "ecb";
-export const SM4_MODE_CBC = "cbc";
-export const SM4_PADDING = "pkcs#7";
-export const SM4_OUTPUT_HEX = "hex";
-export const SM4_OUTPUT_UTF8 = "utf8";
-export const SM4_OUTPUT_ARRAY = "array";
-export const SM4_OUTPUT_UINT8ARRAY = "uint8array";
-export const SM4_OUTPUT_ARRAYBUFFER = "arraybuffer";
+const SM4_MODE_ECB = "ecb";
+const SM4_MODE_CBC = "cbc";
+const SM4_PADDING = "pkcs#7";
+const SM4_OUTPUT_HEX = "hex";
+const SM4_OUTPUT_UTF8 = "utf8";
+const SM4_OUTPUT_ARRAY = "array";
+const SM4_OUTPUT_UINT8ARRAY = "uint8array";
+const SM4_OUTPUT_ARRAYBUFFER = "arraybuffer";
 
 const ENCRYPT = 1;
 const DECRYPT = 0;
@@ -521,24 +521,18 @@ export function decrypt(input, key, options = {}) {
   };
   return sm4Core(input, key, DECRYPT, finalOptions);
 }
-
-// 默认导出
-export default {
-  encrypt,
-  decrypt,
-  generateIv,
-  generateKey,
-  // 把常量也挂到默认导出上，方便调用
-  MODE: {
-    ECB: SM4_MODE_ECB,
-    CBC: SM4_MODE_CBC,
-  },
-  PADDING: SM4_PADDING,
-  OUTPUT: {
-    HEX: SM4_OUTPUT_HEX,
-    UTF8: SM4_OUTPUT_UTF8,
-    ARRAY: SM4_OUTPUT_ARRAY,
-    UINT8ARRAY: SM4_OUTPUT_UINT8ARRAY,
-    ARRAYBUFFER: SM4_OUTPUT_ARRAYBUFFER,
-  },
+// 导出模式
+export const MODE = {
+  ECB: SM4_MODE_ECB,
+  CBC: SM4_MODE_CBC,
+};
+// 导出填充
+export const PADDING = SM4_PADDING;
+// 导出输出模式
+export const OUTPUT = {
+  HEX: SM4_OUTPUT_HEX,
+  UTF8: SM4_OUTPUT_UTF8,
+  ARRAY: SM4_OUTPUT_ARRAY,
+  UINT8ARRAY: SM4_OUTPUT_UINT8ARRAY,
+  ARRAYBUFFER: SM4_OUTPUT_ARRAYBUFFER,
 };

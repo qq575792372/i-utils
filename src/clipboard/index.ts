@@ -1,5 +1,5 @@
 /**
- * @module 浏览器剪切板
+ * @module 浏览器Clipboard
  */
 
 import { blobToText } from "@/file";

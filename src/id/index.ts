@@ -1,5 +1,5 @@
 /**
- * @module 生成id
+ * @module 生成Id
  */
 /**
  * 生成UUID

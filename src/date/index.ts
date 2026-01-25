@@ -5,6 +5,48 @@ import { isNull, isInteger, isDate, isString } from "@/validate";
 import { parseInt } from "@/number";
 import { DATE } from "@/constants";
 
+/**
+ 日期配置类型
+ @param format 日期格式字符串，支持的占位符如下：
+  | 占位符 | 说明 | 示例（2025-01-05 08:05:08 周一） |
+  |--------|-----------------------|---------------------------------|
+  | yyyy | 4 位年份 | 2025 |
+  | yy | 2 位年份 | 25 |
+  | MM | 2 位月份（补 0） | 01 |
+  | M | 1 位月份（不补 0） | 1 |
+  | dd | 2 位日期（补 0） | 05 |
+  | d | 1 位日期（不补 0） | 5 |
+  | HH | 24 小时制（2 位，补 0） | 08 |
+  | H | 24 小时制（1 位，不补 0）| 8 |
+  | hh | 12 小时制（2 位，补 0） | 08 |
+  | h | 12 小时制（1 位，不补 0）| 8 |
+  | mm | 2 位分钟（补 0） | 05 |
+  | m | 1 位分钟（不补 0） | 5 |
+  | ss | 2 位秒数（补 0） | 08 |
+  | s | 1 位秒数（不补 0） | 8 |
+  | SSS | 3 位毫秒（补 0） | 123 |
+  | S | 1 位毫秒（不补 0） | 1 |
+  | E | 周几（迷你名） | 一（zh） / Mon（en） |
+  | EE | 周几（短名） | 周一（zh） / Mon（en） |
+  | EEE | 周几（全名） | 星期一（zh） / Monday（en） |
+  | Q | 季度（迷你名） | 1（zh） / 1（en） |
+  | QQ | 季度（短名） | Q1（zh） / Q1（en） |
+  | QQQ | 季度（全名） | 第一季度（zh） / Quarter 1（en）|
+  | a | 上午 / 下午（小写） | am /pm |
+  | A | 上午 / 下午（大写） | AM / PM |
+  | aa | 上午 / 下午（中文） | 上午 / 下午 |
+  | AA | 上午 / 下午（中文大写） | 上午 / 下午 |
+ @example
+ yyyy-MM-dd HH:mm:ss → 2025-01-05 08:05:08
+ yyyy-M-d h:m:s → 2025-1-5 8:5:8
+ yyyy-MM-dd EE → 2025-01-05 周一
+ @param lang 语言，可选值：zh（默认）/ en
+ */
+export interface DateOptions {
+  format?: string; // 日期格式
+  lang?: string; // 语言，默认 zh
+}
+
 /* 快捷日期 */
 /**
  * 今天
@@ -19,7 +61,7 @@ export function today(): string {
  * @returns {string} 返回日期字符串
  */
 export function yesterday(): string {
-  return formatDate(addDate(new Date(), -1));
+  return toDateString(addDate(new Date(), -1));
 }
 
 /**
@@ -27,7 +69,7 @@ export function yesterday(): string {
  *@returns {string} 返回日期字符串
  */
 export function tomorrow(): string {
-  return formatDate(addDate(new Date(), +1));
+  return toDateString(addDate(new Date(), +1));
 }
 
 /**
@@ -36,7 +78,7 @@ export function tomorrow(): string {
  * @returns {string} 返回日期字符串
  */
 export function lastWeek(date = new Date()): string {
-  return formatDate(addDate(date, -7));
+  return toDateString(addDate(date, -7));
 }
 
 /**
@@ -45,7 +87,7 @@ export function lastWeek(date = new Date()): string {
  * @returns {string} 返回日期字符串
  */
 export function nextWeek(date = new Date()): string {
-  return formatDate(addDate(date, +7));
+  return toDateString(addDate(date, +7));
 }
 
 /**
@@ -54,7 +96,12 @@ export function nextWeek(date = new Date()): string {
  * @returns {string} 返回日期字符串
  */
 export function lastMonth(date = new Date()): string {
-  return formatDate(addDate(date, -30));
+  const newDate = addMonth(date, -1);
+  // 处理跨月边界
+  if (newDate.getMonth() === date.getMonth()) {
+    newDate.setDate(0);
+  }
+  return toDateString(newDate);
 }
 
 /**
@@ -63,7 +110,12 @@ export function lastMonth(date = new Date()): string {
  * @returns {string} 返回日期字符串
  */
 export function nextMonth(date = new Date()): string {
-  return formatDate(addDate(date, +30));
+  const newDate = addMonth(date, +1);
+  // 处理跨月边界
+  if (newDate.getMonth() === date.getMonth()) {
+    newDate.setDate(0);
+  }
+  return toDateString(newDate);
 }
 
 /**
@@ -72,7 +124,12 @@ export function nextMonth(date = new Date()): string {
  * @returns {string} 返回日期字符串
  */
 export function lastYear(date = new Date()): string {
-  return formatDate(addDate(date, -365));
+  const newDate = addYear(date, -1);
+  // 处理跨年边界，闰年2月29日→平年2月28日
+  if (newDate.getMonth() !== date.getMonth() || newDate.getDate() !== date.getDate()) {
+    newDate.setDate(28);
+  }
+  return toDateString(newDate);
 }
 
 /**
@@ -81,7 +138,12 @@ export function lastYear(date = new Date()): string {
  * @returns {string} 返回日期字符串
  */
 export function nextYear(date = new Date()): string {
-  return formatDate(addDate(date, +365));
+  const newDate = addYear(date, +1);
+  // 处理跨年边界，闰年2月29日→平年2月28日
+  if (newDate.getMonth() !== date.getMonth() || newDate.getDate() !== date.getDate()) {
+    newDate.setDate(28);
+  }
+  return toDateString(newDate);
 }
 
 /* 判断当前日期 */
@@ -392,21 +454,23 @@ export function getNow(): Date {
 /**
  * 获得当前日期字符串
  * @param {Date} date 日期参数，默认当前日期
- * @param {string} format 日期字符串格式
+ * @param options 配置项 配置项
  * @returns {string} 返回日期字符串
  */
-export function getDate(date: Date = new Date(), format: string = "yyyy-MM-dd"): string {
-  return formatDate(date, format);
+export function getDate(date: Date = new Date(), options: DateOptions = { format: "yyyy-MM-dd" }): string {
+  const { format } = options;
+  return toDateString(date, { format });
 }
 
 /**
  * 获得当前日期时间字符串
  * @param {Date} date 日期参数，默认当前日期
- * @param {string} format 日期时间字符串格式
+ * @param options 配置项 配置项
  * @returns {string} 返回日期时间字符串
  */
-export function getDateTime(date: Date = new Date(), format: string = "yyyy-MM-dd HH:mm:ss"): string {
-  return formatDate(date, format);
+export function getDateTime(date: Date = new Date(), options: DateOptions = { format: "yyyy-MM-dd HH:mm:ss" }): string {
+  const { format } = options;
+  return toDateString(date, { format });
 }
 
 /**
@@ -432,7 +496,15 @@ export function getUnixTimestamp(date: Date = new Date()): number {
  * @param {Date} date 日期参数，默认当前日期
  * @returns {Object} 返回日期的对象形式
  */
-export function getDateObject(date: Date = new Date()): Record<string, number> {
+export function getDateObject(date: Date = new Date()): {
+  year: number;
+  month: number;
+  date: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  milliseconds: number;
+} {
   return {
     year: date.getFullYear(), // 年
     month: date.getMonth() + 1, // 月
@@ -456,11 +528,11 @@ export function getDateArray(date: Date = new Date()): number[] {
 /**
  * 获得当前日期是周几
  * @param {Date} date 日期参数，默认当前日期
- * @param {string} format 周格式化结果：E：如“日”，EE：如“周日”, EEE：如“星期日”；默认为E，为空则返回数字
- * @param {string} lang 语言zh和en，默认zh
+ * @param options 配置项
  * @returns {number|string} 返回周几，会根据语言返回
  */
-export function getWeek(date: Date = new Date(), format: string = "E", lang: string = "zh"): number | string {
+export function getWeek(date: Date = new Date(), options: DateOptions = { format: "E", lang: "zh" }): number | string {
+  const { format, lang = "zh" } = options;
   // 根据格式化和语言返回对应的周
   if (format === "E") {
     return DATE.WEEK[lang].MINI[date.getDay()];
@@ -476,11 +548,14 @@ export function getWeek(date: Date = new Date(), format: string = "E", lang: str
 /**
  * 获得当前日期是第几季度
  * @param {Date} date 日期参数，默认当前日期
- * @param {string} format 季度格式化结果：Q：如“一”, QQ：如“一季度”；QQQ：如“第一季度”；默认为Q，为空则返回数字
- * @param {string} lang 语言zh和en，默认zh
+ * @param options 配置项
  * @returns {number|string} 返回第几季度，会根据语言返回
  */
-export function getQuarter(date: Date = new Date(), format: string = "Q", lang: string = "zh"): number | string {
+export function getQuarter(
+  date: Date = new Date(),
+  options: DateOptions = { format: "Q", lang: "zh" },
+): number | string {
+  const { format, lang = "zh" } = options;
   // 根据格式化和语言返回对应的周
   const quarterNum = Number(Math.floor((date.getMonth() + 3) / 3));
   if (format === "Q") {
@@ -613,7 +688,7 @@ export function getWeeksOfYear(date: Date = new Date()): number {
 export function getFirstDateOfWeek(date: Date = new Date()): string {
   const weekDay = Number(getDayOfWeek(date));
   date.setDate(date.getDate() - weekDay + 1);
-  return formatDate(date);
+  return toDateString(date);
 }
 
 /**
@@ -624,7 +699,7 @@ export function getFirstDateOfWeek(date: Date = new Date()): string {
 export function getLastDateOfWeek(date: Date = new Date()): string {
   const weekDay = Number(getDayOfWeek(date));
   date.setDate(date.getDate() + (7 - weekDay));
-  return formatDate(date);
+  return toDateString(date);
 }
 
 /**
@@ -644,7 +719,7 @@ export function getFullDateOfWeek(date: Date = new Date()): string[] {
   for (let i = 0; i < 7; i++) {
     const currentDate = new Date(firstDateOfWeek);
     currentDate.setDate(currentDate.getDate() + i);
-    array.push(formatDate(currentDate));
+    array.push(toDateString(currentDate));
   }
 
   return array;
@@ -657,7 +732,7 @@ export function getFullDateOfWeek(date: Date = new Date()): string[] {
  */
 export function getFirstDateOfMonth(date: Date = new Date()): string {
   date.setDate(1);
-  return formatDate(date);
+  return toDateString(date);
 }
 
 /**
@@ -666,7 +741,7 @@ export function getFirstDateOfMonth(date: Date = new Date()): string {
  * @returns {string} 返回日期字符串
  */
 export function getLastDateOfMonth(date: Date = new Date()): string {
-  return formatDate(new Date(date.getFullYear(), date.getMonth() + 1, 0));
+  return toDateString(new Date(date.getFullYear(), date.getMonth() + 1, 0));
 }
 
 /**
@@ -684,7 +759,7 @@ export function getFullDateOfMonth(date: Date = new Date()): string[] {
   for (let i = 0; i < lastDateOfMonth.getDate(); i++) {
     const currentDate = new Date(firstDateOfMonth);
     currentDate.setDate(firstDateOfMonth.getDate() + i);
-    array.push(formatDate(currentDate));
+    array.push(toDateString(currentDate));
   }
   return array;
 }
@@ -695,7 +770,7 @@ export function getFullDateOfMonth(date: Date = new Date()): string[] {
  * @returns {string} 返回日期字符串
  */
 export function getFirstDateOfYear(date: Date = new Date()): string {
-  return formatDate(new Date(date.getFullYear(), 0, 1));
+  return toDateString(new Date(date.getFullYear(), 0, 1));
 }
 
 /**
@@ -704,7 +779,7 @@ export function getFirstDateOfYear(date: Date = new Date()): string {
  * @returns {string} 返回日期字符串
  */
 export function getLastDateOfYear(date: Date = new Date()): string {
-  return formatDate(new Date(date.getFullYear(), 11, 31));
+  return toDateString(new Date(date.getFullYear(), 11, 31));
 }
 
 /**
@@ -722,7 +797,7 @@ export function getFullDateOfYear(date: Date = new Date()): string[] {
   for (let i = 0; i < daysOfYear; i++) {
     const currentDate = new Date(firstDateOfYear);
     currentDate.setDate(firstDateOfYear.getDate() + i);
-    array.push(formatDate(currentDate));
+    array.push(toDateString(currentDate));
   }
   return array;
 }
@@ -879,12 +954,12 @@ export function getBetweenYears(startDate: Date, endDate: Date): number[] {
  * 获得过去时间的字符串显示
  * @description 例如：刚刚，1分钟前，1小时前等
  * @param {Date} date 日期参数
- * @param {string} lang 语言zh和en，默认zh
+ * @param options 配置项
  * @returns {string} 返回字符串
  */
-export function getPastTime(date: Date, lang: string = "zh"): string {
+export function getPastTime(date: Date, options: DateOptions = { lang: "zh" }): string {
+  const { lang = "zh" } = options;
   if (isNull(date)) return "--";
-
   // 计算时间差
   const startTime = date.getTime();
   const currentTime = Date.now();
@@ -926,10 +1001,11 @@ export function getPastTime(date: Date, lang: string = "zh"): string {
  * 获得剩余时间的字符串显示
  * @description 例如：1天10小时20分钟30秒
  * @param {Date} date 日期参数
- * @param {string} lang 语言zh和en，默认zh
+ * @param options 配置项
  * @returns {string} 返回字符串
  */
-export function getOverTime(date: Date, lang: string = "zh"): string {
+export function getOverTime(date: Date, options: DateOptions = { lang: "zh" }): string {
+  const { lang = "zh" } = options;
   if (isNull(date)) return "--";
 
   // 计算
@@ -958,7 +1034,7 @@ export function getOverTime(date: Date, lang: string = "zh"): string {
 export function getAge(date: Date): number {
   let age = 0;
   // 传参日期
-  const dateArray = formatDate(date).split("-");
+  const dateArray = toDateString(date).split("-");
   const birthYear = Number(dateArray[0]);
   const birthMonth = Number(dateArray[1]);
   const birthDay = Number(dateArray[2]);
@@ -995,10 +1071,11 @@ export function getAge(date: Date): number {
 /**
  * 通过日期获得星座
  * @param {Date} date 日期参数
- * @param {string} lang 语言zh和en，默认zh
+ * @param options 配置项
  * @returns {string} 返回星座
  */
-export function getZodiac(date: Date, lang: string = "zh"): string {
+export function getZodiac(date: Date, options: DateOptions = { lang: "zh" }): string {
+  const { lang = "zh" } = options;
   if (isNull(date)) return "";
 
   // 计算
@@ -1011,10 +1088,11 @@ export function getZodiac(date: Date, lang: string = "zh"): string {
 /**
  * 通过日期获得生肖
  * @param {Date} date 日期参数
- * @param {string} lang 语言zh和en，默认zh
+ * @param options 配置项
  * @returns {string} 返回生肖
  */
-export function getChineseZodiac(date: Date, lang: string = "zh"): string {
+export function getChineseZodiac(date: Date, options: DateOptions = { lang: "zh" }): string {
+  const { lang = "zh" } = options;
   if (isNull(date)) return "";
 
   // 计算
@@ -1129,116 +1207,110 @@ export function addQuarter(date: Date = new Date(), num: number = +1): Date {
 /**
  * 日期对象转为日期字符串
  * @description 支持日期字符串，日期对象，时间戳，unix时间戳
- * @param {string|Date|number} date 日期参数
- * @param {string} format 转化格式
- * @param {string} lang 语言zh和en，默认zh
+ * @param {Date} date 日期参数
+ * @param options 配置项
  * @returns {string} 返回日期字符串
  */
-// TODO：需要支持"20260109" 这种格式的日期的转换
-export function formatDate(date: Date, format: string = "yyyy-MM-dd", lang: string = "zh"): string {
+export function toDateString(date: Date, options: DateOptions = { format: "yyyy-MM-dd", lang: "zh" }): string {
+  const { format = "yyyy-MM-dd", lang = "zh" } = options;
   if (isNull(date)) return "";
 
-  // 是日期字符串
-  if (isString(date)) {
-    date = parseDate(String(date)) as Date;
-  }
-  // 是日期对象
-  else if (isDate(date)) {
-    // 无需赋值
-  }
-  // 是时间戳
-  else if (isInteger(date) && String(date).length === 13) {
-    date = new Date(date);
-  }
-  // 是unix时间戳
-  else if (isInteger(date) && String(date).length === 10) {
-    date = new Date(Number(date) * 1000);
-  }
-  // 不支持的日期格式
-  else {
-    console.error("Not supported date format!");
+  try {
+    // 判断是否是日期对象
+    if (!isDate(date)) {
+      console.error("Not a Date type!");
+      return "";
+    }
+
+    // 日期转化替换
+    const replaceRules: Record<string, (match: string) => string> = {
+      // 年（yyyy/yy）
+      "(y+)": (match) => {
+        const year = date.getFullYear().toString();
+        return match.length === 2 ? year.slice(-2) : year;
+      },
+      // 月（M/MM）
+      "(M+)": (match) => {
+        const month = date.getMonth() + 1;
+        return match.length === 1 ? month.toString() : month.toString().padStart(2, "0");
+      },
+      // 日（d/dd）
+      "(d+)": (match) => {
+        const day = date.getDate();
+        return match.length === 1 ? day.toString() : day.toString().padStart(2, "0");
+      },
+      // 12小时制（h/hh）
+      "(h+)": (match) => {
+        const hour = date.getHours() % 12 || 12;
+        return match.length === 1 ? hour.toString() : hour.toString().padStart(2, "0");
+      },
+      // 24小时制（H/HH）
+      "(H+)": (match) => {
+        const hour = date.getHours();
+        return match.length === 1 ? hour.toString() : hour.toString().padStart(2, "0");
+      },
+      // 分钟（m/mm）
+      "(m+)": (match) => {
+        const min = date.getMinutes();
+        return match.length === 1 ? min.toString() : min.toString().padStart(2, "0");
+      },
+      // 秒（s/ss）
+      "(s+)": (match) => {
+        const sec = date.getSeconds();
+        return match.length === 1 ? sec.toString() : sec.toString().padStart(2, "0");
+      },
+      // 毫秒（S/SS/SSS）
+      "(S+)": (match) => {
+        const ms = date.getMilliseconds();
+        return ms.toString().padStart(match.length, "0").slice(0, match.length);
+      },
+      // 上午/下午（a/A/aa/AA）
+      "([aA]+)": (match) => {
+        const isAm = date.getHours() < 12;
+        // 多语言处理
+        if (match.length > 1) {
+          return isAm ? DATE.AM_PM[lang].AM : DATE.AM_PM[lang].PM;
+        } else {
+          return isAm ? match.toLowerCase() : match.toUpperCase();
+        }
+      },
+      // 周（E/EE/EEE）
+      "(E+)": (match) => {
+        const day = date.getDay();
+        if (match.length === 1) return DATE.WEEK[lang].MINI[day];
+        if (match.length === 2) return DATE.WEEK[lang].SHORT[day];
+        return DATE.WEEK[lang].FULL[day];
+      },
+      // 季度（Q/QQ/QQQ）
+      "(Q+)": (match) => {
+        const quarter = Math.floor((date.getMonth() + 3) / 3) - 1;
+        if (match.length === 1) return DATE.QUARTER[lang].MINI[quarter];
+        if (match.length === 2) return DATE.QUARTER[lang].SHORT[quarter];
+        return DATE.QUARTER[lang].FULL[quarter];
+      },
+    };
+
+    // 批量替换格式
+    let result = format;
+    Object.entries(replaceRules).forEach(([regStr, replaceFn]) => {
+      const reg = new RegExp(regStr, "g");
+      result = result.replace(reg, (_, match) => replaceFn(match));
+    });
+
+    return result;
+  } catch (e) {
+    console.error("Date to String error", e);
     return "";
   }
+}
 
-  // 配置规则
-  const rules: Record<string, any> = {
-    "M+": date.getMonth() + 1, // 月份
-    "d+": date.getDate(), // 日
-    "h+": date.getHours() % 12 === 0 ? 12 : date.getHours() % 12, // 12小时制
-    "H+": date.getHours(), // 24小时制
-    "m+": date.getMinutes(), // 分钟
-    "s+": date.getSeconds(), // 秒
-    "S+": date.getMilliseconds(), // 毫秒
-    "a+": date.getHours() < 12 ? "am" : "pm", // 上午/下午，小写
-    "A+": date.getHours() < 12 ? "AM" : "PM", // 上午/下午，大写
-    "E+": date.getDay(), // 周
-    "Q+": Math.floor((date.getMonth() + 3) / 3), // 季度
-    S: date.getMilliseconds(), // 毫秒
-  };
-
-  // 年
-  const yearReg = new RegExp(/(y+)/g);
-  if (yearReg.test(format)) {
-    format = format.replace(yearReg, function (match, $1) {
-      return (date.getFullYear() + "").substring(4 - $1.length);
-    });
-  }
-  // 上午/下午
-  const amPmReg = new RegExp(/((b+)|(A+))/g);
-  if (amPmReg.test(format)) {
-    format = format.replace(amPmReg, function (match, $1) {
-      // AA或者aa为中文
-      if ($1.length > 1) {
-        return date.getHours() < 12 ? DATE.AM_PM[lang].AM : DATE.AM_PM[lang].PM;
-      }
-      // 其他为英文
-      else {
-        return $1 === $1.toLowerCase()
-          ? date.getHours() < 12
-            ? DATE.AM_PM["en"].AM.toLowerCase()
-            : DATE.AM_PM["en"].PM.toLowerCase()
-          : date.getHours() < 12
-            ? DATE.AM_PM["en"].AM
-            : DATE.AM_PM["en"].PM;
-      }
-    });
-  }
-  // 周
-  const weekReg = new RegExp(/(E+)/g);
-  if (weekReg.test(format)) {
-    format = format.replace(weekReg, function (match, $1) {
-      return $1.length === 1
-        ? DATE.WEEK[lang].MINI[date.getDay()]
-        : $1.length === 2
-          ? DATE.WEEK[lang].SHORT[date.getDay()]
-          : DATE.WEEK[lang].FULL[date.getDay()];
-    });
-  }
-  // 季度
-  const quarterReg = new RegExp(/(Q+)/g);
-  if (quarterReg.test(format)) {
-    format = format.replace(quarterReg, function (match, $1) {
-      return $1.length === 1
-        ? DATE.QUARTER[lang].MINI[Math.floor((date.getMonth() + 3) / 3) - 1]
-        : $1.length === 2
-          ? DATE.QUARTER[lang].SHORT[Math.floor((date.getMonth() + 3) / 3) - 1]
-          : DATE.QUARTER[lang].FULL[Math.floor((date.getMonth() + 3) / 3) - 1];
-    });
-  }
-  // 经过上面的过滤，剩余的日期参数处理
-  for (const k in rules) {
-    const dateReg = new RegExp("(" + k + ")");
-    if (dateReg.test(format)) {
-      format = format.replace(dateReg, function (match, $1) {
-        return $1.length === 1
-          ? rules[k]
-          : $1.length === 2
-            ? ("00" + rules[k]).substring(("" + rules[k]).length)
-            : ("000" + rules[k]).substring(("" + rules[k]).length);
-      });
-    }
-  }
-  return format;
+/**
+ * 本地时区日期转UTC日期
+ * @param {Date} date 本地日期，默认当前日期
+ * @returns {Date} UTC日期对象
+ */
+export function toDateUTC(date: Date = new Date()): Date {
+  return new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
 }
 
 /**
@@ -1247,25 +1319,29 @@ export function formatDate(date: Date, format: string = "yyyy-MM-dd", lang: stri
  * @param {string|number} value 日期参数
  * @returns {Date} 返回日期对象
  */
-export function parseDate(value: string | number): Date | undefined {
-  if (isNull(value)) return undefined;
+export function toDate(value: string | number): Date | undefined {
+  if (isNull(value)) return;
 
-  // 是日期字符串
-  if (isString(value)) {
-    return new Date(String(value).replace(/-/g, "/"));
-  }
-  // 是时间戳
-  else if (isInteger(value) && String(value).length === 13) {
-    return new Date(value);
-  }
-  // 是unix时间戳
-  else if (isInteger(value) && String(value).length === 10) {
-    return new Date(Number(value) * 1000);
-  }
-  // 不支持的日期格式
-  else {
-    console.error("Not supported date format!");
-    return undefined;
+  try {
+    // 是日期字符串
+    if (isString(value)) {
+      return new Date(String(value).replace(/-/g, "/"));
+    }
+    // 是时间戳
+    else if (isInteger(value) && String(value).length === 13) {
+      return new Date(value);
+    }
+    // 是unix时间戳
+    else if (isInteger(value) && String(value).length === 10) {
+      return new Date(Number(value) * 1000);
+    }
+    // 不支持的日期格式
+    else {
+      console.error("Not supported date format!");
+      return undefined;
+    }
+  } catch (e) {
+    console.error("Parse to Date error", e);
   }
 }
 

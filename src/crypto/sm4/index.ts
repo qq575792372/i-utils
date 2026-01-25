@@ -1,10 +1,9 @@
-import sm4 from "./sm4.js";
+import * as sm4 from "./sm4.js";
 
 /**
  * sm4传参和返回的类型，不管是传参还是返回值固定是这几个
  */
 export type SM4DataType = string | Uint8Array | ArrayBuffer | number[];
-
 /**
  * sm4通用配置
  */
@@ -14,7 +13,7 @@ export interface SM4Options {
   // IV初始向量：仅CBC模式需要，ECB模式不用传
   iv?: SM4DataType;
   // 填充规则：固定pkcs#7，不用改
-  padding?: keyof typeof sm4.PADDING;
+  padding?: "pkcs#7";
   // 输出格式：hex/utf8/array/uint8array/arraybuffer（加密默认hex，解密默认utf8）
   output?: keyof typeof sm4.OUTPUT;
 }
@@ -111,7 +110,7 @@ function _validateSM4Options(options: SM4Options = {}, operation: "encrypt" | "d
   }
 
   // 5. 校验填充模式（仅允许pkcs#7）
-  if (options.padding && options.padding !== sm4.PADDING) {
+  if (options.padding && options.padding !== String(sm4.PADDING)) {
     throw new Error(`SM4${operation}错误：仅支持 pkcs#7 填充模式，当前传入 ${String(options.padding)}`);
   }
 }

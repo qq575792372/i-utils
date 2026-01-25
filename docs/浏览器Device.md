@@ -1,10 +1,4 @@
-[**@ivujs/i-utils**](README.md)
-
-***
-
-[@ivujs/i-utils](README.md) / 浏览器设备
-
-# 浏览器设备
+# 浏览器Device
 
 ## 函数
 

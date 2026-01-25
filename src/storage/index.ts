@@ -1,5 +1,5 @@
 /**
- * @module 浏览器缓存
+ * @module 浏览器Storage
  */
 /**
  * 浏览器是否支持 Storage
