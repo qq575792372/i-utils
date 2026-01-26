@@ -1,7 +1,0 @@
-{
-  /* 工作台配置 */ "terminal.integrated.tabs.enabled": false,
-
-  /* 编辑器配置 */
-  "breadcrumbs.enabled": false,
-  "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${rootPath}"
-}
