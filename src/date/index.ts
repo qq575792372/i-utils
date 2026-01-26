@@ -873,8 +873,8 @@ export function getBetweenDates(startDate: Date, endDate: Date): string[] {
   const array = [];
   while (endDate.getTime() - startDate.getTime() >= 0) {
     const year = startDate.getFullYear(),
-      month = _digit(startDate.getMonth() + 1),
-      day = _digit(startDate.getDate());
+      month = _datePadZero(startDate.getMonth() + 1),
+      day = _datePadZero(startDate.getDate());
 
     // 加入数组
     array.push(year + "-" + month + "-" + day);
@@ -917,7 +917,7 @@ export function getBetweenMonths(startDate: Date, endDate: Date): string[] {
       str = curr.getFullYear() - 1 + "-" + 12;
     } else {
       // 正常月份
-      str = curr.getFullYear() + "-" + _digit(month);
+      str = curr.getFullYear() + "-" + _datePadZero(month);
     }
     // 将此年月加入数组
     array.push(str);
@@ -1256,29 +1256,26 @@ export function toDataUTCString(date = new Date(), options: DateOptions = { form
  * @param {string|number} value 日期参数
  * @returns {Date} 返回日期对象
  */
-export function toDate(value: string | number): Date | undefined {
-  if (isNull(value)) return;
+export function toDate(value: string | number): Date {
+  if (isNull(value)) {
+    throw new TypeError("value must be a string or number");
+  }
 
-  try {
-    // 是日期字符串
-    if (isString(value)) {
-      return new Date(String(value).replace(/-/g, "/"));
-    }
-    // 是时间戳
-    else if (isInteger(value) && String(value).length === 13) {
-      return new Date(value);
-    }
-    // 是unix时间戳
-    else if (isInteger(value) && String(value).length === 10) {
-      return new Date(Number(value) * 1000);
-    }
-    // 不支持的日期格式
-    else {
-      console.error("Not supported date format!");
-      return undefined;
-    }
-  } catch (e) {
-    console.error("Parse to Date error", e);
+  // 是日期字符串
+  if (isString(value)) {
+    return new Date(String(value).replace(/-/g, "/"));
+  }
+  // 是时间戳
+  else if (isInteger(value) && String(value).length === 13) {
+    return new Date(value);
+  }
+  // 是unix时间戳
+  else if (isInteger(value) && String(value).length === 10) {
+    return new Date(Number(value) * 1000);
+  }
+  // 不支持的日期格式
+  else {
+    throw new Error("Not supported date format");
   }
 }
 
@@ -1291,104 +1288,102 @@ export function toDate(value: string | number): Date | undefined {
  */
 export function toDateString(date: Date, options: DateOptions = { format: "yyyy-MM-dd", lang: "zh" }): string {
   const { format = "yyyy-MM-dd", lang = "zh" } = options;
-  if (isNull(date)) return "";
+  if (isNull(date)) {
+    throw new TypeError("date input is null");
+  }
 
-  try {
-    // 判断是否是日期对象
-    if (!isDate(date)) {
-      console.error("Not a Date type!");
-      return "";
-    }
-
-    // 日期转化替换
-    const replaceRules: Record<string, (match: string) => string> = {
-      // 年（yyyy/yy）
-      "(y+)": (match) => {
-        const year = date.getFullYear().toString();
-        return match.length === 2 ? year.slice(-2) : year;
-      },
-      // 月（M/MM）
-      "(M+)": (match) => {
-        const month = date.getMonth() + 1;
-        return match.length === 1 ? month.toString() : month.toString().padStart(2, "0");
-      },
-      // 日（d/dd）
-      "(d+)": (match) => {
-        const day = date.getDate();
-        return match.length === 1 ? day.toString() : day.toString().padStart(2, "0");
-      },
-      // 12小时制（h/hh）
-      "(h+)": (match) => {
-        const hour = date.getHours() % 12 || 12;
-        return match.length === 1 ? hour.toString() : hour.toString().padStart(2, "0");
-      },
-      // 24小时制（H/HH）
-      "(H+)": (match) => {
-        const hour = date.getHours();
-        return match.length === 1 ? hour.toString() : hour.toString().padStart(2, "0");
-      },
-      // 分钟（m/mm）
-      "(m+)": (match) => {
-        const min = date.getMinutes();
-        return match.length === 1 ? min.toString() : min.toString().padStart(2, "0");
-      },
-      // 秒（s/ss）
-      "(s+)": (match) => {
-        const sec = date.getSeconds();
-        return match.length === 1 ? sec.toString() : sec.toString().padStart(2, "0");
-      },
-      // 毫秒（S/SS/SSS）
-      "(S+)": (match) => {
-        const ms = date.getMilliseconds();
-        return ms.toString().padStart(match.length, "0").slice(0, match.length);
-      },
-      // 上午/下午（a/A/aa/AA）
-      "([aA]+)": (match) => {
-        const isAm = date.getHours() < 12;
-        // 多语言处理
-        if (match.length > 1) {
-          return isAm ? DATE.AM_PM[lang].AM : DATE.AM_PM[lang].PM;
-        } else {
-          return isAm ? match.toLowerCase() : match.toUpperCase();
-        }
-      },
-      // 周（E/EE/EEE）
-      "(E+)": (match) => {
-        const day = date.getDay();
-        if (match.length === 1) return DATE.WEEK[lang].MINI[day];
-        if (match.length === 2) return DATE.WEEK[lang].SHORT[day];
-        return DATE.WEEK[lang].FULL[day];
-      },
-      // 季度（Q/QQ/QQQ）
-      "(Q+)": (match) => {
-        const quarter = Math.floor((date.getMonth() + 3) / 3) - 1;
-        if (match.length === 1) return DATE.QUARTER[lang].MINI[quarter];
-        if (match.length === 2) return DATE.QUARTER[lang].SHORT[quarter];
-        return DATE.QUARTER[lang].FULL[quarter];
-      },
-    };
-
-    // 批量替换格式
-    let result = format;
-    Object.entries(replaceRules).forEach(([regStr, replaceFn]) => {
-      const reg = new RegExp(regStr, "g");
-      result = result.replace(reg, (_, match) => replaceFn(match));
-    });
-
-    return result;
-  } catch (e) {
-    console.error("Date to String error", e);
+  // 判断是否是日期对象
+  if (!isDate(date)) {
+    console.error("Not a Date type!");
     return "";
   }
+
+  // 日期转化替换
+  const replaceRules: Record<string, (match: string) => string> = {
+    // 年（yyyy/yy）
+    "(y+)": (match) => {
+      const year = date.getFullYear().toString();
+      return match.length === 2 ? year.slice(-2) : year;
+    },
+    // 月（M/MM）
+    "(M+)": (match) => {
+      const month = date.getMonth() + 1;
+      return match.length === 1 ? month.toString() : _datePadZero(month);
+    },
+    // 日（d/dd）
+    "(d+)": (match) => {
+      const day = date.getDate();
+      return match.length === 1 ? day.toString() : _datePadZero(day);
+    },
+    // 12小时制（h/hh）
+    "(h+)": (match) => {
+      const hour = date.getHours() % 12 || 12;
+      return match.length === 1 ? hour.toString() : _datePadZero(hour);
+    },
+    // 24小时制（H/HH）
+    "(H+)": (match) => {
+      const hour = date.getHours();
+      return match.length === 1 ? hour.toString() : _datePadZero(hour);
+    },
+    // 分钟（m/mm）
+    "(m+)": (match) => {
+      const min = date.getMinutes();
+      return match.length === 1 ? min.toString() : _datePadZero(min);
+    },
+    // 秒（s/ss）
+    "(s+)": (match) => {
+      const sec = date.getSeconds();
+      return match.length === 1 ? sec.toString() : _datePadZero(sec);
+    },
+    // 毫秒（S/SS/SSS）
+    "(S+)": (match) => {
+      const ms = date.getMilliseconds();
+      return ms.toString().padStart(match.length, "0").slice(0, match.length);
+    },
+    // 上午/下午（a/A/aa/AA）
+    "([aA]+)": (match) => {
+      const isAm = date.getHours() < 12;
+      // 多语言处理
+      if (match.length > 1) {
+        return isAm ? DATE.AM_PM[lang].AM : DATE.AM_PM[lang].PM;
+      } else {
+        return isAm ? match.toLowerCase() : match.toUpperCase();
+      }
+    },
+    // 周（E/EE/EEE）
+    "(E+)": (match) => {
+      const day = date.getDay();
+      if (match.length === 1) return DATE.WEEK[lang].MINI[day];
+      if (match.length === 2) return DATE.WEEK[lang].SHORT[day];
+      return DATE.WEEK[lang].FULL[day];
+    },
+    // 季度（Q/QQ/QQQ）
+    "(Q+)": (match) => {
+      const quarter = Math.floor((date.getMonth() + 3) / 3) - 1;
+      if (match.length === 1) return DATE.QUARTER[lang].MINI[quarter];
+      if (match.length === 2) return DATE.QUARTER[lang].SHORT[quarter];
+      return DATE.QUARTER[lang].FULL[quarter];
+    },
+  };
+
+  // 批量替换格式
+  let result = format;
+  Object.entries(replaceRules).forEach(([regStr, replaceFn]) => {
+    const reg = new RegExp(regStr, "g");
+    result = result.replace(reg, (_, match) => replaceFn(match));
+  });
+
+  return result;
 }
 
 /* 内部使用的函数 */
 /**
- * 单个数字前自动补齐零为两位
- * @param {string|number} value 可以是数字和字符串
+ * 单个日期数字前自动补齐零为两位
+ * @param {string|number} value 值
  * @returns {string} 返回处理后的字符串
  */
-function _digit(value: string | number): string {
-  value = value.toString();
-  return value[1] ? value : "0" + value;
+function _datePadZero(value: string | number): string {
+  const num = Number(value);
+  // 数字>9直接转字符串，否则补0
+  return num > 9 ? String(num) : "0" + num;
 }

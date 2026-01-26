@@ -9,7 +9,7 @@ import { isEmpty } from "@/validate";
  * @param {number} size 文件的大小，单位byte字节
  * @returns {string} 返回格式化后的字符串
  */
-export function formatFileSize(size: number) {
+export function formatFileSize(size: number): string {
   if (isEmpty(size)) return "0B";
   if (size < 1024) {
     return size + "B";
@@ -27,7 +27,7 @@ export function formatFileSize(size: number) {
  * @param {string} fileName 文件的全名称，例如：测试图片.jpg
  * @returns {string} 返回文件的名称
  */
-export function getFileName(fileName: string) {
+export function getFileName(fileName: string): string | undefined {
   if (isEmpty(fileName)) return;
   return fileName.substring(0, fileName.lastIndexOf("."));
 }
@@ -37,7 +37,7 @@ export function getFileName(fileName: string) {
  * @param {string} value 文件地址路径或者文件全名称，例如：http://xxx.com/mytest.jpg，测试图片.jpg
  * @returns {string} 返回文件后缀名
  */
-export function getFileSuffix(value: string) {
+export function getFileSuffix(value: string): string | undefined {
   if (isEmpty(value)) return;
   return value.substring(value.lastIndexOf(".") + 1).toLowerCase();
 }

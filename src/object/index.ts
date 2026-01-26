@@ -94,7 +94,7 @@ export function parseJson(json: string): Record<any, any> | null {
  * @param {*} source 拷贝的数据
  * @returns {*} 返回浅拷贝的数据
  */
-export function clone(source: any) {
+export function clone(source: any): any {
   // 边界处理：null/undefined/原始类型（直接返回，无需拷贝）
   if (source === null || typeof source !== "object") {
     return source;
@@ -200,7 +200,7 @@ export function objectEquals(obj1: Record<any, any>, obj2: Record<any, any>): bo
  * @param {Object[]} source 原对象列表
  * @returns {Object} 返回合并后的对象
  */
-export function merge(target: Record<any, any>, ...source: Record<any, any>[]) {
+export function merge(target: Record<any, any>, ...source: Record<any, any>[]): any {
   if (target == null || typeof target !== "object") {
     return target;
   }
@@ -215,7 +215,7 @@ export function merge(target: Record<any, any>, ...source: Record<any, any>[]) {
  * this._getValueByPath(res, 'data.pages.pageSize'); // 这里会输出20
  * @param {Object} target 目标对象
  * @param {string} path 字符串属性路径
- * @returns {Object} 返回目标对象
+ * @returns {*} 返回目标对象的值
  */
 export function getValueByPath(target: Record<any, any>, path: string = "data"): any {
   const paths = (path || "data").split(".");
@@ -227,7 +227,7 @@ export function getValueByPath(target: Record<any, any>, path: string = "data"):
     if (isArray) {
       // 获取的数组下标超出实际的长度
       if (propIndex < 0 || propIndex >= current[propName].length) {
-        return undefined;
+        return;
       }
       // 逐层向下找到对应属性的值
       current = current[propName][propIndex];
@@ -236,7 +236,7 @@ export function getValueByPath(target: Record<any, any>, path: string = "data"):
     else {
       // 如果属性不存在，则返回空的
       if (!current || !current.hasOwnProperty(part) || typeof current !== "object") {
-        return undefined;
+        return;
       }
       // 逐层向下找到对应属性的值
       current = current[part];
@@ -253,6 +253,7 @@ export function getValueByPath(target: Record<any, any>, path: string = "data"):
  * @param {Object} target 目标对象
  * @param {string} path 字符串属性路径
  * @param {*} value 值
+ * @returns {*} 返回修改过后的目标对象
  */
 export function setValueByPath(target: Record<any, any>, path: string = "data", value: any): Record<any, any> {
   const paths = (path || "data").split(".");
@@ -312,7 +313,7 @@ export function setValueByPath(target: Record<any, any>, path: string = "data", 
 /**
  * 获得目标路径的片段
  * @param {string} path
- * @returns {{propName: (*|undefined), propIndex: (*|number|undefined), isArray: boolean}}
+ * @returns {*} 返回获得到的值
  */
 function _getTargetPathPart(path: string): Record<any, any> {
   const pathArrayMatch = path.match(/^(\w+)\[(\d+)]$/);

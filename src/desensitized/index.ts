@@ -8,7 +8,7 @@
  * @param {number} len 显示星号的长度
  * @returns {string} 返回转化后字符串
  */
-export function formatStartOf(value: string, start: number, len: number) {
+export function formatStartOf(value: string, start: number, len: number): string {
   value = String(value);
   if (start > value.length) return value;
   // len小于0和len大于剩余长度
@@ -26,7 +26,7 @@ export function formatStartOf(value: string, start: number, len: number) {
  * @param {string} value 姓名
  * @returns {string} 返回转化后字符串
  */
-export function formatStartOfName(value: string) {
+export function formatStartOfName(value: string): string {
   if (value.length === 2) {
     return formatStartOf(value, 1, 1);
   } else if (value.length > 2) {
@@ -43,7 +43,7 @@ export function formatStartOfName(value: string) {
  * @param {number} len 显示星号的长度，默认4位
  * @returns {string} 返回转化后字符串
  */
-export function formatStartOfMobile(value: string, start: number = 3, len: number = 4) {
+export function formatStartOfMobile(value: string, start: number = 3, len: number = 4): string {
   return formatStartOf(value, start, len);
 }
 
@@ -54,7 +54,7 @@ export function formatStartOfMobile(value: string, start: number = 3, len: numbe
  * @param {number} len 显示星号的长度，默认8位
  * @returns {string} 返回转化后字符串
  */
-export function formatStartOfIDCard(value: string, start: number = 4, len: number = 8) {
+export function formatStartOfIDCard(value: string, start: number = 4, len: number = 8): string {
   return formatStartOf(value, start, len);
 }
 
@@ -65,6 +65,6 @@ export function formatStartOfIDCard(value: string, start: number = 4, len: numbe
  * @param {number} len 显示星号的长度，默认10位
  * @returns {string} 返回转化后字符串
  */
-export function formatStartOfBankCard(value: string, start: number = 4, len: number = 11) {
+export function formatStartOfBankCard(value: string, start: number = 4, len: number = 11): string {
   return formatStartOf(value, start, len);
 }

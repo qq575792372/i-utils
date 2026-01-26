@@ -13,7 +13,7 @@ import { arrayInsertAfter, arrayInsertBefore } from "@/array";
 export function getProtocol(url: string = window.location.href): string | undefined {
   const match = url.match(REGEXP.URL);
   if (match) {
-    return match[1] || "";
+    return match[1];
   }
 }
 
@@ -37,7 +37,7 @@ export function getHost(url: string = window.location.href): string | undefined 
 export function getHostName(url: string = window.location.href): string | undefined {
   const match = url.match(REGEXP.URL);
   if (match) {
-    return match[2] || "";
+    return match[2];
   }
 }
 
@@ -50,7 +50,7 @@ export function getPort(url: string = window.location.href): string | undefined 
   const match = url.match(REGEXP.URL);
 
   if (match) {
-    return match[3] || "";
+    return match[3];
   }
 }
 
@@ -62,7 +62,7 @@ export function getPort(url: string = window.location.href): string | undefined 
 export function getUrlPath(url: string = window.location.href): string | undefined {
   const match = url.match(REGEXP.URL);
   if (match) {
-    return match[4] || "";
+    return match[4];
   }
 }
 
@@ -74,7 +74,7 @@ export function getUrlPath(url: string = window.location.href): string | undefin
 export function getUrlHash(url: string = window.location.href): string | undefined {
   const match = url.match(REGEXP.URL);
   if (match) {
-    return match[6] || "";
+    return match[6];
   }
 }
 
@@ -86,7 +86,7 @@ export function getUrlHash(url: string = window.location.href): string | undefin
 export function getSearchString(url: string = window.location.href): string | undefined {
   const match = url.match(REGEXP.URL);
   if (match) {
-    return match[5] || "";
+    return match[5];
   }
 }
 
@@ -267,7 +267,7 @@ export function appendToSearchParam(
  * @param {string} name 参数名
  * @returns {string} 返回查询参数字符串
  */
-export function removeSearchParam(url: string = window.location.href, name: string) {
+export function removeSearchParam(url: string = window.location.href, name: string): string {
   const searchArr = (getSearchString(url) || "").split("&");
   const delIndex = searchArr.findIndex((v) => v.includes(name));
   if (delIndex > -1) {

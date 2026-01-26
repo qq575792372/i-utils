@@ -7,7 +7,7 @@
  * @param {string} rgb rgb颜色字符串
  * @returns {string} 返回生成的hex颜色
  */
-export function rgbToHex(rgb: string) {
+export function rgbToHex(rgb: string): string {
   const arr = rgb.split(",");
   const r = parseInt(arr[0].split("(")[1]);
   const g = parseInt(arr[1]);
@@ -20,7 +20,7 @@ export function rgbToHex(rgb: string) {
  * @param {string} rgba rgba颜色字符串
  * @returns {string} 返回生成的hex颜色
  */
-export function rgbaToHex(rgba: string) {
+export function rgbaToHex(rgba: string): string {
   const arr = rgba.split(",");
   const r = parseInt(arr[0].split("(")[1]);
   const g = parseInt(arr[1]);
@@ -35,7 +35,7 @@ export function rgbaToHex(rgba: string) {
  * @param {string} rgba rgb颜色字符串
  * @returns {string} 返回生成的hsl颜色
  */
-export function rgbaToHsl(rgba: string) {
+export function rgbaToHsl(rgba: string): string {
   const arr = rgba.split(",");
   const r = parseInt(arr[0].split("(")[1]) / 255;
   const g = parseInt(arr[1]) / 255;
@@ -75,7 +75,7 @@ export function rgbaToHsl(rgba: string) {
  * @param {string} hex hex颜色字符串
  * @returns {string} 返回生成的rgb颜色
  */
-export function hexToRgb(hex: string) {
+export function hexToRgb(hex: string): string {
   const color = { r: 0, g: 0, b: 0, o: 0 };
   const rgx = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   const hexStr = hex.replace(rgx, function (m, r, g, b) {
@@ -97,7 +97,7 @@ export function hexToRgb(hex: string) {
  * @param {number} opacity 透明度
  * @returns {string} 返回生成的rgba颜色
  */
-export function hexToRgba(hex: string, opacity: number = 1) {
+export function hexToRgba(hex: string, opacity: number = 1): string {
   const color = { r: 0, g: 0, b: 0, o: 0 };
   const rgx = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   const hexStr = hex.replace(rgx, function (m, r, g, b) {
@@ -119,7 +119,7 @@ export function hexToRgba(hex: string, opacity: number = 1) {
  * @param {string} hex hex颜色字符串
  * @returns {string} 返回生成的hsl颜色
  */
-export function hexToHsl(hex: string) {
+export function hexToHsl(hex: string): string {
   // 先解析为rgb
   const rgx = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   const hexStr = hex.replace(rgx, function (m, r, g, b) {
@@ -164,7 +164,7 @@ export function hexToHsl(hex: string) {
  * 随机生成hex颜色
  * @returns {string} 返回生成的十六进制颜色
  */
-export function getDrawHex() {
+export function getDrawHex(): string {
   return (
     "#" +
     (function (h) {
@@ -177,7 +177,7 @@ export function getDrawHex() {
  * 随机生成rgb颜色
  * @returns {string} 返回生成的 rgb 颜色
  */
-export function getDrawRgb() {
+export function getDrawRgb(): string {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
@@ -188,7 +188,7 @@ export function getDrawRgb() {
  * 随机生成rgba颜色
  * @returns {string} 返回生成的 rgba 颜色
  */
-export function getDrawRgba() {
+export function getDrawRgba(): string {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
@@ -200,9 +200,9 @@ export function getDrawRgba() {
 /**
  * 颜色值转换
  * @param {number} num 转换的值
- * @returns
+ * @returns {string} 返回计算
  */
-function _hex(num: number) {
+function _hex(num: number): string {
   if (num > 255) {
     throw "'" + num + "'' is greater than 255(0xff);";
   }

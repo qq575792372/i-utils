@@ -240,8 +240,13 @@ export function isFalse(value: any): boolean {
  * @returns {boolean} 返回结果
  */
 export function isNaN(value: any): boolean {
-  // window的isNaN函数是有缺陷的，空数组/数组有一个元素，null，空字符串 都会被认为是数字
-  return window.isNaN(value) || isArray(value) || value == null || value === "";
+  return (
+    value == null || // 匹配 null/undefined
+    typeof value === "boolean" || // 布尔值视为非数字
+    Array.isArray(value) || // 数组视为非数字
+    value === "" || // 空字符串视为非数字
+    window.isNaN(Number(value)) // 原生isNaN判断（转数字后是否为NaN）
+  );
 }
 
 /**

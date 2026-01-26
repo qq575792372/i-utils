@@ -6,22 +6,22 @@
 
 ```ts
 function getBrowserInfo(): 
-  | "unknown"
   | {
   name: string;
   version: string;
-};
+}
+  | undefined;
 ```
 
 获取浏览器信息
 
 #### 返回
 
-  \| `"unknown"`
   \| \{
   `name`: `string`;
   `version`: `string`;
 \}
+  \| `undefined`
 
 返回浏览器信息
 

@@ -5,14 +5,14 @@
 ### getClipboard()
 
 ```ts
-function getClipboard(): Promise<unknown>;
+function getClipboard(): Promise<any>;
 ```
 
 获得剪切板数据
 
 #### 返回
 
-`Promise`\<`unknown`\>
+`Promise`\<`any`\>
 
 返回剪切板的数据，是数组形式，如果是文本则是字符串，否则是blob数据
 
@@ -25,14 +25,14 @@ function getClipboard(): Promise<unknown>;
 ### getClipboardText()
 
 ```ts
-function getClipboardText(): Promise<unknown>;
+function getClipboardText(): Promise<any>;
 ```
 
 获得剪切板文本
 
 #### 返回
 
-`Promise`\<`unknown`\>
+`Promise`\<`any`\>
 
 返回剪切板文本
 
@@ -41,7 +41,7 @@ function getClipboardText(): Promise<unknown>;
 ### setClipboard()
 
 ```ts
-function setClipboard(data: string | Blob): Promise<unknown>;
+function setClipboard(data: string | Blob): Promise<any>;
 ```
 
 设置剪切板数据
@@ -56,7 +56,7 @@ function setClipboard(data: string | Blob): Promise<unknown>;
 
 #### 返回
 
-`Promise`\<`unknown`\>
+`Promise`\<`any`\>
 
 返回结果
 
@@ -69,7 +69,7 @@ function setClipboard(data: string | Blob): Promise<unknown>;
 ### setClipboardText()
 
 ```ts
-function setClipboardText(text: string): Promise<unknown>;
+function setClipboardText(text: string): Promise<any>;
 ```
 
 设置剪切板文本
@@ -84,7 +84,7 @@ function setClipboardText(text: string): Promise<unknown>;
 
 #### 返回
 
-`Promise`\<`unknown`\>
+`Promise`\<`any`\>
 
 返回结果
 
@@ -93,13 +93,13 @@ function setClipboardText(text: string): Promise<unknown>;
 ### clearClipboard()
 
 ```ts
-function clearClipboard(): Promise<unknown>;
+function clearClipboard(): Promise<any>;
 ```
 
 清空剪切板
 
 #### 返回
 
-`Promise`\<`unknown`\>
+`Promise`\<`any`\>
 
 返回结果

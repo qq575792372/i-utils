@@ -2,6 +2,8 @@
  * @module 字符串
  */
 /* 字符串处理 */
+import { isNull, isNaN } from "@/validate";
+
 /**
  * 字符串中是否包含指定的元素
  * @param {string} value 包含的元素
@@ -84,19 +86,23 @@ export function toLowerCase(value: string): string {
  * @param {string} value 参数
  * @returns {string} 返回处理后的字符串
  */
-export function toSnakeCase(value: string): string | undefined {
+export function toSnakeCase(value: string): string {
   // 驼峰
   if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     return value.replace(/([A-Z])/g, "_$1").toLowerCase();
   }
   // 短横
-  if (value.indexOf("-") > 0) {
+  else if (value.indexOf("-") > 0) {
     return value.replace(/-/g, "_").toLowerCase();
   }
   // 帕斯卡
-  if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+  else if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     value = value.charAt(0).toLowerCase() + value.slice(1);
     return value.replace(/([A-Z])/g, "_$1").toLowerCase();
+  }
+  // 不符合格式
+  else {
+    throw new TypeError("value should be a string");
   }
 }
 
@@ -106,19 +112,23 @@ export function toSnakeCase(value: string): string | undefined {
  * @param {string} value 参数
  * @returns {string} 返回处理后的字符串
  */
-export function toKebabCase(value: string): string | undefined {
+export function toKebabCase(value: string): string {
   // 下划线
   if (value.indexOf("_") > 0) {
     return value.replace(/_/g, "-").toLowerCase();
   }
   // 驼峰
-  if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+  else if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     return value.replace(/([A-Z])/g, "-$1").toLowerCase();
   }
   // 帕斯卡
-  if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
+  else if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     const newStr = value.charAt(0).toLowerCase() + value.slice(1);
     return newStr.replace(/([A-Z])/g, "-$1").toLowerCase();
+  }
+  // 不符合格式
+  else {
+    throw new TypeError("value should be a string");
   }
 }
 
@@ -145,9 +155,9 @@ export function toCamelCase(value: string): string {
   else if (/^[A-Z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     return value.charAt(0).toLowerCase() + value.slice(1);
   }
-  // 返回自身
+  // 不符合格式
   else {
-    return value;
+    throw new TypeError("value should be a string");
   }
 }
 
@@ -176,9 +186,9 @@ export function toPascalCase(value: string): string {
   else if (/^[a-z]$/.test(value.charAt(0)) && !(value.indexOf("-") > 0 || value.indexOf("_") > 0)) {
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
-  // 返回自身
+  // 不符合格式
   else {
-    return value;
+    throw new TypeError("value should be a string");
   }
 }
 
@@ -191,7 +201,16 @@ export function toPascalCase(value: string): string {
  * @param {number} maxLength 补齐0后的最大长度，默认2位
  * @returns {string} 返回补0后指定位数的字符串
  */
-export function zeroStart(value: string, maxLength: number = 2): string {
+export function padZeroStart(value: string | number, maxLength: number = 2): string {
+  value = String(value).trim();
+  if (maxLength < 0) {
+    throw new TypeError("maxLength should be greater than 0");
+  }
+  if (isNull(value) || isNaN(value)) {
+    throw new Error("value must be a valid number or numeric string");
+  }
+
+  // 前面补0
   let len = value.toString().length;
   while (len < maxLength) {
     value = "0" + value;
@@ -207,7 +226,16 @@ export function zeroStart(value: string, maxLength: number = 2): string {
  * @param {number} maxLength 补齐0后的最大长度，默认2位
  * @returns {string} 返回补0后指定位数的字符串
  */
-export function zeroEnd(value: string, maxLength: number = 2): string {
+export function padZeroEnd(value: string | number, maxLength: number = 2): string {
+  value = String(value).trim();
+  if (maxLength < 0) {
+    throw new TypeError("maxLength should be greater than 0");
+  }
+  if (isNull(value) || isNaN(value)) {
+    throw new Error("value must be a valid number or numeric string");
+  }
+
+  // 后面补0
   let len = value.toString().length;
   while (len < maxLength) {
     value = value + "0";

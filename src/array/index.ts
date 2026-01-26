@@ -10,7 +10,7 @@ import { isArray, isEmpty, isNull, isObject } from "@/validate";
  * @param {Array} array 数组
  * @returns {number} 返回最小值
  */
-export function arrayMin(array: any[]) {
+export function arrayMin(array: any[]): number {
   return Math.min.apply(null, array);
 }
 
@@ -19,7 +19,7 @@ export function arrayMin(array: any[]) {
  * @param {array} array 数组
  * @returns {number} 返回最大值
  */
-export function arrayMax(array: any[]) {
+export function arrayMax(array: any[]): number {
   return Math.max.apply(null, array);
 }
 
@@ -28,7 +28,7 @@ export function arrayMax(array: any[]) {
  * @param {Array} array 数组
  * @returns {number} 返回和
  */
-export function arraySum(array: any[]) {
+export function arraySum(array: any[]): number {
   return array.reduce(function (pre, cur) {
     return pre + cur;
   });
@@ -39,7 +39,7 @@ export function arraySum(array: any[]) {
  * @param {Array} array 数组
  * @returns {number} 返回平均数
  */
-export function arrayAvg(array: any[]) {
+export function arrayAvg(array: any[]): number {
   return arraySum(array) / array.length;
 }
 
@@ -50,7 +50,7 @@ export function arrayAvg(array: any[]) {
  * @param {Array} array 查找的数组
  * @returns {boolean} 返回结果
  */
-export function inArray(value: string | number, array: any[]) {
+export function inArray(value: string | number, array: any[]): boolean {
   if (isNull(value)) return false;
   return array.includes(value);
 }
@@ -61,7 +61,7 @@ export function inArray(value: string | number, array: any[]) {
  * @param {Array} array2 数组2
  * @returns {boolean} 返回结果
  */
-export function arrayEquals(array1: any[], array2: any[]) {
+export function arrayEquals(array1: any[], array2: any[]): boolean {
   if (array1 === array2) return true;
   if (array1.length !== array2.length) return false;
   return array1.every((v, i) => v === array2[i]);
@@ -73,7 +73,7 @@ export function arrayEquals(array1: any[], array2: any[]) {
  * @param {number} length 长度，默认 0
  * @returns {Array} 返回数组
  */
-export function arrayCreate(length: number = 0) {
+export function arrayCreate(length: number = 0): number[] {
   return [...Array(length).keys()];
 }
 
@@ -85,7 +85,7 @@ export function arrayCreate(length: number = 0) {
  * @param {*} value 添加的元素
  * @returns {Array} 返回操作后的数组
  */
-export function arrayInsert(array: any[] = [], index: number = 0, value: any = undefined) {
+export function arrayInsert(array: any[] = [], index: number = 0, value: any = undefined): any[] {
   if (index < 0) return array;
 
   if (array.length === 0) {
@@ -108,7 +108,7 @@ export function arrayInsert(array: any[] = [], index: number = 0, value: any = u
  * @param {*} value 添加的元素
  * @returns {Array} 返回操作后的数组
  */
-export function arrayInsertBefore(array: any[] = [], index: number = 0, value: any = undefined) {
+export function arrayInsertBefore(array: any[] = [], index: number = 0, value: any = undefined): any[] {
   if (index < 0) return array;
 
   if (array.length === 0) {
@@ -130,7 +130,7 @@ export function arrayInsertBefore(array: any[] = [], index: number = 0, value: a
  * @param {*} value 添加的元素
  * @returns {Array} 返回操作后的数组
  */
-export function arrayInsertAfter(array: any[] = [], index: number = 0, value: any = undefined) {
+export function arrayInsertAfter(array: any[] = [], index: number = 0, value: any = undefined): any[] {
   if (index < 0) return array;
 
   if (array.length === 0) {
@@ -151,7 +151,7 @@ export function arrayInsertAfter(array: any[] = [], index: number = 0, value: an
  * @param {number} index 下标位置，默认0
  * @returns {Array} 返回操作后的数组
  */
-export function arrayRemove(array: any[] = [], index: number = 0) {
+export function arrayRemove(array: any[] = [], index: number = 0): any[] {
   if (index < 0 || index > array.length - 1) return array;
 
   array.splice(index, 1);
@@ -164,7 +164,7 @@ export function arrayRemove(array: any[] = [], index: number = 0) {
  * @param {number} index 下标位置，默认0
  * @returns {Array} 返回操作后的数组
  */
-export function arrayRemoveBefore(array: any[] = [], index: number = 0) {
+export function arrayRemoveBefore(array: any[] = [], index: number = 0): any[] {
   if (index <= 0 || index > array.length - 1) return array;
 
   array.splice(index - 1, 1);
@@ -177,7 +177,7 @@ export function arrayRemoveBefore(array: any[] = [], index: number = 0) {
  * @param {number} index 下标位置，默认0
  * @returns {Array} 返回操作后的数组
  */
-export function arrayRemoveAfter(array: any[] = [], index: number = 0) {
+export function arrayRemoveAfter(array: any[] = [], index: number = 0): any[] {
   if (index < 0 || index > array.length - 1) return array;
 
   array.splice(index + 1, 1);
@@ -190,7 +190,7 @@ export function arrayRemoveAfter(array: any[] = [], index: number = 0) {
  * @param {number} index 下标位置，默认0
  * @returns {Array} 返回操作后的数组
  */
-export function arrayTop(array: any[] = [], index: number = 0) {
+export function arrayTop(array: any[] = [], index: number = 0): any[] {
   if (index < 0 || index > array.length - 1) return array;
 
   array.unshift(array.splice(index, 1)[0]);
@@ -203,7 +203,7 @@ export function arrayTop(array: any[] = [], index: number = 0) {
  * @param {number} index 下标位置，默认0
  * @returns {Array} 返回操作后的数组
  */
-export function arrayBottom(array: any[] = [], index: number = 0) {
+export function arrayBottom(array: any[] = [], index: number = 0): any[] {
   if (index < 0 || index > array.length - 1) return array;
 
   array.push(array.splice(index, 1)[0]);
@@ -216,7 +216,7 @@ export function arrayBottom(array: any[] = [], index: number = 0) {
  * @param {number} index 下标位置，默认0
  * @returns {Array} 返回操作后的数组
  */
-export function arrayUp(array: any[] = [], index: number = 0) {
+export function arrayUp(array: any[] = [], index: number = 0): any[] {
   if (index < 0 || index > array.length - 1) return array;
 
   if (index > 0) {
@@ -233,7 +233,7 @@ export function arrayUp(array: any[] = [], index: number = 0) {
  * @param {number} index 下标位置，默认0
  * @returns {Array} 返回操作后的数组
  */
-export function arrayDown(array: any[] = [], index: number = 0) {
+export function arrayDown(array: any[] = [], index: number = 0): any[] {
   if (index < 0 || index > array.length - 1) return array;
 
   if (index < array.length - 1) {
@@ -251,7 +251,7 @@ export function arrayDown(array: any[] = [], index: number = 0) {
  * @param {number} targetIndex 目标索引
  * @returns {Array} 返回操作后的数组
  */
-export function arraySwap(array: any[], sourceIndex: number, targetIndex: number) {
+export function arraySwap(array: any[], sourceIndex: number, targetIndex: number): any[] {
   if (sourceIndex < 0 || targetIndex < 0 || sourceIndex > array.length - 1 || targetIndex > array.length - 1) {
     return array;
   }
@@ -266,7 +266,7 @@ export function arraySwap(array: any[], sourceIndex: number, targetIndex: number
  * @param {number} mode 排序模式，参考常量集合中 数组常量，默认是升序
  * @returns {Array} 返回操作后的数组
  */
-export function arraySort(array: any[], mode: number = SORT.ASC) {
+export function arraySort(array: any[], mode: number = SORT.ASC): any[] {
   return array.sort((a: any, b: any) => {
     switch (mode) {
       // 升序
@@ -291,7 +291,7 @@ export function arraySort(array: any[], mode: number = SORT.ASC) {
  * @param {Array} props 排序的属性
  * @returns {Array} 返回操作后的数组
  */
-export function arraySortBy(array: any[], props: any[]) {
+export function arraySortBy(array: any[], props: any[]): any[] {
   return array.sort((a, b) => {
     for (const item of props) {
       // 排序配置
@@ -321,7 +321,7 @@ export function arraySortBy(array: any[], props: any[]) {
  * @param {Array} array 数组
  * @returns {Array} 返回操作后的数组
  */
-export function arrayUnique(array: any[]) {
+export function arrayUnique(array: any[]): any[] {
   if (isEmpty(array)) return [];
 
   return Array.from(new Set(array));
@@ -333,7 +333,7 @@ export function arrayUnique(array: any[]) {
  * @param {Array} array 数组
  * @returns {Array} 返回操作后的数组
  */
-export function arrayShuffle(array: any[]) {
+export function arrayShuffle(array: any[]): any[] {
   for (let i = 1; i < array.length; i++) {
     const random = Math.floor(Math.random() * (i + 1));
     [array[random], array[i]] = [array[i], array[random]];
@@ -356,7 +356,7 @@ export function arrayToTree(
     parentKey: "pid",
     childrenKey: "children",
   },
-) {
+): any[] {
   const key = setting.key,
     parentKey = setting.parentKey,
     childrenKey = setting.childrenKey;
@@ -435,7 +435,7 @@ export function treeToArray(nodes: any[], setting: { childrenKey: string } = { c
  * @param {Array} array2 数组2
  * @returns {Array} 返回数组
  */
-export function arrayUnion(array1: any[], array2: any[]) {
+export function arrayUnion(array1: any[], array2: any[]): any[] {
   return [...new Set(array1.concat(array2))];
 }
 
@@ -446,7 +446,7 @@ export function arrayUnion(array1: any[], array2: any[]) {
  * @param {Array} array2 数组2
  * @returns {Array} 返回数组
  */
-export function arrayIntersect(array1: any[], array2: any[]) {
+export function arrayIntersect(array1: any[], array2: any[]): any[] {
   return [...new Set(array1)].filter((item) => array2.includes(item));
 }
 
@@ -457,7 +457,7 @@ export function arrayIntersect(array1: any[], array2: any[]) {
  * @param {Array} array2 数组2
  * @returns {Array} 返回数组
  */
-export function arrayDifference(array1: any[], array2: any[]) {
+export function arrayDifference(array1: any[], array2: any[]): any[] {
   return [...new Set(array1)].filter((item) => !array2.includes(item));
 }
 
@@ -468,7 +468,7 @@ export function arrayDifference(array1: any[], array2: any[]) {
  * @param {Array} array2 数组2
  * @returns {Array} 返回数组
  */
-export function arrayComplement(array1: any[], array2: any[]) {
+export function arrayComplement(array1: any[], array2: any[]): any[] {
   return [
     ...[...new Set(array1)].filter((item) => !array2.includes(item)),
     ...[...new Set(array2)].filter((item) => !array1.includes(item)),

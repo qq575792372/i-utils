@@ -7,7 +7,7 @@ import { isEmpty } from "@/validate";
  * 浏览器是否支持 Cookie
  * @returns {boolean} 返回true和false
  */
-export function isSupportCookie() {
+export function isSupportCookie(): boolean {
   return window.navigator.cookieEnabled;
 }
 
@@ -17,7 +17,7 @@ export function isSupportCookie() {
  * @param {string} name 参数name
  * @returns {string} 返回获取的值
  */
-export function getCookie(name: string) {
+export function getCookie(name: string): string {
   if (typeof document == "undefined") return "";
   // cookie中每个分号后面是有个空格的，需要替换掉
   const arr = document.cookie ? document.cookie.replace(/\s/g, "").split(";") : [];

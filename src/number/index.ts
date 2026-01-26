@@ -10,7 +10,7 @@ import { isNull } from "@/validate";
  * @param {number} radix 进制数，默认10进制
  * @returns {number} 返回转换后的数字
  */
-export function parseInt(value: string | number, radix: number = 10) {
+export function parseInt(value: string | number, radix: number = 10): number {
   if (isNull(value)) {
     return 0;
   }
@@ -22,7 +22,7 @@ export function parseInt(value: string | number, radix: number = 10) {
  * @param {string|number} value 转换的值
  * @returns {number} 返回转换后的数字
  */
-export function parseFloat(value: string | number) {
+export function parseFloat(value: string | number): number {
   if (isNull(value)) {
     return 0.0;
   }

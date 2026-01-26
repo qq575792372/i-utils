@@ -8,7 +8,7 @@
  * @param {string} className 类名
  * @return {boolean} 返回true和false
  */
-export function hasClass(elem: HTMLElement, className: string) {
+export function hasClass(elem: HTMLElement, className: string): boolean {
   return elem.className.indexOf(className) > 0;
 }
 
@@ -65,7 +65,7 @@ export function addStyle(elem: HTMLElement, styles: Record<string, string> = {})
  * @param {string} name 属性
  * @returns {string|undefined} 返回样式的值
  */
-export function getStyle(elem: HTMLElement, name: string) {
+export function getStyle(elem: HTMLElement, name: string): string | unknown {
   if (!elem) return;
   return elem.style.getPropertyValue(name);
 }
@@ -86,7 +86,7 @@ export function removeStyle(elem: HTMLElement, name: string) {
  * @param {string} htmlStr html字符串
  * @returns {string} 返回转义后的字符串
  */
-export function htmlEncode(htmlStr: string) {
+export function htmlEncode(htmlStr: string): string {
   const temp = {
     "<": "&lt;",
     ">": "&gt;",
@@ -108,7 +108,7 @@ export function htmlEncode(htmlStr: string) {
  * @param {string} htmlStr html字符串
  * @returns {string} 返回解析后的字符串
  */
-export function htmlDecode(htmlStr: string) {
+export function htmlDecode(htmlStr: string): string {
   const temp = {
     "&lt;": "<",
     "&gt;": ">",

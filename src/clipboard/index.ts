@@ -9,7 +9,7 @@ import { blobToText } from "@/file";
  * @description 获得的剪切板的数据是会返回多个可用的MIME类型，比如是纯文本就返回一个['text/plain']，是复制的html则会返回两个可用的['text/plain','text/html']，是复制的图片则是['image/png']
  * @returns {Promise} 返回剪切板的数据，是数组形式，如果是文本则是字符串，否则是blob数据
  */
-export function getClipboard() {
+export function getClipboard(): Promise<any> {
   return new Promise((resolve, reject) => {
     if (window.navigator.clipboard) {
       window.navigator.clipboard.read().then((clipboardItems) => {
@@ -41,7 +41,7 @@ export function getClipboard() {
  * 获得剪切板文本
  * @returns {Promise} 返回剪切板文本
  */
-export function getClipboardText() {
+export function getClipboardText(): Promise<any> {
   return new Promise((resolve, reject) => {
     if (window.navigator.clipboard) {
       window.navigator.clipboard
@@ -64,7 +64,7 @@ export function getClipboardText() {
  * @param {string|Blob} data 写入的数据，可以是文本或blob数据
  * @returns {Promise} 返回结果
  */
-export function setClipboard(data: string | Blob) {
+export function setClipboard(data: string | Blob): Promise<any> {
   return new Promise((resolve, reject) => {
     // 现代浏览器
     if (window.navigator.clipboard) {
@@ -101,7 +101,7 @@ export function setClipboard(data: string | Blob) {
  * @param {string} text 写入的文本
  * @returns {Promise} 返回结果
  */
-export function setClipboardText(text: string) {
+export function setClipboardText(text: string): Promise<any> {
   return new Promise((resolve, reject) => {
     // 现代浏览器
     if (window.navigator.clipboard) {
@@ -123,7 +123,7 @@ export function setClipboardText(text: string) {
  * 清空剪切板
  * @returns {Promise} 返回结果
  */
-export function clearClipboard() {
+export function clearClipboard(): Promise<any> {
   return new Promise((resolve, reject) => {
     setClipboardText("")
       .then(() => resolve(true))

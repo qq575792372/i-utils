@@ -9,7 +9,11 @@
  * @param {boolean} immediate 是否立即执行，默认true
  * @returns {Function} 返回function()
  */
-export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number = 1000, immediate: boolean = true) {
+export function debounce<T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number = 1000,
+  immediate: boolean = true,
+): (...args: Parameters<T>) => ReturnType<T> | void {
   // 定时器
   let timer: ReturnType<typeof setTimeout> | null = null;
   return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
@@ -43,7 +47,10 @@ export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number
  * @param {number} interval 时间间隔，单位毫秒，默认1000毫秒
  * @returns {Function} 返回function()
  */
-export function throttle<T extends (...args: any[]) => any>(fn: T, interval: number = 1000) {
+export function throttle<T extends (...args: any[]) => any>(
+  fn: T,
+  interval: number = 1000,
+): (...args: Parameters<T>) => ReturnType<T> | void {
   // 定时器
   let timer: ReturnType<typeof setTimeout> | null = null;
   return function (this: ThisParameterType<T>, ...args: Parameters<T>) {

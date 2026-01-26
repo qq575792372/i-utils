@@ -11,7 +11,7 @@ import { MATH } from "@/constants/index.ts";
  * @param {string|number} arg2 第二个数字
  * @returns {number} 返回计算后的数字
  */
-export function add(arg1: string | number, arg2: string | number) {
+export function add(arg1: string | number, arg2: string | number): number {
   let r1, r2;
   try {
     r1 = arg1.toString().split(".")[1].length;
@@ -33,8 +33,8 @@ export function add(arg1: string | number, arg2: string | number) {
  * @param {string|number} arg2 第二个数字
  * @returns {number} 返回计算后的数字
  */
-export function subtract(arg1: string | number, arg2: string | number) {
-  let r1, r2, m, n;
+export function subtract(arg1: string | number, arg2: string | number): number {
+  let r1, r2;
   try {
     r1 = arg1.toString().split(".")[1].length;
   } catch (e) {
@@ -45,18 +45,18 @@ export function subtract(arg1: string | number, arg2: string | number) {
   } catch (e) {
     r2 = 0;
   }
-  m = Math.pow(10, Math.max(r1, r2));
-  n = r1 >= r2 ? r1 : r2;
-  return ((Number(arg1) * m - Number(arg2) * m) / m).toFixed(n);
+  const m = Math.pow(10, Math.max(r1, r2));
+  const n = r1 >= r2 ? r1 : r2;
+  return Number(((Number(arg1) * m - Number(arg2) * m) / m).toFixed(n));
 }
 
 /**
  * 两个数字相乘
  * @param {string|number} arg1 第一个数字
  * @param {string|number} arg2 第二个数字
- * @returns 返回计算后的数字
+ * @returns {number} 返回计算后的数字
  */
-export function multiply(arg1: string | number, arg2: string | number) {
+export function multiply(arg1: string | number, arg2: string | number): number {
   let m = 0;
   const s1 = arg1.toString();
   const s2 = arg2.toString();
@@ -75,7 +75,7 @@ export function multiply(arg1: string | number, arg2: string | number) {
  * @param {string|number} arg2 第二个数字
  * @returns {number} 返回计算后的数字
  */
-export function divide(arg1: string | number, arg2: string | number) {
+export function divide(arg1: string | number, arg2: string | number): number {
   let t1 = 0,
     t2 = 0;
   try {
@@ -95,7 +95,7 @@ export function divide(arg1: string | number, arg2: string | number) {
  * @param {string|number} arg2 第二个数字
  * @returns {number} 返回计算后的数字
  */
-export function modulo(arg1: string | number, arg2: string | number) {
+export function modulo(arg1: string | number, arg2: string | number): number {
   let t1 = 0,
     t2 = 0,
     d = 0;
@@ -115,7 +115,7 @@ export function modulo(arg1: string | number, arg2: string | number) {
  * @param {string|number} arg2 第二个数字
  * @returns {number} 返回计算后的数字
  */
-export function gcd(arg1: string | number, arg2: string | number) {
+export function gcd(arg1: string | number, arg2: string | number): number {
   let a = Math.abs(Number(arg1));
   let b = Math.abs(Number(arg2));
   while (b !== 0) {
@@ -132,7 +132,7 @@ export function gcd(arg1: string | number, arg2: string | number) {
  * @param {string|number} arg2 第二个数字
  * @returns {number} 返回计算后的数字
  */
-export function scm(arg1: string | number, arg2: string | number) {
+export function scm(arg1: string | number, arg2: string | number): number {
   const a = Number(arg1);
   const b = Number(arg2);
   const absA = Math.abs(a);
@@ -152,14 +152,16 @@ export function scm(arg1: string | number, arg2: string | number) {
  * @param {number} mode 保留小数模式
  * @returns {string} 返回保留后的数字字符串
  */
-export function toFixed(num: string | number, decimals: number = 2, mode: number = MATH.ROUND) {
+export function toFixed(num: string | number, decimals: number = 2, mode: number = MATH.ROUND): string {
   // 四舍五入
   if (mode === MATH.ROUND) {
     return _toFixedRound(num, decimals);
   }
   // 向下舍出
-  if (mode === MATH.ROUND_FLOOR) {
+  else if (mode === MATH.ROUND_FLOOR) {
     return _toFixedFloor(num, decimals);
+  } else {
+    throw new Error("toFixed is error");
   }
 }
 
@@ -170,14 +172,18 @@ export function toFixed(num: string | number, decimals: number = 2, mode: number
  * @param {number} mode 保留小数模式
  * @returns {number} 返回保留后的数字
  */
-export function toDecimal(num: string | number, decimals: number = 2, mode: number = MATH.ROUND) {
+export function toDecimal(num: string | number, decimals: number = 2, mode: number = MATH.ROUND): number {
   // 四舍五入
   if (mode === MATH.ROUND) {
-    return _toDecimalRound(num, decimals);
+    return Number(_toDecimalRound(num, decimals));
   }
   // 向下舍出
-  if (mode === MATH.ROUND_FLOOR) {
-    return _toDecimalFloor(num, decimals);
+  else if (mode === MATH.ROUND_FLOOR) {
+    return Number(_toDecimalFloor(num, decimals));
+  }
+  // 错误保留格式
+  else {
+    throw new Error("toDecimal is error");
   }
 }
 
@@ -189,7 +195,7 @@ export function toDecimal(num: string | number, decimals: number = 2, mode: numb
  * @param {number} decimals 保留小数的位数，默认2位
  * @returns {string} 返回字符串的数字
  */
-function _toFixedRound(num: string | number, decimals: number = 2) {
+function _toFixedRound(num: string | number, decimals: number = 2): string {
   if (isNaN(Number(num))) {
     // num可能是字符串，先转数字再判断NaN
     return "--";
@@ -233,13 +239,17 @@ function _toFixedRound(num: string | number, decimals: number = 2) {
  * @description 默认保留两位小数，此方法相当于强制截取小数位数
  * @param {string|number} num 数字
  * @param {number} decimals 保留小数的位数，默认2位
- * @returns {number} 返回字符串的数字
+ * @returns {string} 返回字符串的数字
  */
-function _toFixedFloor(num: string | number, decimals: number = 2) {
-  // 修复1：num可能是字符串，先转数字再判断NaN
+function _toFixedFloor(num: string | number, decimals: number = 2): string {
+  // num可能是字符串，先转数字再判断NaN
   const numVal = Number(num);
   if (isNaN(numVal)) {
-    return "--";
+    throw new Error(`${num} is NaN`);
+  }
+  // 校验小数位数范围
+  if (decimals < 0 || decimals > 20) {
+    throw new Error("Decimal places must be between 0 and 20");
   }
 
   // 默认为保留的小数点后两位
@@ -277,11 +287,11 @@ function _toFixedFloor(num: string | number, decimals: number = 2) {
  * 四舍五入，尽可能保留小数
  * @param {string|number} num 数字
  * @param {number} decimals 保留小数的位数，默认2位
- * @returns {number} 返回保留后的数字
+ * @returns {string} 返回保留后的数字
  */
-function _toDecimalRound(num: string | number, decimals: number = 2) {
+function _toDecimalRound(num: string | number, decimals: number = 2): number {
   if (isNaN(Number(num))) {
-    return "--";
+    throw new Error(`${num} is not a number`);
   }
   const n = Math.pow(10, decimals);
   return Math.round(Number(num) * n) / n;
@@ -293,9 +303,9 @@ function _toDecimalRound(num: string | number, decimals: number = 2) {
  * @param {number} decimals 保留小数的位数，默认2位
  * @returns {number} 返回保留后的数字
  */
-function _toDecimalFloor(num: string | number, decimals: number = 2) {
+function _toDecimalFloor(num: string | number, decimals: number = 2): number {
   if (isNaN(Number(num))) {
-    return "--";
+    throw new Error(`${num} is not a number`);
   }
   const n = Math.pow(10, decimals);
   return Math.floor(Number(num) * n) / n;

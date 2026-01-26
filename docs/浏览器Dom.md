@@ -156,7 +156,7 @@ function addStyle(elem: HTMLElement, styles: Record<string, string>): void;
 ### getStyle()
 
 ```ts
-function getStyle(elem: HTMLElement, name: string): string | undefined;
+function getStyle(elem: HTMLElement, name: string): unknown;
 ```
 
 获取元素的style样式
@@ -177,7 +177,7 @@ function getStyle(elem: HTMLElement, name: string): string | undefined;
 
 #### 返回
 
-`string` \| `undefined`
+`unknown`
 
 返回样式的值
 

@@ -37,7 +37,7 @@ export function getInfoByIDCard(idCard: string):
  * @param {string} idCard 身份证号码，支持一代15位和二代18位
  * @returns {string} 返回生日
  */
-export function getBirthdayByIDCard(idCard: string) {
+export function getBirthdayByIDCard(idCard: string): string | undefined {
   if (isNull(idCard)) return;
   // 15位身份证
   if (idCard.length === 15) {
@@ -68,7 +68,7 @@ export function getAgeByIDCard(idCard: string): number | undefined {
  * @returns {string} 返回性别
  */
 export function getSexByIDCard(idCard: string): string | undefined {
-  if (isNull(idCard)) return undefined;
+  if (isNull(idCard)) return;
   // 15位身份证
   if (idCard.length === 15) {
     return Number(idCard.substring(14)) % 2 === 0 ? (ID_CARD.SEX.WOMAN as string) : (ID_CARD.SEX.MAN as string);
@@ -88,6 +88,6 @@ export function getProvinceByIDCard(idCard: string): string | undefined {
   if (isNull(idCard)) return;
   const prefix = idCard.substring(0, 2);
   if (prefix) {
-    return ID_CARD.PROVINCE[prefix] as string;
+    return ID_CARD.PROVINCE[prefix];
   }
 }
