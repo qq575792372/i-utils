@@ -4,7 +4,9 @@
 
 ### getClipboard()
 
-> **getClipboard**(): `Promise`\<`unknown`\>
+```ts
+function getClipboard(): Promise<unknown>;
+```
 
 获得剪切板数据
 
@@ -22,7 +24,9 @@
 
 ### getClipboardText()
 
-> **getClipboardText**(): `Promise`\<`unknown`\>
+```ts
+function getClipboardText(): Promise<unknown>;
+```
 
 获得剪切板文本
 
@@ -36,7 +40,9 @@
 
 ### setClipboard()
 
-> **setClipboard**(`data`): `Promise`\<`unknown`\>
+```ts
+function setClipboard(data: string | Blob): Promise<unknown>;
+```
 
 设置剪切板数据
 
@@ -62,7 +68,9 @@
 
 ### setClipboardText()
 
-> **setClipboardText**(`text`): `Promise`\<`unknown`\>
+```ts
+function setClipboardText(text: string): Promise<unknown>;
+```
 
 设置剪切板文本
 
@@ -84,7 +92,9 @@
 
 ### clearClipboard()
 
-> **clearClipboard**(): `Promise`\<`unknown`\>
+```ts
+function clearClipboard(): Promise<unknown>;
+```
 
 清空剪切板
 

@@ -4,7 +4,9 @@
 
 ### isSupportCookie()
 
-> **isSupportCookie**(): `boolean`
+```ts
+function isSupportCookie(): boolean;
+```
 
 浏览器是否支持 Cookie
 
@@ -18,7 +20,9 @@
 
 ### getCookie()
 
-> **getCookie**(`name`): `string`
+```ts
+function getCookie(name: string): string;
+```
 
 通过name获取cookie
 
@@ -40,7 +44,12 @@
 
 ### setCookie()
 
-> **setCookie**(`name`, `value`, `timestamp`): `void`
+```ts
+function setCookie(
+   name: string, 
+   value: string, 
+   timestamp: number): void;
+```
 
 通过name设置cookie
 注：timestamp参数不填，则默认为session级别，浏览器关闭即cookie过期
@@ -73,7 +82,9 @@
 
 ### removeCookie()
 
-> **removeCookie**(`name`): `void`
+```ts
+function removeCookie(name: string): void;
+```
 
 通过name删除cookie
 
@@ -93,7 +104,9 @@
 
 ### clearCookie()
 
-> **clearCookie**(`domain`): `void`
+```ts
+function clearCookie(domain: string): void;
+```
 
 清空当前站点域名的cookie
 

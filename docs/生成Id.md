@@ -4,7 +4,9 @@
 
 ### getUUID()
 
-> **getUUID**(`len`, `radix`): `string`
+```ts
+function getUUID(len: number, radix: number): string;
+```
 
 生成UUID
 
@@ -38,7 +40,9 @@ getUUID() // 输出：0a559343dbbf0e7e6c1de90163e7aa0a
 
 ### getGUID()
 
-> **getGUID**(): `string`
+```ts
+function getGUID(): string;
+```
 
 生成GUID
 

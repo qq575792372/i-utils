@@ -1204,6 +1204,84 @@ export function addQuarter(date: Date = new Date(), num: number = +1): Date {
 }
 
 /* 格式化和解析日期 */
+
+/**
+ * UTC 日期对象转本地时区日期对象
+ * @description 将 UTC 时间的 Date 对象转换为本地时间的 Date 对象（时间戳不变，仅调整时区偏移）
+ * @param {Date} date UTC 日期对象，默认当前 UTC 时间
+ * @returns {Date} 本地时区日期对象（时间戳 = UTC时间戳 + 时区偏移毫秒数）
+ * @example
+ * // UTC时间：2025-01-26 00:00:00
+ * const utcDate = new Date('2025-01-26T00:00:00Z');
+ * const localDate = fromDateUTC(utcDate);
+ * console.log(toDateString(localDate)); // 2025-01-26 08:00:00（北京本地时间）
+ */
+export function fromDateUTC(date = new Date()): Date {
+  return new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+}
+
+/**
+ * 本地时区日期转 UTC 日期对象
+ * @description 将本地时间的 Date 对象转换为 UTC 时间的 Date 对象（时间戳不变，仅调整时区偏移）
+ * @param {Date} date 本地日期对象，默认当前本地时间
+ * @returns {Date} UTC 日期对象（时间戳 = 本地时间戳 - 时区偏移毫秒数）
+ * @example
+ * // 北京本地时间：2025-01-26 08:00:00（东8区）
+ * const localDate = new Date('2025-01-26 08:00:00');
+ * const utcDate = toDateUTC(localDate);
+ * console.log(utcDate.toISOString()); // 2025-01-26T00:00:00.000Z（UTC时间）
+ */
+export function toDateUTC(date: Date = new Date()): Date {
+  return new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+}
+
+/**
+ * 格式化日期为 UTC 字符串（符合 ISO 8601 标准）
+ * @description 直接输出 UTC 时间的字符串，无需手动转换时区
+ * @param {Date} date 本地日期对象，默认当前本地时间
+ * @param {DateOptions} options 格式化配置，默认 yyyy-MM-dd HH:mm:ss
+ * @returns {string} UTC 日期字符串
+ * @example
+ * const localDate = new Date('2025-01-26 08:00:00');
+ * console.log(toUTCString(localDate)); // 2025-01-26 00:00:00
+ */
+export function toDataUTCString(date = new Date(), options: DateOptions = { format: "yyyy-MM-dd HH:mm:ss" }): string {
+  const utcDate = toDateUTC(date);
+  return toDateString(utcDate, options);
+}
+
+/**
+ * 日期字符串转为日期对象
+ * @description 支持日期字符串，时间戳，Unix时间戳
+ * @param {string|number} value 日期参数
+ * @returns {Date} 返回日期对象
+ */
+export function toDate(value: string | number): Date | undefined {
+  if (isNull(value)) return;
+
+  try {
+    // 是日期字符串
+    if (isString(value)) {
+      return new Date(String(value).replace(/-/g, "/"));
+    }
+    // 是时间戳
+    else if (isInteger(value) && String(value).length === 13) {
+      return new Date(value);
+    }
+    // 是unix时间戳
+    else if (isInteger(value) && String(value).length === 10) {
+      return new Date(Number(value) * 1000);
+    }
+    // 不支持的日期格式
+    else {
+      console.error("Not supported date format!");
+      return undefined;
+    }
+  } catch (e) {
+    console.error("Parse to Date error", e);
+  }
+}
+
 /**
  * 日期对象转为日期字符串
  * @description 支持日期字符串，日期对象，时间戳，unix时间戳
@@ -1301,47 +1379,6 @@ export function toDateString(date: Date, options: DateOptions = { format: "yyyy-
   } catch (e) {
     console.error("Date to String error", e);
     return "";
-  }
-}
-
-/**
- * 本地时区日期转UTC日期
- * @param {Date} date 本地日期，默认当前日期
- * @returns {Date} UTC日期对象
- */
-export function toDateUTC(date: Date = new Date()): Date {
-  return new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
-}
-
-/**
- * 日期字符串转为日期对象
- * @description 支持日期字符串，时间戳，Unix时间戳
- * @param {string|number} value 日期参数
- * @returns {Date} 返回日期对象
- */
-export function toDate(value: string | number): Date | undefined {
-  if (isNull(value)) return;
-
-  try {
-    // 是日期字符串
-    if (isString(value)) {
-      return new Date(String(value).replace(/-/g, "/"));
-    }
-    // 是时间戳
-    else if (isInteger(value) && String(value).length === 13) {
-      return new Date(value);
-    }
-    // 是unix时间戳
-    else if (isInteger(value) && String(value).length === 10) {
-      return new Date(Number(value) * 1000);
-    }
-    // 不支持的日期格式
-    else {
-      console.error("Not supported date format!");
-      return undefined;
-    }
-  } catch (e) {
-    console.error("Parse to Date error", e);
   }
 }
 

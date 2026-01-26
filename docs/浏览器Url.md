@@ -4,7 +4,9 @@
 
 ### getProtocol()
 
-> **getProtocol**(`url`): `string` \| `undefined`
+```ts
+function getProtocol(url: string): string | undefined;
+```
 
 获得协议名
 
@@ -26,7 +28,9 @@ url地址，默认当前url地址
 
 ### getHost()
 
-> **getHost**(`url`): `string` \| `undefined`
+```ts
+function getHost(url: string): string | undefined;
+```
 
 获得主机地址
 
@@ -48,7 +52,9 @@ url地址，默认当前url地址
 
 ### getHostName()
 
-> **getHostName**(`url`): `string` \| `undefined`
+```ts
+function getHostName(url: string): string | undefined;
+```
 
 获得主机名称
 
@@ -70,7 +76,9 @@ url地址，默认当前url地址
 
 ### getPort()
 
-> **getPort**(`url`): `string` \| `undefined`
+```ts
+function getPort(url: string): string | undefined;
+```
 
 获得端口号
 
@@ -92,7 +100,9 @@ url地址，默认当前url地址
 
 ### getUrlPath()
 
-> **getUrlPath**(`url`): `string` \| `undefined`
+```ts
+function getUrlPath(url: string): string | undefined;
+```
 
 获得地址路径
 
@@ -114,7 +124,9 @@ url地址，默认当前url地址
 
 ### getUrlHash()
 
-> **getUrlHash**(`url`): `string` \| `undefined`
+```ts
+function getUrlHash(url: string): string | undefined;
+```
 
 获得hash字符串
 
@@ -136,7 +148,9 @@ url地址，默认当前url地址
 
 ### getSearchString()
 
-> **getSearchString**(`url`): `string` \| `undefined`
+```ts
+function getSearchString(url: string): string | undefined;
+```
 
 获得查询参数字符串
 
@@ -158,7 +172,9 @@ url地址，默认当前url地址
 
 ### hasSearchParam()
 
-> **hasSearchParam**(`url`, `name`): `boolean`
+```ts
+function hasSearchParam(url: string, name: string): boolean;
+```
 
 查询参数字符串中是否包含某个参数
 
@@ -186,7 +202,9 @@ url地址，默认当前url地址
 
 ### getSearchParam()
 
-> **getSearchParam**(`url`, `name`): `string` \| `undefined`
+```ts
+function getSearchParam(url: string, name: string): string | undefined;
+```
 
 查询参数字符串中获得某个参数的值
 
@@ -214,7 +232,12 @@ url地址，默认当前url地址
 
 ### setSearchParam()
 
-> **setSearchParam**(`url`, `name`, `value`): `string`
+```ts
+function setSearchParam(
+   url: string, 
+   name: string, 
+   value: string | number | number[] | string[]): string;
+```
 
 查询参数字符串中设置某个参数的值
 
@@ -248,7 +271,9 @@ url地址，默认当前url地址
 
 ### parseSearchParam()
 
-> **parseSearchParam**(`url`): `Record`\<`string`, `any`\>
+```ts
+function parseSearchParam(url: string): Record<string, any>;
+```
 
 查询参数字符串转为对象
 
@@ -270,7 +295,9 @@ url地址，默认当前url地址
 
 ### stringifySearchParam()
 
-> **stringifySearchParam**(`params`, `url`): `string`
+```ts
+function stringifySearchParam(params: Record<string, any>, url: string): string;
+```
 
 对象转为查询参数字符串
 
@@ -298,7 +325,12 @@ url地址，如果不为空，则会拼接好查询参数字符串的url地址
 
 ### prependSearchParam()
 
-> **prependSearchParam**(`url`, `name`, `value`): `string`
+```ts
+function prependSearchParam(
+   url: string, 
+   name: string, 
+   value: string | number | number[] | string[]): string;
+```
 
 查询参数字符串中在最前面追加新参数和值
 
@@ -332,7 +364,13 @@ url地址，默认当前url地址
 
 ### prependToSearchParam()
 
-> **prependToSearchParam**(`url`, `beforeParam`, `name`, `value`): `string`
+```ts
+function prependToSearchParam(
+   url: string, 
+   beforeParam: string, 
+   name: string, 
+   value: string | number | number[] | string[]): string;
+```
 
 查询参数字符串中在某个参数的前面追加新参数和值
 
@@ -372,7 +410,12 @@ url地址，默认当前url地址
 
 ### appendSearchParam()
 
-> **appendSearchParam**(`url`, `name`, `value`): `string`
+```ts
+function appendSearchParam(
+   url: string, 
+   name: string, 
+   value: string | number | number[] | string[]): string;
+```
 
 查询参数字符串中在最后面追加新参数和值
 
@@ -406,7 +449,13 @@ url地址，默认当前url地址
 
 ### appendToSearchParam()
 
-> **appendToSearchParam**(`url`, `afterName`, `name`, `value`): `string`
+```ts
+function appendToSearchParam(
+   url: string, 
+   afterName: string, 
+   name: string, 
+   value: string | number | number[] | string[]): string;
+```
 
 查询参数字符串中在某个参数的后面追加新参数和值
 
@@ -446,7 +495,9 @@ url地址，默认当前url地址
 
 ### removeSearchParam()
 
-> **removeSearchParam**(`url`, `name`): `string`
+```ts
+function removeSearchParam(url: string, name: string): string;
+```
 
 查询参数字符串中移除某个参数和值
 

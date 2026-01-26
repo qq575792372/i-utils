@@ -1,5 +1,11 @@
 /**
- * 语言
+ * 语言相关常量配置（全局只读）
+ *
+ * ZH: 中文
+ *  - zh
+ *
+ * EN: 英文
+ *  - en
  */
 export const LANG: Record<string, any> = {
   // 中文

@@ -4,13 +4,24 @@
 
 ### getBrowserInfo()
 
-> **getBrowserInfo**(): `"unknown"` \| \{ `name`: `string`; `version`: `string`; \}
+```ts
+function getBrowserInfo(): 
+  | "unknown"
+  | {
+  name: string;
+  version: string;
+};
+```
 
 获取浏览器信息
 
 #### 返回
 
-`"unknown"` \| \{ `name`: `string`; `version`: `string`; \}
+  \| `"unknown"`
+  \| \{
+  `name`: `string`;
+  `version`: `string`;
+\}
 
 返回浏览器信息
 
@@ -22,7 +33,9 @@
 
 ### isPc()
 
-> **isPc**(): `boolean`
+```ts
+function isPc(): boolean;
+```
 
 判断是pc端
 
@@ -36,7 +49,9 @@
 
 ### isPhone()
 
-> **isPhone**(): `boolean`
+```ts
+function isPhone(): boolean;
+```
 
 判断是手机端
 
@@ -54,7 +69,9 @@
 
 ### isAndroid()
 
-> **isAndroid**(): `boolean`
+```ts
+function isAndroid(): boolean;
+```
 
 判断是 android
 
@@ -68,7 +85,9 @@
 
 ### isIos()
 
-> **isIos**(): `boolean`
+```ts
+function isIos(): boolean;
+```
 
 判断是 ios
 
@@ -82,7 +101,9 @@
 
 ### isWindowsPhone()
 
-> **isWindowsPhone**(): `boolean`
+```ts
+function isWindowsPhone(): boolean;
+```
 
 判断是 windows phone
 
@@ -96,7 +117,9 @@
 
 ### isWindows()
 
-> **isWindows**(): `boolean`
+```ts
+function isWindows(): boolean;
+```
 
 判断是 windows
 
@@ -110,7 +133,9 @@
 
 ### isLinux()
 
-> **isLinux**(): `boolean`
+```ts
+function isLinux(): boolean;
+```
 
 判断是 linux
 
@@ -124,7 +149,9 @@
 
 ### isMac()
 
-> **isMac**(): `boolean`
+```ts
+function isMac(): boolean;
+```
 
 判断是 Mac
 
@@ -138,7 +165,9 @@
 
 ### isIphone()
 
-> **isIphone**(): `boolean`
+```ts
+function isIphone(): boolean;
+```
 
 判断是iphone
 
@@ -152,7 +181,9 @@
 
 ### isIpad()
 
-> **isIpad**(): `boolean`
+```ts
+function isIpad(): boolean;
+```
 
 判断是ipad
 
@@ -166,7 +197,9 @@
 
 ### isWeixin()
 
-> **isWeixin**(): `boolean`
+```ts
+function isWeixin(): boolean;
+```
 
 判断是微信内置浏览器
 
@@ -180,7 +213,9 @@
 
 ### isQQ()
 
-> **isQQ**(): `boolean`
+```ts
+function isQQ(): boolean;
+```
 
 判断是QQ内置浏览器
 

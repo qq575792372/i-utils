@@ -4,7 +4,9 @@
 
 ### isSupportStorage()
 
-> **isSupportStorage**(): `boolean`
+```ts
+function isSupportStorage(): boolean;
+```
 
 浏览器是否支持 Storage
 
@@ -18,7 +20,9 @@
 
 ### getLocalStorage()
 
-> **getLocalStorage**(`key`): `string` \| `undefined`
+```ts
+function getLocalStorage(key: string): string | undefined;
+```
 
 通过key从localStorage缓存中获取数据
 
@@ -40,7 +44,9 @@ key值
 
 ### setLocalStorage()
 
-> **setLocalStorage**(`key`, `value`): `void`
+```ts
+function setLocalStorage(key: string, value: string): void;
+```
 
 设置localStorage缓存数据
 
@@ -66,7 +72,9 @@ value值
 
 ### removeLocalStorage()
 
-> **removeLocalStorage**(`key`): `void`
+```ts
+function removeLocalStorage(key: string): void;
+```
 
 通过key从localStorage缓存中删除数据
 
@@ -86,7 +94,9 @@ key值
 
 ### clearLocalStorage()
 
-> **clearLocalStorage**(): `void`
+```ts
+function clearLocalStorage(): void;
+```
 
 清空localStorage缓存中所有数据
 
@@ -98,7 +108,9 @@ key值
 
 ### getSessionStorage()
 
-> **getSessionStorage**(`key`): `string` \| `undefined`
+```ts
+function getSessionStorage(key: string): string | undefined;
+```
 
 通过key从sessionStorage缓存中获取数据
 
@@ -120,7 +132,9 @@ key值
 
 ### setSessionStorage()
 
-> **setSessionStorage**(`key`, `value`): `void`
+```ts
+function setSessionStorage(key: string, value: string): void;
+```
 
 设置sessionStorage缓存数据
 
@@ -146,7 +160,9 @@ value值
 
 ### removeSessionStorage()
 
-> **removeSessionStorage**(`key`): `void`
+```ts
+function removeSessionStorage(key: string): void;
+```
 
 通过key从sessionStorage缓存中删除数据
 
@@ -166,7 +182,9 @@ key值
 
 ### clearSessionStorage()
 
-> **clearSessionStorage**(): `void`
+```ts
+function clearSessionStorage(): void;
+```
 
 清空sessionStorage缓存中所有数据
 

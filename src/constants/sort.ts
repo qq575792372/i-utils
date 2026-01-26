@@ -1,5 +1,14 @@
 /**
- * 排序
+ * 排序相关常量配置（全局只读）
+ *
+ * DESC: 降序
+ *  - 取值：0
+ *
+ * ASC: 升序
+ *  - 取值：1
+ *
+ * RANDOM: 随机排序
+ *  - 取值：2
  */
 export const SORT: Record<string, number> = {
   // 降序

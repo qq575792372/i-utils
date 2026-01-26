@@ -4,7 +4,9 @@
 
 ### hasClass()
 
-> **hasClass**(`elem`, `className`): `boolean`
+```ts
+function hasClass(elem: HTMLElement, className: string): boolean;
+```
 
 判断元素包含某个类名
 
@@ -32,7 +34,9 @@
 
 ### addClass()
 
-> **addClass**(`elem`, `className`): `void`
+```ts
+function addClass(elem: HTMLElement, className: string): void;
+```
 
 元素添加类名
 
@@ -58,7 +62,9 @@
 
 ### removeClass()
 
-> **removeClass**(`elem`, `className`): `void`
+```ts
+function removeClass(elem: HTMLElement, className: string): void;
+```
 
 元素删除类名
 
@@ -84,7 +90,12 @@
 
 ### replaceClass()
 
-> **replaceClass**(`elem`, `newClassName`, `oldClassName`): `void`
+```ts
+function replaceClass(
+   elem: HTMLElement, 
+   newClassName: string, 
+   oldClassName: string): void;
+```
 
 元素替换类名
 
@@ -116,7 +127,9 @@
 
 ### addStyle()
 
-> **addStyle**(`elem`, `styles`): `void`
+```ts
+function addStyle(elem: HTMLElement, styles: Record<string, string>): void;
+```
 
 添加元素的style样式
 
@@ -142,7 +155,9 @@
 
 ### getStyle()
 
-> **getStyle**(`elem`, `name`): `string` \| `undefined`
+```ts
+function getStyle(elem: HTMLElement, name: string): string | undefined;
+```
 
 获取元素的style样式
 
@@ -170,7 +185,9 @@
 
 ### removeStyle()
 
-> **removeStyle**(`elem`, `name`): `void`
+```ts
+function removeStyle(elem: HTMLElement, name: string): void;
+```
 
 删除元素的style样式
 
@@ -196,7 +213,9 @@
 
 ### htmlEncode()
 
-> **htmlEncode**(`htmlStr`): `string`
+```ts
+function htmlEncode(htmlStr: string): string;
+```
 
 html标签转义
 
@@ -218,7 +237,9 @@ html字符串
 
 ### htmlDecode()
 
-> **htmlDecode**(`htmlStr`): `string`
+```ts
+function htmlDecode(htmlStr: string): string;
+```
 
 html标签解码
 

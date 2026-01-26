@@ -11,7 +11,10 @@
   "skipErrorChecking": true,
   "hidePageHeader": true,
   "hideBreadcrumbs": true,
+  "expandObjects": true,
+  "expandParameters": true,
   "disableSources": true,
+  "useCodeBlocks": true,
   "readme": "none",
   "lang": "zh"
 }
