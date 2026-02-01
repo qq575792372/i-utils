@@ -87,7 +87,7 @@ function utf8ToArray(str) {
       arr.push(0x80 | (point & 0x3f));
     } else {
       arr.push(point);
-      throw new Error("input is not supported");
+      throw new TypeError("utf8ToArray: input is not supported in sm3");
     }
   }
   return arr;

@@ -27,7 +27,7 @@ export function sha256Raw(str: string): any {
  */
 export function sha256Hmac(str: string, key: string): string {
   if (!str || !key) {
-    throw new Error("Missing str or key");
+    throw new TypeError("sha256Hmac: missing str or key");
   }
   return SHA256.sha256_hmac(key, str);
 }
@@ -40,7 +40,7 @@ export function sha256Hmac(str: string, key: string): string {
  */
 export function sha256HmacRaw(str: string, key: string): any {
   if (!str || !key) {
-    throw new Error("Missing str or key");
+    throw new TypeError("sha256HmacRaw: missing str or key");
   }
   return SHA256.sha256_hmac_raw(key, str);
 }
@@ -72,7 +72,7 @@ export function sha224Raw(str: string): any {
  */
 export function sha224Hmac(str: string, key: string): string {
   if (!str || !key) {
-    throw new Error("Missing str or key");
+    throw new TypeError("sha224Hmac: missing str or key");
   }
   return SHA256.sha224_hmac(key, str);
 }
@@ -85,7 +85,7 @@ export function sha224Hmac(str: string, key: string): string {
  */
 export function sha224HmacRaw(str: string, key: string): any {
   if (!str || !key) {
-    throw new Error("Missing str or key");
+    throw new TypeError("sha224HmacRaw: missing str or key");
   }
   return SHA256.sha224_hmac_raw(key, str);
 }

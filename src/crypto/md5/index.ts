@@ -26,7 +26,7 @@ export function md5Raw(str: string): any {
  */
 export function md5Hmac(str: string, key: string): string {
   if (!str || !key) {
-    throw new Error("Missing str or key");
+    throw new TypeError("md5Hmac: missing str or key");
   }
   return MD5.md5(str, key, false);
 }
@@ -39,7 +39,7 @@ export function md5Hmac(str: string, key: string): string {
  */
 export function md5HmacRaw(str: string, key: string): any {
   if (!str || !key) {
-    throw new Error("Missing str or key");
+    throw new TypeError("md5HmacRaw: missing str or key");
   }
   return MD5.md5(str, key, true);
 }

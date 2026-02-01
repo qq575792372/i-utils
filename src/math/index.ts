@@ -161,7 +161,7 @@ export function toFixed(num: string | number, decimals: number = 2, mode: number
   else if (mode === MATH.ROUND_FLOOR) {
     return _toFixedFloor(num, decimals);
   } else {
-    throw new Error("toFixed is error");
+    throw new TypeError("toFixed: mode is MATH.ROUND 0 or MATH.ROUND_FLOOR");
   }
 }
 
@@ -183,7 +183,7 @@ export function toDecimal(num: string | number, decimals: number = 2, mode: numb
   }
   // 错误保留格式
   else {
-    throw new Error("toDecimal is error");
+    throw new TypeError("toDecimal: mode is MATH.ROUND 0 or MATH.ROUND_FLOOR");
   }
 }
 
@@ -245,11 +245,11 @@ function _toFixedFloor(num: string | number, decimals: number = 2): string {
   // num可能是字符串，先转数字再判断NaN
   const numVal = Number(num);
   if (isNaN(numVal)) {
-    throw new Error(`${num} is NaN`);
+    throw new TypeError(`${num} is NaN`);
   }
   // 校验小数位数范围
   if (decimals < 0 || decimals > 20) {
-    throw new Error("Decimal places must be between 0 and 20");
+    throw new TypeError("_toFixedFloor: decimals places must be between 0 and 20");
   }
 
   // 默认为保留的小数点后两位
@@ -291,7 +291,7 @@ function _toFixedFloor(num: string | number, decimals: number = 2): string {
  */
 function _toDecimalRound(num: string | number, decimals: number = 2): number {
   if (isNaN(Number(num))) {
-    throw new Error(`${num} is not a number`);
+    throw new TypeError(`_toDecimalRound: ${num} is not a number`);
   }
   const n = Math.pow(10, decimals);
   return Math.round(Number(num) * n) / n;
@@ -305,7 +305,7 @@ function _toDecimalRound(num: string | number, decimals: number = 2): number {
  */
 function _toDecimalFloor(num: string | number, decimals: number = 2): number {
   if (isNaN(Number(num))) {
-    throw new Error(`${num} is not a number`);
+    throw new TypeError(`_toDecimalFloor: ${num} is not a number`);
   }
   const n = Math.pow(10, decimals);
   return Math.floor(Number(num) * n) / n;

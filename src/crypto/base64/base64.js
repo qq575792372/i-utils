@@ -414,7 +414,7 @@ if (isNodeEnv) {
  */
 export const fromUint8Array = function (uint8Array, urlSafe = false) {
   if (!(uint8Array instanceof Uint8Array)) {
-    throw new TypeError("fromUint8Array方法仅支持Uint8Array输入");
+    throw new TypeError("fromUint8Array: input must be Uint8Array");
   }
   const bytes = Array.from(uint8Array);
   let result = bytesToBase64Chars(bytes);
@@ -432,7 +432,7 @@ export const fromUint8Array = function (uint8Array, urlSafe = false) {
  */
 export const toUint8Array = function (base64Str, urlSafe = false) {
   if (typeof base64Str !== "string") {
-    throw new TypeError("toUint8Array方法仅支持字符串输入");
+    throw new TypeError("toUint8Array: input must be string");
   }
   // 处理URL安全字符
   if (urlSafe) {
@@ -450,7 +450,7 @@ export const toUint8Array = function (base64Str, urlSafe = false) {
  */
 export const fromHex = function (hexStr, urlSafe = false) {
   if (typeof hexStr !== "string" || !/^[0-9a-fA-F]+$/.test(hexStr)) {
-    throw new TypeError("fromHex方法仅支持十六进制字符串输入");
+    throw new TypeError("fromHex: input must be hex string");
   }
   // 补全偶数长度
   const str = hexStr.length % 2 ? `0${hexStr}` : hexStr;
@@ -473,7 +473,7 @@ export const fromHex = function (hexStr, urlSafe = false) {
  */
 export const toHex = function (base64Str, urlSafe = false) {
   if (typeof base64Str !== "string") {
-    throw new TypeError("toHex方法仅支持字符串输入");
+    throw new TypeError("toHex: input must be string");
   }
   // 处理URL安全字符
   if (urlSafe) {

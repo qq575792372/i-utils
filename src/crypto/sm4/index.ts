@@ -75,17 +75,21 @@ function _validateSM4Options(options: SM4Options = {}, operation: "encrypt" | "d
   // 1. 校验模式是否合法
   const validModes = Object.values(sm4.MODE);
   if (!validModes.includes(mode)) {
-    throw new Error(`sm4${operation} 方法错误：不支持的加密模式 "${mode}"，仅支持 ${validModes.join("/")}`);
+    throw new TypeError(
+      `sm4${operation}：unsupported encryption mode "${mode}", supports only ${validModes.join("/")}`,
+    );
   }
 
   // 2. CBC模式必须传IV
   if (mode === sm4.MODE.CBC && !iv) {
-    throw new Error(`sm4${operation} 方法错误：CBC 模式必须传入 IV 初始向量`);
+    throw new TypeError(`sm4${operation}：the CBC mode must be inputted with an IV (initialization vector)`);
   }
 
   // 3. ECB模式禁止传IV（避免误用）
   if (mode === sm4.MODE.ECB && iv !== undefined) {
-    throw new Error(`sm4${operation} 方法错误：ECB 模式不需要传入 IV，请勿传递iv参数`);
+    throw new TypeError(
+      `sm4${operation}: the ECB mode does not require an IV to be passed in. Please do not pass the iv parameter`,
+    );
   }
 
   // 4. 校验IV长度（如果传了IV）
@@ -105,13 +109,15 @@ function _validateSM4Options(options: SM4Options = {}, operation: "encrypt" | "d
     }
 
     if (ivLength !== 16) {
-      throw new Error(`SM4${operation}错误：IV 长度必须为 16 字节，当前长度为 ${ivLength}`);
+      throw new TypeError(`sm4${operation}：IV must be 16 bytes in length, and the current length is ${ivLength}`);
     }
   }
 
   // 5. 校验填充模式（仅允许pkcs#7）
   if (options.padding && options.padding !== String(sm4.PADDING)) {
-    throw new Error(`SM4${operation}错误：仅支持 pkcs#7 填充模式，当前传入 ${String(options.padding)}`);
+    throw new TypeError(
+      `sm4${operation}: only pkcs#7 padding mode is supported, currently being input ${String(options.padding)}`,
+    );
   }
 }
 

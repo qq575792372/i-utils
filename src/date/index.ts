@@ -1259,7 +1259,7 @@ export function toDateUTCString(date = new Date(), options: DateOptions = { form
 export function toDate(value: string | number): Date {
   // 为空抛出异常
   if (isNull(value)) {
-    throw new TypeError("value cannot be null or undefined");
+    throw new TypeError("toDate: value cannot be null or undefined");
   }
 
   // 是日期字符串
@@ -1276,7 +1276,7 @@ export function toDate(value: string | number): Date {
   }
   // 不支持的日期格式
   else {
-    throw new TypeError(`invalid input type: ${typeof value}, expected string or number`);
+    throw new TypeError(`toDate: invalid input type: ${typeof value}, expected string or number`);
   }
 }
 
@@ -1291,12 +1291,12 @@ export function toDateString(date: Date, options: DateOptions = { format: "yyyy-
   const { format = "yyyy-MM-dd", lang = "zh" } = options;
   // 为空抛出异常
   if (isNull(date)) {
-    throw new TypeError("date cannot be null or undefined");
+    throw new TypeError("toDateString: date cannot be null or undefined");
   }
 
   // 判断是否是日期对象
   if (!isDate(date)) {
-    throw new TypeError(`invalid input type: ${typeof date}, expected Date object`);
+    throw new TypeError(`toDateString: invalid input type: ${typeof date}, expected Date object`);
   }
 
   // 日期转化替换

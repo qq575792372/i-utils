@@ -102,7 +102,7 @@ export function toSnakeCase(value: string): string {
   }
   // 不符合格式
   else {
-    throw new TypeError("value should be a string");
+    throw new TypeError(`toSnakeCase: value should be a string`);
   }
 }
 
@@ -128,7 +128,7 @@ export function toKebabCase(value: string): string {
   }
   // 不符合格式
   else {
-    throw new TypeError("value should be a string");
+    throw new TypeError("toKebabCase: value should be a string");
   }
 }
 
@@ -157,7 +157,7 @@ export function toCamelCase(value: string): string {
   }
   // 不符合格式
   else {
-    throw new TypeError("value should be a string");
+    throw new TypeError("toCamelCase: value should be a string");
   }
 }
 
@@ -188,7 +188,7 @@ export function toPascalCase(value: string): string {
   }
   // 不符合格式
   else {
-    throw new TypeError("value should be a string");
+    throw new TypeError("toPascalCase: value should be a string");
   }
 }
 
@@ -204,10 +204,10 @@ export function toPascalCase(value: string): string {
 export function padZeroStart(value: string | number, maxLength: number = 2): string {
   value = String(value).trim();
   if (maxLength < 0) {
-    throw new TypeError("maxLength should be greater than 0");
+    throw new TypeError("padZeroStart: maxLength should be greater than 0");
   }
   if (isNull(value) || isNaN(value)) {
-    throw new Error("value must be a valid number or numeric string");
+    throw new TypeError("padZeroStart: value must be a valid number or numeric string");
   }
 
   // 前面补0
@@ -229,10 +229,10 @@ export function padZeroStart(value: string | number, maxLength: number = 2): str
 export function padZeroEnd(value: string | number, maxLength: number = 2): string {
   value = String(value).trim();
   if (maxLength < 0) {
-    throw new TypeError("maxLength should be greater than 0");
+    throw new TypeError("padZeroEnd: maxLength should be greater than 0");
   }
   if (isNull(value) || isNaN(value)) {
-    throw new Error("value must be a valid number or numeric string");
+    throw new TypeError("padZeroEnd: value must be a valid number or numeric string");
   }
 
   // 后面补0
@@ -320,7 +320,7 @@ export function formatRmbChinese(money: number | string): string {
   money = parseFloat(String(money));
   if (money >= maxNum) {
     // 超出最大处理数字，抛出异常
-    throw new Error("Calculated number overflow!");
+    throw new TypeError("formatRmbChinese: calculated number overflow");
   }
   if (money === 0) {
     chineseStr = cnNums[0] + cnIntLast + cnInteger;

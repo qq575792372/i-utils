@@ -52,7 +52,7 @@ const FK = new Uint32Array([0xa3b1bac6, 0x56aa3350, 0x677d9197, 0xb27022dc]);
  */
 function hexToUint8Array(str) {
   str = str.replace(/\s+/g, ""); // 去除空格
-  if (str.length % 2 !== 0) throw new Error("Hex string length must be even");
+  if (str.length % 2 !== 0) throw new TypeError("hexToUint8Array: hex string length must be even from sm4");
 
   const arr = new Uint8Array(str.length / 2);
   for (let i = 0; i < str.length; i += 2) {
@@ -118,7 +118,7 @@ function normalizeInput(input, cryptFlag) {
       return hexToUint8Array(input);
     }
   }
-  throw new Error(`Unsupported input type: ${typeof input}`);
+  throw new TypeError(`normalizeInput: unsupported input type: ${typeof input} from sm4`);
 }
 
 /**
@@ -139,11 +139,13 @@ function normalizeKeyIv(keyOrIv, expectedLength, name) {
   } else if (Array.isArray(keyOrIv)) {
     arr = new Uint8Array(keyOrIv);
   } else {
-    throw new Error(`Unsupported ${name} type: ${typeof keyOrIv}`);
+    throw new TypeError(`normalizeKeyIv: unsupported ${name} type: ${typeof keyOrIv} from sm4`);
   }
 
   if (arr.length !== expectedLength) {
-    throw new Error(`${name} must be ${expectedLength * 8} bits (${expectedLength} bytes)`);
+    throw new TypeError(
+      `normalizeKeyIv: ${name} must be ${expectedLength * 8} bits (${expectedLength} bytes) from sm4`,
+    );
   }
   return arr;
 }
@@ -202,7 +204,7 @@ function linearTransformKey(b) {
 function sm4BlockCrypt(inputBlock, outputBlock, roundKeys) {
   // 确保输入块是16字节
   if (inputBlock.length !== BLOCK_SIZE) {
-    throw new Error(`Input block must be ${BLOCK_SIZE} bytes for SM4 block crypt`);
+    throw new TypeError(`sm4BlockCrypt: input block must be ${BLOCK_SIZE} bytes for block crypt from sm4`);
   }
 
   // 字节数组转32比特字数组（4个字，共128比特）
@@ -312,7 +314,7 @@ function pkcs7Unpad(data) {
   // 验证填充合法性
   for (let i = 1; i <= paddingCount; i++) {
     if (data[data.length - i] !== paddingCount) {
-      throw new Error("Invalid PKCS#7 padding");
+      throw new TypeError("pkcs7Unpad: invalid PKCS#7 padding from sm4");
     }
   }
   return data.subarray(0, data.length - paddingCount);
@@ -341,7 +343,7 @@ function sm4Core(inputData, key, cryptFlag, options = {}) {
 
   // 校验模式
   if (![SM4_MODE_ECB, SM4_MODE_CBC].includes(mode)) {
-    throw new Error(`Unsupported mode: ${mode}, only 'ecb' and 'cbc' are supported`);
+    throw new TypeError(`sm4Core: unsupported mode: ${mode}, only 'ecb' and 'cbc' are supported from sm4`);
   }
 
   // 标准化输入、密钥、IV
@@ -358,7 +360,7 @@ function sm4Core(inputData, key, cryptFlag, options = {}) {
     processedInput = pkcs7Pad(input);
     // 确保填充后是16字节的倍数
     if (processedInput.length % BLOCK_SIZE !== 0) {
-      throw new Error("PKCS7 padding failed: data length is not multiple of block size");
+      throw new TypeError("sm4Core: PKCS7 padding failed: data length is not multiple of block size from sm4");
     }
   }
 
@@ -424,7 +426,7 @@ function sm4Core(inputData, key, cryptFlag, options = {}) {
     case SM4_OUTPUT_ARRAYBUFFER:
       return finalOutput.buffer;
     default:
-      throw new Error(`Unsupported output format: ${output}`);
+      throw new TypeError(`sm4Core: unsupported output format: ${output} from sm4`);
   }
 }
 
@@ -437,7 +439,7 @@ function sm4Core(inputData, key, cryptFlag, options = {}) {
 export function generateIv(outputFormat = SM4_OUTPUT_HEX) {
   // 1. 校验浏览器是否支持 crypto
   if (!window?.crypto?.getRandomValues) {
-    throw new Error("Your browser does not support secure random generation (crypto API)");
+    throw new TypeError("generateIv: your browser does not support secure random generation (crypto API) from sm4");
   }
 
   // 2. 生成 16 字节安全随机数
@@ -471,7 +473,9 @@ export function generateIv(outputFormat = SM4_OUTPUT_HEX) {
 export function generateKey(outputFormat = SM4_OUTPUT_HEX) {
   // 校验浏览器/Node环境的安全随机数API
   if (!window?.crypto?.getRandomValues && !global?.crypto?.getRandomValues) {
-    throw new Error("当前环境不支持安全随机数生成，请升级浏览器/Node.js");
+    throw new TypeError(
+      "generateKey: the current environment does not support secure random number generation. please upgrade your browser/Node.js from sm4",
+    );
   }
 
   // 生成16字节随机数（SM4密钥固定16字节）

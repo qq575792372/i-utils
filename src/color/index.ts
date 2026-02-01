@@ -83,7 +83,7 @@ export function hexToRgb(hex: string): string {
   });
   const rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexStr);
   if (!rgb) {
-    throw new Error(`Invalid hex color: ${hex}`);
+    throw new TypeError(`hexToRgb: invalid hex color: ${hex}`);
   }
   color.r = parseInt(rgb[1], 16);
   color.g = parseInt(rgb[2], 16);
@@ -105,7 +105,7 @@ export function hexToRgba(hex: string, opacity: number = 1): string {
   });
   const rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexStr);
   if (!rgb) {
-    throw new Error(`Invalid hex color: ${hex}`);
+    throw new TypeError(`hexToRgba: invalid hex color: ${hex}`);
   }
   color.r = parseInt(rgb[1], 16);
   color.g = parseInt(rgb[2], 16);
@@ -127,7 +127,7 @@ export function hexToHsl(hex: string): string {
   });
   const rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexStr);
   if (!rgb) {
-    throw new Error(`Invalid hex color: ${hex}`);
+    throw new TypeError(`hexToHsl: invalid hex color: ${hex}`);
   }
 
   // 再组装为hsl格式

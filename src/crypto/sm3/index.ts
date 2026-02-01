@@ -16,7 +16,7 @@ export function sm3Encrypt(str: string): string {
  */
 export function sm3EncryptHmac(str: string, key: string): string {
   if (!str || !key) {
-    throw new Error("Missing str or key");
+    throw new TypeError("sm3EncryptHmac: missing str or key");
   }
   return sm3.encrypt(str, key);
 }
