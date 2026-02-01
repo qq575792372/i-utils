@@ -1216,7 +1216,7 @@ export function addQuarter(date: Date = new Date(), num: number = +1): Date {
  * const localDate = fromDateUTC(utcDate);
  * console.log(toDateString(localDate)); // 2025-01-26 08:00:00（北京本地时间）
  */
-export function fromDateUTC(date = new Date()): Date {
+export function fromDateUTC(date: Date = new Date()): Date {
   return new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
 }
 
@@ -1245,7 +1245,7 @@ export function toDateUTC(date: Date = new Date()): Date {
  * const localDate = new Date('2025-01-26 08:00:00');
  * console.log(toUTCString(localDate)); // 2025-01-26 00:00:00
  */
-export function toDataUTCString(date = new Date(), options: DateOptions = { format: "yyyy-MM-dd HH:mm:ss" }): string {
+export function toDateUTCString(date = new Date(), options: DateOptions = { format: "yyyy-MM-dd HH:mm:ss" }): string {
   const utcDate = toDateUTC(date);
   return toDateString(utcDate, options);
 }
@@ -1257,8 +1257,9 @@ export function toDataUTCString(date = new Date(), options: DateOptions = { form
  * @returns {Date} 返回日期对象
  */
 export function toDate(value: string | number): Date {
+  // 为空抛出异常
   if (isNull(value)) {
-    throw new TypeError("value must be a string or number");
+    throw new TypeError("value cannot be null or undefined");
   }
 
   // 是日期字符串
@@ -1275,7 +1276,7 @@ export function toDate(value: string | number): Date {
   }
   // 不支持的日期格式
   else {
-    throw new Error("Not supported date format");
+    throw new TypeError(`invalid input type: ${typeof value}, expected string or number`);
   }
 }
 
@@ -1288,14 +1289,14 @@ export function toDate(value: string | number): Date {
  */
 export function toDateString(date: Date, options: DateOptions = { format: "yyyy-MM-dd", lang: "zh" }): string {
   const { format = "yyyy-MM-dd", lang = "zh" } = options;
+  // 为空抛出异常
   if (isNull(date)) {
-    throw new TypeError("date input is null");
+    throw new TypeError("date cannot be null or undefined");
   }
 
   // 判断是否是日期对象
   if (!isDate(date)) {
-    console.error("Not a Date type!");
-    return "";
+    throw new TypeError(`invalid input type: ${typeof date}, expected Date object`);
   }
 
   // 日期转化替换
