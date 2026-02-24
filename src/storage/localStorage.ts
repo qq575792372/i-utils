@@ -5,7 +5,7 @@
  * @returns {string} 返回数据
  */
 export function getLocalStorage(key: string): string | undefined {
-  return window.localStorage.getItem(key) || undefined;
+  return (window && window.localStorage.getItem(key)) || undefined;
 }
 
 /**
@@ -14,7 +14,7 @@ export function getLocalStorage(key: string): string | undefined {
  * @param {string} value value值
  */
 export function setLocalStorage(key: string, value: string): void {
-  window.localStorage.setItem(key, value);
+  window && window.localStorage.setItem(key, value);
 }
 
 /**
@@ -22,12 +22,12 @@ export function setLocalStorage(key: string, value: string): void {
  * @param {string} key key值
  */
 export function removeLocalStorage(key: string): void {
-  window.localStorage.removeItem(key);
+  window && window.localStorage.removeItem(key);
 }
 
 /**
  * 清空localStorage缓存中所有数据
  */
 export function clearLocalStorage(): void {
-  window.localStorage.clear();
+  window && window.localStorage.clear();
 }

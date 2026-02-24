@@ -43,7 +43,7 @@ export function getClipboard(): Promise<any> {
  */
 export function getClipboardText(): Promise<any> {
   return new Promise((resolve, reject) => {
-    if (window.navigator.clipboard) {
+    if (window && window.navigator) {
       window.navigator.clipboard
         .readText()
         .then((text) => {
@@ -67,7 +67,7 @@ export function getClipboardText(): Promise<any> {
 export function setClipboard(data: string | Blob): Promise<any> {
   return new Promise((resolve, reject) => {
     // 现代浏览器
-    if (window.navigator.clipboard) {
+    if (window && window.navigator) {
       let clipboardItem = null;
       // 是文本类型
       if (typeof data === "string") {
@@ -104,7 +104,7 @@ export function setClipboard(data: string | Blob): Promise<any> {
 export function setClipboardText(text: string): Promise<any> {
   return new Promise((resolve, reject) => {
     // 现代浏览器
-    if (window.navigator.clipboard) {
+    if (window && window.navigator) {
       window.navigator.clipboard.writeText(text).then(
         (success) => {
           resolve(true);

@@ -8,7 +8,7 @@
  * @returns {Object} 返回浏览器信息
  */
 export function getBrowserInfo(): { name: string; version: string } | undefined {
-  const ua = window.navigator.userAgent.toLowerCase();
+  const ua = window && window.navigator.userAgent.toLowerCase();
 
   // ie
   const ie = ua.match(/rv:([\d.]+)\) like gecko/) || ua.match(/msie ([\d\.]+)/);
@@ -48,7 +48,7 @@ export function isPc(): boolean {
  * @returns {boolean} 返回true和false
  */
 export function isPhone(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|IEMobile/i.test(ua);
 }
 
@@ -58,7 +58,7 @@ export function isPhone(): boolean {
  * @returns {boolean} 返回true和false
  */
 export function isAndroid(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /Android|BlackBerry/i.test(ua);
 }
 
@@ -67,7 +67,7 @@ export function isAndroid(): boolean {
  * @returns {boolean} 返回true和false
  */
 export function isIos(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /iPhone|iPad|iPod|iOS/i.test(ua);
 }
 
@@ -76,7 +76,7 @@ export function isIos(): boolean {
  * @returns {boolean} 返回true和false
  */
 export function isWindowsPhone(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /Windows Phone/i.test(ua);
 }
 
@@ -85,7 +85,7 @@ export function isWindowsPhone(): boolean {
  * @returns {boolean} 返回true和false
  */
 export function isWindows(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /win/i.test(ua);
 }
 
@@ -94,7 +94,7 @@ export function isWindows(): boolean {
  * @returns {boolean} 返回true和false
  */
 export function isLinux(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /linux/i.test(ua);
 }
 
@@ -103,7 +103,7 @@ export function isLinux(): boolean {
  * @returns {boolean} 返回true和false
  */
 export function isMac(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /mac/i.test(ua);
 }
 
@@ -113,7 +113,7 @@ export function isMac(): boolean {
  *@returns {boolean} 返回true和false
  */
 export function isIphone(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /iPhone/i.test(ua);
 }
 
@@ -122,7 +122,7 @@ export function isIphone(): boolean {
  *@return {boolean} 返回true和false
  */
 export function isIpad(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /iPod/i.test(ua);
 }
 
@@ -132,7 +132,7 @@ export function isIpad(): boolean {
  * @returns {boolean} 返回true和false
  */
 export function isWeixin(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /MicroMessenger/i.test(ua);
 }
 
@@ -141,6 +141,6 @@ export function isWeixin(): boolean {
  * @returns {boolean} 返回true和false
  */
 export function isQQ(): boolean {
-  const ua = window.navigator.userAgent;
+  const ua = window && window.navigator.userAgent;
   return /QQ/i.test(ua);
 }

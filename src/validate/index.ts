@@ -245,7 +245,7 @@ export function isNaN(value: any): boolean {
     typeof value === "boolean" || // 布尔值视为非数字
     Array.isArray(value) || // 数组视为非数字
     value === "" || // 空字符串视为非数字
-    window.isNaN(Number(value)) // 原生isNaN判断（转数字后是否为NaN）
+    (window && window.isNaN(Number(value))) // 原生isNaN判断（转数字后是否为NaN）
   );
 }
 

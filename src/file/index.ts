@@ -119,15 +119,16 @@ export function fileToUrl(file: File): Promise<string> {
 export function urlToFile(url: string): Promise<File> {
   return new Promise((resolve, reject) => {
     try {
-      window.fetch(url).then((res) => {
-        if (res.status === 200) {
-          res.blob().then((blob) => {
-            blobToFile(blob).then((file) => {
-              resolve(file);
+      window &&
+        window.fetch(url).then((res) => {
+          if (res.status === 200) {
+            res.blob().then((blob) => {
+              blobToFile(blob).then((file) => {
+                resolve(file);
+              });
             });
-          });
-        }
-      });
+          }
+        });
     } catch (err) {
       console.error(err);
       reject(err);

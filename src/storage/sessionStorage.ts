@@ -5,7 +5,7 @@
  * @returns {string} 返回数据
  */
 export function getSessionStorage(key: string): string | undefined {
-  return window.sessionStorage.getItem(key) || undefined;
+  return (window && window.sessionStorage.getItem(key)) || undefined;
 }
 
 /**
@@ -14,7 +14,7 @@ export function getSessionStorage(key: string): string | undefined {
  * @param {string} value value值
  */
 export function setSessionStorage(key: string, value: string): void {
-  window.sessionStorage.setItem(key, value);
+  window && window.sessionStorage.setItem(key, value);
 }
 
 /**
@@ -22,12 +22,12 @@ export function setSessionStorage(key: string, value: string): void {
  * @param {string} key key值
  */
 export function removeSessionStorage(key: string): void {
-  window.sessionStorage.removeItem(key);
+  window && window.sessionStorage.removeItem(key);
 }
 
 /**
  * 清空sessionStorage缓存中所有数据
  */
 export function clearSessionStorage(): void {
-  window.sessionStorage.clear();
+  window && window.sessionStorage.clear();
 }
