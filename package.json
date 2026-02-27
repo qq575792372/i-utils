@@ -1,7 +1,7 @@
 {
   "name": "@ivujs/i-utils",
   "moduleName": "iUtils",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "type": "module",
   "description": "前端模块化 JavaScript 工具库",
   "author": "<gao911222@163.com>",

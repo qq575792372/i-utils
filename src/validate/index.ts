@@ -241,11 +241,7 @@ export function isFalse(value: any): boolean {
  */
 export function isNaN(value: any): boolean {
   return (
-    value == null || // 匹配 null/undefined
-    typeof value === "boolean" || // 布尔值视为非数字
-    Array.isArray(value) || // 数组视为非数字
-    value === "" || // 空字符串视为非数字
-    (window && window.isNaN(Number(value))) // 原生isNaN判断（转数字后是否为NaN）
+    value == null || typeof value === "boolean" || Array.isArray(value) || value === "" || Number.isNaN(Number(value))
   );
 }
 
