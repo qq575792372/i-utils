@@ -127,13 +127,18 @@ export function clone(source: any): any {
  * @param {*} source 拷贝的数据
  * @returns {*} 返回深拷贝的数据
  */
-export function deepClone(source: any): any {
+export function cloneDeep(source: any): any {
+  // null / undefined
+  if (source === null || source === undefined) {
+    return source;
+  }
+
   // Object
-  if (isObject(source)) {
+  else if (isObject(source)) {
     const copy: Record<string, any> = {};
     for (const attr in source) {
       if (source.hasOwnProperty(attr)) {
-        copy[attr] = deepClone(source[attr]);
+        copy[attr] = cloneDeep(source[attr]);
       }
     }
     return copy;
@@ -143,7 +148,7 @@ export function deepClone(source: any): any {
   else if (isArray(source)) {
     const copy = [];
     for (let i = 0, len = source.length; i < len; i++) {
-      copy[i] = deepClone(source[i]);
+      copy[i] = cloneDeep(source[i]);
     }
     return copy;
   }
