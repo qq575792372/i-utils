@@ -29,9 +29,10 @@ export function arrayMax(array: any[]): number {
  * @returns {number} 返回和
  */
 export function arraySum(array: any[]): number {
+  if (!isArray(array) || array.length === 0) return 0;
   return array.reduce(function (pre, cur) {
-    return pre + cur;
-  });
+    return pre + (typeof cur === "number" ? cur : Number(cur) || 0);
+  }, 0);
 }
 
 /**
@@ -40,6 +41,7 @@ export function arraySum(array: any[]): number {
  * @returns {number} 返回平均数
  */
 export function arrayAvg(array: any[]): number {
+  if (!isArray(array) || array.length === 0) return 0;
   return arraySum(array) / array.length;
 }
 
